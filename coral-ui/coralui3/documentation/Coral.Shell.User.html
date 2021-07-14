@@ -1,0 +1,2534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CoralUI - Coral.Shell.User</title>
+    <meta name="viewport" content="user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <script src="../js/libs/jquery.js"></script>
+    <script src="../js/libs/moment.js"></script>
+    <script src="js/prettify.js"></script>
+    <script src="js/coral-docs.js"></script>
+    <script src="../js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/coral.css">
+    <link rel="stylesheet" type="text/css" href="css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="css/jsdoc-default.css">
+    <link rel="stylesheet" type="text/css" href="css/coral-docs-examples.css">
+    <link rel="stylesheet" type="text/css" href="css/coral-docs-main.css">
+    <!--if lt IE 9
+    script(src = '//html5shiv.googlecode.com/svn/trunk/html5.js')
+    
+    -->
+  </head>
+  <body class="coral--light docs-Background u-coral-clearFix">
+    <article class="docs-Component">
+      <section class="docs-Component-metadata">
+        <div class="docs-Component-header">
+          <h1 class="coral-Heading coral-Heading--1 docs-Component-name js-guide-heading-toc js-guide-heading-toc--header" id="coral.Shell.User" guide-toc-title="Overview">Coral.Shell.User</h1><span class="docs-Component-version">Current Version: <strong>1.2.3</strong></span>
+        </div>
+        <div class="docs-Component-github"> Github: <a class="coral-Link" href="https://git.corp.adobe.com/Coral/coralui-component-shell-user">@coralui/coralui-component-shell-user</a>
+        </div>
+        <!-- description is loaded from the template-->
+      </section>
+      <section class="docs-Component-documentation">
+        <p>
+          The Shell.User component is intended to for use as a <a href='Coral.Shell.Menubar.html' class='coral-Link'>Shell.Menubar</a>
+          item that offers access to app user details and related functionality. It is part of the default
+          Shell 3 pattern.  It has sub-components to create content zones for user details,
+          links to administration, account management, and sign out functionality.
+          
+        </p>
+        <p>
+          Below is an example of menu content:
+          
+        </p>
+            <script type="text/template" id="guide-6705eeed-cb68-4a58-9197-41e0f4a148c8"><coral-shell-user avatar="http://wwwimages.adobe.com/content/dam/Adobe/en/leaders/images/138x138/adobe-leaders-shantanu-narayen-138x138.jpg">
+  <coral-shell-user-name>Shantanu Narayen</coral-shell-user-name>
+  <coral-shell-user-heading>CEO</coral-shell-user-heading>
+  <coral-shell-user-subheading>Adobe Systems, Inc.</coral-shell-user-subheading>
+  <coral-shell-user-content>
+    <p>Extra goodies go here</p>
+  </coral-shell-user-content>
+  <coral-shell-user-footer>
+    <a is="coral-anchorbutton" variant="minimal" href="/signout">Sign Out</a>
+    <a is="coral-anchorbutton" variant="minimal" href="/profile">Profile</a>
+  </coral-shell-user-footer>
+</coral-shell-user>
+
+            </script>
+            <div class="docs-Example-markup"><coral-shell-user avatar="http://wwwimages.adobe.com/content/dam/Adobe/en/leaders/images/138x138/adobe-leaders-shantanu-narayen-138x138.jpg">
+  <coral-shell-user-name>Shantanu Narayen</coral-shell-user-name>
+  <coral-shell-user-heading>CEO</coral-shell-user-heading>
+  <coral-shell-user-subheading>Adobe Systems, Inc.</coral-shell-user-subheading>
+  <coral-shell-user-content>
+    <p>Extra goodies go here</p>
+  </coral-shell-user-content>
+  <coral-shell-user-footer>
+    <a is="coral-anchorbutton" variant="minimal" href="/signout">Sign Out</a>
+    <a is="coral-anchorbutton" variant="minimal" href="/profile">Profile</a>
+  </coral-shell-user-footer>
+</coral-shell-user>
+
+            </div><a class="coral-Link docs-Example-showMarkup" href="#"><i class="coral-Icon coral-Icon--viewOn coral-Icon--sizeXS"></i><span class="docs-Example-showMarkup-label">Show Markup</span></a>
+                <pre class="docs-Example-toggleMarkup prettyprint" data-src-id="guide-6705eeed-cb68-4a58-9197-41e0f4a148c8"></pre>
+        <p>
+          See the complete <a href='../Shell3' class='coral-Link'>Shell3 documentation</a> for more detail
+          on the default use of the components in this pattern.
+          
+        </p>
+        <!--<h1 class="line">Class: User</h1>-->
+        
+          
+
+
+
+<section class="docs-jsDoc-container">
+
+<a name="api"></a>
+<h1 class="coral-Heading coral-Heading--1 docs-Example-header docs-jsDoc-heading--1 js-guide-heading-toc js-guide-heading-toc--section" id="Coral.Shell.User:api"><span class="ancestors"><a href="Coral.html" class="coral-Link coral-Link">Coral</a><a href="Coral.Shell.html" class="coral-Link coral-Link">.Shell</a>.</span><a href="#Coral.Shell.User:api" class="coral-Link">User
+ API</a></h1>
+
+
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <a name="constructor"></a>
+    <h2 class="docs-Example-subtitle coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--subsection" id="Coral.Shell.User:constructor"><a href="#Coral.Shell.User:constructor" class="coral-Link">Constructor</a></h2>
+    
+
+    
+</dt>
+
+
+
+<dd>
+
+    <dl >
+    
+        <dt><h4>JavaScript:</h4></dt>
+        <dd>
+            <code class="prettyprint">new Coral.Shell.User()</code> or <code class="prettyprint">document.createElement('coral-shell-user')</code>
+        </dd>
+        
+        <dt><h4>HTML Tag:</h4></dt>
+        <dd>
+            
+                <code class="prettyprint">&lt;coral-shell-user&gt;</code>
+            
+        </dd>
+        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+    
+
+    
+        <a name="extends"></a>
+        <h2 class="docs-Example-subtitle coral-Heading coral-Heading--2" id="Coral.Shell.User:extends" ><a href="#Coral.Shell.User:extends" class="coral-Link">Extends</a></h2>
+
+        <ul>
+            <li><a href="Coral.Component.html"class="coral-Link">Coral.Component</a></li>
+        </ul>
+    
+
+    </div>
+    
+
+    
+
+    
+        <a name="subcomponents"></a>
+        <h2 class="docs-Example-subtitle coral-Heading coral-Heading--2" id="Coral.Shell.User:subcomponents"><a href="#Coral.Shell.User:subcomponents" class="coral-Link">Sub-components</a></h2>
+
+        <ul>
+            <li><a href="Coral.Shell.User.html#Coral.Shell.User.Content:api"class="coral-Link">Coral.Shell.User.Content</a></li>
+        
+            <li><a href="Coral.Shell.User.html#Coral.Shell.User.Footer:api"class="coral-Link">Coral.Shell.User.Footer</a></li>
+        
+            <li><a href="Coral.Shell.User.html#Coral.Shell.User.Heading:api"class="coral-Link">Coral.Shell.User.Heading</a></li>
+        
+            <li><a href="Coral.Shell.User.html#Coral.Shell.User.Name:api"class="coral-Link">Coral.Shell.User.Name</a></li>
+        
+            <li><a href="Coral.Shell.User.html#Coral.Shell.User.Subheading:api"class="coral-Link">Coral.Shell.User.Subheading</a></li>
+        </ul>
+    
+
+    
+
+    
+        <a name="instanceProperties"></a>
+        <h2 id="Coral.Shell.User:instanceProperties" class="docs-Example-subtitle coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--subsection"><a href="#Coral.Shell.User:instanceProperties" class="coral-Link">Instance Properties</a></h2>
+
+        <dl>
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:avatar"><a href="#Coral.Shell.User:avatar" class="coral-Link"><span class="type-signature">instance.</span>avatar</a><span class="type-signature"> {String}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Specifies the asset used inside the avatar view.
+        See <a href="Coral.Icon.html"class="coral-Link">Coral.Icon</a> for valid usage and icon names.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+  <dt class="tag-default">Default Value:</dt>
+  <dd class="tag-default"><ul class="dummy"><li>user (Shows a placeholder user icon from the icon font)</li></ul></dd>
+  
+
+  
+  <dt class="tag-default">HTML Attribute:</dt>
+  <dd class="tag-default"><ul class="dummy"><li>avatar</li></ul></dd>
+  
+
+	
+
+  
+
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="Coral.Icon.html"class="coral-Link">Coral.Icon</a></li>
+        </ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:avatar"><a href="#Coral.Shell.User:avatar" class="coral-Link"><span class="type-signature">instance.</span>avatar</a><span class="type-signature"> {String}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Avatar assets should use one of those provided, when no asset is set
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+        <h4 class="line">Properties:</h4>
+
+        <dl>
+<!-- jsdoc properties tmpl -->
+<table class="coral-Table data coral--light">
+    <thead class="coral-Table-head">
+	<tr class="coral-Table-row">
+		
+		<th class="coral-Table-headerCell">Name</th>
+		
+
+		<th class="coral-Table-headerCell">Type</th>
+
+		
+
+		
+		<th class="coral-Table-headerCell">Value</th>
+		
+
+		<th class="coral-Table-headerCell last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody class="coral-Table-body">
+	
+
+        <tr class="coral-Table-row" id="avatar#DEFAULT">
+            
+                <td class="coral-Table-cell name">DEFAULT</td>
+            
+
+            <td class="coral-Table-cell type">
+            
+                <span class="param-type">String</span>
+            
+            </td>
+
+            
+
+            
+                <td class="coral-Table-cell default">
+                
+                    user
+                
+                </td>
+            
+
+            <td class="coral-Table-cell description last">Default avatar, show user icon from icon font.</td>
+        </tr>
+
+	
+	</tbody>
+</table>
+<!-- end jsdoc properties tmpl -->
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:content"><a href="#Coral.Shell.User:content" class="coral-Link"><span class="type-signature">instance.</span>content</a><span class="type-signature"> {HTMLElement}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    The main content zone of the user-menu.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:footer"><a href="#Coral.Shell.User:footer" class="coral-Link"><span class="type-signature">instance.</span>footer</a><span class="type-signature"> {HTMLElement}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    The footer content zone of the user-menu.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:heading"><a href="#Coral.Shell.User:heading" class="coral-Link"><span class="type-signature">instance.</span>heading</a><span class="type-signature"> {HTMLElement}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    The heading content zone of the user-menu.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:hidden"><a href="#Coral.Shell.User:hidden" class="coral-Link"><span class="type-signature">instance.</span>hidden</a><span class="type-signature"> {Boolean}</span>
+    </h3>
+    
+    <coral-tag class="docs-Member-tag" readonly="true" size="S" color="periwinkle">Reflected</coral-tag>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Whether this component is hidden or not.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:hidden"class="coral-Link">Coral.Component#hidden</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+  <dt class="tag-default">Default Value:</dt>
+  <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+  
+
+  
+  <dt class="tag-default">HTML Attribute:</dt>
+  <dd class="tag-default"><ul class="dummy"><li>hidden</li></ul></dd>
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:name"><a href="#Coral.Shell.User:name" class="coral-Link"><span class="type-signature">instance.</span>name</a><span class="type-signature"> {HTMLElement}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    The name content zone of the user-menu.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        
+            <!-- jsdoc members tmpl -->
+<dt class='docs-Member-item'>
+
+    <h3 class="name docs-Member-caption" id="Coral.Shell.User:subheading"><a href="#Coral.Shell.User:subheading" class="coral-Link"><span class="type-signature">instance.</span>subheading</a><span class="type-signature"> {HTMLElement}</span>
+    </h3>
+    
+
+    
+
+    
+</dt>
+
+
+<div class="description">
+    The subheading content zone of the user-menu.
+</div>
+
+
+<dd>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+<!-- end jsdoc members tmpl -->
+
+        </dl>
+
+        
+
+    
+        <a name="methods"></a>
+        <h2 class="docs-Example-subtitle coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--subsection" id="Coral.Shell.User:methods"><a href="#Coral.Shell.User:methods" class="coral-Link">Methods</a></h2>
+
+        <dl>
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:get"><a href="#Coral.Shell.User:get" class="coral-Link"><span class="type-signature">instance.</span>get</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Get the value of a property.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">property</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The name of the property to fetch the value of.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    Property value.
+    
+    {<span class="param-type">*</span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:get"class="coral-Link">Coral.Component#get</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:hide"><a href="#Coral.Shell.User:hide" class="coral-Link"><span class="type-signature">instance.</span>hide</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Hide this component.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    this, chainable
+    
+    {<span class="param-type"><a href="Coral.Component.html"class="coral-Link">Coral.Component</a></span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:hide"class="coral-Link">Coral.Component#hide</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:off"><a href="#Coral.Shell.User:off" class="coral-Link"><span class="type-signature">instance.</span>off</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Remove an event listener.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+            <th class="coral-Table-headerCell">Optional</th>
+        
+
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">eventName</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+              No<br>
+            
+
+            
+            </td>
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The event name to stop listening for.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">selector</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The selector that was used for event delegation.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">func</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">function</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+              No<br>
+            
+
+            
+            </td>
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The function that was passed to <code>on()</code>.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">useCapture</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Boolean</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Only remove listeners with <code>useCapture</code> set to the value passed in.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    this, chainable.
+    
+    {<span class="param-type"><a href="Coral.Component.html"class="coral-Link">Coral.Component</a></span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:off"class="coral-Link">Coral.Component#off</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:on"><a href="#Coral.Shell.User:on" class="coral-Link"><span class="type-signature">instance.</span>on</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Add an event listener.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+            <th class="coral-Table-headerCell">Optional</th>
+        
+
+        
+            <th class="coral-Table-headerCell">Default</th>
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">eventName</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+              No<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The event name to listen for.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">selector</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The selector to use for event delegation.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">func</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">function</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+              No<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The function that will be called when the event is triggered.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">useCapture</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Boolean</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+                
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Whether or not to listen during the capturing or bubbling phase.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    this, chainable.
+    
+    {<span class="param-type"><a href="Coral.Component.html"class="coral-Link">Coral.Component</a></span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:on"class="coral-Link">Coral.Component#on</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:remove"><a href="#Coral.Shell.User:remove" class="coral-Link"><span class="type-signature">instance.</span>remove</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Non-destructively remove this element. It can be re-added by simply appending it to the document again.
+    It will be garbage collected if there are no more references to it.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:remove"class="coral-Link">Coral.Component#remove</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:set"><a href="#Coral.Shell.User:set" class="coral-Link"><span class="type-signature">instance.</span>set</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Set a single property.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">property</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The name of the property to set.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">value</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">*</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The value to set the property to.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">silent</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Boolean</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              If true, events should not be triggered as a result of this set.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    this, chainable.
+    
+    {<span class="param-type"><a href="Coral.Component.html"class="coral-Link">Coral.Component</a></span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:set"class="coral-Link">Coral.Component#set</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:show"><a href="#Coral.Shell.User:show" class="coral-Link"><span class="type-signature">instance.</span>show</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Show this component.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    this, chainable
+    
+    {<span class="param-type"><a href="Coral.Component.html"class="coral-Link">Coral.Component</a></span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:show"class="coral-Link">Coral.Component#show</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:trigger"><a href="#Coral.Shell.User:trigger" class="coral-Link"><span class="type-signature">instance.</span>trigger</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Trigger an event.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+            <th class="coral-Table-headerCell">Optional</th>
+        
+
+        
+            <th class="coral-Table-headerCell">Default</th>
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">eventName</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">String</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+              No<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              The event name to trigger.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">props</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Object</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Additional properties to make available to handlers as <code>event.detail</code>.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">bubbles</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Boolean</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+                
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Set to <code>false</code> to prevent the event from bubbling.
+            
+        </td>
+    </tr>
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">cancelable</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Boolean</span>
+        
+        </td>
+
+        
+            <td class="coral-Table-cell attributes">
+            
+                Yes<br>
+            
+
+            
+            </td>
+        
+
+        
+            <td class="coral-Table-cell default">
+            
+                
+            
+            </td>
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Set to <code>false</code> to prevent the event from being cancelable.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+        <dt>Returns:</dt>
+        <dd>
+    
+            
+<div class="param-desc">
+    CustomEvent object
+    
+    {<span class="param-type">CustomEvent</span>}
+    
+</div>
+
+
+        
+        </dd>
+        
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:trigger"class="coral-Link">Coral.Component#trigger</a>
+	</li></dd>
+	
+
+	
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        </dl>
+    
+
+    
+
+    
+        <a name="events"></a>
+        <h2 class="docs-Example-subtitle coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--subsection" id="Coral.Shell.User:events"><a href="#Coral.Shell.User:events" class="coral-Link">Events</a></h2>
+
+        <dl>
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:coral-component:attached"><a href="#Coral.Shell.User:coral-component:attached" class="coral-Link">coral-component:attached</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Triggered when the component is attached to the DOM.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Callback Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">event</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Object</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Event object.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:coral-component:attached"class="coral-Link">Coral.Component#coral-component:attached</a>
+	</li></dd>
+	
+
+	
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>since 1.14.0, use <code>MutationObserver</code> instead.</li><ul></dd>
+    
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:coral-component:detached"><a href="#Coral.Shell.User:coral-component:detached" class="coral-Link">coral-component:detached</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Triggered when the component is detached to the DOM.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Callback Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">event</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Object</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Event object.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:coral-component:detached"class="coral-Link">Coral.Component#coral-component:detached</a>
+	</li></dd>
+	
+
+	
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>since 1.14.0, use <code>MutationObserver</code> instead.</li><ul></dd>
+    
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        
+            
+<!-- jsdoc method tmpl -->
+<dt class="docs-Method-item">
+    
+    <h3 class="name" id="Coral.Shell.User:coral-component:ready"><a href="#Coral.Shell.User:coral-component:ready" class="coral-Link">coral-component:ready</a></h3>
+    
+
+    
+</dt>
+
+
+<div class="description">
+    Triggerred when the component has been upgraded and is ready for use.
+</div>
+
+
+<dd>
+
+    <dl  class="details">
+    
+
+    
+
+    
+
+    
+        <dt>Callback Parameters:</dt>
+        <dd>
+        
+
+<table class="coral-Table data params coral--light">
+    <thead class="coral-Table-head">
+    <tr class="coral-Table-row">
+        
+        <th class="coral-Table-headerCell">Name</th>
+        
+
+        <th class="coral-Table-headerCell">Type</th>
+
+        
+
+        
+
+        <th class="coral-Table-headerCell last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="coral-Table-body">
+    
+
+    <tr class="coral-Table-row">
+        
+            <td class="coral-Table-cell name">event</td>
+        
+
+        <td class="coral-Table-cell type">
+        
+            <span class="param-type">Object</span>
+        
+        </td>
+
+        
+
+        
+
+        <td class="coral-Table-cell description last">
+            
+              Event object.
+            
+        </td>
+    </tr>
+    
+    </tbody>
+</table>
+
+        </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    </dl>
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from">Inherited From:</dt>
+	<dd class="inherited-from"><ul class="dummy"><li>
+		<a href="Coral.Component.html#Coral.Component:coral-component:ready"class="coral-Link">Coral.Component#coral-component:ready</a>
+	</li></dd>
+	
+
+	
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>since 1.9.0, use <code>Coral.commons.ready()</code> instead.</li><ul></dd>
+    
+
+	
+
+	
+
+	
+
+  
+
+  
+
+	
+
+  
+
+	
+
+	
+</dl>
+
+</dd>
+<!-- end jsdoc method tmpl -->
+
+        </dl>
+    
+</article>
+
+</section>
+
+
+
+
+        
+       
+      </section>
+    </article>
+  </body>
+</html>

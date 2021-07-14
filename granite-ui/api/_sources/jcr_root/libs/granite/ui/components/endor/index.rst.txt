@@ -1,0 +1,16 @@
+****************
+Granite UI Endor
+****************
+
+.. granite:servermodule:: /libs/granite/ui/components/endor
+
+   Granite UI Endor module provides the typical components required to build Endor (Shell 2.0) based webapp.
+
+
+Components:
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   */index

@@ -1,0 +1,48 @@
+
+ActionBar
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/actionbar
+
+   A toolbar to display a list of items. Typically each item is a button.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ActionBar] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * The size of the ActionBar.
+       */
+      - size (String) = 'M' < 'M', 'L'
+
+      /**
+       * The primary list of items.
+       */
+      + primary mandatory
+
+      /**
+       * The secondary list of items.
+       */
+      + secondary
+
+   Example::
+
+      + myactionbar
+        - sling:resourceType = "granite/ui/components/coral/foundation/actionbar"
+        + primary
+          + button1
+            - sling:resourceType = "granite/ui/components/coral/foundation/button"
+          + button2
+            - sling:resourceType = "granite/ui/components/coral/foundation/button"
+        + secondary
+          + button1
+            - sling:resourceType = "granite/ui/components/coral/foundation/button"
+          + button2
+            - sling:resourceType = "granite/ui/components/coral/foundation/button"

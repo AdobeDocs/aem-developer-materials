@@ -1,0 +1,11 @@
+Search
+======
+
+The components related to local search (i.e. non Omnisearch).
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

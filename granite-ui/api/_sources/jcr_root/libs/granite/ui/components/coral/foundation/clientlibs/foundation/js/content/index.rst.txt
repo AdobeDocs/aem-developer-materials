@@ -1,0 +1,195 @@
+******************
+foundation-content
+******************
+
+``foundation-content`` is a concept where there is an element that acts as content area in the page. It understands browser history and `manipulates <https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history>`_ it using ``pushState`` and ``replaceState``, while listening to the ``popstate`` event as well.
+
+
+Markup
+======
+
+
+.foundation-content
+-------------------
+
+Indicates the container for the content. The child elements of this element act as the body of the content. Only the child having ``foundation-content-current`` class is displayed, the rest of the children is hidden or detached. There MUST be at maximum one ``.foundation-content`` in the page at any time.
+
+Selector Rule::
+
+   .foundation-content
+
+
+.foundation-content-current
+---------------------------
+
+Indicates the content that is currently displayed.
+
+Selector Rule::
+
+   .foundation-content > .foundation-content-current
+
+
+Event
+=====
+
+
+foundation-content-loaded
+-------------------------
+
+This event is triggered after the loading process of a new content is completely finished—i.e. when no further action is performed by ``foundation-content``. This event is only triggered for a new content—via ``FoundationContent.go()`` directly or indirectly, not when the content is switched. The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationContentLoadedEvent {
+     /**
+      * @param status <code>true</code> when the operation is a success; <code>false</code> otherwise
+      * @param replace <code>true</code> when it is a replace operation; <code>false</code> when it is a push operation
+      * @param xhr The normalized jQuery XHR object. It is only available during error.
+      */
+     (status: boolean, replace: boolean, xhr? JQueryXHR): void;
+   }
+
+
+History Behaviour
+=================
+
+During ``popstate`` event, if the state is created by ``foundation-content`` by mean of ``FoundationContent.push(html, historyConfig)`` or ``FoundationContent.replace(html, historyConfig)``—either directly or indirectly—then the content associated with that state is restored to ``.foundation-content-current``; otherwise the event is deemed irrelevant to ``foundation-content``.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-content``
+
+condition
+   ``.foundation-content``
+
+returned type
+   ``FoundationContent``
+
+.. code-block:: ts
+
+   interface FoundationContent {
+     /**
+      * Loads the given url&mdash;using {@link #go}&mdash;and pushes the given data onto the session history stack
+      * with the specified title and url.
+      *
+      * @param data The data to be pushed
+      * @param title The title to be set
+      * @param url The url to fetch
+      *
+      * @returns The promise returning the token after the content is displayed
+      *
+      * @see https://developer.mozilla.org/en-US/docs/DOM/window.history
+      */
+     pushState(data: any, title: string, url: string): Promise<string>;
+
+     /**
+      * Loads the given url&mdash;using {@link #go}&mdash;and updates the most recent entry on the history stack
+      * to have the specified data, title, and, url.
+      *
+      * @param data The data to replace the existing one
+      * @param title The title to be set
+      * @param url The url to fetch
+      *
+      * @returns The promise returning the token after the content is displayed
+      *
+      * @see https://developer.mozilla.org/en-US/docs/DOM/window.history
+      */
+     replaceState(data: any, title: string, url: string): Promise<string>;
+
+     /**
+      * Fetches the content from the given url and display it.
+      * If there is a pending request, the existing request is aborted and the new request is used to show the content.
+      *
+      * @param url The url to fetch
+      * @param replace If <code>true</code> then it behaves as {@link #replace}, otherwise it is a {@link #push}.
+      * @param historyConfig The config object to configure the history
+      *
+      * @returns The promise returning the token after the content is displayed
+      */
+     go(url: string, replace = false, historyConfig?: FoundationContentHistoryConfig): Promise<string>;
+
+     /**
+      * Goes to the state represented by the given token.
+      */
+     goToToken(token: string): void;
+
+     /**
+      * Refreshes the current content. It will use current document.location to fetch the new html.
+      *
+      * @returns The promise returning the token after the content is displayed
+      */
+     refresh(): Promise<string>;
+
+     /**
+      * Displays the given html. All the next content elements after previous <code>foundation-content-current</code> element are removed.
+      * This is similar behavior to web browser when navigating to a new document.
+      * Triggers <code>foundation-contentloaded</code> event.
+      *
+      * If historyConfig.title is not given (falsy), then this method will try to parse from the &lt;title&gt; of the html.
+      *
+      * @param html The html string to be pushed
+      * @param historyConfig The config object to configure the history
+      *
+      * @returns The token that can be used to go to that state
+      *
+      * @see #goToToken
+      */
+     push(html: string, historyConfig?: FoundationContentHistoryConfig): string;
+
+     /**
+      * Replaces the current element with the given html. Triggers <code>foundation-contentloaded</code> event.
+      *
+      * If historyConfig.title is not given (falsy), then this method will try to parse from the &lt;title&gt; of the html.
+      *
+      * @param html The html string to be pushed
+      * @param historyConfig The config object to configure the history
+      *
+      * @returns {String} The token that can be used to go to that state
+      *
+      * @see #goToToken
+      */
+     replace(html: string, historyConfig?: FoundationContentHistoryConfig): string;
+
+     /**
+      * Goes back one step. If there is no previous content, this method do nothing.
+      *
+      * @param refresh The flag to indicate to refresh the previous content
+      *
+      * @returns The token that can be used to go to that state
+      *
+      * @see #goToToken
+      */
+     back(refresh = false): string;
+
+     /**
+      * Goes forward one step. If there is no next content, this method do nothing.
+      *
+      * @param refresh The flag to indicate to refresh the next content
+      *
+      * @returns The token that can be used to go to that state
+      *
+      * @see #goToToken
+      */
+     forward(refresh = false): string;
+   }
+
+   interface FoundationContentHistoryConfig {
+     url?: string;
+     title: string;
+     data: any;
+   }
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-content" {
+     rankdir=BT;
+     "foundation-content-control" -> "foundation-content" [label="controls"];
+     "foundation-content-history" -> "foundation-content" [label="controls"];
+   }

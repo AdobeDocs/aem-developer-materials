@@ -1,0 +1,54 @@
+
+RailPanel
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/panel/railpanel
+
+   The panel of the rail.
+
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   Since the panel is usually hidden by default,
+   app developer is encouraged to leverage situation to fetch the content of the panel lazily,
+   especially then the content itself is quite expensive to prepare.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:PanelRailPanel] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The URL to fetch the content of the panel.
+       *
+       * If this property is specified then the content of the panel is loaded lazily instead.
+       * Otherwise the content is loaded normally as per container convention.
+       */
+      - src (StringEL)
+
+      /**
+       * ``true`` to activate the panel initially; ``false`` otherwise.
+       */
+      - active (Boolean)
+
+
+   Example::
+
+      + mypanel
+        - sling:resourceType = "granite/ui/components/coral/foundation/panel"
+        + header
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + body
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + rail
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+          + parentConfig
+            - active = true
+          + items
+            + panel1
+              - sling:resourceType = "granite/ui/components/coral/foundation/panel/railpanel"
+              - active = true
+            + panel2
+              - sling:resourceType = "granite/ui/components/coral/foundation/panel/railpanel"
+        + footer
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"

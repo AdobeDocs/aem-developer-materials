@@ -1,0 +1,321 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ_Analytics.ClientContextUI-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ_Analytics.ClientContextUI-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ_Analytics.ClientContextUI-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ_Analytics.ClientContextUI"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ_Analytics.ClientContextUI</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ_Analytics</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/clientcontextui.js" target="_blank">clientcontextui.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">ClientContextUI</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">personalization.clientcontext                        </td></tr>
+                    </table>
+        <div class="description">
+	                    Client Context UI object: manages rendering, show / hide...
+<br><br><br><i>This class is a singleton and cannot be created directly.</i>	        	        <br><i>Added in CQ 5.5.</i>
+	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ_Analytics.ClientContextUI-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.ACTIONS_CONTAINER_ID"></a>
+            <b>ClientContextUI.ACTIONS_CONTAINER_ID</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; UI default actions container id                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.ACTIONS_ID"></a>
+            <b>ClientContextUI.ACTIONS_ID</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; UI default actions header id                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.BOX_CLASS"></a>
+            <b>ClientContextUI.BOX_CLASS</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; UI default class                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.BOX_ID"></a>
+            <b>ClientContextUI.BOX_ID</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; UI default box id                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.CONTAINER_ID"></a>
+            <b>ClientContextUI.CONTAINER_ID</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; UI default container id                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.CONTENT_ID"></a>
+            <b>ClientContextUI.CONTENT_ID</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; UI default Client Context content id                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-SHOW_BOX_COOKIE"></a>
+            <b>SHOW_BOX_COOKIE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Name of the cookie that stores if CC should be displayed or not on page load                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.ClientContextUI-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-ClientContextUI.create"></a>
+            <b>ClientContextUI.create</b>(&nbsp;<code>String ccPath</code>, <code>String pagePath</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates and inits the Client Context UI.</div>
+            <div class="long">
+                &lt;static&gt; Creates and inits the Client Context UI.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>ccPath</code> : String<div class="sub-desc">Path to the Client Context</div></li><li><code>pagePath</code> : String<div class="sub-desc">Path the the current page</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-getBoxId"></a>
+            <b>getBoxId</b>() : String            <div class="mdesc">
+                                    <div class="short">Returns the box id.</div>
+            <div class="long">
+                Returns the box id.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The id of the box</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-hide"></a>
+            <b>hide</b>() : void            <div class="mdesc">
+                                    <div class="short">Hides the UI.
+Fires "beforehide" and "hide" events.</div>
+            <div class="long">
+                Hides the UI.
+Fires "beforehide" and "hide" events.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-init"></a>
+            <b>init</b>(&nbsp;<code>String url</code>, <code>String containerId</code>, <code>String boxId</code>, <code>String contentPlaceholderId</code>, <code>Boolean editMode</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Inits the UI.</div>
+            <div class="long">
+                Inits the UI.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">URL to the Client Context</div></li><li><code>containerId</code> : String<div class="sub-desc">Id of the container div</div></li><li><code>boxId</code> : String<div class="sub-desc">Id of the UI box</div></li><li><code>contentPlaceholderId</code> : String<div class="sub-desc">Id of the placeholder for the CC content</div></li><li><code>editMode</code> : Boolean<div class="sub-desc">True if edit mode, false otherwise</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-isAvailable"></a>
+            <b>isAvailable</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">Returns if UI is available: true if some content is load into the UI box.</div>
+            <div class="long">
+                Returns if UI is available: true if some content is load into the UI box.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if available, false otherwise</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-load"></a>
+            <b>load</b>(&nbsp;<code>Boolean force</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Loads the Client Context content. If already loaded, will not be loaded again until force is set
+to true.
+Fires "befo...</div>
+            <div class="long">
+                Loads the Client Context content. If already loaded, will not be loaded again until <code>force</code> is set
+to true.
+Fires "beforeload" and "load" events.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">True to force the loading</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-onLoad"></a>
+            <b>onLoad</b>(&nbsp;<code>Function callback</code>, <code>Object scope</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Helper method to register an on load event. Checks if the Client Context has already been loaded.</div>
+            <div class="long">
+                Helper method to register an on load event. Checks if the Client Context has already been loaded.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>callback</code> : Function<div class="sub-desc">Function to execute on load</div></li><li><code>scope</code> : Object<div class="sub-desc">Execution scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-render"></a>
+            <b>render</b>() : void            <div class="mdesc">
+                                    <div class="short">Renders the UI.
+Fires "beforerender" and "render" events.</div>
+            <div class="long">
+                Renders the UI.
+Fires "beforerender" and "render" events.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-show"></a>
+            <b>show</b>() : void            <div class="mdesc">
+                                    <div class="short">Shows the UI. Loads the Client Context and renders the UI if not already done.
+Fires "beforeshow" and "show" events.</div>
+            <div class="long">
+                Shows the UI. Loads the Client Context and renders the UI if not already done.
+Fires "beforeshow" and "show" events.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClientContextUI-toggle"></a>
+            <b>toggle</b>() : void            <div class="mdesc">
+                                    <div class="short">Toggles the UI.</div>
+            <div class="long">
+                Toggles the UI.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClientContextUI</td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.ClientContextUI-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

@@ -1,0 +1,41 @@
+***********************************
+Granite UI Foundation JS Components
+***********************************
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   utils/index
+   adapter/index
+   advancedselect/index
+   anchor/index
+   autocomplete/index
+   collection/action/index
+   collection/action/**/*
+   collection/item/activator
+   collection/previewsupport/index
+   content/index
+   content/control
+   content/history
+   editable/**
+   field/autosubmit
+   form/index
+   form/**
+   history/index
+   layout/index
+   layout/control
+   mode/change
+   mode/switcher
+   picker/control
+   preference/index
+   registry/index
+   time/index
+   toggleable/control
+   tracking/index
+   ui/index
+   util/**
+   validation/index
+   validation/**
+   wizard/lazycontainer
+   workflowstatus/index

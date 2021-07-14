@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <title>Documentation | CoralUI</title>
+    <link rel="shortcut icon" type="image/ico" href="../resources/favicon_coral.ico">
+    <script src="js/libs/moment.js"></script>
+    <script src="js/libs/jquery.js"></script>
+    <script src="js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/coral.css">
+    <script src="../js/guide.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/guide.min.css">
+  </head>
+  <body class="coral--light guide-Background u-coral-clearFix">
+    <div class="guide-Progress"></div>
+    <div class="guide-Container">
+      <header class="guide-Header coral--dark">
+        <div class="guide-Header-menu">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right">
+            <div class="guide-Header--left"><img src="../resources/adobe_icon.png" alt="CoralUI Logo">
+              <div class="guide-Header-home"><a href="index.html">
+                  <h2 class="coral-Heading coral-Heading--2 guide-Header-title">Coral<span class="guide-Header-subtitle">UI</span></h2></a></div>
+            </div>
+            <nav class="guide-Header-nav"><a class="coral-Heading coral-Heading--2 guide-Header-link" href="getting-started.html">Getting Started</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="styles.html">Styles</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="components.html">Components</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="shell3.html">Shell 3</a><a class="coral-Heading coral-Heading--2 guide-Header-link is-selected" href="documentation.html">Docs &amp; Guides</a>
+              <div class="guide-ThemeSwitcher">
+                <coral-tag><span class="guide-Version">com.adobe.granite.ui.coralui3-1.5.42</span></coral-tag>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="guide-MainContent guide-Scroll" role="main">
+        <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right guide-Content--padding-top">
+          <div class="guide-ScrollNav" role="complementary">
+            <div class="guide-Scroll guide-ScrollNav_Wrapper"></div>
+          </div>
+          <div class="guide-ScrollContent--right">
+            <div class="guide-Component">
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="introduction"><a class="coral-Link coral-Link--subtle" href="#introduction">Introduction</a></h2>
+                <p>
+                  CoralUI is a library of components and styles. CoralUI's components are built on web components, a collection of standards that enable encapsulated and reusable components on the web. While the collection of standards holds much promise for the future of the web, CoralUI specifically only takes advantage of the custom elements portion. Other parts of the collection of standards are insufficiently supported in targeted browsers and existing polyfills are too incomplete for feasible use.
+                  
+                </p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="enhancedAPI"><a class="coral-Link coral-Link--subtle" href="#enhancedAPI">Enhanced API</a></h3>
+                  <p>CoralUI's components are essentially extended DOM elements.  We enhance the existing API with additional functionality, as well as providing some patterns that aren't available with native HTML alone. Since we expose a JavaScript API that’s based on the native DOM API and has all of the same methods as any other HTML element instance, anyone familiar with the DOM already knows most of the API works. Where it has been extended, each component is well documented, with most having a 'configurator' that allows experimentation with the component right here.  Each component also has detailed JSDoc documentation for understanding what APIs are exposed.  There is also some common API described in the <a class="coral-Link" href="#baseClasses">Base Classes</a> and <a class="coral-Link" href="#interfaces">Interfaces </a>sections below.
+                    
+                  </p>
+                  <p>
+                    Most API is available via markup, so don’t have to write JavaScript for most basic uses. All you have to do is write the markup for a component, just like you would a normal HTML element.
+                    
+                  </p>
+                  <p>See the <a class="coral-Link" href="components.html">Components</a> section of this site to get started exploring what is available.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="futureThinking"><a class="coral-Link coral-Link--subtle" href="#futureThinking">Future Thinking</a></h3>
+                  <p>CoralUI is pushing the web forward by beginning to implement the <a class="coral-Link" href="http://webcomponents.org/">Web Components</a> specification in our library. However, given the landscape of browser implementation and the state of the polyfill ecosystem, we decided to only implement <a class="coral-Link" href="http://w3c.github.io/webcomponents/spec/custom/">custom elements</a> at this time.
+                    
+                  </p>
+                  <p>
+                    A strong advantage CoralUI derives from custom elements is the ability to hide many implementation details from the consumer. More to the point, we found that designs become closely tied to their markup.  The use of custom elements allows much more freedom to change the underlying markup that supports those elements.  This makes the exposed API smaller and more explicit, resulting in a lower risk of updates to CoralUI needing to introduce breaking changes.
+                    
+                  </p>
+                  <p>
+                    In addition, every Coral component is an HTML element. This give us the ability to create components from markup or JavaScript and lets us treat them like any other native element, setting properties, appending them in the DOM, etc. Following the patterns used in actual HTML elements, we use JavaScript’s native prototype driven inheritance.
+                    
+                  </p>
+                  <p>For more detail, see the <a class="coral-Link" href="#webComponents">webcomponents</a> section of the Architecture documentation.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="accessibility"><a class="coral-Link coral-Link--subtle" href="#accessibility">Accessibility</a></h3>
+                  <p>
+                    Having an inaccessible application means alienating an entire segment of society by making your application completely unusable to them. To help you avoid this, we’ve made it a rule that every CoralUI component should be accessible. We’ve also built a few things into CoralUI 3 to make implementing accessibility easier for component authors and consumers alike. We leverage Coral’s overlay mixin to help keyboard users work more easily with overlays, and Keys makes it easier to implement keyboard support for components.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="browserSupport"><a class="coral-Link coral-Link--subtle" href="#browserSupport">Browser Support</a></h3>
+                  <p>CoralUI is designed to support the following browsers:</p>
+                  <ul class="coral-List">
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Chrome (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Safari (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Firefox (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Edge (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">IE 11</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">iOS 7+</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Android 4.4+</h4>
+                    </li>
+                  </ul>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="i18n"><a class="coral-Link coral-Link--subtle" href="#i18n">i18n</a></h3>
+                  <p>
+                    CoralUI provides a robust internal system for internationalization of its strings.
+                    
+                  </p>
+                  <p>See the <a class="coral-Link" href="Coral.i18n.html">Coral.i18n</a> class documentation for more API details.</p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="developerFundamentals"><a class="coral-Link coral-Link--subtle" href="#developerFundamentals">Developer Fundamentals</a></h2>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="programmaticallyInteractingWithComponents" guide-toc-title="Interacting"><a class="coral-Link coral-Link--subtle" href="#programmaticallyInteractingWithComponents">Programmatically interacting with components</a></h3>
+                  <p>
+                    The <a href="components.html" class="coral-Link">Components Docs</a> provide detailed information on each component in CoralUI,including the different attributes available, and built-in methods and events on the JavaScript components.</p>
+                  <p>Here are some quick steps to get you started with JavaScript components:</p>
+                  <p>Coral UI 3 widgets can be instantiated using a Coral class instance:</p>
+                  <pre class="prettyprint">/* Alert - Coral class constructor*/
+var alert = new Coral.Alert();
+alert.header.innerHTML = "Hey!"
+alert.content.innerHTML = "This is an alert.";
+alert.variant = "info";</pre>
+                  <p>Or by creating a HTML Element directly:</p>
+                  <pre class="prettyprint">/* Alert - DOM element */
+document.createElement('coral-alert');</pre>
+                  <label class="coral-Form-fieldlabel">Live Preview</label>
+                  <div class="gettingStarted-Example">
+                    <coral-alert variant="info">
+                      <coral-alert-header>Hey!</coral-alert-header>
+                      <coral-alert-content>This is an alert.</coral-alert-content>
+                    </coral-alert>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="programmaticallyInteractingWithSub-components" guide-toc-title="Ready"><a class="coral-Link coral-Link--subtle" href="#programmaticallyInteractingWithSub-components">Programmatically interacting with sub-components</a></h3>
+                  <p>Let's say we create an element and add some Coral components to it with markup:</p>
+                  <pre class="prettyprint">var el = document.createElement('div');
+el.innerHTML = '&lt;coral-numberinput&gt;&lt;/coral-numberinput&gt;';
+document.body.appendChild(el);</pre>
+                  <p>One would expect we could now do something like this:</p>
+                  <pre class="prettyprint">var numberInput = el.firstElementChild;
+numberInput.value = 10;</pre>
+                  <p>This works great in Chrome (which has native Custom Elements support), but does nothing in both Firefox and IE 11 because the element hasn't been upgraded yet.</p>
+                  <p>The workaround is to use the method <code>Coral.commons.ready(el, cb)</code>:</p>
+                  <pre class="prettyprint">var numberInput = el.firstElementChild;
+Coral.commons.ready(el, function()
+  numberInput.value = 10;
+});</pre>
+                  <p> <a href="Coral.commons.html#Coral.commons:.ready" class="coral-Link" target="_blank"><code>Coral.commons.ready(el, cb)</code></a> will force an upgrade on the component and its sub-components before calling the provided callback.</p>
+                  <p>This is the full code example :</p>
+                  <pre class="prettyprint">var el = document.createElement('div');
+el.innerHTML = '&lt;coral-numberinput&gt;&lt;/coral-numberinput&gt;';
+var numberInput = el.firstElementChild;
+document.body.appendChild(el);
+// add callback
+Coral.commons.ready(el, function() {
+  numberInput.value = 10;
+});</pre>
+                  <p>Result: The above code works in all supported browsers, all of the time.</p>
+                  <p>
+                    <b>Background</b><br>
+                    In browsers, that have native support for custom elements, components are upgraded and ready to go immediately. However, in polyfilled environments, MutationObservers are used to determine
+                    when elements are added and need to be upgraded. MutationObservers queue "microtasks", which fire event listeners before the next animation frame. As such, accessing the component API
+                    of an element created from markup has to happen on the next animation frame. In browsers, that implement <code>requestAnimationFrame</code>, we can simply insert dynamic markup, then wait for the
+                    next animation frame and execute the callback, while being certain that all custom elements have been upgraded.
+                  </p>
+                  <p>
+                    Read more about <a href="http://webcomponents.org/polyfills/custom-elements/" class="coral-Link">Custom Elements</a>.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="creatingComponents"><a class="coral-Link coral-Link--subtle" href="#creatingComponents">Creating components</a></h3>
+                  <p>The magic of creating components begins at <code>Coral.register()</code>. This is used to define the JavaScript "class" that will be instantiated for each component. Let's take a look at creating a simple component to display the weather:</p>
+                  <pre class="prettyprint">Coral.register({
+  name: 'Weather',
+  tagName: 'coral-weather',
+  className: 'coral-Weather',
+
+  properties: {
+    temperature: {
+      default: 70,
+      transform: Coral.transform.number,
+      sync: function() {
+        this.innerHTML = 'It\'s ' + this.temperature + '° outside today!';
+      }
+    }
+  }
+});
+</pre>
+                  <ul>
+                    <li><code>name</code> defines the class name of the component within the <code>Coral</code> JavaScript namespace. Here we've given the value <code>Weather</code> meaning if consumers wished to instantiate the weather component they would do so using <code>new Coral.Weather();</code>.</li>
+                    <li><code>tagName</code> defines the element tag name used within markup to instantiate the component. Here we've given the value <code>coral-weather</code> meaning if consumers wished to instantiate the greeting component using markup they would do so using <code>&lt;coral-weather&gt;&lt;/coral-weather&gt;</code>.</li>
+                    <li><code>properties</code> defines an object of property names with their accompanying descriptors. These are properties that consumers can use to the interact with the component. Here we've defined a <code>name</code> property.</li>
+                  </ul>
+                  <p>Property descriptors support a plethora of configuration. For the <code>temperature</code> property we've defined the following:</p>
+                  <ul>
+                    <li><code>default</code> defines the default value of the property. Here we've defined a default of <code>70</code> meaning if a consumer doesn't specify a <code>temperature</code> value then we would like CoralUI to automatically set the <code>temperature</code> property to <code>70</code>.</li>
+                    <li><code>transform</code> defines how a value should be transformed when being set. For example, if a consumer specified a temperature via markup (<code>&lt;coral-weather temperature="35"&gt;&lt;/coral-weather&gt;</code>) the value would by default be treated as a string. In our case, however, we want to deal with the value as a number since we may want to eventually compare it to other temperatures to determine if it's hot or cold, etc. CoralUI provides multiple built-in transforms to leverage or you can provide your own. This example leverages the built-in number transform. This helps guarantee that <code>this.temperature</code> will always be a number.</li>
+                    <li><code>sync</code> defines what action should be taken when the property changes. This example updates the content of the component to display the temperature. Note that for optimization purposes <code>sync</code> is called a maximum of once per animation frame regardless of how many times the property is set between animation frames. This minimizes the amount of DOM churn.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="architecture"><a class="coral-Link coral-Link--subtle" href="#architecture">Architecture</a></h2>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="overview"><a class="coral-Link coral-Link--subtle" href="#overview">Overview</a></h3>
+                  <p>
+                    This section describes a bit about how CoralUI works.  CoralUI has been evolving since 2012.  Below are some
+                    details around the technical decisions behind the architecture of CoralUI 3.
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="webComponents"><a class="coral-Link coral-Link--subtle" href="#webComponents">Web Components</a></h3>
+                  <p>CoralUI hides implementation detail from consumers by leveraging the Custom Elements specification, which is part of the emerging Webcomponents standard.</p>
+                  <p>Custom elements allow CoralUI to define new types of DOM elements to be used in an HTML document. As a result, CoralUI can extend native elements like a button or text input to provide additional functionality or it can provide completely new elements like a progress indicator or accordion. Consumers can then use these elements using their custom tags (e.g., <code>&lt;coral-progress&gt;</code>) and directly interact with their custom properties.</p>
+                  <p>Custom elements are not currently supported natively in all target browsers. To allow CoralUI to function properly in all target browsers, a <a class="coral-Link" href="http://webcomponents.org/polyfills/">custom elements polyfill</a> has been included with CoralUI which supplies necessary support when native support is not available.  This polyfill only adds 5,430 bytes minified + gzipped.</p>
+                  <p>A strong advantage CoralUI derives from custom elements is the ability to hide many implementation details from the consumer. While a progress indicator may be composed of a variety of spans, divs, or images, these are underlying details that shouldn't concern consumers. Rather than consumers copying and maintaining large swaths of code containing all these elements with their various attributes, they are typically able to use a simple custom element tag and the underlying elements are seamlessly produced by CoralUI on their behalf. By keeping implementation details internal to components, the exposed public API is minimized and more explicit resulting in a lower risk of introducing breaking changes. This, in turn, speeds up the CoralUI development process.</p>
+                  <p>
+                    For now, we have not implemented ShadowDOM, HTML Imports, or other aspects of the web components specification.  Also,
+                    while the custom elements polyfill we use was born as part of the Google Polymer project, we found Polymer too
+                    opinionated in general to simply adopt it as a whole.  Thus, our library builds in only the custom-elements polyfill on it's own.
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="contentZones"><a class="coral-Link coral-Link--subtle" href="#contentZones">Content Zones</a></h4>
+                  <p>
+                    Without shadow DOM, we need some way to mix user-provided content with presentational elements. Our answer to this is content zones. Essentially, we have simple, brainless HTML tags that serve as wrappers for content. Users provide these tags when creating elements from markup, and after we render the DOMly template, we simply move these content zones into place.
+                    
+                  </p>
+                  <p>This Coral.Alert markup shows content zones for <code>header</code> and <code>content</code> areas of the component:</p>
+                  <label class="coral-Form-fieldlabel">Example Coral.Alert Content Zones</label>
+                  <pre class="prettyprint">&lt;coral-alert&gt;
+  &lt;coral-alert-header&gt;INFO&lt;/coral-alert-header&gt;
+  &lt;coral-alert-content&gt;This is is an alert.&lt;/coral-alert-content&gt;
+&lt;/coral-alert&gt;
+</pre>
+                  <p>
+                    Additionally, in the same way you can access the body of the HTML document with document.body, we create references for each content zone on the JavaScript object that corresponds to the component. You can access the header content zone with dialog.header and change its innerHTML, append elements, or do whatever else you need to do.
+                    
+                  </p>
+                  <p>
+                    Since we are not using actual ShadowDOM, our CSS is not protected.  However, since CoralUI 2 we have used a SUIT CSS naming convention to keep Coral’s CSS conflict-free. Adding overly general CSS could still affect Coral components — which is both a bug and a feature — but Coral components won’t mess with other unrelated page elements.
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="polyfillPerks"><a class="coral-Link coral-Link--subtle" href="#polyfillPerks">Polyfill Perks</a></h4>
+                  <p>
+                    Through the polyfill, we also get access to:
+                    
+                  </p>
+                  <ui>
+                    <li>Custom elements</li>
+                    <li>MutationObserver</li>
+                    <li>WeakMap</li>
+                  </ui>
+                  <p>
+                    These are used a few places in CoralUI, and are also available for use by your application.
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="synchronizationQuirks"><a class="coral-Link coral-Link--subtle" href="#synchronizationQuirks">Synchronization Quirks</a></h4>
+                  <p>
+                    Because of quirky of a polyfilled environment, there are some known issues that must be worked around. In browsers that support web components natively, such as Chrome, elements are upgraded immediately, regardless of how they’re created. However, in polyfilled browsers, this isn’t the case.
+                    
+                  </p>
+                  <p>
+                    In order to provide support for web components on old browsers, our polyfill uses MutationObservers to watch for elements it should upgrade. When you create elements from markup, they’re not upgraded until the MutationObserver fires, which happens asynchronously. As a result, you can’t use the JavaScript API of an element created from markup immediately after you insert it.
+                    
+                  </p>
+                  <p>The code below will exhibit a synchronization problem in polyfilled browsers:</p>
+                  <label class="coral-Form-fieldlabel">Example of Synchronization Problem</label>
+                  <pre class="prettyprint">document.body.innerHTML = '&lt;coral-progress id="progress"&gt;&lt;/coral-progress&gt;';
+document.querySelector('#progress').value = 100;
+</pre>
+                  <p>
+                    A curious side effect of the above code snippet is that now the value property is broken for that instance. Because of the way that webcomponents.js upgrades elements by switching out their prototype, setting the value property before the upgrade makes it so the value property defined on the prototype is effectively overridden by the value property defined on the instance. Basically, this breaks things.
+                    
+                  </p>
+                  <p>
+                    The two examples below work everywhere:
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Example: Working Around Synchronization Issues</label>
+                  <pre class="prettyprint">document.body.innerHTML = '&lt;coral-progress value="100"&gt;&lt;/coral-progress&gt;';
+&lt;!-- or --&gt;
+document.body.innerHTML = '&lt;coral-progress id="progress"&gt;&lt;/coral-progress&gt;';
+document.querySelector('#progress').setAttribute('value', 100);
+</pre>
+                  <p>You can still set attributes on the element, either with JavaScript or within the markup itself. This works because Coral will check the existing attributes and apply them when the element is upgraded. If you’re doing something like rendering a template, you can pass configuration in as attributes. You can also use <code>setAttribute</code> and be confident it will always work, even after the element has been upgraded.
+                    
+                  </p>
+                  <p>
+                    This also works everywhere, synchronously:
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Example: Synchronous Upgrade and Set</label>
+                  <pre class="prettyprint">document.body.innerHTML = '<coral-progress id="progress"></coral-progress>';
+var progress = document.querySelector('#progress');
+CustomElements.upgradeAll(progress);
+progress.value = 100;
+
+</pre>
+                  <p>There is a <code>Coral.commons.ready</code> function that is also helpful:</p>
+                  <label class="coral-Form-fieldlabel">Example: Using the Coral.commons.ready Callback</label>
+                  <pre class="prettyprint">Coral.commons.ready(document.querySelector('#progress'), function(progress) {
+  progress.value = 100;
+});
+</pre>
+                  <h4 class="coral-Heading coral-Heading--4" id="dOMUpdates"><a class="coral-Link coral-Link--subtle" href="#dOMUpdates">DOM Updates</a></h4>
+                  <p>
+                    We wanted Coral components to be good citizens. We didn’t want them causing unnecessary recalculations and paints at the wrong times, eating up CPU and draining battery on mobile devices. As such, many properties of Coral components won’t immediately result in changes in the DOM. After setting a property, it may take up to 2 animation frames before the DOM reflects your changes, but you can trust that getting the property value will return what you set, and that the component will be visually updated before the next paint.
+                    
+                  </p>
+                  <p>
+                    In most cases, this isn’t something you’ll notice when using Coral in your application. However, if you try to get a Coral component’s clientRects or offsetWidth after setting a property, you might notice they don’t immediately reflect your changes.
+                    
+                  </p>
+                  <p>
+                    Certain properties are always updated synchronously, such as content properties used on container components or name and value properties in field components. This makes it so any content you add will be immediately available for querying, and your form submits will always have the right name and value.
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="collectionUpdates"><a class="coral-Link coral-Link--subtle" href="#collectionUpdates">Collection Updates</a></h4>
+                  <p>
+                    Because we’re using real DOM nodes to represent items in a collection, we use attached and detached events to know when items are added and removed. Because the webcomponents.js polyfill relies on MutationObserver to know when an element has been added or removed, these events are asynchronous.
+                    
+                  </p>
+                  <p>As such, a collection won’t fire an added event until the item tells the collection it has been added. This will happen before the next animation frame, before the next paint, so users will never be the wiser, but you might be confused when add events happen asynchronously.</p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.Component"><a class="coral-Link coral-Link--subtle" href="#coral.Component">Coral.Component</a></h3>
+                  <p>All CoralUI components are based on the <code>Coral.Component</code> class.
+                    
+                  </p>
+                  <p><code>Coral.Component</code> provides:
+                    
+                  </p>
+                  <ul>
+                    <li>Event Delegation</li>
+                    <li>Key Combo Listeners</li>
+                    <li>Lifecycle Events</li>
+                    <li>Component Property Setup</li>
+                    <li>Sub-element Caching</li>
+                    <li>Visibility Methods</li>
+                    <li>Batch Property Sets</li>
+                    <li>Event Add/Remove/Trigger Support</li>
+                  </ul>
+                  <p>
+                    Under the hood, everything extends Coral.Component.
+                    
+                  </p>
+                  <p>
+                    Coral.Component provides all the basics every component needs — event delegation with Vent, key combo listeners with Keys, lifecycle events with webcomponents.js, template rendering with DOMly, etc.
+                    
+                  </p>
+                  <p>
+                    It sets up default property values and reads attributes from the DOM for you, assigning the corresponding property to the right value.
+                    
+                  </p>
+                  <p>
+                    It also caches sub-elements, so we’re not stuck querying the DOM every time we need to change something.
+                    
+                  </p>
+                  <p>An API-focused look at Coral.Component is provide in the <a class="coral-Link" href="#baseClasses">base classes</a> documentation.
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="coral.ComponentRegister"><a class="coral-Link coral-Link--subtle" href="#coral.ComponentRegister">Coral.Component Register</a></h4>
+                  <p>A critical part of Coral.Component is the <code>#register()</code> functions. It enables:
+                    
+                  </p>
+                  <ul>
+                    <li>Extending native HTML tags</li>
+                    <li>Simple prototypal inheritance</li>
+                    <li>Functional and object mixins</li>
+                    <li>Defining and overriding properties</li>
+                    <li>Defining and inheriting delegated events</li>
+                    <li>Registers new HTML tag in document</li>
+                    <li>Declares components in <code>Coral</code> namespace</li>
+                  </ul>
+                  <p>
+                    Coral.register is the glue that combines everything together. It’s a simple function that lets us declare web components without hassle. We can extend existing HTML tags, inherit from other Coral components, add mixins, as well as define and override property descriptors and events listeners. Coral.register makes sure you pick up everything Coral.Component has to offer, even if you extending existing tags or other components.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Example: A Call to Register</label>
+                  <pre class="prettyprint u-columnMedium">Coral.register({
+  name: 'FieldOverlay',
+  tagName: 'coral-fieldoverlay',
+  className: 'coral-Overlay coral-FieldOverlay',
+  extend: Coral.Overlay,
+  mixins: [ Coral.mixin.fieldComponent ],
+  properties: {
+    'value': { /* ... */ }
+  },
+  events: {
+    'change input': '_handleChange'
+  },
+  _render: function(event) { /* ... */ }
+  _handleChange: function(event) { /* ... */ }
+});
+</pre>
+                  <p>
+                    Coral.register enhances JavaScript’s property descriptor by providing web component-specific features. Under the hood, we’re still simply using JavaScript setters and getters, but we enhance the setters to perform a number of web-components specific tasks.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Example: Registering a 'Value' Property</label>
+                  <pre class="prettyprint u-columnMedium">properties: {
+  'value': {
+    default: 0,
+    attribute: 'value',
+    reflectAttribute: true,
+    transform: function(value) {},
+    attributeTransform: function(value) {},
+    validate: function(value, oldValue) {},
+    set: function(value) {},
+    get: function() {},
+    sync: function() {},
+    alsoSync: ['other'],
+    trigger: 'coral-component:change',
+    triggerBefore: 'coral-component:beforechange',
+    override: true
+  }
+}
+</pre>
+                  <p>Coral.register supports a very flexible event map. This allows us to easily perform:</p>
+                  <ul>
+                    <li>delegation</li>
+                    <li>capture events</li>
+                    <li>global events</li>
+                    <li>key events</li>
+                    <li>key events with delegation</li>
+                    <li>key combos</li>
+                  </ul>
+                  <p>
+                    Coral.Component manages global events for you, adding and removing them as necessary. And of course, Vent and Keys do the work under the hood.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Example: Registering Events</label>
+                  <pre class="prettyprint u-columnMedium">events: {
+ 'click [coral-close]': '_handleClose',
+ 'submit .js-form': '_handlesubmit',
+ 'capture:change [name="field"]': '_handleChange',
+ 'global:resize': '_handleWindowResize',
+ 'key:right': '_handleKeyRight',
+ ‘key:enter [name=“field"]': '_handleEnter',
+ 'key:control+a': ‘_handleSelectAll',
+ 'global:key:escape': '_handleEscape'
+}</pre>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="cSS"><a class="coral-Link coral-Link--subtle" href="#cSS">CSS</a></h3>
+                  <p>
+                    CoralUI's CSS attempts to achieve the following goals:
+                    
+                  </p>
+                  <ul>
+                    <li>Compatible: Does not conflict with styles in the consuming project.</li>
+                    <li>Optimized: Fast!</li>
+                    <li>Readable: Conveys context based on the CSS class name alone.</li>
+                    <li>Extensible: Maintains flexibility by limiting assumptions concerning DOM hierarchy.</li>
+                  </ul>
+                  <p>To help achieve these goals, CoralUI follows the <a class="coral-Link" href="https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md" target="_blank">SUIT CSS convention</a>. SUIT was chosen over alternative conventions because it is opinionated and well-documented. It also provides a favorable naming style and outlines patterns for handling states, utilities, and JavaScript interaction.
+                    
+                  </p>
+                  <p>Another tactic CoralUI uses to maintain compatibility with consumer projects is to make styles opt-in-only. In other words, if CoralUI's stylesheet is loaded into a consumer project with no other changes, the look and feel of the consumer project <em>should not change</em>. The only exception to this is that CoralUI comes bundled with <a class="coral-Link" href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a> which attempts to normalize default CSS styles across browsers.
+                    
+                  </p>
+                  <p>CoralUI components should avoid requiring that consumers add CSS classes to components; CoralUI components have logic capable of adding CSS classes to their own elements as necessary. They may even add or remove CSS classes based on a property value. On the other hand, there are styles CoralUI provides that do not have accompanying components. For example, table styles are provided for consumer use but no accompanying table component. In these cases, consumers are expected to use the CSS classes directly.</p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="dependencies"><a class="coral-Link coral-Link--subtle" href="#dependencies">Dependencies</a></h3>
+                  <p>
+                    CoralUI has a few dependencies.  Some are actually written and maintained by the CoralUI team,
+                    and are included in CoralUI without being considered an external dependency.
+                    
+                  </p>
+                  <p>
+                    These 'non-external' dependencies are:
+                    
+                  </p>
+                  <ui>
+                    <li>Custom Elements</li>
+                    <li>DOMly</li>
+                    <li>Vent</li>
+                    <li>Keys</li>
+                  </ui><br>
+                  <h4 class="coral-Heading coral-Heading--4" id="dOMly"><a class="coral-Link coral-Link--subtle" href="#dOMly">DOMly</a></h4><img src="../resources/domly.png" style="float:right; width:10rem; margin-right: 3rem">
+                  <p>
+                    DOMly is CoralUI's template language.  It has a simple, HTML-like syntax, so there’s no learning curve as with Jade and Handlebars. DOMly templates compile to a basic JavaScript functions that use native DOM operations and, as a result, has zero client-side dependencies. DOMly is the fastest client-side template system out there. DOMly selectively uses cloneNode to make things even faster, which is also where it gets part of its name from — Dolly the sheep, the first mammal to be cloned.
+                    
+                    
+                  </p>
+                  <p>Below is some advanced DOMly markup that loops over products and displays them in a list, generating some unique IDs, and setting a few attributes conditionally:</p>
+                  <label class="coral-Form-fieldlabel">Example of DOMly Markup</label>
+                  <pre class="prettyprint">&lt;h1&gt;Category: {{data.category}}&lt;/h1&gt;
+&lt;if data.items.length&gt;
+  &lt;ul&gt;
+    &lt;foreach data.items&gt;
+      &lt;li id=&quot;{{util.generateId()}}&quot;&gt;
+        &lt;h2&gt;{{parent.category}}: {{data.name}}&lt;/h2&gt;
+        &lt;h3 if-data.sale=&#039;class=&quot;sale&quot;&#039;&gt;{{data.price}}&lt;/h3&gt;
+        &lt;strong&gt;{{format(data.count)}} in stock&lt;/strong&gt;
+        &lt;button unless-data.count=&#039;disabled=&quot;disabled&quot;&#039;&gt;Buy now&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/foreach&gt;
+  &lt;/ul&gt;
+&lt;else&gt;
+  &lt;p&gt;This category is empty.&lt;/p&gt;
+&lt;/if&gt;
+</pre>
+                  <p>Coral components leverage templates inside their <code>_render</code> method to fill in any missing DOM that wasn’t provided by the user. Components won’t re-render the template unless something drastic changes, so all further operations simply mutate the DOM that’s already there.  This is our answer to the no-quite-ready ShadowDOM specification.
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="vent"><a class="coral-Link coral-Link--subtle" href="#vent">Vent</a></h4><img src="../resources/vent.png" style="float:right; width:12rem; margin-right: 3rem">
+                  <p>
+                    When we started building web components, we realized that Custom Events would be a big part of what we did, and that jQuery didn’t support them at all. We found that all existing solutions lacked features, had crippling bugs, or didn’t have tests. After realizing there was more wrong with existing options than was right, we created Vent.
+                    
+                  </p>
+                  <p>
+                    Vent treats CustomEvents like real, bubbling DOM events, dispatching and listening to them like any other native event. This lets our components trigger events that your application can listen to at any level in the DOM tree using native addEventListener.
+                    
+                  </p>
+                  <p>
+                    Vent also supports capture phase listeners, unlike jQuery and other event delegation libraries. This lets us have fine-grain control over when we listen to events as they propagate.
+                    
+                  </p>
+                  <p>
+                    Vent has support scoped selectors, so you can delegate to immediate children if you need to. This behavior simply wasn’t present in any existing library except jQuery, and we needed it for Coral.
+                    
+                  </p>
+                  <p>
+                    As an example, here’s code that uses Vent to listen to clicks that only happen on elements within component that have the .sub-element classname.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Example of Vent usage</label>
+                  <pre class="prettyprint">var vent = new Vent(component);
+vent.on('click', ‘.sub-element’, callback);
+
+</pre>
+                  <h4 class="coral-Heading coral-Heading--4" id="keys"><a class="coral-Link coral-Link--subtle" href="#keys">Keys</a></h4><img src="../resources/keys.png" style="float:right; width:12rem; margin-right: 3rem">
+                  <p>
+                    A common practice is to handled key press activity by hard coding key codes into event handlers. This was an obvious area where we could improve, so we looked for a library that would give us the ability to listen to key combinations on a per-component basis with event delegation. It turns out, existing solutions such as jquery.hotkeys and Keymaster had serious issues and shortcomings.  Thus, our Keys library was born.
+                    
+                  </p>
+                  <p>
+                    Keys enables listening to key presses, key combinations, and the event delegation pattern for key presses.
+                    Keys makes it simple to listen to key presses and combinations, and you can use its built-in support for the event delegation pattern to listen for events on specific elements. There’s a global instance exposed at <code>Coral.keys</code> that you can use to implement additional key combo support.
+                    
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4" id="others"><a class="coral-Link coral-Link--subtle" href="#others">Others</a></h4>
+                  <p>
+                    There are also some more traditional dependencies.  They are:
+                    
+                  </p>
+                  <ul>
+                    <li>jQuery</li>
+                    <li>jQuery UI Core</li>
+                    <li>jQuery UI Position</li>
+                    <li>Moment.js</li>
+                    <li>Normalize.css</li>
+                  </ul>
+                  <p>There is a plan to eventually remove jQuery, but as of today we're  still using it for a few things.  An example is the add/remove class functionality, and some advanced DOM queries, but we’re avoiding it in most cases and using the native DOM API.</p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="baseClasses"><a class="coral-Link coral-Link--subtle" href="#baseClasses">Base Classes</a></h2>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral"><a class="coral-Link coral-Link--subtle" href="#coral">Coral</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral">
+                    <p>See Documentation for <a href="Coral.html" class="coral-Link">Coral</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.Collection"><a class="coral-Link coral-Link--subtle" href="#coral.Collection">Coral.Collection</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-Collection">
+                    <p>See Documentation for <a href="Coral.Collection.html" class="coral-Link">Coral.Collection</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.commons"><a class="coral-Link coral-Link--subtle" href="#coral.commons">Coral.commons</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-commons">
+                    <p>See Documentation for <a href="Coral.commons.html" class="coral-Link">Coral.commons</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.Component"><a class="coral-Link coral-Link--subtle" href="#coral.Component">Coral.Component</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-Component">
+                    <p>See Documentation for <a href="Coral.Component.html" class="coral-Link">Coral.Component</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.i18n"><a class="coral-Link coral-Link--subtle" href="#coral.i18n">Coral.i18n</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-i18n">
+                    <p>See Documentation for <a href="Coral.i18n.html" class="coral-Link">Coral.i18n</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.Keys"><a class="coral-Link coral-Link--subtle" href="#coral.Keys">Coral.Keys</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-Keys">
+                    <p>See Documentation for <a href="Coral.Keys.html" class="coral-Link">Coral.Keys</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.mixin.formField"><a class="coral-Link coral-Link--subtle" href="#coral.mixin.formField">Coral.mixin.formField</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-mixin-formField">
+                    <p>See Documentation for <a href="Coral.mixin.formField.html" class="coral-Link">Coral.mixin.formField</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.mixin.overlay"><a class="coral-Link coral-Link--subtle" href="#coral.mixin.overlay">Coral.mixin.overlay</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-mixin-overlay">
+                    <p>See Documentation for <a href="Coral.mixin.overlay.html" class="coral-Link">Coral.mixin.overlay</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.mixin.selectionList"><a class="coral-Link coral-Link--subtle" href="#coral.mixin.selectionList">Coral.mixin.selectionList</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-mixin-selectionList">
+                    <p>See Documentation for <a href="Coral.mixin.selectionList.html" class="coral-Link">Coral.mixin.selectionList</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.property"><a class="coral-Link coral-Link--subtle" href="#coral.property">Coral.property</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-property">
+                    <p>See Documentation for <a href="Coral.property.html" class="coral-Link">Coral.property</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.transform"><a class="coral-Link coral-Link--subtle" href="#coral.transform">Coral.transform</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-transform">
+                    <p>See Documentation for <a href="Coral.transform.html" class="coral-Link">Coral.transform</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.validate"><a class="coral-Link coral-Link--subtle" href="#coral.validate">Coral.validate</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-validate">
+                    <p>See Documentation for <a href="Coral.validate.html" class="coral-Link">Coral.validate</a></p>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="coral.tracking"><a class="coral-Link coral-Link--subtle" href="#coral.tracking">Coral.tracking</a></h3>
+                  <div class="docs-Component-documentation" id="base-class-Coral-tracking">
+                    <p>See Documentation for <a href="Coral.tracking.html" class="coral-Link">Coral.tracking</a></p>
+                  </div>
+                </div>
+                <script>var baseClasses = ["Coral","Coral.Collection","Coral.commons","Coral.Component","Coral.i18n","Coral.Keys","Coral.mixin.formField","Coral.mixin.overlay","Coral.mixin.selectionList","Coral.property","Coral.transform","Coral.validate","Coral.tracking"];
+                  var calls = [];
+                  var CDN = 'documentation/';
+                  
+                  baseClasses.forEach(function(baseClass) {
+                    $.get(CDN + baseClass + '.html', function(data) {
+                      var doc = $.parseHTML(data).filter(function(item) {
+                        if (item.className === 'docs-Component') {
+                          return item;
+                        }
+                      })[0];
+                      var fragment = doc.querySelector('.docs-Component-documentation > p');
+                      $('#base-class-' + baseClass.split('.').join('-')).prepend(fragment);
+                    });
+                  });
+                </script>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="interfaces"><a class="coral-Link coral-Link--subtle" href="#interfaces">Interfaces</a></h2>
+                <p>
+                  CoralUI provides some interfaces, which are documented in each component's JSDocs.  Additional detail on those interfaces is provide below.
+                  
+                </p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="collectionInterface"><a class="coral-Link coral-Link--subtle" href="#collectionInterface">Collection Interface</a></h3>
+                  <p>
+                    Some components like Select or TabList include multiple items. As an effort to standardize manipulation of these items, we've added a Collection interface, which provides a consistent API for handling multiple items within a component.  The Collection Interface is exposed via an <code>items</code> property that gives access to different methods to manipulate items.
+                    
+                  </p>
+                  <p>
+                    Components that support the Collection interface expose the details in their JSDocs.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="formFields"><a class="coral-Link coral-Link--subtle" href="#formFields">Form Fields</a></h3>
+                  <p>Components that are typically used inside a form follow a contract that exposes a set of required properties. We call this the FormField interface. Every component in a form is expected to have the following properties: <code>disabled</code>, <code>invalid</code>, <code>labelledBy</code>, <code>name</code>, <code>readOnly</code>, <code>required</code>, and <code>value</code>. FormField components also trigger a change event without a namespace, which allows the components to be integrated transparently into any form.</p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="coralUI3Migration"><a class="coral-Link coral-Link--subtle" href="#coralUI3Migration">CoralUI 3 Migration</a></h2>
+                <p>
+                  The purpose of this section is to ease the migration process, mostly by providing an overview
+                  of where there is a difference in the components between older versions and CoralUI 3.
+                  
+                </p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="customElements"><a class="coral-Link coral-Link--subtle" href="#customElements">Custom Elements</a></h3>
+                  <p>
+                    As described elsewhere in the architecture documentation, CoralUI 3 replaces the traditional markup of CoralUI 2 with Web Components'sCustom Elements. Custom Elements allows the developer to register new tags that serve as components that can be easily reused. This abstracts and simplifies the markup required to initialize each component and eases the process of passing options to each component.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="emptyElement"><a class="coral-Link coral-Link--subtle" href="#emptyElement">Empty Element</a></h3>
+                  <p>
+                    For <code>&lt;coral-icon&gt;</code>, <code>&lt;coral-numberinput&gt;</code>, etc, even though they don't have any body, the end tag is required. i.e. You have to use <code>&lt;coral-icon&gt;&lt;/coral-icon&gt;</code> instead of <code>&lt;coral-icon /&gt;</code>. Otherwise the browser will consider it unclosed element and will close it like a block element.
+                    
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="objectReferences"><a class="coral-Link coral-Link--subtle" href="#objectReferences">Object References</a></h3>
+                  <p>
+                    The CoralUI 2 implementation stored the JavaScript object as a data attribute. This required using <code>var numberinput = $("#elementId").data("numberinput")</code> to allow access to the API.  Because CoralUI 3 components are now Custom Elements, there is not a separate data object. The element contains itself the API, just like a native HTLM Element.
+                    
+                  </p>
+                  <p>
+                    This means that CoralUI 3 JavaScript construction can be done without pre-existing DOM markup, and initialization parameters are now passed as normal element attributes. This also has an impact on how properties are set. In CoralUI 2, we had to interact with this data object, and set the options that it provided. Now, every property is exposed with a JavaScript setter and getter.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="dataAttributes"><a class="coral-Link coral-Link--subtle" href="#dataAttributes">Data Attributes</a></h3>
+                  <p>
+                    In CoralUI 2, data attributes were used to pass options to the component constructor. For example, CUI.NumberInput required <code>data-min</code>, <code>data-max</code>, and <code>data-init</code> to initialize the markup as a NumberInput. You were also forced to write the complete internal markup of the component and then reference it in the DOM when initializing the JavaScript.
+                    
+                    Since components are now treated as normal DOM element, initialization parameters are passed as normal element attributes, not data attributes.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="platformChanges"><a class="coral-Link coral-Link--subtle" href="#platformChanges">Platform Changes</a></h3>
+                  <ul>
+                    <li>
+                      The event <code>cui-contentloaded</code> does not exist anymore. Since we are using custom elements, they get upgraded automatically by the browser.
+                      
+                    </li>
+                    <li>
+                      No more <code>data-*</code> attributes. As indicated previously, now they are full fledged attributes.
+                      
+                    </li>
+                    <li>
+                      No more need to retrieve the underlaying JavaScript object using <code>$("#myNumberInput").data("numberInput");</code>.  As mentioned above, object references are the same as any other DOM element.
+                      
+                    </li>
+                    <li>
+                      The new Collection interface that standardizes the item manipulation (mentioned above).
+                      
+                    </li>
+                    <li>
+                      A FormField interface that exposes the expected properties for every form component (mentioned above).
+                      
+                    </li>
+                  </ul>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="componentChanges"><a class="coral-Link coral-Link--subtle" href="#componentChanges">Component Changes</a></h3>
+                  <p>
+                    With CoralUI 3, some components have been renamed or deprecated. This section provides a quick overview.
+                    
+                    
+                  </p>
+                  <h4 class="coral-Heading coral-Heading--4">New Components</h4>
+                  <ul>
+                    <li>Coral.ActionBar</li>
+                    <li>Coral.Calendar</li>
+                    <li>Coral.Card</li>
+                    <li>Coral.Clock</li>
+                    <li>Coral.Masonry</li>
+                    <li>Coral.PanelStack</li>
+                    <li>Coral.Table</li>
+                    <li>Coral.TabList</li>
+                  </ul>
+                  <h4 class="coral-Heading coral-Heading--4">Renamed Components</h4>
+                  <ul>
+                    <li><code>CUI.Modal</code> is replaced by <code>Coral.Dialog</code></li>
+                    <li><code>CUI.TabPanel</code> is replaced by <code>Coral.TabView</code>, which is used in conjunction with a <code>Coral.TabList</code> and a <code>Coral.PanelStack</code></li>
+                    <li><code>CUI.FlexWizard</code> is replaced by <code>Coral.WizardView</code>, which is used in conjunction with a <code>Coral.StepList</code> and a <code>Coral.PanelStack</code></li>
+                  </ul>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="formerCoreComponents"><a class="coral-Link coral-Link--subtle" href="#formerCoreComponents">Former Core Components</a></h3>
+                  <p>
+                    In CoralUI 3, many of the former 'core' components have been promoted to become a custom element. This includes some addition of JavaScript APIs for those components.
+                    
+                  </p>
+                  <ul>Those components are:
+                    <li>Coral.AnchorButton</li>
+                    <li>Coral.Button</li>
+                    <li>Coral.ButtonGroup</li>
+                    <li>Coral.Checkbox</li>
+                    <li>Coral.Icon</li>
+                    <li>Coral.Progress</li>
+                    <li>Coral.Radio</li>
+                    <li>Coral.RadioGroup</li>
+                    <li>Coral.Table</li>
+                    <li>Coral.TextField</li>
+                    <li>Coral.TextArea</li>
+                    <li>Coral.Wait</li>
+                  </ul>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="otherNotes"><a class="coral-Link coral-Link--subtle" href="#otherNotes">Other Notes</a></h3>
+                  <ul>
+                    <li><code>coral-Button–secondary</code> has been removed; light grey is now the default button color</li>
+                    <li><code>coral-MinimalButton</code> has been incorporated as a variant of <code>Coral.Button</code></li>
+                    <li><code>Coral.DatePicker</code>: the options 'dayNames' and 'monthNames' have been removed. In the future they will be taken automatically from i18n</li>
+                    <li><code>Coral.NumberInput</code>: the option 'defaultValue' has been removed</li>
+                    <li><code>Coral.PanelStack</code> does not have padding; <code>u-coral-padding</code> needs to be used</li>
+                    <li><code>Coral.Select</code> dropped support for groups</li>
+                    <li><code>Coral.Switch</code> does not support labels.  A switch should only be used to express on/off or enable/disabled, thus does not need additional label support</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        Coral.Guide.initNavigation({
+          tocContentQuerySelector: '.guide-Component',
+          tocItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--section',
+          tocSubItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--subsection'
+        });
+      </script>
+      <script>
+        var s=s_gi("coralui");
+        s.pageName=document.title;
+        var s_code=s.t();if(s_code)document.write(s_code);
+      </script>
+    </div>
+  </body>
+</html>

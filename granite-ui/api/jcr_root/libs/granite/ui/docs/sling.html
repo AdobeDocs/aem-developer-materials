@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sling Developer Guide &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Granite UI Foundation" href="../components/coral/foundation/index.html" />
+    <link rel="prev" title="Render Condition" href="server/rendercondition.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../components/coral/foundation/index.html" title="Granite UI Foundation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="server/rendercondition.html" title="Render Condition"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sling-developer-guide">
+<h1>Sling Developer Guide<a class="headerlink" href="#sling-developer-guide" title="Permalink to this headline">¶</a></h1>
+<p>Granite UI (Client Side) is an extension of HTML/DOM. As such it is following the HTML/DOM characteristic.
+HTML/DOM, like Sling, is a tree structure, therefore the approach to solve problem or “how to think” in Sling can be similar to HTML/DOM/Granite UI.</p>
+<p>This document is trying to highlight some of the similarities.</p>
+<p>Below is the summary.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Sling</th>
+<th class="head">Granite UI (Client Side)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Resource tree</td>
+<td>DOM element tree</td>
+</tr>
+<tr class="row-odd"><td>Resource</td>
+<td>DOM element</td>
+</tr>
+<tr class="row-even"><td>ResourceResolver</td>
+<td>DOM Query Selector All</td>
+</tr>
+<tr class="row-odd"><td>Adaptable</td>
+<td><a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/adapter/index.html"><span class="doc">foundation-adapter</span></a></td>
+</tr>
+<tr class="row-even"><td>JCR Observation</td>
+<td>DOM Mutation Observer</td>
+</tr>
+<tr class="row-odd"><td>OSGi Registry</td>
+<td><a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/registry/index.html"><span class="doc">foundation-registry</span></a></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="element-tree">
+<h2>Element Tree<a class="headerlink" href="#element-tree" title="Permalink to this headline">¶</a></h2>
+<p>In Sling we have a resource tree, where we can traverse the tree using the Resource methods, such as <code class="docutils literal notranslate"><span class="pre">Resource#getParent()</span></code> and <code class="docutils literal notranslate"><span class="pre">Resource#getChild(String)</span></code>.</p>
+<p>Similarly DOM is also a tree structure, where we can traverse using its API, such as <code class="docutils literal notranslate"><span class="pre">Node.parentNode</span></code> and <code class="docutils literal notranslate"><span class="pre">Node.childNodes</span></code>.</p>
+<p>The key idea about tree structure is the thinking in the form of hierarchy. The following example is showing the relationship between the fields and their containing form.</p>
+<p>Sling:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">form</span>
+  <span class="o">+</span> <span class="n">username</span>
+    <span class="o">-</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Username&quot;</span>
+  <span class="o">+</span> <span class="n">password</span>
+    <span class="o">-</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Password&quot;</span>
+  <span class="o">+</span> <span class="n">submit</span>
+    <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Login&quot;</span>
+</pre></div>
+</div>
+<p>Granite UI:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>Username <span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>Password <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Login&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element">
+<h2>Element<a class="headerlink" href="#element" title="Permalink to this headline">¶</a></h2>
+<p>In Sling, the unit of abstraction is a Resource. A Resource exposes its properties as a ValueMap. Resource is also a first class citizen in Sling (instead of Java object).</p>
+<p>Likewise, in Granite UI, the Element is the first class citizen (instead of JavaScript object). A HTML element exposes its properties as HTML attributes.</p>
+<p>When we say “Everything is a resource” in Sling, we can also say “Everything is an element” in Granite UI.</p>
+</div>
+<div class="section" id="getting-element">
+<h2>Getting Element<a class="headerlink" href="#getting-element" title="Permalink to this headline">¶</a></h2>
+<p>In Sling, we use ResourceResolver to get or search for the resource, using path or query language (e.g. XPath, SQL) respectively.</p>
+<p>In Granite UI, we use querySelector/querySelectorAll/jQuery to get or search for the element, using <a class="reference external" href="http://www.w3.org/TR/selectors/">selector</a>.</p>
+</div>
+<div class="section" id="adapter">
+<h2>Adapter<a class="headerlink" href="#adapter" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Adapter_pattern">adapter pattern</a> allows the interface of an existing class to be used from another interface. It is often used to make existing classes work with others without modifying their source code.</p>
+<p>In Sling, the pattern is exposed by object implementing <a class="reference external" href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/adapter/Adaptable.html">Adaptable</a> interface.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Page</span> <span class="n">page</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="na">adaptTo</span><span class="o">(</span><span class="n">Page</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="n">PageManager</span> <span class="n">mgr</span> <span class="o">=</span> <span class="n">resourceResolver</span><span class="o">.</span><span class="na">adaptTo</span><span class="o">(</span><span class="n">PageManager</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>In Granite UI, the pattern is exposed by <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/adapter/index.html"><span class="doc">foundation-adapter</span></a> in the form of jQuery plugin named <code class="docutils literal notranslate"><span class="pre">adaptTo</span></code>.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">collectionAPI</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-collection&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">uiAPI</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-ui&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The adapter is one half of the infrastructure to make Granite UI extensible. (The other one is the registry)</p>
+</div>
+<div class="section" id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.day.com/specs/jcr/2.0/12_Observation.html">JCR Observation</a> is a mechanism to enables an application to receive notification of persistent changes to a workspace.
+DOM also provides similar feature in the form of <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver">MutationObserver</a> to get notification of changes in DOM.</p>
+<p>Although currently we don’t use MutationObserver due to browser support (not available in IE10-), just like in Sling, it has a potential to change the paradigm on how we develop our component.</p>
+<p>The most likely use case would be about cache invalidation. For example when selecting elements, which can be expensive, we simply cache the result and use MutationObserver to invalidate the cache.</p>
+</div>
+<div class="section" id="registry">
+<h2>Registry<a class="headerlink" href="#registry" title="Permalink to this headline">¶</a></h2>
+<p>OSGi Service is one of the key concept in OSGi. The service is registered and consumed through the service registry.</p>
+<p>Granite UI also provides a registry: <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/registry/index.html"><span class="doc">foundation-registry</span></a>. It is mainly used as way for other codes to register extension for components.</p>
+<p>For example <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">foundation-collection-action</span></a> allows the action to be pluggable. So other code registers the action handler to the registry with a certain key, then the component can simply query the registry of that key to pick the matching handler.</p>
+<p>The registry is one half of the infrastructure to make Granite UI extensible. (The other one is the adapter)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sling Developer Guide</a><ul>
+<li><a class="reference internal" href="#element-tree">Element Tree</a></li>
+<li><a class="reference internal" href="#element">Element</a></li>
+<li><a class="reference internal" href="#getting-element">Getting Element</a></li>
+<li><a class="reference internal" href="#adapter">Adapter</a></li>
+<li><a class="reference internal" href="#observations">Observations</a></li>
+<li><a class="reference internal" href="#registry">Registry</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="server/rendercondition.html"
+                        title="previous chapter">Render Condition</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../components/coral/foundation/index.html"
+                        title="next chapter">Granite UI Foundation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/jcr_root/libs/granite/ui/docs/sling.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../components/coral/foundation/index.html" title="Granite UI Foundation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="server/rendercondition.html" title="Render Condition"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

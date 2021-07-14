@@ -1,0 +1,374 @@
+***********************
+foundation-autocomplete
+***********************
+
+Autocomplete is a field widget that helps the user to complete the value of the field.
+
+This widget is designed to be generic and flexible so that it can be used to satisfy use cases such as path browser, tag picker, user picker, language picker.
+It can even do date picker and select.
+
+In general it offers two mechanics to achieve the objective.
+
+Suggestion
+   Autocomplete can be configured to offer the user a list of suggestions to select based on the current value of autocomplete's textfield.
+   It is usually presented as a dropdown.
+
+Picker
+   Autocomplete can be configured to allow the user selecting the value in more arbitrary way.
+   It is usually presented as a modal dialog.
+
+   For example for path browser use case, it makes sense to configure the picker such that it shows the dialog that contains a column view,
+   allowing the user to browse and select the path. Meanwhile, for asset picker use case, it makes sense to do similar, with also offer the capability to search the asset.
+
+
+Markup
+======
+
+foundation-autocomplete
+-----------------------
+
+A custom element that represent the autocomplete.
+
+It implements :doc:`foundation-field <../../vocabulary/field>` and is registered as part of :doc:`:-foundation-submittable <../../js/validation/index>`.
+
+Selector Rule::
+
+   foundation-autocomplete
+
+
+[labelledby]
+------------
+
+The attribute that is equivalent to ``aria-labelledby`` attribute.
+Use this attribute instead of ``aria-labelledby`` to associate the element with its labels.
+
+Selector Rule::
+
+   foundation-autocomplete[labelledby]
+
+
+[delay]
+-------
+
+Amount of time, in millisecond, to wait after typing a character before the suggestion is shown.
+The default value is 500.
+
+Selector Rule::
+
+   foundation-autocomplete[delay]
+
+
+[disabled]
+----------
+
+The boolean attribute to indicate that the control is not available for interaction.
+In particular, the click event will not be dispatched on disabled controls. Also, a disabled control's value isn't submitted with the form.
+
+Selector Rule::
+
+   foundation-autocomplete[disabled]
+
+
+[forceselection]
+----------------
+
+The boolean attribute to indicate that the user must only select from the list of given options.
+If it is not forced, the user can enter arbitrary value.
+
+Selector Rule::
+
+   foundation-autocomplete[forceselection]
+
+
+[invalid]
+---------
+
+The boolean attribute to indicate the control as invalid.
+Note that this is for presentation purpose and usually used by validation engine to indicate the invalidity.
+But it is not implied that the validation is actually perform.
+
+Selector Rule::
+
+   foundation-autocomplete[invalid]
+
+
+[multiple]
+----------
+
+The boolean attribute to indicate whether the user can enter more than one value.
+
+Selector Rule::
+
+   foundation-autocomplete[multiple]
+
+
+[name]
+------
+
+The name of the control, which is submitted with the form data.
+
+Selector Rule::
+
+   foundation-autocomplete[name]
+
+
+[pickersrc]
+-----------
+
+The URL to the picker markup.
+The picker markup MUST be adaptable to :doc:`foundation-picker <../../vocabulary/picker>`.
+
+Selector Rule::
+
+   foundation-autocomplete[pickersrc]
+
+
+[placeholder]
+-------------
+
+A hint to the user of what can be entered in the control. The placeholder text must not contain carriage returns or line-feeds.
+
+Selector Rule::
+
+   foundation-autocomplete[placeholder]
+
+
+[readonly]
+----------
+
+The boolean attribute to indicate that the user cannot modify the value of the control.
+
+Selector Rule::
+
+   foundation-autocomplete[readonly]
+
+
+[required]
+----------
+
+This boolean attribute specifies that the user must fill in a value before submitting a form.
+
+Selector Rule::
+
+   foundation-autocomplete[required]
+
+
+[valuedisplaymode]
+------------------
+
+The display mode for showing the value. Valid value are:
+
+``inline``
+   This is the default.
+   The values are presented inline with the input field.
+
+``block``
+   The values are presented separately from the input field.
+
+Selector Rule::
+
+   foundation-autocomplete[valuedisplaymode]
+
+
+[variant]
+---------
+
+The variant of control. Valid values are:
+
+``default``
+   The default variant.
+
+``omnisearch``
+   The variant to be used for omnisearch use case.
+   In this case, the control is a ``block``-like element, instead of ``inline-block``-like.
+
+Selector Rule::
+
+   foundation-autocomplete[variant]
+
+
+[foundation-autocomplete-suggestion]
+------------------------------------
+
+Attribute to mark the suggestion element.
+
+This element element can be any element as long as it is adaptable to :doc:`foundation-picker <../../vocabulary/picker>`.
+
+Selector Rule::
+
+   foundation-autocomplete > [foundation-autocomplete-suggestion]
+
+
+[foundation-autocomplete-value]
+-------------------------------
+
+The attribute to mark the value element.
+
+At this point only ``coral-taglist`` is supported.
+
+Selector Rule::
+
+   foundation-autocomplete > [foundation-autocomplete-value]
+
+Example:
+
+.. code-block:: html
+
+   <coral-taglist foundation-autocomplete-value name="multiple"></coral-taglist>
+
+
+DOM API
+=======
+
+``foundation-autocomplete`` element supports the following interface:
+
+.. code-block:: ts
+
+   interface FoundationAutocomplete {
+     /**
+      * Amount of time, in millisecond, to wait after typing a character before the suggestion is shown.
+      *
+      * The default value is 500.
+      */
+     delay: number;
+
+     /**
+      * Indicates that the control is not available for interaction.
+      * In particular, the click event will not be dispatched on disabled controls.
+      * Also, a disabled control's value isn't submitted with the form.
+      */
+     disabled: boolean;
+
+     /**
+      * The element that represents the text field for user input.
+      */
+     readonly field: Element;
+
+     /**
+      * Focus on the input element; keystrokes will subsequently go to this element.
+      */
+     focus: () => void;
+
+     /**
+      * Clears the value/values of the component; also clears the underlying input element.
+      */
+     clear: () => void;
+
+     /**
+      * Indicates that the user must only select from the list of given options.
+      * If it is not forced, the user can enter arbitrary value.
+      */
+     forceSelection: boolean;
+
+     /**
+      * Indicates the control as invalid.
+      * Note that this is for presentation purpose and usually used by validation engine to indicate the invalidity.
+      * But it is not implied that the validation is actually perform.
+      */
+     invalid: boolean;
+
+     /**
+      * Indicates whether the user can enter more than one value.
+      */
+     multiple: boolean;
+
+     /**
+      * The name of the control, which is submitted with the form data.
+      */
+     name: string;
+
+     /**
+      * The URL to the picker markup.
+      * The picker markup MUST be adaptable to <code>foundation-picker</code>.
+      */
+     pickerSrc: string;
+
+     /**
+      * A hint to the user of what can be entered in the control.
+      * The placeholder text must not contain carriage returns or line-feeds.
+      */
+     placeholder: string;
+
+     /**
+      * Indicates that the user cannot modify the value of the control.
+      */
+     readOnly: boolean;
+
+     /**
+      * Specifies that the user must fill in a value before submitting a form.
+      */
+     required: boolean;
+
+     /**
+      * The current value of the control.
+      *
+      * If it is multiple:
+      * 1. It will return the first value.
+      * 2. If it has no value it will return <code>undefined</code>.
+      */
+     value: string;
+
+     /**
+      * The current values of the control.
+      *
+      * If it is single, it will return an array with length of 1.
+      */
+     values: string[];
+
+     /**
+      * The display mode for showing the value. Valid value are:
+      *
+      * inline
+      *   This is the default.
+      *   The values are presented inline with the input field.
+      * block
+      *   The values are presented separately from the input field.
+      */
+     valueDisplayMode: string;
+
+     /**
+      * The variant of control. Valid values are:
+      *
+      * default
+      *   The default variant.
+      *
+      * omnisearch
+      *   The variant to be used for omnisearch use case.
+      *   In this case, the control is a block-like element, instead of inline-block-like.
+      */
+     variant: string;
+   }
+
+
+Lifecycle of Autocomplete
+=========================
+
+When the user types in the text field, the autocomplete will perform the lifecycle of :doc:`foundation-picker <../../vocabulary/picker>` of the ``[foundation-autocomplete-suggestion]`` element.
+
+When the picker button is activated, it will fetch the markup at the resolved URL (``pickersrc`` attribute) and perform the lifecycle of :doc:`foundation-picker <../../vocabulary/picker>` against the markup.
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <foundation-autocomplete name="multiple" required multiple forceselection placeholder="Type path &hellip;" valuedisplaymode="block" pickersrc="/picker.multiple.html">
+     <coral-overlay foundation-autocomplete-suggestion class="foundation-picker-buttonlist" data-foundation-picker-buttonlist-src="/suggestions{.offset,limit}.html{?query}"></coral-overlay>
+     <coral-taglist foundation-autocomplete-value name="multiple">
+       <coral-tag value="value1">Value 1</coral-tag>
+       <coral-tag value="value2">Value 2</coral-tag>
+       <coral-tag value="value3">Value 3</coral-tag>
+     </coral-taglist>
+  </foundation-autocomplete>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-autocomplete" {
+     rankdir=BT;
+     "foundation-autocomplete" -> "foundation-picker" [label="uses"];
+   }

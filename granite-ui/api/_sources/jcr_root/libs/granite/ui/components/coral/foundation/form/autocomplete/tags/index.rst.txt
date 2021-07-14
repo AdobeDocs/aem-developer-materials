@@ -1,0 +1,22 @@
+
+AutocompleteTags
+================
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/autocomplete/tags
+
+   .. warning:: Deprecation
+
+      The parent :granite:servercomponent:`Autocomplete </libs/granite/ui/components/coral/foundation/form/autocomplete>` is deprecated.
+
+   The values implementation showing the selections as tags.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormAutocompleteTags] > granite:commonAttrs
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n

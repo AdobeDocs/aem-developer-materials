@@ -1,0 +1,80 @@
+****************
+Render Condition
+****************
+
+Render condition is mechanic to indicate if the component should be rendered or not. Typical example would be to render a submit button based on whether the current user has a privilege to create or modify a resource.
+
+The actual decision making logic itself is pluggable, where a rendercondition component can be created as needed. Granite UI Foundation provides a set of :doc:`build-in renderconditions <../../components/coral/foundation/renderconditions/index>`.
+
+When developing a new server component, it is RECOMMENDED to use this shared mechanic, instead of inventing a new one.
+
+
+Content Structure
+=================
+
+.. gnd:gnd::
+
+   [granite:renderCondition]
+
+   /**
+    * The render condition config. This node at very least has ``sling:resourceType`` property, which point to the actual render condition component that is doing the actual decision making logic.
+    */
+   + granite:rendercondition
+
+
+Example
+=======
+
+Given the following content structure::
+
+   + mybutton
+     - sling:resourceType = "granite/ui/components/coral/foundation/button"
+     - text = "MyButton"
+     + granite:rendercondition
+       - sling:resourceType = "granite/ui/components/coral/foundation/renderconditions/privilege"
+       - path = "/my/path"
+       - privileges = "jcr:addChildNodes"
+
+The button is configured with a render condition of :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/renderconditions/privilege`, where it will check based on JCR privilege.
+When the current session is able to add a child node of "/my/path" node, then the button is rendered; otherwise it is not.
+
+
+Component Development
+=====================
+
+To leverage render condition in your component, you can use :javadoc:`ComponentHelper#getRenderCondition() <com/adobe/granite/ui/components/ComponentHelper.html#getRenderCondition%28%29>` (or its overloads) to get the render condition of the current resource:
+
+.. code-block:: java
+
+   if (!cmp.getRenderCondition(resource, false).check()) {
+       return;
+   }
+
+
+Caveat
+------
+
+Render condition mechanic doesn't hide the resource *transparently*.
+So the resource is still readable when Sling's ``Resource`` and/or ``ResourceResolver`` API returns their resource.
+Because of this, the component implementation needs to be aware *explicitly* about render condition.
+
+For example in a tabpanel component where it has to loop over its items, it has to be aware about render condition of the item when it renders its tab labels. i.e. If the item is not supposed to be rendered then its label is not supposed to be rendered either:
+
+.. code-block:: jsp
+
+   <coral-tablist><%
+      for (Iterator<Resource> it = cmp.getItemDataSource().iterator(); it.hasNext();) {
+            Resource item = it.next();
+            Config itemCfg = new Config(item);
+            
+            if (!cmp.getRenderCondition(item, true).check()) {
+                continue;
+            }
+            
+            String title = i18n.getVar(itemCfg.get("jcr:title", String.class));
+
+            %><coral-tab><%= xssAPI.encodeForHTML(title) %></coral-tab><%
+      }
+  %></coral-tablist>
+
+This caveat is the main difference compared to :doc:`filteringresourcewrapper` mechanic, where the hiding mechanic is transparent.

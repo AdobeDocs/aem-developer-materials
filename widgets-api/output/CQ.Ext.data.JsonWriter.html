@@ -1,0 +1,317 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.data.JsonWriter-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.data.JsonWriter-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.data.JsonWriter-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CQ.Ext.data.JsonWriter-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CQ.Ext.data.JsonWriter"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="" href="output/CQ.Ext.data.DataWriter.html">DataWriter</a>
+  <img src="resources/docs/elbow-end.gif"/>JsonWriter</pre></div>
+                <h1>Class&nbsp;CQ.Ext.data.JsonWriter</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext.data</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/JsonWriter.js" target="_blank">JsonWriter.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">JsonWriter</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="" href="output/CQ.Ext.data.DataWriter.html">CQ.Ext.data.DataWriter</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    DataWriter extension for writing an array or single <a ext:cls="CQ.Ext.data.Record" href="output/CQ.Ext.data.Record.html">CQ.Ext.data.Record</a> object(s) in preparation for executing a remote CRUD action.	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.data.JsonWriter-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-createRecord"></a>
+            <b>createRecord</b> : Function            <div class="mdesc">
+                                    <div class="short">Abstract method that should be implemented in all subclasses (e.g.: JsonWriter.createRecord)</div>
+            <div class="long">
+                Abstract method that should be implemented in all subclasses (e.g.: <a ext:cls="CQ.Ext.data.JsonWriter" ext:member="createRecord" href="output/CQ.Ext.data.JsonWriter.html#createRecord">JsonWriter.createRecord</a>)            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="createRecord" href="output/CQ.Ext.data.DataWriter.html#createRecord">DataWriter</a></td>
+    </tr>
+        <tr class="config-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-destroyRecord"></a>
+            <b>destroyRecord</b> : Function            <div class="mdesc">
+                                    <div class="short">Abstract method that should be implemented in all subclasses (e.g.: JsonWriter.destroyRecord)</div>
+            <div class="long">
+                Abstract method that should be implemented in all subclasses (e.g.: <a ext:cls="CQ.Ext.data.JsonWriter" ext:member="destroyRecord" href="output/CQ.Ext.data.JsonWriter.html#destroyRecord">JsonWriter.destroyRecord</a>)            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="destroyRecord" href="output/CQ.Ext.data.DataWriter.html#destroyRecord">DataWriter</a></td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-encode"></a>
+            <b>encode</b> : Boolean            <div class="mdesc">
+                                    <div class="short">true to JSON encode the hashed data into a standard HTTP parameter named after this Reader's meta.root property which...</div>
+            <div class="long">
+                <p><tt>true</tt> to <a ext:cls="CQ.Ext.util.JSON" ext:member="encode" href="output/CQ.Ext.util.JSON.html#encode">JSON encode</a> the <a ext:cls="CQ.Ext.data.DataWriter" ext:member="toHash" href="output/CQ.Ext.data.DataWriter.html#toHash">hashed data</a> into a standard HTTP parameter named after this Reader's <code>meta.root</code> property which, by default is imported from the associated Reader. Defaults to <tt>true</tt>.</p> <p>If set to <code>false</code>, the hashed data is <a ext:cls="CQ.Ext.util.JSON" ext:member="encode" href="output/CQ.Ext.util.JSON.html#encode">JSON encoded</a>, along with the associated <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a>'s <a ext:cls="CQ.Ext.data.Store" ext:member="baseParams" href="output/CQ.Ext.data.Store.html#baseParams">baseParams</a>, into the POST body.</p> <p>When using <a ext:cls="CQ.Ext.data.DirectProxy" href="output/CQ.Ext.data.DirectProxy.html">CQ.Ext.data.DirectProxy</a>, set this to <tt>false</tt> since CQ.Ext.Direct.JsonProvider will perform its own json-encoding. In addition, if you're using <a ext:cls="CQ.Ext.data.HttpProxy" href="output/CQ.Ext.data.HttpProxy.html">CQ.Ext.data.HttpProxy</a>, setting to <tt>false</tt> will cause HttpProxy to transmit data using the <b>jsonData</b> configuration-params of <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a> instead of <b>params</b>.</p> <p>When using a <a ext:cls="CQ.Ext.data.Store" ext:member="restful" href="output/CQ.Ext.data.Store.html#restful">CQ.Ext.data.Store.restful</a> Store, some serverside frameworks are tuned to expect data through the jsonData mechanism. In those cases, one will want to set <b>encode: <tt>false</tt></b>, as in let the lower-level connection object (eg: CQ.Ext.Ajax) do the encoding.</p>            </div>
+                                    </div>
+        </td>
+        <td class="msource">JsonWriter</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-encodeDelete"></a>
+            <b>encodeDelete</b> : Boolean            <div class="mdesc">
+                                    <div class="short">False to send only the id to the server on delete, true to encode it in an object literal, eg: {id: 1} Defaults to false</div>
+            <div class="long">
+                False to send only the id to the server on delete, true to encode it in an object literal, eg: <pre><code>{id: 1}</code></pre> Defaults to <tt>false</tt>            </div>
+                                    </div>
+        </td>
+        <td class="msource">JsonWriter</td>
+    </tr>
+        <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-listful"></a>
+            <b>listful</b> : Boolean            <div class="mdesc">
+                                    <div class="short">false by default. Set true to have the DataWriter always write HTTP params as a list, even when acting upon a single ...</div>
+            <div class="long">
+                <tt>false</tt> by default. Set <tt>true</tt> to have the DataWriter <b>always</b> write HTTP params as a list, even when acting upon a single record.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="listful" href="output/CQ.Ext.data.DataWriter.html#listful">DataWriter</a></td>
+    </tr>
+        <tr class="config-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-updateRecord"></a>
+            <b>updateRecord</b> : Function            <div class="mdesc">
+                                    <div class="short">Abstract method that should be implemented in all subclasses (e.g.: JsonWriter.updateRecord</div>
+            <div class="long">
+                Abstract method that should be implemented in all subclasses (e.g.: <a ext:cls="CQ.Ext.data.JsonWriter" ext:member="updateRecord" href="output/CQ.Ext.data.JsonWriter.html#updateRecord">JsonWriter.updateRecord</a>            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="updateRecord" href="output/CQ.Ext.data.DataWriter.html#updateRecord">DataWriter</a></td>
+    </tr>
+        <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-writeAllFields"></a>
+            <b>writeAllFields</b> : Boolean            <div class="mdesc">
+                                    <div class="short">false by default. Set true to have DataWriter return ALL fields of a modified record -- not just those that changed. ...</div>
+            <div class="long">
+                <tt>false</tt> by default. Set <tt>true</tt> to have DataWriter return ALL fields of a modified record -- not just those that changed. <tt>false</tt> to have DataWriter only request modified fields from a record.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="writeAllFields" href="output/CQ.Ext.data.DataWriter.html#writeAllFields">DataWriter</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.data.JsonWriter-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-render"></a>
+            <b>render</b> : Object            <div class="mdesc">
+                                    <div class="short">abstract method meant to be overridden by all DataWriter extensions.  It's the extension's job to apply the "data" to...</div>
+            <div class="long">
+                abstract method meant to be overridden by all DataWriter extensions.  It's the extension's job to apply the "data" to the "params".
+The data-object provided to render is populated with data according to the meta-info defined in the user's DataReader config,            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="render" href="output/CQ.Ext.data.DataWriter.html#render">DataWriter</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.data.JsonWriter-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-apply"></a>
+            <b>apply</b>(&nbsp;<code>Object params</code>, <code>Object baseParams</code>, <code>String action</code>, <code>Record/Record[] rs</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Compiles a Store recordset into a data-format defined by an extension such as CQ.Ext.data.JsonWriter or CQ.Ext.data.X...</div>
+            <div class="long">
+                Compiles a Store recordset into a data-format defined by an extension such as <a ext:cls="CQ.Ext.data.JsonWriter" href="output/CQ.Ext.data.JsonWriter.html">CQ.Ext.data.JsonWriter</a> or <a ext:cls="CQ.Ext.data.XmlWriter" href="output/CQ.Ext.data.XmlWriter.html">CQ.Ext.data.XmlWriter</a> in preparation for a <a ext:cls="CQ.Ext.data.Api" ext:member="actions" href="output/CQ.Ext.data.Api.html#actions">server-write action</a>.  The first two params are similar similar in nature to <a ext:cls="CQ.Ext" ext:member="apply" href="output/CQ.Ext.html#apply">CQ.Ext.apply</a>,
+Where the first parameter is the <i>receiver</i> of paramaters and the second, baseParams, <i>the source</i>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>params</code> : Object<div class="sub-desc">The request-params receiver.</div></li><li><code>baseParams</code> : Object<div class="sub-desc">as defined by <a ext:cls="CQ.Ext.data.Store" ext:member="baseParams" href="output/CQ.Ext.data.Store.html#baseParams">CQ.Ext.data.Store.baseParams</a>. The baseParms must be encoded by the extending class, eg: <a ext:cls="CQ.Ext.data.JsonWriter" href="output/CQ.Ext.data.JsonWriter.html">CQ.Ext.data.JsonWriter</a>, <a ext:cls="CQ.Ext.data.XmlWriter" href="output/CQ.Ext.data.XmlWriter.html">CQ.Ext.data.XmlWriter</a>.</div></li><li><code>action</code> : String<div class="sub-desc">[<a ext:cls="CQ.Ext.data.Api" ext:member="actions" href="output/CQ.Ext.data.Api.html#actions">create|update|destroy</a>]</div></li><li><code>rs</code> : Record/Record[]<div class="sub-desc">The recordset to write, the subject(s) of the write action.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="apply" href="output/CQ.Ext.data.DataWriter.html#apply">DataWriter</a></td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-createRecord"></a>
+            <b>createRecord</b>(&nbsp;<code>CQ.Ext.data.Record rec</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Implements abstract CQ.Ext.data.DataWriter#createRecord
+@protected</div>
+            <div class="long">
+                Implements abstract CQ.Ext.data.DataWriter#createRecord
+@protected    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>rec</code> : CQ.Ext.data.Record<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">JsonWriter</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-destroyRecord"></a>
+            <b>destroyRecord</b>(&nbsp;<code>CQ.Ext.data.Record rec</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Implements abstract CQ.Ext.data.DataWriter#destroyRecord
+@protected</div>
+            <div class="long">
+                Implements abstract CQ.Ext.data.DataWriter#destroyRecord
+@protected    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>rec</code> : CQ.Ext.data.Record<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">JsonWriter</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-render"></a>
+            <b>render</b>(&nbsp;<code>Object Ajax</code>, <code>Object baseParams</code>, <code>Object/Object[] data</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">This method should not need to be called by application code, however it may be useful on occasion to
+override it, or...</div>
+            <div class="long">
+                <p>This method should not need to be called by application code, however it may be useful on occasion to
+override it, or augment it with an <a ext:cls="CQ.Ext.util.Functions" ext:member="createInterceptor" href="output/CQ.Ext.util.Functions.html#createInterceptor">interceptor</a> or <a ext:cls="CQ.Ext.util.Functions" ext:member="createSequence" href="output/CQ.Ext.util.Functions.html#createSequence">sequence</a>.</p>
+<p>The provided implementation encodes the serialized data representing the Store's modified Records into the Ajax request's
+<code>params</code> according to the <code><a ext:cls="CQ.Ext.data.JsonWriter" ext:member="encode" href="output/CQ.Ext.data.JsonWriter.html#encode">encode</a></code> setting.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>Ajax</code> : Object<div class="sub-desc">request params object to write into.</div></li><li><code>baseParams</code> : Object<div class="sub-desc">as defined by <a ext:cls="CQ.Ext.data.Store" ext:member="baseParams" href="output/CQ.Ext.data.Store.html#baseParams">CQ.Ext.data.Store.baseParams</a>. The baseParms must be encoded by the extending class, eg: <a ext:cls="CQ.Ext.data.JsonWriter" href="output/CQ.Ext.data.JsonWriter.html">CQ.Ext.data.JsonWriter</a>, <a ext:cls="CQ.Ext.data.XmlWriter" href="output/CQ.Ext.data.XmlWriter.html">CQ.Ext.data.XmlWriter</a>.</div></li><li><code>data</code> : Object/Object[]<div class="sub-desc">Data object representing the serialized modified records from the Store. May be either a single object,
+or an Array of objects - user implementations must handle both cases.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">JsonWriter</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-toArray"></a>
+            <b>toArray</b>(&nbsp;<code>Hash data</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Converts a Hashed CQ.Ext.data.Record to fields-array array suitable
+for encoding to xml via XTemplate, eg:
+&lt;tpl f...</div>
+            <div class="long">
+                Converts a <a ext:cls="CQ.Ext.data.DataWriter" ext:member="toHash" href="output/CQ.Ext.data.DataWriter.html#toHash">Hashed</a> <a ext:cls="CQ.Ext.data.Record" href="output/CQ.Ext.data.Record.html">CQ.Ext.data.Record</a> to fields-array array suitable
+for encoding to xml via XTemplate, eg:
+<code><pre>&lt;tpl for=".">&lt;{name}>{value}&lt;/{name}&lt;/tpl></pre></code>
+eg, <b>non-phantom</b>:
+<code><pre>{id: 1, first: 'foo', last: 'bar'} --> [{name: 'id', value: 1}, {name: 'first', value: 'foo'}, {name: 'last', value: 'bar'}]</pre></code>
+<a ext:cls="CQ.Ext.data.Record" ext:member="phantom" href="output/CQ.Ext.data.Record.html#phantom">Phantom</a> records will have had their idProperty omitted in <a ext:cls="CQ.Ext.data.DataWriter" ext:member="toHash" href="output/CQ.Ext.data.DataWriter.html#toHash">toHash</a> if determined to be auto-generated.
+Non AUTOINCREMENT pks should have been protected.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>data</code> : Hash<div class="sub-desc">Hashed by CQ.Ext.data.DataWriter#toHash</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">Array of attribute-objects. @protected</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="toArray" href="output/CQ.Ext.data.DataWriter.html#toArray">DataWriter</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-toHash"></a>
+            <b>toHash</b>(&nbsp;<code>CQ.Ext.data.Record rec</code>, <code>Object config</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Converts a Record to a hash, taking into account the state of the CQ.Ext.data.Record along with configuration propert...</div>
+            <div class="long">
+                Converts a Record to a hash, taking into account the state of the <a ext:cls="CQ.Ext.data.Record" href="output/CQ.Ext.data.Record.html">CQ.Ext.data.Record</a> along with configuration properties
+related to its rendering, such as <a ext:cls="CQ.Ext.data.DataWriter" ext:member="writeAllFields" href="output/CQ.Ext.data.DataWriter.html#writeAllFields">writeAllFields</a>, <a ext:cls="CQ.Ext.data.Record" ext:member="phantom" href="output/CQ.Ext.data.Record.html#phantom">phantom</a>, <a ext:cls="CQ.Ext.data.Record" ext:member="getChanges" href="output/CQ.Ext.data.Record.html#getChanges">getChanges</a> and
+<a ext:cls="CQ.Ext.data.DataReader" ext:member="idProperty" href="output/CQ.Ext.data.DataReader.html#idProperty">idProperty</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>rec</code> : CQ.Ext.data.Record<div class="sub-desc">The Record from which to create a hash.</div></li><li><code>config</code> : Object<div class="sub-desc"><b>NOT YET IMPLEMENTED</b>. Will implement an exclude/only configuration for fine-control over which fields do/don't get rendered.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">@protected TODO Implement excludes/only configuration with 2nd param?</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataWriter" ext:member="toHash" href="output/CQ.Ext.data.DataWriter.html#toHash">DataWriter</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.JsonWriter-updateRecord"></a>
+            <b>updateRecord</b>(&nbsp;<code>CQ.Ext.data.Record rec</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Implements abstract CQ.Ext.data.DataWriter#updateRecord
+@protected</div>
+            <div class="long">
+                Implements abstract CQ.Ext.data.DataWriter#updateRecord
+@protected    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>rec</code> : CQ.Ext.data.Record<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">JsonWriter</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.data.JsonWriter-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

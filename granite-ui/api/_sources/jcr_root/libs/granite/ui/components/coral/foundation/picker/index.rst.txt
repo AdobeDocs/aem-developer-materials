@@ -1,0 +1,236 @@
+
+Picker
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/picker
+
+   The component to render the picker dialog.
+
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/picker` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Picker]
+
+      /**
+       * The title of the picker.
+       *
+       * e.g. "Select Path"
+       */
+      - jcr:title (String)
+
+      /**
+       * The value of :doc:`[data-foundation-mode-group] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode>`
+       * that the collection is part of.
+       *
+       * This property is required to be set when ``actions/selection`` is set.
+       */
+      - modeGroup (String)
+
+      /**
+       * The selector to the collection.
+       */
+      - targetCollection (String)
+
+      /**
+       * The path representing the current location of the picker.
+       *
+       * This path will be used as the starting location to generate the breadcrumbs up to ``rootPath``.
+       *
+       * If this property is not specified or ``null`` then the breadcrumbs is not generated.
+       */
+      - path (StringEL)
+
+      /**
+       * The path representing the root location of the picker.
+       *
+       * This path will be used as the root location to generate the breadcrumbs.
+       */
+      - rootPath (StringEL) = '/'
+
+      /**
+       * The count of item to be selected:
+       *
+       * single
+       *    Only maximum single selection allowed
+       * multiple
+       *    Zero or more selection allowed
+       */
+      - selectionCount (StringEL) = 'multiple'
+
+      /**
+       * The folder for the available views (i.e. the rendering) of the collection,
+       * where each can any component implementing :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection`.
+       *
+       * At least one view needs to be provided.
+       * If there are at least two views, the following properties are needed to be able to switch the view:
+       *
+       * icon (String)
+       *    The icon of the view.
+       * jcr:title (String)
+       *    The title of the view.
+       * src (StringEL)
+       *    The URI Template that is returning the HTML response of the new view.
+       *    It supports the following variables:
+       *
+       *    offset
+       *       The item offset of the current request.
+       *    limit
+       *       The item limit of the pagination.
+       *    id
+       *       The id of the collection (:doc:`[data-foundation-collection-id] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`).
+       */
+      + views mandatory
+
+      /**
+       * A folder to configure search feature.
+       */
+      + search (granite:PickerSearch)
+
+      /**
+       * The folder for the actions applicable in the context of the collection.
+       */
+      + actions (granite:PickerActions)
+
+      [granite:PickerSearch]
+
+      /**
+       * The ``name`` attribute for the main text field of the search.
+       *
+       * e.g. "fulltext"
+       */
+      - name (String)
+
+      /**
+       * The selector to the search result collection.
+       */
+      - targetCollection (String)
+
+      /**
+       * The folder containing the form fields.
+       * These fields are in addition to the main text field of the search.
+       *
+       * The HTML form will be setup if this resource is specified.
+       * The form's ``action`` is set to ``Text.escapePath(resource.getPath()) + ".result." + selectionCount + ".html"``,
+       * which means that the search handler are given two request selectors: ``result`` and the value of ``selectionCount``.
+       * The form values would be sent as form request body as usual.
+       */
+      + form
+
+      /**
+       * The folder for the available views (i.e. the rendering) of the search result collection,
+       * where each can any component implementing :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection`.
+       *
+       * At least one view needs to be provided.
+       * If there are at least two views, the following properties are needed to be able to switch the view:
+       *
+       * icon (String)
+       *    The icon of the view.
+       * jcr:title (String)
+       *    The title of the view.
+       * src (StringEL)
+       *    The URI Template that is returning the HTML response of the new view.
+       *    It supports the following variables:
+       *
+       *    offset
+       *       The item offset of the current request.
+       *    limit
+       *       The item limit of the pagination.
+       */
+      + views mandatory
+
+      [granite:PickerActions]
+
+      /**
+       * The folder for actions applicable during selection mode. (e.g. when one of the collection item is selected)
+       *
+       * The action can be any action component such as :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/button/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/anchorbutton/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/pulldown/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/collection/index`.
+       *
+       * The ``actionBar`` variant of the components above SHOULD be used, unless ``primary`` variant is used.
+       *
+       * Usually the action is implementing :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/action/index`,
+       * with ``relScope`` = ``item``.
+       *
+       * The actions are wrapped inside :doc:`.foundation-collection-actionbar </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/action/index>`
+       * element where ``[data-foundation-collection-actionbar-target]`` is set as the value of ``targetCollection`` property.
+       * This way setting the ``target`` property at individual action is not required.
+       */
+      + selection
+
+
+   Example::
+
+      + /apps/my/picker
+        - sling:resourceType = "granite/ui/components/coral/foundation/picker"
+        - jcr:title = "Select Path"
+        - targetCollection = "#example-pathfield-collection"
+        - path = "${requestPathInfo.suffix}"
+        - rootPath = "/content"
+        - selectionCount = "single"
+        + views
+          + column
+            - sling:resourceType = "granite/ui/components/coral/foundation/columnview"
+            - granite:id = "example-pathfield-collection"
+            - jcr:title="Column View"
+            - icon = "viewColumn"
+            - limit = 40
+            - size = '${empty requestPathInfo.selectors[1] ? "40" : requestPathInfo.selectors[1]}'
+            - loadAncestors = true
+            - path = "${requestPathInfo.suffix}"
+            - rootPath = "/content"
+            - selectionCount = "single"
+            - src = "/apps/my/picker/views/column{.offset,limit}.html{+id}">
+            + datasource
+              - sling:resourceType = "example/datasources/children"
+              - itemResourceType = "example/columnitem"
+              - offset = "${requestPathInfo.selectors[0]}"
+              - limit = '${empty requestPathInfo.selectors[1] ? "41" : requestPathInfo.selectors[1] + 1}'
+              - path = "${requestPathInfo.suffix}"
+        + search
+          - name = "fulltext"
+          - targetCollection = "#example-pathfield-search-collection"
+          + form
+            + rootpath
+              - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+              - fieldLabel = "Path"
+              - name = "path"
+              - value = "/content"
+            + orderby
+              - sling:resourceType = "granite/ui/components/coral/foundation/form/hidden"
+              - name = "orderby"
+              - value = "@jcr:score"
+            + orderby.sort
+              - sling:resourceType = "granite/ui/components/coral/foundation/form/hidden"
+              - name = "orderby.sort"
+              - value = "desc"
+          + views
+            + card
+              - sling:resourceType = "granite/ui/components/coral/foundation/masonry"
+              - granite:id = "example-pathfield-search-collection"
+              - jcr:title = "Card View"
+              - icon = "viewCard"
+              - limit = 20
+              - selectionCount = "single"
+              - selectionMode = true
+              - size = '${empty requestPathInfo.selectors[3] ? "20" : requestPathInfo.selectors[3]}'
+              - src = "/apps/my/picker/search/views/card.result.${requestPathInfo.selectors[1]}{.offset,limit}.html?${querystring}"
+              + datasource
+                - sling:resourceType = "granite/ui/components/coral/foundation/querybuilder/datasource"
+                - itemResourceType = "example/card"
+                - offset = "${requestPathInfo.selectors[2]}"
+                - limit = '${empty requestPathInfo.selectors[3] ? "21" : requestPathInfo.selectors[3] + 1}'
+        + actions
+          + selection
+            + button1
+              - sling:resourceType = "granite/ui/components/coral/foundation/button"
+              - variant = "actionBar"
+              - text = "Button 1"
+            + button2
+              - sling:resourceType = "granite/ui/components/coral/foundation/button"
+              - variant = "actionBar"
+              - text = "Button 2"

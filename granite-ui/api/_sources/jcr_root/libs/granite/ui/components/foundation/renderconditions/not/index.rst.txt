@@ -1,0 +1,23 @@
+
+Not
+===
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/renderconditions/not
+   :rendercondition:
+   :deprecated:
+
+   The condition that renders the component when all of the sub conditions are false.
+   The child resources are evaluated recursively to finally come up with final decision.
+
+   Example::
+
+      + mybutton
+        - sling:resourceType = "granite/ui/components/foundation/button"
+        + rendercondition
+          - sling:resourceType = "granite/ui/components/foundation/renderconditions/not"
+          + condition1
+            - sling:resourceType = "granite/ui/components/foundation/renderconditions/simple"
+            - expression = false
+          + condition2
+            - sling:resourceType = "granite/ui/components/foundation/renderconditions/simple"
+            - expression = false

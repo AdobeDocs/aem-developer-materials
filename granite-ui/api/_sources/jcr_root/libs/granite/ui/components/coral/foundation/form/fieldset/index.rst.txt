@@ -1,0 +1,18 @@
+
+FieldSet
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/fieldset
+
+   A fieldset component. It is often used to group a couple of fields logically.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormFieldSet] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The legend of the field set.
+       */
+      - jcr:title (String) i18n

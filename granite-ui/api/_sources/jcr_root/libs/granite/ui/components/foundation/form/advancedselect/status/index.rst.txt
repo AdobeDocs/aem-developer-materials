@@ -1,0 +1,36 @@
+
+AdvancedSelectStatus
+====================
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/advancedselect/status
+   :deprecated:
+
+   A convenience component to render ``.foundation-advancedselect-status`` of :doc:`foundation-advancedselect </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/advancedselect/index>`.
+
+   It will render the status in the format of ``{count} selected``, where the ``count`` variable is the count of selected items.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormAdvancedSelectStatus]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n

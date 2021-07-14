@@ -1,0 +1,305 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-util-paginator &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-validation" href="../validation/index.html" />
+    <link rel="prev" title="foundation-util-messenger" href="messenger.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../validation/index.html" title="foundation-validation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="messenger.html" title="foundation-util-messenger"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-util-paginator">
+<h1>foundation-util-paginator<a class="headerlink" href="#foundation-util-paginator" title="Permalink to this headline">¶</a></h1>
+<p>Paginator is a utility class for the purpose of infinity scrolling.</p>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-util-paginator</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">window</span></code> object</dd>
+<dt>returned type</dt>
+<dd>Constructor of type <code class="docutils literal notranslate"><span class="pre">FoundationUtilPaginator</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationUtilPaginator</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The container element that the scroll event and dimensions are registered and measured.</span>
+<span class="cm">   * @readonly</span>
+<span class="cm">   */</span>
+  <span class="nx">el</span>: <span class="kt">Element</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Indicates if the paginator is currently loading.</span>
+<span class="cm">   * @readonly</span>
+<span class="cm">   */</span>
+  <span class="nx">isLoading</span>: <span class="kt">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Indicates if there is more item to be loaded.</span>
+<span class="cm">   * @readonly</span>
+<span class="cm">   */</span>
+  <span class="nx">hasNext</span>: <span class="kt">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The current offset.</span>
+<span class="cm">   * @readonly</span>
+<span class="cm">   */</span>
+  <span class="nx">offset</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The page size.</span>
+<span class="cm">   * @readonly</span>
+<span class="cm">   */</span>
+  <span class="nx">limit</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Instanciates a new paginator.</span>
+<span class="cm">   */</span>
+  <span class="k">new</span><span class="p">(</span><span class="nx">config</span>: <span class="kt">FoundationUtilPaginatorConfig</span><span class="p">);</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Starts the pagination process:</span>
+<span class="cm">   * - The scroll event handler is registered.</span>
+<span class="cm">   * - Start loading items when there is available space.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param offset The initial offset. Set this param when there is existing items.</span>
+<span class="cm">   * @param hasNext &lt;code&gt;true&lt;/code&gt; to indicate if there is more item to be loaded; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * @param forceFirstLoad &lt;code&gt;true&lt;/code&gt; to force doing the first load regardless of available space.</span>
+<span class="cm">   * @param delay The delay, in millisecond, when to start the process.</span>
+<span class="cm">   */</span>
+  <span class="nx">start</span><span class="p">(</span><span class="nx">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">hasNext</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">forceFirstLoad</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Restarts the pagination process:</span>
+<span class="cm">   * - Start loading items when there is available space.</span>
+<span class="cm">   *</span>
+<span class="cm">   * This method is usually used when the items are added or removed by external party.</span>
+<span class="cm">   * Hence the paginator internal state needs to reflect that new items.</span>
+<span class="cm">   * Aborts the loading process if the paginator is currently loading.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param offset The initial offset. Set this param when there is existing items.</span>
+<span class="cm">   * @param hasNext &lt;code&gt;true&lt;/code&gt; to indicate if there is more item to be loaded; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * @param forceFirstLoad &lt;code&gt;true&lt;/code&gt; to force doing the first load regardless of available space.</span>
+<span class="cm">   */</span>
+  <span class="nx">restart</span><span class="p">(</span><span class="nx">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">hasNext</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">forceFirstLoad</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Destroys the paginator. The instance MUST NOT be used anymore.</span>
+<span class="cm">   */</span>
+  <span class="nx">destroy</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationUtilPaginatorConfig</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The container element that the scroll event and dimensions are registered and measured.</span>
+<span class="cm">   */</span>
+  <span class="nx">el</span>: <span class="kt">Element</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The page size. Default is 20.</span>
+<span class="cm">   */</span>
+  <span class="nx">limit?</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns a URL for the given paginator values (offset and limit).</span>
+<span class="cm">   * The URL is used to fetch the next page.</span>
+<span class="cm">   */</span>
+  <span class="nx">resolveURL</span><span class="p">(</span><span class="nx">paginator</span>: <span class="kt">FoundationUtilPaginator</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Processes the returned response.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns A promise of the length of new items; and if more item to be loaded.</span>
+<span class="cm">   */</span>
+  <span class="nx">processResponse</span><span class="p">(</span><span class="nx">paginator</span>: <span class="kt">FoundationUtilPaginator</span><span class="p">,</span> <span class="nx">response</span>: <span class="kt">any</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="nx">FoundationUtilPaginatorResponse</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Shows a wait mask.</span>
+<span class="cm">   */</span>
+  <span class="nx">wait</span><span class="o">?:</span> <span class="p">(</span><span class="nx">paginator</span>: <span class="kt">FoundationUtilPaginator</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">FoundationUtilPaginatorWait</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The callback when the new page is loaded and the paginator&#39;s states are updated.</span>
+<span class="cm">   * It is called after &lt;code&gt;#processResponse&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">onNewPage</span><span class="o">?:</span> <span class="p">(</span><span class="nx">paginator</span>: <span class="kt">FoundationUtilPaginator</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationUtilPaginatorWait</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Clears the wait.</span>
+<span class="cm">   */</span>
+  <span class="nx">clear</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationUtilPaginatorResponse</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The length of new items.</span>
+<span class="cm">   */</span>
+  <span class="nx">length</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * &lt;code&gt;true&lt;/code&gt; if more item to be loaded.</span>
+<span class="cm">   */</span>
+  <span class="nx">hasMode</span>: <span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Paginator</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-util-paginator&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">paginator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Paginator</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="nx">scrollContainer</span><span class="p">,</span>
+
+  <span class="nx">resolveURL</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">paginator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">URITemplate</span><span class="p">.</span><span class="nx">expand</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">offset</span><span class="o">:</span> <span class="nx">paginator</span><span class="p">.</span><span class="nx">offset</span><span class="p">,</span>
+      <span class="nx">limit</span><span class="o">:</span> <span class="nx">paginator</span><span class="p">.</span><span class="nx">limit</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+
+  <span class="nx">processResponse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">paginator</span><span class="p">,</span> <span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">processed</span> <span class="o">=</span> <span class="nx">Granite</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">Foundation</span><span class="p">.</span><span class="nx">Utils</span><span class="p">.</span><span class="nx">processHtml</span><span class="p">(</span><span class="nx">html</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">processed</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">getItems</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
+      <span class="nx">appendItems</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+      <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="nx">paginator</span><span class="p">.</span><span class="nx">limit</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">();</span>
+  <span class="p">},</span>
+
+  <span class="nx">wait</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">paginator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">wait</span> <span class="o">=</span> <span class="nx">getWait</span><span class="p">(</span><span class="nx">table</span><span class="p">);</span>
+    <span class="nx">wait</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">wait</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">paginator</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">collection</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.foundation-collection-item&quot;</span><span class="p">).</span><span class="nx">length</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-util-paginator</a><ul>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="messenger.html"
+                        title="previous chapter">foundation-util-messenger</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../validation/index.html"
+                        title="next chapter">foundation-validation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/util/paginator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../validation/index.html" title="foundation-validation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="messenger.html" title="foundation-util-messenger"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

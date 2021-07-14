@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.data.Store.Error","doc":"Store Error extension.","configs":[],"props":[],"methods":[{"name":"getMessage","doc":"getMessage"},{"name":"getName","doc":"getName"},{"name":"toJson","doc":"toJson"}],"events":[]}

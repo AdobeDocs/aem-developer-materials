@@ -1,0 +1,31 @@
+
+Hidden
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/hidden
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   A hidden field component.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormHidden] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The value of the field.
+       */
+      - value (StringEL)

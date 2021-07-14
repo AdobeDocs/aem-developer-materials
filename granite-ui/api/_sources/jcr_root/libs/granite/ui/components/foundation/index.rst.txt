@@ -1,0 +1,16 @@
+*********************
+Granite UI Foundation
+*********************
+
+.. granite:servermodule:: /libs/granite/ui/components/foundation
+
+   Granite UI Foundation module provides the typical components required to build Granite UI based webapp.
+
+
+Contents:
+
+.. toctree::
+   :titlesonly:
+
+   Client-side <clientlibs/foundation/index>
+   Server-side <server>

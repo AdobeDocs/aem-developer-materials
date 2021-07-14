@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.data.DataProxy.Error","doc":"DataProxy Error extension.\nconstructor","configs":[],"props":[],"methods":[{"name":"getMessage","doc":"getMessage"},{"name":"getName","doc":"getName"},{"name":"toJson","doc":"toJson"}],"events":[]}

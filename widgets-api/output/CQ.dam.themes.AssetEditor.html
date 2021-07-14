@@ -1,0 +1,91 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.dam.themes.AssetEditor-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.dam.themes.AssetEditor-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.dam.themes.AssetEditor-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.dam.themes.AssetEditor"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.dam.themes.AssetEditor</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.dam.themes</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/AssetEditor.js" target="_blank">AssetEditor.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">AssetEditor</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.dam                        </td></tr>
+                    </table>
+        <div class="description">
+	                    The theme-specific constants for <a ext:cls="CQ.dam.AssetEditor" href="output/CQ.dam.AssetEditor.html">CQ.dam.AssetEditor</a>.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.dam.themes.AssetEditor-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.dam.themes.AssetEditor-EAST_PANEL_WIDTH"></a>
+            <b>EAST_PANEL_WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The width of the east panel (defaults to 245).                                    </div>
+        </td>
+        <td class="msource">AssetEditor</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.dam.themes.AssetEditor-LABEL_WIDTH"></a>
+            <b>LABEL_WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The width of the field labels in pixels (defaults to 150).                                    </div>
+        </td>
+        <td class="msource">AssetEditor</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.dam.themes.AssetEditor-MIN_BUTTON_WIDTH"></a>
+            <b>MIN_BUTTON_WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The minimum button width in pixels (defaults to 50).                                    </div>
+        </td>
+        <td class="msource">AssetEditor</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.dam.themes.AssetEditor-WEST_PANEL_MIN_WIDTH"></a>
+            <b>WEST_PANEL_MIN_WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The minimum width of the west panel. Defaults to 240.                                    </div>
+        </td>
+        <td class="msource">AssetEditor</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.dam.themes.AssetEditor-WEST_PANEL_PADDING_WIDTH"></a>
+            <b>WEST_PANEL_PADDING_WIDTH</b> : Number            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; The total width of the west panel's padding including the width of
+a possible scrollbar. The panel's w...</div>
+            <div class="long">
+                &lt;static&gt; The total width of the west panel's padding including the width of
+a possible scrollbar. The panel's width will be the thumbnail width
+plus this value. Defaults to 40.            </div>
+                                    </div>
+        </td>
+        <td class="msource">AssetEditor</td>
+    </tr>
+            </table>
+                <a id="CQ.dam.themes.AssetEditor-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="CQ.dam.themes.AssetEditor-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

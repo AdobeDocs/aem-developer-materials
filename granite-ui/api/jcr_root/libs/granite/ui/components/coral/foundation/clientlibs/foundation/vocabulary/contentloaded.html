@@ -1,0 +1,253 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-contentloaded &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-editable" href="editable.html" />
+    <link rel="prev" title="foundation-command" href="command.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="editable.html" title="foundation-editable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="command.html" title="foundation-command"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-contentloaded">
+<h1>foundation-contentloaded<a class="headerlink" href="#foundation-contentloaded" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="foundation-contentloaded-event">
+<h2>foundation-contentloaded event<a class="headerlink" href="#foundation-contentloaded-event" title="Permalink to this headline">¶</a></h2>
+<p>This event SHOULD be triggered when a new content is injected to the DOM, which is very similar to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference/DOMContentLoaded">DOMContentLoaded</a> event.</p>
+<p>The event SHOULD be triggered at the smallest containing element (the container) possible, which can be the injected element itself.</p>
+<p>You can trigger it by using jQuery:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// in this example, document is the smallest container</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;foundation-contentloaded&quot;</span><span class="p">);</span>
+
+<span class="c1">// in this example, `myContainer` is the smallest container</span>
+<span class="nx">myContainer</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;foundation-contentloaded&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When listening, the container is available at <code class="docutils literal notranslate"><span class="pre">event.target</span></code>.
+It is RECOMMENDED that the listener uses the container to scope its operation:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Initialize datepicker widget at newly injected markup</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-contentloaded&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.example-datepicker&quot;</span><span class="p">,</span> <span class="nx">container</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Example</span><span class="p">.</span><span class="nx">DatePicker</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Imagine there is a button component that upon click, it will load a dialog markup from the server and show it to the user.</p>
+<p>The markup is something like this:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;example-dialog-activator&quot;</span> <span class="na">data-example-dialog-activator-src</span><span class="o">=</span><span class="s">&quot;/my/dialog.html&quot;</span><span class="p">&gt;</span>Show Dialog<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The dialog itself can be an arbitrary markup with complex form fields inside.
+Because of this, when injecting the dialog to the DOM, the button implementation is required to trigger <code class="docutils literal notranslate"><span class="pre">foundation-contentloaded</span></code> event,
+using the dialog element as the container element.</p>
+<p>The implementation can be something like this:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;.example-dialog-activator&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+  <span class="kd">var</span> <span class="nx">src</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">exampleDialogActivatorSrc</span><span class="p">;</span>
+
+  <span class="nx">fetch</span><span class="p">(</span><span class="nx">src</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+  <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">parseHTML</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+  <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;foundation-contentloaded&quot;</span><span class="p">);</span>
+
+    <span class="nx">element</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-guideline">
+<h2>Usage Guideline<a class="headerlink" href="#usage-guideline" title="Permalink to this headline">¶</a></h2>
+<p>Since this event is potentially triggered at every new content injected to the DOM, it needs to be listened to very carefully.</p>
+<p>It is normally used so that a JavaScript code can be notified when new content needs to be enhanced ASAP.
+i.e. performing an eager processing as opposed to a lazy one.</p>
+<div class="section" id="eager-vs-lazy-processing">
+<h3>Eager vs Lazy Processing<a class="headerlink" href="#eager-vs-lazy-processing" title="Permalink to this headline">¶</a></h3>
+<p>Eager processing is a code which requires to be executed ASAP.
+This is usually for something visible to the user, such as layout operation, initializing component.</p>
+<p>Example of eager processing:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Initialize datepicker widget at newly injected markup.</span>
+<span class="cm"> */</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-contentloaded&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.example-datepicker&quot;</span><span class="p">,</span> <span class="nx">container</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Example</span><span class="p">.</span><span class="nx">DatePicker</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Lazy processing in the other hand doesn’t require the code to be executed ASAP.
+It is typically done by waiting for a certain event to be triggered.</p>
+<p>Example of lazy processing:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * `foundation-history-control` implementation, where it only needs to wait for the `click` event to perform its action.</span>
+<span class="cm"> * It is done by leveraging event propagation to the root.</span>
+<span class="cm"> * It doesn&#39;t need to leverage `foundation-contentloaded` at all,</span>
+<span class="cm"> * since the event handler needs to be registered once at document level, instead of registering the handler at every element.</span>
+<span class="cm"> * This is also good for memory consumption.</span>
+<span class="cm"> */</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;.foundation-history-control&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+  <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">foundationHistoryControlAction</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">action</span> <span class="o">===</span> <span class="s2">&quot;back&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">back</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">action</span> <span class="o">===</span> <span class="s2">&quot;forward&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">forward</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiple-event-trigger">
+<h3>Multiple Event Trigger<a class="headerlink" href="#multiple-event-trigger" title="Permalink to this headline">¶</a></h3>
+<p>Since this event may also be triggered multiple times within the same container, the listener should therefore protect itself against this.</p>
+<p>Using DatePicker example above, <code class="docutils literal notranslate"><span class="pre">Example.DatePicker.init</span></code> needs to check if the relevant element is already initialized or not.</p>
+</div>
+<div class="section" id="other-event">
+<h3>Other Event<a class="headerlink" href="#other-event" title="Permalink to this headline">¶</a></h3>
+<p>In your application, there are usually many other events for certain purposes.
+It is RECOMMENDED that these events are used accordingly.</p>
+<p>So basically you have to find the best event that fit your use case.
+In theory since we have DOM mutation observer event, we can just remove all the events we currently have and just abuse that.
+If the requirement says that an operation needs to be done during dialog open, then use the event that says exactly that.
+If the requirement says that a widget needs to be upgraded when it is injected to the DOM,
+then you may use <code class="docutils literal notranslate"><span class="pre">foundation-contentloaded</span></code>, because it is exactly what it says.</p>
+<p>If there is no suitable event, as a workaround a more generic event such as mutation observer or <code class="docutils literal notranslate"><span class="pre">foundation-contentloaded</span></code> can be used,
+but the handler needs to handle multiple calls, as the granularity doesn’t fit well.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-contentloaded</a><ul>
+<li><a class="reference internal" href="#foundation-contentloaded-event">foundation-contentloaded event</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#usage-guideline">Usage Guideline</a><ul>
+<li><a class="reference internal" href="#eager-vs-lazy-processing">Eager vs Lazy Processing</a></li>
+<li><a class="reference internal" href="#multiple-event-trigger">Multiple Event Trigger</a></li>
+<li><a class="reference internal" href="#other-event">Other Event</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="command.html"
+                        title="previous chapter">foundation-command</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="editable.html"
+                        title="next chapter">foundation-editable</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/contentloaded.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="editable.html" title="foundation-editable"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="command.html" title="foundation-command"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

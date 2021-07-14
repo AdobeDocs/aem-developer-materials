@@ -1,0 +1,86 @@
+
+Multifield
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/multifield
+   :supertype: /libs/granite/ui/components/foundation/form/field
+   :deprecated:
+
+   Multifield component allows to add/reorder/remove multiple instances of a field.
+   In the simplest case this is a simple form input field (e.g. textfield, textarea) but it can also be a complex component acting as an aggregate of multiple subcomponents (e.g. address entry).
+
+   The field to be included is defined in the subnode named ``field``.
+   Regardless of the component used, Multifield assumes they all write to the same property (defined by the ``name`` property of the
+   ``field`` subnode) thus the resulting value will always be multi value.
+
+   When rendering existing entries, the Multifield will iterate over the multi value, get each value, set it in the
+   field and let the field render it.
+
+   For example if the field is a text field with a ``name`` value of "fruits", and you use Multifield to
+   add three text fields and set them with values "apple", "orange" and "banana", the content node will get the following property after saving::
+
+      fruits: ["apple", "orange", "banana"]
+
+   If the field is a composite, it is its responsibility to concatenate the fields into one, before the form gets submitted, and to separate them again on rendering.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormMultifield] > granite:FormField
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the field name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The value of `SlingPostServlet @TypeHint <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#typehint>`_.
+       */
+      - typeHint (String)
+
+      /**
+       * The actual field of the Multifield.
+       */
+      + field
+
+   Example::
+
+      + myinput
+        - sling:resourceType = "granite/ui/components/foundation/form/multifield"
+        + field
+          - sling:resourceType = "granite/ui/components/foundation/form/textfield"
+          - name = "./pages"

@@ -1,0 +1,484 @@
+/* autocomplete.styl */
+
+.coral-Autocomplete {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 12.5rem;
+}
+
+.coral-Autocomplete > .coral-DecoratedTextfield {
+  width: 100%;
+}
+
+.coral-Autocomplete > .coral-TagList {
+  margin-top: .4375rem;
+}
+
+/* autocomplete.form.styl */
+
+.coral-Form--vertical .coral-Form-field.coral-Autocomplete {
+  display: block;
+  width: 100%;
+}
+/* user-profile.styl */
+
+.endor-UserProfile {
+  display: inline-block;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  margin-top: .625rem !important;
+  margin-bottom: .625rem !important;
+  -webkit-border-radius: .1875rem;
+  border-radius: .1875rem;
+  background-color: #464646;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.endor-UserProfile:hover,
+.endor-UserProfile:focus {
+  background-color: #646464;
+  color: #fff;
+  text-decoration: none;
+}
+
+.endor-UserProfile-tenant {
+  display: inline-block;
+  margin: 0 .625rem;
+  font-family: adobe-clean,Helvetica,Arial,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #e6e6e6;
+}
+
+.endor-UserProfile-tenant:empty {
+  display: none;
+  visibility: hidden;
+}
+
+.endor-UserProfile:hover .endor-UserProfile-avatar:after,
+.endor-UserProfile:focus .endor-UserProfile-avatar:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.15);
+}
+
+.endor-UserProfile-avatar {
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.endor-UserProfile-avatar > img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.endor-UserProfile-avatar > .coral-Icon {
+  color: #7d7d7d;
+  background: none;
+  text-align: center;
+  vertical-align: top;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.6875rem;
+}
+
+.endor-UserProfile:hover .endor-UserProfile-avatar--default:after,
+.endor-UserProfile:focus .endor-UserProfile-avatar--default:after {
+  background: none;
+}
+
+@media (max-width: 340px) {
+  .endor-UserProfile-tenant {
+    display: none;
+  }
+}
+
+/* footer.styl */
+
+.endor-Footer {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 1.875rem;
+  padding: .9375rem;
+  border-top: .0625rem solid #dcdcdc;
+  color: #b4b4b4;
+  font-size: .8125rem;
+  font-family: adobe-clean,Helvetica,Arial,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  overflow: hidden;
+}
+
+.endor-Footer--sticky {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.endor-Footer-item {
+  color: #b4b4b4;
+  display: inline-block;
+  text-decoration: none;
+  padding-right: 1.25rem;
+  vertical-align: middle;
+  line-height: 1.5rem;
+}
+
+.endor-Footer-item:last-child {
+  padding-right: 0;
+}
+
+a.endor-Footer-item:hover {
+  text-decoration: none;
+  color: #4b4b4b;
+}
+
+.endor-Footer-item > label {
+  height: 2.75rem;
+  line-height: inherit;
+  vertical-align: middle;
+}
+
+.endor-Footer-item > select {
+  overflow: hidden;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  border: 0;
+  background: 0;
+  color: #3287d2;
+  font-family: adobe-clean,Helvetica,Arial,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: .8125rem;
+  outline: 0;
+}
+
+.endor-Footer-item > select:hover {
+  text-decoration: underline;
+}
+
+.endor-Footer-updated {
+  color: #e14132;
+}
+
+.endor-Footer-links {
+  float: left;
+  display: inline;
+}
+
+.endor-Footer-copyright {
+  float: right;
+  padding-right: 0;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1024px) {
+  .endor-Footer-copyright {
+    float: none;
+    display: block;
+  }
+}
+
+/* account.styl */
+
+.endor-Account {
+  zoom: 1;
+}
+
+.endor-Account:before,
+.endor-Account:after {
+  content: "";
+  display: table;
+}
+
+.endor-Account:after {
+  clear: both;
+}
+
+.endor-Account-avatar {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.endor-Account-avatar > .endor-Account-avatar-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 2rem;
+  text-align: center;
+  text-transform: lowercase;
+  visibility: hidden;
+  color: #fff;
+  background-color: rgba(0,0,0,0.3);
+  width: 2rem;
+  height: 2rem;
+}
+
+.endor-Account-avatar:hover > .endor-Account-avatar-overlay {
+  visibility: visible;
+}
+
+.endor-Account-avatar > .coral-Icon,
+.endor-Account-avatar > img {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2.375rem;
+}
+
+.endor-Account-avatar > .coral-Icon--sizeL {
+  font-size: 2rem;
+}
+
+.endor-Account-avatar > .coral-Icon {
+  color: #7d7d7d;
+}
+
+.endor-Account-avatar--default {
+  background-color: #464646;
+}
+
+.endor-Account-data {
+  display: block;
+  margin-left: 2.625rem;
+}
+
+.endor-Account-name,
+.endor-Account-caption {
+  display: block;
+}
+
+.endor-Account-name + .endor-Account-caption,
+.endor-Account-caption + .endor-Account-caption {
+  margin-top: .25rem;
+}
+
+.endor-Account-name {
+  font-family: adobe-clean,Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.125rem;
+}
+
+.endor-Account-caption {
+  font-family: adobe-clean,Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: .8125rem;
+  color: #969696;
+}
+
+.endor-Account-configLink {
+  float: right;
+  text-decoration: none;
+  color: rgba(0,0,0,0.6);
+  line-height: 2rem;
+}
+
+.endor-Account-configLink:hover {
+  color: rgba(0,0,0,0.8);
+  text-decoration: none;
+}
+
+/* list.styl */
+
+.endor-List {
+  padding: 0;
+  width: 15.625rem;
+}
+
+.endor-List--adapt {
+  width: auto;
+}
+
+.endor-List-item {
+  display: block;
+  padding: .625rem;
+  text-decoration: none;
+  color: #4b4b4b;
+}
+
+.endor-List-item.endor-List-item--interactive {
+  cursor: pointer;
+}
+
+.endor-List-item.endor-List-item--interactive:hover {
+  text-decoration: none;
+  background-color: rgba(50,110,200,0.15);
+}
+
+.endor-List-item--highlight {
+  background-color: #fafafa;
+  border-top: .0625rem solid #d0d0d0;
+}
+
+.endor-List-item--highlight:first-child {
+  border-top-width: 0;
+}
+
+.endor-List-item--highlight + .endor-List-item {
+  border-top: .0625rem solid #d0d0d0;
+}
+
+/* notification.styl */
+
+.endor-Notification.is-unread {
+  background-color: #ebf5fa;
+}
+/* taglist.styl */
+
+.coral-TagList {
+  zoom: 1;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coral-TagList:before,
+.coral-TagList:after {
+  content: "";
+  display: table;
+}
+
+.coral-TagList:after {
+  clear: both;
+}
+
+.coral-TagList.is-disabled > .coral-TagList-tag {
+  border-color: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: none;
+  border-color: #f0f0f0;
+  background-color: #f0f0f0;
+  color: #b4b4b4;
+}
+
+.coral-TagList.is-disabled > .coral-TagList-tag .coral-Icon {
+  color: rgba(0,0,0,0.15);
+}
+
+.coral-TagList:empty {
+  display: none;
+}
+
+.coral-TagList-tag {
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: .1875rem .1875rem 0 0;
+  padding: .4375rem .625rem .375rem .625rem;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-align: left;
+  background-color: #e9e9e9;
+  border: .0625rem solid #e9e9e9;
+  -webkit-border-radius: .1875rem;
+  border-radius: .1875rem;
+}
+
+.coral-TagList-tag:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 .5rem #326ec8;
+  box-shadow: 0 0 .5rem #326ec8;
+  border: .0625rem solid #326ec8;
+}
+
+.coral-TagList-tag--multiline {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.coral-TagList-tag-removeButton {
+  margin-right: .1875rem;
+  color: rgba(0,0,0,0.6);
+}
+
+.coral-TagList-tag-removeButton:focus,
+.coral-TagList-tag-removeButton:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.coral-TagList-tag-removeButton:hover {
+  color: rgba(0,0,0,0.8);
+}
+
+.coral-TagList-tag-label {
+  font-size: .8125rem;
+  line-height: 1rem;
+}
+
+/* taglist.dark.styl */
+
+.coral--dark .coral-TagList.is-disabled > .coral-TagList-tag {
+  border-color: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: none;
+  border-color: #505050;
+  background-color: #505050;
+  color: #646464;
+}
+
+.coral--dark .coral-TagList.is-disabled > .coral-TagList-tag .coral-Icon {
+  color: rgba(255,255,255,0.05);
+}
+
+.coral--dark .coral-TagList-tag {
+  border-color: #434343;
+  background-color: #434343;
+}
+
+.coral--dark .coral-TagList-tag:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 .5rem #87beff;
+  box-shadow: 0 0 .5rem #87beff;
+  border: .0625rem solid #87beff;
+}
+
+.coral--dark .coral-TagList-tag-removeButton {
+  color: rgba(255,255,255,0.9);
+}
+
+.coral--dark .coral-TagList-tag-removeButton:focus,
+.coral--dark .coral-TagList-tag-removeButton:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.coral--dark .coral-TagList-tag-removeButton:hover {
+  color: #fff;
+}

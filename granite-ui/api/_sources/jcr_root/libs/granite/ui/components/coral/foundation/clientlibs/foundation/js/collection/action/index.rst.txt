@@ -1,0 +1,350 @@
+****************************
+foundation-collection-action
+****************************
+
+``foundation-collection-action`` is a control to perform an certain action related to :doc:`foundation-selections <../../../vocabulary/selections>`.
+
+For example, given a collection, there is a button to delete the selected items. This button can be implemented as ``foundation-collection-action``.
+
+
+Markup
+======
+
+.foundation-collection-action
+-----------------------------
+
+Indicates the control.
+
+Selector Rule::
+
+   .foundation-collection-action,
+   .foundation-collection-actionbar .foundation-collection-action
+
+
+[data-foundation-collection-action]
+-----------------------------------
+
+The JSON config to configure the behaviour of ``.foundation-collection-action``, which satisfies ``FoundationCollectionActionConfig`` interface.
+
+Selector Rule::
+
+   .foundation-collection-action[data-foundation-collection-action]
+
+
+.foundation-collection-actionbar
+--------------------------------
+
+The optional container that can be used to specify the common properties of the contained actions.
+
+Selector Rule::
+
+   .foundation-collection-actionbar
+
+
+[data-foundation-collection-actionbar-target]
+---------------------------------------------
+
+The ``.foundation-collection`` target of each ``.foundation-collection-action`` element.
+
+Selector Rule::
+
+   .foundation-collection-actionbar[data-foundation-collection-actionbar-target]
+
+
+Collection Targeting
+====================
+
+The control behaviour is always in the context of a certain collection element, which is determined based on the following priority:
+
+1. If the control has ``target`` property of ``data-foundation-collection-action`` attribute, the collection is from that property.
+
+2. If the control is a descendant of ``.foundation-collection-actionbar``, the collection is from ``[data-foundation-collection-actionbar-target]``.
+
+
+Activation Behavior
+===================
+
+Upon activation, the control will execute the action as specified at action property of ``data-foundation-collection-action`` attribute.
+
+The selections and collection passed to the action handler are based on the following priority:
+
+1. If the control has internal data named ``foundationCollectionItem`` of type ``HTMLElement`` (jQuery: ``item = control.data("foundationCollectionItem")``), the selection is that item, while the collection is the ``.foundation-collection`` of that item.
+
+2. The target collection based on "Collection Targeting" section above.
+
+3. If the control is a descendant of ``.foundation-collection-item``, the selection is that item, while the collection is the ``.foundation-collection`` of that item.
+
+Granite UI Foundation provides some build-in actions, namely :doc:`foundation.dialog <action/foundation.dialog>`, :doc:`foundation.link <action/foundation.link>`, :doc:`foundation.pushstate <action/foundation.pushstate>`. Many use cases can be performed simply by leveraging these actions.
+
+
+Showing and Hiding Behavior
+===========================
+
+When the control is not a descendant of ``.foundation-collection-item``, the control is shown if all the following conditions are true (``AND`` logic); otherwise it’s hidden:
+
+1. ``activeCount`` property of ``data-foundation-collection-action`` attribute is set and its value is evaluated to ``true``.
+2. ``activeSelectionCount`` property of ``data-foundation-collection-action`` attribute is set and its value is evaluated to ``true``.
+3. ``activeCondition`` property of ``data-foundation-collection-action`` attribute is set and its value is evaluated to ``true``.
+4. ``ignoreRel`` property of ``data-foundation-collection-action`` attribute is evaluated to ``false`` and the control matches the common relationships of all selected items. i.e. ``isCommon()`` is evaluated to ``true``.
+
+isCommon() Algorithm
+--------------------
+
+.. code-block:: ts
+
+   /**
+    * Returns <code>true</code> if the given control matches the common relationships of the given scope; <code>false</code> otherwise.
+    *
+    * @param control The jQuery object wrapping <code>.foundation-collection-action</code>.
+    * @param collection The jQuery object wrapping <code>.foundation-collection</code> specified by <code>target</code> property of <code>data-foundation-collection-action</code> attribute.
+    * @param selections The jQuery object wrapping <code>.foundation-selections-item</code> of the collection.
+    * @param relScope The scope of the relationship.
+    */
+   function isCommon(control: JQuery, collection: JQuery, selections: JQuery, relScope: string): boolean {
+     if (relScope === "none") {
+       return true;
+     }
+
+     if (relScope === "item") {
+       var rels = selections.toArray().map(function(item) {
+         var qa = $(item).find(".foundation-collection-quickactions");
+         var rel = (qa.data("foundationCollectionQuickactionsRel") || "").trim();
+         return rel.length ? rel.split(/\s+/) : [];
+       });
+
+       var noRelAtAll = rels.every(function(v) { return v.length === 0; });
+       if (noRelAtAll) return true;
+
+       return rels.every(function(v) {
+         return !v.every(function(rel) { return !control.hasClass(rel); });
+       });
+     } else {
+       var metaAPI = collection.adaptTo("foundation-collection-meta");
+
+       if (!metaAPI) {
+         return true;
+       }
+
+       var rawRel = metaAPI.getRelationship() || "";
+       rawRel = rawRel.trim();
+
+       var rels = rawRel.length ? rawRel.split(/\s+/) : [];
+
+       if (rels.length === 0) {
+         return true;
+       }
+
+       return rels.some(function(v) {
+         return control.hasClass(v);
+       });
+     }
+   }
+
+
+FoundationCollectionActionConfig
+================================
+
+.. code-block:: ts
+
+   interface FoundationCollectionActionConfig {
+     /**
+      * The selector to the <code>.foundation-collection</code>.
+      */
+     target?: string;
+
+     /**
+      * The optional property to show or hide the control according to how many <code>.foundation-collection-item</code> in the collection.
+      *
+      * 0: Show when there is no item at all; hide otherwise
+      * ">0": Show when there is at least one item; hide otherwise
+      */
+     activeCount?: any;
+
+     /**
+      * The optional property to show or hide the control according to how many <code>.foundation-selections-item</code> in the collection.
+      *
+      * "none": Show when there is no selection at all; hide otherwise
+      * "single": Show when there is exactly one selection; hide otherwise
+      * "multiple": Show when there is one or more selections; hide otherwise.
+                    In select all mode, if there are collections pages still unloaded in the UI, these actions will first show a warning saying that the action will only have effect on the selected items currently loaded.
+      * "bulk": Same as "multiple", but in select all mode, these action will be directly executed, with no warning.
+      *         You should mark actions with "bulk" ONLY if their corresponding backend supports request parameters like: selectAllMode=true,exceptPath=item1 exceptPath=item2 ..
+      */
+     activeSelectionCount?: string;
+
+     /**
+      * The pluggable condition to show or hide the control. See ActiveCondition Registration section.
+      */
+     activeCondition?: string;
+
+     /**
+      * The pluggable action to be performed when the control is activated. See Action Registration section.
+      * If this property is not specified, no action will be performed.
+      */
+     action?: string;
+
+     /**
+      * The scope of the relationship, when deciding if the action is shown or hidden (the <code>isCommon()</code> algorithm).
+      *
+      * none
+      *    Skip the processing of relationship.
+      * item
+      *    Read the relationship from the item. This is the default.
+      * collection
+      *    Read the relationship from the collection.
+      */
+     relScope?: string;
+
+     /**
+      * When <code>true</code>, it is equivalent to ``relScope`` = ``none``.
+      */
+     ignoreRel?: boolean;
+
+     /**
+      * The general purpose data to be used by the action handler. Consult specific action handler for details.
+      */
+     data?: any;
+   }
+
+.. _foundation-collection-action-action:
+
+Action Registration
+===================
+
+The action of ``.foundation-collection-action`` can be registered to the :doc:`registry <../../registry/index>` using ``foundation.collection.action.action`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationCollectionActionActionAdapter {
+     /**
+      * The name of the action. It is recommended that it is namespaced using dot notation according to application that register the action.
+      * "foundation" namespace is reserved for Granite UI.
+      *
+      * @example
+      * foundation.link
+      */
+     name: string;
+
+     /**
+      * The handler to actually perform the action.
+      * If <code>false</code> is returned, the next action in the chain will be evaluated. Otherwise the chain stops.
+      *
+      * @param name The name of the action
+      * @param el The element of the <code>.foundation-collection-action</code>
+      * @param config The value of <code>[data-foundation-collection-action]</code>
+      * @param collection The <code>.foundation-collection</code> associated to the action
+      * @param selections The array of <code>.foundation-selections-item</code> elements of the collection
+      */
+     handler: (name: string, el: Element, config: FoundationCollectionActionConfig, collection: Element, selections: Element[]) => boolean;
+   }
+
+A chain of registered actions is created using LIFO (last in, first out) algorithm. The action handler will be called when the name matches. If false is returned by the handler, the next action in the chain will be evaluated. Otherwise the chain stops.
+
+Example
+-------
+
+.. code-block:: js
+
+   $(window).adaptTo("foundation-registry").register("foundation.collection.action.action", {
+     name: "foundation.link",
+     handler: function(name, el, config, collection, selections) {
+       var url = URITemplate.expand(config.data.href, {
+         item: selections.map(function(item) { return $(item).data("foundation-collection-item-id"); })
+       });
+
+       window.location = url;
+     }
+   });
+
+
+ActiveCondition Registration
+============================
+
+The activeCondition of ``.foundation-collection-action`` can be registered to the :doc:`registry <../../registry/index>` using ``foundation.collection.action.activecondition`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationCollectionActionActiveConditionAdapter {
+     /**
+      * The name of the activeCondition. It is recommended that it is namespaced using dot notation according to application that register the action.
+      * "foundation" namespace is reserved for Granite UI.
+      *
+      * @example
+      * project.edit
+      */
+     name: string;
+
+     /**
+      * The handler to actually perform the condition.
+      *
+      * Returns <code>true</code> to show the control; <code>false</code> to hide the control. Both will stop the chain.
+      * Otherwise the next condition in the chain will be evaluated if any other value is returned.
+      *
+      * @param name The name of the condition
+      * @param el The element of the <code>.foundation-collection-action</code>
+      * @param config The value of <code>[data-foundation-collection-action]</code>
+      * @param collection The <code>.foundation-collection</code> associated to the action
+      * @param selections The array of <code>.foundation-selections-item</code> elements of the collection
+      */
+     handler: (name: string, el: Element, config: FoundationCollectionActionConfig, collection: Element, selections: Element[]) => boolean;
+   }
+
+A chain of registered activeConditions is created using LIFO (last in, first out) algorithm. The activeCondition handler will be called when the name matches.
+
+Example
+-------
+
+.. code-block:: js
+
+   $(window).adaptTo("foundation-registry").register("foundation.collection.action.activecondition", {
+     name: "project.edit",
+     handler: function(name, el, config, collection, selections) {
+       var url = URITemplate.expand(config.data.href, {
+         item: selections.map(function(item) { return $(item).data("foundation-collection-item-id"); })
+       });
+
+       return url.indexOf("/content") !== 0;
+     }
+   });
+
+
+Example
+=======
+
+Given the following markup representing a collection:
+
+.. code-block:: html
+
+   <coral-masonry id="my-collection" class="foundation-collection">
+     <coral-masonry-item class="foundation-collection-item" data-foundation-collection-item-id="item1"></coral-masonry-item>
+     <coral-masonry-item class="foundation-collection-item" data-foundation-collection-item-id="item2"></coral-masonry-item>
+     <coral-masonry-item class="foundation-collection-item" data-foundation-collection-item-id="item3"></coral-masonry-item>
+   </coral-masonry>
+
+We want to setup a button to navigate to a certain URL based on the selected items. This button needs to be shown when there are multiple items selected.
+
+We do this by setting up a ``<button>`` annotated with ``foundation-collection-action`` with ``action`` =
+:doc:`foundation.link <action/foundation.link>`:
+
+.. code-block:: html
+
+   <button
+     class="foundation-collection-action"
+     data-foundation-collection-action='{"target": "#my-collection", "activeSelectionCount": "multiple", "action": "foundation.link", "data": {"href": "/my/link.html{?item*}"}'>Navigate</button>
+
+When the user selects the first and second items (id = ``item1`` and ``item2`` respectively) then activates the button, the page will navigate to ``/my/link.html?item=item1&item=item2``.
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.dialog" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

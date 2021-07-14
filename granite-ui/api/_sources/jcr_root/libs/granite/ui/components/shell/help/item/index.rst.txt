@@ -1,0 +1,34 @@
+
+Item
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/help/item
+
+   Component to render a shell help menu item.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellHelpItem] > granite:commonAttrs
+
+      /**
+       * The icon name. e.g. "globe".
+       */
+      - icon (String)
+
+      /**
+       * The href attribute.
+       */
+      - href (StringEL)
+
+      /**
+       * The href attribute. This is usually used to produce different value based on locale.
+       */
+      - href_i18n (StringEL) i18n
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+

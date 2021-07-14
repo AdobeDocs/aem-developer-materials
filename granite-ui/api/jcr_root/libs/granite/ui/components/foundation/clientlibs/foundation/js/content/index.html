@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-content &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-content-control" href="control.html" />
+    <link rel="prev" title="foundation-field-autosubmit" href="../field/autosubmit.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="control.html" title="foundation-content-control"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../field/autosubmit.html" title="foundation-field-autosubmit"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U">Granite UI Foundation Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-content">
+<h1>foundation-content<a class="headerlink" href="#foundation-content" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-content</span></code> is a concept where there is an element that acts as content area in the page. It understands browser history and <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history">manipulates</a> it using <code class="docutils literal notranslate"><span class="pre">pushState</span></code> and <code class="docutils literal notranslate"><span class="pre">replaceState</span></code>, while listening to the <code class="docutils literal notranslate"><span class="pre">popstate</span></code> event as well.</p>
+<div class="section" id="id1">
+<h2>.foundation-content<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Indicates the container for the content. The child elements of this element act as the body of the content. Only the child having <code class="docutils literal notranslate"><span class="pre">foundation-content-current</span></code> class is displayed, the rest of the children is hidden or detached. There MUST be at maximum one <code class="docutils literal notranslate"><span class="pre">.foundation-content</span></code> in the page at any time.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-content-current">
+<h2>.foundation-content-current<a class="headerlink" href="#foundation-content-current" title="Permalink to this headline">¶</a></h2>
+<p>Indicates the content that is currently displayed.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">content</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">content</span><span class="o">-</span><span class="n">current</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-content-loaded-event">
+<h2>foundation-content-loaded event<a class="headerlink" href="#foundation-content-loaded-event" title="Permalink to this headline">¶</a></h2>
+<p>This event is triggered after the loading process of a new content is completely finished—i.e. when no further action is performed by <code class="docutils literal notranslate"><span class="pre">foundation-content</span></code>. This event is only triggered for a new content—via <code class="docutils literal notranslate"><span class="pre">FoundationContent.go()</span></code> directly or indirectly, not when the content is switched. The event has the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationContentLoadedEvent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @param status &lt;code&gt;true&lt;/code&gt; when the operation is a success; &lt;code&gt;false&lt;/code&gt; otherwise</span>
+<span class="cm">   * @param replace &lt;code&gt;true&lt;/code&gt; when it is a replace operation; &lt;code&gt;false&lt;/code&gt; when it is a push operation</span>
+<span class="cm">   * @param xhr The normalized jQuery XHR object. It is only available during error.</span>
+<span class="cm">   */</span>
+  <span class="p">(</span><span class="nx">status</span>: <span class="kt">boolean</span><span class="p">,</span> <span class="nx">replace</span>: <span class="kt">boolean</span><span class="p">,</span> <span class="nx">xhr</span><span class="o">?</span> <span class="nx">JQueryXHR</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="history-behaviour">
+<h2>History Behaviour<a class="headerlink" href="#history-behaviour" title="Permalink to this headline">¶</a></h2>
+<p>During <code class="docutils literal notranslate"><span class="pre">popstate</span></code> event, if the state is created by <code class="docutils literal notranslate"><span class="pre">foundation-content</span></code> by mean of <code class="docutils literal notranslate"><span class="pre">FoundationContent.push(html,</span> <span class="pre">historyConfig)</span></code> or <code class="docutils literal notranslate"><span class="pre">FoundationContent.replace(html,</span> <span class="pre">historyConfig)</span></code>—either directly or indirectly—then the content associated with that state is restored to <code class="docutils literal notranslate"><span class="pre">.foundation-content-current</span></code>; otherwise the event is deemed irrelevant to <code class="docutils literal notranslate"><span class="pre">foundation-content</span></code>.</p>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-content</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">.foundation-content</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationContent</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationContent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Loads the given url&amp;mdash;using {@link #go}&amp;mdash;and pushes the given data onto the session history stack</span>
+<span class="cm">   * with the specified title and url.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param data The data to be pushed</span>
+<span class="cm">   * @param title The title to be set</span>
+<span class="cm">   * @param url The url to fetch</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The promise returning the token after the content is displayed</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see https://developer.mozilla.org/en-US/docs/DOM/window.history</span>
+<span class="cm">   */</span>
+  <span class="nx">pushState</span><span class="p">(</span><span class="nx">data</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">title</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">url</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Loads the given url&amp;mdash;using {@link #go}&amp;mdash;and updates the most recent entry on the history stack</span>
+<span class="cm">   * to have the specified data, title, and, url.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param data The data to replace the existing one</span>
+<span class="cm">   * @param title The title to be set</span>
+<span class="cm">   * @param url The url to fetch</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The promise returning the token after the content is displayed</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see https://developer.mozilla.org/en-US/docs/DOM/window.history</span>
+<span class="cm">   */</span>
+  <span class="nx">replaceState</span><span class="p">(</span><span class="nx">data</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">title</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">url</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Fetches the content from the given url and display it.</span>
+<span class="cm">   * If there is a pending request, the existing request is aborted and the new request is used to show the content.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param url The url to fetch</span>
+<span class="cm">   * @param replace If &lt;code&gt;true&lt;/code&gt; then it behaves as {@link #replace}, otherwise it is a {@link #push}.</span>
+<span class="cm">   * @param historyConfig The config object to configure the history</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The promise returning the token after the content is displayed</span>
+<span class="cm">   */</span>
+  <span class="nx">go</span><span class="p">(</span><span class="nx">url</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">replace</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">historyConfig?</span>: <span class="kt">FoundationContentHistoryConfig</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Goes to the state represented by the given token.</span>
+<span class="cm">   */</span>
+  <span class="nx">goToToken</span><span class="p">(</span><span class="nx">token</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Refreshes the current content. It will use current document.location to fetch the new html.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The promise returning the token after the content is displayed</span>
+<span class="cm">   */</span>
+  <span class="nx">refresh</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Displays the given html. All the next content elements after previous &lt;code&gt;foundation-content-current&lt;/code&gt; element are removed.</span>
+<span class="cm">   * This is similar behavior to web browser when navigating to a new document.</span>
+<span class="cm">   * Triggers &lt;code&gt;foundation-contentloaded&lt;/code&gt; event.</span>
+<span class="cm">   *</span>
+<span class="cm">   * If historyConfig.title is not given (falsy), then this method will try to parse from the &amp;lt;title&amp;gt; of the html.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param html The html string to be pushed</span>
+<span class="cm">   * @param historyConfig The config object to configure the history</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The token that can be used to go to that state</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see #goToToken</span>
+<span class="cm">   */</span>
+  <span class="nx">push</span><span class="p">(</span><span class="nx">html</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">historyConfig?</span>: <span class="kt">FoundationContentHistoryConfig</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Replaces the current element with the given html. Triggers &lt;code&gt;foundation-contentloaded&lt;/code&gt; event.</span>
+<span class="cm">   *</span>
+<span class="cm">   * If historyConfig.title is not given (falsy), then this method will try to parse from the &amp;lt;title&amp;gt; of the html.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param html The html string to be pushed</span>
+<span class="cm">   * @param historyConfig The config object to configure the history</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns {String} The token that can be used to go to that state</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see #goToToken</span>
+<span class="cm">   */</span>
+  <span class="nx">replace</span><span class="p">(</span><span class="nx">html</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">historyConfig?</span>: <span class="kt">FoundationContentHistoryConfig</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Goes back one step. If there is no previous content, this method do nothing.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param refresh The flag to indicate to refresh the previous content</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The token that can be used to go to that state</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see #goToToken</span>
+<span class="cm">   */</span>
+  <span class="nx">back</span><span class="p">(</span><span class="nx">refresh</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Goes forward one step. If there is no next content, this method do nothing.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param refresh The flag to indicate to refresh the next content</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The token that can be used to go to that state</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see #goToToken</span>
+<span class="cm">   */</span>
+  <span class="nx">forward</span><span class="p">(</span><span class="nx">refresh</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationContentHistoryConfig</span> <span class="p">{</span>
+  <span class="nx">url?</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">title</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">data</span>: <span class="kt">any</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../_images/graphviz-5acbe86064f290d5c5c620075c22fe3816324680.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-content&quot; {
+  rankdir=BT;
+  &quot;foundation-content-control&quot; -&gt; &quot;foundation-content&quot; [label=&quot;controls&quot;];
+  &quot;foundation-content-history&quot; -&gt; &quot;foundation-content&quot; [label=&quot;controls&quot;];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-content</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-content</a></li>
+<li><a class="reference internal" href="#foundation-content-current">.foundation-content-current</a></li>
+<li><a class="reference internal" href="#foundation-content-loaded-event">foundation-content-loaded event</a></li>
+<li><a class="reference internal" href="#history-behaviour">History Behaviour</a></li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../field/autosubmit.html"
+                        title="previous chapter">foundation-field-autosubmit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="control.html"
+                        title="next chapter">foundation-content-control</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/content/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="control.html" title="foundation-content-control"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../field/autosubmit.html" title="foundation-field-autosubmit"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" >Granite UI Foundation Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

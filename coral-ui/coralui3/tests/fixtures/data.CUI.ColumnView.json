@@ -1,0 +1,74 @@
+{
+  "_links": {
+    "self": { "href": "base/build/tests/fixtures/data.CUI.ColumnView.json", "title": "Data" }
+  },
+  "_embedded": {
+    "items": [{
+      "_links": {
+        "self": {
+          "href": "base/build/tests/fixtures/data.CUI.ColumnView.json",
+          "title": "More Data"
+        }
+      },
+      "icon": "folder",
+      "hasChildren": true
+    },{
+      "_links": {
+        "self": {
+          "href": "embedded.json",
+          "title": "Embedded Data"
+        }
+      },
+      "_embedded": {
+        "items": [
+          {
+            "_links": {
+              "self": {
+                "href": "base/build/tests/fixtures/data.CUI.ColumnView.json",
+                "title": "Data"
+              }
+            },
+            "icon": "folder",
+            "hasChildren": true
+          },{
+            "_links": {
+              "self": {
+                "href": "base/build/tests/fixtures/data.CUI.ColumnView.json",
+                "title": "Data"
+              }
+            },
+            "icon": "folder",
+            "hasChildren": true
+          },{
+            "_links": {
+              "self": {
+                "href": "base/build/tests/fixtures/data.CUI.ColumnView.json",
+                "title": "Data"
+              }
+            },
+            "icon": "folder",
+            "hasChildren": true
+          }
+        ]
+      },
+      "icon": "folder",
+      "hasChildren": true
+    },{
+      "_links": {
+        "self": {
+          "href": "base/build/tests/fixtures/data.CUI.ColumnView.json",
+          "title": "File Data"
+        }
+      },
+      "icon": "file"
+    },{
+      "_links": {
+        "self": {
+          "href": "base/build/tests/fixtures/data.CUI.ColumnView.json",
+          "title": "Thumbnail Data"
+        }
+      },
+      "image": "images/previews/preview-small.png"
+    }]
+  }
+}

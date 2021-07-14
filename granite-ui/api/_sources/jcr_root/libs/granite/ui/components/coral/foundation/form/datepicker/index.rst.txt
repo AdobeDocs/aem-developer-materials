@@ -1,0 +1,96 @@
+
+DatePicker
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/datepicker
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   A field that allows user to enter date.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormDatePicker] > granite:FormField
+
+      /**
+       * The name that identifies the field when submitting the form.
+       *
+       * The `SlingPostServlet @TypeHint <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#typehint>`_ hidden input with value ``Date`` is also generated based on the name.
+       */
+      - name (String)
+
+      /**
+       * The value of `SlingPostServlet @TypeHint <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#typehint>`_.
+       */
+      - typeHint (String) = 'Date'
+
+      /**
+       * The value of the field.
+       */
+      - value (StringEL)
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The type of the picker.
+       */
+      - type (String) = 'date' < 'date', 'datetime', 'time'
+
+      /**
+       * The date format for display.
+       */
+      - displayedFormat (String) i18n
+
+      /**
+       * The date format of the actual value, and for form submission.
+       */
+      - valueFormat = 'YYYY-MM-DD[T]HH:mm:ss.SSSZ'
+
+      /**
+       * The minimum boundary of the date.
+       */
+      - minDate (String)
+
+      /**
+       * The maximum boundary of the date.
+       */
+      - maxDate (String)
+
+      /**
+       * Indicates if a informative message should be displayed regarding timezone prevalence
+       */
+      - displayTimezoneMessage (Boolean)
+
+      /**
+       * Specifies a CSS selector targeting another datepickers that are before this datepicker.
+       * If those datepickers are not before this datepicker, it will be invalid.
+       */
+      - beforeSelector (String)
+
+      /**
+       * Specifies a CSS selector targeting another datepickers that are after this datepicker.
+       * If those datepickers are not after this datepicker, it will be invalid.
+       */
+      - afterSelector (String)

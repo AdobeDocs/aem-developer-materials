@@ -1,0 +1,66 @@
+foundation.collection.action.action: foundation.dialog
+======================================================
+
+``foundation.dialog`` is an :ref:`action of foundation-collection-action <foundation-collection-action-action>`.
+
+When the action is triggered, it will load and show the dialog.
+It supports the following parameters:
+
+config.data.src
+   The URI Template to load the dialog.
+
+   It is expanded using variables satisfying the following interface:
+
+   .. code-block:: ts
+
+      interface FoundationCollectionActionFoundationDialogVariables {
+        /**
+         * The value of <code>data-foundation-collection-id</code> attribute of the given <code>collection</code> parameter.
+         */
+        id: string;
+
+        /**
+         * The array of values of <code>data-foundation-collection-item-id</code> attribute of the given <code>selections</code> parameter.
+         */
+        item: string[];
+      }
+
+config.data.target
+   The selector to the ``.foundation-toggleable`` that will be shown upon activate.
+
+config.data.nesting
+   Indicates the behavior when the action is also under another toggleable element.
+
+   It has the following value:
+
+   hide
+      Hide the parent toggleable element.
+
+      For example if the action is under Popover A. When the value is ``hide``, upon activating the action, Popover A will also be closed.
+
+
+Dialog Requirement
+------------------
+
+A dialog can be any element as long as it is implementing :doc:`../../../../vocabulary/toggleable`.
+
+The target dialog is loaded based on the following priority:
+
+1. The dialog loaded by ``src`` parameter, if the parameter is specified.
+2. The dialog located at ``target`` parameter, if the parameter is specified.
+3. The containing ``.foundation-toggleable``. (i.e. equivalent to jQuery: ``action.closest(".foundation-toggleable")``)
+
+
+Relationship Graph
+------------------
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.dialog" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

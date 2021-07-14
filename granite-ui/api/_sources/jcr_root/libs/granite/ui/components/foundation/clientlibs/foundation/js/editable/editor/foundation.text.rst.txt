@@ -1,0 +1,18 @@
+foundation.text
+===============
+
+``foundation.text`` is an :ref:`editor of foundation-editable <foundation-editable-editor-legacy>`.
+
+It is using a simple text field to edit the content. The content itself is taken from the text content of the editable element. i.e. ``editable.textContent``.
+
+
+Relationship Graph
+------------------
+
+.. graphviz::
+
+   digraph "foundation-editable" {
+     rankdir=BT;
+     "foundation-editable-control" -> "foundation-editable" [label="controls", weight=8];
+     "foundation.text" -> "foundation-editable" [label="provides editor to"];
+   }

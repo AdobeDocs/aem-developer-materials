@@ -1,0 +1,28 @@
+
+IncludeClientlibs
+=================
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/includeclientlibs
+
+   The component to include the clientlibs.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:IncludeClientlibs] > granite:renderCondition
+
+      /**
+       * The categories, which both js and css to be included.
+       */
+      - categories (String) multiple
+
+      /**
+       * The categories, which js to be included.
+       */
+      - js (String) multiple
+
+      /**
+       * The categories, which css to be included.
+       */
+      - css (String) multiple

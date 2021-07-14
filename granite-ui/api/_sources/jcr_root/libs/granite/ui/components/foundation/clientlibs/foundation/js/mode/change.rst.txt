@@ -1,0 +1,45 @@
+**********************
+foundation-mode-change
+**********************
+
+``foundation-mode-change`` is a control (likely <button>) to change the mode according to :doc:`foundation-mode <../../vocabulary/mode>`.
+
+.foundation-mode-change
+=======================
+
+Indicates the control. The ``foundation-mode-change`` event is triggered upon activation using the value and group indicated by the respective attributes.
+
+Selector Rule::
+
+   .foundation-mode-change
+
+
+[data-foundation-mode-value]
+============================
+
+Indicates the mode to change to.
+
+Selector Rule::
+
+   .foundation-mode-change[data-foundation-mode-value]
+
+
+[data-foundation-mode-group]
+============================
+
+Indicates the mode group the element belongs to.
+
+Selector Rule::
+
+   .foundation-mode-change[data-foundation-mode-group]
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-mode" {
+     rankdir=BT;
+     "foundation-mode-change" -> "foundation-mode" [label="controls", weight=8];
+   }

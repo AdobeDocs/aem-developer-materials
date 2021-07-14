@@ -1,0 +1,227 @@
+describe('Coral.TabView', function() {
+  'use strict';
+
+  describe('namespace', function() {
+    it('should be defined', function() {
+      expect(Coral).to.have.property('TabView');
+    });
+  });
+
+  function testDefaultInstance(el) {
+    expect(el.classList.contains('coral3-TabView')).to.be.true;
+    expect(el.tabList).not.to.be.null;
+    expect(el.panelStack).not.to.be.null;
+
+    expect(el.hasAttribute('orientation')).to.be.false;
+  }
+
+  describe('instantiation', function() {
+    it('should be possible using new', function() {
+      var el = new Coral.TabView();
+      testDefaultInstance(el);
+    });
+
+    it('should be possible using createElement', function() {
+      var el = document.createElement('coral-tabview');
+      testDefaultInstance(el);
+    });
+
+    it('should be possible using markup', function(done) {
+      helpers.build('<coral-tabview></coral-tabview>', function(el) {
+        testDefaultInstance(el);
+        done();
+      });
+    });
+
+    it('should position the tablist before the panelstack', function(done) {
+      helpers.build(window.__html__['Coral.TabView.order.html'], function(el) {
+        expect(el.tabList).to.equal(el.firstElementChild);
+        expect(el.panelStack).to.equal(el.lastElementChild);
+
+        done();
+      });
+    });
+  });
+
+  var body = document.querySelector('body');
+  var el;
+  var tab1, tab2, tab3;
+  var panel1, panel2, panel3;
+
+  beforeEach(function() {
+    el = new Coral.TabView();
+    body.appendChild(el);
+
+    tab1 = new Coral.Tab();
+    tab1.label.innerHTML = 'Item 1';
+
+    tab2 = new Coral.Tab();
+    tab2.label.innerHTML = 'Item 2';
+
+    tab3 = new Coral.Tab();
+    tab3.label.innerHTML = 'Item 3';
+
+    panel1 = new Coral.Panel();
+    panel1.content.innerHTML = 'Content 1';
+
+    panel2 = new Coral.Panel();
+    panel2.content.innerHTML = 'Content 1';
+
+    panel3 = new Coral.Panel();
+    panel3.content.innerHTML = 'Content 1';
+  });
+
+  afterEach(function() {
+    body.removeChild(el);
+    el = tab1 = tab2 = tab3 = panel1 = panel2 = panel3 = null;
+  });
+
+  describe('API', function() {
+
+    describe('#orientation', function() {
+      it('should default to Coral.TabView.orientation.HORIZONTAL', function() {
+        expect(el.orientation).to.equal(Coral.TabView.orientation.HORIZONTAL);
+      });
+
+      it('should be settable', function(done) {
+        el.orientation = Coral.TabView.orientation.VERTICAL;
+        expect(el.orientation).to.equal(Coral.TabView.orientation.VERTICAL);
+
+        Coral.commons.nextFrame(function() {
+          expect(el.classList.contains('coral3-TabView--vertical')).to.be.true;
+          done();
+        });
+      });
+
+      it('should set orientation to tablist', function(done) {
+        helpers.build(window.__html__['Coral.TabView.orientation.html'], function(el) {
+          expect(el.orientation).to.equal(Coral.TabView.orientation.VERTICAL);
+          expect(el.classList.contains('coral3-TabView--vertical')).to.be.true;
+          expect(el.tabList.getAttribute('orientation')).to.equal(Coral.TabView.orientation.VERTICAL);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('events', function() {
+
+    it('should trigger a coral-tabview:change event when an item is selected', function() {
+      var spy = sinon.spy();
+      el.on('coral-tabview:change', spy);
+      el.tabList.appendChild(tab1);
+      el.tabList.appendChild(tab2);
+      el.panelStack.appendChild(panel1);
+      el.panelStack.appendChild(panel2);
+
+      tab1.selected = true;
+      expect(spy.callCount).to.equal(1);
+      expect(spy.getCall(0).calledWithMatch({
+        detail: {
+          oldSelection: null,
+          selection: tab1
+        }
+      })).to.be.true;
+
+      tab2.selected = true;
+      expect(spy.callCount).to.equal(2);
+      expect(spy.getCall(1).calledWithMatch({
+        detail: {
+          oldSelection: tab1,
+          selection: tab2
+        }
+      })).to.be.true;
+    });
+  });
+
+  describe('user interaction', function() {
+    var defaultMarkup = window.__html__['Coral.TabView.base.html'];
+
+    it.skip('should select the tab by pressing meta+pageup inside panel ', function(done) {
+      helpers.build(defaultMarkup, function(el) {
+        var items = el.items.getAll();
+        var button = el.querySelector('button');
+        var spy = sinon.spy(items[0], 'focus');
+
+        helpers.keypress('pageup', button, ['meta']);
+
+        expect(el.selectedItem).to.equal(items[0]);
+        expect(spy.callCount).to.equal(1);
+
+        helpers.keypress('pageup', button, ['shift']);
+
+        expect(el.selectedItem).to.equal(items[0]);
+        expect(spy.callCount).to.equal(1);
+
+        helpers.keypress('pageup', button, ['ctrl']);
+
+        expect(el.selectedItem).to.equal(items[0]);
+        expect(spy.callCount).to.equal(2);
+        done();
+      });
+    });
+
+    it.skip('should select the next tab by pressing meta+pagedown inside panel', function(done) {
+      helpers.build(defaultMarkup, function(el) {
+        var items = el.items.getAll();
+        var button = el.querySelector('button');
+
+        expect(el.selectedItem).to.equal(items[0]);
+
+        helpers.keypress('pagedown', button, ['meta']);
+
+        expect(el.selectedItem).to.equal(items[1]);
+
+        // goes back to the first item since this is the only one that has a button
+        items[0].selected = true;
+
+        helpers.keypress('pagedown', button, ['shift']);
+
+        expect(el.selectedItem).to.equal(items[0]);
+
+        helpers.keypress('pagedown', button, ['ctrl']);
+
+        expect(el.selectedItem).to.equal(items[1]);
+        done();
+      });
+    });
+  });
+
+  describe('Tracking', function() {
+    var trackerFnSpy;
+
+    beforeEach(function () {
+      trackerFnSpy = sinon.spy();
+      Coral.tracking.addListener(trackerFnSpy);
+    });
+
+    afterEach(function () {
+      Coral.tracking.removeListener(trackerFnSpy);
+    });
+
+    it('should call the tracker callback with the expected trackData parameters when a panel is displayed', function (done) {
+      helpers.build(window.__html__['Coral.TabView.tracking.html'], function (el) {
+        var tabElem = el.querySelector('coral-tab:nth-child(1)');
+        tabElem.click();
+
+        Coral.commons.ready(el, function() {
+          expect(trackerFnSpy.callCount).to.equal(1, 'Track callback should have been called only once.');
+
+          var spyCall = trackerFnSpy.getCall(0);
+          var trackData = spyCall.args[0];
+          expect(trackData).to.have.property('targetType', 'tabview-panelstack');
+          expect(trackData).to.have.property('targetElement', 'element name');
+          expect(trackData).to.have.property('eventType', 'display');
+          expect(trackData).to.have.property('rootFeature', 'feature name');
+          expect(trackData).to.have.property('rootElement', 'element name');
+          expect(trackData).to.have.property('rootType', 'tabview');
+
+          done();
+        });
+
+      });
+    });
+
+  });
+
+});

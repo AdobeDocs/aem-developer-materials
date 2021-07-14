@@ -1,0 +1,9 @@
+****************
+Granite UI Shell
+****************
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   */index

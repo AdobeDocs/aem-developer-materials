@@ -1,0 +1,492 @@
+*********************
+foundation-validation
+*********************
+
+Field validation in Granite UI is designed to replicate `HTML Forms Constraint Validation API <http://www.w3.org/TR/html5/forms.html#constraints>`_.
+
+See also :doc:`../../vocabulary/field` for standardized field vocabulary.
+
+
+Selector
+========
+
+:-foundation-submittable
+------------------------
+
+Selects elements indicating the *logical* field. Only elements selectable by this selector are validated.
+
+This pseudo selector is extensible by registering ``foundation.validation.selector``.
+
+Note that since this selector is a custom jQuery selector, it can only be used using jQuery.
+
+
+Markup
+======
+
+[data-foundation-validation-ui]
+-------------------------------
+
+Indicates the configuration related to the UI of the validation. The supported value is ``none``, which means the UI is not shown.
+
+Selector Rule::
+
+   [data-foundation-validation-ui]:-foundation-submittable
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-validation``
+
+condition
+   ``:-foundation-submittable``
+
+returned type
+   ``FoundationValidation``
+
+.. code-block:: ts
+
+   interface FoundationValidation {
+     /**
+      * Returns <code>true</code> if the element will be validated when the form is submitted
+      * (i.e. The element that is satisfying <code>FoundationValidationSelector#candidate</code> selector); <code>false</code> otherwise.
+      *
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-willvalidate}
+      */
+     willValidate: () => boolean;
+
+     /**
+      * Returns the error message that would be shown to the user if the element was to be checked for validity.
+      *
+      * @return The error message or an empty string
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-validationmessage}
+      */
+     validationMessage: () => string;
+
+     /**
+      * Returns the validity state of the element.
+      */
+     getValidity: () => FoundationValidationValidity;
+
+     /**
+      * Returns <code>true</code> if the element's value has no validity problems; <code>false</code> otherwise.
+      * Fires <code>foundation-validation-invalid</code> or <code>foundation-validation-valid</code> event at the element when it is invalid or valid respectively.
+      *
+      * @return The validity
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-checkvalidity}
+      */
+     checkValidity: () => boolean;
+
+     /**
+      * Sets a custom error, so that the element would fail to validate.
+      * The given message is the message to be shown to the user when reporting the problem to the user.
+      * If the argument is the empty string, clears the custom error.
+      *
+      * @param message The error message or empty string
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-setcustomvalidity}
+      */
+     setCustomValidity: (message: string) => void;
+
+     /**
+      * Shows error UI if the element is invalid; hide the UI otherwise.
+      */
+     updateUI: () => void;
+   }
+
+   interface FoundationValidationValidity {
+     /**
+      * Returns the custom error message.
+      */
+     getCustomError: () => string;
+
+     /**
+      * Returns <code>true</code> if the element's value has no validity problems; <code>false</code> otherwise.
+      * The value is only accurate when <code>#isValidated()</code> is <code>true</code>.
+      */
+     isValid: () => boolean;
+
+     /**
+      * Returns <code>true</code> if the element has been validated; <code>false</code> otherwise.
+      * For performance, to check if an element is valid is better done by checking this method first and then call <code>#isValid()</code> or <code>FoundationValidation#checkValidity</code>.
+      *
+      * Example
+      * <pre><code>
+      * // Returns true if the container is valid; false otherwise.
+      * function isValid(container) {
+      *   return Array.prototype.every.call(container.find(":-foundation-submittable"), function(v) {
+      *     var api = $(v).adaptTo("foundation-validation");
+      *     var state = api.getValidity();
+      *
+      *     if (state.isValidated()) {
+      *       return state.isValid(); // Calling this is much faster than `api.checkValidity()`.
+      *     } else {
+      *       return api.checkValidity();
+      *     }
+      *   });
+      * }
+      * </code></pre>
+      */
+     isValidated: () => boolean;
+   }
+
+
+Form Submission
+===============
+
+``foundation-validation`` will `capture <http://www.w3.org/TR/DOM-Level-3-Events/#capture-phase>`_ the form ``submit`` event to cancel and stop propagating the event when the form is invalid.
+If there is `novalidate <http://www.w3.org/TR/html5/forms.html#attr-fs-novalidate>`_ attribute, the validation process is skipped.
+
+During that event, it will perform the validation described by the following pseudo-code:
+
+.. code-block:: javascript
+
+   function validateForm(form, submitEvent) {
+     var fields = $(form).find(":-foundation-submittable").toArray();
+     var invalids = [];
+     var unhandleds = [];
+
+     fields.forEach(function(field) {
+       if (!validateField(field)) {
+         invalids.push(field);
+       }
+     });
+
+     if (invalids.length === 0) { // The form is valid
+       return;
+     }
+
+     invalids.forEach(function(field) {
+       var e = createEvent("foundation-validation-invalid");
+       field.trigger(e);
+
+       if (!e.isDefaultPrevented()) {
+         unhandleds.push(field);
+       }
+     });
+
+     if (unhandleds.length === 0) {
+       return;
+     }
+
+     unhandleds.forEach(function(field) {
+       showErrorUI(field);
+     });
+
+     submitEvent.stopPropagation();
+     submitEvent.preventDefault();
+   }
+
+
+Validator
+=========
+
+``foundation-validation`` itself is not performing the actual validation.
+Rather a validator can be registered to the :doc:`registry <../registry/index>` using ``foundation.validation.validator`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationValidationValidator {
+     /**
+      * Only the element satisfying the selector will be validated using this validator. It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: string;
+
+     /**
+      * Only the element satisfying the selector will be validated using this validator. It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: (index: number, element: Element) => boolean;
+
+     /**
+      * The actual validation function. It must return a string of error message if the element fails.
+      */
+     validate: (element: Element) => string;
+
+     /**
+      * The function to show the error.
+      */
+     show: (element: Element, message: string, ctx: FoundationValidationValidatorContext) => void;
+
+     /**
+      * The function to clear the error.
+      */
+     clear: (element: Element, ctx: FoundationValidationValidatorContext) => void;
+   }
+
+   interface FoundationValidationValidatorContext {
+     /**
+      * Indicates that the validation process should continue to the next validator.
+      * If this method is not called, then the process stops.
+      */
+     next: () => void;
+   }
+
+The validators are evaluated based on LIFO (last in, first out) algorithm.
+
+Example
+-------
+
+We need a validator to check the max length of a textfield (e.g. ``<input type="type">``, ``<textarea>``), and we are using ``data-myapp-maxlength`` attribute to indicate this. Like so:
+
+.. code-block:: html
+
+   <input type="text" data-myapp-maxlength="10">
+
+Then we need to register the validator like so:
+
+.. code-block:: javascript
+
+   $(window).adaptTo("foundation-registry").register("foundation.validation.validator", {
+     selector: "[data-myapp-maxlength]",
+     validate: function(el) {
+       var maxlength = parseInt(el.getAttribute("data-myapp-maxlength"), 10);
+
+       if (isNaN(maxlength)) {
+         return;
+       }
+
+       var length = el.value.length;
+
+       if (length > maxlength) {
+         return "The field needs to be maximum " + maxlength + " characters. It currently has a length of " + length + ".";
+       }
+     }
+   });
+
+Since we want to leverage the default error UI, we don’t register handlers for show() and clear().
+
+
+Error UI
+========
+
+Like the validator, the actual logic of error UI is delegated to other code.
+
+Example
+-------
+
+We need to show a custom tooltip when the field is contained in vertical form. Like so:
+
+.. code-block:: html
+
+   <form class="myapp-form-vertical">
+     <input>
+   </form>
+
+Then we need to register the validator like so:
+
+.. code-block:: javascript
+
+   $(window).adaptTo("foundation-registry").register("foundation.validation.validator", {
+     selector: ".myapp-form-vertical input",
+     show: function(el, message, ctx) {
+       $(el).customTooltip(message);
+     },
+     clear: function(el, ctx) {
+       $(el).customTooltip("destroy");
+     }
+   });
+
+Since we only want to show the error UI, we don’t register a handler for ``validate()``. The validity is checked by ``validate()`` of other registered validators instead.
+
+
+Selector Best Practice
+======================
+
+When registering a validator for the field, it is important to have a fast selector. This is especially important when you have a lot of fields in the form.
+
+What is fast selector?
+----------------------
+
+`W3C Selectors Specification <https://www.w3.org/TR/selectors/>`_ defines a few categories of selectors: simple, pseudo-elements, combinators.
+The fast selector is basically the selector that is flat. i.e. a selector that doesn’t require the selector engine to look for another element (e.g. parent, sibling, ancestor) beside the element at hand.
+So, using simple selector should be your primary objective, while you have to be careful with combinators.
+
+Example
+-------
+
+Simple selectors: ``.example-mycomponent``, ``#example-mycomponent``, ``[data-foundation-validation~=’example.myvalidation’]``
+Combinator selectors: ``.example-myparent .example-mycomponent``
+
+
+Extending :-foundation-submittable
+==================================
+
+The selector is used to represent the logical field.
+
+To indicate the logical field, a config can be registered to the :doc:`registry <../registry/index>` using ``foundation.validation.selector`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationValidationSelector {
+     /**
+      * The selector of the root element of the logical field.
+      * Usually it can be used for constructing the form data set when a form element is submitted.
+      */
+     submittable: string;
+
+     /**
+      * The selector that is stricter than <code>submittable</code> selector to indicate that only element matching the selector is going to be validated.
+      * A submittable element is a candidate for validation except when a condition has barred the element from the validation.
+      * For example, an element is barred from validation if it is disabled or readonly.
+      */
+     candidate: string;
+
+     /**
+      * The selector to exclude elements that are part of the internal implementation details of composite component.
+      */
+     exclusion: string;
+   }
+
+Example
+-------
+
+Imagine an autocomplete component that is a complex composite component consists of native ``<input>`` field.
+It has the following markup:
+
+.. code-block:: html
+
+   <div class="example-Autocomplete">
+     <input name="name1">
+     <button type="button">Toggle</button>
+   </div>
+
+where the disabled and readonly are indicated by ``[disabled]`` and ``[readonly]`` at ``.example-Autocomplete`` element respectively.
+
+The root element of the autocomplete is the logical field, where the ``<input>`` is an implementation detail that is not supposed to be validated independently.
+However ``<input>`` is also a native field that can be used independently outside autocomplete, hence it is also a logical field.
+
+To indicate the selector for autocomplete, the following needs to be registered:
+
+.. code-block:: javascript
+
+   $(window).adaptTo("foundation-registry").register("foundation.validation.selector", {
+     submittable: ".example-Autocomplete",
+     candidate: ".example-Autocomplete:not([disabled]):not([readonly])",
+     exclusion: ".example-Autocomplete *"
+   });
+
+That way, when one is performing a query using ``:-foundation-submittable``, it will select ``.example-Autocomplete`` element but not ``.example-Autocomplete input`` element.
+Also when the autocomplete is disabled or readonly, it will not be validated.
+
+
+jQuery Validator
+================
+
+jQuery.validator is a jQuery plugin that provides form validation, which is designed to replicate `HTML Forms Constraint Validation API <http://www.w3.org/TR/html5/forms.html#constraints>`_.
+
+.. warning:: Deprecation
+
+   Previously validation in Granite UI is achieved by using this plugin.
+   It is now deprecated and maintained for backward compatibility, where its implementation is delegating to the ``foundation-validation``.
+
+
+API
+---
+
+The plugin is exposed as ``jQuery.validator`` variable, exposing Validators interface (described as TypeScript):
+
+.. code-block:: ts
+
+   interface Validators {
+     /**
+      * A flag to indicate that the validation process should continue to the next validator.
+      */
+     CONTINUE: number;
+
+     /**
+      * A flag to indicate that the validation process should stop. This is default behavior.
+      */
+     STOP: number;
+
+     /**
+      * Registers the given validator(s).
+      *
+      * Each validator will be iterated to check the validity of submittable elements, where the iteration stopped when the first matching validator says invalid.
+      * The order of the registration is important, where the last one registered will be used first.
+      *
+      * @param validator One or more validator objects.
+      */
+     register(...validator: Validator[]): void;
+
+     /**
+      * Returns <code>true</code> if all submittable elements under the given root element have no validity problems; <code>false</code> otherwise.
+      * Fires <code>invalid</code> or <code>valid</code> event at submittable element when it is invalid or valid respectively.
+      *
+      * @param root The root element
+      *
+      * @return The validity
+      */
+     isValid(root: JQuery): boolean;
+   }
+
+   interface Validator {
+     /**
+      * Only the element satisfying the selector will be validated using this validator. It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: string;
+
+     /**
+      * Only the element satisfying the selector will be validated using this validator. It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: (index: number, element: Element) => boolean;
+
+     /**
+      * The actual validation function. It must return a string of error message if the element fails.
+      */
+     validate: (element: JQuery) => string;
+
+     /**
+      * The function to show the error. The function can return {@link Validators.CONTINUE} or {@link Validators.STOP}.
+      */
+     show: (element: JQuery, message: string) => number;
+
+     /**
+      * The function to clear the error. The function can return {@link Validators.CONTINUE} or {@link Validators.STOP}.
+      */
+     clear: (element: JQuery) => number;
+   }
+
+It also exposes the following plugin methods to jQuery object (``jQuery.fn``):
+
+.. code-block:: ts
+
+   interface ValidatorMethods {
+     /**
+      * Returns <code>true</code> if the element will be validated when the form is submitted; <code>false</code> otherwise.
+      *
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-willvalidate}
+      */
+     willValidate: () => boolean;
+
+     /**
+      * Returns the error message that would be shown to the user if the element was to be checked for validity.
+      *
+      * @return The error message or an empty string
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-validationmessage}
+      */
+     validationMessage: () => string;
+
+     /**
+      * Returns <code>true</code> if the element's value has no validity problems; <code>false</code> otherwise.
+      * Fires <code>invalid</code> or <code>valid</code> event at the element when it is invalid or valid respectively.
+      *
+      * @return The validity
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-checkvalidity}
+      */
+     checkValidity: () => boolean;
+
+     /**
+      * Sets a custom error, so that the element would fail to validate.
+      * The given message is the message to be shown to the user when reporting the problem to the user.
+      * If the argument is the empty string, clears the custom error.
+      *
+      * @param message The error message or empty string
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-setcustomvalidity}
+      */
+     setCustomValidity: (message: string) => void;
+
+     /**
+      * Shows error UI if the element is invalid; hide the UI otherwise.
+      */
+     updateErrorUI: () => void;
+   }

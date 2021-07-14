@@ -1,0 +1,71 @@
+************************
+FilteringResourceWrapper
+************************
+
+``FilteringResourceWrapper`` is a `Sling ResourceWrapper <https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ResourceWrapper.html>`_ that filters its descendant resources based on ``granite:hide`` BooleanEL property.
+
+This wrapper needs to be applied to the container resource, such as the page root resource, and the dialog root resource.
+
+Naturally Granite UI page components support this mechanic OOTB, such as
+:granite:servercomponent:`/libs/granite/ui/components/coral/foundation/page`,
+:granite:servercomponent:`/libs/granite/ui/components/coral/foundation/page/fragment`,
+:granite:servercomponent:`/libs/granite/ui/components/shell/page`,
+:granite:servercomponent:`/libs/granite/ui/components/shell/collectionpage`,
+:granite:servercomponent:`/libs/granite/ui/components/shell/propertiespage`.
+
+It is also smart enough to handle include component.
+In that case, if the resource type is :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/include`,
+the included resource will also be wrapped by the wrapper,
+allowing the descendant resources of the included resource to use ``granite:hide`` property.
+
+
+Content Structure
+=================
+
+.. gnd:gnd::
+
+   [granite:hide]
+
+   /**
+    * ``true`` to hide the resource; ``false`` otherwise.
+    */
+   - granite:hide (BooleanEL)
+
+
+Example
+=======
+
+Given the following content structure::
+
+   + /mycontainer
+     - sling:resourceType = "my/container"
+     + item1
+       - sling:resourceType = "my/item"
+     + item2
+       - sling:resourceType = "my/item"
+       - granite:hide = true
+     + item3
+       - sling:resourceType = "my/item"
+     + item4
+       - sling:resourceType = "granite/ui/components/coral/foundation/include"
+       - path = "/mycontainer2"
+   + /mycontainer2
+     - sling:resourceType = "my/container2"
+     + item1
+       - sling:resourceType = "my/item"
+     + item2
+       - sling:resourceType = "my/item"
+       - granite:hide = true
+
+Assuming that ``my/container`` resource type implementation uses ``FilteringResourceWrapper`` to wrap its resource (``/mycontainer`` resource),
+``/mycontainer/item2`` and ``/mycontainer2/item2`` will be excluded during traversal transparently, as if they are not there in the first place.
+
+
+Component Development
+=====================
+
+To enable this mechanic, you can simply wrap the resource with :javadoc:`FilteringResourceWrapper <com/adobe/granite/ui/components/FilteringResourceWrapper.html>`:
+
+.. code-block:: java
+
+   resource = new FilteringResourceWrapper(resource, sling.getService(ExpressionResolver.class), slingRequest);

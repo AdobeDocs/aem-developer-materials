@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <title>Styles | CoralUI</title>
+    <link rel="shortcut icon" type="image/ico" href="../resources/favicon_coral.ico">
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/js/libs/moment.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/js/libs/jquery.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/css/coral.css">
+    <script src="../js/guide.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/guide.min.css">
+  </head>
+  <body class="coral--light guide-Background u-coral-clearFix">
+    <div class="guide-Progress"></div>
+    <div class="guide-Container">
+      <header class="guide-Header coral--dark">
+        <div class="guide-Header-menu">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right">
+            <div class="guide-Header--left"><img src="../resources/adobe_icon.png" alt="CoralUI Logo">
+              <div class="guide-Header-home"><a href="index.html">
+                  <h2 class="coral-Heading coral-Heading--2 guide-Header-title">Coral<span class="guide-Header-subtitle">UI</span></h2></a></div>
+            </div>
+            <nav class="guide-Header-nav"><a class="coral-Heading coral-Heading--2 guide-Header-link" href="getting-started.html">Getting Started</a><a class="coral-Heading coral-Heading--2 guide-Header-link is-selected" href="styles.html">Styles</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="components.html">Components</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="shell3.html">Shell 3</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="playground.html">Playground</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="documentation.html">Docs &amp; Guides</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="downloads.html">Downloads</a>
+              <div class="guide-ThemeSwitcher">
+                <coral-tag><a class="coral-Link is-selected" href="../theme-cloudui">CloudUI</a><span> |</span><a class="coral-Link" href="../theme-spectrum"> Spectrum</a></coral-tag>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="guide-MainContent guide-Scroll" role="main">
+        <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right guide-Content--padding-top">
+          <div class="guide-ScrollNav" role="complementary">
+            <div class="guide-Scroll guide-ScrollNav_Wrapper"></div>
+          </div>
+          <div class="guide-ScrollContent--right">
+            <div class="guide-Component u-coral-clearFix guide-Section-Styles">
+              <article class="js-guide-Component-article u-line">
+                <h1 class="coral-Heading coral-Heading--1 js-guide-heading-toc js-guide-heading-toc--header" id="introduction" guide-toc-title="Introduction"><a class="coral-Link coral-Link--subtle" href="#introduction">CoralUI Styles Introduction</a></h1>
+                <p>Most CoralUI styles are baked into each web component, so not much is available as public API. More detail about CoralUI's CSS architecture can be found in the <a class="coral-Link" href="documentation.html#architecture">architecture</a> section of <a class="coral-Link" href="documentation.html">Docs &amp; Guides</a>.</p>
+              </article>
+              <article class="js-guide-Component-article u-line">
+                <h1 class="coral-Heading coral-Heading--1 js-guide-heading-toc js-guide-heading-toc--header" id="themes" guide-toc-title="CSS Themes"><a class="coral-Link coral-Link--subtle" href="#themes">CSS Themes</a></h1>
+                <p>
+                  CoralUI has CSS theme support. This generally works by splitting the CSS for
+                  a CoralUI component between the component's repository and the theme repository.
+                  Any styles that are 'functional', or visual aspects that should not change when
+                  the theme changes, are kept with the component.  The styles that control the
+                  changeable aspects of the visual design of a component are kept in the theme
+                  repository.  CoralUI's build system merges the separate source files into a
+                  single CSS instance.  By design, the theme repository contains source CSS for
+                  every CoralUI component.  There is no need to remove components when creating
+                  a custom build. The build system is smart enough to only output CSS for
+                  components that are included in the <code>package.json</code> of a build.
+                  
+                </p>
+                <p>
+                  There are currently only two themes available for CoralUI; the original CloudUI
+                  theme that CoralUI has always been based on, and the new Spectrum theme.  At this
+                  time, the default build of CoralUI will continue to use CloudUI, but we will switch
+                  the default to Spectrum at some point in 2016. In the meantime, a <a class="coral-Link" href="downloads.html#creating">custom build</a> of CoralUI can enable you to use Spectrum
+                  right away.  You can also grab a pre-built zip of the default CoralUI build with the
+                  Spectrum theme on the <a class="coral-Link" href="../theme-spectrum">Spectrum</a> demo version of this website.
+                  
+                </p>
+                <p>
+                  It may be helpful to understand how a theme is included into CoralUI. The theme of a build is determined via the build's <code>package.json</code>, just like any other component. To enable
+                  a theme, a CoralUI build must include as a dependency <code>coralui-core#4.x</code>. The theme
+                  must also be included as a dependency in <code>package.json</code>. For example, including
+                  Spectrum would mean adding the latest release of <code>coralui-theme-spectrum</code>.
+                  
+                </p>
+                <p>
+                  An example snippet from <code>package.json</code> showing the relevant
+                  entries is shown below:
+                </p>
+                <pre class="prettyprint guide-Code-snippet" id="guide-6abae169-d427-4b7a-81f0-b317bc542ebc" data-src-id="guide-6abae169-d427-4b7a-81f0-b317bc542ebc">
+                  {
+                    "dependencies": {
+                      ...
+                      "@coralui/coralui-core": "^4.2.0",
+                      "@coralui/coralui-theme-cloudui": "^8.2.8",
+                      ...
+                  }</pre>
+              </article>
+              <article class="js-guide-Component-article">
+                <h1 class="coral-Heading coral-Heading--1 js-guide-heading-toc js-guide-heading-toc--header" id="cssComponents" guide-toc-title="CSS-Only Components"><a class="coral-Link coral-Link--subtle" href="#cssComponents">CSS-Only Components</a></h1>
+                <p>
+                  This section provides details on the few CSS-only components included in CoralUI considered as public API.
+                  Use the 'Show Markup' feature to see how each CSS-only component should be implemented.
+                  To explore the rest of the CoralUI components, see the
+                  <a href='components.html' class='coral-Link'>Components</a> documentation.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>Coral.Guide.loadCSSOnlyComponents('https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/documentation/', ["coral-DecoratedTextfield","coral-Form","coral-Heading","coral-InputGroup","coral-Link","coral-RadioGroup","coral-Table","coral-Well","u-coral"]);</script>
+      <script>
+        var s=s_gi("coralui");
+        s.pageName=document.title;
+        var s_code=s.t();if(s_code)document.write(s_code);
+      </script>
+    </div>
+  </body>
+</html>

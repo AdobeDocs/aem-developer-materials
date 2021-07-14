@@ -1,0 +1,132 @@
+*****************
+foundation-layout
+*****************
+
+Layout is a mechanism to manage a coordination among components/elements to look/behave in a certain way.
+
+
+[data-foundation-layout]
+========================
+
+When :doc:`foundation-contentloaded <../../vocabulary/contentloaded>` event is triggered, the element having ``data-foundation-layout`` attribute is processed according to ``FoundationLayouts.layout``.
+
+Selector Rule::
+
+   [data-foundation-layout]
+
+
+Granite.UI.Foundation.Layouts
+=============================
+
+A singleton object is exposed at ``Granite.UI.Foundation.Layouts``, having the following interface:
+
+.. code-block:: ts
+
+   /**
+    * Layouts is a registry that holds all the layouts.
+    * Layout is mechanism to manage a coordination among components/elements to look/behave in a certain way.
+    *
+    * The recommended way to register a layout is using foundation-registry
+    * using "foundation.layouts" name and the config satisfying <code>FoundationLayoutsAdapter</code>.
+    *
+    * @example
+    * $(window).adaptTo("foundation-registry").register("foundation.layouts", {
+    *   name: "foundation-layout-mode",
+    *   doLayout: function(el, config) {},
+    *   clean: function(el, config) {}
+    * });
+    */
+   interface FoundationLayouts {
+     /**
+      * Registers a layout for the given name.
+      *
+      * @param name The name of the layout
+      * @param layouter The function to do the actual layout
+      * @param cleaner The function to clean up when the layout is removed
+      */
+     register(name: string, layouter: Function, cleaner? Function): void;
+
+     /**
+      * Performs a layout logic based on layouter function registered.
+      * The value of <code>data-foundation-layout</code> attribute of the given element will be used as the layout JSON config,
+      * which <code>name</code> property is used as the lookup key of registered layouter.
+      * The el and config are passed to layouter function as <code>layouter(el, config)</code>.
+      * This method triggers <code>foundation-layout-perform</code> event after performing the layout.
+      *
+      * @param el The element acts as the root element of the layout
+      */
+     layout(el: Element): void;
+
+     /**
+      * Switches the layout from existing layout to the new one given by newConfig.
+      * The old layout is cleaned first by calling {@link #cleanAll}.
+      * The new layout is then performed as per {@link #layout}.
+      *
+      * @param el The element acts as the root element of the layout
+      * @param newConfig The config to be used for the new layout
+      */
+     switchLayout(el: Element, newConfig: FoundationLayoutsConfig): void;
+
+     /**
+      * Removes the layout of the given element.
+      * It will remove the following from the element:
+      * (1) the layout class, based on name
+      * (2) the <code>data-foundation-layout</code> attribute
+      *
+      * @param el The element acts as the root element of the layout
+      */
+     clean(el: Element): void;
+
+     /**
+      * Removes the layout of the given element by calling the cleaner function registered under the layout name,
+      * which is defaulted to {@link #clean} when no cleaner is registered.
+      *
+      * @param el The element acts as the root element of the layout
+      */
+     cleanAll(el: Element): void;
+   }
+
+   /**
+    * The config to configure the layout. The only requirement is the {@link #name} property.
+    * Each layout MAY define additional properties. Please consult its documentation accordingly.
+    */
+   interface FoundationLayoutsConfig {
+     /**
+      * The name of the layout.
+      */
+     name: string;
+   }
+
+   interface FoundationLayoutsAdapter {
+     /**
+      * The name of the layout.
+      */
+     name: string;
+
+     /**
+      * The function to do the actual layout.
+      *
+      * @param el The root element of the layout
+      * @param config The config of the layout
+      */
+     doLayout: (el: Element, config: FoundationLayoutsConfig) => void;
+
+     /**
+      * The function to clean up when the layout is removed.
+      *
+      * @param el The root element of the layout
+      * @param config The config of the layout
+      */
+     clean: (el: Element, config: FoundationLayoutsConfig) => void;
+   }
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-layout" {
+     rankdir=BT;
+     "foundation-layout-control" -> "foundation-layout" [label="controls"];
+   }

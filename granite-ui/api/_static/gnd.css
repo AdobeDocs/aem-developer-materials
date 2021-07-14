@@ -1,0 +1,124 @@
+.gnd {
+	margin-bottom: 1em;
+}
+
+.gnd-name {
+	font-family: monospace;
+}
+
+.gnd-values {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+}
+
+.gnd-values-item {
+	display: inline;
+}
+
+.gnd-values-item:after {
+	content: ", ";
+}
+
+.gnd-values-item:last-child:after {
+	content: "";
+}
+
+.gnd-attributes {
+	font-family: monospace;
+}
+
+.gnd-attributes-key {
+	display: inline;
+}
+
+.gnd-attributes-key:before {
+	content: "";
+	display: block;
+}
+
+.gnd-attributes-key--flag:before {
+	display: inline;
+}
+
+.gnd-attributes-value {
+	display: inline;
+	margin: 0;
+}
+
+.gnd-attributes-value:before {
+	content: " = ";
+}
+
+.gnd-attributes-key--flag + .gnd-attributes-value:before {
+	content: "";
+}
+
+.gnd-attributes-value + .gnd-attributes-key:before {
+	content: " ";
+}
+
+
+.gnd .prefix:before {
+	content: "<";
+}
+
+.gnd .uri:before {
+	content: " = ";
+}
+
+.gnd .uri:after {
+	content: ">";
+}
+
+.gnd .nodetypename {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.gnd .nodetypename:before {
+	content: "[";
+}
+
+.gnd .nodetypename:after {
+	content: "]";
+}
+
+.gnd .propertyname {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.gnd .propertyname:before {
+	content: "- ";
+}
+
+.gnd .propertytype:before, .gnd .requiredtypes:before {
+	content: " (";
+}
+
+.gnd .propertytype:after, .gnd .requiredtypes:after {
+	content: ")";
+}
+
+.gnd .supertypes:before {
+	content: " > ";
+}
+
+.gnd .defaultvalues:before, .gnd .defaulttype:before {
+	content: " = ";
+}
+
+.gnd .valueconstraints:before {
+	content: " < ";
+}
+
+.gnd .nodename {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.gnd .nodename:before {
+	content: "+ ";
+}

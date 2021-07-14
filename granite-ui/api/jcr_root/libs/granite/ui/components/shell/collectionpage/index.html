@@ -1,0 +1,397 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CollectionPage &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../" src="../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Footer" href="../footer/index.html" />
+    <link rel="prev" title="Granite UI Shell" href="../index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../footer/index.html" title="Footer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Granite UI Shell"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Granite UI Shell</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="collectionpage">
+<h1>CollectionPage<a class="headerlink" href="#collectionpage" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/shell/collectionpage">
+<dt>
+<code class="descname">/libs/granite/ui/components/shell/collectionpage</code></dt>
+<dd><p>The page to render collection pattern.</p>
+<p>It also supports <a class="reference internal" href="../../../docs/server/resourcehiding.html"><span class="doc">resource filtering using FilteringResourceWrapper</span></a> and acts as its container.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ShellCollectionPage</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">consoleId</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>A general purpose ID to uniquely identify the console.</p>
+<p>The recommended value is hierarchical separated by “-“.
+e.g. “cq-commerce-report”</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">jcr:title</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The base title of the page.</p>
+<p>e.g. “AEM Sites”</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">pageURITemplate</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template of the page. It is used to generate the new URL when navigating the collection.</p>
+<p>It supports the following variables:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>id</dt>
+<dd>The id of the collection (<a class="reference internal" href="../../coral/foundation/clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>).</dd>
+</dl>
+</div></blockquote>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">/sites.html{+id}</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">pageURITemplate.abs</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>This property is the equivalence of <code class="docutils literal notranslate"><span class="pre">pageURITemplate</span></code> for absolute path.</p>
+<p>For example if your template is <code class="docutils literal notranslate"><span class="pre">{+id}.html</span></code>, since it is not starting with “/”,
+the server is unable to know if it is an absolute path.
+So use this property if you want to add the context path regardless.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">modeGroup</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The value of <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/vocabulary/mode.html"><span class="doc">[data-foundation-mode-group]</span></a>
+that the collection is part of.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">targetCollection</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The selector to the collection.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">omnisearchLocationPath</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path to the omnisearch configuration associated with the console.</p>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">/libs/granite/omnisearch/content/metadata/site</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemPreviewSrc</span></dt>
+<dd><p>The URI Template of the preview of the selected items.
+If this property is specified, an additional preview container is added.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>item</dt>
+<dd>The id of the selected item. (<a class="reference internal" href="../../coral/foundation/clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-item-id]</span></a>)
+Note that this variable can be a list of items.</dd>
+</dl>
+<p>For example, if <code class="docutils literal notranslate"><span class="pre">item</span> <span class="pre">=</span> <span class="pre">(&quot;item1&quot;,</span> <span class="pre">&quot;item2&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">itemPreviewSrc</span> <span class="pre">=</span> <span class="pre">/preview{?item*}</span></code>, the final URI will be <code class="docutils literal notranslate"><span class="pre">/preview?item=item1&amp;item=item2</span></code>.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">redirector</span></dt>
+<dd><p>To redirect the page, this resource can be specified.
+It will be included, where the redirect can be performed.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">head</span></dt>
+<dd><p>A folder to specify the content of <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> of the page.
+Its child resources are iterated and included as is.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">views</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">mandatory</dt><dd class="gnd-attributes-value"></dd></dl><p>The folder for the available views (i.e. the rendering) of the collection,
+where each can any component implementing <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/vocabulary/collection.html"><span class="doc">foundation-collection</span></a>.</p>
+<p>At least one view needs to be provided.
+If there are at least two views, the following properties are needed to be able to switch the view:</p>
+<dl class="docutils">
+<dt>icon (String)</dt>
+<dd>The icon of the view.</dd>
+<dt>jcr:title (String)</dt>
+<dd>The title of the view.</dd>
+<dt>src (StringEL)</dt>
+<dd><p class="first">The URI Template that is returning the HTML response of the new view.
+It supports the following variables:</p>
+<dl class="last docutils">
+<dt>offset</dt>
+<dd>The item offset of the current request.</dd>
+<dt>limit</dt>
+<dd>The item limit of the pagination.</dd>
+<dt>id</dt>
+<dd>The id of the collection (<a class="reference internal" href="../../coral/foundation/clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>).</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>View Settings</strong></p>
+<p>Each view is able to provide settings related to that view.
+To do this, <code class="docutils literal notranslate"><span class="pre">settings</span></code> component needs to be specified. The component can be a container that contains the form fields representing the settings.
+The form will be automatically generated, and the settings are saved in the user preferences.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">header</span></dt>
+<dd><p>The header area just above the collection view.
+Any component can be used here.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">footer</span></dt>
+<dd><p>The footer area just below the collection view.
+Any component can be used here.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">breadcrumbs</span></dt>
+<dd></dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">title</span></dt>
+<dd><p>The component to render the title.</p>
+<p>Either this resource or <code class="docutils literal notranslate"><span class="pre">breadcrumbs</span></code> needs to be specified.
+Use this resource instead of <code class="docutils literal notranslate"><span class="pre">breadcrumbs</span></code> when your resource is flat (not hierarchical).
+If neither is specified, the value of <code class="docutils literal notranslate"><span class="pre">jcr:title</span></code> is used.</p>
+<p>If the title is just a simple string, <a class="reference internal" href="../title/index.html"><span class="doc">Title</span></a> can be used.</p>
+<p>The only requirement of the component is to generate a simple text without any wrapping markup.
+E.g. To have a title of “My Page”, just make the component do something like <code class="docutils literal notranslate"><span class="pre">out.print(&quot;My</span> <span class="pre">Page&quot;)</span></code>.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">actions</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:ShellCollectionPageActions</li></ol></dt>
+<dd><p>The folder for the actions applicable in the context of the collection.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">rails</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:ShellCollectionPageRails</li></ol></dt>
+<dd><p>A folder to specify the panels of the rail.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ShellCollectionPageActions</span></dt>
+<dd><dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">primary</span></dt>
+<dd><p>The folder for primary actions.</p>
+<p>The action can be any action component such as <a class="reference internal" href="../../coral/foundation/button/index.html"><span class="doc">Button</span></a>,
+<a class="reference internal" href="../../coral/foundation/anchorbutton/index.html"><span class="doc">AnchorButton</span></a>,
+<a class="reference internal" href="../../coral/foundation/pulldown/index.html"><span class="doc">Pulldown</span></a>,
+<a class="reference internal" href="../../coral/foundation/collection/index.html"><span class="doc">Collection</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">actionBar</span></code> variant of the components above SHOULD be used, unless <code class="docutils literal notranslate"><span class="pre">primary</span></code> variant is used.</p>
+<p>Usually the action is implementing <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">foundation-collection-action</span></a>,
+with <code class="docutils literal notranslate"><span class="pre">relScope</span></code> = <code class="docutils literal notranslate"><span class="pre">collection</span></code>.</p>
+<p>The actions are wrapped inside <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">.foundation-collection-actionbar</span></a>
+element where <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-actionbar-target]</span></code> is set as the value of <code class="docutils literal notranslate"><span class="pre">targetCollection</span></code> property.
+This way setting the <code class="docutils literal notranslate"><span class="pre">target</span></code> property at individual action is not required.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">secondary</span></dt>
+<dd><p>The folder for secondary actions.</p>
+<p>The action can be any action component such as <a class="reference internal" href="../../coral/foundation/button/index.html"><span class="doc">Button</span></a>,
+<a class="reference internal" href="../../coral/foundation/anchorbutton/index.html"><span class="doc">AnchorButton</span></a>,
+<a class="reference internal" href="../../coral/foundation/pulldown/index.html"><span class="doc">Pulldown</span></a>,
+<a class="reference internal" href="../../coral/foundation/collection/index.html"><span class="doc">Collection</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">actionBar</span></code> variant of the components above SHOULD be used, unless <code class="docutils literal notranslate"><span class="pre">primary</span></code> variant is used.</p>
+<p>Usually the action is implementing <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">foundation-collection-action</span></a>,
+with <code class="docutils literal notranslate"><span class="pre">relScope</span></code> = <code class="docutils literal notranslate"><span class="pre">collection</span></code>.</p>
+<p>The actions are wrapped inside <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">.foundation-collection-actionbar</span></a>
+element where <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-actionbar-target]</span></code> is set as the value of <code class="docutils literal notranslate"><span class="pre">targetCollection</span></code> property.
+This way setting the <code class="docutils literal notranslate"><span class="pre">target</span></code> property at individual action is not required.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">selection</span></dt>
+<dd><p>The folder for actions applicable during selection mode. (e.g. when one of the collection item is selected)</p>
+<p>The action can be any action component such as <a class="reference internal" href="../../coral/foundation/button/index.html"><span class="doc">Button</span></a>,
+<a class="reference internal" href="../../coral/foundation/anchorbutton/index.html"><span class="doc">AnchorButton</span></a>,
+<a class="reference internal" href="../../coral/foundation/pulldown/index.html"><span class="doc">Pulldown</span></a>,
+<a class="reference internal" href="../../coral/foundation/collection/index.html"><span class="doc">Collection</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">actionBar</span></code> variant of the components above SHOULD be used, unless <code class="docutils literal notranslate"><span class="pre">primary</span></code> variant is used.</p>
+<p>Usually the action is implementing <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">foundation-collection-action</span></a>,
+with <code class="docutils literal notranslate"><span class="pre">relScope</span></code> = <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p>The actions are wrapped inside <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/collection/action/index.html"><span class="doc">.foundation-collection-actionbar</span></a>
+element where <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-actionbar-target]</span></code> is set as the value of <code class="docutils literal notranslate"><span class="pre">targetCollection</span></code> property.
+This way setting the <code class="docutils literal notranslate"><span class="pre">target</span></code> property at individual action is not required.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ShellCollectionPageRails</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">active</span><span class="propertytype gnd-name">booleanel</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to activate the rail initially.</p>
+<p>Note that you need to also set <code class="docutils literal notranslate"><span class="pre">active</span></code> property of the rail panel to <code class="docutils literal notranslate"><span class="pre">true</span></code> accordingly.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">*</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:PanelRailPanel</li></ol></dt>
+<dd><p>The child resources are considered as the panels, where each MUST be a <a class="reference internal" href="../../coral/foundation/panel/railpanel/index.html"><span class="doc">RailPanel</span></a> (or its derivative).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">page</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/shell/collectionpage&quot;</span>
+  <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;AEM Sites&quot;</span>
+  <span class="o">-</span> <span class="n">modeGroup</span> <span class="o">=</span> <span class="s2">&quot;cq-siteadmin-admin-childpages&quot;</span>
+  <span class="o">-</span> <span class="n">pageURITemplate</span> <span class="o">=</span> <span class="s2">&quot;/sites.html{+id}&quot;</span>
+  <span class="o">-</span> <span class="n">targetCollection</span> <span class="o">=</span> <span class="s2">&quot;#cq-siteadmin-admin-childpages&quot;</span>
+  <span class="o">+</span> <span class="n">views</span>
+    <span class="o">+</span> <span class="n">card</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;my/card&quot;</span>
+      <span class="o">-</span> <span class="n">granite</span><span class="p">:</span><span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;cq-siteadmin-admin-childpages&quot;</span>
+      <span class="o">-</span> <span class="n">icon</span> <span class="o">=</span> <span class="s2">&quot;viewCard&quot;</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Card View&quot;</span>
+      <span class="o">-</span> <span class="n">modeGroup</span> <span class="o">=</span> <span class="s2">&quot;cq-siteadmin-admin-childpages&quot;</span>
+      <span class="o">-</span> <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;/mnt/overlay/my/page/views/card{.offset,limit}.html{+id}&quot;</span>
+      <span class="o">-</span> <span class="n">offset</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.selectors[0]}</span><span class="s2">&quot;</span>
+      <span class="o">-</span> <span class="n">limit</span> <span class="o">=</span> <span class="s2">&quot;${empty requestPathInfo.selectors[1] ? &quot;</span><span class="mi">20</span><span class="s2">&quot; : requestPathInfo.selectors[1]}&quot;</span>
+      <span class="o">-</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.suffix}</span><span class="s2">&quot;</span>
+      <span class="o">+</span> <span class="n">settings</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/container&quot;</span>
+        <span class="o">+</span> <span class="n">items</span>
+          <span class="o">+</span> <span class="n">field1</span>
+            <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;my/field&quot;</span>
+          <span class="o">+</span> <span class="n">field2</span>
+            <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;my/field&quot;</span>
+    <span class="o">+</span> <span class="nb">list</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;my/list&quot;</span>
+      <span class="o">-</span> <span class="n">granite</span><span class="p">:</span><span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;cq-siteadmin-admin-childpages&quot;</span>
+      <span class="o">-</span> <span class="n">icon</span> <span class="o">=</span> <span class="s2">&quot;viewList&quot;</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;List View&quot;</span>
+      <span class="o">-</span> <span class="n">modeGroup</span> <span class="o">=</span> <span class="s2">&quot;cq-siteadmin-admin-childpages&quot;</span>
+      <span class="o">-</span> <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;/mnt/overlay/my/page/views/list{.offset,limit}.html{+id}&quot;</span>
+      <span class="o">-</span> <span class="n">offset</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.selectors[0]}</span><span class="s2">&quot;</span>
+      <span class="o">-</span> <span class="n">limit</span> <span class="o">=</span> <span class="s2">&quot;${empty requestPathInfo.selectors[1] ? &quot;</span><span class="mi">20</span><span class="s2">&quot; : requestPathInfo.selectors[1]}&quot;</span>
+      <span class="o">-</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.suffix}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Granite UI Shell</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../footer/index.html"
+                        title="next chapter">Footer</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../_sources/jcr_root/libs/granite/ui/components/shell/collectionpage/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../footer/index.html" title="Footer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Granite UI Shell"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Shell</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

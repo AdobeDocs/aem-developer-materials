@@ -1,0 +1,105 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.themes.MediaBrowseDialog-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.themes.MediaBrowseDialog-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.themes.MediaBrowseDialog-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.themes.MediaBrowseDialog"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.themes.MediaBrowseDialog</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.themes</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/MediaBrowseDialog.js" target="_blank">MediaBrowseDialog.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">MediaBrowseDialog</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	        	        <b>Deprecated: </b><br><br>
+	                    The theme-specific constants for <a ext:cls="CQ.MediaBrowseDialog" href="output/CQ.MediaBrowseDialog.html">CQ.MediaBrowseDialog</a>.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.themes.MediaBrowseDialog-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-HEIGHT"></a>
+            <b>HEIGHT</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The default <a ext:cls="CQ.MediaBrowseDialog" ext:member="height" href="output/CQ.MediaBrowseDialog.html#height">height</a> (defaults to 500).                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-MEDIA_DATE"></a>
+            <b>MEDIA_DATE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The default format of the asset's creation and modification dates
+(defaults to "m/d/Y g:i a").                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-MIN_HEIGHT"></a>
+            <b>MIN_HEIGHT</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The default <a ext:cls="CQ.MediaBrowseDialog" ext:member="minHeight" href="output/CQ.MediaBrowseDialog.html#minHeight">minHeight</a> (defaults to 500).                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-MIN_WIDTH"></a>
+            <b>MIN_WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The default <a ext:cls="CQ.MediaBrowseDialog" ext:member="minWidth" href="output/CQ.MediaBrowseDialog.html#minWidth">minWidth</a> (defaults to 500).                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-RESIZABLE"></a>
+            <b>RESIZABLE</b> : Boolean            <div class="mdesc">
+                                        &lt;static&gt; The default <a ext:cls="CQ.MediaBrowseDialog" ext:member="resiable" href="output/CQ.MediaBrowseDialog.html#resiable">resizable</a> (defaults to true).                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-RESIZE_HANDLES"></a>
+            <b>RESIZE_HANDLES</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The default <a ext:cls="CQ.MediaBrowseDialog" ext:member="resizeHandles" href="output/CQ.MediaBrowseDialog.html#resizeHandles">resizeHandles</a> (defaults to "n,s,e,w,se,ne,sw,nw").                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.MediaBrowseDialog-WIDTH"></a>
+            <b>WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The default <a ext:cls="CQ.MediaBrowseDialog" ext:member="width" href="output/CQ.MediaBrowseDialog.html#width">width</a> (defaults to 540).                                    </div>
+        </td>
+        <td class="msource">MediaBrowseDialog</td>
+    </tr>
+            </table>
+                <a id="CQ.themes.MediaBrowseDialog-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="CQ.themes.MediaBrowseDialog-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

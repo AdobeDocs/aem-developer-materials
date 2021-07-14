@@ -1,0 +1,126 @@
+
+UserPicker
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/userpicker
+   :supertype: /libs/granite/ui/components/foundation/form/field
+   :deprecated:
+
+   An autocomplete component that is designed to allow the user to pick the user from suggested list.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormUserPicker] > granite:FormField
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * The value of the field.
+       */
+      - value (String)
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * ``true`` to allow selection of multiple authorizables; ``false`` otherwise.
+       */
+      - multiple (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The `URI Template <http://tools.ietf.org/html/rfc6570>`_ that is giving the response of HTML of the suggestion.
+       * The format of the HTML is a stream of ``li`` elements. For example:
+       *
+       * .. code-block:: html
+       *
+       *    <li class="coral-SelectList-item coral-SelectList-item--option" data-value="itemvalue1">Item Display 1</li>
+       *    <li class="coral-SelectList-item coral-SelectList-item--option" data-value="itemvalue2">Item Display 2</li>
+       *
+       * The URI Template supports ``start``, ``end``, ``query`` variables.
+       *
+       * start
+       *    The start index of the paging of selection items to be returned.
+       *
+       * end
+       *    The end index of the paging of selection items to be returned.
+       *
+       * query
+       *    The text that the user queries for.
+       *
+       * Example::
+       *
+       *    /path.html?start={start}&end={end}&query={query}&my-other-param=param1
+       *
+       * If this property is not set, the default value is used that is giving the response of the users in Granite.
+       */
+      - src (String)
+
+      /**
+       * ``true`` to display the users suggestion that are allowed to be impersonated by current user. ``false`` otherwise.
+       * This property is only applicable when the ``src`` property is not specified.
+       */
+      - impersonatesOnly (Boolean)
+
+      /**
+       * ``true`` to display only groups suggestions. ``false`` to display only users suggestions.
+       * This property is only applicable when the ``src`` property is not specified.
+       */
+      - groupsOnly (Boolean)
+
+      /**
+       * ``true`` to hide the service users from the suggestion; ``false`` otherwise.
+       * This property is only applicable when the ``src`` property is not specified.
+       */
+      - hideServiceUsers (Boolean)
+
+      /**
+       * ``true`` to use the authorizable home as value for the automcomplete items; ``false`` to use the authorizable IDs as value for the
+       * autocomplete items.
+       * This property is only applicable when the ``src`` property is not specified.
+       */
+      - useHomeAsValue (Boolean)

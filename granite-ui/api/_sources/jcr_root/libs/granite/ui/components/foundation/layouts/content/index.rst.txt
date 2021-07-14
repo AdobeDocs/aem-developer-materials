@@ -1,0 +1,29 @@
+
+Content
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/content
+   :layout:
+   :deprecated:
+
+   The layout to render :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/content/index`.
+
+   It has the following content structure at the main resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsContentMain]
+
+      /**
+       * The resource that will become ``.foundation-content-current`` element.
+       */
+      + current
+
+   Example::
+
+      + mycontent
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/content"
+        + current
+          - sling:resourceType = "granite/ui/components/foundation/container"

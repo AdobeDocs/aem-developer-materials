@@ -1,0 +1,9 @@
+*********************************
+Granite UI Foundation Server-side
+*********************************
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   */index

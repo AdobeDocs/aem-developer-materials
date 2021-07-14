@@ -1,0 +1,83 @@
+******************
+foundation-command
+******************
+
+``foundation-command`` is a vocabulary to standardize the use of commands (keyboard shortcuts).
+
+
+Markup
+======
+
+
+[data-foundation-command]
+-------------------------
+
+The keyboard shortcut used to execute the command.
+
+The valid value is described at ``FoundationCommand#getShortcut``.
+
+Selector Rule::
+
+   [data-foundation-command]
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-command``
+
+condition
+   Any actionable element having ``[data-foundation-command]`` that can be adapted to this type
+
+returned type
+   ``FoundationCommand``
+
+.. code-block:: ts
+
+   interface FoundationCommand {
+
+     /**
+      * Enhances the UI as a way to hint the existance of a shortcut.
+      */
+     enhanceUI(): void;
+
+     /**
+      * Executes the command.
+      */
+     execute(): void;
+
+     /**
+      * Returns a human readable label for the command. The value provided should be internalizalized appropriately.
+      */
+     getLabel(): string;
+
+     /**
+      * Returns the keyboard shortcut used to execute the command.
+      *
+      * It can include single keys, sequences or key modifiers.
+      * When <code>ctrl</code> or <code>cmd</code> is used, it will be normalized based on the client's OS.
+      *
+      * Grammar (ABNF)
+      *
+      * <pre><code>
+      * command: key / sequence / modifier-cmd
+      * key: valid-keyboard-key
+      * sequence: key 1*("-" key)
+      * modifier-cmd: modifier *("+" modifier) "+" key
+      * modifier: "ctrl" / "alt" / "meta" / "shift" / "cmd"
+      * </code></pre>
+      *
+      * e.g. <code>d</code>, <code>l-c</code>, <code>ctrl+c</code>, <code>cmd+i</code>
+      */
+     getShortcut(): string;
+
+     /**
+      * Returns <code>true</code> if the command is active.
+      *
+      * It is typically handled using visibility, meaning that if a command is visible in the UI,
+      * it is active for execution although other factors can also be taken into consideration
+      * to determine if a command is active.
+      */
+     isActive(): boolean;
+   }

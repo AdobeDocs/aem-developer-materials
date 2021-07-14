@@ -1,0 +1,1 @@
+{"name":"CQ.themes.TextEditor","doc":"The theme-specific constants for CQ.ipe.TextEditor.This class is a singleton and cannot be create...","configs":[],"props":[{"name":"EMPTY_COMPONENT_CLASS","doc":"&lt;static&gt; The CSS class that is used to mark an empty component (defaults to\n\"cq-text-placeh..."}],"methods":[],"events":[]}

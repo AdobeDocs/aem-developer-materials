@@ -1,0 +1,378 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Migration Guide to CoralUI 3-based &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../" src="../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page" href="coral2in3.html" />
+    <link rel="prev" title="Legacy CoralUI 2 Components" href="index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="coral2in3.html" title="The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Legacy CoralUI 2 Components"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Legacy CoralUI 2 Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="migration-guide-to-coralui-3-based">
+<h1>Migration Guide to CoralUI 3-based<a class="headerlink" href="#migration-guide-to-coralui-3-based" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="new-location">
+<h2>New Location<a class="headerlink" href="#new-location" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>A new set of Sling components of Granite UI Foundation is created for Coral3 under <a class="reference internal" href="../../coral/foundation/server.html"><span class="doc">/libs/granite/ui/components/coral/foundation</span></a></li>
+<li>A new clientlib of Granite UI Foundation, named <a class="reference internal" href="../../coral/foundation/clientlibs/foundation/index.html"><span class="doc">granite.ui.coral.foundation</span></a> is also created</li>
+<li>So basically there is one set for CoralUI 2-based components and one set for CoralUI 3-based components</li>
+<li>The new set will not be just a copy-paste of the old set, rather it will be cleaned up (e.g. streamlining, removing deprecated feature)</li>
+<li>It is recommended that a page only use either CoralUI 3-based or CoralUI 2-based set (i.e. not mixed)</li>
+</ol>
+</div>
+<div class="section" id="layout-concept">
+<h2>Layout Concept<a class="headerlink" href="#layout-concept" title="Permalink to this headline">¶</a></h2>
+<p>The new set will not use the <a class="reference internal" href="../../../docs/server/layout.html"><span class="doc">layout concept</span></a> anymore.
+This is to increase the simplicity of the understanding of Granite UI.
+Each layout component thus becomes a standard component.</p>
+<p>The layout mechanic itself is still there for other to use if needed.</p>
+<p>Before:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">mytabs</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+  <span class="o">+</span> <span class="n">layout</span>
+    <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/layouts/tabs&quot;</span>
+  <span class="o">+</span> <span class="n">items</span>
+    <span class="o">+</span> <span class="n">tab1</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Tab 1&quot;</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+    <span class="o">+</span> <span class="n">tab2</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Tab 2&quot;</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+      <span class="o">+</span> <span class="n">layoutConfig</span>
+        <span class="o">-</span> <span class="n">active</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>After:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">mytabs</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/tabs&quot;</span>
+  <span class="o">+</span> <span class="n">items</span>
+    <span class="o">+</span> <span class="n">tab1</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Tab 1&quot;</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/container&quot;</span>
+    <span class="o">+</span> <span class="n">tab2</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Tab 2&quot;</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/container&quot;</span>
+      <span class="o">+</span> <span class="n">parentConfig</span>
+        <span class="o">-</span> <span class="n">active</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="streamlining-the-api">
+<h2>Streamlining the API<a class="headerlink" href="#streamlining-the-api" title="Permalink to this headline">¶</a></h2>
+<p>Since we have to create a new set of RT and clientlib, we have an opportunity to revisit the API.</p>
+<ol class="arabic simple">
+<li>The <a class="reference internal" href="../../../docs/server/commonattrs.html"><span class="doc">common attributes</span></a>, such as <code class="docutils literal notranslate"><span class="pre">granite:class</span></code> are strictly implemented to replace existing properties, such as <code class="docutils literal notranslate"><span class="pre">class</span></code>.</li>
+<li>Unnecessary or similar component is removed.</li>
+<li><a class="reference internal" href="../../coral/foundation/clientlibs/foundation/js/validation/index.html"><span class="doc">foundation-validation</span></a> in the client-side replaces $.validator (deprecated).</li>
+</ol>
+</div>
+<div class="section" id="component-mapping">
+<h2>Component Mapping<a class="headerlink" href="#component-mapping" title="Permalink to this headline">¶</a></h2>
+<p>If not specify, by default the equivalence of an existing component can be found at the same relative path to /libs/granite/ui/components/coral/foundation.</p>
+<div class="section" id="removed-components">
+<h3>Removed Components<a class="headerlink" href="#removed-components" title="Permalink to this headline">¶</a></h3>
+<p>The following is the list of components that are removed in the new set.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="38%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Path</th>
+<th class="head">Replacement</th>
+<th class="head">Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>navigation</td>
+<td><a class="reference internal" href="../../coral/foundation/container/index.html#/libs/granite/ui/components/coral/foundation/container" title="/libs/granite/ui/components/coral/foundation/container"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">container</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>section</td>
+<td><a class="reference internal" href="../../coral/foundation/container/index.html#/libs/granite/ui/components/coral/foundation/container" title="/libs/granite/ui/components/coral/foundation/container"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">container</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>form/colorpicker</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>No Coral’s ColorPicker at this point</td>
+</tr>
+<tr class="row-odd"><td>form/decoratedtextfield</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Too low level</td>
+</tr>
+<tr class="row-even"><td>form/inputgroup</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Too low level</td>
+</tr>
+<tr class="row-odd"><td>form/layouts/actionfield</td>
+<td><a class="reference internal" href="../../coral/foundation/form/actionfield/index.html#/libs/granite/ui/components/coral/foundation/form/actionfield" title="/libs/granite/ui/components/coral/foundation/form/actionfield"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">actionfield</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>form/option</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Obsolete</td>
+</tr>
+<tr class="row-odd"><td>form/radio</td>
+<td><a class="reference internal" href="../../coral/foundation/form/radiogroup/index.html#/libs/granite/ui/components/coral/foundation/form/radiogroup" title="/libs/granite/ui/components/coral/foundation/form/radiogroup"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">form/radiogroup</span></code></a></td>
+<td>Cannot have standalone radio anymore</td>
+</tr>
+<tr class="row-even"><td>form/reset</td>
+<td><a class="reference internal" href="../../coral/foundation/button/index.html#/libs/granite/ui/components/coral/foundation/button" title="/libs/granite/ui/components/coral/foundation/button"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">button</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>form/searchfield</td>
+<td><a class="reference internal" href="../../coral/foundation/form/textfield/index.html#/libs/granite/ui/components/coral/foundation/form/textfield" title="/libs/granite/ui/components/coral/foundation/form/textfield"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">form/textfield</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>form/selector</td>
+<td><a class="reference internal" href="../../coral/foundation/form/buttongroup/index.html#/libs/granite/ui/components/coral/foundation/form/buttongroup" title="/libs/granite/ui/components/coral/foundation/form/buttongroup"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">form/buttongroup</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>form/submit</td>
+<td><a class="reference internal" href="../../coral/foundation/button/index.html#/libs/granite/ui/components/coral/foundation/button" title="/libs/granite/ui/components/coral/foundation/button"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">button</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>form/taglist</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Too low level</td>
+</tr>
+<tr class="row-odd"><td>form/wizard/*</td>
+<td><a class="reference internal" href="../../coral/foundation/wizard/index.html#/libs/granite/ui/components/coral/foundation/wizard" title="/libs/granite/ui/components/coral/foundation/wizard"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">wizard</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>admin/layouts/*</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Obsolete</td>
+</tr>
+<tr class="row-odd"><td>admin/layouttoggle</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Obsolete</td>
+</tr>
+<tr class="row-even"><td>admin/page</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Obsolete</td>
+</tr>
+<tr class="row-odd"><td>admin/toolbar</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Obsolete</td>
+</tr>
+<tr class="row-even"><td>layouts/cardview</td>
+<td><a class="reference internal" href="../../coral/foundation/masonry/index.html#/libs/granite/ui/components/coral/foundation/masonry" title="/libs/granite/ui/components/coral/foundation/masonry"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">masonry</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>layouts/container</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Obsolete</td>
+</tr>
+<tr class="row-even"><td>layouts/content</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Tied to Shell implementation</td>
+</tr>
+<tr class="row-odd"><td>layouts/dialog</td>
+<td><a class="reference internal" href="../../coral/foundation/wizard/index.html#/libs/granite/ui/components/coral/foundation/wizard" title="/libs/granite/ui/components/coral/foundation/wizard"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">wizard</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>layouts/collapsible</td>
+<td><a class="reference internal" href="../../coral/foundation/accordion/index.html#/libs/granite/ui/components/coral/foundation/accordion" title="/libs/granite/ui/components/coral/foundation/accordion"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">accordion</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>layouts/columnview</td>
+<td><a class="reference internal" href="../../coral/foundation/columnview/index.html#/libs/granite/ui/components/coral/foundation/columnview" title="/libs/granite/ui/components/coral/foundation/columnview"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">columnview</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>layouts/fit</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Each container-like component may support <code class="docutils literal notranslate"><span class="pre">maximized</span></code> feature</td>
+</tr>
+<tr class="row-odd"><td>layouts/fixedcolumns</td>
+<td><a class="reference internal" href="../../coral/foundation/fixedcolumns/index.html#/libs/granite/ui/components/coral/foundation/fixedcolumns" title="/libs/granite/ui/components/coral/foundation/fixedcolumns"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">fixedcolumns</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>layouts/list</td>
+<td><a class="reference internal" href="../../coral/foundation/list/index.html#/libs/granite/ui/components/coral/foundation/list" title="/libs/granite/ui/components/coral/foundation/list"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">list</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>layouts/listview</td>
+<td><a class="reference internal" href="../../coral/foundation/table/index.html#/libs/granite/ui/components/coral/foundation/table" title="/libs/granite/ui/components/coral/foundation/table"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">table</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>layouts/modal</td>
+<td><a class="reference internal" href="../../coral/foundation/dialog/index.html#/libs/granite/ui/components/coral/foundation/dialog" title="/libs/granite/ui/components/coral/foundation/dialog"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">dialog</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>layouts/mode</td>
+<td><a class="reference internal" href="../../coral/foundation/mode/switcher/index.html#/libs/granite/ui/components/coral/foundation/mode/switcher" title="/libs/granite/ui/components/coral/foundation/mode/switcher"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">mode/switcher</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>layouts/form</td>
+<td><a class="reference internal" href="../../coral/foundation/form/index.html#/libs/granite/ui/components/coral/foundation/form" title="/libs/granite/ui/components/coral/foundation/form"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">form</span></code></a></td>
+<td><code class="docutils literal notranslate"><span class="pre">form</span></code> only supports vertical/aligned styling. For default/edit mode use <cite>mode/form &lt;/libs/granite/ui/components/coral/foundation/mode/form&gt;</cite>.</td>
+</tr>
+<tr class="row-odd"><td>layouts/popover</td>
+<td><a class="reference internal" href="../../coral/foundation/popover/index.html#/libs/granite/ui/components/coral/foundation/popover" title="/libs/granite/ui/components/coral/foundation/popover"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">popover</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>layouts/tabs</td>
+<td><a class="reference internal" href="../../coral/foundation/tabs/index.html#/libs/granite/ui/components/coral/foundation/tabs" title="/libs/granite/ui/components/coral/foundation/tabs"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">tabs</span></code></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>layouts/well</td>
+<td><a class="reference internal" href="../../coral/foundation/well/index.html#/libs/granite/ui/components/coral/foundation/well" title="/libs/granite/ui/components/coral/foundation/well"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">well</span></code></a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Migration Guide to CoralUI 3-based</a><ul>
+<li><a class="reference internal" href="#new-location">New Location</a></li>
+<li><a class="reference internal" href="#layout-concept">Layout Concept</a></li>
+<li><a class="reference internal" href="#streamlining-the-api">Streamlining the API</a></li>
+<li><a class="reference internal" href="#component-mapping">Component Mapping</a><ul>
+<li><a class="reference internal" href="#removed-components">Removed Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Legacy CoralUI 2 Components</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="coral2in3.html"
+                        title="next chapter">The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../_sources/jcr_root/libs/granite/ui/components/legacy/coral2/migration.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="coral2in3.html" title="The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Legacy CoralUI 2 Components"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Legacy CoralUI 2 Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

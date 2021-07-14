@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.TaskMgr","doc":"A static CQ.Ext.util.TaskRunner instance that can be used to start and stop arbitrary tasks.  See...","configs":[],"props":[],"methods":[{"name":"start","doc":"Starts a new task."},{"name":"stop","doc":"Stops an existing running task."},{"name":"stopAll","doc":"Stops all tasks that are currently running."}],"events":[]}

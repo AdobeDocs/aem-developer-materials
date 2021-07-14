@@ -1,0 +1,268 @@
+*****************
+foundation-wizard
+*****************
+
+A wizard is a user interaction that is defined by a sequence of predefined steps. Usually it is used in conjunction with a form.
+
+
+Markup
+======
+
+
+.foundation-wizard
+------------------
+
+Indicates the element is a wizard. A wizard MUST NOT be nested inside another wizard.
+
+Selector Rule::
+
+   .foundation-wizard
+
+
+.foundation-wizard-step
+-----------------------
+
+Indicates the element is a step of a wizard. It MUST be a descendant of ``.foundation-wizard`` element.
+
+Selector Rule::
+
+   .foundation-wizard .foundation-wizard-step
+
+
+[data-foundation-wizard-step-title]
+-----------------------------------
+
+Indicates the title of the step.
+
+Selector Rule::
+
+   .foundation-wizard-step[data-foundation-wizard-step-title]
+
+
+.foundation-wizard-step-active
+------------------------------
+
+Indicates the step that is currently active. It MUST be applied to ``.foundation-wizard-step`` element. There MUST be exactly one active step at a time. ``foundation-wizard-stepchange`` event MUST be triggered after moving from one step to another. See ``foundation-wizard-stepchange`` event section for details.
+
+Selector Rule::
+
+   .foundation-wizard-step.foundation-wizard-step-active
+
+
+[data-foundation-wizard-step-validation]
+----------------------------------------
+
+``false`` to skip validation for this particular step. Otherwise the validation is performed when step change is about to occur.
+
+Selector Rule::
+
+   .foundation-wizard-step[data-foundation-wizard-step-validation]
+
+
+.foundation-wizard-control
+==========================
+
+Indicates the element to control the transition from one step to another. The ``.foundation-wizard`` element managed by this control is determined by the closest ancestor (i.e. equivalent using jQuery: ``control.closest(".foundation-wizard")``).
+
+Selector Rule::
+
+   .foundation-wizard-control
+
+
+[data-foundation-wizard-control-action]
+=======================================
+
+Indicates the action to take. The valid values are:
+
+prev
+   Go to previous step; ``.foundation-wizard-step-active`` and ``foundation-wizard-stepchange`` event MUST be handled accordingly.
+
+next
+   Go to next step; ``.foundation-wizard-step-active`` and ``foundation-wizard-stepchange`` event MUST be handled accordingly.
+
+cancel
+   Cancel the wizard; the component handling ``foundation-wizard`` is free to decide the behavior of cancel.
+
+Selector Rule::
+
+   .foundation-wizard-control[data-foundation-wizard-control-action]
+
+
+[data-foundation-wizard-control-src]
+====================================
+
+Indicates that upon control activation, additional steps will be fetched and added as the next steps. The valid value is a `URI Template <http://tools.ietf.org/html/rfc6570>`_, where each HTML input (e.g. <input>, <select>) of the steps up to the active one is passed as variable. The HTML input’s name and value are used as variable name and value respectively.
+
+The valid response returned by the URI—by expanding the mentioned URI Template—is the valid HTML markup of ``.foundation-wizard-step``. For example:
+
+.. code-block:: html
+
+   <div>
+     <div class="foundation-wizard-step" data-foundation-wizard-step-title="Additional Step 1">
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="prev">Prev</button>
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="next">Next</button>
+
+       <!-- The content of the step -->
+     </div>
+     <div class="foundation-wizard-step" data-foundation-wizard-step-title="Additional Step 2">
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="prev">Prev</button>
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="next">Next</button>
+
+       <!-- The content of the step -->
+     </div>
+   </div>
+
+This attribute is only applicable to ``[data-foundation-wizard-control-action]`` with the value of ``next``.
+
+Selector Rule::
+
+   [data-foundation-wizard-control-action=next][data-foundation-wizard-control-src]
+
+Example:
+
+.. code-block:: html
+
+   <div class="foundation-wizard">
+     <div class="foundation-wizard-step">
+       <a class="foundation-wizard-control" href="/home.html" data-foundation-wizard-control-action="cancel">Cancel</a>
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="next">Next</button>
+
+       <input name="p1" value="abc">
+     </div>
+     <div class="foundation-wizard-step foundation-wizard-step-active">
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="prev">Prev</button>
+       <button class="foundation-wizard-control" data-foundation-wizard-control-action="next" data-foundation-wizard-control-src="/nextsteps.html?p1={p1}&p2={p2}">Next</button>
+
+       <input name="p2" value="xyz">
+     </div>
+   </div>
+
+Upon clicking next, the value of ``[data-foundation-wizard-control-src]`` is expanded into ``/nextsteps.html?p1=abc&p2=xyz``.
+
+
+Event
+=====
+
+
+foundation-wizard-stepchange
+----------------------------
+
+This event MUST be triggered after moving from one step to another. It is triggered at ``.foundation-wizard`` element, with the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationWizardStepchangeEvent {
+     /**
+      * @param to The current active step
+      * @param from The previous active step
+      */
+     (to: Element, from?: Element): void;
+   }
+
+Example:
+
+.. code-block:: js
+
+   $(document).on("foundation-wizard-stepchange", ".foundation-wizard", function(e, to, from) {});
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-wizard``
+
+condition
+   ``.foundation-wizard``
+
+returned type
+   ``FoundationWizard``
+
+.. code-block:: ts
+
+   interface FoundationWizard {
+     /**
+      * Toggles the next button. This method will try to find all next buttons of the current step.
+      *
+      * @param enable A boolean value to determine whether the button should be enabled or disabled
+      */
+     toggleNext(enable: boolean): void;
+
+     /**
+      * Toggles the prev button. This method will try to find all prev buttons of the current step.
+      *
+      * @param enable A boolean value to determine whether the button should be enabled or disabled
+      */
+     togglePrev(enable: boolean): void;
+
+     /**
+      * Toggles the cancel button. This method will try to find all cancel buttons of the current step.
+      *
+      * @param enable A boolean value to determine whether the button should be enabled or disabled
+      */
+     toggleCancel(enable: boolean): void;
+
+     /**
+      * Toggle an action button. This method will try to find all buttons of the current step with the given action.
+      *
+      * @param action=prev|next|cancel The action buttons to toggle
+      * @param enable A boolean value to determine whether the button should be enabled or disabled
+      */
+     toggle(action: string, enable: boolean): void;
+
+     /**
+      * Go to the next step. This method will show the next step regardless if it's logically make sense or not (e.g. due to validation).
+      * If there is no next step, this method does nothing.
+      */
+     next(): void;
+
+     /**
+      * Go to the previous step. This method will show the previous step regardless if it's logically make sense or not.
+      * If there is no previous step, this method does nothing.
+      */
+     prev(): void;
+
+     /**
+      * Appends the given array of step elements to the wizard.
+      *
+      * Since the wizard can have complex layout, the exact requirement of structure of the step element (the markup) is decided at the implementation level.
+      * The implementation may transform the element to produce the final step element implementing <code>.foundation-wizard-step</code>.
+      *
+      * @param steps The steps to be appended
+      * @param index The index the step is added. If not passed, the step is added as the last one.
+      */
+     append(steps: Element[], index?: number): void;
+
+     /**
+      * Appends the given array of step elements to the wizard after the given reference step.
+      *
+      * Since the wizard can have complex layout, the exact requirement of structure of the step element (the markup) is decided at the implementation level.
+      * The implementation may transform the element to produce the final step element implementing <code>.foundation-wizard-step</code>.
+      *
+      * @param steps The steps to be appended
+      * @param refStep The reference step
+      */
+     appendAfter(steps: Element[], refStep: Element): void;
+
+     /**
+      * Removes the given array of step elements from the wizard.
+      * If the current step is removed, the resulting behaviour is undefined.
+      *
+      * @param steps The steps to be removed
+      */
+     remove(steps: Element[]): void;
+
+     /**
+      * Returns the previous steps of the given step.
+      */
+     getPrevSteps(step: Element): Element[];
+   }
+
+
+Validation
+==========
+
+``foundation-wizard`` implementation MUST provide validation of the current step just before changing to a next step depending on the configuration of ``[data-foundation-wizard-step-validation]``.
+
+Also, the next button of a step is enabled/disabled according to the validity of the step.
+Note for this particular feature, since it can be implemented generically to only depend on ``foundation-wizard`` vocabulary, it is provided OOTB. Implementor doesn't need to implement it.

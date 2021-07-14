@@ -1,0 +1,103 @@
+*********************
+foundation-selections
+*********************
+
+``foundation-selections`` is a vocabulary about the concept of selection, which is built on top of :doc:`foundation-collection <collection>`.
+
+
+.foundation-selections-item
+===========================
+
+Indicates the element is selected. It MUST be applied to ``.foundation-collection-item`` element. ``foundation-selections-change`` event MUST be triggered after modifying the selection status. See ``foundation-selections-change`` event section for details.
+
+Selector Rule::
+
+   .foundation-collection-item.foundation-selections-item
+
+
+[foundation-selections-mode]
+============================
+
+Indicates the selection mode of the collection. It MUST be applied to ``.foundation-collection`` element. The valid values are:
+
+single
+   Only maximum single selection allowed
+
+multiple (default)
+   Zero or more selection allowed
+
+Selector Rule::
+
+   .foundation-collection[foundation-selections-mode]
+
+
+foundation-selections-change event
+==================================
+
+This event MUST be triggered after modifying the selection status of ``.foundation-selections-item`` element(s) at ``.foundation-collection`` element. The event MAY be triggered once after all the items are finished modified (i.e. modifying by batch).
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-selections``
+
+condition
+   ``.foundation-collection``
+
+returned type
+   ``FoundationSelections``
+
+.. code-block:: ts
+
+   interface FoundationSelections {
+     /**
+      * Returns the count of selected items.
+      */
+     count(): number;
+
+     /**
+      * Clears the selections. This method will trigger <code>foundation-selections-change</code> event.
+      *
+      * @param suppressEvent Suppress <code>foundation-selections-change</code> event. Note that if you suppress the event, you are still required to trigger the event yourself as mandated by the vocabulary.
+      */
+     clear(suppressEvent?: boolean): void;
+
+     /**
+      * Selects the given element. This method will trigger <code>foundation-selections-change</code> event.
+      * The element MUST be a <code>.foundation-collection-item</code>.
+      */
+     select(el: Element): void;
+
+     /**
+      * Deselects the given element. This method will trigger <code>foundation-selections-change</code> event.
+      * The element MUST be a <code>.foundation-collection-item</code>.
+      */
+     deselect(el: Element): void;
+   }
+
+
+ARIA
+====
+
+When the ``.foundation-collection`` element is also ``[role=listbox]``, during ``foundation-selections-change`` event,
+the ``[aria-selected]`` of ``.foundation-collection-item`` is set according to the selection status (based on ``.foundation-selections-item``).
+
+Also the validation of ``.foundation-collection`` element is also performed during that event.
+
+Note for the above features, since they can be implemented generically to only depend on ``foundation-selections`` vocabulary, they are provided OOTB. Implementor doesn't need to implement them.
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

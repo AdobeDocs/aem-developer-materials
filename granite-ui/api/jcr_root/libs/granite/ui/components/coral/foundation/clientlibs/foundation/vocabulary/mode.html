@@ -1,0 +1,166 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-mode &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-overlay-anchor" href="overlay/anchor.html" />
+    <link rel="prev" title="foundation-field" href="field.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="overlay/anchor.html" title="foundation-overlay-anchor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="field.html" title="foundation-field"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-mode">
+<h1>foundation-mode<a class="headerlink" href="#foundation-mode" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-mode</span></code> is a concept of mode. For example, a collection-related component can change from default mode to selection mode. Likewise, the form-related component can change from default mode to edit mode.</p>
+<p>To change from one mode to another, there will be a component triggering <code class="docutils literal notranslate"><span class="pre">foundation-mode-change</span></code> event (e.g. <a class="reference internal" href="../js/mode/change.html"><span class="doc">.foundation-mode-change</span></a>), and zero or more components listening to that event.</p>
+<div class="section" id="grouping">
+<h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
+<p>Grouping is mechanism so that multiple components can be grouped together when the mode is changed. When a component subscribes to <code class="docutils literal notranslate"><span class="pre">foundation-mode-change</span></code> event, if the <code class="docutils literal notranslate"><span class="pre">group</span></code> parameter of the event is the same group as the subscriber then the event is processed, otherwise it is ignored.</p>
+<p>For example you have a collection component that can change mode to selection mode and a form component that can change mode to edit mode. These two components are not related and thus we will have a set of toggle buttons to change the mode for collection and form separately. And importantly the collection must only listen to its own toggle event, not toggle for the form and vice versa.</p>
+<p>How it is done is by putting HTML attribute to the subscriber’s element with the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">group</span><span class="o">=</span><span class="s2">&quot;&lt;groupName&gt;&quot;</span>
+</pre></div>
+</div>
+<p>where the &lt;groupName&gt; is a string that is assigned by content author to indicate which components having the same group.</p>
+<p>This mechanic is very similar to grouping mechanic in HTML radio.</p>
+</div>
+<div class="section" id="foundation-mode-change-event">
+<h2>foundation-mode-change event<a class="headerlink" href="#foundation-mode-change-event" title="Permalink to this headline">¶</a></h2>
+<p>The event that MUST be triggered when the mode is changed. It MUST be triggered at the source element changing the mode. The component that needs to change behaviour can listen to this event to do so.</p>
+<p>The event has the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationModeChangeEvent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @param mode The mode that is changing to</span>
+<span class="cm">   * @param group The group the changing mode belongs to</span>
+<span class="cm">   */</span>
+  <span class="p">(</span><span class="nx">mode</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">group</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-mode-change&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">mode</span><span class="p">,</span> <span class="nx">group</span><span class="p">)</span> <span class="p">{});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../_images/graphviz-c17c2d22035c140a832252a68e741b8bebc710c8.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-mode&quot; {
+  rankdir=BT;
+  &quot;foundation-mode-change&quot; -&gt; &quot;foundation-mode&quot; [label=&quot;controls&quot;, weight=8];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-mode</a><ul>
+<li><a class="reference internal" href="#grouping">Grouping</a></li>
+<li><a class="reference internal" href="#foundation-mode-change-event">foundation-mode-change event</a></li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="field.html"
+                        title="previous chapter">foundation-field</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="overlay/anchor.html"
+                        title="next chapter">foundation-overlay-anchor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="overlay/anchor.html" title="foundation-overlay-anchor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="field.html" title="foundation-field"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

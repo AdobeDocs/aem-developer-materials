@@ -1,0 +1,44 @@
+
+Content
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/layouts/content
+   :layout:
+   :deprecated:
+
+   The layout to render Endor content area.
+   It is also applying :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/content/index` vocabulary.
+
+   It expects the main resource to have the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorLayoutsContentMain]
+
+      /**
+       * The side panel.
+       */
+      + aside
+
+      /**
+       * The header panel.
+       */
+      + header
+
+      /**
+       * The actual content of the page.
+       */
+      + content
+
+   Example::
+
+      + mycontent
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/endor/layouts/content"
+        + aside
+          - sling:resourceType = "granite/ui/components/foundation/container"
+        + header
+          - sling:resourceType = "granite/ui/components/foundation/container"
+        + content
+          - sling:resourceType = "granite/ui/components/foundation/container"

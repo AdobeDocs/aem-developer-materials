@@ -1,0 +1,145 @@
+
+FileUpload
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/fileupload
+   :supertype: /libs/granite/ui/components/foundation/form/field
+   :deprecated:
+
+   A field component to upload file.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormFileUpload]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String) = 'file'
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The text of the button.
+       */
+      - text (String) i18n
+
+      /**
+       * The icon of the button.
+       */
+      - icon (String)
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) multiple < 'secondary', 'quiet'
+
+      /**
+       * Indicates if multiple files can be uploaded.
+       */
+      - multiple (Boolean)
+
+      /**
+       * The parameter representing the file name, for instance "./fileName" or "./image/fileName".
+       It will be used to determine the (relative) location where to store the name of the file.
+       */
+      - fileNameParameter (String)
+
+      /**
+       * The location where to store the reference of the file (when a file already uploaded on the server is used), usually ./fileReference or ./image/fileReference.
+       NB: This is only working in the context of AEM Authoring
+       */
+      - fileReferenceParameter (String)
+
+      /**
+       * The URL where to upload the file, you can use ``${suffix.path}`` to use the current suffix
+       */
+      - uploadUrl (String)
+
+      /**
+       * The upload URL builder.
+       */
+      - uploadUrlBuilder (String)
+
+      /**
+       * The file size limit.
+       */
+      - sizeLimit (Long)
+
+      /**
+       * ``true`` to make the upload starts automatically once the file is selected.
+       */
+      - autoStart (String)
+
+      /**
+       * Prefers HTML5 to upload files (if browser allows it).
+       */
+      - useHTML5 (Boolean) = true
+
+      /**
+       * The drop zone selector to upload files from file system directly (if browser allows it).
+       */
+      - dropZone (String)
+
+      /**
+       * The browse and selection filter for file selection. E.g: [".png",".jpg"] or ["image/\*"].
+       */
+      - mimeTypes (String) multiple
+
+	  /**
+       * Flag to indicate if chunked upload is supported.
+       */
+      - chunkUploadSupported (Boolean) = false
+
+      /**
+       * Size of chunk.
+       */
+      - chunkSize (Long)
+
+	  /**
+       * Minimum file size which will use chunked upload.
+       */
+      - chunkUploadMinFileSize (Long)

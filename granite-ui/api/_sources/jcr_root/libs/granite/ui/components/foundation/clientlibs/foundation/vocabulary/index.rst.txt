@@ -1,0 +1,16 @@
+********************************
+Granite UI Foundation Vocabulary
+********************************
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   collection
+   selections
+   toggleable
+   mode
+   editable
+   contentloaded
+   validation
+   wizard

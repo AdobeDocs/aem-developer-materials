@@ -1,0 +1,62 @@
+
+MultiLayouts
+============
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/multilayouts
+   :layout:
+   :deprecated:
+
+   The layout that acts as a switch to display one of many configured layouts, where the actual rendering is done.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsMultiLayouts]
+
+      /**
+       * The actual layout to be displayed. The resource names of available layouts are matched with the value of this property.
+       * If there is no match, then the first layout is used.
+       */
+      - layout (StringEL)
+
+      /**
+       * The layout names to skip rendering the empty layout.
+       * This is mainly used to delegate the empty rendering to the actual layout itself.
+       */
+      - skipEmpty (String) multiple
+
+      /**
+       * Each children of this resource represents the available layout to be displayed.
+       */
+      + layouts
+
+      /**
+       * The layout to be displayed when the item data source is empty.
+       */
+      + empty
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mymultilayouts
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/multilayouts"
+          - layout = '${state["cq.sites.childpages.layoutId"].string}'
+          + empty
+            - sling:resourceType = "my/datasource"
+          + layouts
+            + card
+              - sling:resourceType = "granite/ui/components/foundation/layouts/cardview"
+              - stateId = "cq.sites.childpages"
+              - layoutId = "card"
+            + list
+              - sling:resourceType = "granite/ui/components/foundation/layouts/listview"
+              - stateId = "cq.sites.childpages"
+              - layoutId = "list"
+            + columns
+              - sling:resourceType = "granite/ui/components/foundation/layouts/columnview"
+              - stateId = "cq.sites.childpages"
+              - layoutId = "columns"

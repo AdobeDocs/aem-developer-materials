@@ -1,0 +1,11 @@
+Page
+====
+
+The components related to admin page.
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

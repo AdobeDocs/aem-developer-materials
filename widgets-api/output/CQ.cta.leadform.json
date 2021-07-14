@@ -1,0 +1,1 @@
+{"name":"CQ.cta.leadform","doc":"A helper class providing a set of WCM-related utilities.This class is a singleton and cannot be c...","configs":[],"props":[],"methods":[{"name":"getLeadFormPostOptions","doc":"&lt;static&gt; Returns the available languages as options. This method can be used\ndirectly as CQ..."}],"events":[]}

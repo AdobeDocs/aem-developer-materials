@@ -1,0 +1,36 @@
+{
+  "_links": {
+    "self": { "href": "base/build/tests/fixtures/content.CUI.ColumnView.json" },
+    "next": { "href": "base/build/tests/fixtures/data.CUI.ColumnView.json" }
+  },
+  "_embedded": {
+    "items": [{
+      "_links": {
+        "self": {
+          "href": "base/build/tests/fixtures/content/en.json",
+          "title": "English"
+        }
+      },
+      "icon": "folder",
+      "hasChildren": true
+    },{
+      "_links": {
+        "self": {
+          "href": "base/build/tests/fixtures/content/fr.json",
+          "title": "Français"
+        }
+      },
+      "icon": "folder",
+      "hasChildren": true
+    },{
+      "_links": {
+        "self": {
+          "href": "base/build/tests/fixtures/content.CUI.ColumnView.json",
+          "title": "Infinite Levels To Test Scrolling"
+        }
+      },
+      "icon": "folder",
+      "hasChildren": true
+    }]
+  }
+}

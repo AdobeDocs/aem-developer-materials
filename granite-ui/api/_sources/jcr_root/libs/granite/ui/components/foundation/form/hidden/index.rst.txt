@@ -1,0 +1,52 @@
+
+Hidden
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/hidden
+   :supertype: /libs/granite/ui/components/foundation/form/field
+   :deprecated:
+
+   A hidden field component.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormHidden] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The value of the field.
+       */
+      - value (StringEL)

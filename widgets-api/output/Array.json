@@ -1,0 +1,1 @@
+{"name":"Array","doc":"","configs":[],"props":[],"methods":[{"name":"indexOf","doc":"Checks whether or not the specified object exists in the array."},{"name":"remove","doc":"Removes the specified object from the array.  If the object is not found nothing happens."}],"events":[]}

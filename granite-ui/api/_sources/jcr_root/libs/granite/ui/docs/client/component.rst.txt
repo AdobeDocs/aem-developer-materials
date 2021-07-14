@@ -1,0 +1,6 @@
+********************
+Granite UI Component
+********************
+
+A component is a JavaScript code that is providing behavior for a certain functionality.
+The common cases are interaction patterns and layouts. Also, it is often manipulating the :doc:`vocabulary <vocabulary>` that is relevant to it.

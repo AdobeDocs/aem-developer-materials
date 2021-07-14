@@ -1,0 +1,135 @@
+
+Action
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/collection/action
+   :deprecated:
+
+   Action is a component specializing to render :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/collection/action/index`. It will be rendered as a ``<button>``.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:CollectionAction] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The selector to the ``.foundation-collection``. This is optional and used when the component is placed outside the ``.foundation-collection``.
+       */
+      - target (String)
+
+      /**
+       * Show or hide the component according to how many ``.foundation-collection-item`` in the collection.
+       *
+       * Values:
+       *
+       * 0
+       *    The property type is ``long``. Show when there is no item at all; hide otherwise.
+       *
+       * >0
+       *    The property type is ``string``. Show when there is at least one item; hide otherwise.
+       */
+      - activeCount < 0, ">0"
+
+      /**
+       * Show or hide the component according to how many ``.foundation-selections-item`` in the collection.
+       *
+       * Values:
+       *
+       * none
+       *    Show when there is no selection at all; hide otherwise.
+       *
+       * single
+       *    Show when there is exactly one selection; hide otherwise.
+       *
+       * multiple
+       *    Show when there is one or more selections; hide otherwise.
+       */
+      - activeSelectionCount (String) < 'none', 'single', 'multiple'
+
+      /**
+       * The action to be performed when the component is activated. If this property is not specified, no action will be performed.
+       */
+      - action (String)
+
+      /**
+       * Command used as a shortcut for the action.
+       *
+       * When ``ctrl`` or ``cmd`` is used, it will be normalized based on the client's OS.
+       *
+       * **Grammar (ABNF)**
+       *
+       * .. productionlist::
+       *    command: key / sequence / modifier-cmd
+       *    key: valid-keyboard-key
+       *    sequence: key 1*("-" key)
+       *    modifier-cmd: modifier *("+" modifier) "+" key
+       *    modifier: "ctrl" / "alt" / "meta" / "shift" / "cmd"
+       *
+       * e.g. ``d``, ``m``, ``c``, ``l-c``, ``c-r``, ``ctrl+c``, ``alt+1``, ``meta+t``, ``shift+a``, ``cmd+i``
+       */
+      - command (String)
+
+      /**
+       * ``true`` to disable the button; ``false`` otherwise.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The text of the button.
+       */
+      - text (String) i18n
+
+      /**
+       * The icon class.
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * Visually hide the text.
+       */
+      - hideText (Boolean)
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) multiple < 'primary', 'warning', 'quiet', 'square', 'large', 'block'
+
+      /**
+       * Indicates the data property of ``foundation-collection-action``. It will be converted to JSON.
+       *
+       * Its child nodes support property names with the following regex:
+       *
+       * /(.+)\.uritemplate/
+       *    Indicate the value is a URITemplate. Context path is appended accordingly. It supports EL. The ``.uritemplate`` suffix is removed from the property name. Example::
+       *
+       *       + data
+       *         - href.uritemplate = "/action.html{+item}"  // will produce {"href" : "/ctx/action.html{+item}"}
+       *
+       * /(.+)\.uritemplate.abs/
+       *    Indicate the value is a URITemplate **that is resolved into an absolute path**. Context path will be appended. It supports EL. The ``.uritemplate.abs`` suffix is removed from the property name.
+       *    This scenario is important when you use the variable at the first char of the URITemplate, thus this component cannot know if the variable is going to be resolved as a relative path or absolute path.
+       *    Example::
+       *
+       *       + data
+       *         - href.uritemplate.abs = "{+item}.html"  // will produce {"href" : "/ctx{+item}.html"}
+       *
+       * /(.+)\.url/
+       *    Indicate the value is a URL. Context path is appended accordingly. It supports EL. The ``.url`` suffix is removed from the property name. Example::
+       *
+       *       + data
+       *         - href.url = "/action.html"  // will produce {"href" : "/ctx/action.html"}
+       *
+       * /.+/
+       *    No processing is done. The value is passed as is. Example::
+       *
+       *       + data
+       *         - href = "/action.html"  // will produce {"href" : "/action.html"}
+       *         - int = 123  // will produce {"int" : 123}
+       */
+      + data

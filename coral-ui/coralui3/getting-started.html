@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <title>Getting Started | CoralUI</title>
+    <link rel="shortcut icon" type="image/ico" href="../resources/favicon_coral.ico">
+    <script src="js/libs/moment.js"></script>
+    <script src="js/libs/jquery.js"></script>
+    <script src="js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/coral.css">
+    <script src="../js/guide.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/guide.min.css">
+  </head>
+  <body class="coral--light guide-Background u-coral-clearFix">
+    <div class="guide-Progress"></div>
+    <div class="guide-Container">
+      <header class="guide-Header coral--dark">
+        <div class="guide-Header-menu">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right">
+            <div class="guide-Header--left"><img src="../resources/adobe_icon.png" alt="CoralUI Logo">
+              <div class="guide-Header-home"><a href="index.html">
+                  <h2 class="coral-Heading coral-Heading--2 guide-Header-title">Coral<span class="guide-Header-subtitle">UI</span></h2></a></div>
+            </div>
+            <nav class="guide-Header-nav"><a class="coral-Heading coral-Heading--2 guide-Header-link is-selected" href="getting-started.html">Getting Started</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="styles.html">Styles</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="components.html">Components</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="shell3.html">Shell 3</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="documentation.html">Docs &amp; Guides</a>
+              <div class="guide-ThemeSwitcher">
+                <coral-tag><span class="guide-Version">com.adobe.granite.ui.coralui3-1.5.42</span></coral-tag>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="guide-MainContent guide-Scroll" role="main">
+        <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right guide-Content--padding-top">
+          <div class="guide-ScrollNav" role="complementary">
+            <div class="guide-Scroll guide-ScrollNav_Wrapper"></div>
+          </div>
+          <div class="guide-ScrollContent--right">
+            <div class="guide-Component">
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="introduction"><a class="coral-Link coral-Link--subtle" href="#introduction">Introduction</a></h2>
+                <p>This section contains the first steps of getting started with CoralUI.</p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="whatBrowsersCanIUse?" guide-toc-title="Browser Support"><a class="coral-Link coral-Link--subtle" href="#whatBrowsersCanIUse?">What browsers can I use?</a></h3>
+                  <p>CoralUI is designed to support the following browsers</p>
+                  <ul class="coral-List">
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Chrome (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Safari (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Firefox (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Edge (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">IE 11</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">iOS 7+</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Android 4.4+</h4>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="gettingStarted"><a class="coral-Link coral-Link--subtle" href="#gettingStarted">Getting Started</a></h2>
+                <p>
+                  The following information is intended to get you up and running quickly with CoralUI.
+                  
+                </p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="howDoIWorkWithCoralUIComponents?" guide-toc-title="Working with Components"><a class="coral-Link coral-Link--subtle" href="#howDoIWorkWithCoralUIComponents?">How do I work with CoralUI Components?</a></h3>
+                  <p>
+                    Most components in CoralUI are JavaScript components, which offer more functionality and are often more complex. CoralUI has a large number of components that you can view in the <a class="coral-Link" href="components.html">Components</a> section.
+                    
+                  </p>
+                  <h3 class="coral-Heading coral-Heading--3">Alert Example</h3>
+                  <p>
+                    Below are some examples of how to use <code>Coral.Alert</code>, which is a typical CoralUI component.  The markup for an Alert is as follows:
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint"> &lt;coral-alert&gt;
+   &lt;coral-alert-header&gt;INFO&lt;/coral-alert-header&gt;
+   &lt;coral-alert-content&gt;This is is an alert.&lt;/coral-alert-content&gt;
+ &lt;/coral-alert&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <coral-alert>
+                      <coral-alert-header>INFO</coral-alert-header>
+                      <coral-alert-content>This is an alert</coral-alert-content>
+                    </coral-alert>
+                  </div>
+                  <p>
+                    Alternately, you can instantiate components using the JavaScript <code>new</code> operator or by calling <code>document.createElement()</code>.
+                    
+                  </p>
+                  <h3 class="coral-Heading coral-Heading--4">JavaScript Examples</h3>
+                  <p>Using <code>document.createElement</code>:</p>
+                  <pre class="prettyprint">var alert = document.createElement('coral-alert');</pre>
+                  <p>Using <code>document.createElement</code>:</p>
+                  <pre class="prettyprint">var alert = new Coral.Alert();</pre>
+                  <h3 class="coral-Heading coral-Heading--3">Extending Native Elements</h3>
+                  <p>
+                    A few CoralUI components use the <code>is</code> attribute to extend a native element. Here is an example using <code>&lt;button&gt;</code> via markup. The resulting DOM element is the identical to one instantiated with JavaScript and will have the same methods and properties.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint"> &lt;button is="coral-button"&gt;Default Button&lt;/button&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <button is="coral-button">Default Button</button>
+                  </div>
+                  <p>
+                    Instantiation using <code>createElement</code> is a bit special for these type of components due to the fact that <code>Coral.Button</code> extends the native <code>HTMLButtonElement</code>. The <code>createElement</code> function takes the <code>is</code> attribute as a second parameter.
+                    
+                  </p>
+                  <pre class="prettyprint">var button = document.createElement('button', 'coral-Button');</pre>
+                  <p>You may still use the <code>new</code> operator for these components:</p>
+                  <pre class="prettyprint">var button = new Coral.Button();</pre>
+                  <p>
+                    In some cases, you may need to wait for a component to be upgraded.  Do this by passing a callback to <code>Coral.commons.nextFrame()</code>. It is advised that you use the <code>new</code> operator or <code>createElement</code> when building elements in JavaScript. If you are rendering a template, be sure to pass attributes for anything that needs to be set dynamically and
+                    wait until the next animation frame before setting or getting the element's properties.
+                    
+                    
+                  </p>
+                  <h3 class="coral-Heading coral-Heading--3">Tabs in CoralUI</h3>
+                  <p>
+                    Here is an example of how create tabs in CoralUI. This requires a <code>Coral.TabView</code> container, which holds a <code>Coral.TabList</code> and a <code>Coral.PanelStack</code>.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint">&lt;coral-tabview&gt;
+  &lt;coral-tablist target="coral-demo-panel-1"&gt;
+    &lt;coral-tab&gt;Tab 1
+    &lt;/coral-tab&gt;
+    &lt;coral-tab&gt;Tab 2
+    &lt;/coral-tab&gt;
+    &lt;coral-tab&gt;Tab 3
+    &lt;/coral-tab&gt;
+    &lt;coral-tab&gt;Tab 4
+    &lt;/coral-tab&gt;
+  &lt;/coral-tablist&gt;
+  &lt;coral-panelstack id="coral-demo-panel-1"&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 1 Content
+    &lt;/coral-panel&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 2 Content
+    &lt;/coral-panel&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 3 Content
+    &lt;/coral-panel&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 4 Content
+    &lt;/coral-panel&gt;
+  &lt;/coral-panelstack&gt;
+&lt;/coral-tabview&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <coral-tabview>
+                      <coral-tablist target="coral-demo-panel-2">
+                        <coral-tab>Tab1</coral-tab>
+                        <coral-tab>Tab2</coral-tab>
+                        <coral-tab>Tab3</coral-tab>
+                        <coral-tab disabled>Tab4 (disabled)</coral-tab>
+                      </coral-tablist>
+                      <coral-panelstack id="coral-demo-panel-2">
+                        <coral-panel class="coral-Well">Tab 1 Content</coral-panel>
+                        <coral-panel class="coral-Well">Tab 2 Content</coral-panel>
+                        <coral-panel class="coral-Well">Tab 3 Content</coral-panel>
+                        <coral-panel class="coral-Well">Tab 4 Content (disabled)</coral-panel>
+                      </coral-panelstack>
+                    </coral-tabview>
+                  </div>
+                  <p>
+                    You can also initialize a tabbed UI directly in JavaScript. First, the <code>Coral.TabList</code> and <code>Coral.PanelStack</code> are created. Finally, a <code>Coral.TabView</code> is created to contain the first two elements.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">JavaScript example</label>
+                  <pre class="prettyprint">  // new Coral.TabList()
+  var tablist = new Coral.TabList().set({
+    target: 'coral-demo-panel-3'
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 1'
+    }
+    selected: true
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 2'
+    }
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 3'
+    }
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 4 (disabled)'
+    }
+    disabled: true
+  });
+  // new Coral.PanelStack()
+  var panelstack = new Coral.PanelStack().set({
+    id: 'coral-demo-panel-3'
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 1 Content.',
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 2 Content.',
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 3 Content.',
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 4 Content.',
+  });
+  // new Coral.TabView()
+  var tabview = new Coral.TabView().set({
+    panelStack: panelstack,
+    tabList: tablist
+  });</pre>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="howDoIWorkWithCoralUIStyles?" guide-toc-title="Working with Styles"><a class="coral-Link coral-Link--subtle" href="#howDoIWorkWithCoralUIStyles?">How do I work with CoralUI Styles?</a></h3>
+                  <p>
+                    There are still some CoralUI components that are markup and CSS only. These are documented in the <a href="styles.html" class="coral-Link">Styles</a> section of this site.  They are not custom elements, and as such are used by setting CSS selectors on normal HTML markup. An example of this would be the <a class="coral-Link" href="styles.html#coral.Well">Well</a> component:
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint"> &lt;section class="coral-Well"&gt;Well content goes here.&lt;/section&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <section class="coral-Well">Well content goes here.</section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        Coral.Guide.initNavigation({
+          tocContentQuerySelector: '.guide-Component',
+          tocItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--section',
+          tocSubItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--subsection'
+        })
+      </script>
+      <script>
+        var s=s_gi("coralui");
+        s.pageName=document.title;
+        var s_code=s.t();if(s_code)document.write(s_code);
+      </script>
+    </div>
+  </body>
+</html>

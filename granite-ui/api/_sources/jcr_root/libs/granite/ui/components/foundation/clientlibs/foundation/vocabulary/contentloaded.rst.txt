@@ -1,0 +1,25 @@
+************************
+foundation-contentloaded
+************************
+
+foundation-contentloaded event
+==============================
+
+This event SHOULD be triggered when a new content is injected to the DOM, which is very similar to `DOMContentLoaded <https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference/DOMContentLoaded>`_ event. It is normally used so that a JavaScript code can be notified when new content needs to be enhanced (applying event handler, layout, etc).
+
+The event SHOULD be triggered at the smallest containing element (the container) possible, which can be the injected element itself.
+
+You can trigger it by using jQuery:
+
+.. code-block:: js
+
+   // in this example, document is the smallest container
+   $(document).trigger("foundation-contentloaded");
+
+When listening, the container is available at ``event.target``:
+
+.. code-block:: js
+
+   $(document).on("foundation-contentloaded", function(e) {
+     var container = e.target;
+   });

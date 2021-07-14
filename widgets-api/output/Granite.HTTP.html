@@ -1,0 +1,219 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#Granite.HTTP-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#Granite.HTTP-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#Granite.HTTP-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=Granite.HTTP"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;Granite.HTTP</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">Granite</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/HTTP.js" target="_blank">HTTP.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">HTTP</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">&lt;unknown&gt;                            , *                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing a set of HTTP-related utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="Granite.HTTP-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="Granite.HTTP-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.eval"></a>
+            <b>HTTP.eval</b>(&nbsp;<code>Object/String response</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Evaluates and returns the body of the specified response object.
+Alternatively, a URL can be specified...</div>
+            <div class="long">
+                &lt;static&gt; Evaluates and returns the body of the specified response object.
+Alternatively, a URL can be specified, in which case it will be
+requested using a synchornous <a ext:cls="Granite.HTTP" ext:member="get" href="output/Granite.HTTP.html#get">get</a> in order to acquire
+the response object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>response</code> : Object/String<div class="sub-desc">The response object or URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The evaluated response body</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.externalize"></a>
+            <b>HTTP.externalize</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Makes sure the specified relative URL starts with the context path
+used on the server. If an absolute ...</div>
+            <div class="long">
+                &lt;static&gt; Makes sure the specified relative URL starts with the context path
+used on the server. If an absolute URL is passed, it will be returned
+as-is.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The externalized URL</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.getContextPath"></a>
+            <b>HTTP.getContextPath</b>() : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the context path used on the server.</div>
+            <div class="long">
+                &lt;static&gt; Returns the context path used on the server.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The context path</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.getPath"></a>
+            <b>HTTP.getPath</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes all parts but the path from the specified URL.
+Examples:/x/y.sel.html?param=abc =&gt; /x/y
+htt...</div>
+            <div class="long">
+                &lt;static&gt; Removes all parts but the path from the specified URL.
+<p>Examples:<pre><code>/x/y.sel.html?param=abc =&gt; /x/y</code></pre>
+<pre><code>http://www.day.com/foo/bar.html =&gt; /foo/bar</code></pre><p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL, may be empty. If empty <code>window.location.href</code> is taken.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The path</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.getSchemeAndAuthority"></a>
+            <b>HTTP.getSchemeAndAuthority</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the scheme and authority (user, hostname, port) part of
+the specified URL or an empty string i...</div>
+            <div class="long">
+                &lt;static&gt; Returns the scheme and authority (user, hostname, port) part of
+the specified URL or an empty string if the URL does not include
+that part.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The scheme and authority part</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.internalize"></a>
+            <b>HTTP.internalize</b>(&nbsp;<code>String url</code>, <span class="optional" title="Optional">[<code>String doc</code>]</span>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes scheme, authority and context path from the specified
+absolute URL if it has the same scheme a...</div>
+            <div class="long">
+                &lt;static&gt; Removes scheme, authority and context path from the specified
+absolute URL if it has the same scheme and authority as the
+specified document (or the current one). If a relative URL is passed,
+the context path will be stripped if present.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>doc</code> : String<div class="sub-desc">(optional) The document</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The internalized URL</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.removeAnchor"></a>
+            <b>HTTP.removeAnchor</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes the anchor from the specified URL.</div>
+            <div class="long">
+                &lt;static&gt; Removes the anchor from the specified URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL without anchor</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.HTTP-HTTP.removeParameters"></a>
+            <b>HTTP.removeParameters</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes all parameter from the specified URL.</div>
+            <div class="long">
+                &lt;static&gt; Removes all parameter from the specified URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL without parameters</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+            </table>
+                <a id="Granite.HTTP-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

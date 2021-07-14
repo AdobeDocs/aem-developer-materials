@@ -1,0 +1,106 @@
+
+Autocomplete
+============
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/authorizable/autocomplete
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   An autocomplete field that is designed to allow the user to pick the authorizable from suggested list.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:AuthorizableAutocomplete] > granite:FormField
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * Indicates if the user is able to select multiple selections.
+       */
+      - multiple (Boolean)
+
+      /**
+       * Indicates if the user must only select from the list of given options.
+       * If it is not forced, the user can enter arbitrary value.
+       */
+      - forceSelection (Boolean)
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the field name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The type of value to be submitted:
+       *
+       * id
+       *    Use authorizable ID
+       * path
+       *    Use authorizable home path
+       * principalname
+       *    Use principal name
+       */
+      - valueType (String) = 'id' < 'id', 'path', 'principalname'
+
+      /**
+       * The selector of authorizable:
+       *
+       * all
+       *    Show all authorizables
+       * user
+       *    Show only users
+       * group
+       *    Show only groups
+       */
+      - selector (String) = 'all' < 'all', 'user', 'group'
+
+      /**
+       * Filter for service user:
+       *
+       * off
+       *    Turn off the filter to show all users
+       * includeonly
+       *    Include only the service users
+       * exclude
+       *    Exclude the service users
+       */
+      - serviceUserFilter (String) = 'exclude' < 'off', 'includeonly', 'exclude'
+
+      /**
+       * Filter for impersonable user:
+       *
+       * off
+       *    Turn off the filter to show all users
+       * includeonly
+       *    Include only the users that can be impersonated by the current user
+       * exclude
+       *    Exclude the users that can be impersonated by the current user
+       */
+      - impersonableUserFilter (String) = 'off' < 'off', 'includeonly', 'exclude'

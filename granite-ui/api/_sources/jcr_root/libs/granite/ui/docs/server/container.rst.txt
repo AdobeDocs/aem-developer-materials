@@ -1,0 +1,24 @@
+Container Component
+===================
+
+A container component acts as a container for items. It follows :ref:`ItemDataSource <ItemDataSource>` mechanic.
+
+It has the following content structure:
+
+.. gnd:gnd::
+
+   [granite:container]
+
+   /**
+    * Indicates the items of the container literally.
+    *
+    * Either this resource or ``datasource`` resource is needed.
+    */
+   + items
+
+   /**
+    * Indicates the items of the container dynamically using DataSource.
+    *
+    * Either this resource or ``items`` resource is needed.
+    */
+   + datasource

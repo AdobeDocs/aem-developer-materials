@@ -1,0 +1,20 @@
+***************************
+Legacy CoralUI 2 Components
+***************************
+
+Legacy CoralUI 2-based components.
+
+.. warning:: Deprecation
+
+   CoralUI 2 is deprecated and thus CoralUI 2-based components are deprecated as well.
+   Consult :doc:`the migration guide <migration>`.
+
+Contents:
+
+.. toctree::
+   :titlesonly:
+
+   migration
+   coral2in3
+   ../../foundation/index
+   ../../endor/index

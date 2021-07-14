@@ -1,0 +1,5960 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>libs/cq/gui/components/authoring/editors/clientlibs/core/js/ Class: Editable</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">libs/cq/gui/components/authoring/editors/clientlibs/core/js/</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.html">Granite</a></li><li><a href="Granite.author.html">Granite.author</a></li><li><a href="Granite.author.components.html">Granite.author.components</a></li><li><a href="Granite.author.ContentFrame.html">Granite.author.ContentFrame</a></li><li><a href="Granite.author.design.html">Granite.author.design</a></li><li><a href="Granite.author.developer.html">Granite.author.developer</a></li><li><a href="Granite.author.DialogFrame.html">Granite.author.DialogFrame</a></li><li><a href="Granite.author.edit.html">Granite.author.edit</a></li><li><a href="Granite.author.edit.EditableActions.html">Granite.author.edit.EditableActions</a></li><li><a href="Granite.author.edit.ToolbarActions.html">Granite.author.edit.ToolbarActions</a></li><li><a href="Granite.author.editableHelper.html">Granite.author.editableHelper</a></li><li><a href="Granite.author.editables.html">Granite.author.editables</a></li><li><a href="Granite.author.EditorFrame.html">Granite.author.EditorFrame</a></li><li><a href="Granite.author.overlayManager.html">Granite.author.overlayManager</a></li><li><a href="Granite.author.OverlayWrapper.html">Granite.author.OverlayWrapper</a></li><li><a href="Granite.author.pageDesign.html">Granite.author.pageDesign</a></li><li><a href="Granite.author.pageInfo.html">Granite.author.pageInfo</a></li><li><a href="Granite.author.responsive.html">Granite.author.responsive</a></li><li><a href="Granite.author.responsive.EditableActions.html">Granite.author.responsive.EditableActions</a></li><li><a href="Granite.author.selection.html">Granite.author.selection</a></li><li><a href="Granite.author.ui.html">Granite.author.ui</a></li><li><a href="Granite.author.ui.assetFinder.html">Granite.author.ui.assetFinder</a></li><li><a href="Granite.author.ui.componentBrowser.html">Granite.author.ui.componentBrowser</a></li><li><a href="Granite.author.ui.coralCompatibility.html">Granite.author.ui.coralCompatibility</a></li><li><a href="Granite.author.ui.dropController.html">Granite.author.ui.dropController</a></li><li><a href="Granite.author.ui.emulator.html">Granite.author.ui.emulator</a></li><li><a href="Granite.author.ui.globalBar.html">Granite.author.ui.globalBar</a></li><li><a href="Granite.author.ui.helpers.html">Granite.author.ui.helpers</a></li><li><a href="Granite.author.ui.SidePanel.html">Granite.author.ui.SidePanel</a></li><li><a href="Granite.author.ui.statusBarManager.html">Granite.author.ui.statusBarManager</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.author.Component.html">Granite.author.Component</a></li><li><a href="Granite.author.design.Dialog.html">Granite.author.design.Dialog</a></li><li><a href="Granite.author.design.Layer.html">Granite.author.design.Layer</a></li><li><a href="Granite.author.design.Overlay.html">Granite.author.design.Overlay</a></li><li><a href="Granite.author.developer.Layer.html">Granite.author.developer.Layer</a></li><li><a href="Granite.author.edit.Dialog.html">Granite.author.edit.Dialog</a></li><li><a href="Granite.author.edit.Layer.html">Granite.author.edit.Layer</a></li><li><a href="Granite.author.edit.LayoutToolbar.html">Granite.author.edit.LayoutToolbar</a></li><li><a href="Granite.author.edit.Overlay.html">Granite.author.edit.Overlay</a></li><li><a href="Granite.author.edit.Toolbar.html">Granite.author.edit.Toolbar</a></li><li><a href="Granite.author.Editable.html">Granite.author.Editable</a></li><li><a href="Granite.author.Inspectable.html">Granite.author.Inspectable</a></li><li><a href="Granite.author.Layer.html">Granite.author.Layer</a></li><li><a href="Granite.author.LayerManager.html">Granite.author.LayerManager</a></li><li><a href="Granite.author.PageInfoHelper.html">Granite.author.PageInfoHelper</a></li><li><a href="Granite.author.PreviewLayer.html">Granite.author.PreviewLayer</a></li><li><a href="Granite.author.responsive.Layer.html">Granite.author.responsive.Layer</a></li><li><a href="Granite.author.responsive.Overlay.html">Granite.author.responsive.Overlay</a></li><li><a href="Granite.author.responsive.Toolbar.html">Granite.author.responsive.Toolbar</a></li><li><a href="Granite.author.ScaffoldingLayer.html">Granite.author.ScaffoldingLayer</a></li><li><a href="Granite.author.ui.assetFinder.AssetDragAndDrop.html">Granite.author.ui.assetFinder.AssetDragAndDrop</a></li><li><a href="Granite.author.ui.ComponentDragAndDrop.html">Granite.author.ui.ComponentDragAndDrop</a></li><li><a href="Granite.author.ui.ContentTree.html">Granite.author.ui.ContentTree</a></li><li><a href="Granite.author.ui.Dialog.html">Granite.author.ui.Dialog</a></li><li><a href="Granite.author.ui.EditableAction.html">Granite.author.ui.EditableAction</a></li><li><a href="Granite.author.ui.EditableDragAndDrop.html">Granite.author.ui.EditableDragAndDrop</a></li><li><a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></li><li><a href="Granite.author.ui.StatusBar.html">Granite.author.ui.StatusBar</a></li><li><a href="Granite.author.ui.Toolbar.html">Granite.author.ui.Toolbar</a></li><li><a href="Granite.author.ui.ToolbarAction.html">Granite.author.ui.ToolbarAction</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html#event:cq-asset-dragend">Document#event:cq-asset-dragend</a></li><li><a href="Document.html#event:cq-asset-dragstart">Document#event:cq-asset-dragstart</a></li><li><a href="Document.html#event:cq-asset-dropped">Document#event:cq-asset-dropped</a></li><li><a href="Document.html#event:cq-components-filtered">Document#event:cq-components-filtered</a></li><li><a href="Document.html#event:cq-components-loaded">Document#event:cq-components-loaded</a></li><li><a href="Document.html#event:cq-components-store-cleaned">Document#event:cq-components-store-cleaned</a></li><li><a href="Document.html#event:cq-components-store-set">Document#event:cq-components-store-set</a></li><li><a href="Document.html#event:cq-content-frame-loaded">Document#event:cq-content-frame-loaded</a></li><li><a href="Document.html#event:cq-content-frame-unload">Document#event:cq-content-frame-unload</a></li><li><a href="Document.html#event:cq-contentframe-datatype-set">Document#event:cq-contentframe-datatype-set</a></li><li><a href="Document.html#event:cq-contexthub-toggle">Document#event:cq-contexthub-toggle</a></li><li><a href="Document.html#event:cq-editable-added">Document#event:cq-editable-added</a></li><li><a href="Document.html#event:cq-editables-loaded">Document#event:cq-editables-loaded</a></li><li><a href="Document.html#event:cq-editables-update">Document#event:cq-editables-update</a></li><li><a href="Document.html#event:cq-editables-updated">Document#event:cq-editables-updated</a></li><li><a href="Document.html#event:cq-editor-content-location-changed">Document#event:cq-editor-content-location-changed</a></li><li><a href="Document.html#event:cq-editor-loaded">Document#event:cq-editor-loaded</a></li><li><a href="Document.html#event:cq-editor-statusbar-loaded">Document#event:cq-editor-statusbar-loaded</a></li><li><a href="Document.html#event:cq-emulatorbar-toggle">Document#event:cq-emulatorbar-toggle</a></li><li><a href="Document.html#event:cq-hide-overlays">Document#event:cq-hide-overlays</a></li><li><a href="Document.html#event:cq-history-paragraph-id-changed">Document#event:cq-history-paragraph-id-changed</a></li><li><a href="Document.html#event:cq-history-step-committed">Document#event:cq-history-step-committed</a></li><li><a href="Document.html#event:cq-history-step-completed">Document#event:cq-history-step-completed</a></li><li><a href="Document.html#event:cq-history-step-error">Document#event:cq-history-step-error</a></li><li><a href="Document.html#event:cq-inspectable-added">Document#event:cq-inspectable-added</a></li><li><a href="Document.html#event:cq-interaction-blur">Document#event:cq-interaction-blur</a></li><li><a href="Document.html#event:cq-interaction-fastdblclick">Document#event:cq-interaction-fastdblclick</a></li><li><a href="Document.html#event:cq-interaction-focus">Document#event:cq-interaction-focus</a></li><li><a href="Document.html#event:cq-interaction-hover">Document#event:cq-interaction-hover</a></li><li><a href="Document.html#event:cq-interaction-slowdblclick">Document#event:cq-interaction-slowdblclick</a></li><li><a href="Document.html#event:cq-layer-activated">Document#event:cq-layer-activated</a></li><li><a href="Document.html#event:cq-overlay-click">Document#event:cq-overlay-click</a></li><li><a href="Document.html#event:cq-overlay-fast-dblclick">Document#event:cq-overlay-fast-dblclick</a></li><li><a href="Document.html#event:cq-overlay-hold">Document#event:cq-overlay-hold</a></li><li><a href="Document.html#event:cq-overlay-hover">Document#event:cq-overlay-hover</a></li><li><a href="Document.html#event:cq-overlay-outside-click">Document#event:cq-overlay-outside-click</a></li><li><a href="Document.html#event:cq-overlay-slow-dblclick">Document#event:cq-overlay-slow-dblclick</a></li><li><a href="Document.html#event:cq-overlays-create">Document#event:cq-overlays-create</a></li><li><a href="Document.html#event:cq-overlays-repositioned">Document#event:cq-overlays-repositioned</a></li><li><a href="Document.html#event:cq-page-design-loaded">Document#event:cq-page-design-loaded</a></li><li><a href="Document.html#event:cq-page-info-loaded">Document#event:cq-page-info-loaded</a></li><li><a href="Document.html#event:cq-persistence-after-copy">Document#event:cq-persistence-after-copy</a></li><li><a href="Document.html#event:cq-persistence-after-create">Document#event:cq-persistence-after-create</a></li><li><a href="Document.html#event:cq-persistence-after-delete">Document#event:cq-persistence-after-delete</a></li><li><a href="Document.html#event:cq-persistence-after-move">Document#event:cq-persistence-after-move</a></li><li><a href="Document.html#event:cq-persistence-after-update">Document#event:cq-persistence-after-update</a></li><li><a href="Document.html#event:cq-persistence-before-copy">Document#event:cq-persistence-before-copy</a></li><li><a href="Document.html#event:cq-persistence-before-create">Document#event:cq-persistence-before-create</a></li><li><a href="Document.html#event:cq-persistence-before-delete">Document#event:cq-persistence-before-delete</a></li><li><a href="Document.html#event:cq-persistence-before-move">Document#event:cq-persistence-before-move</a></li><li><a href="Document.html#event:cq-persistence-before-update">Document#event:cq-persistence-before-update</a></li><li><a href="Document.html#event:cq-show-overlays">Document#event:cq-show-overlays</a></li><li><a href="Document.html#event:cq-sidepanel-aftertoggle">Document#event:cq-sidepanel-aftertoggle</a></li><li><a href="Document.html#event:cq-sidepanel-beforetoggle">Document#event:cq-sidepanel-beforetoggle</a></li><li><a href="Document.html#event:cq-sidepanel-resized">Document#event:cq-sidepanel-resized</a></li><li><a href="Document.html#event:cq-sidepanel-tab-switched">Document#event:cq-sidepanel-tab-switched</a></li><li><a href="Document.html#event:editor-frame-mode-changed">Document#event:editor-frame-mode-changed</a></li><li><a href="Document.html#event:inline-edit-start">Document#event:inline-edit-start</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="interfaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Interfaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html">Document</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: Editable</h1>
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="Granite.html">Granite</a><a href="Granite.author.html">.author</a>.</span>
+        
+        Editable
+        </h2>
+        
+            <div class="class-description"><p>An Editable represents the basic JS entity on which we can perform editing / authoring related actions (in-place edit, properties configuration via dialog, copy/cut/paste/delete, etc.)</p>
+<p>All the Editables of a given page are stored in <a href="Granite.author.editables.html">Granite.author.editables</a>.</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="Editable"><span class="type-signature"></span>new Editable(dom)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">jQuery</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The content DOM corresponding to the HTML rendered by the corresponding component included by the page.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Granite.author.Inspectable.html">Granite.author.Inspectable</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="config">
+    <h4 id="config"><span class="type-signature"></span>config<span class="type-signature"> :<a href="Granite.author.Editable.html#~Config">Granite.author.Editable~Config</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The computed configuration object (built via <a href="Granite.author.Editable.html#_buildConfig">Editable#_buildConfig</a>)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Granite.author.Editable.html#~Config">Granite.author.Editable~Config</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Granite.author.Inspectable.html#config">Granite.author.Inspectable#config</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="dom">
+    <h4 id="dom"><span class="type-signature"></span>dom<span class="type-signature"> :jQuery</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The content DOM corresponding to the HTML rendered by the corresponding component included by the page</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">jQuery</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.Inspectable.html#dom">Granite.author.Inspectable#dom</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Inspectable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="overlay">
+    <h4 id="overlay"><span class="type-signature"></span>overlay<span class="type-signature"> :jQuery</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The overlay of the content DOM (allows user interaction with it)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">jQuery</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.Inspectable.html#overlay">Granite.author.Inspectable#overlay</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Inspectable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="path">
+    <h4 id="path"><span class="type-signature"></span>path<span class="type-signature"> :<a href="String.html">String</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The content path of the corresponding content node in the repository</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.Inspectable.html#path">Granite.author.Inspectable#path</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Granite.author.Inspectable.html#path">Granite.author.Inspectable#path</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Inspectable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="type">
+    <h4 id="type"><span class="type-signature"></span>type<span class="type-signature"> :<a href="String.html">String</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The sling resource type of the corresponding component</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.Inspectable.html#type">Granite.author.Inspectable#type</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Granite.author.Inspectable.html#type">Granite.author.Inspectable#type</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Inspectable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="_buildConfig"><span class="type-signature">&lt;private> </span>_buildConfig(config)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Builds the configuration based on the given configuration object, parent configuration and default configuration</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html#~Config">Granite.author.Editable~Config</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="actionsUpdated"><span class="type-signature"></span>actionsUpdated()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Actions are ready to be loaded (use this hook in subclasses to update the list of available actions)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterChildCopy"><span class="type-signature"></span>afterChildCopy()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterchildcopy listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterChildDelete"><span class="type-signature"></span>afterChildDelete()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterchilddelete listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterChildEdit"><span class="type-signature"></span>afterChildEdit()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterchildedit listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterChildInsert"><span class="type-signature"></span>afterChildInsert()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterchildinsert listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterChildMove"><span class="type-signature"></span>afterChildMove()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterchildmove listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterCopy"><span class="type-signature"></span>afterCopy()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the aftercopy listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterDelete"><span class="type-signature"></span>afterDelete()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterdelete listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterEdit"><span class="type-signature"></span>afterEdit()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afteredit listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterInsert"><span class="type-signature"></span>afterInsert()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterinsert listener.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterMove"><span class="type-signature"></span>afterMove()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the aftermove listener.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeChildCopy"><span class="type-signature"></span>beforeChildCopy(defaultCopyFunction, childEditable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforechildcopy listener. If &quot;false&quot; is returned, the insert child operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultCopyFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default copy operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childEditable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Editable</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The editable to be copied</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeChildDelete"><span class="type-signature"></span>beforeChildDelete(defaultDeleteFunction, childEditable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforechildinsert listener. If &quot;false&quot; is returned, the insert child operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultDeleteFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default delete operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childEditable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Editable</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The editable to be deleted</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeChildEdit"><span class="type-signature"></span>beforeChildEdit(defaultEditFunction, properties, childEditable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforechildedit listener. If &quot;false&quot; is returned, the edit operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultEditFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default edit operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The properties to be updated</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childEditable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Editable</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The editable to be edited</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeChildInsert"><span class="type-signature"></span>beforeChildInsert(defaultChildInsertFunction, component)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforechildinsert listener. If &quot;false&quot; is returned, the insert child operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultChildInsertFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default move operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The component definition of the new child</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeChildMove"><span class="type-signature"></span>beforeChildMove(defaultMoveFunction, editable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforechildmove listener. If &quot;false&quot; is returned, the move operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultMoveFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default move operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Editable</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The editable to be copied</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeCopy"><span class="type-signature"></span>beforeCopy(defaultCopyFunction)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforecopy listener. If &quot;false&quot; is returned, the copy operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultCopyFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default copy operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeDelete"><span class="type-signature"></span>beforeDelete(defaultDeleteFunction)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforedelete listener.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultDeleteFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default delete operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeEdit"><span class="type-signature"></span>beforeEdit(defaultEditFunction, properties)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforeedit listener. If &quot;false&quot; is returned, the edit operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultEditFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default edit operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The properties to be updated</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeMove"><span class="type-signature"></span>beforeMove(defaultMoveFunction)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the beforemove listener. If &quot;false&quot; is returned, the move operation gets aborted.<br>If the listener explicitly returns false, then the operation should be aborted.<br>NB: Inside of the listener function, &quot;this&quot; refers to the current Editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultMoveFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default move operation to be applied (to allow clients to override it).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the value resulting from the listener's execution.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="canInPlaceEdit"><span class="type-signature"></span>canInPlaceEdit()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Tells if in-place edit is possible on the editable<br>For instance, of in-place editor is the image editor, it returns true only if the editable has an image to edit</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Indicates if the editable can be in-place edited</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="destroy"><span class="type-signature"></span>destroy()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Destroys this Editable's references</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getDropTarget"><span class="type-signature"></span>getDropTarget( [id])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Returns the drop targets available on the Editable</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If passed a single drop target object will be returned (the one matching the identifier)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns the drop targets of the Editable (null if not found or empty)</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getTypeName"><span class="type-signature"></span>getTypeName()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Returns the type name of the Editable class</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>returns the unique name of the Editable</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="hasAction"><span class="type-signature"></span>hasAction(actionName)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Returns true if the action is allowed from either the edit config of the editable<br>NB: This doesn't necessarily means that the action could be executed on the editable; because (1) the toolbar defines what actions are available for a given layer,<br>and (2) the action itself defines a condition to be evaluated before it could be performed on an editable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>actionName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the action (default actions are usually uppercase)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns true if the action is present in the config of the Editable</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="hasActionsAvailable"><span class="type-signature"></span>hasActionsAvailable()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns true if some actions are available on the Editable</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="isOrderable"><span class="type-signature"></span>isOrderable()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Indicates if the editable is orderable</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="updateComponentList"><span class="type-signature"></span>updateComponentList()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Executes the afterinsert listener.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="updateConfig"><span class="type-signature"></span>updateConfig(config)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Updates the config from the given config passed</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html#~Config">Granite.author.Editable~Config</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
+                
+<hr>
+<dt class="name" id="~Config">
+    <h4 id="~Config">Config</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Represents the Editable Configuration object.<br>Contains all the properties that configure the different aspects of the Editable</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>csp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Cell Search Path expression. It is a path expression where (1) the slash is the delimiter, (2) the pipe represents a variation and (3) chunks are component type names.<br>Example: &quot;contentpage|page/title&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cellSearchPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Computed list of all Cell Search Paths (derived from the csp expression). It is used to retrieve the corresponding component's design cell.<br>Example: [&quot;contentpage/title&quot;, &quot;page/title&quot;, &quot;contentpage&quot;, &quot;page&quot;, &quot;title&quot;]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html#~EditConfig">Granite.author.Editable~EditConfig</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provides all the edit behavior that the children of the Editable will inherit</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dialog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Path to the cq:dialog node</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dialogClassic</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Path to the dialog node (Classic UI)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dialogSrc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>URL of dialog (including content suffix) that will be used to configure Editable content properties</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isDropTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Indicates if the Editable could be used as a drop target</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Path to the corresponding Editable in the repository</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html#~EditConfig">Granite.author.Editable~EditConfig</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provides all the edit behavior of the Editable</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Sling resource type of the corresponding Component</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="~EditConfig">
+    <h4 id="~EditConfig">EditConfig</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Represents the cq:EditConfig object.<br>Contains all the properties defined on the Component level to configure the editing behavior of the Editable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>actions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ['EDIT', 'ANNOTATE']
+                
+                </td>
+            
+
+            <td class="description last"><p>List of the actions available on the Editable</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dropTargets</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>List of asset types and groups allowed to be dropped on the Editable</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>orderable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Indicates if the Editable is orderable or not</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inplaceEditingConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Defines the in place editing configuration of the Editable</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>listeners</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Contains the different cq:listeners defined for the Editable.<br>All listeners are no operations by default.<br>Inside all listeners, &quot;this&quot; refers to the current Editable.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>beforedelete</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (deleteFunction) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforeedit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (editFunction, properties) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforecopy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (copyFunction) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforemove</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (moveFunction) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforechildinsert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (insertFunction, component) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforechilddelete</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (deleteFunction, childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforechildedit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (editFunction, properties, childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforechildcopy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (copyFunction, childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforechildmove</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (moveFunction, childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterdelete</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function () {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afteredit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function () {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>aftercopy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function () {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterinsert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function () {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>aftermove</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function () {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterchildinsert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterchilddelete</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterchildedit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterchildcopy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterchildmove</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (childEditable) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>updatecomponentlist</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    function (cellSearchPath, allowedComponents, components) {}
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		model/Editable.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            </dl>
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<b class="aem-version">AEM&nbsp;Master&nbsp;com.adobe.cq:cq-ui-wcm-editor-content:1.1.291-SNAPSHOT</b> - © Copyright 2019 Adobe Systems Incorporated All Rights Reserved.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Tue Apr 23rd 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

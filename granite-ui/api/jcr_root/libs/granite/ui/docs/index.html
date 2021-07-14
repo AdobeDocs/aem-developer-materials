@@ -1,0 +1,228 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Granite UI: The Hypermedia-driven UI &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Granite UI Client-side" href="client/index.html" />
+    <link rel="prev" title="Notable Changes" href="changelogs.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="client/index.html" title="Granite UI Client-side"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="changelogs.html" title="Notable Changes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="granite-ui-the-hypermedia-driven-ui">
+<h1>Granite UI: The Hypermedia-driven UI<a class="headerlink" href="#granite-ui-the-hypermedia-driven-ui" title="Permalink to this headline">¶</a></h1>
+<p>Granite UI is an umbrella name for UI projects to build a LEGO® architecture for UI, so that one can build complex webapps with much less codes.</p>
+<div class="section" id="lego-architecture">
+<h2>LEGO® Architecture<a class="headerlink" href="#lego-architecture" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>modular, composable, layerable, reusable components</li>
+<li>independent evolution of components</li>
+<li>uniform way of doing things</li>
+</ul>
+<p>This is achieved by leveraging proper <a class="reference external" href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, including the <a class="reference external" href="http://en.wikipedia.org/wiki/HATEOAS">Hypermedia as the Engine of Application State</a> constraint.</p>
+<p>It consists of two parts: client-side and server-side, which can be used separately.</p>
+</div>
+<div class="section" id="client-side">
+<h2>Client-side<a class="headerlink" href="#client-side" title="Permalink to this headline">¶</a></h2>
+<p>An extension of HTML vocabulary such that the author can express her intention to build an interactive webapp.
+This is similar approach to <a class="reference external" href="http://www.w3.org/TR/wai-aria/">WAI-ARIA</a> and <a class="reference external" href="http://microformats.org/">microformats</a>.
+It is mainly a collection of interaction patterns (e.g. submitting form asynchronously, single-page app) that is interpreted by JS and CSS codes run in the client-side.
+The client-side’s role would be enhancing the markup—which is given as the Hypermedia affordance by the server—for interactivity.</p>
+<p>The client-side is independent of any server technology. As long as the server is giving the appropriate markup, the client-side would be able to do its role.</p>
+</div>
+<div class="section" id="server-side">
+<h2>Server-side<a class="headerlink" href="#server-side" title="Permalink to this headline">¶</a></h2>
+<p>A collection of Sling components such that the author can compose a webapp fast.
+The developer develops components, the author assembles the components to be a webapp.
+The server-side’s role would be giving the Hypermedia affordance (markup) to the client.</p>
+</div>
+<div class="section" id="architecture-diagram">
+<h2>Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../../../_images/architecture.png" src="../../../../../_images/architecture.png" />
+</div>
+<div class="section" id="what-is-hypermedia">
+<h2>What is Hypermedia?<a class="headerlink" href="#what-is-hypermedia" title="Permalink to this headline">¶</a></h2>
+<p>There are a lot of articles that explain the concept of hypermedia. <a class="reference external" href="http://en.wikipedia.org/wiki/Hypermedia">Wikipedia article</a> is a good example of that.
+But for the purpose of Granite UI, <a class="reference external" href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718">Roy Fielding’s definition</a> is going to be used:</p>
+<blockquote>
+<div><p>When I say hypertext, I mean the simultaneous presentation of information and controls such that the information becomes the affordance through which the user (or automaton) obtains choices and selects actions. Hypermedia is just an expansion on what text means to include temporal anchors within a media stream; most researchers have dropped the distinction.</p>
+<p>Hypertext does not need to be HTML on a browser. Machines can follow links when they understand the data format and relationship types.</p>
+</div></blockquote>
+<p>A good example to explain this is <a class="reference external" href="http://en.wikipedia.org/wiki/Interactive_voice_response">Interactive Voice Response</a>:</p>
+<ol class="arabic simple">
+<li>Call your bank service center, a voice machine greets you:
+“For English press 1; für Deutsch drücken Sie 2; pour le français, appuyez sur 3”</li>
+<li>You navigate the service to get what you want by pressing the phone’s buttons accordingly</li>
+<li>No need prior knowledge of the steps</li>
+<li>As human, you only need to understand the vocabulary (e.g. English) and how to use the phone</li>
+</ol>
+<p>In <a class="reference external" href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> speak, the bank service phone number is the <em>bookmark URL</em>; English is the <em>vocabulary</em>; the voice is the <em>media type</em>; the phone is the <em>user agent</em>.</p>
+<p>World Wide Web is obviously another great example, with HTML as the media type and web browser as the user agent.</p>
+<p>There are a few important points to understand.</p>
+<ol class="arabic simple">
+<li>The server has a freedom to control its own URL structure. The server gives the affordance (e.g. HTML &lt;a&gt;, &lt;form&gt;; or <a class="reference external" href="http://tools.ietf.org/html/rfc6570">URI Template</a>) to the client on how to navigate or construct the URL.</li>
+<li>The client should not have a prior knowledge beyond the bookmark URL. After that transition from one state to another is driven by the available options chosen by the client.</li>
+<li>The client is programmed against the media type.</li>
+</ol>
+<p>By doing this, the server is able to drive the client, just like the traffic policemen drive the traffic using traffic lights without reengineering the commuters. The server is then able to evolve.</p>
+<p>See also <a class="reference external" href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">Roy Fielding post</a> on this.</p>
+</div>
+<div class="section" id="how-about-hypermedia-driven-ui">
+<h2>How about Hypermedia-driven UI?<a class="headerlink" href="#how-about-hypermedia-driven-ui" title="Permalink to this headline">¶</a></h2>
+<p>It is a UI that is following the hypermedia principles.</p>
+<p>For example the following JavaScript code to do async form submission is very common in RIA today:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.myForm&quot;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;myURL&quot;</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">param1</span><span class="o">:</span> <span class="s2">&quot;param1&quot;</span><span class="p">,</span>
+      <span class="nx">param2</span><span class="o">:</span> <span class="s2">&quot;param2&quot;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The above code is against hypermedia as the client has prior knowledge about URL structure, which prevent the server to change it.</p>
+<p>The hypermedia way to do this is to leverage the underlying media type:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-form&quot;</span> <span class="na">data-foundation-form-ajax</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;myURL&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;param1&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;param1&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;param2&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;param2&quot;</span><span class="p">&gt;</span>
+
+  <span class="c">&lt;!-- ... --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The above HTML is generated by the server and is given to the client, where it has the following generic code to process it:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="s2">&quot;form.foundation-form&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;foundationFormAjax&quot;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">),</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">),</span>
+      <span class="nx">contentType</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;enctype&quot;</span><span class="p">),</span>
+      <span class="nx">data</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">()</span>
+    <span class="p">});</span>
+    <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>This way the server is able to drive the client, including when to sent that particular markup, in what configuration, or not at all.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Granite UI: The Hypermedia-driven UI</a><ul>
+<li><a class="reference internal" href="#lego-architecture">LEGO® Architecture</a></li>
+<li><a class="reference internal" href="#client-side">Client-side</a></li>
+<li><a class="reference internal" href="#server-side">Server-side</a></li>
+<li><a class="reference internal" href="#architecture-diagram">Architecture Diagram</a></li>
+<li><a class="reference internal" href="#what-is-hypermedia">What is Hypermedia?</a></li>
+<li><a class="reference internal" href="#how-about-hypermedia-driven-ui">How about Hypermedia-driven UI?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="changelogs.html"
+                        title="previous chapter">Notable Changes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="client/index.html"
+                        title="next chapter">Granite UI Client-side</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/jcr_root/libs/granite/ui/docs/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="client/index.html" title="Granite UI Client-side"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="changelogs.html" title="Notable Changes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

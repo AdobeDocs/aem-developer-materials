@@ -1,0 +1,37 @@
+
+Breadcrumbs
+===========
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/layouts/breadcrumbs
+   :layout:
+   :deprecated:
+
+   Breadcrumbs is a layout to render the Endor's Breadcrumbs.
+
+   The root item (the Adobe Marketing Cloud) will be rendered automatically and not required to be given as part of the items.
+   It has href value of "/".
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Each item has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorLayoutsBreadcrumbsItem]
+
+      /**
+       * ``true`` indicates it is a "clickable" navigation; ``false`` otherwise.
+       */
+      - navigation (Boolean) = 'true'
+
+   Example::
+
+      + mybreadcrumbs
+        - sling:resourceType = "granite/ui/components/foundation/navigation"
+        + layout
+          - sling:resourceType = "granite/ui/components/endor/layouts/breadcrumbs"
+        + items
+          + link1
+          + link2
+            + layoutConfig
+              - navigation = false

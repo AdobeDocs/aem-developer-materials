@@ -1,0 +1,15 @@
+*********************
+foundation-validation
+*********************
+
+``foundation-validation`` is a vocabulary related to form validation.
+
+
+[data-foundation-validation-ui]
+===============================
+
+Indicates the configuration related to the UI of the validation. The supported value is ``none``, which means the UI is not shown.
+
+Selector Rule::
+
+   [data-foundation-validation-ui]

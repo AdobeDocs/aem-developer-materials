@@ -1,0 +1,1 @@
+{"name":"CQ.personalization.GeolocationUtils","doc":"A helper class providing a set of utility methods to handle a geolocation map.\nThis class is a si...","configs":[],"props":[],"methods":[{"name":"createGeolocationMap","doc":"Creates a geolocation map widget that will be aligned over the geolocation store of the Client Co..."}],"events":[]}
