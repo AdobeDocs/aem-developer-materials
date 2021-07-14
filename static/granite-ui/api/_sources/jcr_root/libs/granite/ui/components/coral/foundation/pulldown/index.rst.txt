@@ -1,0 +1,64 @@
+
+Pulldown
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/pulldown
+
+   A button component that will show/hide a popover of item list when activated.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Pulldown] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The body text of the button.
+       */
+      - text (String) i18n
+
+      /**
+       * Visually hide the text.
+       * It is RECOMMENDED that every button has a text for a11y purpose. Use this property to hide it visually, while still making it available for a11y.
+       */
+      - hideText (Boolean)
+
+      /**
+       * The icon name. e.g. "search".
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * The size of the button.
+       */
+      - size (String) = 'M' < 'M', 'L'
+
+      /**
+       * ``true`` to render the button as a block element; ``false`` otherwise.
+       */
+      - block (Boolean)
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) < 'primary', 'warning', 'quiet', 'minimal', 'actionBar'
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       * By default the value of ``text`` or ``granite:title`` is used.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String)

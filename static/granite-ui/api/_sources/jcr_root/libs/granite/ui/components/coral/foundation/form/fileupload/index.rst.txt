@@ -1,0 +1,104 @@
+
+FileUpload
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/fileupload
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   A field component to upload file.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormFileUpload] > granite:FormField
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+       /**
+       * ``true`` to upload the files asynchronously.
+       */
+      - async (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * Indicates if multiple files can be uploaded.
+       */
+      - multiple (Boolean)
+
+      /**
+       * ``true`` to make the upload starts automatically once the file is selected.
+       */
+      - autoStart (Boolean)
+
+      /**
+       * The URL to upload the file.
+       * This is only required when ``autoStart`` is ``true``.
+       */
+      - uploadUrl (StringEL)
+
+      /**
+       * The file size limit.
+       */
+      - sizeLimit (Long)
+
+      /**
+       * The browse and selection filter for file selection. E.g: [".png",".jpg"] or ["image/\*"].
+       */
+      - mimeTypes (String) multiple
+
+      /**
+       * The text of the button.
+       */
+      - text (String) i18n
+
+      /**
+       * Visually hide the text.
+       * It is RECOMMENDED that every button has a text for a11y purpose. Use this property to hide it visually, while still making it available for a11y.
+       */
+      - hideText (Boolean)
+
+      /**
+       * The icon of the button.
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * The size of the button.
+       */
+      - size (String) = 'M' < 'M', 'L'
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) < 'primary', 'warning', 'quiet', 'minimal', 'actionBar'

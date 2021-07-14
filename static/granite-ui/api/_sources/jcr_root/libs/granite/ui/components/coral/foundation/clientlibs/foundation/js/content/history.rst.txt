@@ -1,0 +1,51 @@
+**************************
+foundation-content-history
+**************************
+
+
+Markup
+======
+
+
+[data-foundation-content-history]
+---------------------------------
+
+Indicates the anchor element is used to manipulate browser history via :doc:`foundation-content <index>` API, instead of normal behaviour of anchor. The value is JSON with the following structure:
+
+.. code-block:: ts
+
+   interface FoundationContentHistoryConfig {
+     /**
+      * The action to be performed.
+      * <code>push</code> (default) is calling <code>FoundationContent.pushState</code>, while <code>replace</code> is calling <code>FoundationContent.replaceState</code>.
+      */
+     action?: string;
+
+     /**
+      * The title to be passed to title param of <code>FoundationContent.replaceState</code> or <code>FoundationContent.pushState</code>.
+      */
+     title?: string;
+
+     /**
+      * The data to be passed to data param of <code>FoundationContent.replaceState</code> or <code>FoundationContent.pushState</code>.
+      */
+     data?: any;
+   }
+
+The anchor’s ``href`` attribute is used as the URL param of ``FoundationContent.replaceState`` or ``FoundationContent.pushState``.
+
+Selector Rule::
+
+   a[data-foundation-content-history]
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-content" {
+     rankdir=BT;
+     "foundation-content-control" -> "foundation-content" [label="controls"];
+     "foundation-content-history" -> "foundation-content" [label="controls"];
+   }

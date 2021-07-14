@@ -1,0 +1,64 @@
+*****************
+foundation-anchor
+*****************
+
+``foundation-anchor`` is a control (likely <button>) to simulate the purpose of <a>.
+
+
+Markup
+======
+
+
+.foundation-anchor
+------------------
+
+Indicates the control. When ``click`` event is triggered at this element, it will make the browser navigate similar to an <a>.
+
+Selector Rule::
+
+   .foundation-anchor
+
+
+[data-foundation-anchor-href]
+-----------------------------
+
+The location of the linked resource for the navigation.
+
+Selector Rule::
+
+   .foundation-anchor[data-foundation-anchor-href]
+
+
+[data-foundation-anchor-target]
+-------------------------------
+
+Indicates where to display the linked resource.
+
+Selector Rule::
+
+   .foundation-anchor[data-foundation-anchor-target]
+
+
+Example
+=======
+
+Sometimes there is a case when you are unable to use <a> in your markup.
+For example given a following menu:
+
+.. code-block:: html
+
+   <menu>
+     <menuitem label="Navigate">
+     <menuitem label="Another action">
+   </menu>
+
+When the user click on the "Navigate", the browser needs to navigate to a URL.
+
+In order to do this, you can annotate the <menuitem> to use ``foundation-anchor``:
+
+.. code-block:: html
+
+   <menu>
+     <menuitem label="Navigate" class="foundation-anchor" data-foundation-anchor-href="/content.html">
+     <menuitem label="Another action">
+   </menu>

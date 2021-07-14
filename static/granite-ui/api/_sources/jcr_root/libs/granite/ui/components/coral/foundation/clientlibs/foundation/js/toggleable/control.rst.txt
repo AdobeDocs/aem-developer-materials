@@ -1,0 +1,117 @@
+*****************************
+foundation-toggleable-control
+*****************************
+
+``foundation-toggleable-control`` is a control for :doc:`../../vocabulary/toggleable`.
+
+
+Markup
+======
+
+
+.foundation-toggleable-control
+------------------------------
+
+Indicates the control.
+The ``.foundation-toggleable`` element managed by this control is determined by the following priorities:
+
+1. The element loaded by ``[data-foundation-toggleable-control-src]``, if the attribute is specified.
+2. The element specified at ``[data-foundation-toggleable-control-target]``, if the attribute is specified.
+3. The closest ancestor (i.e. equivalent using jQuery: ``control.closest(".foundation-toggleable")``)
+
+Selector Rule::
+
+   .foundation-toggleable-control
+
+
+[data-foundation-toggleable-control-action]
+-------------------------------------------
+
+Indicates the action to take.
+The valid values are ``show`` and ``hide``, that will call ``FoundationToggleable.show()`` or ``FoundationToggleable.hide()`` respectively.
+If this attribute is not specified, then it is interpreted as a toggle. i.e. Show the target element when it is hidden, and hide it when it is already shown.
+
+Selector Rule::
+
+   .foundation-toggleable-control[data-foundation-toggleable-control-action]
+
+
+[data-foundation-toggleable-control-target]
+-------------------------------------------
+
+The selector to the ``.foundation-toggleable`` that will be shown upon activate.
+Either this attribute or ``data-foundation-toggleable-control-src`` needs to be specified.
+
+Selector Rule::
+
+	 .foundation-toggleable-control[data-foundation-toggleable-control-target]
+
+
+[data-foundation-toggleable-control-src]
+----------------------------------------
+
+The URL to the ``.foundation-toggleable`` content that will be loaded and shown upon activate.
+You can make use of this attribute to load the toggleable—that may not be used often—lazily.
+
+Selector Rule::
+
+	 .foundation-toggleable-control[data-foundation-toggleable-control-src]
+
+
+[data-foundation-toggleable-control-cache]
+------------------------------------------
+
+``true`` to  cache the ``.foundation-toggleable`` content loaded at ``[data-foundation-toggleable-control-src]``;
+``false`` to disable the cache. Otherwise it is system defined.
+
+Selector Rule::
+
+	 .foundation-toggleable-control[data-foundation-toggleable-control-cache]
+
+
+[data-foundation-toggleable-control-nesting]
+--------------------------------------------
+
+Indicates the behavior when the control is also under another toggleable element.
+
+It has the following value:
+
+``hide``
+   Hide the parent toggleable element.
+
+   For example you have Popover A, which contains the toggleable-control to open another Popover B.
+   When the value is ``hide``, upon activating the control, Popover A will also be closed.
+
+Selector Rule::
+
+	 .foundation-toggleable-control[data-foundation-toggleable-control-nesting]
+
+
+Tracking
+========
+
+``.foundation-toggleable-control`` participates in :doc:`declarative event tracking <../tracking/index>`
+by handling ``[data-foundation-tracking-event]`` with the following behaviour:
+
+===================  ============  =================================
+Property             Status        Default Value
+===================  ============  =================================
+``feature``          Optional      ``""``
+``element``          Mandatory
+``type``             Fixed         ``toggleable``
+``action``           Fixed         ``show`` or ``hide``
+``widget.name``      Optional      The value of ``element``
+``widget.type``      Fixed         ``toggleable``
+<others>             Optional
+===================  ============  =================================
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-toggleable" {
+     rankdir=BT;
+     "foundation-toggleable-control" -> "foundation-toggleable" [label="controls", weight=8];
+   }

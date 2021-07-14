@@ -1,0 +1,45 @@
+
+Hyperlink
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/actionbar/hyperlink
+   :deprecated:
+
+   Hyperlink is a component to represent a standard HTML hyperlink (<a>).
+   This component is only best used inside /libs/granite/ui/components/endor/layouts/actionbar
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorActionBarHyperlink] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The href attribute.
+       */
+      - href (StringEL)
+
+      /**
+       * The target attribute.
+       */
+      - target (String)
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+
+      /**
+       * The x-cq-linkchecker attribute.
+       */
+      - 'x-cq-linkchecker' (String) < 'skip', 'valid'
+
+      /**
+       * The icon class.
+       */
+      - icon (String)
+
+      /**
+       * Visually hide the text.
+       */
+      - hideText (Boolean)

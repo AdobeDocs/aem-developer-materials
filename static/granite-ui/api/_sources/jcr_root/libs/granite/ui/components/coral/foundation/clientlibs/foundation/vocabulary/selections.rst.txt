@@ -1,0 +1,151 @@
+*********************
+foundation-selections
+*********************
+
+``foundation-selections`` is a vocabulary about the concept of selection, which is built on top of :doc:`foundation-collection <collection>`.
+
+
+Markup
+======
+
+
+.foundation-selections-item
+---------------------------
+
+Indicates the element is selected. It MUST be applied to ``.foundation-collection-item`` element. ``foundation-selections-change`` event MUST be triggered after modifying the selection status. See ``foundation-selections-change`` event section for details.
+
+Selector Rule::
+
+   .foundation-collection-item.foundation-selections-item
+
+
+[data-foundation-selections-mode]
+---------------------------------
+
+Indicates the selection mode of the collection. It MUST be applied to ``.foundation-collection`` element. The valid values are:
+
+single
+   Only maximum single selection allowed
+
+multiple (default)
+   Zero or more selection allowed
+
+Selector Rule::
+
+   .foundation-collection[data-foundation-selections-mode]
+
+
+[data-foundation-selections-selectall-mode]
+-------------------------------------------
+
+Indicates whether the collection is in "Select All" mode or not.
+If the mode is enabled, then the items that are not loaded yet into the collection (e.g. in the pagination scenario) are considered as selected.
+Once enabled, deselecting some items doesn't turn off the mode. It can be turned off by clearing all selections.
+
+The valid values are:
+
+true
+    When "Select All" mode is enabled.
+
+false (default)
+    When "Select All" mode is disabled.
+
+Selector Rule::
+
+   .foundation-collection[data-foundation-selections-selectall-mode]
+
+
+Event
+=====
+
+
+foundation-selections-change
+----------------------------
+
+This event MUST be triggered after modifying the selection status of ``.foundation-selections-item`` element(s) at ``.foundation-collection`` element. The event MAY be triggered once after all the items are finished modified (i.e. modifying by batch).
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-selections``
+
+condition
+   ``.foundation-collection``
+
+returned type
+   ``FoundationSelections``
+
+.. code-block:: ts
+
+   interface FoundationSelections {
+     /**
+      * Returns the count of selected items. In Select All mode, the method will return the <code>FoundationCollectionPagination.guessTotal</code> number, if available.
+      */
+     count(): number;
+
+     /**
+      * Selects all the elements from the corresponding collection. This method will trigger <code>foundation-selections-change</code> event.
+      *
+      * @param suppressEvent Suppress <code>foundation-selections-change</code> event. Note that if you suppress the event, you are still required to trigger the event yourself as mandated by the vocabulary.
+      */
+     selectAll(suppressEvent = false): void;
+
+     /**
+      * Clears the selections. This method will trigger <code>foundation-selections-change</code> event.
+      *
+      * @param suppressEvent Suppress <code>foundation-selections-change</code> event. Note that if you suppress the event, you are still required to trigger the event yourself as mandated by the vocabulary.
+      */
+     clear(suppressEvent = false): void;
+
+     /**
+      * Selects the given element. This method will trigger <code>foundation-selections-change</code> event.
+      * The element MUST be a <code>.foundation-collection-item</code>.
+      */
+     select(el: Element): void;
+
+     /**
+      * Deselects the given element. This method will trigger <code>foundation-selections-change</code> event.
+      * The element MUST be a <code>.foundation-collection-item</code>.
+      */
+     deselect(el: Element): void;
+
+     /**
+      * Returns <code>true</code> if all the items of the collection, including the ones yet to be loaded (due to pagination), are selected; <code>false</code> otherwise.
+      *
+      * =========================  ==================  ==============  ============
+      * All Loaded Items Selected  Pagination#hasNext  SelectAll Mode  Return Value
+      * =========================  ==================  ==============  ============
+      * Yes                        ``true``            ``true``        ``true``
+      * Yes                        ``true``            ``false``       ``false``
+      * Yes                        ``false``           n/a             ``true``
+      * No                         n/a                 n/a             ``false``
+      */
+     isAllSelected(): boolean;
+   }
+
+
+ARIA
+====
+
+When the ``.foundation-collection`` element is also ``[role=listbox]``—i.e. the element is satisfying ``.foundation-collection[role=listbox]`` selector—during ``foundation-selections-change`` event, the ``[aria-selected]`` of ``.foundation-collection-item`` is set according to the selected state of the item (based on ``.foundation-selections-item``).
+
+Also the validation of ``.foundation-collection`` element is also performed during that event.
+
+Note for the above features, since they can be implemented generically to only depend on ``foundation-selections`` vocabulary, they are provided OOTB. Implementor doesn't need to implement them.
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.dialog" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

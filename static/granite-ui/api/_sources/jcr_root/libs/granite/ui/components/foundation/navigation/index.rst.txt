@@ -1,0 +1,14 @@
+
+Navigation
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/navigation
+   :deprecated:
+
+   A nav component that is rendered as ``<nav>``.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Navigation] > granite:commonAttrs, granite:renderCondition, granite:container

@@ -1,0 +1,8 @@
+
+Submit
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/submit
+   :deprecated:
+
+   It is recommended to use :granite:servercomponent:`button </libs/granite/ui/components/foundation/button>` component with ``submit`` type.

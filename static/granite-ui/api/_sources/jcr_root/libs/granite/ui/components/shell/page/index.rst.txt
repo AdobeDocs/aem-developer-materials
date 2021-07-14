@@ -1,0 +1,136 @@
+
+Page
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/page
+
+   The generic page to render Shell.
+
+   It also supports :doc:`resource filtering using FilteringResourceWrapper </jcr_root/libs/granite/ui/docs/server/resourcehiding>` and acts as its container.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellPage]
+
+      /**
+       * A general purpose ID to uniquely identify the console.
+       *
+       * The recommended value is hierarchical separated by "-".
+       * e.g. "cq-commerce-report"
+       */
+      - consoleId (String)
+
+      /**
+       * To render the title of the page (``<title>``), resource at ``head/title`` is first inspected.
+       * If it doesn't exist, this property is used accordingly; otherwise do nothing.
+       * i.e. the title at ``head/title`` is included naturally.
+       */
+      - jcr:title (String)
+
+      /**
+       * To redirect the page, this resource can be specified.
+       * It will be included, where the redirect can be performed.
+       */
+      + redirector
+
+      /**
+       * A folder to specify the content of ``<head>`` of the page.
+       * Its child resources are iterated and included as is.
+       */
+      + head
+
+      /**
+       * The component to render the title.
+       *
+       * This is optional, and if not specified, the title header is not displayed.
+       * If the title is just a simple string, :doc:`../title/index` can be used.
+       *
+       * The only requirement of the component is to generate a simple text without any wrapping markup.
+       * E.g. To have a title of "My Page", just make the component do something like ``out.print("My Page")``.
+       *
+       * Note if the title and breadcrumbs are provided, only the breadcrumbs will be generated.
+       */
+      + title
+
+      /**
+       * The data source for the list of breadcrumbs.
+       *
+       * This is optional, and if not specified, the breadcrumbs are not displayed.
+       *
+       * Note that only the breadcrumbs can be rendered or the title, not both.  The breadcrumbs
+       * will take prescience over the title if both are provided.
+       */
+      + breadcrumbs
+
+      /**
+       * The folder for the actions applicable in the context of the whole page.
+       */
+      + actions (granite:ShellPageActions)
+
+      /**
+       * The path to the omnisearch configuration associated with the console.
+       *
+       * e.g. ``/libs/granite/omnisearch/content/metadata/site``
+       */
+      - omnisearchLocationPath (StringEL)
+
+      /**
+       * A folder to specify the panels of the rail.
+       */
+      + rails (granite:ShellCollectionPageRails)
+
+      /**
+       * The actual content of the page.
+       */
+      + content
+
+      [granite:ShellPageActions]
+
+      /**
+       * The folder for primary actions.
+       *
+       * The action can be any action component such as :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/button/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/anchorbutton/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/pulldown/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/collection/index`.
+       *
+       * The ``actionBar`` variant of the components above SHOULD be used, unless ``primary`` variant is used.
+       */
+      + primary
+
+      /**
+       * The folder for secondary actions.
+       *
+       * The action can be any action component such as :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/button/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/anchorbutton/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/pulldown/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/collection/index`.
+       *
+       * The ``actionBar`` variant of the components above SHOULD be used, unless ``primary`` variant is used.
+       */
+      + secondary
+
+      [granite:ShellCollectionPageRails]
+
+      /**
+       * ``true`` to activate the rail initially.
+       *
+       * Note that you need to also set ``active`` property of the rail panel to ``true`` accordingly.
+       */
+      - active (BooleanEL)
+
+      /**
+       * The child resources are considered as the panels, where each MUST be a :doc:`../../coral/foundation/panel/railpanel/index` (or its derivative).
+       */
+      + '*' (granite:PanelRailPanel)
+
+
+   Example::
+
+      + mypage
+        - sling:resourceType = "granite/ui/components/shell/page"
+        - jcr:title = "My Page"
+        + content
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"

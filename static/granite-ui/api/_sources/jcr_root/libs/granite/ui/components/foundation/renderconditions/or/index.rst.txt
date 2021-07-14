@@ -1,0 +1,23 @@
+
+Or
+==
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/renderconditions/or
+   :rendercondition:
+   :deprecated:
+
+   The condition that renders the component when any of the sub conditions is deciding the component should be rendered.
+   The child resources are evaluated recursively to finally come up with final decision.
+
+   Example::
+
+      + mybutton
+        - sling:resourceType = "granite/ui/components/foundation/button"
+        + rendercondition
+          - sling:resourceType = "granite/ui/components/foundation/renderconditions/or"
+          + condition1
+            - sling:resourceType = "granite/ui/components/foundation/renderconditions/simple"
+            - expression = true
+          + condition2
+            - sling:resourceType = "granite/ui/components/foundation/renderconditions/simple"
+            - expression = true

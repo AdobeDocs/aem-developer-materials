@@ -1,0 +1,171 @@
+***************
+Notable Changes
+***************
+
+PathBrowser RT is deprecated
+============================
+
+Use :granite:servercomponent:`PathField </libs/granite/ui/components/coral/foundation/form/pathfield>` instead.
+
+Autocomplete RT is deprecated
+=============================
+
+:granite:servercomponent:`Autocomplete RT </libs/granite/ui/components/coral/foundation/form/autocomplete>` is using Coral2 component, which will not be supported any longer.
+Use dedicated component for the purpose, such as :granite:servercomponent:`PathField </libs/granite/ui/components/coral/foundation/form/pathfield>`,
+or build your own field based on :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/autocomplete/index`.
+
+Field RT: Support for ``tooltipPosition``
+=========================================
+
+:granite:servercomponent:`Field RT </libs/granite/ui/components/coral/foundation/form/field>` now supports ``tooltipPosition`` property
+to change the position of the tooltip relative to the field.
+
+It is useful when the tooltip is truncated.
+
+Select RT: Support for ``forceIgnoreFreshness``
+===============================================
+
+:granite:servercomponent:`Select RT </libs/granite/ui/components/coral/foundation/form/select>` now supports ``forceIgnoreFreshness`` property.
+
+It is useful when you have a newly introduced field in the form, and there is a need to specifically set the default selected item.
+
+foundation-workflowstatus
+=========================
+
+We introduce :doc:`../components/coral/foundation/clientlibs/foundation/js/workflowstatus/index` to standardize the presentation of workflows in the UI.
+
+IncludeClientlibs RT: Support rendercondition
+=============================================
+
+:granite:servercomponent:`IncludeClientlibs RT </libs/granite/ui/components/coral/foundation/includeclientlibs>` now supports :doc:`render condition <server/rendercondition>`.
+
+DatePicker RT: Support ``typeHint`` property
+============================================
+
+:granite:servercomponent:`DatePicker RT </libs/granite/ui/components/coral/foundation/form/datepicker>` now exposes ``typeHint`` property, which is defaulted to ``Date``.
+
+There is a request to save the field's value as string. This is mainly to support the Classic UI behaviour.
+However, it is still recommended to save the value as native date in JCR as the best practice.
+
+foundation-toggleable-control: Support Caching Attribute
+========================================================
+
+We introduce ``[data-foundation-toggleable-control-cache]`` to :doc:`foundation-toggleable-control <../components/coral/foundation/clientlibs/foundation/js/toggleable/control>`
+to configure if the ``.foundation-toggleable`` content loaded at ``[data-foundation-toggleable-control-src]`` should be cached.
+
+The primary purpose of this attribute is to disable caching of the loaded content that is dynamic and thus needs to be always loaded freshly.
+
+Accessibility
+=============
+
+We significantly improve our UI's accessibility by applying ARIA attributes,
+such as ``aria-label``, ``aria-labelledby``, ``role="region"``, ``role="main"``, and ``role="heading"`` to our components.
+
+We are continuing our investment to make our UI accessible.
+
+Form Default Value Handling
+===========================
+
+We review the handling of default values of the form fields.
+
+:granite:servercomponent:`Form RT</libs/granite/ui/components/coral/foundation/form>` now supports ``nameNotFoundMode`` property
+to handle the scenario when the FormData doesn't have an entry of a certain name.
+
+This mechanic uses :javadoc:`FormData.class <com/adobe/granite/ui/components/FormData.html>` that we also introduce.
+To understand deeper about this mode, please consult :javadoc:`FormData.NameNotFoundMode <com/adobe/granite/ui/components/FormData.NameNotFoundMode.html>`.
+
+FormData.class
+==============
+
+We introduce :javadoc:`FormData.class <com/adobe/granite/ui/components/FormData.html>` to better handle the form values.
+
+The key feature of this class is :javadoc:`FormData.NameNotFoundMode <com/adobe/granite/ui/components/FormData.NameNotFoundMode.html>`,
+which is a mode on how to handle the scenario when the FormData doesn't have an entry of a certain name.
+
+RenderConditionHelper.class
+===========================
+
+We introduce :javadoc:`RenderConditionHelper.class <com/adobe/granite/ui/components/rendercondition/RenderConditionHelper.html>`
+to allow getting render condition without :javadoc:`ComponentHelper <com/adobe/granite/ui/components/ComponentHelper.html>`.
+
+Button and Link RTs: Support for ``command`` and ``actionConfigName``
+=====================================================================
+
+Add ``command`` and ``actionConfigName`` properties to the following components:
+
+* :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/button`
+* :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/anchorbutton`
+* :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/collection/action`
+* :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/collection/actionlink`
+
+``command`` is the property to specify the keyboard shortcut of the action,
+while ``actionConfigName`` property is to specify the path to the central configuration of the action.
+
+Multifield RT: Support composite and nested multifields
+=======================================================
+
+:granite:servercomponent:`Multifield RT </libs/granite/ui/components/coral/foundation/form/multifield>` now supports ``composite`` property
+to handle the form content value as composite.
+
+Composite multifield supports nesting another multifield (composite or not). However, non-composite one doesn't support nesting.
+
+NumberField RT: Support for ``any`` as step
+===========================================
+
+:granite:servercomponent:`NumberField RT </libs/granite/ui/components/coral/foundation/form/numberfield>` now supports ``any`` value for ``step`` property.
+``step`` property only allowed number before.
+
+Select RT: Support render conditions in the items
+=================================================
+
+:granite:servercomponent:`Select RT </libs/granite/ui/components/coral/foundation/form/select>` now supports
+:doc:`render condition <server/rendercondition>` in the items.
+
+Include RT: Support passing Option class
+========================================
+
+:granite:servercomponent:`Include RT </libs/granite/ui/components/coral/foundation/include>` was only passing Tag class as the param to during include.
+There was an enhancement in the past to be able to pass a more generic Option class.
+So, we update the implementation to pass the option instead of just the tag.
+
+Before:
+
+.. code-block:: java
+
+   cmp.include(targetResource, cfg.get("resourceType", String.class), cmp.consumeTag());
+
+After:
+
+.. code-block:: java
+
+   cmp.include(targetResource, cfg.get("resourceType", String.class), cmp.getOptions());
+
+foundation-form: Manage multiple submissions
+============================================
+
+At times, there can be a scenario where there are two consecutive form submissions in the quick succession.
+We improve :doc:`foundation-form <../components/coral/foundation/clientlibs/foundation/js/form/index>` by queeing up the submissions serially.
+
+foundation-command
+==================
+
+We improve keyboard support in our UI, hence we introduce :doc:`../components/coral/foundation/clientlibs/foundation/vocabulary/command`
+vocabulary to standardize it.
+
+foundation-time
+===============
+
+In the UI we often display a date for the purpose of presentation.
+Before, we mixed relative and absolute formatting, often having arbitrary formats that hard to internationalize.
+Thus, we introduce :doc:`../components/coral/foundation/clientlibs/foundation/js/time/index` to standardize the presentation.
+
+foundation-preference
+=====================
+
+We introduce :doc:`../components/coral/foundation/clientlibs/foundation/js/preference/index` to read/write user preferences.
+
+foundation.form.response.ui.success: foundation.collection.reload
+=================================================================
+
+We add a new form response success handler named :doc:`foundation.collection.reload <../components/coral/foundation/clientlibs/foundation/js/form/response/ui/success/foundation.collection.reload>`
+to reload the ``foundation-collection`` when the form is successfully submitted.

@@ -1,0 +1,84 @@
+
+Tabs
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/tabs
+   :layout:
+   :deprecated:
+
+   The tabs layout.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsTabs]
+
+      /**
+       * The layout mode of the tabs.
+       *
+       * default
+       *    If the property is not specified, it is in default mode, where tab area is above the panel area.
+       *    This is designed to divide pieces of content within a page.
+       * stacked
+       *    The tab area is side-by-side with the panel area.
+       *    This is designed to divide pieces of content within a page.
+       * large
+       *    Similar to default mode, but larger. This is designed to divide pages.
+       */
+      - type (String) < 'stacked', 'large'
+
+      /**
+       * ``true`` to add padding to each panel; ``false`` otherwise.
+       */
+      - padding (Boolean) = 'true'
+
+   Each tab can be any component, and specified using :ref:`ItemDataSource <ItemDataSource>`. It also needs at very least satisfies the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsTabsTab]
+
+      /**
+       * The tab title.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * The item specific config for the layout.
+       */
+      + layoutConfig (granite:LayoutsTabsTabLayoutconfig)
+
+
+      [granite:LayoutsTabsTabLayoutconfig]
+
+      /**
+       * Indicates if the tab is active. If no single tab's ``active`` property is specifically set to ``true``, then the first tab is active.
+       */
+      - active (Boolean)
+
+      /**
+       * Indicates the icon of the tab.
+       */
+      - icon (String)
+
+      /**
+       * ``true`` to add padding for the panel. This property only makes sense when ``padding`` property at the layout node is set to ``false``.
+       */
+      - padding (Boolean)
+
+   Example::
+
+      + mytabs
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/tabs"
+        + items
+          + tab1
+            - jcr:title = "Tab 1"
+            - sling:resourceType = "granite/ui/components/foundation/container"
+          + tab2
+            - jcr:title = "Tab 2"
+            - sling:resourceType = "granite/ui/components/foundation/container"
+            + layoutConfig
+              - active = true

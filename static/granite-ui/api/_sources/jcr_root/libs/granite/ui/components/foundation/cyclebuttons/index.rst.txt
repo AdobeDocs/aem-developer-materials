@@ -1,0 +1,52 @@
+
+CycleButtons
+============
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/cyclebuttons
+   :deprecated:
+
+   A component that show the current active item. Only one item can be active at the same time.
+   When clicked, the next item of the active is shown and the click is triggered at that next item instead.
+   If the last item is clicked, then the first item is shown and triggered accordingly.
+
+   To indicate the active item, the following priorities are used:
+
+   1. `active` property
+   2. ``parentConfig/active`` boolean property at the item resource
+   3. The first item
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:CycleButtons] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The name of the active item.
+       */
+      - active (StringEL)
+
+      /**
+       * The items of the component. Either specify this resource or `datasource` resource.
+       */
+      + items
+
+      /**
+       * The items of the component. Either specify this resource or `items` resource.
+       */
+      + datasource
+
+   Example::
+
+      + mybuttons
+        - jcr:primaryType = "nt:unstructured"
+        - sling:resourceType = "granite/ui/components/foundation/cyclebuttons"
+          + items
+            + button1
+              - sling:resourceType = "granite/ui/components/foundation/button"
+              - text = "Button1"
+            + button2
+              - sling:resourceType = "granite/ui/components/foundation/button"
+              - text = "Button2"
+              + parentConfig
+                - active = true

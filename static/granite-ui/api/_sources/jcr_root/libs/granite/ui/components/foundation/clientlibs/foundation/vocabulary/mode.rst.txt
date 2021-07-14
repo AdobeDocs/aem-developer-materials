@@ -1,0 +1,58 @@
+***************
+foundation-mode
+***************
+
+``foundation-mode`` is a concept of mode. For example, a collection-related component can change from default mode to selection mode. Likewise, the form-related component can change from default mode to edit mode.
+
+To change from one mode to another, there will be a component triggering ``foundation-mode-change`` event (e.g. :doc:`.foundation-mode-change <../js/mode/change>`), and zero or more components listening to that event.
+
+
+Grouping
+========
+
+Grouping is mechanism so that multiple components can be grouped together when the mode is changed. When a component subscribes to ``foundation-mode-change`` event, if the ``group`` parameter of the event is the same group as the subscriber then the event is processed, otherwise it is ignored.
+
+For example you have a collection component that can change mode to selection mode and a form component that can change mode to edit mode. These two components are not related and thus we will have a set of toggle buttons to change the mode for collection and form separately. And importantly the collection must only listen to its own toggle event, not toggle for the form and vice versa.
+
+How it is done is by putting HTML attribute to the subscriber’s element with the following format::
+
+   data-foundation-mode-group="<groupName>"
+
+where the <groupName> is a string that is assigned by content author to indicate which components having the same group.
+
+This mechanic is very similar to grouping mechanic in HTML radio.
+
+
+foundation-mode-change event
+============================
+
+The event that MUST be triggered when the mode is changed. It MUST be triggered at the source element changing the mode. The component that needs to change behaviour can listen to this event to do so.
+
+The event has the following interface:
+
+.. code-block:: ts
+
+   interface FoundationModeChangeEvent {
+     /**
+      * @param mode The mode that is changing to
+      * @param group The group the changing mode belongs to
+      */
+     (mode: string, group: string): void;
+   }
+
+Example:
+
+.. code-block:: js
+
+   $(document).on("foundation-mode-change", function(e, mode, group) {});
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-mode" {
+     rankdir=BT;
+     "foundation-mode-change" -> "foundation-mode" [label="controls", weight=8];
+   }

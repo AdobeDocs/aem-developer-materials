@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>libs/cq/gui/components/authoring/editors/clientlibs/core/js/ Class: Overlay</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">libs/cq/gui/components/authoring/editors/clientlibs/core/js/</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.html">Granite</a></li><li><a href="Granite.author.html">Granite.author</a></li><li><a href="Granite.author.components.html">Granite.author.components</a></li><li><a href="Granite.author.ContentFrame.html">Granite.author.ContentFrame</a></li><li><a href="Granite.author.design.html">Granite.author.design</a></li><li><a href="Granite.author.developer.html">Granite.author.developer</a></li><li><a href="Granite.author.DialogFrame.html">Granite.author.DialogFrame</a></li><li><a href="Granite.author.edit.html">Granite.author.edit</a></li><li><a href="Granite.author.edit.EditableActions.html">Granite.author.edit.EditableActions</a></li><li><a href="Granite.author.edit.ToolbarActions.html">Granite.author.edit.ToolbarActions</a></li><li><a href="Granite.author.editableHelper.html">Granite.author.editableHelper</a></li><li><a href="Granite.author.editables.html">Granite.author.editables</a></li><li><a href="Granite.author.EditorFrame.html">Granite.author.EditorFrame</a></li><li><a href="Granite.author.overlayManager.html">Granite.author.overlayManager</a></li><li><a href="Granite.author.OverlayWrapper.html">Granite.author.OverlayWrapper</a></li><li><a href="Granite.author.pageDesign.html">Granite.author.pageDesign</a></li><li><a href="Granite.author.pageInfo.html">Granite.author.pageInfo</a></li><li><a href="Granite.author.responsive.html">Granite.author.responsive</a></li><li><a href="Granite.author.responsive.EditableActions.html">Granite.author.responsive.EditableActions</a></li><li><a href="Granite.author.selection.html">Granite.author.selection</a></li><li><a href="Granite.author.ui.html">Granite.author.ui</a></li><li><a href="Granite.author.ui.assetFinder.html">Granite.author.ui.assetFinder</a></li><li><a href="Granite.author.ui.componentBrowser.html">Granite.author.ui.componentBrowser</a></li><li><a href="Granite.author.ui.coralCompatibility.html">Granite.author.ui.coralCompatibility</a></li><li><a href="Granite.author.ui.dropController.html">Granite.author.ui.dropController</a></li><li><a href="Granite.author.ui.emulator.html">Granite.author.ui.emulator</a></li><li><a href="Granite.author.ui.globalBar.html">Granite.author.ui.globalBar</a></li><li><a href="Granite.author.ui.helpers.html">Granite.author.ui.helpers</a></li><li><a href="Granite.author.ui.SidePanel.html">Granite.author.ui.SidePanel</a></li><li><a href="Granite.author.ui.statusBarManager.html">Granite.author.ui.statusBarManager</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.author.Component.html">Granite.author.Component</a></li><li><a href="Granite.author.design.Dialog.html">Granite.author.design.Dialog</a></li><li><a href="Granite.author.design.Layer.html">Granite.author.design.Layer</a></li><li><a href="Granite.author.design.Overlay.html">Granite.author.design.Overlay</a></li><li><a href="Granite.author.developer.Layer.html">Granite.author.developer.Layer</a></li><li><a href="Granite.author.edit.Dialog.html">Granite.author.edit.Dialog</a></li><li><a href="Granite.author.edit.Layer.html">Granite.author.edit.Layer</a></li><li><a href="Granite.author.edit.LayoutToolbar.html">Granite.author.edit.LayoutToolbar</a></li><li><a href="Granite.author.edit.Overlay.html">Granite.author.edit.Overlay</a></li><li><a href="Granite.author.edit.Toolbar.html">Granite.author.edit.Toolbar</a></li><li><a href="Granite.author.Editable.html">Granite.author.Editable</a></li><li><a href="Granite.author.Inspectable.html">Granite.author.Inspectable</a></li><li><a href="Granite.author.Layer.html">Granite.author.Layer</a></li><li><a href="Granite.author.LayerManager.html">Granite.author.LayerManager</a></li><li><a href="Granite.author.PageInfoHelper.html">Granite.author.PageInfoHelper</a></li><li><a href="Granite.author.PreviewLayer.html">Granite.author.PreviewLayer</a></li><li><a href="Granite.author.responsive.Layer.html">Granite.author.responsive.Layer</a></li><li><a href="Granite.author.responsive.Overlay.html">Granite.author.responsive.Overlay</a></li><li><a href="Granite.author.responsive.Toolbar.html">Granite.author.responsive.Toolbar</a></li><li><a href="Granite.author.ScaffoldingLayer.html">Granite.author.ScaffoldingLayer</a></li><li><a href="Granite.author.ui.assetFinder.AssetDragAndDrop.html">Granite.author.ui.assetFinder.AssetDragAndDrop</a></li><li><a href="Granite.author.ui.ComponentDragAndDrop.html">Granite.author.ui.ComponentDragAndDrop</a></li><li><a href="Granite.author.ui.ContentTree.html">Granite.author.ui.ContentTree</a></li><li><a href="Granite.author.ui.Dialog.html">Granite.author.ui.Dialog</a></li><li><a href="Granite.author.ui.EditableAction.html">Granite.author.ui.EditableAction</a></li><li><a href="Granite.author.ui.EditableDragAndDrop.html">Granite.author.ui.EditableDragAndDrop</a></li><li><a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></li><li><a href="Granite.author.ui.StatusBar.html">Granite.author.ui.StatusBar</a></li><li><a href="Granite.author.ui.Toolbar.html">Granite.author.ui.Toolbar</a></li><li><a href="Granite.author.ui.ToolbarAction.html">Granite.author.ui.ToolbarAction</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html#event:cq-asset-dragend">Document#event:cq-asset-dragend</a></li><li><a href="Document.html#event:cq-asset-dragstart">Document#event:cq-asset-dragstart</a></li><li><a href="Document.html#event:cq-asset-dropped">Document#event:cq-asset-dropped</a></li><li><a href="Document.html#event:cq-components-filtered">Document#event:cq-components-filtered</a></li><li><a href="Document.html#event:cq-components-loaded">Document#event:cq-components-loaded</a></li><li><a href="Document.html#event:cq-components-store-cleaned">Document#event:cq-components-store-cleaned</a></li><li><a href="Document.html#event:cq-components-store-set">Document#event:cq-components-store-set</a></li><li><a href="Document.html#event:cq-content-frame-loaded">Document#event:cq-content-frame-loaded</a></li><li><a href="Document.html#event:cq-content-frame-unload">Document#event:cq-content-frame-unload</a></li><li><a href="Document.html#event:cq-contentframe-datatype-set">Document#event:cq-contentframe-datatype-set</a></li><li><a href="Document.html#event:cq-contexthub-toggle">Document#event:cq-contexthub-toggle</a></li><li><a href="Document.html#event:cq-editable-added">Document#event:cq-editable-added</a></li><li><a href="Document.html#event:cq-editables-loaded">Document#event:cq-editables-loaded</a></li><li><a href="Document.html#event:cq-editables-update">Document#event:cq-editables-update</a></li><li><a href="Document.html#event:cq-editables-updated">Document#event:cq-editables-updated</a></li><li><a href="Document.html#event:cq-editor-content-location-changed">Document#event:cq-editor-content-location-changed</a></li><li><a href="Document.html#event:cq-editor-loaded">Document#event:cq-editor-loaded</a></li><li><a href="Document.html#event:cq-editor-statusbar-loaded">Document#event:cq-editor-statusbar-loaded</a></li><li><a href="Document.html#event:cq-emulatorbar-toggle">Document#event:cq-emulatorbar-toggle</a></li><li><a href="Document.html#event:cq-hide-overlays">Document#event:cq-hide-overlays</a></li><li><a href="Document.html#event:cq-history-paragraph-id-changed">Document#event:cq-history-paragraph-id-changed</a></li><li><a href="Document.html#event:cq-history-step-committed">Document#event:cq-history-step-committed</a></li><li><a href="Document.html#event:cq-history-step-completed">Document#event:cq-history-step-completed</a></li><li><a href="Document.html#event:cq-history-step-error">Document#event:cq-history-step-error</a></li><li><a href="Document.html#event:cq-inspectable-added">Document#event:cq-inspectable-added</a></li><li><a href="Document.html#event:cq-interaction-blur">Document#event:cq-interaction-blur</a></li><li><a href="Document.html#event:cq-interaction-fastdblclick">Document#event:cq-interaction-fastdblclick</a></li><li><a href="Document.html#event:cq-interaction-focus">Document#event:cq-interaction-focus</a></li><li><a href="Document.html#event:cq-interaction-hover">Document#event:cq-interaction-hover</a></li><li><a href="Document.html#event:cq-interaction-slowdblclick">Document#event:cq-interaction-slowdblclick</a></li><li><a href="Document.html#event:cq-layer-activated">Document#event:cq-layer-activated</a></li><li><a href="Document.html#event:cq-overlay-click">Document#event:cq-overlay-click</a></li><li><a href="Document.html#event:cq-overlay-fast-dblclick">Document#event:cq-overlay-fast-dblclick</a></li><li><a href="Document.html#event:cq-overlay-hold">Document#event:cq-overlay-hold</a></li><li><a href="Document.html#event:cq-overlay-hover">Document#event:cq-overlay-hover</a></li><li><a href="Document.html#event:cq-overlay-outside-click">Document#event:cq-overlay-outside-click</a></li><li><a href="Document.html#event:cq-overlay-slow-dblclick">Document#event:cq-overlay-slow-dblclick</a></li><li><a href="Document.html#event:cq-overlays-create">Document#event:cq-overlays-create</a></li><li><a href="Document.html#event:cq-overlays-repositioned">Document#event:cq-overlays-repositioned</a></li><li><a href="Document.html#event:cq-page-design-loaded">Document#event:cq-page-design-loaded</a></li><li><a href="Document.html#event:cq-page-info-loaded">Document#event:cq-page-info-loaded</a></li><li><a href="Document.html#event:cq-persistence-after-copy">Document#event:cq-persistence-after-copy</a></li><li><a href="Document.html#event:cq-persistence-after-create">Document#event:cq-persistence-after-create</a></li><li><a href="Document.html#event:cq-persistence-after-delete">Document#event:cq-persistence-after-delete</a></li><li><a href="Document.html#event:cq-persistence-after-move">Document#event:cq-persistence-after-move</a></li><li><a href="Document.html#event:cq-persistence-after-update">Document#event:cq-persistence-after-update</a></li><li><a href="Document.html#event:cq-persistence-before-copy">Document#event:cq-persistence-before-copy</a></li><li><a href="Document.html#event:cq-persistence-before-create">Document#event:cq-persistence-before-create</a></li><li><a href="Document.html#event:cq-persistence-before-delete">Document#event:cq-persistence-before-delete</a></li><li><a href="Document.html#event:cq-persistence-before-move">Document#event:cq-persistence-before-move</a></li><li><a href="Document.html#event:cq-persistence-before-update">Document#event:cq-persistence-before-update</a></li><li><a href="Document.html#event:cq-show-overlays">Document#event:cq-show-overlays</a></li><li><a href="Document.html#event:cq-sidepanel-aftertoggle">Document#event:cq-sidepanel-aftertoggle</a></li><li><a href="Document.html#event:cq-sidepanel-beforetoggle">Document#event:cq-sidepanel-beforetoggle</a></li><li><a href="Document.html#event:cq-sidepanel-resized">Document#event:cq-sidepanel-resized</a></li><li><a href="Document.html#event:cq-sidepanel-tab-switched">Document#event:cq-sidepanel-tab-switched</a></li><li><a href="Document.html#event:editor-frame-mode-changed">Document#event:editor-frame-mode-changed</a></li><li><a href="Document.html#event:inline-edit-start">Document#event:inline-edit-start</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="interfaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Interfaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html">Document</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: Overlay</h1>
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="Granite.html">Granite</a><a href="Granite.author.html">.author</a><a href="Granite.author.design.html">.design</a>.</span>
+        
+        Overlay
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="Overlay"><span class="type-signature"></span>new Overlay()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Overlay to be used in responsive mode</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		design/design.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="isActive"><span class="type-signature"></span>isActive()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Is the current overlay active</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#isActive">Granite.author.ui.Overlay#isActive</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="isDisabled"><span class="type-signature"></span>isDisabled()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Is the current overlay disabled</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#isDisabled">Granite.author.ui.Overlay#isDisabled</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="isHover"><span class="type-signature"></span>isHover()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Is the current overlay hovered</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#isHover">Granite.author.ui.Overlay#isHover</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="isSelected"><span class="type-signature"></span>isSelected()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Is the current overlay selected</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#isSelected">Granite.author.ui.Overlay#isSelected</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="isVisible"><span class="type-signature"></span>isVisible()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Is the current overlay visible</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#isVisible">Granite.author.ui.Overlay#isVisible</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="position"><span class="type-signature"></span>position(editable, parent)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Called to position the current <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a> on top of the content of the page<br>that correspond to its associated <a href="Granite.author.Editable.html">Granite.author.Editable</a> and the original content of the edited page located in the ContentFrame</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.Editable.html">Granite.author.Editable</a> instance for which to render an overlay</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.Editable.html">Granite.author.Editable</a> parent of the editable object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#position">Granite.author.ui.Overlay#position</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="prepareRendering"><span class="type-signature"></span>prepareRendering(editable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Returns a definition object based on the given <a href="Granite.author.Editable.html">Granite.author.Editable</a> and used when rendering the Overlay</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.Editable.html">Granite.author.Editable</a> instance for which to render an overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#prepareRendering">Granite.author.ui.Overlay#prepareRendering</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <ul>
+<li>The definition object required by the <a href="Granite.author.ui.Overlay.html#render">Granite.author.ui.Overlay#render</a> function</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="recreate"><span class="type-signature"></span>recreate(editable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Recreates the overlay for the given <a href="Granite.author.Editable.html">Granite.author.Editable</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.Editable.html">Granite.author.Editable</a> instance for which to render an overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#recreate">Granite.author.ui.Overlay#recreate</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="remove"><span class="type-signature"></span>remove()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Removes the <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a> HTMLElement from its DOM container</p>
+<p>Teardown function</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#remove">Granite.author.ui.Overlay#remove</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="render"><span class="type-signature"></span>render(editable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Renders the <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a> in the given container element</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.Editable.html">Granite.author.Editable</a> instance for which to render an overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#render">Granite.author.ui.Overlay#render</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setActive"><span class="type-signature"></span>setActive(condition)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle activate the current overlay</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether or not to activate the current overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#setActive">Granite.author.ui.Overlay#setActive</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setDisabled"><span class="type-signature"></span>setDisabled(condition)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle disables the current overlay</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether or not to disable the current overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#setDisabled">Granite.author.ui.Overlay#setDisabled</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setHover"><span class="type-signature"></span>setHover(condition)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle disables the current overlay</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether or not to disable the current overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#setHover">Granite.author.ui.Overlay#setHover</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setSelected"><span class="type-signature"></span>setSelected(condition)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle select the current overlay</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether or not to select the current overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#setSelected">Granite.author.ui.Overlay#setSelected</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setVisible"><span class="type-signature"></span>setVisible(condition)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle displays the current overlay</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether or not to display the current overlay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Granite.author.ui.Overlay.html#setVisible">Granite.author.ui.Overlay#setVisible</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.Overlay.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<b class="aem-version">AEM&nbsp;Master&nbsp;com.adobe.cq:cq-ui-wcm-editor-content:1.1.291-SNAPSHOT</b> - © Copyright 2019 Adobe Systems Incorporated All Rights Reserved.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Tue Apr 23rd 2019
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

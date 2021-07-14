@@ -1,0 +1,541 @@
+***************
+foundation-form
+***************
+
+``foundation-form`` is an enhancement of <form>.
+
+The form is often used in conjunction with its associated form fields. See :doc:`../../vocabulary/field` for standardized field vocabulary.
+
+The form validation is performed by :doc:`../validation/index`.
+
+
+Markup
+======
+
+
+.foundation-form
+----------------
+
+A marker class to host enhancement related to form.
+
+Selector Rule::
+
+   form.foundation-form
+
+
+[data-foundation-form-ajax]
+---------------------------
+
+``true`` if the form is to be submitted using ajax asynchronously, instead of standard synchronous behavior.
+
+Selector Rule::
+
+   .foundation-form[data-foundation-form-ajax]
+
+
+[data-foundation-form-output-replace]
+-------------------------------------
+
+The selector to an element where the form submit output will be displayed.
+If the element is ``.foundation-content``, ``FoundationContent.replace(html, historyConfig)`` will be used;
+otherwise the output will replace the element content by mean of ``element.innerHTML``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-output-replace]
+
+.. warning:: This is legacy approach to handle the response. Please use :doc:`response/ui/success/foundation.content` instead.
+
+
+[data-foundation-form-output-push]
+----------------------------------
+
+The selector to an element where the form submit output will be displayed.
+If the element is ``.foundation-content``, ``FoundationContent.push(html, historyConfig)`` will be used;
+otherwise the output will replace the element content by mean of ``element.innerHTML``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-output-push]
+
+.. warning:: This is legacy approach to handle the response. Please use :doc:`response/ui/success/foundation.content` instead.
+
+
+[data-foundation-form-history]
+------------------------------
+
+The JSON config to configure the browser history when calling ``FoundationContent.replace(html, historyConfig)`` or ``FoundationContent.push(html, historyConfig)``
+by mean of ``[data-foundation-form-output-replace]`` or ``[data-foundation-form-output-push]`` respectively.
+
+.. code-block:: ts
+
+   interface FoundationFormHistoryConfig {
+     /**
+      * The URL to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      * This is optional and take precedence over <code>useFormUrl</code> property.
+      */
+     url?: string;
+
+     /**
+      * Indicates that the form's action attribute is used as the URL to be passed to historyConfig param
+      * of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     useFormUrl?: boolean;
+
+     /**
+      * The title to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     title?: string;
+
+     /**
+      * The data to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     data?: any;
+
+     /**
+      * The behavior when History API is not available.
+      *
+      * WARNING: This config is no longer supported, as IE9 is no longer supported, hence History API is always supported.
+      *
+      * ignore (default): Ignores history manipulation.
+      * disableAjax: Equivalent to setting <code>[data-foundation-form-ajax]</code> to <code>false</code>.
+      */
+     noSupportBehaviour?: string;
+   }
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-history]
+
+.. warning:: This is legacy approach to handle the response. Please use :doc:`response/ui/success/foundation.content` instead.
+
+
+[data-foundation-form-redirect]
+-------------------------------
+
+The URL to redirect the form to.
+
+If this attribute is specified, instead of processing the content from the submission response,
+the URL will be used to fetch a new content if it is a success response.
+The new content is processed according to output processing attributes, namely ``[data-foundation-form-output-replace]`` or ``[data-foundation-form-output-push]`` accordingly.
+
+.. warning:: This is legacy approach to handle the response. Please use :doc:`response/ui/success/foundation.content` instead.
+
+
+[data-foundation-form-ui]
+-------------------------
+
+``none`` to suppress certain UI behavior. Otherwise ``foundation-form`` will show an error dialog during error response.
+This attribute is applicable only when ``data-foundation-form-ajax`` is ``true``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-ui]
+
+
+[data-foundation-form-loadingmask]
+----------------------------------
+
+``true`` to show a mask during form submission. Otherwise no mask is shown at all.
+
+The mask is used to cover the element specified at ``[data-foundation-form-output-replace]``, or ``[data-foundation-form-output-push]``, or the whole screen.
+
+This attribute is applicable only when ``data-foundation-form-ajax`` is ``true``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-loadingmask]
+
+
+.foundation-form-response-ui-success
+------------------------------------
+
+The config element to indicate the handler of success response.
+
+Selector Rule::
+
+    .foundation-form > .foundation-form-response-ui-success
+
+
+[data-foundation-form-response-ui-success]
+------------------------------------------
+
+The JSON config to configure the behaviour of success response handler, which satisfies ``FoundationFormResponseUISuccessConfig`` interface.
+
+This attribute is either specified at ``.foundation-form`` (first priority) or ``.foundation-form-response-ui-success``.
+
+Selector Rule::
+
+    .foundation-form[data-foundation-form-response-ui-success],
+    .foundation-form > .foundation-form-response-ui-success[data-foundation-form-response-ui-success]
+
+Example
+~~~~~~~
+
+.. code-block:: html
+
+   <form class="foundation-form" method="post" action="xyz" data-foundation-form-ajax="true"
+     data-foundation-form-response-ui-success='{"name": "foundation.redirect", "href": "/bin/wcmcommand?cmd=open&_charset_=utf-8&path={Path}"}'
+   ></form>
+
+.. code-block:: html
+
+   <form class="foundation-form" method="post" action="xyz" data-foundation-form-ajax="true">
+     <meta class="foundation-form-response-ui-success" data-foundation-form-response-ui-success='{"name": "foundation.redirect", "href": "/bin/wcmcommand?cmd=open&_charset_=utf-8&path={Path}"}'>
+   </form>
+
+
+Event
+=====
+
+
+foundation-form-submitted
+-------------------------
+
+This event is triggered after the submission of the form is completely finished—i.e. when no further action is performed by ``foundation-form``.
+The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationFormSubmittedEvent {
+     /**
+      * @param status <code>true</code> when the form is successfully submitted; <code>false</code> otherwise
+      * @param xhr The normalized jQuery XHR object
+      */
+     (status: boolean, xhr: JQueryXHR): void;
+   }
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-form``
+
+condition
+   ``form.foundation-form``
+
+returned type
+   ``FoundationForm``
+
+.. code-block:: ts
+
+   interface FoundationForm {
+     /**
+      * Submits the form asynchronously.
+      *
+      * Note that this is merely a convenience method to submit a form using Ajax.
+      * The behaviour of foundation-form is not performed by this method.
+      * Please submit the form by triggering the submit event normally to achieve that.
+      *
+      * @returns The promise of the response
+      */
+     submitAsync(): Promise;
+
+     /**
+      * Resets the form. This method is intended to also reset <code>foundation-field</code> in addition to standard form controls.
+      *
+      * @param skipNative Skips the native form reset method (HTMLFormElement#reset)
+      */
+     reset(skipNative?: boolean): void;
+
+     /**
+      * Returns <code>true</code> if the form is dirty; <code>false</code> otherwise.
+      *
+      * Dirty form is when there is a change in the underlying fields by mean of <code>foundation-field-change</code> event.
+      * And when the form is submitted successfully, the dirty state is reset to <code>false</code>.
+      */
+     isDirty(): boolean;
+   }
+
+
+Response Handling
+=================
+
+``foundation-form`` provides a pluggable system to handle the form response.
+
+The response is handled by the following steps:
+
+#. The response is parsed by the matching response parser, which will return a parsing result (``ParsedData``).
+#. If there is no matching parser, then jQuery default parsing behavior is used (e.g. ``application/json`` -> JS object; ``text/html`` -> string).
+#. If the response is a success, ``ParsedData`` is passed to the matching success response handler and the handler is executed.
+#. Likewise, if the response is an error, ``ParsedData`` is passed to the matching error response handler and the handler is executed.
+
+Example
+-------
+
+Given the following markup:
+
+.. code-block:: html
+
+   <form class="foundation-form" method="post" action="xyz" data-foundation-form-ajax="true"
+     data-foundation-form-response-ui-success='{"name": "foundation.redirect", "href": "/bin/wcmcommand?cmd=open&_charset_=utf-8&path={Path}"}'
+   ></form>
+
+where the response of the markup is Sling' `HTMLResponse <https://sling.apache.org/apidocs/sling7/org/apache/sling/api/servlets/HtmlResponse.html>`_:
+
+.. code-block:: html
+
+   <html>
+     <body>
+       <table>
+         <!-- ... -->
+         <td><div id="Status">200</div></td>
+         <td><div id="Message">Site created</div></td>
+         <td><a href="/content/geometrixx5" id="Location">/content/geometrixx5</a></td>
+         <td><div id="Path">/content/geometrixx5</div></td>
+         <!-- ... -->
+       </table>
+     </body>
+   </html>
+
+There is a response parser that is able to parse the response, which is returning the following ``ParsedData``:
+
+.. code-block:: js
+
+   var parsedData = {
+      Status: "200",
+      Message: "Site created",
+      Location: "/content/geometrixx5",
+      Path: "/content/geometrixx5"
+   };
+
+The configured success response is ``foundation.redirect``, where it uses the ``ParsedData`` as the variables to resolve the URI Template for redirection.
+Hence, the resolved URL based on the ``href`` config above is ``/bin/wcmcommand?cmd=open&_charset_=utf-8&path=%2Fcontent%2Fgeometrixx5``.
+
+
+Response Parser
+===============
+
+``foundation-form`` allows the response parser to be pluggable,
+by registering to the :doc:`registry <../registry/index>` using ``foundation.form.response.parser`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationFormResponseParser {
+     /**
+      * Only the element satisfying the selector will be handled by this parser.
+      * It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: string;
+
+     /**
+      * The regular expression to match the content type of the response,
+      * where the matching one will be handled by this parser.
+      */
+     contentType: RegExp;
+
+     /**
+      * The handler to actually perform the action.
+      *
+      * If <code>false</code> is returned, the next handler in the chain will be evaluated.
+      * Otherwise the chain stops and the return value is used as the parsed data.
+      *
+      * @param form The element of the <code>.foundation-form</code>
+      * @param xhr The normalized jQuery XHR object
+      * @param parsedResponse The result of parsing the response of the given xhr according to its content type (e.g. "text/html" => DocumentFragment).
+      *                       Use this instead of <code>xhr.responseText</code> for performance.
+      */
+     handler: (form: Element, xhr: JQueryXHR, parsedResponse: any) => any;
+   }
+
+Example
+-------
+
+.. code-block:: js
+
+   /**
+    * Parser for Sling's <code>HTMLResponse.class</code>.
+    */
+   $(window).adaptTo("foundation-registry").register("foundation.form.response.parser", {
+       name: "foundation.sling",
+       selector: "*",
+       contentType: /text\/html/,
+       handler: function(form, xhr, parsedResponse) {
+           var frag = $(parsedResponse);
+
+           if (!frag.find("#Status").length) {
+               return false;
+           }
+
+           return Array.prototype.reduce.call(frag.find("[id]"), function(memo, v) {
+               if (v.href) {
+                   memo[v.id] = v.href;
+               } else {
+                   memo[v.id] = v.textContent;
+               }
+               return memo;
+           }, {});
+       }
+   });
+
+
+Success Response Handler
+========================
+
+``foundation-form`` allows the success response to be pluggable. The handler is picked based on the matching name specified in the config at ``[data-foundation-form-response-ui-success]``.
+
+The success response handler can be registered to the :doc:`registry <../registry/index>` using ``foundation.form.response.ui.success``
+as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationFormResponseUISuccess {
+     /**
+      * The name of the handler. It is recommended that it is namespaced using dot notation according to application that register the handler.
+      * "foundation" namespace is reserved for Granite UI.
+      *
+      * @example
+      * foundation.redirect
+      */
+     name: string;
+
+     /**
+      * The handler to actually perform the action.
+      * If <code>false</code> is returned, the next handler in the chain will be evaluated. Otherwise the chain stops.
+      *
+      * @param form The element of the <code>.foundation-form</code>
+      * @param config The value of <code>[data-foundation-form-response-ui-success]</code>
+      * @param data The result of parsing the raw response by <code>FoundationFormResponseParser</code>
+      * @param textStatus The status string from XHR
+      * @param xhr The normalized jQuery XHR object
+      * @param parsedResponse The result of parsing the response of the given xhr according to its content type (e.g. "text/html" => DocumentFragment).
+      *                       Use this instead of <code>xhr.responseText</code> for performance.
+      */
+     handler: (form: Element, config: FoundationFormResponseUISuccessConfig, data: any, textStatus: string, xhr: JQueryXHR, parsedResponse: any) => boolean;
+   }
+
+   /**
+    * The config of FoundationFormResponseUISuccess.
+    * The only required property is <code>name</code>. The handler implementation is allowed to define any other property according to what it needs.
+    * Consult individual handler documentation.
+    */
+   interface FoundationFormResponseUISuccessConfig {
+     /**
+      * The name of the handler to be performed when success response is returned by the server.
+      */
+     name: string;
+   }
+
+A chain of registered handlers is created using LIFO (last in, first out) algorithm.
+The handler will be called when the name matches. If false is returned by the handler, the next handler in the chain will be evaluated. Otherwise the chain stops.
+
+Example
+-------
+
+.. code-block:: js
+
+   /**
+    * Do a redirect to the given href.
+    */
+   $(window).adaptTo("foundation-registry").register("foundation.form.response.ui.success", {
+       name: "foundation.redirect",
+       handler: function(form, config, data, textStatus, xhr, parsedResponse) {
+           var href = URITemplate.expand(config.href, data);
+
+           if (href && href[0] === "/") {
+               // only navigate when it starts with "/" to prevent open redirect
+               window.location = href;
+           }
+       }
+   });
+
+
+Error Response Handler
+======================
+
+``foundation-form`` allows the error response to be pluggable.
+Unlike success response, there is no markup associated with error response config.
+This is due to the fact that error is usually unpredictable.
+Rather each handler needs to inspect the response and decide to act upon it or simply pass it to the next handler.
+
+The error response handler can be registered to the :doc:`registry <../registry/index>` using ``foundation.form.response.ui.error`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+  interface FoundationFormResponseUIError {
+    /**
+     * The handler to actually perform the action.
+     * If <code>false</code> is returned, the next handler in the chain will be evaluated. Otherwise the chain stops.
+     *
+     * @param form The element of the <code>.foundation-form</code>
+     * @param data The result of parsing the raw response by <code>FoundationFormResponseParser</code>
+     * @param xhr The normalized jQuery XHR object
+     * @param textStatus A string describing the type of error that occurred (e.g. <code>null</code>, "timeout", "error", "abort", "parsererror")
+     * @error errorThrown Usually the textual portion of the HTTP status, such as "Not Found" or "Internal Server Error"
+     */
+    handler: (form: Element, data: any, xhr: JQueryXHR, textStatus: string, errorThrown: any) => boolean;
+  }
+
+A chain of registered handlers is created using LIFO (last in, first out) algorithm. If false is returned by the handler, the next handler in the chain will be evaluated. Otherwise the chain stops.
+
+Example
+-------
+
+.. code-block:: js
+
+   /**
+    * Show an alert showing the message from the response of Sling's <code>HTMLResponse.class</code>.
+    */
+   $(window).adaptTo("foundation-registry").register("foundation.form.response.ui.error", {
+       name: "foundation.sling",
+       handler: function(form, data, xhr, error, errorThrown) {
+           if (!data.Status) {
+               return false;
+           }
+
+           var title = Granite.I18n.get("Error");
+           var message = data.Message;
+
+           var ui = $(window).adaptTo("foundation-ui");
+           ui.alert(title, message, "error");
+       }
+   });
+
+
+Submit Hook
+===========
+
+There is a pluggable hook to apply extra logic during submission.
+
+The hook can be registered to the :doc:`registry <../registry/index>` using ``foundation.form.submit`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+  interface FoundationFormSubmit {
+    /**
+     * Only the element satisfying the selector will be handled by this parser.
+     * It will be passed to <code>jQuery.fn.is</code>.
+     */
+    selector: string;
+
+    /**
+     * The handler to actually perform the hook.
+     *
+     * This method is executed before the submission (i.e. it is a pre-submit hook).
+     * It can perform async operation, where the result is returned as a promise at <code>FoundationFormSubmitResult#preResult</code>.
+     *
+     * @param form The element of the <code>.foundation-form</code>
+     */
+    handler: (form: Element) => FoundationFormSubmitResult;
+  }
+
+  interface FoundationFormSubmitResult {
+    /**
+     * The result of pre-submit hook.
+     *
+     * The submission is blocked until all the returned promises of all registered hooks are fulfilled.
+     * When the promise is rejected, the submission is cancelled.
+     */
+    preResult?: Promise;
+
+    /**
+     * The post-submit hook, which is executed after the submission.
+     *
+     * It can perform async operation, where the result is returned as a promise.
+     *
+     * The form subsequent logic is blocked until all the returned promises are fulfilled.
+     * Regardless of the result of the promise, the form logic will continue.
+     */
+    post?: () => Promise;
+  }

@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.menu.MenuMgr","doc":"Provides a common registry of all menu items on a page so that they can be easily accessed by id....","configs":[],"props":[],"methods":[{"name":"get","doc":"Returns a CQ.Ext.menu.Menu object"},{"name":"hideAll","doc":"Hides all menus that are currently visible"}],"events":[]}

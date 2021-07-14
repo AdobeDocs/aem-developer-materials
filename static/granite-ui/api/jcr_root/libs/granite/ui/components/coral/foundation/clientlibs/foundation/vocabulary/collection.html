@@ -1,0 +1,442 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-collection &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-command" href="command.html" />
+    <link rel="prev" title="Granite UI Foundation Vocabulary" href="index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="command.html" title="foundation-command"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Granite UI Foundation Vocabulary"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-collection">
+<h1>foundation-collection<a class="headerlink" href="#foundation-collection" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-collection</span></code> is a vocabulary about the concept of collection.
+To understand it in more detail, please check <a class="reference internal" href="../../../docs/collection.html"><span class="doc">its explainer</span></a>.</p>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.foundation-collection<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element is a collection. A collection represents a group of elements, knowns as its items.
+A collection MUST NOT be nested inside another collection.</p>
+<p>To store metadata for the collection, this element (or its descendant) can be annotated accordingly.
+Or <code class="docutils literal notranslate"><span class="pre">.foundation-collection-meta</span></code> can be used as a standardized way to do this.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-collection-id">
+<h3>[data-foundation-collection-id]<a class="headerlink" href="#data-foundation-collection-id" title="Permalink to this headline">¶</a></h3>
+<p>The ID of the collection. This is optional.
+The ID is an opaque string where the author can use whatever value suitable for the application.
+For Granite application, it is usually a path.</p>
+<p>Usually collection is used to represent hierarchical system similar to file system.
+This attribute is then used to indicate the path of the directory.
+The collection items then become the files or subdirectory.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="nb">id</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-item">
+<h3>.foundation-collection-item<a class="headerlink" href="#foundation-collection-item" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element is an item of a collection. It MUST be a descendant of <code class="docutils literal notranslate"><span class="pre">.foundation-collection</span></code> element.</p>
+<p>To store metadata for the item, this element (or its descendant) can be annotated accordingly.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-collection-item-id">
+<h3>[data-foundation-collection-item-id]<a class="headerlink" href="#data-foundation-collection-item-id" title="Permalink to this headline">¶</a></h3>
+<p>The ID of the collection item. This is optional.
+The ID is an opaque string where the author can use whatever value suitable for the application.
+It MUST be unique within a collection. i.e. Within a collection, there cannot be two items having the same ID.
+For Granite application, it is usually a path.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span><span class="o">-</span><span class="nb">id</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-item-title">
+<h3>.foundation-collection-item-title<a class="headerlink" href="#foundation-collection-item-title" title="Permalink to this headline">¶</a></h3>
+<p>The element of the title of the collection item. This is optional.
+The title is usually used to display human-friendly string that can be read by the component dealing with the item.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span><span class="o">-</span><span class="n">title</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-item-thumbnail">
+<h3>.foundation-collection-item-thumbnail<a class="headerlink" href="#foundation-collection-item-thumbnail" title="Permalink to this headline">¶</a></h3>
+<p>The element of the thumbnail of the collection item. This is optional.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span><span class="o">-</span><span class="n">thumbnail</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-navigator">
+<h3>.foundation-collection-navigator<a class="headerlink" href="#foundation-collection-navigator" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element to navigate into the item. This is optional.
+The implementor may use this as a standardized way to allow the markup author to indicate the element to be used as an activator to navigate.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">navigator</span><span class="p">,</span>
+<span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">item</span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">navigator</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-collection-navigator-href">
+<h3>[data-foundation-collection-navigator-href]<a class="headerlink" href="#data-foundation-collection-navigator-href" title="Permalink to this headline">¶</a></h3>
+<p>The URI to navigate into. It is done by mean of <code class="docutils literal notranslate"><span class="pre">window.location</span></code>. i.e. it will use a new window context.</p>
+<p>If this attribute is not specified, the collection is navigated into the associated item,
+by loading the new collection based on the value of the item’s <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-item-id]</span></code>. The semantic behaviour is the same as calling <code class="docutils literal notranslate"><span class="pre">FoundationCollection#load</span></code> with id equals to the item ID.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">navigator</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">navigator</span><span class="o">-</span><span class="n">href</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-meta">
+<h3>.foundation-collection-meta<a class="headerlink" href="#foundation-collection-meta" title="Permalink to this headline">¶</a></h3>
+<p>The element to hold the metadata of the collection. This is optional.</p>
+<p>The markup structure can be in any level of complexity.
+To provide standardization, the following attributes are supported.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-collection-meta-title">
+<h3>[data-foundation-collection-meta-title]<a class="headerlink" href="#data-foundation-collection-meta-title" title="Permalink to this headline">¶</a></h3>
+<p>The title of the collection. The title is usually used to display human-friendly string.</p>
+<p>This is the collection counterpart of <code class="docutils literal notranslate"><span class="pre">.foundation-collection-item-title</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span><span class="o">-</span><span class="n">title</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-collection-meta-folder">
+<h3>[data-foundation-collection-meta-folder]<a class="headerlink" href="#data-foundation-collection-meta-folder" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">true</span></code> to indicate if the collection is a folder; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span><span class="o">-</span><span class="n">folder</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-meta-thumbnail">
+<h3>.foundation-collection-meta-thumbnail<a class="headerlink" href="#foundation-collection-meta-thumbnail" title="Permalink to this headline">¶</a></h3>
+<p>The element of the thumbnail of the collection.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">meta</span><span class="o">-</span><span class="n">thumbnail</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="foundation-collection-navigate">
+<h3>foundation-collection-navigate<a class="headerlink" href="#foundation-collection-navigate" title="Permalink to this headline">¶</a></h3>
+<p>This event is triggered after the collection navigation occur during <code class="docutils literal notranslate"><span class="pre">FoundationCollection#load</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-id]</span></code> is already changed when this event is triggered.</p>
+<p>The event has the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollectionNavigateEvent</span> <span class="p">{</span>
+  <span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-reload">
+<h3>foundation-collection-reload<a class="headerlink" href="#foundation-collection-reload" title="Permalink to this headline">¶</a></h3>
+<p>This event is triggered during <code class="docutils literal notranslate"><span class="pre">FoundationCollection#reload</span></code>.</p>
+<p>The event has the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollectionReloadEvent</span> <span class="p">{</span>
+  <span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-collection-newpage">
+<h3>foundation-collection-newpage<a class="headerlink" href="#foundation-collection-newpage" title="Permalink to this headline">¶</a></h3>
+<p>This event is triggered after the new page of the pagination is loaded.
+The pagination states are already changed when this event is triggered.
+This event is also triggered during the initialization of the collection that reflects the initial states of the pagination.</p>
+<p>The event has the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollectionNewpageEvent</span> <span class="p">{</span>
+  <span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>foundation-collection<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-collection</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">.foundation-collection</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationCollection</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollection</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Appends new items to the collection.</span>
+<span class="cm">   * This method will trigger &lt;code&gt;foundation-contentloaded&lt;/code&gt; event.</span>
+<span class="cm">   */</span>
+  <span class="nx">append</span><span class="p">(</span><span class="nx">items</span>: <span class="kt">Element</span><span class="p">[])</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Removes all the item of collection.</span>
+<span class="cm">   */</span>
+  <span class="nx">clear</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the pagination state of the collection.</span>
+<span class="cm">   */</span>
+  <span class="nx">getPagination</span><span class="p">()</span><span class="o">:</span> <span class="nx">FoundationCollectionPagination</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Loads (or refreshes) the collection to show the collection having a given id.</span>
+<span class="cm">   * The collection will then have &lt;code&gt;[data-foundation-collection-id]&lt;/code&gt; equals to the given id.</span>
+<span class="cm">   * It triggers &lt;code&gt;foundation-collection-navigate&lt;/code&gt;.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Implementor MAY return a new collection element, instead reusing the existing element.</span>
+<span class="cm">   */</span>
+  <span class="nx">load</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="nx">Element</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Reloads the current collection.</span>
+<span class="cm">   * As this is just a reload, the &lt;code&gt;[data-foundation-collection-id]&lt;/code&gt; is not changed.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Implementor MAY return a new collection element, instead reusing the existing element.</span>
+<span class="cm">   */</span>
+  <span class="nx">reload</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="nx">Element</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The pagination state of the collection.</span>
+<span class="cm"> */</span>
+<span class="kr">interface</span> <span class="nx">FoundationCollectionPagination</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The current offset.</span>
+<span class="cm">   */</span>
+  <span class="nx">offset</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The page size.</span>
+<span class="cm">   */</span>
+  <span class="nx">limit</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the total count or the total as far as it is known.</span>
+<span class="cm">   * If guessTotal is unavailable from the data source, the default value will be -1.</span>
+<span class="cm">   */</span>
+  <span class="nx">guessTotal</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * &lt;code&gt;true&lt;/code&gt; if the pagination has more item;</span>
+<span class="cm">   * &lt;code&gt;false&lt;/code&gt; if the pagination has no more item;</span>
+<span class="cm">   * &lt;code&gt;null&lt;/code&gt; if it is unknown if the pagination has more item or not.</span>
+<span class="cm">   */</span>
+  <span class="nx">hasNext</span>: <span class="kt">boolean</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>foundation-collection-meta<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-collection-meta</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">.foundation-collection</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationCollectionMeta</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * The meta interface of the collection.</span>
+<span class="cm"> */</span>
+<span class="kr">interface</span> <span class="nx">FoundationCollectionMeta</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the &lt;code&gt;.foundation-collection-meta&lt;/code&gt; element.</span>
+<span class="cm">   */</span>
+  <span class="nx">getElement</span><span class="p">()</span><span class="o">:</span> <span class="nx">Element</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the title of the collection.</span>
+<span class="cm">   * This is the value of &lt;code&gt;[data-foundation-collection-meta-title]&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">getTitle</span><span class="p">()</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the thumbnail element of the collection (&lt;code&gt;.foundation-collection-meta-thumbnail&lt;/code&gt;).</span>
+<span class="cm">   */</span>
+  <span class="nx">getThumbnail</span><span class="p">()</span><span class="o">:</span> <span class="nx">Element</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the collection is a folder; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * This is the value of &lt;code&gt;[data-foundation-collection-meta-folder]&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">isFolder</span><span class="p">()</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the applicable relationships of this collection.</span>
+<span class="cm">   */</span>
+  <span class="nx">getRelationship</span><span class="p">()</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../_images/graphviz-4033d2009bc60fa01ca1d9becd2eb4e637c5aaa8.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-collection&quot; {
+  rankdir=BT;
+  &quot;foundation-selections&quot; -&gt; &quot;foundation-collection&quot; [label=&quot;extends&quot;, weight=8];
+  &quot;foundation-collection-action&quot; -&gt; &quot;foundation-selections&quot; [label=&quot;reacts to&quot;];
+  &quot;foundation.dialog&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+  &quot;foundation.link&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+  &quot;foundation.pushstate&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-collection</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-collection</a></li>
+<li><a class="reference internal" href="#data-foundation-collection-id">[data-foundation-collection-id]</a></li>
+<li><a class="reference internal" href="#foundation-collection-item">.foundation-collection-item</a></li>
+<li><a class="reference internal" href="#data-foundation-collection-item-id">[data-foundation-collection-item-id]</a></li>
+<li><a class="reference internal" href="#foundation-collection-item-title">.foundation-collection-item-title</a></li>
+<li><a class="reference internal" href="#foundation-collection-item-thumbnail">.foundation-collection-item-thumbnail</a></li>
+<li><a class="reference internal" href="#foundation-collection-navigator">.foundation-collection-navigator</a></li>
+<li><a class="reference internal" href="#data-foundation-collection-navigator-href">[data-foundation-collection-navigator-href]</a></li>
+<li><a class="reference internal" href="#foundation-collection-meta">.foundation-collection-meta</a></li>
+<li><a class="reference internal" href="#data-foundation-collection-meta-title">[data-foundation-collection-meta-title]</a></li>
+<li><a class="reference internal" href="#data-foundation-collection-meta-folder">[data-foundation-collection-meta-folder]</a></li>
+<li><a class="reference internal" href="#foundation-collection-meta-thumbnail">.foundation-collection-meta-thumbnail</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event">Event</a><ul>
+<li><a class="reference internal" href="#foundation-collection-navigate">foundation-collection-navigate</a></li>
+<li><a class="reference internal" href="#foundation-collection-reload">foundation-collection-reload</a></li>
+<li><a class="reference internal" href="#foundation-collection-newpage">foundation-collection-newpage</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a><ul>
+<li><a class="reference internal" href="#id2">foundation-collection</a></li>
+<li><a class="reference internal" href="#id3">foundation-collection-meta</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Granite UI Foundation Vocabulary</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="command.html"
+                        title="next chapter">foundation-command</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="command.html" title="foundation-command"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Granite UI Foundation Vocabulary"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+********************************
+Explainer: foundation-collection
+********************************
+
+
+Background
+==========
+
+A collection represents a group of items. A concept of collection is one of the most frequently used concept in a UI. For example, a starting point to implement a CRUD pattern is usually done by listing the available items.
+
+In HTML, in order to represent the collection, it can be done in many ways. One of them is ``<ul>``. For example for a simple list, we can have the following markup:
+
+.. code-block:: html
+
+   <ul id="my-collection">
+     <li>Item 1</li>
+     <li>Item 2</li>
+     <li>Item 3</li>
+   </ul>
+
+The markup can then be parsed and interpreted for any purpose based on the understanding of HTML spec. For example, the following JS code can be used to count and read the available items of the collection:
+
+.. code-block:: js
+
+   var collection = $("#my-collection");
+   console.log("Count: ", collection.prop("childElementCount"));
+
+   console.log("Items:");
+   collection.children().each(function() {
+     console.log(this.textContent);
+   });
+
+HTML elements have pretty strict rules on what the exact markup structures are. e.g. ``<ul>`` requires ``<li>`` as a direct child. However, to build a complex widget to represent a collection, often there is a need for flexibility in the markup. For example we can have the following markup for SimpleList widget:
+
+.. code-block:: html
+
+   <div id="my-collection" class="simplelist">
+     <div class="simplelist-wrapper">
+       <div class="simplelist-item">Item 1</div>
+       <div class="simplelist-item">Item 2</div>
+       <div class="simplelist-item">Item 3</div>
+     </div>
+   </div>
+
+And to count and read the items like before, we have to change our JS code:
+
+.. code-block:: js
+
+   var collection = $("#my-collection");
+   var items = collection.find(".simplelist-item");
+
+   console.log("Count: ", items.length);
+
+   console.log("Items:");
+   items.each(function() {
+     console.log(this.textContent);
+   });
+
+We know that as a good programming practice that we want to code against the interface, not to an implementation details.
+And the difference of the markup above—``<ul>`` versus ``.simplelist``—is implementation details, that we want to see as blackboxes.
+Therefore we need something to represent the abstraction of collection.
+
+
+Introducing foundation-collection
+=================================
+
+:doc:`../clientlibs/foundation/vocabulary/collection` is a :doc:`vocabulary </jcr_root/libs/granite/ui/docs/client/vocabulary>` to represent the abstraction of a collection.
+
+To use ``foundation-collection`` for the ``<ul>`` example, we need to anotate the markup following its contract.
+For example we have to annotate the root element of the collection and the elements of the items:
+
+.. code-block:: html
+
+   <ul id="my-collection" class="foundation-collection">
+     <li class="foundation-collection-item">Item 1</li>
+     <li class="foundation-collection-item">Item 2</li>
+     <li class="foundation-collection-item">Item 3</li>
+   </ul>
+
+Likewise, as the implementor of SimpleList, we can also make it compatible with ``foundation-collection``:
+
+.. code-block:: html
+
+   <div id="my-collection" class="simplelist foundation-collection">
+     <div class="simplelist-wrapper">
+       <div class="simplelist-item foundation-collection-item">Item 1</div>
+       <div class="simplelist-item foundation-collection-item">Item 2</div>
+       <div class="simplelist-item foundation-collection-item">Item 3</div>
+     </div>
+   </div>
+
+Because of this, we can have a common JS code to read both examples:
+
+.. code-block:: js
+
+   var collection = $("#my-collection");
+   var items = collection.find(".foundation-collection-item");
+
+   console.log("Count: ", items.length);
+
+   console.log("Items:");
+   items.each(function() {
+     console.log(this.textContent);
+   });
+
+The above JS code is also compatible to any implementation that follows ``foundation-collection`` vocabulary.
+
+``foundation-collection`` also establishes other features that are relevant for collection. For example, usually there is a need for identifications of the collection and its items, which are represented by ``[data-foundation-collection-id]`` and ``[data-foundation-collection-item-id]`` respectively.
+
+These features will be apparent when we build a reusable behaviour leveraging ``foundation-collection``.
+
+
+foundation-selections
+=====================
+
+After defining the collection concept, the next step is to manipulate it. One of the first thing we have to do with a collection is to select its items. Like ``foundation-collection``, we need to express this concept as a common vocabulary, which is manifested as :doc:`../clientlibs/foundation/vocabulary/selections`. This vocabulary is built on top of ``foundation-collection``.
+
+As SimpleList implementor, we can modify its implementation to satify the ``foundation-selections`` contract when the user selects its items:
+
+.. code-block:: js
+
+   // Toggle the selection when the user clicks the item.
+
+   $(document).on("click", ".simplelist-item.foundation-collection-item", function(e) {
+     var item = $(this);
+     var collection = item.closest(".simplelist.foundation-collection");
+
+     if (collection.length === 0) {
+       return; // Invalid markup
+     }
+
+     var mode = collection.attr("data-foundation-selections-mode");
+
+     if (mode === "single") {
+       var currentSelectedItem = collection.find(".foundation-selections-item");
+
+       currentSelectedItem.removeClass("foundation-selections-item");
+
+       if (!currentSelectedItem.is(item)) {
+         item.addClass("foundation-selections-item");
+       }
+     } else {
+       item.toggleClass("foundation-selections-item");
+     }
+
+     collection.trigger("foundation-selections-change");
+   });
+
+We also need to expose ``foundation-selections`` AdaptTo interface:
+
+.. code-block:: js
+
+   $(window).adaptTo("foundation-registry").register("foundation.adapters", {
+     type: "foundation-selections",
+     selector: ".simplelist.foundation-collection",
+     adapter: function(el) {
+       var collection = $(el);
+
+       return {
+         count: function() {
+           return collection.find(".foundation-selections-item").length;
+         },
+
+         clear: function(suppressEvent) {
+           var length = collection.find(".foundation-selections-item").removeClass("foundation-selections-item").length;
+
+           if (!suppressEvent && length) {
+             collection.trigger("foundation-selections-change");
+           }
+         },
+
+         select: function(el) {
+           var item = $(el);
+
+           if (!item.hasClass("foundation-collection-item")) {
+             return; // Invalid item element
+           }
+
+           if (item.hasClass("foundation-selections-item")) {
+             return; // Already selected
+           }
+
+           var mode = collection.attr("data-foundation-selections-mode");
+
+           if (mode === "single") {
+             var currentSelectedItem = collection.find(".foundation-selections-item");
+             currentSelectedItem.removeClass("foundation-selections-item");
+           }
+
+           item.addClass("foundation-selections-item");
+
+           collection.trigger("foundation-selections-change");
+         },
+
+         deselect: function(el) {
+           var item = $(el);
+
+           if (!item.hasClass("foundation-collection-item")) {
+             return; // Invalid item element
+           }
+
+           if (!item.hasClass("foundation-selections-item")) {
+             return; // Already deselected
+           }
+
+           item.removeClass("foundation-selections-item");
+
+           collection.trigger("foundation-selections-change");
+         }
+       };
+     }
+   });
+
+So when the user clicks on "Item 2", the resulting markup would be like this:
+
+.. code-block:: html
+
+   <div id="my-collection" class="simplelist foundation-collection">
+     <div class="simplelist-wrapper">
+       <div class="simplelist-item foundation-collection-item">Item 1</div>
+       <div class="simplelist-item foundation-collection-item foundation-selections-item">Item 2</div>
+       <div class="simplelist-item foundation-collection-item">Item 3</div>
+     </div>
+   </div>
+
+The third party JS code is able to read the markup or use its AdaptTo API, without knowing the implementation details:
+
+.. code-block:: js
+
+   // Select "Item2"
+
+   var myCollection = $("#my-collection");
+   var item2El = myCollection.find(".foundation-collection-item")[1];
+
+   var selectionAPI = myCollection.adaptTo("foundation-selections");
+
+   selectionAPI.select(item2El);
+
+   // Count the selection using selector
+   console.log("Selection Count: ", myCollection.find(".foundation-selections-item").length);
+   // or using AdaptTo API
+   console.log("Selection Count: ", selectionAPI.count());

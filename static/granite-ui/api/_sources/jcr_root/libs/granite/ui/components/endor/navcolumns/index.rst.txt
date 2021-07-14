@@ -1,0 +1,51 @@
+
+NavColumns
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/navcolumns
+   :deprecated:
+
+   The component to render the navigation columns.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorNavColumns]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The paths to the navigation content. The first resolvable path is used.
+       */
+      - srcPath (String) multiple
+
+      /**
+       * The id of active navigation item.
+       */
+      - currentId (String)
+
+   Examples::
+
+      + mycolumns
+        - sling:resourceType = "granite/ui/components/endor/navcolumns"
+        - srcPath = "cq/core/content/nav"
+        - currentId = "cq-sites"

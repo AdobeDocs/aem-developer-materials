@@ -1,0 +1,1 @@
+{"name":"CQ.themes.SuggestField","doc":"The theme-specific constants for CQ.form.SuggestField.This class is a singleton and cannot be cre...","configs":[],"props":[{"name":"LIST_WIDTH","doc":"&lt;static&gt; The default listWidth (defaults to 325)."},{"name":"MAX_HEIGHT","doc":"&lt;static&gt; The default maxHeight (defaults to 303)."}],"methods":[],"events":[]}

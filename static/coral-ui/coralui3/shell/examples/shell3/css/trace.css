@@ -1,0 +1,346 @@
+
+.__trace,
+.trace coral-shell,
+.trace coral-shell-content,
+.trace coral-shell-menubar,
+.trace coral-shell-menubar-item,
+.trace coral-shell-menu,
+.trace coral-shell-header,
+.trace coral-shell-header-home,
+.trace [is="coral-shell-homeanchor"],
+.trace coral-shell-header-content,
+.trace coral-shell-header-actions,
+.trace coral-shell-workspaces,
+.trace coral-shell-workspaces a[is='coral-shell-workspace'] {
+  padding: 3px;
+}
+
+.__trace:before,
+.trace coral-shell:before,
+.trace coral-shell-content:before,
+.trace coral-shell-menubar:before,
+.trace coral-shell-menubar-item:before,
+.trace coral-shell-menu:before,
+.trace coral-shell-header:before,
+.trace coral-shell-header-home:before,
+.trace [is="coral-shell-homeanchor"]:before,
+.trace coral-shell-header-content:before,
+.trace coral-shell-header-actions:before,
+.trace coral-shell-workspaces:before,
+.trace coral-shell-workspaces a[is='coral-shell-workspace']:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #ff0;
+  -webkit-box-shadow: inset 0 0 3px rgba(100,100,100,0.5);
+  box-shadow: inset 0 0 3px rgba(100,100,100,0.5);
+}
+
+.__trace:after,
+.trace coral-shell:after,
+.trace coral-shell-content:after,
+.trace coral-shell-menubar:after,
+.trace coral-shell-menubar-item:after,
+.trace coral-shell-menu:after,
+.trace coral-shell-header:after,
+.trace coral-shell-header-home:after,
+.trace [is="coral-shell-homeanchor"]:after,
+.trace coral-shell-header-content:after,
+.trace coral-shell-header-actions:after,
+.trace coral-shell-workspaces:after,
+.trace coral-shell-workspaces a[is='coral-shell-workspace']:after {
+  height: auto;
+  padding: 2px 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  content: '';
+  position: absolute;
+  opacity: .99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+  z-index: 100000;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(50%);
+  -moz-transform: translateX(-50%) translateY(50%);
+  -o-transform: translateX(-50%) translateY(50%);
+  -ms-transform: translateX(-50%) translateY(50%);
+  transform: translateX(-50%) translateY(50%);
+  border: 2px solid #ff0;
+  background: rgba(30,30,30,0.95);
+  color: #fff;
+  font-family: Courier;
+  font-weight: 200;
+  font-size: 8px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.trace {
+  height: 100%;
+  background: #505050;
+}
+
+.trace body {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  bottom: 25px;
+  right: 25px;
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.trace coral-shell:after,
+.trace coral-shell:before {
+  border-color: #ff0;
+}
+
+.trace coral-shell:after {
+  content: '<coral-shell>';
+  color: #ffffbf;
+  left: 20%;
+}
+
+.trace coral-shell:after {
+  top: 0;
+  bottom: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.trace coral-shell-content {
+  overflow: visible;
+  z-index: 0;
+  left: 3px;
+  bottom: 3px;
+  right: 3px;
+  top: 89px;
+}
+
+.trace coral-shell-content:after,
+.trace coral-shell-content:before {
+  border-color: #00f;
+}
+
+.trace coral-shell-content:after {
+  content: '<coral-shell-content>';
+  color: #bfbfff;
+  left: 100px;
+}
+
+.trace coral-shell-content:after {
+  top: 0;
+  bottom: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.trace coral-shell-menubar {
+  position: relative;
+}
+
+.trace coral-shell-menubar:after,
+.trace coral-shell-menubar:before {
+  border-color: #008000;
+}
+
+.trace coral-shell-menubar:after {
+  content: '<coral-shell-menubar>';
+  color: #a0ffa0;
+  left: 80%;
+}
+
+.trace coral-shell-menubar-item {
+  position: relative;
+}
+
+.trace coral-shell-menubar-item:after,
+.trace coral-shell-menubar-item:before {
+  border-color: #ffa500;
+}
+
+.trace coral-shell-menubar-item:after {
+  content: '<coral-shell-menubar-item>';
+  color: #ffe9bf;
+  left: 50%;
+}
+
+.trace coral-shell-menubar-item + coral-shell-menubar-item:after {
+  display: none;
+}
+
+.trace coral-shell-menu:after,
+.trace coral-shell-menu:before {
+  border-color: #ffa500;
+}
+
+.trace coral-shell-menu:after {
+  content: '<coral-shell-menu>';
+  color: #ffe9bf;
+  left: 50%;
+}
+
+.trace coral-shell-header {
+  height: 86px;
+  padding: 16px;
+}
+
+.trace coral-shell-header:after,
+.trace coral-shell-header:before {
+  border-color: #f00;
+}
+
+.trace coral-shell-header:after {
+  content: '<coral-shell-header>';
+  color: #ffbfbf;
+  left: 55%;
+}
+
+.trace coral-shell-header:after {
+  top: 0;
+  bottom: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.trace coral-shell-header-home {
+  position: relative;
+}
+
+.trace coral-shell-header-home:after,
+.trace coral-shell-header-home:before {
+  border-color: #ffc0cb;
+}
+
+.trace coral-shell-header-home:after {
+  content: '<coral-shell-header-home>';
+  color: #ffeff2;
+  left: 50%;
+}
+
+.trace coral-shell-header-home:after {
+  top: 0;
+  bottom: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.trace [is="coral-shell-homeanchor"]:after,
+.trace [is="coral-shell-homeanchor"]:before {
+  border-color: #6495ed;
+}
+
+.trace [is="coral-shell-homeanchor"]:after {
+  content: '<a is="coral-shell-homeanchor">';
+  color: #d8e4fb;
+  left: 50%;
+}
+
+.trace coral-shell-header-content {
+  position: relative;
+  height: 56px;
+}
+
+.trace coral-shell-header-content:after,
+.trace coral-shell-header-content:before {
+  border-color: #800080;
+}
+
+.trace coral-shell-header-content:after {
+  content: '<coral-shell-header-content>';
+  color: #ffa0ff;
+  left: 50%;
+}
+
+.trace coral-shell-header-content:after {
+  top: 0;
+  bottom: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.trace coral-shell-header-actions {
+  position: relative;
+}
+
+.trace coral-shell-header-actions:after,
+.trace coral-shell-header-actions:before {
+  border-color: #deb887;
+}
+
+.trace coral-shell-header-actions:after {
+  content: '<coral-shell-header-actions>';
+  color: #f7ede1;
+  left: 50%;
+}
+
+.trace coral-shell-header-actions:after {
+  top: 0;
+  bottom: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.trace coral-shell-workspaces {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+}
+
+.trace coral-shell-workspaces:after,
+.trace coral-shell-workspaces:before {
+  border-color: #deb887;
+}
+
+.trace coral-shell-workspaces:after {
+  content: '<coral-shell-workspaces>';
+  color: #f7ede1;
+  left: 80%;
+}
+
+.trace coral-shell-workspaces a[is='coral-shell-workspace'] {
+  position: relative;
+  overflow: visible;
+}
+
+.trace coral-shell-workspaces a[is='coral-shell-workspace']:after,
+.trace coral-shell-workspaces a[is='coral-shell-workspace']:before {
+  border-color: #7fffd4;
+}
+
+.trace coral-shell-workspaces a[is='coral-shell-workspace']:after {
+  content: '<coral-shell-workspace>';
+  color: #dffff4;
+  left: 50%;
+}
+
+.trace coral-shell-workspaces a[is='coral-shell-workspace'] + a[is='coral-shell-workspace']:after {
+  display: none;
+}

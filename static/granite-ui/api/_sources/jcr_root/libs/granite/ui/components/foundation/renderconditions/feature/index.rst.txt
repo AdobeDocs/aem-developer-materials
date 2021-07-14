@@ -1,0 +1,20 @@
+
+Feature
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/renderconditions/feature
+   :rendercondition:
+   :deprecated:
+
+   A condition that decides based on :javadoc:`Sling's Feature Flag <org/apache/sling/featureflags/package-summary.html>`.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:RenderConditionsFeature]
+
+      /**
+       * The feature name.
+       */
+      - feature (String)

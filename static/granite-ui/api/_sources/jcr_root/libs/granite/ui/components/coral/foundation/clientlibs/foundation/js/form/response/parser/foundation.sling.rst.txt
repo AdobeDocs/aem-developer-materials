@@ -1,0 +1,58 @@
+foundation.form.response.parser: foundation.sling
+=================================================
+
+``foundation.sling`` is a response parser of :doc:`../../index`.
+
+It is designed to parse `Sling's HTMLResponse.class <https://sling.apache.org/apidocs/sling7/org/apache/sling/api/servlets/HtmlResponse.html>`_.
+
+
+Matching Condition
+------------------
+
+selector
+   ``*``
+
+contentType
+   ``/text\/html/``
+
+content
+   The response HTML MUST have an element with `#Status` selector.
+
+
+Parsed Data
+-----------
+
+It returns a JS object which properties are based on the elements having ``id`` attribute.
+The value of ``id`` attribute is used as the key of the property, while the value of the element is used as the value of the property.
+
+
+Example
+-------
+
+Given the response HTML:
+
+.. code-block:: html
+
+   <html>
+     <body>
+       <table>
+         <!-- ... -->
+         <td><div id="Status">200</div></td>
+         <td><div id="Message">Site created</div></td>
+         <td><a href="/content/geometrixx5" id="Location">/content/geometrixx5</a></td>
+         <td><div id="Path">/content/geometrixx5</div></td>
+         <!-- ... -->
+       </table>
+     </body>
+   </html>
+
+The parsed data is the following object:
+
+.. code-block:: js
+
+   var parsedData = {
+      Status: "200",
+      Message: "Site created",
+      Location: "/content/geometrixx5",
+      Path: "/content/geometrixx5"
+   };

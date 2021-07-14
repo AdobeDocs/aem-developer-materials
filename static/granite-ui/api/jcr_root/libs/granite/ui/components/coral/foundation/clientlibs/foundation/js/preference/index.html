@@ -1,0 +1,192 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-preference &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-registry" href="../registry/index.html" />
+    <link rel="prev" title="foundation-picker-control" href="../picker/control.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../registry/index.html" title="foundation-registry"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../picker/control.html" title="foundation-picker-control"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-preference">
+<h1>foundation-preference<a class="headerlink" href="#foundation-preference" title="Permalink to this headline">¶</a></h1>
+<p>An API for user preferences.</p>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-preference</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">window</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationPreference</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationPreference</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the current names of the preferences.</span>
+<span class="cm">   */</span>
+  <span class="nx">names</span><span class="p">()</span><span class="o">:</span> <span class="kt">string</span><span class="p">[];</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the preference of the given name.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param name The name of the preference.</span>
+<span class="cm">   * @returns The preference value without doing any conversion.</span>
+<span class="cm">   *          Return &lt;code&gt;undefined&lt;/code&gt; when there is no preference with the given name.</span>
+<span class="cm">   */</span>
+  <span class="nx">get</span><span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the preference of the given name, converted to boolean.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param name The name of the preference.</span>
+<span class="cm">   * @param defaultValue The returned value when there is no preference with the given name.</span>
+<span class="cm">   */</span>
+  <span class="nx">getBoolean</span><span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">defaultValue</span><span class="o">=</span><span class="kc">false</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the preference of the given name, converted to number.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param name The name of the preference.</span>
+<span class="cm">   * @param defaultValue The returned value when there is no preference with the given name.</span>
+<span class="cm">   */</span>
+  <span class="nx">getNumber</span><span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">defaultValue</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Sets the preference of the given name with the given value.</span>
+<span class="cm">   * It is RECOMMENDED to use {@link #setAll} when setting multiple preferences.</span>
+<span class="cm">   * It will save the change to the server.</span>
+<span class="cm">   *</span>
+<span class="cm">   * It triggers &lt;code&gt;foundation-preference-change&lt;/code&gt; event.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param name The name of the preference.</span>
+<span class="cm">   * @param value The value of the preference. Use &lt;code&gt;undefined&lt;/code&gt; to remove the preference.</span>
+<span class="cm">   */</span>
+  <span class="nx">set</span><span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span>: <span class="kt">any</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Sets multiple preferences.</span>
+<span class="cm">   * It will save the change to the server.</span>
+<span class="cm">   *</span>
+<span class="cm">   * It triggers &lt;code&gt;foundation-preference-change&lt;/code&gt; event.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param map The map containing the name-value pairs.</span>
+<span class="cm">   */</span>
+  <span class="nx">setAll</span><span class="p">(</span><span class="nx">map</span>: <span class="kt">Map</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-preference</a><ul>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../picker/control.html"
+                        title="previous chapter">foundation-picker-control</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../registry/index.html"
+                        title="next chapter">foundation-registry</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/preference/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../registry/index.html" title="foundation-registry"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../picker/control.html" title="foundation-picker-control"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

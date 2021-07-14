@@ -1,0 +1,668 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.Updater-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.Updater-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.Updater-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Ext.Updater"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.util.Observable" ext:member="" href="output/CQ.Ext.util.Observable.html">Observable</a>
+  <img src="resources/docs/elbow-end.gif"/>Updater</pre></div>
+                <h1>Class&nbsp;CQ.Ext.Updater</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/UpdateManager.js" target="_blank">UpdateManager.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Updater</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.util.Observable" ext:member="" href="output/CQ.Ext.util.Observable.html">CQ.Ext.util.Observable</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    Provides AJAX-style update capabilities for Element objects.  Updater can be used to <a ext:cls="CQ.Ext.Updater" ext:member="update" href="output/CQ.Ext.Updater.html#update">update</a>
+an <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a> once, or you can use <a ext:cls="CQ.Ext.Updater" ext:member="startAutoRefresh" href="output/CQ.Ext.Updater.html#startAutoRefresh">startAutoRefresh</a> to set up an auto-updating
+<a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">Element</a> on a specific interval.<br><br>
+Usage:<br>
+<pre><code>var el = CQ.Ext.get(<em>"foo"</em>); <i>// Get CQ.Ext.Element object</i>
+<b>var</b> mgr = el.getUpdater();
+mgr.update({
+        url: <em>"http://myserver.com/index.php"</em>,
+        params: {
+            param1: <em>"foo"</em>,
+            param2: <em>"bar"</em>
+        }
+});
+...
+mgr.formUpdate(<em>"myFormId"</em>, <em>"http://myserver.com/index.php"</em>);
+<br>
+<i>// or directly (returns the same Updater instance)</i>
+<b>var</b> mgr = <b>new</b> CQ.Ext.Updater(<em>"myElementId"</em>);
+mgr.startAutoRefresh(60, <em>"http://myserver.com/index.php"</em>);
+mgr.on(<em>"update"</em>, myFcnNeedsToKnow);
+<br>
+<i>// short handed call directly from the element object</i>
+CQ.Ext.get(<em>"foo"</em>).load({
+        url: <em>"bar.php"</em>,
+        scripts: true,
+        params: <em>"param1=foo&amp;param2=bar"</em>,
+        text: <em>"Loading Foo..."</em>
+});</code></pre>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.Updater-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-disableCaching"></a>
+            <b>disableCaching</b> : Boolean            <div class="mdesc">
+                                    <div class="short">
+Whether to append unique parameter on get request to disable caching (defaults to CQ.Ext.Updater.defaults.disableCac...</div>
+            <div class="long">
+                
+Whether to append unique parameter on get request to disable caching (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="disableCaching" href="output/CQ.Ext.Updater.defaults.html#disableCaching">CQ.Ext.Updater.defaults.disableCaching</a>).            </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-indicatorText"></a>
+            <b>indicatorText</b> : String            <div class="mdesc">
+                                        
+Text for loading indicator (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="indicatorText" href="output/CQ.Ext.Updater.defaults.html#indicatorText">CQ.Ext.Updater.defaults.indicatorText</a>).                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-loadScripts"></a>
+            <b>loadScripts</b> : Boolean            <div class="mdesc">
+                                        
+True to process scripts in the output (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="loadScripts" href="output/CQ.Ext.Updater.defaults.html#loadScripts">CQ.Ext.Updater.defaults.loadScripts</a>).                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-showLoadIndicator"></a>
+            <b>showLoadIndicator</b> : String            <div class="mdesc">
+                                        
+Whether to show indicatorText when loading (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="showLoadIndicator" href="output/CQ.Ext.Updater.defaults.html#showLoadIndicator">CQ.Ext.Updater.defaults.showLoadIndicator</a>).                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-sslBlankUrl"></a>
+            <b>sslBlankUrl</b> : String            <div class="mdesc">
+                                        Blank page URL to use with SSL file uploads (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="sslBlankUrl" href="output/CQ.Ext.Updater.defaults.html#sslBlankUrl">CQ.Ext.Updater.defaults.sslBlankUrl</a>).                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-timeout"></a>
+            <b>timeout</b> : Number            <div class="mdesc">
+                                        
+Timeout for requests or form posts in seconds (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="timeout" href="output/CQ.Ext.Updater.defaults.html#timeout">CQ.Ext.Updater.defaults.timeout</a>).                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.Updater-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-Updater"></a>
+            <b>Updater</b>(&nbsp;<code>Mixed el</code>, <span class="optional" title="Optional">[<code>Boolean forceNew</code>]</span>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Create new Updater directly.</div>
+            <div class="long">
+                Create new Updater directly.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : Mixed<div class="sub-desc">The element to update</div></li><li><code>forceNew</code> : Boolean<div class="sub-desc">(optional) By default the constructor checks to see if the passed element already
+has an Updater and if it does it returns the same instance. This will skip that check (useful for extending this class).</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-Updater.updateElement"></a>
+            <b>Updater.updateElement</b>(&nbsp;<code>Mixed el</code>, <code>String url</code>, <span class="optional" title="Optional">[<code>String/Object params</code>]</span>, <span class="optional" title="Optional">[<code>Object options</code>]</span>&nbsp;) : void            <div class="mdesc">
+            	        <div><b>Deprecated.</b></div>
+                                    <div class="short">&lt;static&gt; Static convenience method. This method is deprecated in favor of el.load({url:'foo.php', ...}).
+Usage:...</div>
+            <div class="long">
+                &lt;static&gt; Static convenience method. <b>This method is deprecated in favor of el.load({url:'foo.php', ...})</b>.
+Usage:
+<pre><code>CQ.Ext.Updater.updateElement(<em>"my-div"</em>, <em>"stuff.php"</em>);</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : Mixed<div class="sub-desc">The element to update</div></li><li><code>url</code> : String<div class="sub-desc">The url</div></li><li><code>params</code> : String/Object<div class="sub-desc">(optional) Url encoded param string or an object of name/value pairs</div></li><li><code>options</code> : Object<div class="sub-desc">(optional) A config object with any of the Updater properties you want to set - for
+example: {disableCaching:true, indicatorText: "Loading data..."}</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-abort"></a>
+            <b>abort</b>() : void            <div class="mdesc">
+                                    <div class="short">Aborts the currently executing transaction, if any.</div>
+            <div class="long">
+                Aborts the currently executing transaction, if any.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-enableBubble"></a>
+            <b>enableBubble</b>(&nbsp;<code>String/Array events</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Enables events fired by this Observable to bubble up an owner hierarchy by calling
+this.getBubbleTarget() if present....</div>
+            <div class="long">
+                <p>Enables events fired by this Observable to bubble up an owner hierarchy by calling
+<code>this.getBubbleTarget()</code> if present. There is no implementation in the Observable base class.</p>
+<p>This is commonly used by CQ.Ext.Components to bubble events to owner Containers. See <a ext:cls="CQ.Ext.Component" ext:member="getBubbleTarget" href="output/CQ.Ext.Component.html#getBubbleTarget">CQ.Ext.Component.getBubbleTarget</a>. The default
+implementation in CQ.Ext.Component returns the Component's immediate owner. But if a known target is required, this can be overridden to
+access the required target more quickly.</p>
+<p>Example:</p><pre><code>CQ.Ext.override(CQ.Ext.form.Field, {
+    <i>//  Add functionality to Field&#39;s initComponent to enable the change event to bubble</i>
+    initComponent : CQ.Ext.form.Field.prototype.initComponent.createSequence(<b>function</b>() {
+        <b>this</b>.enableBubble(<em>'change'</em>);
+    }),
+
+    <i>//  We know that we want Field&#39;s events to bubble directly to the FormPanel.</i>
+    getBubbleTarget : <b>function</b>() {
+        <b>if</b> (!<b>this</b>.formPanel) {
+            <b>this</b>.formPanel = <b>this</b>.findParentByType(<em>'form'</em>);
+        }
+        <b>return</b> this.formPanel;
+    }
+});
+
+<b>var</b> myForm = <b>new</b> CQ.Ext.formPanel({
+    title: <em>'User Details'</em>,
+    items: [{
+        ...
+    }],
+    listeners: {
+        change: <b>function</b>() {
+            <i>// Title goes red <b>if</b> form has been modified.</i>
+            myForm.header.setStyle(<em>'color'</em>, <em>'red'</em>);
+        }
+    }
+});</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>events</code> : String/Array<div class="sub-desc">The event name to bubble, or an Array of event names.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.util.Observable" ext:member="enableBubble" href="output/CQ.Ext.util.Observable.html#enableBubble">Observable</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-formUpdate"></a>
+            <b>formUpdate</b>(&nbsp;<code>String/HTMLElement form</code>, <span class="optional" title="Optional">[<code>String url</code>]</span>, <span class="optional" title="Optional">[<code>Boolean reset</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Performs an asynchronous form post, updating this element with the response. If the form has the attribute
+enctype='m...</div>
+            <div class="long">
+                <p>Performs an asynchronous form post, updating this element with the response. If the form has the attribute
+enctype='<a href="http://www.faqs.org/rfcs/rfc2388.html">multipart/form-data</a>', it assumes it's a file upload.
+Uses this.sslBlankUrl for SSL file uploads to prevent IE security warning.</p>
+<p>File uploads are not performed using normal "Ajax" techniques, that is they are <b>not</b>
+performed using XMLHttpRequests. Instead the form is submitted in the standard manner with the
+DOM <code>&lt;form></code> element temporarily modified to have its
+<a href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">target</a> set to refer
+to a dynamically generated, hidden <code>&lt;iframe></code> which is inserted into the document
+but removed after the return data has been gathered.</p>
+<p>Be aware that file upload packets, sent with the content type <a href="http://www.faqs.org/rfcs/rfc2388.html">multipart/form-data</a>
+and some server technologies (notably JEE) may require some custom processing in order to
+retrieve parameter names and parameter values from the packet content.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>form</code> : String/HTMLElement<div class="sub-desc">The form Id or form element</div></li><li><code>url</code> : String<div class="sub-desc">(optional) The url to pass the form to. If omitted the action attribute on the form will be used.</div></li><li><code>reset</code> : Boolean<div class="sub-desc">(optional) Whether to try to reset the form after the update</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) Callback when transaction is complete. The following
+parameters are passed:<ul>
+<li><b>el</b> : CQ.Ext.Element<p class="sub-desc">The Element being updated.</p></li>
+<li><b>success</b> : Boolean<p class="sub-desc">True for success, false for failure.</p></li>
+<li><b>response</b> : XMLHttpRequest<p class="sub-desc">The XMLHttpRequest which processed the update.</p></li></ul></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-getDefaultRenderer"></a>
+            <b>getDefaultRenderer</b>() : void            <div class="mdesc">
+                                    <div class="short">This is an overrideable method which returns a reference to a default
+renderer class if none is specified when creati...</div>
+            <div class="long">
+                This is an overrideable method which returns a reference to a default
+renderer class if none is specified when creating the CQ.Ext.Updater.
+Defaults to <a ext:cls="CQ.Ext.Updater.BasicRenderer" href="output/CQ.Ext.Updater.BasicRenderer.html">CQ.Ext.Updater.BasicRenderer</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-getEl"></a>
+            <b>getEl</b>() : CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Get the Element this Updater is bound to</div>
+            <div class="long">
+                Get the Element this Updater is bound to    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element</code><div class="sub-desc">The element</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-getRenderer"></a>
+            <b>getRenderer</b>() : Object            <div class="mdesc">
+                                    <div class="short">Returns the current content renderer for this Updater. See <a ext:cls="CQ.Ext.Updater.BasicRenderer" ext:member="render" href="output/CQ.Ext.Updater.BasicRenderer.html#render">CQ.Ext.Updater.BasicRenderer.render</a> for more details.</div>
+            <div class="long">
+                Returns the current content renderer for this Updater. See <a ext:cls="CQ.Ext.Updater.BasicRenderer" ext:member="render" href="output/CQ.Ext.Updater.BasicRenderer.html#render">CQ.Ext.Updater.BasicRenderer.render</a> for more details.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-isAutoRefreshing"></a>
+            <b>isAutoRefreshing</b>() : void            <div class="mdesc">
+                                    <div class="short">Returns true if the Updater is currently set to auto refresh its content (see <a ext:cls="CQ.Ext.Updater" ext:member="startAutoRefresh" href="output/CQ.Ext.Updater.html#startAutoRefresh">startAutoRefresh</a>), otherwise false.</div>
+            <div class="long">
+                Returns true if the Updater is currently set to auto refresh its content (see <a ext:cls="CQ.Ext.Updater" ext:member="startAutoRefresh" href="output/CQ.Ext.Updater.html#startAutoRefresh">startAutoRefresh</a>), otherwise false.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-isUpdating"></a>
+            <b>isUpdating</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">Returns true if an update is in progress, otherwise false.</div>
+            <div class="long">
+                Returns true if an update is in progress, otherwise false.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-refresh"></a>
+            <b>refresh</b>(&nbsp;<span class="optional" title="Optional">[<code>Function callback</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Refresh the element with the last used url or defaultUrl. If there is no url, it returns immediately</div>
+            <div class="long">
+                Refresh the element with the last used url or defaultUrl. If there is no url, it returns immediately    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>callback</code> : Function<div class="sub-desc">(optional) Callback when transaction is complete - called with signature (oElement, bSuccess)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-relayEvents"></a>
+            <b>relayEvents</b>(&nbsp;<code>Object o</code>, <code>Array events</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.</div>
+            <div class="long">
+                Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>o</code> : Object<div class="sub-desc">The Observable whose events this object is to relay.</div></li><li><code>events</code> : Array<div class="sub-desc">Array of event names to relay.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.util.Observable" ext:member="relayEvents" href="output/CQ.Ext.util.Observable.html#relayEvents">Observable</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-setDefaultUrl"></a>
+            <b>setDefaultUrl</b>(&nbsp;<code>String/Function defaultUrl</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Sets the default URL used for updates.</div>
+            <div class="long">
+                Sets the default URL used for updates.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>defaultUrl</code> : String/Function<div class="sub-desc">The url or a function to call to get the url</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-setRenderer"></a>
+            <b>setRenderer</b>(&nbsp;<code>Object renderer</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Sets the content renderer for this Updater. See <a ext:cls="CQ.Ext.Updater.BasicRenderer" ext:member="render" href="output/CQ.Ext.Updater.BasicRenderer.html#render">CQ.Ext.Updater.BasicRenderer.render</a> for more details.</div>
+            <div class="long">
+                Sets the content renderer for this Updater. See <a ext:cls="CQ.Ext.Updater.BasicRenderer" ext:member="render" href="output/CQ.Ext.Updater.BasicRenderer.html#render">CQ.Ext.Updater.BasicRenderer.render</a> for more details.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>renderer</code> : Object<div class="sub-desc">The object implementing the render() method</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-showLoading"></a>
+            <b>showLoading</b>() : void            <div class="mdesc">
+                                    <div class="short">Display the element's "loading" state. By default, the element is updated with indicatorText. This
+method may be over...</div>
+            <div class="long">
+                Display the element's "loading" state. By default, the element is updated with <a ext:cls="CQ.Ext.Updater" ext:member="indicatorText" href="output/CQ.Ext.Updater.html#indicatorText">indicatorText</a>. This
+method may be overridden to perform a custom action while this Updater is actively updating its contents.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-startAutoRefresh"></a>
+            <b>startAutoRefresh</b>(&nbsp;<code>Number interval</code>, <span class="optional" title="Optional">[<code>String/Object/Function url</code>]</span>, <span class="optional" title="Optional">[<code>String/Object params</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Boolean refreshNow</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Set this element to auto refresh.  Can be canceled by calling <a ext:cls="CQ.Ext.Updater" ext:member="stopAutoRefresh" href="output/CQ.Ext.Updater.html#stopAutoRefresh">stopAutoRefresh</a>.</div>
+            <div class="long">
+                Set this element to auto refresh.  Can be canceled by calling <a ext:cls="CQ.Ext.Updater" ext:member="stopAutoRefresh" href="output/CQ.Ext.Updater.html#stopAutoRefresh">stopAutoRefresh</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>interval</code> : Number<div class="sub-desc">How often to update (in seconds).</div></li><li><code>url</code> : String/Object/Function<div class="sub-desc">(optional) The url for this request, a config object in the same format
+supported by <a ext:cls="CQ.Ext.Updater" ext:member="load" href="output/CQ.Ext.Updater.html#load">load</a>, or a function to call to get the url (defaults to the last used url). Note that while
+the url used in a load call can be reused by this method, other load config options will not be reused and must be
+sepcified as part of a config object passed as this paramter if needed.</div></li><li><code>params</code> : String/Object<div class="sub-desc">(optional) The parameters to pass as either a url encoded string
+"&param1=1&param2=2" or as an object {param1: 1, param2: 2}</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) Callback when transaction is complete - called with signature (oElement, bSuccess)</div></li><li><code>refreshNow</code> : Boolean<div class="sub-desc">(optional) Whether to execute the refresh now, or wait the interval</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-stopAutoRefresh"></a>
+            <b>stopAutoRefresh</b>() : void            <div class="mdesc">
+                                    <div class="short">Stop auto refresh on this element.</div>
+            <div class="long">
+                Stop auto refresh on this element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-update"></a>
+            <b>update</b>(&nbsp;<code>Object options</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Performs an asynchronous request, updating this element with the response.
+If params are specified it uses POST, othe...</div>
+            <div class="long">
+                Performs an <b>asynchronous</b> request, updating this element with the response.
+If params are specified it uses POST, otherwise it uses GET.<br><br>
+<b>Note:</b> Due to the asynchronous nature of remote server requests, the Element
+will not have been fully updated when the function returns. To post-process the returned
+data, use the callback option, or an <b><code>update</code></b> event handler.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>options</code> : Object<div class="sub-desc">A config object containing any of the following options:<ul>
+<li>url : <b>String/Function</b><p class="sub-desc">The URL to request or a function which
+<i>returns</i> the URL (defaults to the value of <a ext:cls="CQ.Ext.Ajax" ext:member="url" href="output/CQ.Ext.Ajax.html#url">CQ.Ext.Ajax.url</a> if not specified).</p></li>
+<li>method : <b>String</b><p class="sub-desc">The HTTP method to
+use. Defaults to POST if the <code>params</code> argument is present, otherwise GET.</p></li>
+<li>params : <b>String/Object/Function</b><p class="sub-desc">The
+parameters to pass to the server (defaults to none). These may be specified as a url-encoded
+string, or as an object containing properties which represent parameters,
+or as a function, which returns such an object.</p></li>
+<li>scripts : <b>Boolean</b><p class="sub-desc">If <code>true</code>
+any &lt;script&gt; tags embedded in the response text will be extracted
+and executed (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="loadScripts" href="output/CQ.Ext.Updater.defaults.html#loadScripts">CQ.Ext.Updater.defaults.loadScripts</a>). If this option is specified,
+the callback will be called <i>after</i> the execution of the scripts.</p></li>
+<li>callback : <b>Function</b><p class="sub-desc">A function to
+be called when the response from the server arrives. The following
+parameters are passed:<ul>
+<li><b>el</b> : CQ.Ext.Element<p class="sub-desc">The Element being updated.</p></li>
+<li><b>success</b> : Boolean<p class="sub-desc">True for success, false for failure.</p></li>
+<li><b>response</b> : XMLHttpRequest<p class="sub-desc">The XMLHttpRequest which processed the update.</p></li>
+<li><b>options</b> : Object<p class="sub-desc">The config object passed to the update call.</p></li></ul>
+</p></li>
+<li>scope : <b>Object</b><p class="sub-desc">The scope in which
+to execute the callback (The callback's <code>this</code> reference.) If the
+<code>params</code> argument is a function, this scope is used for that function also.</p></li>
+<li>discardUrl : <b>Boolean</b><p class="sub-desc">By default, the URL of this request becomes
+the default URL for this Updater object, and will be subsequently used in <a ext:cls="CQ.Ext.Updater" ext:member="refresh" href="output/CQ.Ext.Updater.html#refresh">refresh</a>
+calls. To bypass this behavior, pass <code>discardUrl:true</code> (defaults to false).</p></li>
+<li>timeout : <b>Number</b><p class="sub-desc">The number of seconds to wait for a response before
+timing out (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="timeout" href="output/CQ.Ext.Updater.defaults.html#timeout">CQ.Ext.Updater.defaults.timeout</a>).</p></li>
+<li>text : <b>String</b><p class="sub-desc">The text to use as the innerHTML of the
+<a ext:cls="CQ.Ext.Updater.defaults" ext:member="indicatorText" href="output/CQ.Ext.Updater.defaults.html#indicatorText">CQ.Ext.Updater.defaults.indicatorText</a> div (defaults to 'Loading...'). To replace the entire div, not
+just the text, override <a ext:cls="CQ.Ext.Updater.defaults" ext:member="indicatorText" href="output/CQ.Ext.Updater.defaults.html#indicatorText">CQ.Ext.Updater.defaults.indicatorText</a> directly.</p></li>
+<li>nocache : <b>Boolean</b><p class="sub-desc">Only needed for GET
+requests, this option causes an extra, auto-generated parameter to be appended to the request
+to defeat caching (defaults to <a ext:cls="CQ.Ext.Updater.defaults" ext:member="disableCaching" href="output/CQ.Ext.Updater.defaults.html#disableCaching">CQ.Ext.Updater.defaults.disableCaching</a>).</p></li></ul>
+<p>
+For example:
+ <pre><code>um.update({
+        url: <em>"your-url.php"</em>,
+        params: {param1: <em>"foo"</em>, param2: <em>"bar"</em>}, <i>// or a URL encoded string</i>
+        callback: yourFunction,
+        scope: yourObject, <i>//(optional scope)</i>
+        discardUrl: true,
+        nocache: true,
+        text: <em>"Loading..."</em>,
+        timeout: 60,
+        scripts: false <i>// Save time by avoiding RegExp execution.</i>
+    });</code></pre></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.Updater-events"></a>
+        <h2>Public Events</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Event</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-beforeupdate"></a>
+            <b>beforeupdate</b> : (&nbsp;<code>CQ.Ext.Element el</code>, <code>String/Object/Function url</code>, <code>String/Object params</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fired before an update is made, return false from your handler and the update is cancelled.</div>
+            <div class="long">
+                Fired before an update is made, return false from your handler and the update is cancelled.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>el</code> : CQ.Ext.Element<div class="sub-desc"></div></li><li><code>url</code> : String/Object/Function<div class="sub-desc"></div></li><li><code>params</code> : String/Object<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="event-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-failure"></a>
+            <b>failure</b> : (&nbsp;<code>CQ.Ext.Element el</code>, <code>Object oResponseObject</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fired on update failure.</div>
+            <div class="long">
+                Fired on update failure.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>el</code> : CQ.Ext.Element<div class="sub-desc"></div></li><li><code>oResponseObject</code> : Object<div class="sub-desc">The response Object</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Updater-update"></a>
+            <b>update</b> : (&nbsp;<code>CQ.Ext.Element el</code>, <code>Object oResponseObject</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fired after successful update is made.</div>
+            <div class="long">
+                Fired after successful update is made.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>el</code> : CQ.Ext.Element<div class="sub-desc"></div></li><li><code>oResponseObject</code> : Object<div class="sub-desc">The response Object</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Updater</td>
+    </tr>
+            </table>
+        
+        </div>

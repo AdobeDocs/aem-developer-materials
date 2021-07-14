@@ -1,0 +1,33 @@
+
+Reload
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/responses/reload
+
+   ``Reload`` is success response handler to reload the page.
+
+   It is implemented in the client by :doc:`../../../clientlibs/foundation/js/form/response/ui/success/foundation.reload`.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormResponsesReload] > granite:commonAttrs
+
+      /**
+       * The message to notify the user. If it is not provided, default message is used.
+       */
+      - jcr:title (String) i18n
+
+   Example::
+
+      + myform
+        - sling:resourceType = "granite/ui/components/coral/foundation/form"
+        - method = "post"
+        - action = "/my/new/resource"
+        - foundationForm = true
+        + successresponse
+          - sling:resourceType = "granite/ui/components/coral/foundation/form/responses/reload"
+        + items
+          + field1
+          + field2

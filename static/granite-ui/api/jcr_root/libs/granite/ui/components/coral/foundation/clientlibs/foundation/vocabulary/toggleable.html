@@ -1,0 +1,222 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-toggleable &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-wizard" href="wizard.html" />
+    <link rel="prev" title="foundation-selections" href="selections.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="wizard.html" title="foundation-wizard"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="selections.html" title="foundation-selections"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-toggleable">
+<h1>foundation-toggleable<a class="headerlink" href="#foundation-toggleable" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-toggleable</span></code> is a vocabulary about the concept of an element that can be toggled in term of visibility.
+A good example is a modal dialog, where it can shown to the user and closed accordingly.</p>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.foundation-toggleable<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element is a toggleable.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">toggleable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="foundation-toggleable-show">
+<h3>foundation-toggleable-show<a class="headerlink" href="#foundation-toggleable-show" title="Permalink to this headline">¶</a></h3>
+<p>The event that MUST be triggered when the toggleable is shown (from hidden previously).</p>
+<p>The event has the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationToggleableShowEvent</span> <span class="p">{</span>
+  <span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-toggleable-show&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-toggleable-hide">
+<h3>foundation-toggleable-hide<a class="headerlink" href="#foundation-toggleable-hide" title="Permalink to this headline">¶</a></h3>
+<p>The event that MUST be triggered when the toggleable is hidden (from shown previously).</p>
+<p>The event has the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationToggleableHideEvent</span> <span class="p">{</span>
+  <span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-toggleable-hide&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-toggleable</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">.foundation-toggleable</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationToggleable</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationToggleable</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the toggleable is currently showned to the user; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   */</span>
+  <span class="nx">isOpen</span><span class="p">()</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Shows the toggleable to the user.</span>
+<span class="cm">   * This method will trigger &lt;code&gt;foundation-toggleable-show&lt;/code&gt; event.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param anchor The anchor that can be used as a reference when showing the element.</span>
+<span class="cm">   *               Note that this param MAY be overloaded in the future (e.g. MouseEvent is passed).</span>
+<span class="cm">   *               As such the implementor is REQUIRED to cater for the param that it doesn&#39;t understand.</span>
+<span class="cm">   */</span>
+  <span class="nx">show</span><span class="p">(</span><span class="nx">anchor?</span>: <span class="kt">Element</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Hides the toggleable from the user.</span>
+<span class="cm">   * This method will trigger &lt;code&gt;foundation-toggleable-hide&lt;/code&gt; event.</span>
+<span class="cm">   */</span>
+  <span class="nx">hide</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../_images/graphviz-0ea774d6ad056604fa9babd7d0f638c165b4f1a0.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-toggleable&quot; {
+  rankdir=BT;
+  &quot;foundation-toggleable-control&quot; -&gt; &quot;foundation-toggleable&quot; [label=&quot;controls&quot;, weight=8];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-toggleable</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-toggleable</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event">Event</a><ul>
+<li><a class="reference internal" href="#foundation-toggleable-show">foundation-toggleable-show</a></li>
+<li><a class="reference internal" href="#foundation-toggleable-hide">foundation-toggleable-hide</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="selections.html"
+                        title="previous chapter">foundation-selections</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="wizard.html"
+                        title="next chapter">foundation-wizard</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="wizard.html" title="foundation-wizard"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="selections.html" title="foundation-selections"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

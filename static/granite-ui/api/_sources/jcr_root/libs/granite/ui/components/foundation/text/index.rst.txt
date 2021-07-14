@@ -1,0 +1,19 @@
+
+Text
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/text
+   :deprecated:
+
+   A generic text component that is rendered as ``<span>``.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Text] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The text of the component.
+       */
+      - text (String) i18n

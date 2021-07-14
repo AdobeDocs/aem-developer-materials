@@ -1,0 +1,13 @@
+
+List
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/list
+
+   The list component. This is mainly used to display inline/inline-block items vertically. To display block items vertically just use a simpler :doc:`../container/index`.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:List] > granite:commonAttrs, granite:renderCondition, granite:container

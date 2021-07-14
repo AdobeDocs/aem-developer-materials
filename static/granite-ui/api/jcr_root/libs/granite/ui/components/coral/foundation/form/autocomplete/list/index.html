@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AutocompleteList &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="AutocompleteTags" href="../tags/index.html" />
+    <link rel="prev" title="Autocomplete" href="../index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tags/index.html" title="AutocompleteTags"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Autocomplete"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../server.html" >Granite UI Foundation Server-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" >Form</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U">Autocomplete</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="autocompletelist">
+<h1>AutocompleteList<a class="headerlink" href="#autocompletelist" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/coral/foundation/form/autocomplete/list">
+<dt>
+<code class="descname">/libs/granite/ui/components/coral/foundation/form/autocomplete/list</code></dt>
+<dd><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Deprecation</p>
+<p class="last">The parent <a class="reference internal" href="../index.html#/libs/granite/ui/components/coral/foundation/form/autocomplete" title="/libs/granite/ui/components/coral/foundation/form/autocomplete"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Autocomplete</span></code></a> is deprecated.</p>
+</div>
+<p>The suggestion implementation showing the list to the user.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:FormAutocompleteList</span><ol class="gnd-values supertypes"><li class="gnd-values-item supertype">granite:commonAttrs</li></ol></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">src</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The <a class="reference external" href="http://tools.ietf.org/html/rfc6570">URI Template</a> that is giving the response of HTML of the suggestion.
+The format of the HTML is a stream of <code class="docutils literal notranslate"><span class="pre">li</span></code> elements. For example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;coral-SelectList-item coral-SelectList-item--option&quot;</span> <span class="na">data-value</span><span class="o">=</span><span class="s">&quot;itemvalue1&quot;</span><span class="p">&gt;</span>Item Display 1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;coral-SelectList-item coral-SelectList-item--option&quot;</span> <span class="na">data-value</span><span class="o">=</span><span class="s">&quot;itemvalue2&quot;</span><span class="p">&gt;</span>Item Display 2<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The URI Template supports <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">query</span></code> variables.</p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The start index of the paging of selection items to be returned.</dd>
+<dt>end</dt>
+<dd>The end index of the paging of selection items to be returned.</dd>
+<dt>query</dt>
+<dd>The text that the user queries for.</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/path.html?start={start}&amp;end={end}&amp;query={query}&amp;my-other-param=param1
+</pre></div>
+</div>
+<p>If this property is not set, the items are read from the DataSource.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Autocomplete</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tags/index.html"
+                        title="next chapter">AutocompleteTags</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/form/autocomplete/list/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../tags/index.html" title="AutocompleteTags"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Autocomplete"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../server.html" >Granite UI Foundation Server-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" >Form</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" >Autocomplete</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

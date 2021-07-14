@@ -1,0 +1,100 @@
+***************
+betty-SimpleBar
+***************
+
+``.betty-SimpleBar`` is a CSS component to satisfy the requirement of Betty ActionBar.
+
+The difference between this component and :doc:`actionbar` is that this component doesn't have the reflowing behaviour.
+Because of this, only a simpler scenario where there is a main item (that is maximized) and a few buttons makes sense.
+
+
+Markup
+======
+
+
+.betty-SimpleBar
+----------------
+
+Indicates the root of the component.
+
+Selector Rule::
+
+   .betty-SimpleBar
+
+
+.betty-SimpleBar-region
+-----------------------
+
+Indicates the region or group of the item.
+You can have maximum two regions.
+
+Selector Rule::
+
+   .betty-SimpleBar > .betty-SimpleBar-region
+
+
+.betty-SimpleBar-region--maximized
+----------------------------------
+
+Indicates that the region will be maximized to cover the available space.
+Exactly one region MUST be maximized. Typically the first region (the left) is maximized.
+
+Selector Rule::
+
+   .betty-SimpleBar-region.betty-SimpleBar-region--maximized
+
+
+Supported Item
+==============
+
+The item of SimpleBar can be anything, although the following are supported OOTB:
+
+1. Coral.Button
+
+2. ``.betty-SimpleBar-title``
+
+   ``<h2 class="betty-SimpleBar-item betty-SimpleBar-title coral-Heading coral-Heading--2">My Title</h2>``
+
+   The item type to represent the title. e.g. It can be used for the title of the application.
+   It requires the title to be Coral Heading 2.
+
+
+Variants
+========
+
+
+.betty-SimpleBar--large
+-----------------------
+
+The variant to represent Shell3 specific of the Betty ActionBar.
+
+Selector Rule::
+
+   .betty-SimpleBar.betty-SimpleBar--large
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <div class="betty-SimpleBar">
+     <div class="betty-SimpleBar-region betty-SimpleBar-region--maximized">
+       <h2 class="betty-SimpleBar-title coral-Heading coral-Heading--2">Select Path</h2>
+     </div>
+     <div class="betty-SimpleBar-region">
+       <button is="coral-button" variant="quiet">Close</button>
+       <button is="coral-button" variant="primary">Select</button>
+     </div>
+   </div>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "betty-SimpleBar" {
+     rankdir=BT;
+     "betty-ActionBar" -> "betty-SimpleBar" [label="similar to"];
+   }

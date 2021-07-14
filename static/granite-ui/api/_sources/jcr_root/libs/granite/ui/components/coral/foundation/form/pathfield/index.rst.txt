@@ -1,0 +1,119 @@
+
+PathField
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/pathfield
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   A field that allows the user to enter path.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It supports the concept of suggestion where the list of options are presented based on what the user types.
+   It also supports the concept of picker where the user allows to pick the value in more advanced way (usually implemented as a dialog showing a tree view).
+
+   **Usage Guidelines**
+
+   In Sling, a resource (thus a path) is a first class citizen. So naturally many things, such as WCM Pages, DAM Assets, Commerce Products are represented as paths.
+   This field can then be used for that purpose. However, this field is only meant for general purpose pathfield, even though the suggestion and picker can be configured.
+   It is recommended to create a dedicated field for each resource type accordingly.
+   e.g. It is better to create a dedicated field for the purpose of selecting CQ Pages, with the applicable configuration configured OOTB.
+   This is to allow convenient usage of the said field without forcing the author to know about URL, which can be an implementation detail.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormTextField] > granite:FormField
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * Indicates if the user is able to select multiple selections.
+       */
+      - multiple (Boolean)
+
+      /**
+       * Indicates if the user must only select from the list of given options.
+       * If it is not forced, the user can enter arbitrary value.
+       */
+      - forceSelection (Boolean)
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the field name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The URI template that returns the suggestion markup.
+       *
+       * It supports the following variables:
+       *
+       * query
+       *    The query entered by the user.
+       *
+       * offset
+       *    The offset of the pagination.
+       *
+       * limit
+       *    The limit of the pagination.
+       */
+      - suggestionSrc (StringEL)
+
+      /**
+       * The URI template that returns the picker markup.
+       *
+       * It supports the following variables:
+       *
+       * value
+       *    The value of the first item.
+       */
+      - pickerSrc (StringEl)
+
+      /**
+       * The path of the root of the pathfield.
+       */
+      - rootPath (StringEL) = '/' mandatory
+
+      /**
+       * The filter applied to suggestion and picker.
+       *
+       * Valid values are:
+       *
+       * folder
+       *    Shows only ``nt:folder`` nodes.
+       *
+       * hierarchy
+       *    Shows only ``nt:hierarchyNode`` nodes.
+       *
+       * hierarchyNotFile
+       *    Shows only ``nt:hierarchyNode`` nodes that are not ``nt:file``.
+       *
+       * nosystem
+       *    Shows non-system nodes: ``!node.getName().startsWith("rep:") && !node.getName().equals("jcr:system")``.
+       */
+      - filter (String) = 'hierarchyNotFile' mandatory < 'folder', 'hierarchy', 'hierarchyNotFile', 'nosystem'

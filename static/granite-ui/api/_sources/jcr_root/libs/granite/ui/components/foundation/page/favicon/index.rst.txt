@@ -1,0 +1,19 @@
+
+FavIcon
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/page/favicon
+   :deprecated:
+
+   FavIcon is a component that provides the favorite icon. It only makes sense to be included in the head of the page.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:PageFavIcon]
+
+      /**
+       * The URL of the icon.
+       */
+      - href (String) = '/libs/granite/core/content/login/favicon.ico'

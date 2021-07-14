@@ -1,0 +1,186 @@
+*******************
+foundation-editable
+*******************
+
+``foundation-editable`` is a concept where an element is able to be editable by an editor.
+For example, a simple paragraph showing a read-only text may be configured to be editable, such that when the user clicks it, an editor is shown to edit the paragraph.
+
+The editor itself is a pluggable.
+
+
+.foundation-editable
+====================
+
+Indicates the editable element.
+
+Selector Rule::
+
+   .foundation-editable
+
+
+[data-foundation-editable-editor]
+=================================
+
+Indicates the editor name to be used to edit the editable element.
+
+Note that this is an optional attribute. It is just meant to standardize the attribute name *if* an editor needs to be specified.
+
+Selector Rule::
+
+   .foundation-editable[data-foundation-editable-editor]
+
+
+foundation-editable-commit event
+================================
+
+This event is triggered at ``.foundation-editable`` after the editing is committed. The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationEditableCommitEvent {
+     (): void;
+   }
+
+
+foundation-editable-cancel event
+================================
+
+This event is triggered at ``.foundation-editable`` after the editing is canceled. The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationEditableCancelEvent {
+     (): void;
+   }
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-editable``
+
+condition
+   ``.foundation-editable``
+
+returned type
+   ``FoundationEditable``
+
+.. code-block:: ts
+
+   interface FoundationEditable {
+     /**
+      * Edits the current element.
+      * This method tries to find the appropriate editor for the element.
+      */
+     edit(): void;
+   }
+
+
+.. _foundation-editable-editor-legacy:
+
+Editor Registration
+===================
+
+The editor of ``.foundation-editable`` can be registered to the :doc:`registry <../js/registry/index>` using ``foundation.editable.editor`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationEditableEditor {
+     /**
+      * The selector targeting the editable element.
+      *
+      * @example
+      * .foundation-editable[data-foundation-editable-editor="foundation.text"]
+      */
+     selector: string;
+
+     /**
+      * The handler to actually show the editor.
+      *
+      * @param el The element of the <code>.foundation-editable</code>
+      */
+     handler: (el: Element) => FoundationEditableEditorHandle;
+   }
+
+   interface FoundationEditableEditorHandle {
+     /**
+      * The actual editor element.
+      * It will be appended to a wrapper element that is handling the positioning.
+      * It SHOULD be rendered as a block-like element.
+      *
+      * ``foundation-editable-commit`` and ``foundation-editable-cancel`` MUST be triggered as per spec mentioned above.
+      */
+     el: Element;
+
+     /**
+      * A callback when the editor is already rendered inside the wrapper element in the DOM.
+      * Most likely this method needs to focus the editor.
+      */
+     renderCallback: () => void;
+   }
+
+The registered editors are consulted using LIFO (last in, first out) algorithm, where the last registered editor is consulted first.
+
+Example
+-------
+
+.. code-block:: js
+
+   /**
+    * An example implementation of editor that is editing the editable element using its ``element.textContent``.
+    */
+   $(window).adaptTo("foundation-registry").register("foundation.editable.editor", {
+     selector: ".foundation-editable[data-foundation-editable-editor='foundation.text']",
+     handler: function(el) {
+       var editable = $(el);
+
+       var editor = $(document.createElement("input"))
+         .css({
+           display: "block",
+           width: "100%"
+         })
+         .on("blur", function(e) {
+           commit();
+         })
+         .on("keydown", function(e) {
+           if (e.which === 13) { // enter
+             e.preventDefault();
+             commit();
+           } else if (e.which === 27) { // escape
+             e.preventDefault();
+             cancel();
+           }
+         });
+
+       var commit = function(el) {
+         editable.text(editor.val());
+         editable.trigger("foundation-editable-commit");
+       };
+
+       var cancel = function() {
+         editable.trigger("foundation-editable-cancel");
+       };
+
+       editor.val(editable.text());
+
+       return {
+         el: editor[0],
+         renderCallback: function() {
+           editor.focus();
+         }
+       };
+     }
+   });
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-editable" {
+     rankdir=BT;
+     "foundation-editable-control" -> "foundation-editable" [label="controls", weight=8];
+     "foundation.text" -> "foundation-editable" [label="provides editor to"];
+   }

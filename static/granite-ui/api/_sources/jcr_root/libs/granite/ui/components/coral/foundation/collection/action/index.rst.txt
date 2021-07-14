@@ -1,0 +1,208 @@
+
+Action
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/collection/action
+
+   Action is a component specializing to render :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/action/index`. It will be rendered as a ``<button>``.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:CollectionAction] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The selector to the ``.foundation-collection``. This is optional and used when the component is placed outside the ``.foundation-collection``.
+       */
+      - target (String)
+
+      /**
+       * Show or hide the component according to how many ``.foundation-collection-item`` in the collection.
+       *
+       * Values:
+       *
+       * 0
+       *    The property type is ``long``. Show when there is no item at all; hide otherwise.
+       *
+       * >0
+       *    The property type is ``string``. Show when there is at least one item; hide otherwise.
+       */
+      - activeCount < 0, ">0"
+
+      /**
+       * Show or hide the component according to how many ``.foundation-selections-item`` in the collection.
+       *
+       * Values:
+       *
+       * none
+       *    Show when there is no selection at all; hide otherwise.
+       *
+       * single
+       *    Show when there is exactly one selection; hide otherwise.
+       *
+       * multiple
+       *    Show when there is one or more selections; hide otherwise.
+       */
+      - activeSelectionCount (String) < 'none', 'single', 'multiple'
+
+      /**
+       * The pluggable condition to show or hide the component.
+       */
+      - activeCondition (String)
+
+      /**
+       * The pluggable action to be performed when the component is activated. If this property is not specified, no action will be performed.
+       */
+      - action (String)
+
+      /**
+       * Command used as a shortcut for the action. It accepts single keys, sequenques and key modifiers.
+       * Command will override actionConfigName.
+       *
+       * When ``ctrl`` or ``cmd`` is used, it will be normalized based on the client's OS.
+       *
+       * **Grammar (ABNF)**
+       *
+       * .. productionlist::
+       *    command: key / sequence / modifier-cmd
+       *    key: valid-keyboard-key
+       *    sequence: key 1*("-" key)
+       *    modifier-cmd: modifier *("+" modifier) "+" key
+       *    modifier: "ctrl" / "alt" / "meta" / "shift" / "cmd"
+       *
+       * e.g. ``d``, ``m``, ``c``, ``l-c``, ``c-r``, ``ctrl+c``, ``alt+1``, ``meta+t``, ``shift+a``, ``cmd+i``
+       */
+      - command (String)
+
+     /**
+       * The actionConfigName directs to the central configuration for a keyboard shortcut. An actionConfigName will set
+       * following attributes of this action to the global standard definitions: command, icon, text, and text_commentI18n.
+       * Example value: granite/ui/shell/actions/edit
+       * The example will set for this action the attributes command, text and icon to the edit use case to the
+       * global default values under /conf/settings/granite/ui/shell/actions/edit.
+       * The global defaults could be changed under /conf/settings/granite/ui/shell/actions to other default values.
+       */
+      - actionConfigName (String)
+
+      /**
+       * The scope of the relationship.
+       *
+       * When deciding if the action is shown or hidden, the relationship of the item or collection is checked (the ``isCommon()`` algorithm).
+       * See "Showing and Hiding Behavior" section of :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/action/index`.
+       *
+       * none
+       *    Skip the processing of relationship.
+       * item
+       *    Read the relationship from the item.
+       * collection
+       *    Read the relationship from the collection.
+       */
+      - relScope (String) = 'item' < 'none', 'item', 'collection'
+
+      /**
+       * The equivalence to ``relScope`` = ``none``.
+       */
+      - ignoreRel (Boolean)
+
+      /**
+       * ``true`` to disable the button; ``false`` otherwise.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+
+      /**
+       * I18n comment for the body text of the element.
+       */
+      - text_commentI18n (String)
+
+      /**
+       * Visually hide the text.
+       * It is RECOMMENDED that every button has a text for a11y purpose. Use this property to hide it visually, while still making it available for a11y.
+       */
+      - hideText (Boolean)
+
+      /**
+       * The icon name. e.g. "search".
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * The size of the button.
+       */
+      - size (String) = 'M' < 'M', 'L'
+
+      /**
+       * ``true`` to render the button as a block element; ``false`` otherwise.
+       */
+      - block (Boolean)
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) < 'primary', 'warning', 'quiet', 'minimal', 'actionBar'
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       * By default the value of ``text`` or ``granite:title`` is used.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String)
+
+      /**
+       * The name of the widget.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingWidgetName (String)
+
+      /**
+       * Indicates the data property of ``foundation-collection-action``. It will be converted to JSON.
+       *
+       * Its child nodes support property names with the following regex:
+       *
+       * /(.+)\.uritemplate/
+       *    Indicate the value is a URITemplate. Context path is appended accordingly. It supports EL. The ``.uritemplate`` suffix is removed from the property name. Example::
+       *
+       *       + data
+       *         - href.uritemplate = "/action.html{+item}"  // will produce {"href" : "/ctx/action.html{+item}"}
+       *
+       * /(.+)\.uritemplate.abs/
+       *    Indicate the value is a URITemplate **that is resolved into an absolute path**. Context path will be appended. It supports EL. The ``.uritemplate.abs`` suffix is removed from the property name.
+       *    This scenario is important when you use the variable at the first char of the URITemplate, thus this component cannot know if the variable is going to be resolved as a relative path or absolute path.
+       *    Example::
+       *
+       *       + data
+       *         - href.uritemplate.abs = "{+item}.html"  // will produce {"href" : "/ctx{+item}.html"}
+       *
+       * /(.+)\.url/
+       *    Indicate the value is a URL. Context path is appended accordingly. It supports EL. The ``.url`` suffix is removed from the property name. Example::
+       *
+       *       + data
+       *         - href.url = "/action.html"  // will produce {"href" : "/ctx/action.html"}
+       *
+       * /.+/
+       *    No processing is done. The value is passed as is. Example::
+       *
+       *       + data
+       *         - href = "/action.html"  // will produce {"href" : "/action.html"}
+       *         - int = 123  // will produce {"int" : 123}
+       */
+      + data

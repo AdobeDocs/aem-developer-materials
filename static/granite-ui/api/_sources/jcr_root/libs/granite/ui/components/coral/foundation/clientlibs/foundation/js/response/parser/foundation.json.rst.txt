@@ -1,0 +1,6 @@
+foundation.response.parser: foundation.json
+===========================================
+
+``foundation.json`` is a response parser of :doc:`../index`.
+
+It will handle the response with content type = ``application/json`` and returns the parsed JS object.

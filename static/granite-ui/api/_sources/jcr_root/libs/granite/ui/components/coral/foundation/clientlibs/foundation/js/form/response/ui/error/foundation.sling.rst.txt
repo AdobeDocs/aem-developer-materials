@@ -1,0 +1,13 @@
+foundation.form.response.ui.error: foundation.sling
+===================================================
+
+``foundation.sling`` is a error response handler of :doc:`../../../index`.
+
+A error handler to show an alert about the error using the message that is usually parsed from `Sling's HTMLResponse.class <https://sling.apache.org/apidocs/sling7/org/apache/sling/api/servlets/HtmlResponse.html>`_.
+The message is taken from ``Messsage`` property of the parsed response data.
+
+
+Matching Condition
+------------------
+
+If the parsed response data is JS object having ``Status`` property.

@@ -1,0 +1,74 @@
+*********************
+foundation-preference
+*********************
+
+An API for user preferences.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-preference``
+
+condition
+   ``window``
+
+returned type
+   ``FoundationPreference``
+
+.. code-block:: ts
+
+   interface FoundationPreference {
+     /**
+      * Returns the current names of the preferences.
+      */
+     names(): string[];
+
+     /**
+      * Returns the preference of the given name.
+      *
+      * @param name The name of the preference.
+      * @returns The preference value without doing any conversion.
+      *          Return <code>undefined</code> when there is no preference with the given name.
+      */
+     get(name: string): any;
+
+     /**
+      * Returns the preference of the given name, converted to boolean.
+      *
+      * @param name The name of the preference.
+      * @param defaultValue The returned value when there is no preference with the given name.
+      */
+     getBoolean(name: string, defaultValue=false): boolean;
+
+     /**
+      * Returns the preference of the given name, converted to number.
+      *
+      * @param name The name of the preference.
+      * @param defaultValue The returned value when there is no preference with the given name.
+      */
+     getNumber(name: string, defaultValue=0): number;
+
+     /**
+      * Sets the preference of the given name with the given value.
+      * It is RECOMMENDED to use {@link #setAll} when setting multiple preferences.
+      * It will save the change to the server.
+      *
+      * It triggers <code>foundation-preference-change</code> event.
+      *
+      * @param name The name of the preference.
+      * @param value The value of the preference. Use <code>undefined</code> to remove the preference.
+      */
+     set(name: string, value: any): void;
+
+     /**
+      * Sets multiple preferences.
+      * It will save the change to the server.
+      *
+      * It triggers <code>foundation-preference-change</code> event.
+      *
+      * @param map The map containing the name-value pairs.
+      */
+     setAll(map: Map): void;
+   }

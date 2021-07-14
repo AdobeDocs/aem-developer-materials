@@ -1,0 +1,149 @@
+**********************************************************************
+The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page
+**********************************************************************
+
+Background
+==========
+
+AEM as a product allows the customer to extend our web page for his own purposes.
+This extensions are manifested in many different forms and may be implemented in CoralUI 2-based code.
+Thus as AEM page is upgraded to use CoralUI 3, there is a need to support CoralUI 2-based code.
+
+
+The Extension Scenarios
+=======================
+
+
+Overlay
+-------
+
+There are two types of overlays:
+
+1. Component overlay
+
+   When the product has a component at /libs/granite/ui/components/foundation/button,
+   the customer may overlay it at /apps/granite/ui/components/foundation/button
+
+2. Content overlay
+
+   This is done via `Resource Merger <https://docs.adobe.com/docs/en/aem/6-1/develop/platform/sling-resource-merger.html>`_.
+
+
+Component Dialog
+----------------
+
+The customer may create his own component and its associated dialog.
+
+
+Strategy
+========
+
+
+CoralUI 2 and CoralUI 3 Side-by-Side
+------------------------------------
+
+We have a clientlib for CoralUI 2, which is ``coralui2``, while we have ``coralui3`` for CoralUI 3.
+Even though CoralUI 2 and CoralUI 3 are designed to coexist in a page, both ``coralui2`` and ``coralui3`` cannot be loaded together as is.
+This is due to some code overlap that will produce issue when executed twice.
+Therefore, in a page where CoralUI 2 and CoralUI 3 are needed to be loaded together, there is a need to create a merged version of the clientlibs.
+
+Due to the limitation of technology of clientlib, it is recommended for a clientlib not to declare a dependency to ``coralui3``.
+Rather, ``coralui3`` needs to be included at the individual page.
+This is to allow each page to configure which exact CoralUI 3 clientlib to be used (e.g. ``coralui3`` or something else).
+
+However due to compatibility reason, it cannot be said for ``coralui2``, where existing clientlibs may already declare a dependency to it.
+
+For this reason, instead of creating a new merged clientlib, ``coralui2`` is modified to also deliver CoralUI 3.
+
+So when there is a need to support both CoralUI 2 and CoralUI 3 in a page, ``coralui2`` clientlib needs to be used.
+
+The possible scenarios are mapped in the following table.
+
+=============  =========
+Requirement    Clientlib
+=============  =========
+CoralUI 2      coralui2
+CoralUI 3      coralui3
+CoralUI 2 + 3  coralui2
+=============  =========
+
+
+Granite UI Foundation Clientlib
+-------------------------------
+
+For Granite UI Foundation clientlib, we have a CoralUI 2-based, named ``granite.ui.foundation`` and CoralUI 3-based, named ``granite.ui.coral.foundation``.
+
+Just like ``coralui2`` clientlib, we cannot guarantee that the existing clientlibs will not declare dependency to ``granite.ui.foundation``.
+Therefore we need to follow similar approach as ``coralui2``, where ``granite.ui.foundation`` needs to also deliver CoralUI 3-based implementation.
+
+To do this, we make ``granite.ui.foundation`` declare the dependency to ``granite.ui.coral.foundation`` and remove the duplicate code (that is not CoralUI specific) from ``granite.ui.foundation``.
+i.e. including ``granite.ui.foundation`` will deliver both the CoralUI 3-based code of ``granite.ui.coral.foundation`` and CoralUI 2 specific code (that is not covered by ``granite.ui.coral.foundation``).
+
+For simplicity, the relevant features of ``granite.ui.foundation.admin`` are merged into ``granite.ui.coral.foundation`` (for generic, non CoralUI 2-specific) and ``granite.ui.foundation`` (for CoralUI 2-specific).
+There is no independent ``granite.ui.foundation.admin`` anymore. ``granite.ui.foundation.admin`` is configured as an alias of ``granite.ui.foundation`` for compatibility.
+
+The possible scenarios are mapped in the following table.
+
+=============  =========
+Requirement    Clientlib
+=============  =========
+CoralUI 2      granite.ui.foundation
+CoralUI 3      granite.ui.coral.foundation
+CoralUI 2 + 3  granite.ui.foundation
+=============  =========
+
+
+Overlay
+-------
+
+Regardless of the overlay types described above, because of our policy that requires the customers to review their overlays when upgrading,
+the customers can leverage Resource Merger to modify the clientlib included in a page.
+
+Example
+^^^^^^^
+
+Given a content structure of a page in our product::
+
+   + /libs/page
+     - clientlibs = "coralui3, granite.ui.coral.foundation"
+     + toolbar
+       + items
+         + button1
+           - RT = "granite/ui/components/foundation/button"
+           - text = "Button 1"
+         + button2
+           - RT = "granite/ui/components/foundation/button"
+           - text = "Button 2"
+
+The customer needs to add his own button to the toolbar. And the button is implemented in CoralUI 2.
+In order to do this, the customer may overlay our structure using Resource Merger to add the button like this::
+
+   + /apps/page
+     + toolbar
+       + items
+         + button3
+           - RT = "customer/components/button"
+           - text = "Button 3"
+
+Since ``customer/components/button`` is implemented in CoralUI 2, the configured clientlibs of that page may not satisfy the requirement.
+To solve this, the customer may also leverage Resource Merger to modify the clientlibs to add CoralUI 2 support.
+The final structure should be like this::
+
+   + /apps/page
+     - clientlibs = "coralui2, granite.ui.foundation"
+     + toolbar
+       + items
+         + button3
+           - RT = "customer/components/button"
+
+i.e. By replacing "coralui3, granite.ui.coral.foundation" with "coralui2, granite.ui.foundation".
+
+
+Component Dialog
+----------------
+
+Since the customer can create his own dialog and component, which may be implemented in CoralUI 2,
+in order to maintain compatibility, Page Authoring is using the merged version of clientlibs that can handle both CoralUI 2 and CoralUI 3, namely ``coralui2, granite.ui.foundation``.
+
+This is not only limited to Page Authoring. Any page that allow customer component/clientlib to be executed, NOT via overlay, needs to do this.
+Good examples in Sites are Page Properties, Create Page Wizard, as they load dialog definition into the page.

@@ -1,0 +1,143 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.list.NumberColumn-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.list.NumberColumn-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.list.NumberColumn-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CQ.Ext.list.NumberColumn-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CQ.Ext.list.NumberColumn"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.list.Column" ext:member="" href="output/CQ.Ext.list.Column.html">Column</a>
+  <img src="resources/docs/elbow-end.gif"/>NumberColumn</pre></div>
+                <h1>Class&nbsp;CQ.Ext.list.NumberColumn</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext.list</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Column.js" target="_blank">Column.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">NumberColumn</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.list.Column" ext:member="" href="output/CQ.Ext.list.Column.html">CQ.Ext.list.Column</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                        <tr><td class="label">xtype:</td><td class="hd-info">lvnumbercolumn</td></tr>
+                    </table>
+        <div class="description">
+	                    <p>A Column definition class which renders a numeric data field according to a <a ext:cls="CQ.Ext.list.NumberColumn" ext:member="format" href="output/CQ.Ext.list.NumberColumn.html#format">format</a> string.  See the
+<a ext:cls="CQ.Ext.list.Column" ext:member="xtype" href="output/CQ.Ext.list.Column.html#xtype">xtype</a> config option of <a ext:cls="CQ.Ext.list.Column" href="output/CQ.Ext.list.Column.html">CQ.Ext.list.Column</a> for more details.</p>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.list.NumberColumn-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-align"></a>
+            <b>align</b> : String            <div class="mdesc">
+                                    <div class="short">Set the CSS text-align property of the column. Defaults to 'left'.</div>
+            <div class="long">
+                Set the CSS text-align property of the column. Defaults to <tt>'left'</tt>.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.list.Column" ext:member="align" href="output/CQ.Ext.list.Column.html#align">Column</a></td>
+    </tr>
+        <tr class="config-row inherited alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-cls"></a>
+            <b>cls</b> : String            <div class="mdesc">
+                                        Optional. This option can be used to add a CSS class to the cell of each row for this column.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.list.Column" ext:member="cls" href="output/CQ.Ext.list.Column.html#cls">Column</a></td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-format"></a>
+            <b>format</b> : String            <div class="mdesc">
+                                    <div class="short">A formatting string as used by CQ.Ext.util.Format.number to format a numeric value for this Column (defaults to '0,00...</div>
+            <div class="long">
+                A formatting string as used by <a ext:cls="CQ.Ext.util.Format" ext:member="number" href="output/CQ.Ext.util.Format.html#number">CQ.Ext.util.Format.number</a> to format a numeric value for this Column (defaults to <tt>'0,000.00'</tt>).            </div>
+                                    </div>
+        </td>
+        <td class="msource">NumberColumn</td>
+    </tr>
+        <tr class="config-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-header"></a>
+            <b>header</b> : String            <div class="mdesc">
+                                    <div class="short">Optional. The header text to be used as innerHTML (html tags are accepted) to display in the ListView. Note: to have ...</div>
+            <div class="long">
+                Optional. The header text to be used as innerHTML (html tags are accepted) to display in the ListView. <b>Note</b>: to have a clickable header with no text displayed use <tt>'&#160;'</tt>.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.list.Column" ext:member="header" href="output/CQ.Ext.list.Column.html#header">Column</a></td>
+    </tr>
+        <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-tpl"></a>
+            <b>tpl</b> : String            <div class="mdesc">
+                                    <div class="short">Optional. Specify a string to pass as the configuration string for CQ.Ext.XTemplate. By default an CQ.Ext.XTemplate w...</div>
+            <div class="long">
+                Optional. Specify a string to pass as the configuration string for <a ext:cls="CQ.Ext.XTemplate" href="output/CQ.Ext.XTemplate.html">CQ.Ext.XTemplate</a>. By default an <a ext:cls="CQ.Ext.XTemplate" href="output/CQ.Ext.XTemplate.html">CQ.Ext.XTemplate</a> will be implicitly created using the <tt>dataIndex</tt>.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.list.Column" ext:member="tpl" href="output/CQ.Ext.list.Column.html#tpl">Column</a></td>
+    </tr>
+        <tr class="config-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-width"></a>
+            <b>width</b> : Number            <div class="mdesc">
+                                    <div class="short">Optional. Percentage of the container width this column should be allocated. Columns that have no width specified wil...</div>
+            <div class="long">
+                Optional. Percentage of the container width this column should be allocated. Columns that have no width specified will be allocated with an equal percentage to fill 100% of the container width. To easily take advantage of the full container width, leave the width of at least one column undefined. Note that if you do not want to take up the full width of the container, the width of every column needs to be explicitly defined.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.list.Column" ext:member="width" href="output/CQ.Ext.list.Column.html#width">Column</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.list.NumberColumn-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ.Ext.list.NumberColumn-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.list.NumberColumn-constructor"></a>
+            <b>constructor</b>() : void            <div class="mdesc">
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.list.Column" ext:member="constructor" href="output/CQ.Ext.list.Column.html#constructor">Column</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.list.NumberColumn-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

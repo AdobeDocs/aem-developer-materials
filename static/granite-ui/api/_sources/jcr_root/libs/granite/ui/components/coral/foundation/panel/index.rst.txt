@@ -1,0 +1,111 @@
+
+Panel
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/panel
+
+   The panel component where there are header/footer at the top/bottom and the main body in the middle that is maximized.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Panel] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * The component for header.
+       */
+      + header
+
+      /**
+       * The component for body.
+       *
+       * The body will be maximized automatically by the panel,
+       * hence the given component doesn't need to handle maximized feature at all, which can cause implementation conflict otherwise.
+       */
+      + body mandatory
+
+      /**
+       * The component for the rail.
+       *
+       * By default the rail is hidden. To make it visible initially, you can set ``parentConfig/active`` property to ``true``.
+       *
+       * It also supports :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary,
+       * so it can be toggled accordingly.
+       * To do this, the rail component needs to implement :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable`.
+       * i.e. it needs to have ``.foundation-toggleable`` at its root element.
+       *
+       * The rail by itself can be used as a generic container.
+       * You can also put multiple sub-panels under it, mostly by using :doc:`railpanel/index` as the sub-panel.
+       *
+       * The rail will be maximized automatically by the panel,
+       * hence the given component doesn't need to handle maximized feature at all, which can cause implementation conflict otherwise.
+       */
+      + rail
+
+      /**
+       * The component for footer.
+       */
+      + footer
+
+      [granite:PanelRailParentconfig]
+
+      /**
+       * ``true`` to activate the rail initially.
+       */
+      - active (BooleanEL)
+
+
+   **Example**
+
+   *Classic Holy Grail Layout*
+
+   .. code-block:: none
+
+      + mypanel
+        - sling:resourceType = "granite/ui/components/coral/foundation/panel"
+        + header
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + body
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + rail
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + footer
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+
+   *Activating the Rail Initially*
+
+   This example also shows multiple sub-panels in the rail.
+
+   .. code-block:: none
+
+      + mypanel
+        - sling:resourceType = "granite/ui/components/coral/foundation/panel"
+        + header
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + body
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + rail
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+          + parentConfig
+            - active = true
+          + items
+            + panel1
+              - sling:resourceType = "granite/ui/components/coral/foundation/panel/railpanel"
+              - active = true
+            + panel2
+              - sling:resourceType = "granite/ui/components/coral/foundation/panel/railpanel"
+        + footer
+          - sling:resourceType = "granite/ui/components/coral/foundation/container"
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

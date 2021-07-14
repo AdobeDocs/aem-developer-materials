@@ -1,0 +1,29 @@
+Welcome to Granite UI's documentation!
+======================================
+
+.. toctree::
+   :caption: Table of Contents
+   :titlesonly:
+   :glob:
+
+   docs/changelogs
+   docs/index
+   docs/client/index
+   docs/server/index
+   docs/sling
+   components/coral/foundation/index
+   components/shell/index
+
+.. toctree::
+   :caption: Legacy
+   :titlesonly:
+   :maxdepth: 1
+
+   components/legacy/coral2/index
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`search`

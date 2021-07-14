@@ -1,0 +1,95 @@
+************************************
+foundation-collection-previewsupport
+************************************
+
+``foundation-collection-previewsupport`` is a plugin of :doc:`.foundation-collection <../../../vocabulary/collection>` element
+to show a preview when the collection items are selected.
+
+
+Markup
+======
+
+
+.foundation-collection-previewsupport
+-------------------------------------
+
+When there is a :doc:`foundation-selections-change <../../../vocabulary/selections>` event, the content of the preview element
+will be refreshed according to the selected items.
+
+Selector Rule::
+
+   .foundation-collection.foundation-collection-previewsupport,
+   .foundation-collection-previewsupport > .foundation-collection
+
+
+[data-foundation-collection-previewsupport-collection]
+------------------------------------------------------
+
+The collection element to add the preview plugin. It supports the following values:
+
+self
+   The collection is the same ``.foundation-collection-previewsupport`` element itself.
+   i.e. The collection needs to satisfy ``.foundation-collection.foundation-collection-previewsupport`` selector.
+   This is the default.
+
+child
+   The collection is the direct child of ``.foundation-collection-previewsupport`` element.
+   i.e. The collection needs to satisfy ``.foundation-collection-previewsupport > .foundation-collection`` selector.
+
+Selector Rule::
+
+   .foundation-collection-previewsupport[data-foundation-collection-previewsupport-collection]
+
+
+[data-foundation-collection-previewsupport-target]
+--------------------------------------------------
+
+The selector to the host element for the preview.
+
+Selector Rule::
+
+   .foundation-collection-previewsupport[data-foundation-collection-previewsupport-target]
+
+
+[data-foundation-collection-previewsupport-src]
+-----------------------------------------------
+
+The URI Template of the preview of the selected items. It supports the following variables:
+
+item
+   The :doc:`.foundation-collection-item-id <../../../vocabulary/collection>` of the selected item.
+
+   Note that this variable can be a list of items.
+   For example, if ``item = ("item1", "item2")`` and ``src = /preview{?item*}``, the final URI will be ``/preview?item=item1&item=item2``.
+
+Selector Rule::
+
+   .foundation-collection-previewsupport[data-foundation-collection-previewsupport-src]
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <example-cardview class="foundation-collection foundation-collection-previewsupport"
+      data-foundation-collection-previewsupport-target="#preview"
+      data-foundation-collection-previewsupport-src="/preview.html{?item*}">
+      <example-cardview-item class="foundation-collection-item" data-foundation-collection-item-id="item1">Item 1</example-cardview-item>
+      <example-cardview-item class="foundation-collection-item" data-foundation-collection-item-id="item2">Item 2</example-cardview-item>
+   </example-cardview-item>
+   <div id="preview"></div>
+
+When Item 1 and Item 2 are selected, the preview element's content will be replaced with the response from ``/preview.html?item=item1&item=item2``.
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-previewsupport" -> "foundation-collection" [label="plugs in"];
+   }

@@ -1,0 +1,825 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.shared.HTTP-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.shared.HTTP-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.shared.HTTP-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.shared.HTTP"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.shared.HTTP</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.shared</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/HTTP.js" target="_blank">HTTP.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">HTTP</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.shared                        </td></tr>
+                    </table>
+        <div class="description">
+	        	        <b>Deprecated: use Granite.HTTP and Granite.$#ajax instead</b><br><br>
+	                    A helper class providing a set of HTTP-related utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.shared.HTTP-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-EXTENSION_HTML"></a>
+            <b>EXTENSION_HTML</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The extension for HTML files.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-EXTENSION_JSON"></a>
+            <b>EXTENSION_JSON</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The extension for JSON files.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-HEADER_LOCATION"></a>
+            <b>HEADER_LOCATION</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The Location header.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-HEADER_MESSAGE"></a>
+            <b>HEADER_MESSAGE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The Message header.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-HEADER_PATH"></a>
+            <b>HEADER_PATH</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The Path header.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-HEADER_STATUS"></a>
+            <b>HEADER_STATUS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The Status header.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-PARAM_NO_CACHE"></a>
+            <b>PARAM_NO_CACHE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for no caching.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-encodePath"></a>
+            <b>encodePath</b> : Object            <div class="mdesc">
+                                    <div class="short">Encodes the specified path using encodeURI. Additionally +,
+# and ? are encoded.
+The following characters are not enc...</div>
+            <div class="long">
+                Encodes the specified path using encodeURI. Additionally <code>+</code>,
+<code>#</code> and <code>?</code> are encoded.<br>
+The following characters are not encoded:<br>
+<code>0-9 a-z A-Z</code><br>
+<code>- _ . ! ~ * ( )</code><br>
+<code>/ : @ & =</code><br>            </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-encodePathOfURI"></a>
+            <b>encodePathOfURI</b> : Object            <div class="mdesc">
+                                    <div class="short">Encodes the path of the specified URL if it is not already encoded.
+Path means the part of the URL before the first q...</div>
+            <div class="long">
+                Encodes the path of the specified URL if it is not already encoded.
+Path means the part of the URL before the first question mark or
+hash sign.<br>
+See <a ext:cls="CQ.shared.HTTP" ext:member="encodePath" href="output/CQ.shared.HTTP.html#encodePath">encodePath</a> for details about the encoding.<br>
+Sample:<br>
+<code>/x/y+z.png?path=/x/y+z >> /x/y%2Bz.png?path=x/y+z</code><br>
+Note that the sample would not work because the "+" in the request
+parameter would be interpreted as a space. Parameters must be encoded
+separately.            </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-eval"></a>
+            <b>eval</b> : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Evaluates and returns the body of the specified response object.
+Alternatively, a URL can be specified...</div>
+            <div class="long">
+                &lt;static&gt; Evaluates and returns the body of the specified response object.
+Alternatively, a URL can be specified, in which case it will be
+requested using a synchornous <a ext:cls="CQ.shared.HTTP" ext:member="get" href="output/CQ.shared.HTTP.html#get">get</a> in order to acquire
+the response object.            </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getContextPath"></a>
+            <b>getContextPath</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; Returns the context path used on the server.                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getPath"></a>
+            <b>getPath</b> : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes all parts but the path from the specified URL.
+Examples:/x/y.sel.html?param=abc =&gt; /x/y
+htt...</div>
+            <div class="long">
+                &lt;static&gt; Removes all parts but the path from the specified URL.
+<p>Examples:<pre><code>/x/y.sel.html?param=abc =&gt; /x/y</code></pre>
+<pre><code>http://www.day.com/foo/bar.html =&gt; /foo/bar</code></pre><p>            </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getSchemeAndAuthority"></a>
+            <b>getSchemeAndAuthority</b> : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the scheme and authority (user, hostname, port) part of
+the specified URL or an empty string i...</div>
+            <div class="long">
+                &lt;static&gt; Returns the scheme and authority (user, hostname, port) part of
+the specified URL or an empty string if the URL does not include
+that part.            </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getXhrHook"></a>
+            <b>getXhrHook</b> : Object            <div class="mdesc">
+                                        Gets the XHR hooked URL if called in a portlet context                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-internalize"></a>
+            <b>internalize</b> : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes scheme, authority and context path from the specified
+absolute URL if it has the same scheme a...</div>
+            <div class="long">
+                &lt;static&gt; Removes scheme, authority and context path from the specified
+absolute URL if it has the same scheme and authority as the
+specified document (or the current one).            </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-removeAnchor"></a>
+            <b>removeAnchor</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; Removes the anchor from the specified URL.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-removeParameters"></a>
+            <b>removeParameters</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; Removes all parameter from the specified URL.                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+            </table>
+                <a id="CQ.shared.HTTP-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-addParameter"></a>
+            <b>addParameter</b>(&nbsp;<code>String url</code>, <code>String name</code>, <code>String/String[] value</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a parameter to the specified URL. The parameter name and
+value will be URL-endcoded.</div>
+            <div class="long">
+                &lt;static&gt; Adds a parameter to the specified URL. The parameter name and
+value will be URL-endcoded.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>name</code> : String<div class="sub-desc">The name of the parameter</div></li><li><code>value</code> : String/String[]<div class="sub-desc">The value of the parameter.
+Since 5.3, an array of strings can be passed</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL with the new parameter</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-addSelector"></a>
+            <b>addSelector</b>(&nbsp;<code>String url</code>, <code>String selector</code>, <span class="optional" title="Optional">[<code>Number index</code>]</span>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Adds the specified selector to an URL.</div>
+            <div class="long">
+                Adds the specified selector to an URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL. The URL must contain a extension and
+must not contain a suffix (x.json/a/b). Anchor and
+request parameters are supported.</div></li><li><code>selector</code> : String<div class="sub-desc">The name of the selector to insert</div></li><li><code>index</code> : Number<div class="sub-desc">(optional) The index of the selector. If it is "-1"
+or bigger than the number of the existing selectors
+the selector will be appended. Defaults to "0".</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The updated URL</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-addSelectors"></a>
+            <b>addSelectors</b>(&nbsp;<code>String url</code>, <code>String[] selectors</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Adds the specified selectors to an URL.</div>
+            <div class="long">
+                Adds the specified selectors to an URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL. The URL must contain a extension and
+must not contain a suffix (x.json/a/b). Anchor and
+request parameters are supported.</div></li><li><code>selectors</code> : String[]<div class="sub-desc">The name of the selectors to insert</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The updated URL</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.5.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-clearCookie"></a>
+            <b>clearCookie</b>(&nbsp;<code>String name</code>, <span class="optional" title="Optional">[<code>String path</code>]</span>, <span class="optional" title="Optional">[<code>String domain</code>]</span>, <span class="optional" title="Optional">[<code>Boolean secure</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Clears the cookie with the specified name.</div>
+            <div class="long">
+                &lt;static&gt; Clears the cookie with the specified name.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">The name of the cookie</div></li><li><code>path</code> : String<div class="sub-desc">(optional) The server path the cookie applies to</div></li><li><code>domain</code> : String<div class="sub-desc">(optional) The server domain</div></li><li><code>secure</code> : Boolean<div class="sub-desc">(optional) True if the
+connection is secure</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-externalize"></a>
+            <b>externalize</b>(&nbsp;<code>String url</code>, <span class="optional" title="Optional">[<code>boolean encode</code>]</span>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Makes sure the specified relative URL starts with the context path
+used on the server. If an absolute ...</div>
+            <div class="long">
+                &lt;static&gt; Makes sure the specified relative URL starts with the context path
+used on the server. If an absolute URL is passed, it will be returned
+as-is.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>encode</code> : boolean<div class="sub-desc">true to encode the path of the URL (optional)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The externalized URL</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-get"></a>
+            <b>get</b>(&nbsp;<code>String url</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>, <span class="optional" title="Optional">[<code>Boolean suppressForbiddenCheck</code>]</span>&nbsp;) : Mixed            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Requests the specified URL from the server using GET. The request
+will be synchronous, unless a callba...</div>
+            <div class="long">
+                &lt;static&gt; Requests the specified URL from the server using GET. The request
+will be synchronous, unless a callback function is specified.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL to request</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) The callback function which is
+called regardless of success or failure and is passed the following
+parameters:<ul>
+<li><b>options</b> : Object<div class="sub-desc">The parameter to the request call.</div></li>
+<li><b>success</b> : Boolean<div class="sub-desc">True if the request succeeded.</div></li>
+<li><b>response</b> : Object<div class="sub-desc">The response object.</div></li>
+</ul></div></li><li><code>scope</code> : Object<div class="sub-desc">The scope for the callback (optional)</div></li><li><code>suppressForbiddenCheck</code> : Boolean<div class="sub-desc">Suppress the check if the session has timed out (optional)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Mixed</code><div class="sub-desc">The response object or, if the request is asynchronous, the transaction ID</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getAnchor"></a>
+            <b>getAnchor</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the anchor part of the URL.</div>
+            <div class="long">
+                &lt;static&gt; Returns the anchor part of the URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The anchor</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getCookie"></a>
+            <b>getCookie</b>(&nbsp;<code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the value of the cookie with the specified name.</div>
+            <div class="long">
+                &lt;static&gt; Returns the value of the cookie with the specified name.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">The name of the cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The value of the cookie</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getExtension"></a>
+            <b>getExtension</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns the extension of an URL. This is the string
+after the last dot until the end of the url without
+any request p...</div>
+            <div class="long">
+                Returns the extension of an URL. This is the string
+after the last dot until the end of the url without
+any request parameters, anchors or suffix, for
+example "html".    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL extension (without the dot) or an empty string if no was found.</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getParameter"></a>
+            <b>getParameter</b>(&nbsp;<code>String url</code>, <code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the value of the parameter with the specified name
+in the URL. Only the first value will be co...</div>
+            <div class="long">
+                &lt;static&gt; Returns the value of the parameter with the specified name
+in the URL. Only the first value will be considered.
+Values will be URL-decoded.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>name</code> : String<div class="sub-desc">The name of the parameter</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The value</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getParameters"></a>
+            <b>getParameters</b>(&nbsp;<code>String url</code>, <code>String name</code>&nbsp;) : String[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the values of the parameters with the specified name
+in the URL. Values will be URL-decoded.</div>
+            <div class="long">
+                &lt;static&gt; Returns the values of the parameters with the specified name
+in the URL. Values will be URL-decoded.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>name</code> : String<div class="sub-desc">The name of the parameter</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String[]</code><div class="sub-desc">The values</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getSelectors"></a>
+            <b>getSelectors</b>(&nbsp;<code>String url</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns an array with the selectors present in the given url.
+If no selectors are present, an empty ar...</div>
+            <div class="long">
+                &lt;static&gt; Returns an array with the selectors present in the given url.
+If no selectors are present, an empty array is returned.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL, optional. If no url is provided, the
+selectors as provided by CQURLInfo.selectors
+are taken, with a fallback to window.location.href.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">An array containing the selectors or an empty array if none were found.</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getSuffix"></a>
+            <b>getSuffix</b>() : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the current request suffix as provided by CQURLInfo.suffix.</div>
+            <div class="long">
+                &lt;static&gt; Returns the current request suffix as provided by CQURLInfo.suffix.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The suffix</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.5.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-getXhrHookedURL"></a>
+            <b>getXhrHookedURL</b>(&nbsp;<code>String url</code>, <code>String method</code>, <code>Object params</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Gets the XHR hooked URL if called in a portlet context</div>
+            <div class="long">
+                Gets the XHR hooked URL if called in a portlet context    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL to get</div></li><li><code>method</code> : String<div class="sub-desc">The method to use to retrieve the XHR hooked URL</div></li><li><code>params</code> : Object<div class="sub-desc">The parameters</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The XHR hooked URL if available, the provided URL otherwise</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-handleForbidden"></a>
+            <b>handleForbidden</b>(&nbsp;<code>Object response</code>, <code>Boolean suppressLogin</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">Returns if the specified response is of status 403/forbidden. If the
+status is 403 and suppressLogin is undefined the...</div>
+            <div class="long">
+                <p>Returns if the specified response is of status 403/forbidden. If the
+status is 403 and <code>suppressLogin</code> is undefined the document
+is redirected to the login page.</p>
+<p>The status is expected to be found in the "status" property of the
+response: <code>{ "status": 403 }</code></p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>response</code> : Object<div class="sub-desc">The response</div></li><li><code>suppressLogin</code> : Boolean<div class="sub-desc"><code>true</code> to not redirect to the login page</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc"><code>true</code> if the status is 403</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-isOk"></a>
+            <b>isOk</b>(&nbsp;<code>Object response</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Checks if the specified response is OK.
+The response object is expected to look like this:
+{ headers: ...</div>
+            <div class="long">
+                &lt;static&gt; Checks if the specified response is OK.
+The response object is expected to look like this:
+<pre><code>{ headers: { <em>"Status"</em>: 200, ... } }</code></pre>
+See constants above for all supported headers.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>response</code> : Object<div class="sub-desc">The response object</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if the response is OK, else false</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-isOkStatus"></a>
+            <b>isOkStatus</b>(&nbsp;<code>Number status</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Checks whether the specified status code is OK.</div>
+            <div class="long">
+                &lt;static&gt; Checks whether the specified status code is OK.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>status</code> : Number<div class="sub-desc">The status code</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if the status is OK, else false</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-noCaching"></a>
+            <b>noCaching</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Prevents caching by adding a timestamp to the specified URL.</div>
+            <div class="long">
+                &lt;static&gt; Prevents caching by adding a timestamp to the specified URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL with timestamp</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-post"></a>
+            <b>post</b>(&nbsp;<code>String url</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <code>Object params</code>, <code>Object scope</code>, <code>Boolean suppressErrorMsg</code>, <span class="optional" title="Optional">[<code>Boolean suppressForbiddenCheck</code>]</span>&nbsp;) : Mixed            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Requests the specified URL from the server using POST. The request
+will be synchronous, unless a callb...</div>
+            <div class="long">
+                &lt;static&gt; Requests the specified URL from the server using POST. The request
+will be synchronous, unless a callback function is specified.
+The returned response object looks like this:
+<pre><code>{ headers: { <em>"Status"</em>: 200, ... } }</code></pre>
+See constants above for all supported headers.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL to request</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) The callback function which is
+called regardless of success or failure and is passed the following
+parameters:<ul>
+<li><b>options</b> : Object<div class="sub-desc">The parameter to the request call.</div></li>
+<li><b>success</b> : Boolean<div class="sub-desc">True if the request succeeded.</div></li>
+<li><b>xhr</b> : Object<div class="sub-desc">The XMLHttpRequest object containing the response data.
+See <a href="http://www.w3.org/TR/XMLHttpRequest/">http://www.w3.org/TR/XMLHttpRequest/</a> for details about
+accessing elements of the response.</div></li>
+<li><b>response</b> : Object<div class="sub-desc">The response object.<br>
+<i>Added in CQ 5.3</i></div></li>
+</ul></div></li><li><code>params</code> : Object<div class="sub-desc">The parameters</div></li><li><code>scope</code> : Object<div class="sub-desc">The scope for the callback</div></li><li><code>suppressErrorMsg</code> : Boolean<div class="sub-desc">Suppress the error msg notification</div></li><li><code>suppressForbiddenCheck</code> : Boolean<div class="sub-desc">Suppress the check if the session has timed out (optional)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Mixed</code><div class="sub-desc">The response object or, if the request is asynchronous, the transaction ID</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-reloadHook"></a>
+            <b>reloadHook</b>(&nbsp;<code>String url</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Reloads the XHR hook (portlet context)</div>
+            <div class="long">
+                &lt;static&gt; Reloads the XHR hook (portlet context)    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">Updated URL if reload hook function exists</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-removeParameter"></a>
+            <b>removeParameter</b>(&nbsp;<code>String url</code>, <code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes a parameter from the specified URL.</div>
+            <div class="long">
+                &lt;static&gt; Removes a parameter from the specified URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>name</code> : String<div class="sub-desc">The name of the parameter to remove</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL without the parameter</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-setAnchor"></a>
+            <b>setAnchor</b>(&nbsp;<code>String url</code>, <code>String anchor</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Sets the anchor of the specified URL.</div>
+            <div class="long">
+                &lt;static&gt; Sets the anchor of the specified URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>anchor</code> : String<div class="sub-desc">The anchor</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL with anchor</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-setCookie"></a>
+            <b>setCookie</b>(&nbsp;<code>String name</code>, <code>String value</code>, <span class="optional" title="Optional">[<code>String path</code>]</span>, <span class="optional" title="Optional">[<code>Number days</code>]</span>, <span class="optional" title="Optional">[<code>String domain</code>]</span>, <span class="optional" title="Optional">[<code>Boolean secure</code>]</span>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Sets the value of the cookie with the specified name.</div>
+            <div class="long">
+                &lt;static&gt; Sets the value of the cookie with the specified name.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">The name of the cookie</div></li><li><code>value</code> : String<div class="sub-desc">The value of the cookie</div></li><li><code>path</code> : String<div class="sub-desc">(optional) The server path the cookie applies to</div></li><li><code>days</code> : Number<div class="sub-desc">(optional) The number of days the cookie will live</div></li><li><code>domain</code> : String<div class="sub-desc">(optional) The server domain</div></li><li><code>secure</code> : Boolean<div class="sub-desc">(optional) True if the
+connection is secure</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The value of the cookie</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-setParameter"></a>
+            <b>setParameter</b>(&nbsp;<code>String url</code>, <code>String name</code>, <code>String value</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Overwrites a parameter in the specified URL. The parameter name
+and value will be URL-endcoded.</div>
+            <div class="long">
+                &lt;static&gt; Overwrites a parameter in the specified URL. The parameter name
+and value will be URL-endcoded.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>name</code> : String<div class="sub-desc">The name of the parameter</div></li><li><code>value</code> : String<div class="sub-desc">The value of the parameter</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL with the new parameter</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.HTTP-setSelector"></a>
+            <b>setSelector</b>(&nbsp;<code>String url</code>, <code>String selector</code>, <code>Number index</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Replaces the selector at the given index position. If no selector exists
+at the index position, no change is made to ...</div>
+            <div class="long">
+                Replaces the selector at the given index position. If no selector exists
+at the index position, no change is made to the URL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL.</div></li><li><code>selector</code> : String<div class="sub-desc">The value with which to replace the selector.</div></li><li><code>index</code> : Number<div class="sub-desc">The index of the selector to set/replace.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The URL with the selector replaced.</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">HTTP</td>
+    </tr>
+            </table>
+                <a id="CQ.shared.HTTP-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

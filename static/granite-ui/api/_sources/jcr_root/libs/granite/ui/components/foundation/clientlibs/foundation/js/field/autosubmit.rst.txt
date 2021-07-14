@@ -1,0 +1,18 @@
+***************************
+foundation-field-autosubmit
+***************************
+
+The form has a very nice feature where when everything is configured properly, pressing "enter" in the text field will submit the form.
+But unfortunately there is no similar feature for checkbox. So this autosubmit is a concept when the input change, the form will be submitted automatically.
+
+The typical use case would be in search form when changing the checkbox should update the search result straight away.
+
+
+.foundation-field-autosubmit
+============================
+
+The element having this selector will autosubmit the containing form when it triggers the ``change`` event.
+
+Selector Rule::
+
+   .foundation-field-autosubmit

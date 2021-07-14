@@ -1,0 +1,45 @@
+
+Action
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/header/action
+
+   Component to render the Shell's header action.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellHeaderAction] > granite:commonAttrs
+
+      /**
+       * The icon name. e.g. "search".
+       */
+      - icon (String)
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       * By default the value of ``text`` or ``granite:title`` is used.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String)
+
+      /**
+       * The name of the widget.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingWidgetName (String)

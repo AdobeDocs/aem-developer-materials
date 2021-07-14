@@ -1,0 +1,14 @@
+
+Section
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/section
+   :deprecated:
+
+   A section component that is rendered as ``<section>``.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Section] > granite:commonAttrs, granite:renderCondition, granite:container

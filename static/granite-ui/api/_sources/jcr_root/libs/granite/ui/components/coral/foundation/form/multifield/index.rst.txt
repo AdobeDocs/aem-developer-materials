@@ -1,0 +1,301 @@
+**********
+Multifield
+**********
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/multifield
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   Multifield component allows to add/reorder/remove multiple instances of a field.
+
+   In the simplest case this is a simple form input field (e.g. textfield, textarea) but it can also be a complex component acting as an aggregate of multiple subcomponents (e.g. address entry).
+
+   The field to be included is defined in the subnode named ``field``.
+   Regardless of the component used, Multifield assumes they all write to the same property (defined by the ``name`` property of the
+   ``field`` subnode) thus the resulting value will always be multi value.
+
+   When rendering existing entries, the Multifield will iterate over the multi value, get each value, set it in the
+   field and let the field render it.
+
+   For example if the field is a text field with a ``name`` value of "fruits", and you use Multifield to
+   add three text fields and set them with values "apple", "orange" and "banana", the content node will get the following property after saving::
+
+      fruits: ["apple", "orange", "banana"]
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormMultifield] > granite:FormField
+
+      /**
+       * ``true`` to handle the form content value as composite.
+       *
+       * Composite multifield supports nesting another multifield (composite or not). However, non-composite one doesn't support nesting.
+       *
+       * For example, given the ``name`` property of ``field`` is ``addresses``, and the descendant fields have following ``name`` property values::
+       *
+       *    street1
+       *    street2
+       *    postcode
+       *    city/name
+       *    city/state
+       *    city/country/name
+       *    gps/lat
+       *    gps/long
+       *
+       * it would save the following structure in the repository::
+       *
+       *    + addresses
+       *      + item0
+       *        - street1
+       *        - street2
+       *        - postcode
+       *        + city
+       *          - name
+       *          - state
+       *          + country
+       *            - name
+       *        + gps
+       *          - lat
+       *          - long
+       *      + item1
+       *        - street1
+       *        - street2
+       *        - postcode
+       *        + city
+       *          - name
+       *          - state
+       *          + country
+       *            - name
+       *        + gps
+       *          - lat
+       *          - long
+       */
+      - composite (Boolean) = false
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the field name.
+       * In case of a nested multifield (composite), only the deleteHint of the root multifield will be set.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The value of `SlingPostServlet @TypeHint <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#typehint>`_.
+       */
+      - typeHint (String)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The actual field of the Multifield.
+       */
+      - field
+
+Examples
+========
+
+TextField
+---------
+
+::
+
+   + myinput
+     - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+     + field
+       - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+       - name = "./pages"
+
+FileUpload
+----------
+
+.. note::
+
+   Remember that to upload the file your ``form`` needs to use ``enctype="multipart/form-data"``.
+
+::
+
+   + dialog
+     - sling:resourceType = "cq/gui/components/authoring/dialog"
+     - enctype = "multipart/form-data"
+     ...
+     + multifield
+       - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+       - composite = true
+       + field
+         - sling:resourceType = "granite/ui/components/coral/foundation/container"
+         - name = "./files"
+         + items
+           + uploadField
+             - sling:resourceType = "granite/ui/components/coral/foundation/form/fileupload"
+             - name = "myFile"
+
+FieldSet
+--------
+
+You can use ``fieldset`` to group some fields and increase readability. Fieldset does not affect final the data structure::
+
+   + multifield
+     - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+     - composite = true
+     + field
+       - sling:resourceType = "granite/ui/components/coral/foundation/container"
+       - name = "./people"
+       + items
+         + name
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "name"
+         + surname
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "surname"
+         + address
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/fieldset"
+           - jcr:title = "Address"
+           + items
+             + street
+               - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+               - name = "street"
+             + city
+               - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+               - name = "city"
+
+Multifield Nesting Another Multifield
+-------------------------------------
+
+Composite multifield supports nesting another multifield. Given the following composite multifield::
+
+   + myinput
+     - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+     - composite = true
+     + field
+       - sling:resourceType = "granite/ui/components/coral/foundation/container"
+       - name = "./addresses"
+       + items
+         + nestedmultifield
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+           + field
+             - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+             - name = "nested"
+         + street1
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "street1"
+         + street2
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "street2"
+         + lat
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "gps/lat"
+         + long
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "gps/long"
+         + emails
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+           - composite = true
+           + field
+             - sling:resourceType = "granite/ui/components/coral/foundation/container"
+             - name = "./emails"
+             + items
+               + email
+                 - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+                 - name = "email"
+
+When the form is submitted, it will generate the following content, relative to form's ``dataPath``::
+
+   + addresses
+     + item0
+       - nested
+       - street1
+       - street2
+       + gps
+         - lat
+         - long
+       + emails
+         + item0
+           - email
+         + item1
+           - email
+     + item1
+       - street1
+       - street2
+       + gps
+         - lat
+         - long
+       + emails
+         + item0
+           - email
+         + item1
+           - email
+     + item2
+       ...
+     + item3
+       ...
+
+PathField and RTE (Rich Text Editor)
+------------------------------------
+
+This is an example of simple `RTE configuration <https://helpx.adobe.com/experience-manager/6-4/sites/administering/using/rich-text-editor.html>`_::
+
+   + multifield
+     - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+     - composite = true
+     + field
+       - sling:resourceType = "granite/ui/components/coral/foundation/container"
+       - name = "./multidata"
+       + items
+         + title
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "title"
+         + path
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/pathfield"
+           - name = "path"
+         + description
+           - sling:resourceType = "cq/gui/components/authoring/dialog/richtext"
+           - useFixedInlineToolbar = true
+           - name = "description"
+           + rtePlugins
+             + format
+               - features = ["bold", "italic"]
+             + justify
+               - features = "-"
+             + links
+               - features = ["modifylink", "unlink"]
+             + lists
+               - features = "*"
+             + paraformat
+               - features = "*"
+             + tracklinks
+               - features = "*"
+
+RadioGroup
+----------
+
+::
+
+   + multifield
+     - sling:resourceType = "granite/ui/components/coral/foundation/form/multifield"
+     - composite = true
+     + field
+       - sling:resourceType = "granite/ui/components/coral/foundation/container"
+       - name = "./data"
+       + items
+         + key
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+           - name = "key"
+         + answers
+           - sling:resourceType = "granite/ui/components/coral/foundation/form/radiogroup"
+           - name = "answer"
+           + items
+             + yes
+               - value = "1"
+             + no
+               - value = "0"

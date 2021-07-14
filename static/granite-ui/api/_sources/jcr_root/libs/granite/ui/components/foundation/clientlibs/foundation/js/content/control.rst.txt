@@ -1,0 +1,47 @@
+**************************
+foundation-content-control
+**************************
+
+``foundation-content-control`` is a control for :doc:`foundation-content <index>`.
+
+
+.foundation-content-control
+===========================
+
+Indicates the control. The ``.foundation-content`` element managed by this control is determined by the closest ancestor (i.e. equivalent using jQuery: ``control.closest(".foundation-content")``).
+
+Selector Rule::
+
+   .foundation-content .foundation-content-control
+
+
+[data-foundation-content-control-action]
+========================================
+
+Indicates the action to take. The valid values are ``back`` and ``forward``, that will call ``FoundationContent.back()`` or ``FoundationContent.forward()`` respectively.
+
+Selector Rule::
+
+   .foundation-content-control[data-foundation-content-control-action]
+
+
+[data-foundation-content-control-refresh]
+=========================================
+
+``true`` to refresh the content when doing the action. It will be passed to ``FoundationContent.back(refresh)`` or ``FoundationContent.forward(refresh)`` respectively.
+
+Selector Rule::
+
+	[data-foundation-content-control-action][data-foundation-content-control-refresh]
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-content" {
+     rankdir=BT;
+     "foundation-content-control" -> "foundation-content" [label="controls"];
+     "foundation-content-history" -> "foundation-content" [label="controls"];
+   }

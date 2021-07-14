@@ -1,0 +1,113 @@
+**********************************
+Migration Guide to CoralUI 3-based
+**********************************
+
+New Location
+============
+
+#. A new set of Sling components of Granite UI Foundation is created for Coral3 under :doc:`/libs/granite/ui/components/coral/foundation </jcr_root/libs/granite/ui/components/coral/foundation/server>`
+#. A new clientlib of Granite UI Foundation, named :doc:`granite.ui.coral.foundation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/index>` is also created
+#. So basically there is one set for CoralUI 2-based components and one set for CoralUI 3-based components
+#. The new set will not be just a copy-paste of the old set, rather it will be cleaned up (e.g. streamlining, removing deprecated feature)
+#. It is recommended that a page only use either CoralUI 3-based or CoralUI 2-based set (i.e. not mixed)
+
+
+Layout Concept
+==============
+
+The new set will not use the :doc:`layout concept </jcr_root/libs/granite/ui/docs/server/layout>` anymore.
+This is to increase the simplicity of the understanding of Granite UI.
+Each layout component thus becomes a standard component.
+
+The layout mechanic itself is still there for other to use if needed.
+
+Before::
+
+   + mytabs
+     - sling:resourceType = "granite/ui/components/foundation/container"
+     + layout
+       - sling:resourceType = "granite/ui/components/foundation/layouts/tabs"
+     + items
+       + tab1
+         - jcr:title = "Tab 1"
+         - sling:resourceType = "granite/ui/components/foundation/container"
+       + tab2
+         - jcr:title = "Tab 2"
+         - sling:resourceType = "granite/ui/components/foundation/container"
+         + layoutConfig
+           - active = true
+
+After::
+
+   + mytabs
+     - sling:resourceType = "granite/ui/components/coral/foundation/tabs"
+     + items
+       + tab1
+         - jcr:title = "Tab 1"
+         - sling:resourceType = "granite/ui/components/coral/foundation/container"
+       + tab2
+         - jcr:title = "Tab 2"
+         - sling:resourceType = "granite/ui/components/coral/foundation/container"
+         + parentConfig
+           - active = true
+
+
+Streamlining the API
+====================
+
+Since we have to create a new set of RT and clientlib, we have an opportunity to revisit the API.
+
+#. The :doc:`common attributes </jcr_root/libs/granite/ui/docs/server/commonattrs>`, such as ``granite:class`` are strictly implemented to replace existing properties, such as ``class``.
+#. Unnecessary or similar component is removed.
+#. :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index` in the client-side replaces $.validator (deprecated).
+
+
+Component Mapping
+=================
+
+If not specify, by default the equivalence of an existing component can be found at the same relative path to /libs/granite/ui/components/coral/foundation.
+
+
+Removed Components
+------------------
+
+The following is the list of components that are removed in the new set.
+
+=============================  ============================================================================================================  ==================
+Path                           Replacement                                                                                                   Remarks
+=============================  ============================================================================================================  ==================
+navigation                     :granite:servercomponent:`container </libs/granite/ui/components/coral/foundation/container>`
+section                        :granite:servercomponent:`container </libs/granite/ui/components/coral/foundation/container>`
+form/colorpicker               -                                                                                                             No Coral's ColorPicker at this point
+form/decoratedtextfield        -                                                                                                             Too low level
+form/inputgroup                -                                                                                                             Too low level
+form/layouts/actionfield       :granite:servercomponent:`actionfield </libs/granite/ui/components/coral/foundation/form/actionfield>`
+form/option                    -                                                                                                             Obsolete
+form/radio                     :granite:servercomponent:`form/radiogroup </libs/granite/ui/components/coral/foundation/form/radiogroup>`     Cannot have standalone radio anymore
+form/reset                     :granite:servercomponent:`button </libs/granite/ui/components/coral/foundation/button>`
+form/searchfield               :granite:servercomponent:`form/textfield </libs/granite/ui/components/coral/foundation/form/textfield>`
+form/selector                  :granite:servercomponent:`form/buttongroup </libs/granite/ui/components/coral/foundation/form/buttongroup>`
+form/submit                    :granite:servercomponent:`button </libs/granite/ui/components/coral/foundation/button>`
+form/taglist                   -                                                                                                             Too low level
+form/wizard/*                  :granite:servercomponent:`wizard </libs/granite/ui/components/coral/foundation/wizard>`
+admin/layouts/*                -                                                                                                             Obsolete
+admin/layouttoggle             -                                                                                                             Obsolete
+admin/page                     -                                                                                                             Obsolete
+admin/toolbar                  -                                                                                                             Obsolete
+layouts/cardview               :granite:servercomponent:`masonry </libs/granite/ui/components/coral/foundation/masonry>`
+layouts/container              -                                                                                                             Obsolete
+layouts/content                -                                                                                                             Tied to Shell implementation
+layouts/dialog                 :granite:servercomponent:`wizard </libs/granite/ui/components/coral/foundation/wizard>`
+layouts/collapsible            :granite:servercomponent:`accordion </libs/granite/ui/components/coral/foundation/accordion>`
+layouts/columnview             :granite:servercomponent:`columnview </libs/granite/ui/components/coral/foundation/columnview>`
+layouts/fit                    -                                                                                                             Each container-like component may support ``maximized`` feature
+layouts/fixedcolumns           :granite:servercomponent:`fixedcolumns </libs/granite/ui/components/coral/foundation/fixedcolumns>`
+layouts/list                   :granite:servercomponent:`list </libs/granite/ui/components/coral/foundation/list>`
+layouts/listview               :granite:servercomponent:`table </libs/granite/ui/components/coral/foundation/table>`
+layouts/modal                  :granite:servercomponent:`dialog </libs/granite/ui/components/coral/foundation/dialog>`
+layouts/mode                   :granite:servercomponent:`mode/switcher </libs/granite/ui/components/coral/foundation/mode/switcher>`
+layouts/form                   :granite:servercomponent:`form </libs/granite/ui/components/coral/foundation/form>`                           ``form`` only supports vertical/aligned styling. For default/edit mode use `mode/form </libs/granite/ui/components/coral/foundation/mode/form>`.
+layouts/popover                :granite:servercomponent:`popover </libs/granite/ui/components/coral/foundation/popover>`
+layouts/tabs                   :granite:servercomponent:`tabs </libs/granite/ui/components/coral/foundation/tabs>`
+layouts/well                   :granite:servercomponent:`well </libs/granite/ui/components/coral/foundation/well>`
+=============================  ============================================================================================================  ==================

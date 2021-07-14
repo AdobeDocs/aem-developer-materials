@@ -1,0 +1,506 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-tracking &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-ui" href="../ui/index.html" />
+    <link rel="prev" title="foundation-toggleable-control" href="../toggleable/control.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../ui/index.html" title="foundation-ui"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../toggleable/control.html" title="foundation-toggleable-control"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-tracking">
+<h1>foundation-tracking<a class="headerlink" href="#foundation-tracking" title="Permalink to this headline">¶</a></h1>
+<p>Granite UI supports tracking the usage of the application for analytic purposes.</p>
+<div class="section" id="mechanic">
+<h2>Mechanic<a class="headerlink" href="#mechanic" title="Permalink to this headline">¶</a></h2>
+<p>The tracking API is done using layerred approach.
+This is done mainly to allow a certain abstraction to avoid application developer to use the actual tracking engine directly,
+which allows the engine to be switched.</p>
+<div class="graphviz"><object data="../../../../../../../../../../../_images/graphviz-db31cae68468de85c2d85d56f6b29cc253c9cf2b.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;Tracking Layers&quot; {
+  &quot;Tracking Engine Adapter&quot; -&gt; &quot;Actual Tracking Engine&quot; [label=&quot;wraps&quot;];
+  &quot;foundation-tracker API&quot; -&gt; &quot;Tracking Engine Adapter&quot; [label=&quot;uses&quot;];
+  &quot;Declarative Approach&quot; -&gt; &quot;foundation-tracker API&quot; [label=&quot;uses&quot;];
+}</p></object></div>
+</div>
+<div class="section" id="actual-tracking-engine">
+<h2>Actual Tracking Engine<a class="headerlink" href="#actual-tracking-engine" title="Permalink to this headline">¶</a></h2>
+<p>This is the lowest layer where the actual tagging library such as Adobe DTM is located.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>foundation-tracking</cite> uses Adobe DTM as the tracking engine out-of-the-box.</p>
+</div>
+</div>
+<div class="section" id="tracking-engine-adapter">
+<h2>Tracking Engine Adapter<a class="headerlink" href="#tracking-engine-adapter" title="Permalink to this headline">¶</a></h2>
+<p>The concept of tracking is usually done by the tracking engine that exposes a mechanic to track and send the beacons to the tracking server.
+This tracking engine is external to Granite UI and thus there is a need to establish an adapter between Granite UI and the engine.</p>
+<p>The adapter needs to be created at <code class="docutils literal notranslate"><span class="pre">window.Granite.Tracking.Tracker</span></code> variable, implementing the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">GraniteTracker</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Tracks the page having the given data.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The data is an object that can have arbitrary structure, which is determined by business need.</span>
+<span class="cm">   */</span>
+  <span class="nx">trackPage</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Tracks the event having the given data.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The data is an object that can have arbitrary structure, which is determined by business need.</span>
+<span class="cm">   */</span>
+  <span class="nx">trackEvent</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>foundation-tracking</cite> implements the adapter to Adobe DTM out-of-the-box.</p>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>This is the adapter example using Adobe DTM with data schema described at “Tracking Data Schema” section.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">Granite</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">Granite</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">Granite</span><span class="p">.</span><span class="nx">Tracking</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">Granite</span><span class="p">.</span><span class="nx">Tracking</span> <span class="o">||</span> <span class="p">{};</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">Granite</span><span class="p">.</span><span class="nx">Tracking</span><span class="p">.</span><span class="nx">Tracker</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">trackPage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">digitalData</span><span class="p">.</span><span class="nx">page</span><span class="p">;</span>
+
+      <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">page</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+      <span class="p">});</span>
+
+      <span class="nx">_satellite</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">trackEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">digitalData</span><span class="p">.</span><span class="nx">event</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">digitalData</span><span class="p">.</span><span class="nx">event</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="p">}</span>
+
+      <span class="nb">window</span><span class="p">.</span><span class="nx">digitalData</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+
+      <span class="nx">_satellite</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="foundation-tracker-api">
+<h2>foundation-tracker API<a class="headerlink" href="#foundation-tracker-api" title="Permalink to this headline">¶</a></h2>
+<p>This AdaptTo API is intented to be the go to imperative API.
+In the event that a use case cannot be expressed using declarative approach, this API can be used as the “catch all” fallback.</p>
+<p>For application developer, instead of calling <code class="docutils literal notranslate"><span class="pre">GraniteTracker</span></code> directly, it is recomended to use this API instead.</p>
+<div class="section" id="foundation-tracker">
+<h3>foundation-tracker<a class="headerlink" href="#foundation-tracker" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-tracker</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">window</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationTracker</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationTracker</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Tracks the page having the given data.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The data is an object that can have arbitrary structure, which is determined by business need.</span>
+<span class="cm">   */</span>
+  <span class="nx">trackPage</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Tracks the event having the given data.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The data is an object that can have arbitrary structure, which is determined by business need.</span>
+<span class="cm">   */</span>
+  <span class="nx">trackEvent</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="declarative-approach">
+<h2>Declarative Approach<a class="headerlink" href="#declarative-approach" title="Permalink to this headline">¶</a></h2>
+<p>The idea of tracking is pretty repetitive, thus can be generalized simply by annotating the existing markup.
+This way there can be a general purpose code that can read the annotation and call the imperative API accordingly.
+This will in turn avoid the need for application developer to create an extra JS code for tracking purpose.</p>
+</div>
+<div class="section" id="declarative-page-tracking">
+<h2>Declarative Page Tracking<a class="headerlink" href="#declarative-page-tracking" title="Permalink to this headline">¶</a></h2>
+<p>If the following markup exist during DOM <a class="reference external" href="https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference/DOMContentLoaded">DOMContentLoaded</a> event,
+the page will be tracked.</p>
+<div class="section" id="meta-name-foundation-tracking-page">
+<h3>meta[name=”foundation.tracking.page”]<a class="headerlink" href="#meta-name-foundation-tracking-page" title="Permalink to this headline">¶</a></h3>
+<p>The page data to be tracked.
+The value of <code class="docutils literal notranslate"><span class="pre">content</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> is JSON that is passed to <code class="docutils literal notranslate"><span class="pre">FoundationTracker#trackPage</span></code>.</p>
+<p>The JSON value needs to follow the schema described at “Tracking Data Schema” section.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">&gt;</span> <span class="n">meta</span><span class="p">[</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;foundation.tracking.page&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that this automatic page tracking is only done once during page load.
+So if there is page change in SPA (Single Page Application), calling the <code class="docutils literal notranslate"><span class="pre">trackPage</span></code> manually is still needed.</p>
+</div>
+<div class="section" id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;foundation.tracking.page&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#39;{&quot;type&quot;: &quot;collection&quot;, &quot;hierarchy&quot;: &quot;sites&quot;, &quot;name&quot;: &quot;sites&quot;}&#39;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="declarative-event-tracking">
+<h2>Declarative Event Tracking<a class="headerlink" href="#declarative-event-tracking" title="Permalink to this headline">¶</a></h2>
+<p>If the element has the following markup, it will be tracked when it is activated.</p>
+<p>The actual handler to process the tracking is customizable. See the section below.</p>
+<div class="section" id="data-foundation-tracking-event">
+<h3>[data-foundation-tracking-event]<a class="headerlink" href="#data-foundation-tracking-event" title="Permalink to this headline">¶</a></h3>
+<p>The JSON to be passed to <code class="docutils literal notranslate"><span class="pre">FoundationTracker#trackEvent</span></code>.</p>
+<p>The JSON value needs to follow the schema described at “Tracking Data Schema” section.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">tracking</span><span class="o">-</span><span class="n">event</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-foundation-tracking-event</span><span class="o">=</span><span class="s">&#39;{&quot;feature&quot;: &quot;sites&quot;, &quot;element&quot;: &quot;create&quot;, &quot;type&quot;: &quot;button&quot;, &quot;action&quot;: &quot;click&quot;}&#39;</span><span class="p">&gt;</span>Create<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="customizing-event-tracking-handler">
+<h2>Customizing Event Tracking Handler<a class="headerlink" href="#customizing-event-tracking-handler" title="Permalink to this headline">¶</a></h2>
+<p>The handler to process the tracking is pluggable by providing an AdaptTo API for the element.
+This is to allow a specific element to do a special handling about the tracking data or process.</p>
+<div class="section" id="foundation-tracking-event">
+<h3>foundation-tracking-event<a class="headerlink" href="#foundation-tracking-event" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-tracking-event</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationTrackingEvent</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationTrackingEvent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Tracks the event.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param event The DOM event object of the current event</span>
+<span class="cm">   */</span>
+  <span class="nx">track</span><span class="o">:</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">Event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There is a default implementation with the following behaviour:</p>
+<dl class="docutils">
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">[data-foundation-tracking-event]</span></code></dd>
+<dt>behaviour</dt>
+<dd><p class="first">JSON from <code class="docutils literal notranslate"><span class="pre">[data-foundation-tracking-event]</span></code> is processed with the following behaviour:</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="30%" />
+<col width="19%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Status</th>
+<th class="head">Default Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">feature</span></code></td>
+<td>Optional</td>
+<td><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">element</span></code></td>
+<td>Mandatory</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
+<td>Mandatory</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">action</span></code></td>
+<td>Fixed</td>
+<td><code class="docutils literal notranslate"><span class="pre">click</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">widget.name</span></code></td>
+<td>Optional</td>
+<td>The value of <code class="docutils literal notranslate"><span class="pre">element</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">widget.type</span></code></td>
+<td>Mandatory</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&lt;others&gt;</td>
+<td>Optional</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="tracking-data-schema">
+<h2>Tracking Data Schema<a class="headerlink" href="#tracking-data-schema" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="value-conventions">
+<h3>Value Conventions<a class="headerlink" href="#value-conventions" title="Permalink to this headline">¶</a></h3>
+<p>Values can be objects, arrays, ints, booleans, or strings.
+If the value is a string, it should be in all lower case, even abbreviations, and white space is allowed between words, but not to start or end the string.
+No punctuation is allowed, except commas to indicate a list of multiple values within the string, and colons to indicate a hierarchy within the string.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;admin&quot;</span>
+<span class="s2">&quot;report suites&quot;</span>
+<span class="s2">&quot;aem&quot;</span>
+<span class="s2">&quot;components:segments&quot;</span>
+<span class="s2">&quot;apples,bananas,oranges&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="page">
+<h3>Page<a class="headerlink" href="#page" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="10%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">hierarchy</span></code></td>
+<td>Mandatory</td>
+<td>Colon delimited string providing the contextual location of the page being viewed.
+Typically, this should mirror the navigational structure to access the page.
+If a page can be accessed through multiple navigational paths,
+a single navigational path should be chosen to represent the hierarchy location of the page.
+A page should NOT have multiple hierarchy values attributed to it.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">name</span></code></td>
+<td>Mandatory</td>
+<td>The name of the page being viewed.
+This should not include an assetId. Instead, it should contain a friendly name for the page.
+While the <code class="docutils literal notranslate"><span class="pre">name</span></code> does not need to be unique to the solution, the combination of the
+<code class="docutils literal notranslate"><span class="pre">hierarchy</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> should be unique.
+Generic page names, such as homepage or welcome page, should be avoided if at all possible.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
+<td>Optional</td>
+<td>The type, template, or form factor of the page.
+The page type should not contain the feature related to the page, but should be an abstraction
+of the type of page.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">assetId</span></code></td>
+<td>Optional</td>
+<td>The unique identifier for the content that is being displayed on the page,
+such as the asset ID, content ID, segment ID, etc.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="event">
+<h3>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="8%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">feature</span></code></td>
+<td>Mandatory</td>
+<td>The name of the feature that the interaction takes place</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">widget.name</span></code></td>
+<td>Mandatory</td>
+<td>The name of the widget the element being interacted with belongs.
+For groups of related elements, or a friendly name for the element if it doesn’t belong to a group of elements.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">widget.type</span></code></td>
+<td>Mandatory</td>
+<td>The type of widget where the event occurred.
+These typically should mirror the components of the CoralUI, but are not limited to the existing CoralUI components.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">element</span></code></td>
+<td>Mandatory</td>
+<td>The element that the user interacted with.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
+<td>Mandatory</td>
+<td>The type of element being interacted with.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">action</span></code></td>
+<td>Mandatory</td>
+<td>The action that the user conducted on the element.
+These typically should correspond with standard DOM event.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-tracking</a><ul>
+<li><a class="reference internal" href="#mechanic">Mechanic</a></li>
+<li><a class="reference internal" href="#actual-tracking-engine">Actual Tracking Engine</a></li>
+<li><a class="reference internal" href="#tracking-engine-adapter">Tracking Engine Adapter</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#foundation-tracker-api">foundation-tracker API</a><ul>
+<li><a class="reference internal" href="#foundation-tracker">foundation-tracker</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#declarative-approach">Declarative Approach</a></li>
+<li><a class="reference internal" href="#declarative-page-tracking">Declarative Page Tracking</a><ul>
+<li><a class="reference internal" href="#meta-name-foundation-tracking-page">meta[name=”foundation.tracking.page”]</a></li>
+<li><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#declarative-event-tracking">Declarative Event Tracking</a><ul>
+<li><a class="reference internal" href="#data-foundation-tracking-event">[data-foundation-tracking-event]</a></li>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#customizing-event-tracking-handler">Customizing Event Tracking Handler</a><ul>
+<li><a class="reference internal" href="#foundation-tracking-event">foundation-tracking-event</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tracking-data-schema">Tracking Data Schema</a><ul>
+<li><a class="reference internal" href="#value-conventions">Value Conventions</a></li>
+<li><a class="reference internal" href="#page">Page</a></li>
+<li><a class="reference internal" href="#event">Event</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../toggleable/control.html"
+                        title="previous chapter">foundation-toggleable-control</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../ui/index.html"
+                        title="next chapter">foundation-ui</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../ui/index.html" title="foundation-ui"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../toggleable/control.html" title="foundation-toggleable-control"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,529 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.User-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.User-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.User-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.User"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.User</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/User.js" target="_blank">User.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">User</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing information about a CQ user as well as
+methods to manipulate it. Use the static method <code>CQ.User.getCurrentUser()</code>
+to retrieve an instance of this class for the current user.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.User-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.ADMIN"></a>
+            <b>User.ADMIN</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The ID of the admin user (defaults to "admin").                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.ANONYMOUS"></a>
+            <b>User.ANONYMOUS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The ID of the anonymous user (defaults to "anonymous").                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.LANGUAGE"></a>
+            <b>User.LANGUAGE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The path to the language property in the user info (defaults to "language").                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.LOGIN_SERVLET_URL"></a>
+            <b>User.LOGIN_SERVLET_URL</b> : String            <div class="mdesc">
+            	        <div><b>Deprecated: since 5.5, use <a ext:cls="CQ.Sling" ext:member="LOGIN_URL" href="output/CQ.Sling.html#LOGIN_URL">CQ.Sling.LOGIN_URL</a> instead</b></div>
+                                        &lt;static&gt; Login servlet URL                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.LOGOUT_URL"></a>
+            <b>User.LOGOUT_URL</b> : String            <div class="mdesc">
+            	        <div><b>Deprecated: since 5.5, use <a ext:cls="CQ.Sling" ext:member="LOGOUT_URL" href="output/CQ.Sling.html#LOGOUT_URL">CQ.Sling.LOGOUT_URL</a> instead</b></div>
+                                        &lt;static&gt; Logout URL                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.PERMISSION_UPDATE"></a>
+            <b>User.PERMISSION_UPDATE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The update permission (defaults to "update").                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.PLATFORM_LANGUAGE"></a>
+            <b>User.PLATFORM_LANGUAGE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The path to the platform language property in the user info (defaults to
+"platform/language").                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.PREFERENCES_PROVIDER_ID"></a>
+            <b>User.PREFERENCES_PROVIDER_ID</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The default ID of the preferences provider.                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.PRIVILEGES_STORE_ID"></a>
+            <b>User.PRIVILEGES_STORE_ID</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The default ID of the privileges store.                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.TOKEN_LOGIN_SERVLET_URL"></a>
+            <b>User.TOKEN_LOGIN_SERVLET_URL</b> : String            <div class="mdesc">
+            	        <div><b>Deprecated: since 5.5, use <a ext:cls="CQ.Sling" ext:member="LOGIN_URL" href="output/CQ.Sling.html#LOGIN_URL">CQ.Sling.LOGIN_URL</a> instead</b></div>
+                                        &lt;static&gt; Login servlet URL                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+            </table>
+                <a id="CQ.User-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.getCurrentUser"></a>
+            <b>User.getCurrentUser</b>() : CQ.User            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns an instance of the current user.</div>
+            <div class="long">
+                &lt;static&gt; Returns an instance of the current user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.User</code><div class="sub-desc">The current user</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.getUserID"></a>
+            <b>User.getUserID</b>() : String            <div class="mdesc">
+            	        <div><b>Deprecated: Use <a ext:cls="CQ.User" ext:member="getUserID" href="output/CQ.User.html#getUserID">CQ.User.getCurrentUser().getUserID()</a> instead.</b></div>
+                                    <div class="short">&lt;static&gt; Returns the ID of the current user.</div>
+            <div class="long">
+                &lt;static&gt; Returns the ID of the current user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The user ID</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.getUserName"></a>
+            <b>User.getUserName</b>(&nbsp;<code>Boolean Protect</code>&nbsp;) : String            <div class="mdesc">
+            	        <div><b>Deprecated: Use <a ext:cls="CQ.User" ext:member="getUserName" href="output/CQ.User.html#getUserName">CQ.User.getCurrentUser().getUserName()</a> instead.</b></div>
+                                    <div class="short">&lt;static&gt; Returns the name of the current user.</div>
+            <div class="long">
+                &lt;static&gt; Returns the name of the current user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>Protect</code> : Boolean<div class="sub-desc">from XSS (optional, defaults to false)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The user name</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.login"></a>
+            <b>User.login</b>(&nbsp;<code>String user</code>, <code>String pass</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Logs in with the specified user ID and password.</div>
+            <div class="long">
+                &lt;static&gt; Logs in with the specified user ID and password.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>user</code> : String<div class="sub-desc">The user ID</div></li><li><code>pass</code> : String<div class="sub-desc">The password</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-User.logout"></a>
+            <b>User.logout</b>() : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Logs the current user out.</div>
+            <div class="long">
+                &lt;static&gt; Logs the current user out.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getAllowedApps"></a>
+            <b>getAllowedApps</b>() : String[]            <div class="mdesc">
+                                    <div class="short">Returns the applications the user has permission to use.</div>
+            <div class="long">
+                Returns the applications the user has permission to use.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String[]</code><div class="sub-desc">The allowed applications</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getAuthType"></a>
+            <b>getAuthType</b>() : void            <div class="mdesc">
+            	        <div><b>Deprecated: Will be removed with no replacement. Returns <code>null</code> always.</b></div>
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getHome"></a>
+            <b>getHome</b>() : String            <div class="mdesc">
+                                    <div class="short">Returns the home of the user.</div>
+            <div class="long">
+                Returns the home of the user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The user home</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getLanguage"></a>
+            <b>getLanguage</b>() : String            <div class="mdesc">
+                                    <div class="short">Returns the language selected by the user.</div>
+            <div class="long">
+                Returns the language selected by the user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The language</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getLocale"></a>
+            <b>getLocale</b>() : Object            <div class="mdesc">
+                                    <div class="short">Returns the language selected by the user as a locale object.</div>
+            <div class="long">
+                Returns the language selected by the user as a locale object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">an object with "code" ("de_CH"), "language" ("de") and "country" ("CH") (or null if the user has no language)</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getPreference"></a>
+            <b>getPreference</b>(&nbsp;<code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns the specified user preference.</div>
+            <div class="long">
+                Returns the specified user preference.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">The preference</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The preference</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getUserID"></a>
+            <b>getUserID</b>() : String            <div class="mdesc">
+                                    <div class="short">Returns the ID of the user.</div>
+            <div class="long">
+                Returns the ID of the user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The user ID</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-getUserName"></a>
+            <b>getUserName</b>() : String            <div class="mdesc">
+                                    <div class="short">Returns the name of the user.</div>
+            <div class="long">
+                Returns the name of the user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The user name</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-hasPermission"></a>
+            <b>hasPermission</b>(&nbsp;<code>String permission</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">Returns true if the user has the specified permission.</div>
+            <div class="long">
+                Returns true if the user has the specified permission.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>permission</code> : String<div class="sub-desc">The permission</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if user has permission</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-hasPermissionOn"></a>
+            <b>hasPermissionOn</b>(&nbsp;<code>String permission</code>, <span class="optional" title="Optional">[<code>String path</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">Returns true if the user has the specified permission on a
+certain path.</div>
+            <div class="long">
+                Returns true if the user has the specified permission on a
+certain path.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>permission</code> : String<div class="sub-desc">The permission</div></li><li><code>path</code> : String<div class="sub-desc">(optional) The path to check (defaults to "/")</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if user has permission</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-isImpersonated"></a>
+            <b>isImpersonated</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">Returns true if the user is the result of impersonation.</div>
+            <div class="long">
+                Returns true if the user is the result of impersonation.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if user is impersonated</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-login"></a>
+            <b>login</b>(&nbsp;<code>String pwd</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Logs the user in with the specified password.</div>
+            <div class="long">
+                Logs the user in with the specified password.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>pwd</code> : String<div class="sub-desc">The password</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-revertSelf"></a>
+            <b>revertSelf</b>() : void            <div class="mdesc">
+                                    <div class="short">Stops impersonating.</div>
+            <div class="long">
+                Stops impersonating.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.User-sudoAs"></a>
+            <b>sudoAs</b>(&nbsp;<code>String asUser</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Starts impersonating the user with the specified ID.</div>
+            <div class="long">
+                Starts impersonating the user with the specified ID.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>asUser</code> : String<div class="sub-desc">The user ID</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">User</td>
+    </tr>
+            </table>
+                <a id="CQ.User-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

@@ -1,0 +1,14 @@
+
+Body
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/page/body
+   :deprecated:
+
+   A page body component (``<body>``).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:PageBody] > granite:commonAttrs, granite:container

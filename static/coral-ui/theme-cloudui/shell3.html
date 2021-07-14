@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <title>Shell 3 | CoralUI</title>
+    <link rel="shortcut icon" type="image/ico" href="../resources/favicon_coral.ico">
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/js/libs/moment.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/js/libs/jquery.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3/lastSuccessfulBuild/artifact/build/css/coral.css">
+    <script src="../js/guide.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/guide.min.css">
+  </head>
+  <body class="coral--light guide-Background u-coral-clearFix">
+    <div class="guide-Progress"></div>
+    <div class="guide-Container">
+      <header class="guide-Header coral--dark">
+        <div class="guide-Header-menu">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right">
+            <div class="guide-Header--left"><img src="../resources/adobe_icon.png" alt="CoralUI Logo">
+              <div class="guide-Header-home"><a href="index.html">
+                  <h2 class="coral-Heading coral-Heading--2 guide-Header-title">Coral<span class="guide-Header-subtitle">UI</span></h2></a></div>
+            </div>
+            <nav class="guide-Header-nav"><a class="coral-Heading coral-Heading--2 guide-Header-link" href="getting-started.html">Getting Started</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="styles.html">Styles</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="components.html">Components</a><a class="coral-Heading coral-Heading--2 guide-Header-link is-selected" href="shell3.html">Shell 3</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="playground.html">Playground</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="documentation.html">Docs &amp; Guides</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="downloads.html">Downloads</a>
+              <div class="guide-ThemeSwitcher">
+                <coral-tag><a class="coral-Link is-selected" href="../theme-cloudui">CloudUI</a><span> |</span><a class="coral-Link" href="../theme-spectrum"> Spectrum</a></coral-tag>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="guide-MainContent" role="main">
+        <div class="guide-Scroll">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right guide-Content--padding-top guide-Content--padding-bottom">
+            <div class="guide-Section">
+              <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="introduction"><a class="coral-Link coral-Link--subtle" href="#introduction">Introduction</a></h2>
+              <p>
+                Most product interfaces are designed with a common pattern for surfacing identity,
+                context, global navigation, etc.  This application shell convention is available as the Shell 3
+                pattern in CoralUI.
+                
+              </p>
+              <p>
+                The following components make up this pattern:
+                
+              </p>
+              <ul>
+                <li><a class="coral-Link" href="Coral.Shell.html">Coral.Shell</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.Header.html">Coral.Shell.Header</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.Help.html">Coral.Shell.Help</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.MenuBar.html">Coral.Shell.MenuBar</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.OrgSwitcher.html">Coral.Shell.OrgSwitcher</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.SolutionSwitcher.html">Coral.Shell.SolutionSwitcher</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.User.html">Coral.Shell.User</a></li>
+                <li><a class="coral-Link" href="Coral.Shell.Workspaces.html">Coral.Shell.Workspaces</a></li>
+              </ul>
+              <p>
+                This documentation covers the components of the Shell 3 pattern in isolation, with a visual
+                example of what they look like when assembled together into a typical configuration.  The full assembly
+                of these components into the Shell 3 pattern is can be explored in more detail in the
+                <a href="https://git.corp.adobe.com/coral/coralui-example-shell3" class="coral-Link" target='new'>Shell 3 Example</a> repository.
+                
+              </p>
+              <p>
+                You many notice the examples for these components imply they are data-driven, but our documentation
+                doesn't provide detail on how to accomplish those connections. CoralUI has attempted to remain agnostic
+                to the method in which data is provided to components. Because of the variety of ways data can be
+                provided, going into detail here is beyond the scope of this documentation. There is a
+                <a href='https://git.corp.adobe.com/amangal/ims-shell3/' class='coral-Link' target='new'>reference implementation</a> of the Shell 3 pattern that includes examples of how this data integration can be done for Digital Marketing applications.
+              </p>
+            </div>
+            <div class="guide-Section">
+              <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="examples"><a class="coral-Link coral-Link--subtle" href="#examples">Examples</a></h2>
+              <p>
+                This illustration attempt shows how the Shell components are assembled into the full
+                Shell 3 pattern. Click the image to see a larger version.
+                
+              </p>
+              <p>
+                <a href='../resources/shell-trace.png' target='_blank'><image src="../resources/shell-trace.png" width="1000px"></a>
+                
+              </p>
+              <p>
+                Below is the output of the <a href="https://git.corp.adobe.com/coral/coralui-example-shell3" class="coral-Link" target='_blank'>Shell 3 Example</a> repository.  You can click through to the <a href="https://git.corp.adobe.com/Coral/coralui-example-shell3" class="coral-Link" target='_blank'>full example</a> to get feel for the interaction of each component and what the pattern is like as a whole experience.
+                
+              </p>
+              <p><a href='../resources/shell-example.png' target='_blank'><image src="../resources/shell-example.png" width="1000px"></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        var s=s_gi("coralui");
+        s.pageName=document.title;
+        var s_code=s.t();if(s_code)document.write(s_code);
+      </script>
+    </div>
+  </body>
+</html>

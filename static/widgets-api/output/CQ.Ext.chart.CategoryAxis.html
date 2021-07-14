@@ -1,0 +1,153 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.chart.CategoryAxis-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.chart.CategoryAxis-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.chart.CategoryAxis-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Ext.chart.CategoryAxis"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.chart.Axis" ext:member="" href="output/CQ.Ext.chart.Axis.html">Axis</a>
+  <img src="resources/docs/elbow-end.gif"/>CategoryAxis</pre></div>
+                <h1>Class&nbsp;CQ.Ext.chart.CategoryAxis</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext.chart</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Chart.js" target="_blank">Chart.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">CategoryAxis</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.chart.Axis" ext:member="" href="output/CQ.Ext.chart.Axis.html">CQ.Ext.chart.Axis</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A type of axis that displays items in categories.	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.chart.CategoryAxis-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-calculateCategoryCount"></a>
+            <b>calculateCategoryCount</b> : Boolean            <div class="mdesc">
+                                    <div class="short">Indicates whether or not to calculate the number of categories (ticks and
+labels) when there is not enough room to di...</div>
+            <div class="long">
+                Indicates whether or not to calculate the number of categories (ticks and
+labels) when there is not enough room to display all labels on the axis.
+If set to true, the axis will determine the number of categories to plot.
+If not, all categories will be plotted.            </div>
+                                    </div>
+        </td>
+        <td class="msource">CategoryAxis</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-categoryNames"></a>
+            <b>categoryNames</b> : Array            <div class="mdesc">
+                                        A list of category names to display along this axis.                                    </div>
+        </td>
+        <td class="msource">CategoryAxis</td>
+    </tr>
+        <tr class="property-row inherited">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-hideOverlappingLabels"></a>
+            <b>hideOverlappingLabels</b> : Boolean            <div class="mdesc">
+                                        If true, labels that overlap previously drawn labels on the axis will be hidden.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="hideOverlappingLabels" href="output/CQ.Ext.chart.Axis.html#hideOverlappingLabels">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-labelFunction"></a>
+            <b>labelFunction</b> : String            <div class="mdesc">
+                                    <div class="short">A string reference to the globally-accessible function that may be called to
+determine each of the label values for t...</div>
+            <div class="long">
+                A string reference to the globally-accessible function that may be called to
+determine each of the label values for this axis.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="labelFunction" href="output/CQ.Ext.chart.Axis.html#labelFunction">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-labelSpacing"></a>
+            <b>labelSpacing</b> : Number            <div class="mdesc">
+                                        The space, in pixels, between labels on an axis.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="labelSpacing" href="output/CQ.Ext.chart.Axis.html#labelSpacing">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-orientation"></a>
+            <b>orientation</b> : String            <div class="mdesc">
+                                        The direction in which the axis is drawn. May be "horizontal" or "vertical".                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="orientation" href="output/CQ.Ext.chart.Axis.html#orientation">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-reverse"></a>
+            <b>reverse</b> : Boolean            <div class="mdesc">
+                                        If true, the items on the axis will be drawn in opposite direction.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="reverse" href="output/CQ.Ext.chart.Axis.html#reverse">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-type"></a>
+            <b>type</b> : String            <div class="mdesc">
+                                        The type of axis.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="type" href="output/CQ.Ext.chart.Axis.html#type">Axis</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.chart.CategoryAxis-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.CategoryAxis-CategoryAxis"></a>
+            <b>CategoryAxis</b>()            <div class="mdesc">
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CategoryAxis</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.chart.CategoryAxis-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

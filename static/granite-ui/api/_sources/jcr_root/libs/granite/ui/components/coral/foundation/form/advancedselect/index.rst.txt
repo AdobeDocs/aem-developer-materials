@@ -1,0 +1,79 @@
+
+AdvancedSelect
+==============
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/advancedselect
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   A component providing a concept of select.
+   While :doc:`../select/index` has stricter way to render the options, AdvancedSelect allows you to use any component that is implementing
+   :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/selections` vocabulary.
+   This way you can do any visualization imaginable to render the options.
+
+   It satisfies the semantic of :doc:`foundation-advancedselect </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/advancedselect/index>`.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormAdvancedSelect] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * Make the element maximized to fill the available space.
+       */
+      - maximized (Boolean)
+
+      /**
+       * The toolbar component of the AdvancedSelect.
+       * The toolbar can be any component. It is usually used to render the ``.foundation-advancedselect-navigator`` and ``.foundation-advancedselect-status`` of :doc:`foundation-advancedselect </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/advancedselect/index>`.
+       */
+      + toolbar
+
+      /**
+       * The actual field component that implements ``foundation-selections``.
+       */
+      + field
+
+   Example
+
+   Given the example below, the options are rendered using masonry component::
+
+      + myselect
+        - sling:resourceType = "granite/ui/components/coral/foundation/form/advancedselect"
+        - name = "myselect"
+        + field
+          - sling:resourceType = "granite/ui/components/coral/foundation/masonry"
+          - selectionCount = "single"
+          - selectionMode = true
+          + datasource
+            - sling:resourceType = "my/datasource"
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

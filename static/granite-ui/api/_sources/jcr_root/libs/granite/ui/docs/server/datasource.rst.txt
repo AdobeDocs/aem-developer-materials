@@ -1,0 +1,99 @@
+DataSource
+==========
+
+A datasource is a `factory <http://en.wikipedia.org/wiki/Factory_%28object-oriented_programming%29>`_ to provide a collection of `Resource <http://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/Resource.html>`_.
+This datasource can be used for any suitable purpose, although most of the time it is used to provides the dynamic items of a container component.
+
+When developing a new server component, it is RECOMMENDED to use this shared mechanic, instead of inventing a new one.
+
+
+Content Structure
+-----------------
+
+A datasource is specified using a resource with Sling resource type pointing to it::
+
+   + mydatasource
+     - sling:resourceType = "example/mydatasource"
+     - property1 = "foo"
+     - property2 = "bar"
+
+Each datasource can expose any property for its own purpose.
+
+It is up to each component to define the content structure expressing the datasource for any purpose.
+For example a toolbar component may support its buttons as datasource, which indicated as ``buttons`` subresource::
+
+   + mytoolbar
+     - sling:resourceType = "example/toolbar"
+     + buttons
+       - sling:resourceType = "example/mydatasource"
+       - property1 = "foo"
+       - property2 = "bar"
+
+
+.. _ItemDataSource:
+
+ItemDataSource
+--------------
+
+ItemDataSource is a dedicated term used to describe a datasource to represent items of a container component.
+The items can be either specified literally using ``items`` subresource; or dynamic items using datasource using ``datasource`` subresource.
+
+For example :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/container` supports both literal items and datasource to represent its items::
+
+   + myContainerUsingLiteralItems
+     - sling:resourceType = "granite/ui/components/coral/foundation/container"
+     + items
+       + item1
+         - sling:resourceType = "example/myitem"
+         - property1 = "foo"
+         - property2 = "bar"
+       + item2
+         - sling:resourceType = "example/myitem"
+         - property1 = "foo"
+         - property2 = "bar"
+
+   + myContainerUsingItemDataSource
+     - sling:resourceType = "granite/ui/components/coral/foundation/container"
+     + datasource
+       - sling:resourceType = "example/mydatasource"
+       - property1 = "foo"
+       - property2 = "bar"
+
+
+Component Development
+---------------------
+
+To leverage datasource in your component, you can use :javadoc:`ComponentHelper#asDataSource(Resource) <com/adobe/granite/ui/components/ComponentHelper.html#asDataSource%28org.apache.sling.api.resource.Resource%29>` (or its overloads).
+
+For the purpose of ItemDataSource, you can use :javadoc:`ComponentHelper#getItemDataSource() <com/adobe/granite/ui/components/ComponentHelper.html#getItemDataSource%28%29>` (or its overloads). It can be used to fetch the items that are specified literally using ``items`` subresource; or as a datasource using ``datasource`` subresource.
+
+Note that the context resource for ItemDataSource is always the parent resource (``myContainerUsingItemDataSource`` resource in above example). This is mainly due to historical reason.
+
+Hypothetical ``/apps/example/toolbar`` component implementation as per mytoolbar content structure above:
+
+.. code-block:: java
+   :emphasize-lines: 3,5
+
+   ComponentHelper cmp = new ComponentHelper(pageContext);
+
+   Resource buttons = resource.getChild("buttons");
+
+   DataSource ds = cmp.asDataSource(buttons);
+
+   for (Iterator<Resource> items = ds.iterator(); items.hasNext();) {
+       %><sling:include resource="<%= items.next() %>" /><%
+   }
+
+Hypothetical ItemDataSource example using myContainerUsingItemDataSource content structure above:
+
+.. code-block:: java
+   :caption: /libs/granite/ui/components/coral/foundation/container.jsp
+   :emphasize-lines: 3
+
+   ComponentHelper cmp = new ComponentHelper(pageContext);
+
+   DataSource ds = cmp.getItemDataSource();
+
+   for (Iterator<Resource> items = ds.iterator(); items.hasNext();) {
+       %><sling:include resource="<%= items.next() %>" /><%
+   }

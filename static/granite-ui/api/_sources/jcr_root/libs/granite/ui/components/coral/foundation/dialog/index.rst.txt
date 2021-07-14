@@ -1,0 +1,66 @@
+
+Dialog
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/dialog
+
+   The dialog component.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Dialog] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The title of the dialog.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * ``true`` to render the build-in close button (usually at the top right of the modal).
+       */
+      - closable (Boolean) = 'true'
+
+      /**
+       * The variant.
+       */
+      - variant (String) = 'default' < 'default', 'error', 'notice', 'success', 'help', 'info'
+
+      /**
+       * The footer area of the dialog.
+       */
+      + footer
+
+   Each footer item can be any component. It supports a standard ``parentConfig`` node with the following properties:
+
+   .. gnd:gnd::
+
+      [granite:DialogFooterItemParentconfig]
+
+      /**
+       * ``true`` to indicate that this item is used to close the modal.
+       */
+      - close (BooleanEL)
+
+   Example::
+
+      + mydialog
+        - sling:resourceType = "granite/ui/components/coral/foundation/dialog"
+        - jcr:title = "My Dialog"
+        + items
+          + form
+            - sling:resourceType = "granite/ui/components/coral/foundation/form"
+            - granite:id = "myform"
+        + footer
+          + close
+            - sling:resourceType = "granite/ui/components/coral/foundation/button"
+            - text = "Cancel"
+            + parentConfig
+              - close = true
+          + submit
+            - sling:resourceType = "granite/ui/components/coral/foundation/button"
+            - type = "submit"
+            - text = "Save"
+            - formId = "myform"

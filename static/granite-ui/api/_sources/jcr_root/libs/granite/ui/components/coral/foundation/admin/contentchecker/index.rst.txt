@@ -1,0 +1,55 @@
+
+ContentChecker
+==============
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/admin/contentchecker
+
+   ContentChecker is a component to check if a content is allowed to be managed by the admin.
+   If the content is not allowed, 404 error is returned.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:AdminContentChecker]
+
+      /**
+       * The path of the resource to check.
+       */
+      - path (StringEL)
+
+      /**
+       * The complete path of the content to check (can contain selectors and extensions).
+       * This property is only considered if ``path`` property is not set.
+       */
+      - urlPath (StringEL)
+
+      /**
+       * The regex to match the path; when not specified, the content is allowed.
+       */
+      - allowed (String) multiple
+
+      /**
+       * The regex to exclude the matching path which is matched by ``allowed`` property.
+       *
+       * So first the ``path`` is matched according to ``allowed`` reqex, then it is excluded by matching ``exclusion`` reqex.
+       */
+      - exclusion (String) multiple
+
+      /**
+       * ``true`` to allow if the path is ``null`` or empty string; ``false`` otherwise.
+       */
+      - allowEmpty (Boolean) = true
+
+      /**
+       * The URL to redirect to when the path is ``null`` or empty string.
+       */
+      - redirectWhenEmpty (StringEL)
+
+   Example::
+
+      + node1
+        - sling:resourceType = "granite/ui/components/coral/foundation/admin/contentchecker"
+        - path = "${requestPathInfo.suffix}"
+        - allowEmpty = false
+        - allowed = ["/content(?!.*?\b(catalogs|campaigns|dam|launches|mac|publications|usergenerated)\b).*"]

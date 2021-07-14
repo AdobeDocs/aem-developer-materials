@@ -1,0 +1,87 @@
+*********************
+foundation-collection
+*********************
+
+``foundation-collection`` is a vocabulary about the concept of collection.
+
+
+.foundation-collection
+======================
+
+Indicates the element is a collection. A collection represents a group of elements, knowns as its items. A collection MUST NOT be nested inside another collection.
+
+Selector Rule::
+
+   .foundation-collection
+
+
+.foundation-collection-item
+===========================
+
+Indicates the element is an item of a collection. It MUST be a descendant of ``.foundation-collection`` element.
+
+Selector Rule::
+
+   .foundation-collection .foundation-collection-item
+
+
+[data-foundation-collection-item-id]
+====================================
+
+The ID of the collection item. This is optional. The ID is an opaque string where the author can use whatever value suitable for the application. For Granite application, it is usually a path.
+
+Selector Rule::
+
+   .foundation-collection-item[data-foundation-collection-item-id]
+
+
+.foundation-collection-item-title
+=================================
+
+The title of the collection item. This is optional. The title is usually used to display human-friendly string that will be read by the component dealing with the item.
+
+Selector Rule::
+
+   .foundation-collection-item .foundation-collection-item-title
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-collection``
+
+condition
+   ``.foundation-collection``
+
+returned type
+   ``FoundationCollection``
+
+.. code-block:: ts
+
+   interface FoundationCollection {
+     /**
+      * Appends new items to the collection.
+      * This method will trigger <code>foundation-contentloaded</code> event.
+      */
+     append(items: Element[]): void;
+
+     /**
+      * Removes all the item of collection.
+      */
+     clear(): void;
+   }
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

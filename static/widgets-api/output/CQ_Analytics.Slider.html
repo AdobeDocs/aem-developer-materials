@@ -1,0 +1,171 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ_Analytics.Slider-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ_Analytics.Slider-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ_Analytics.Slider-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ_Analytics.Slider"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ_Analytics.Slider</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ_Analytics</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/slider.js" target="_blank">slider.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Slider</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">personalization.core                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing utility methods to create a jcarousel object.<br>
+See <code>/etc/clientlibs/foundation/personalization/jcarousel/jquery.jcarousel.js</code>
+<br>
+Construction options:<ul>
+<li>vertical: true to create a vertical slider (defaults to false).</li>
+<li>clazz: custom css class to append to top container</li>
+<li>parent: HTMLElement to append slider to</li>
+</ul>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ_Analytics.Slider-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ_Analytics.Slider-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Slider-getCurrentValue"></a>
+            <b>getCurrentValue</b>() : void            <div class="mdesc">
+                                    <div class="short">Method called to get the current value of the slider. Returned value must match the id.
+To override.</div>
+            <div class="long">
+                Method called to get the current value of the slider. Returned value must match the id.
+To override.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Slider</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Slider-getIndex"></a>
+            <b>getIndex</b>(&nbsp;<code>dom The</code>&nbsp;) : The            <div class="mdesc">
+                                    <div class="short">Gets the item index of the specified dom element</div>
+            <div class="long">
+                Gets the item index of the specified dom element    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>The</code> : dom<div class="sub-desc">DOM element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>The</code><div class="sub-desc">item index; -1 if invalid</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Slider</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Slider-hide"></a>
+            <b>hide</b>() : void            <div class="mdesc">
+                                    <div class="short">Hides the slider.</div>
+            <div class="long">
+                Hides the slider.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Slider</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Slider-init"></a>
+            <b>init</b>() : void            <div class="mdesc">
+                                    <div class="short">Initializes the slider</div>
+            <div class="long">
+                Initializes the slider    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Slider</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Slider-onSelect"></a>
+            <b>onSelect</b>(&nbsp;<code>String id</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Method called when an item gets selected. To get the item, use: [data-id='" + id + "'].
+To override.</div>
+            <div class="long">
+                Method called when an item gets selected. To get the item, use: [data-id='" + id + "'].
+To override.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>id</code> : String<div class="sub-desc">Id of the selected item</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Slider</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Slider-show"></a>
+            <b>show</b>() : void            <div class="mdesc">
+                                    <div class="short">Shows the slider</div>
+            <div class="long">
+                Shows the slider    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Slider</td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.Slider-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

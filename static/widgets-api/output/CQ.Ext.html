@@ -1,0 +1,932 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Ext"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.Ext</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Ext-more.js" target="_blank">Ext-more.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Ext</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-BLANK_IMAGE_URL"></a>
+            <b>BLANK_IMAGE_URL</b> : String            <div class="mdesc">
+                                    <div class="short">URL to a 1x1 transparent gif image used by Ext to create inline icons with CSS background images.
+In older versions o...</div>
+            <div class="long">
+                URL to a 1x1 transparent gif image used by Ext to create inline icons with CSS background images.
+In older versions of IE, this defaults to "http://extjs.com/s.gif" and you should change this to a URL on your server.
+For other browsers it uses an inline data URL.            </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="property-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-useShims"></a>
+            <b>useShims</b> : Boolean            <div class="mdesc">
+                                    <div class="short">By default, Ext intelligently decides whether floating elements should be shimmed. If you are using flash,
+you may wa...</div>
+            <div class="long">
+                By default, Ext intelligently decides whether floating elements should be shimmed. If you are using flash,
+you may want to set this to true.            </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-ux"></a>
+            <b>ux</b> : Object            <div class="mdesc">
+                                        Namespace alloted for extensions to the framework.                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-addBehaviors"></a>
+            <b>addBehaviors</b>(&nbsp;<code>Object obj</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Applies event listeners to elements by selectors when the document is ready.
+The event name is specified with an &#64...</div>
+            <div class="long">
+                Applies event listeners to elements by selectors when the document is ready.
+The event name is specified with an <tt>&#64;</tt> suffix.
+<pre><code>CQ.Ext.addBehaviors({
+    <i>// add a listener <b>for</b> click on all anchors <b>in</b> element <b>with</b> id foo</i>
+    <em>'#foo a&#64;click'</em> : <b>function</b>(e, t){
+        <i>// <b>do</b> something</i>
+    },
+
+    <i>// add the same listener to multiple selectors (separated by comma BEFORE the &#64;)</i>
+    <em>'#foo a, #bar span.some-class&#64;mouseover'</em> : <b>function</b>(){
+        <i>// <b>do</b> something</i>
+    }
+});</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>obj</code> : Object<div class="sub-desc">The list of behaviors to apply</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-apply"></a>
+            <b>apply</b>(&nbsp;<code>Object obj</code>, <code>Object config</code>, <code>Object defaults</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Copies all the properties of config to obj.</div>
+            <div class="long">
+                Copies all the properties of config to obj.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>obj</code> : Object<div class="sub-desc">The receiver of the properties</div></li><li><code>config</code> : Object<div class="sub-desc">The source of the properties</div></li><li><code>defaults</code> : Object<div class="sub-desc">A different object that will also be applied for default values</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">returns obj</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-clean"></a>
+            <b>clean</b>(&nbsp;<code>Array/NodeList arr</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Creates a copy of the passed Array with falsy values removed.</div>
+            <div class="long">
+                Creates a copy of the passed Array with falsy values removed.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array/NodeList<div class="sub-desc">The Array from which to remove falsy values.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The new, compressed Array.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-copyTo"></a>
+            <b>copyTo</b>(&nbsp;<code>Object dest</code>, <code>Object source</code>, <code>Array/String names</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Copies a set of named properties fom the source object to the destination object.
+example:ImageComponent = CQ.Ext.ext...</div>
+            <div class="long">
+                Copies a set of named properties fom the source object to the destination object.
+<p>example:<pre><code>ImageComponent = CQ.Ext.extend(CQ.Ext.BoxComponent, {
+    initComponent: <b>function</b>() {
+        <b>this</b>.autoEl = { tag: <em>'img'</em> };
+        MyComponent.superclass.initComponent.apply(<b>this</b>, arguments);
+        <b>this</b>.initialBox = CQ.Ext.copyTo({}, <b>this</b>.initialConfig, <em>'x,y,width,height'</em>);
+    }
+});</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>dest</code> : Object<div class="sub-desc">The destination object.</div></li><li><code>source</code> : Object<div class="sub-desc">The source object.</div></li><li><code>names</code> : Array/String<div class="sub-desc">Either an Array of property names, or a comma-delimited list
+of property names to copy.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The modified object.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-create"></a>
+            <b>create</b>(&nbsp;<code>Object config</code>, <code>Constructor defaultType</code>&nbsp;) : CQ.Ext.Component            <div class="mdesc">
+                                    <div class="short">Shorthand for CQ.Ext.ComponentMgr.create
+Creates a new Component from the specified config object using the
+config ob...</div>
+            <div class="long">
+                Shorthand for <a ext:cls="CQ.Ext.ComponentMgr" ext:member="create" href="output/CQ.Ext.ComponentMgr.html#create">CQ.Ext.ComponentMgr.create</a>
+Creates a new Component from the specified config object using the
+config object's <a ext:cls="CQ.Ext.component" ext:member="xtype" href="output/CQ.Ext.component.html#xtype">xtype</a> to determine the class to instantiate.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : Object<div class="sub-desc">A configuration object for the Component you wish to create.</div></li><li><code>defaultType</code> : Constructor<div class="sub-desc">The constructor to provide the default Component type if
+the config object does not contain a <code>xtype</code>. (Optional if the config contains a <code>xtype</code>).</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Component</code><div class="sub-desc">The newly instantiated Component.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-decode"></a>
+            <b>decode</b>(&nbsp;<code>String json</code>, <span class="optional" title="Optional">[<code>Boolean safe</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Shorthand for <a ext:cls="CQ.Ext.util.JSON" ext:member="decode" href="output/CQ.Ext.util.JSON.html#decode">CQ.Ext.util.JSON.decode</a></div>
+            <div class="long">
+                Shorthand for <a ext:cls="CQ.Ext.util.JSON" ext:member="decode" href="output/CQ.Ext.util.JSON.html#decode">CQ.Ext.util.JSON.decode</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>json</code> : String<div class="sub-desc">The JSON string</div></li><li><code>safe</code> : Boolean<div class="sub-desc">(optional) Whether to return null or throw an exception if the JSON is invalid.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The resulting object</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-defer"></a>
+            <b>defer</b>(&nbsp;<code>Function fn</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>, <span class="optional" title="Optional">[<code>Array args</code>]</span>, <span class="optional" title="Optional">[<code>Boolean/Number appendArgs</code>]</span>&nbsp;) : Function            <div class="mdesc">
+                                    <div class="short">Shorthand for <a ext:cls="CQ.Ext.util.Functions" ext:member="createDelegate" href="output/CQ.Ext.util.Functions.html#createDelegate">CQ.Ext.util.Functions.createDelegate</a></div>
+            <div class="long">
+                Shorthand for <a ext:cls="CQ.Ext.util.Functions" ext:member="createDelegate" href="output/CQ.Ext.util.Functions.html#createDelegate">CQ.Ext.util.Functions.createDelegate</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>fn</code> : Function<div class="sub-desc">The function to delegate.</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code><b>this</b></code> reference) in which the function is executed.
+<b>If omitted, defaults to the browser window.</b></div></li><li><code>args</code> : Array<div class="sub-desc">(optional) Overrides arguments for the call. (Defaults to the arguments passed by the caller)</div></li><li><code>appendArgs</code> : Boolean/Number<div class="sub-desc">(optional) if True args are appended to call args instead of overriding,
+if a number the args are inserted at the specified position</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Function</code><div class="sub-desc">The new function</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-destroy"></a>
+            <b>destroy</b>(&nbsp;<code>Mixed arg1</code>, <span class="optional" title="Optional">[<code>Mixed arg2</code>]</span>, <span class="optional" title="Optional">[<code>Mixed etc...</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Attempts to destroy any objects passed to it by removing all event listeners, removing them from the
+DOM (if applicab...</div>
+            <div class="long">
+                Attempts to destroy any objects passed to it by removing all event listeners, removing them from the
+DOM (if applicable) and calling their destroy functions (if available).  This method is primarily
+intended for arguments of type <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a> and <a ext:cls="CQ.Ext.Component" href="output/CQ.Ext.Component.html">CQ.Ext.Component</a>, but any subclass of
+<a ext:cls="CQ.Ext.util.Observable" href="output/CQ.Ext.util.Observable.html">CQ.Ext.util.Observable</a> can be passed in.  Any number of elements and/or components can be
+passed into this function in a single call as separate arguments.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arg1</code> : Mixed<div class="sub-desc">An <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a>, <a ext:cls="CQ.Ext.Component" href="output/CQ.Ext.Component.html">CQ.Ext.Component</a>, or an Array of either of these to destroy</div></li><li><code>arg2</code> : Mixed<div class="sub-desc">(optional)</div></li><li><code>etc...</code> : Mixed<div class="sub-desc">(optional)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-destroyMembers"></a>
+            <b>destroyMembers</b>(&nbsp;<code>Object o</code>, <code>Mixed arg1</code>, <code>Mixed etc...</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Attempts to destroy and then remove a set of named properties of the passed object.</div>
+            <div class="long">
+                Attempts to destroy and then remove a set of named properties of the passed object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>o</code> : Object<div class="sub-desc">The object (most likely a Component) who's properties you wish to destroy.</div></li><li><code>arg1</code> : Mixed<div class="sub-desc">The name of the property to destroy and remove from the object.</div></li><li><code>etc...</code> : Mixed<div class="sub-desc">More property names to destroy and remove.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-emptyFn"></a>
+            <b>emptyFn</b>() : void            <div class="mdesc">
+                                    <div class="short">A reusable empty function</div>
+            <div class="long">
+                A reusable empty function    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-encode"></a>
+            <b>encode</b>(&nbsp;<code>Mixed o</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Shorthand for <a ext:cls="CQ.Ext.util.JSON" ext:member="encode" href="output/CQ.Ext.util.JSON.html#encode">CQ.Ext.util.JSON.encode</a></div>
+            <div class="long">
+                Shorthand for <a ext:cls="CQ.Ext.util.JSON" ext:member="encode" href="output/CQ.Ext.util.JSON.html#encode">CQ.Ext.util.JSON.encode</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>o</code> : Mixed<div class="sub-desc">The variable to encode</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The JSON string</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-escapeRe"></a>
+            <b>escapeRe</b>(&nbsp;<code>String str</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Escapes the passed string for use in a regular expression</div>
+            <div class="long">
+                Escapes the passed string for use in a regular expression    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>str</code> : String<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-flatten"></a>
+            <b>flatten</b>(&nbsp;<code>Array arr</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Recursively flattens into 1-d Array. Injects Arrays inline.</div>
+            <div class="long">
+                Recursively flattens into 1-d Array. Injects Arrays inline.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array<div class="sub-desc">The array to flatten</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The new, flattened array.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-fly"></a>
+            <b>fly</b>(&nbsp;<code>String/HTMLElement el</code>, <span class="optional" title="Optional">[<code>String named</code>]</span>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">Gets the globally shared flyweight Element, with the passed node as the active element. Do not store a reference to t...</div>
+            <div class="long">
+                <p>Gets the globally shared flyweight Element, with the passed node as the active element. Do not store a reference to this element -
+the dom node can be overwritten by other code. Shorthand of <a ext:cls="CQ.Ext.Element" ext:member="fly" href="output/CQ.Ext.Element.html#fly">CQ.Ext.Element.fly</a></p>
+<p>Use this to make one-time references to DOM elements which are not going to be accessed again either by
+application code, or by Ext's classes. If accessing an element which will be processed regularly, then <a ext:cls="CQ.Ext" ext:member="get" href="output/CQ.Ext.html#get">CQ.Ext.get</a>
+will be more appropriate to take advantage of the caching provided by the CQ.Ext.Element class.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : String/HTMLElement<div class="sub-desc">The dom node or id</div></li><li><code>named</code> : String<div class="sub-desc">(optional) Allows for creation of named reusable flyweights to prevent conflicts
+(e.g. internally Ext uses "_global")</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">The shared Element object (or null if no matching element was found)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-get"></a>
+            <b>get</b>(&nbsp;<code>Mixed el</code>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">Retrieves CQ.Ext.Element objects.
+This method does not retrieve Components. This method
+retrieves CQ.Ext.Element obje...</div>
+            <div class="long">
+                Retrieves CQ.Ext.Element objects.
+<p><b>This method does not retrieve <a ext:cls="CQ.Ext.Component" href="output/CQ.Ext.Component.html">Component</a>s.</b> This method
+retrieves CQ.Ext.Element objects which encapsulate DOM elements. To retrieve a Component by
+its ID, use <a ext:cls="CQ.Ext.ComponentMgr" ext:member="get" href="output/CQ.Ext.ComponentMgr.html#get">CQ.Ext.ComponentMgr.get</a>.</p>
+<p>Uses simple caching to consistently return the same object. Automatically fixes if an
+object was recreated with the same id via AJAX or DOM.</p>
+Shorthand of <a ext:cls="CQ.Ext.Element" ext:member="get" href="output/CQ.Ext.Element.html#get">CQ.Ext.Element.get</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : Mixed<div class="sub-desc">The id of the node, a DOM Node or an existing Element.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">The Element object (or null if no matching element was found)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-getCmp"></a>
+            <b>getCmp</b>(&nbsp;<code>String id</code>&nbsp;) : CQ.Ext.Component            <div class="mdesc">
+                                    <div class="short">This is shorthand reference to <a ext:cls="CQ.Ext.ComponentMgr" ext:member="get" href="output/CQ.Ext.ComponentMgr.html#get">CQ.Ext.ComponentMgr.get</a>.
+Looks up an existing <a ext:cls="CQ.Ext.Component" href="output/CQ.Ext.Component.html">Component</a> by <a ext:cls="CQ.Ext.Component" ext:member="id" href="output/CQ.Ext.Component.html#id">id</a></div>
+            <div class="long">
+                This is shorthand reference to <a ext:cls="CQ.Ext.ComponentMgr" ext:member="get" href="output/CQ.Ext.ComponentMgr.html#get">CQ.Ext.ComponentMgr.get</a>.
+Looks up an existing <a ext:cls="CQ.Ext.Component" href="output/CQ.Ext.Component.html">Component</a> by <a ext:cls="CQ.Ext.Component" ext:member="id" href="output/CQ.Ext.Component.html#id">id</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>id</code> : String<div class="sub-desc">The component <a ext:cls="CQ.Ext.Component" ext:member="id" href="output/CQ.Ext.Component.html#id">id</a></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Component</code><div class="sub-desc">The Component, <tt>undefined</tt> if not found, or <tt>null</tt> if a Class was found.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-getDoc"></a>
+            <b>getDoc</b>() : CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Returns the current HTML document object as an <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a>.</div>
+            <div class="long">
+                Returns the current HTML document object as an <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element</code><div class="sub-desc">The document</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-getScrollBarWidth"></a>
+            <b>getScrollBarWidth</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Utility method for getting the width of the browser scrollbar. This can differ depending on
+operating system settings...</div>
+            <div class="long">
+                Utility method for getting the width of the browser scrollbar. This can differ depending on
+operating system settings, such as the theme or font size.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) true to force a recalculation of the value.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The width of the scrollbar.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-invoke"></a>
+            <b>invoke</b>(&nbsp;<code>Array|NodeList arr</code>, <code>String methodName</code>, <code>...* args</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Invokes a method on each item in an Array.
+// Example:
+CQ.Ext.invoke(CQ.Ext.query("p"), "getAttribute", "id");
+// [el...</div>
+            <div class="long">
+                Invokes a method on each item in an Array.
+<pre><code><i>// Example:</i>
+CQ.Ext.invoke(CQ.Ext.query(<em>"p"</em>), <em>"getAttribute"</em>, <em>"id"</em>);
+// [el1.getAttribute(<em>"id"</em>), el2.getAttribute(<em>"id"</em>), ..., elN.getAttribute(<em>"id"</em>)]</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array|NodeList<div class="sub-desc">The Array of items to invoke the method on.</div></li><li><code>methodName</code> : String<div class="sub-desc">The method name to invoke.</div></li><li><code>args</code> : ...*<div class="sub-desc">Arguments to send into the method invocation.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The results of invoking the method on each item in the array.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-max"></a>
+            <b>max</b>(&nbsp;<code>Array|NodeList arr</code>, <span class="optional" title="Optional">[<code>Function comp</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Returns the maximum value in the Array</div>
+            <div class="long">
+                Returns the maximum value in the Array    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array|NodeList<div class="sub-desc">The Array from which to select the maximum value.</div></li><li><code>comp</code> : Function<div class="sub-desc">(optional) a function to perform the comparision which determines maximization.
+If omitted the ">" operator will be used. Note: gt = 1; eq = 0; lt = -1</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The maximum value in the Array.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-mean"></a>
+            <b>mean</b>(&nbsp;<code>Array arr</code>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Calculates the mean of the Array</div>
+            <div class="long">
+                Calculates the mean of the Array    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array<div class="sub-desc">The Array to calculate the mean value of.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The mean.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-min"></a>
+            <b>min</b>(&nbsp;<code>Array|NodeList arr</code>, <span class="optional" title="Optional">[<code>Function comp</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Returns the minimum value in the Array.</div>
+            <div class="long">
+                Returns the minimum value in the Array.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array|NodeList<div class="sub-desc">The Array from which to select the minimum value.</div></li><li><code>comp</code> : Function<div class="sub-desc">(optional) a function to perform the comparision which determines minimization.
+If omitted the "<" operator will be used. Note: gt = 1; eq = 0; lt = -1</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The minimum value in the Array.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-num"></a>
+            <b>num</b>(&nbsp;<code>Mixed value</code>, <code>Number defaultValue</code>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Utility method for validating that a value is numeric, returning the specified default value if it is not.</div>
+            <div class="long">
+                Utility method for validating that a value is numeric, returning the specified default value if it is not.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>value</code> : Mixed<div class="sub-desc">Should be a number, but any type will be handled appropriately</div></li><li><code>defaultValue</code> : Number<div class="sub-desc">The value to return if the original value is non-numeric</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">Value, if numeric, else defaultValue</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-onLoad"></a>
+            <b>onLoad</b>(&nbsp;<code>Function fn</code>, <code>Object scope</code>, <code>boolean override</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Fires when the window is loaded. Shorthand of <a ext:cls="CQ.Ext.EventManager" ext:member="onWindowLoaded" href="output/CQ.Ext.EventManager.html#onWindowLoaded">CQ.Ext.EventManager.onWindowLoaded</a>.</div>
+            <div class="long">
+                Fires when the window is loaded. Shorthand of <a ext:cls="CQ.Ext.EventManager" ext:member="onWindowLoaded" href="output/CQ.Ext.EventManager.html#onWindowLoaded">CQ.Ext.EventManager.onWindowLoaded</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>fn</code> : Function<div class="sub-desc">The method the event invokes</div></li><li><code>scope</code> : Object<div class="sub-desc">An object that becomes the scope of the handler</div></li><li><code>override</code> : boolean<div class="sub-desc">If true, the obj passed in becomes
+the execution scope of the listener</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-onReady"></a>
+            <b>onReady</b>(&nbsp;<code>Function fn</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>, <span class="optional" title="Optional">[<code>boolean options</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Adds a listener to be notified when the document is ready (before onload and before images are loaded). Shorthand of ...</div>
+            <div class="long">
+                Adds a listener to be notified when the document is ready (before onload and before images are loaded). Shorthand of <a ext:cls="CQ.Ext.EventManager" ext:member="onDocumentReady" href="output/CQ.Ext.EventManager.html#onDocumentReady">CQ.Ext.EventManager.onDocumentReady</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>fn</code> : Function<div class="sub-desc">The method the event invokes.</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code>this</code> reference) in which the handler function executes. Defaults to the browser window.</div></li><li><code>options</code> : boolean<div class="sub-desc">(optional) Options object as passed to <a ext:cls="CQ.Ext.Element" ext:member="addListener" href="output/CQ.Ext.Element.html#addListener">CQ.Ext.Element.addListener</a>. It is recommended that the options
+<code>{single: true}</code> be used so that the handler is removed on first invocation.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-partition"></a>
+            <b>partition</b>(&nbsp;<code>Array|NodeList arr</code>, <span class="optional" title="Optional">[<code>Function truth</code>]</span>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Partitions the set into two sets: a true set and a false set.
+Example:
+Example2:
+// Example 1:
+CQ.Ext.partition([true...</div>
+            <div class="long">
+                Partitions the set into two sets: a true set and a false set.
+Example:
+Example2:
+<pre><code><i>// Example 1:</i>
+CQ.Ext.partition([true, false, true, true, false]); <i>// [[true, true, true], [false, false]]</i>
+
+<i>// Example 2:</i>
+CQ.Ext.partition(
+    CQ.Ext.query(<em>"p"</em>),
+    <b>function</b>(val){
+        <b>return</b> val.className == <em>"class1"</em>
+    }
+);
+<i>// true are those paragraph elements <b>with</b> a className of <em>"class1"</em>,</i>
+// false set are those that <b>do</b> not have that className.</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array|NodeList<div class="sub-desc">The array to partition</div></li><li><code>truth</code> : Function<div class="sub-desc">(optional) a function to determine truth. If this is omitted the element
+itself must be able to be evaluated for its truthfulness.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">[true<Array>,false<Array>]</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-pluck"></a>
+            <b>pluck</b>(&nbsp;<code>Array|NodeList arr</code>, <code>String prop</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Plucks the value of a property from each item in the Array
+// Example:
+CQ.Ext.pluck(CQ.Ext.query("p"), "className"); ...</div>
+            <div class="long">
+                Plucks the value of a property from each item in the Array
+<pre><code><i>// Example:</i>
+CQ.Ext.pluck(CQ.Ext.query(<em>"p"</em>), <em>"className"</em>); // [el1.className, el2.className, ..., elN.className]</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array|NodeList<div class="sub-desc">The Array of items to pluck the value from.</div></li><li><code>prop</code> : String<div class="sub-desc">The property name to pluck from each element.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The value from each item in the Array.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-preg"></a>
+            <b>preg</b>(&nbsp;<code>String ptype</code>, <code>Constructor cls</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Shorthand for <a ext:cls="CQ.Ext.ComponentMgr" ext:member="registerPlugin" href="output/CQ.Ext.ComponentMgr.html#registerPlugin">CQ.Ext.ComponentMgr.registerPlugin</a></div>
+            <div class="long">
+                Shorthand for <a ext:cls="CQ.Ext.ComponentMgr" ext:member="registerPlugin" href="output/CQ.Ext.ComponentMgr.html#registerPlugin">CQ.Ext.ComponentMgr.registerPlugin</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>ptype</code> : String<div class="sub-desc">The <a ext:cls="CQ.Ext.component" ext:member="ptype" href="output/CQ.Ext.component.html#ptype">mnemonic string</a> by which the Plugin class
+may be looked up.</div></li><li><code>cls</code> : Constructor<div class="sub-desc">The new Plugin class.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-query"></a>
+            <b>query</b>(&nbsp;<code>String path</code>, <span class="optional" title="Optional">[<code>Node root</code>]</span>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Selects an array of DOM nodes by CSS/XPath selector. Shorthand of <a ext:cls="CQ.Ext.DomQuery" ext:member="select" href="output/CQ.Ext.DomQuery.html#select">CQ.Ext.DomQuery.select</a></div>
+            <div class="long">
+                Selects an array of DOM nodes by CSS/XPath selector. Shorthand of <a ext:cls="CQ.Ext.DomQuery" ext:member="select" href="output/CQ.Ext.DomQuery.html#select">CQ.Ext.DomQuery.select</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The selector/xpath query</div></li><li><code>root</code> : Node<div class="sub-desc">(optional) The start of the query (defaults to document).</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-reg"></a>
+            <b>reg</b>(&nbsp;<code>String xtype</code>, <code>Constructor cls</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Shorthand for <a ext:cls="CQ.Ext.ComponentMgr" ext:member="registerType" href="output/CQ.Ext.ComponentMgr.html#registerType">CQ.Ext.ComponentMgr.registerType</a></div>
+            <div class="long">
+                Shorthand for <a ext:cls="CQ.Ext.ComponentMgr" ext:member="registerType" href="output/CQ.Ext.ComponentMgr.html#registerType">CQ.Ext.ComponentMgr.registerType</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>xtype</code> : String<div class="sub-desc">The <a ext:cls="CQ.Ext.component" ext:member="xtype" href="output/CQ.Ext.component.html#xtype">mnemonic string</a> by which the Component class
+may be looked up.</div></li><li><code>cls</code> : Constructor<div class="sub-desc">The new Component class.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-select"></a>
+            <b>select</b>(&nbsp;<code>String/Array selector</code>, <span class="optional" title="Optional">[<code>HTMLElement/String root</code>]</span>&nbsp;) : CompositeElementLite/CompositeElement            <div class="mdesc">
+                                    <div class="short">Selects elements based on the passed CSS selector to enable Element methods
+to be applied to many related elements in...</div>
+            <div class="long">
+                Selects elements based on the passed CSS selector to enable <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">Element</a> methods
+to be applied to many related elements in one statement through the returned <a ext:cls="CQ.Ext.CompositeElement" href="output/CQ.Ext.CompositeElement.html">CompositeElement</a> or
+<a ext:cls="CQ.Ext.CompositeElementLite" href="output/CQ.Ext.CompositeElementLite.html">CompositeElementLite</a> object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String/Array<div class="sub-desc">The CSS selector or an array of elements</div></li><li><code>root</code> : HTMLElement/String<div class="sub-desc">(optional) The root element of the query or id of the root</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElementLite/CompositeElement</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-sum"></a>
+            <b>sum</b>(&nbsp;<code>Array arr</code>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Calculates the sum of the Array</div>
+            <div class="long">
+                Calculates the sum of the Array    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array<div class="sub-desc">The Array to calculate the sum value of.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The sum.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-type"></a>
+            <b>type</b>(&nbsp;<code>Mixed object</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns the type of object that is passed in. If the object passed in is null or undefined it
+return false otherwise ...</div>
+            <div class="long">
+                Returns the type of object that is passed in. If the object passed in is null or undefined it
+return false otherwise it returns one of the following values:<div class="mdetail-params"><ul>
+<li><b>string</b>: If the object passed is a string</li>
+<li><b>number</b>: If the object passed is a number</li>
+<li><b>boolean</b>: If the object passed is a boolean value</li>
+<li><b>date</b>: If the object passed is a Date object</li>
+<li><b>function</b>: If the object passed is a function reference</li>
+<li><b>object</b>: If the object passed is an object</li>
+<li><b>array</b>: If the object passed is an array</li>
+<li><b>regexp</b>: If the object passed is a regular expression</li>
+<li><b>element</b>: If the object passed is a DOM Element</li>
+<li><b>nodelist</b>: If the object passed is a DOM NodeList</li>
+<li><b>textnode</b>: If the object passed is a DOM text node and contains something other than whitespace</li>
+<li><b>whitespace</b>: If the object passed is a DOM text node and contains only whitespace</li>
+</ul></div>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>object</code> : Mixed<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-unique"></a>
+            <b>unique</b>(&nbsp;<code>Array arr</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Creates a copy of the passed Array, filtered to contain only unique values.</div>
+            <div class="long">
+                Creates a copy of the passed Array, filtered to contain only unique values.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Array<div class="sub-desc">The Array to filter</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The new Array containing unique values.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-value"></a>
+            <b>value</b>(&nbsp;<code>Mixed value</code>, <code>Mixed defaultValue</code>, <span class="optional" title="Optional">[<code>Boolean allowBlank</code>]</span>&nbsp;) : Mixed            <div class="mdesc">
+                                    <div class="short">Utility method for returning a default value if the passed value is empty.
+The value is deemed to be empty if it is
+n...</div>
+            <div class="long">
+                <p>Utility method for returning a default value if the passed value is empty.</p>
+<p>The value is deemed to be empty if it is<div class="mdetail-params"><ul>
+<li>null</li>
+<li>undefined</li>
+<li>an empty array</li>
+<li>a zero length string (Unless the <tt>allowBlank</tt> parameter is <tt>true</tt>)</li>
+</ul></div>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li><li><code>defaultValue</code> : Mixed<div class="sub-desc">The value to return if the original value is empty</div></li><li><code>allowBlank</code> : Boolean<div class="sub-desc">(optional) true to allow zero length strings to qualify as non-empty (defaults to false)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Mixed</code><div class="sub-desc">value, if non-empty, else defaultValue</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext-zip"></a>
+            <b>zip</b>(&nbsp;<code>Arrays|NodeLists arr</code>, <span class="optional" title="Optional">[<code>Function zipper</code>]</span>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Zips N sets together.
+// Example 1:
+CQ.Ext.zip([1,2,3],[4,5,6]); // [[1,4],[2,5],[3,6]]
+// Example 2:
+CQ.Ext.zip(
+   ...</div>
+            <div class="long">
+                <p>Zips N sets together.</p>
+<pre><code><i>// Example 1:</i>
+CQ.Ext.zip([1,2,3],[4,5,6]); <i>// [[1,4],[2,5],[3,6]]</i>
+<i>// Example 2:</i>
+CQ.Ext.zip(
+    [ <em>"+"</em>, <em>"-"</em>, <em>"+"</em>],
+    [  12,  10,  22],
+    [  43,  15,  96],
+    <b>function</b>(a, b, c){
+        <b>return</b> <em>"$"</em> + a + <em>""</em> + b + <em>"."</em> + c
+    }
+); // [<em>"$+12.43"</em>, <em>"$-10.15"</em>, <em>"$+22.96"</em>]</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>arr</code> : Arrays|NodeLists<div class="sub-desc">This argument may be repeated. Array(s) to contribute values.</div></li><li><code>zipper</code> : Function<div class="sub-desc">(optional) The last item in the argument list. This will drive how the items are zipped together.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The zipped set.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Ext</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

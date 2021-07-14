@@ -1,0 +1,75 @@
+
+Radio
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/radio
+   :supertype: /libs/granite/ui/components/foundation/form/field
+   :deprecated:
+
+   A radio component.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormRadio]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The value of the field.
+       */
+      - value (String)
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the radio is checked.
+       * Providing ``checked`` property (either ``true`` or ``false``) will imply ``ignoreData`` to be ``true``.
+       */
+      - checked (Boolean)
+
+      /**
+       * If ``false``, the checked status is based on matching the form values by ``name`` and ``value`` properties.
+       * Otherwise, the form values are not matched, and the checked status is based on ``checked`` property specified.
+       * For radios in a radio group ``ignoreData`` must be set on the group.
+       */
+      - ignoreData (Boolean)
+
+      /**
+       * The text of the radio.
+       */
+      - text (String) i18n

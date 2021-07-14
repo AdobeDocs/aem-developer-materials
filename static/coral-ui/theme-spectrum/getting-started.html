@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <title>Getting Started | CoralUI</title>
+    <link rel="shortcut icon" type="image/ico" href="../resources/favicon_coral.ico">
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/js/libs/moment.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/js/libs/jquery.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/css/coral.css">
+    <script src="../js/guide.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/guide.min.css">
+  </head>
+  <body class="coral--light guide-Background u-coral-clearFix">
+    <div class="guide-Progress"></div>
+    <div class="guide-Container">
+      <header class="guide-Header coral--dark">
+        <div class="guide-Header-menu">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right">
+            <div class="guide-Header--left"><img src="../resources/adobe_icon.png" alt="CoralUI Logo">
+              <div class="guide-Header-home"><a href="index.html">
+                  <h2 class="coral-Heading coral-Heading--2 guide-Header-title">Coral<span class="guide-Header-subtitle">UI</span></h2></a></div>
+            </div>
+            <nav class="guide-Header-nav"><a class="coral-Heading coral-Heading--2 guide-Header-link is-selected" href="getting-started.html">Getting Started</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="styles.html">Styles</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="components.html">Components</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="shell3.html">Shell 3</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="playground.html">Playground</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="documentation.html">Docs &amp; Guides</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="downloads.html">Downloads</a>
+              <div class="guide-ThemeSwitcher">
+                <coral-tag><a class="coral-Link" href="../theme-cloudui">CloudUI</a><span> |</span><a class="coral-Link is-selected" href="../theme-spectrum"> Spectrum</a></coral-tag>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="guide-MainContent guide-Scroll" role="main">
+        <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right guide-Content--padding-top">
+          <div class="guide-ScrollNav" role="complementary">
+            <div class="guide-Scroll guide-ScrollNav_Wrapper"></div>
+          </div>
+          <div class="guide-ScrollContent--right">
+            <div class="guide-Component">
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="introduction"><a class="coral-Link coral-Link--subtle" href="#introduction">Introduction</a></h2>
+                <p>This section contains the first steps of getting started with CoralUI.</p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="whatBrowsersCanIUse?" guide-toc-title="Browser Support"><a class="coral-Link coral-Link--subtle" href="#whatBrowsersCanIUse?">What browsers can I use?</a></h3>
+                  <p>CoralUI is designed to support the following browsers</p>
+                  <ul class="coral-List">
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Chrome (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Safari (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Firefox (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Edge (latest)</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">IE 11</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">iOS 7+</h4>
+                    </li>
+                    <li class="coral-List-item">
+                      <h4 class="coral-Heading coral-Heading--4">Android 4.4+</h4>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="gettingStartedWith3.x"><a class="coral-Link coral-Link--subtle" href="#gettingStartedWith3.x">Getting Started with 3.x</a></h2>
+                <p>
+                  The following information is intended to get you up and running quickly with CoralUI.
+                  
+                </p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="howDoIGetCoralUI?" guide-toc-title="Getting CoralUI"><a class="coral-Link coral-Link--subtle" href="#howDoIGetCoralUI?">How do I get CoralUI?</a></h3>
+                  <p>
+                    The easiest way to start experimenting with CoralUI is to download the zip archive of the <a class="coral-Link" href="downloads.html/">latest full release</a> of all components. After you've unzipped the downloaded zip archive, follow the steps below.
+                    
+                  </p>
+                  <p>
+                    <b>Note:</b> the full release download suggested above contains a pre-built set of all the components covered in this documentation.  In production, you will likely use a <a class="coral-Link" href="downloads.html#creating">custom build</a> of CoralUI that includes only the sub-set of components used in your design.
+                    
+                  </p>
+                  <p>
+                    You may also need a custom Typekit configuration for your development environment. See <a class="coral-Link" href="#usingTypekit">Using Typekit</a> for more information.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="whatDoIDoWithTheFiles?" guide-toc-title="Installing CoralUI"><a class="coral-Link coral-Link--subtle" href="#whatDoIDoWithTheFiles?">What do I do with the files?</a></h3>
+                  <ol class="coral-List">
+                    <li class="coral-List-item">
+                      <p>Put coral.css in the css/ directory of your project.</p>
+                    </li>
+                    <li class="coral-List-item">
+                      <p>Put coral.min.js in the js/ or scripts/ directory of your project.</p>
+                    </li>
+                    <li class="coral-List-item">
+                      <p>Put jquery.js and moment.js in the /js/libs or scripts/libs directory of your project.</p>
+                    </li>
+                    <li class="coral-List-item">
+                      <p>Also put the content of the /resources folder in the /resources directory of your project. This is required for icons and other assets to work.</p>
+                    </li>
+                    <li class="coral-List-item">
+                      <p>In the &lt;head&gt; section of your HTML, add the following:</p>
+                      <pre class="prettyprint">&lt;link rel="stylesheet" href="css/coral.min.css"&gt;
+&lt;script src="js/libs/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="js/libs/moment.js"&gt;&lt;/script&gt;
+&lt;script src="js/coral.min.js"&gt;&lt;/script&gt;</pre>
+                    </li>
+                    <li class="coral-List-item">
+                      <p>Add <code>coral--light</code> to a parent DOM element (e.g. body). This will enable default typographic text styles, and enable the CSS styling below.</p>
+                      <pre class="prettyprint">&lt;body class="coral--light"&gt;</pre>
+                    </li>
+                    <li class="coral-List-item">
+                      <p>That's it. Now you're ready to use CoralUI.</p>
+                    </li>
+                  </ol>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="howDoIWorkWithCoralUIComponents?" guide-toc-title="Working with Components"><a class="coral-Link coral-Link--subtle" href="#howDoIWorkWithCoralUIComponents?">How do I work with CoralUI Components?</a></h3>
+                  <p>
+                    Most components in CoralUI are JavaScript components, which offer more functionality and are often more complex. CoralUI has a large number of components that you can view in the <a class="coral-Link" href="components.html">Components</a> section.
+                    
+                  </p>
+                  <h3 class="coral-Heading coral-Heading--3">Alert Example</h3>
+                  <p>
+                    Below are some examples of how to use <code>Coral.Alert</code>, which is a typical CoralUI component.  The markup for an Alert is as follows:
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint"> &lt;coral-alert&gt;
+   &lt;coral-alert-header&gt;INFO&lt;/coral-alert-header&gt;
+   &lt;coral-alert-content&gt;This is is an alert.&lt;/coral-alert-content&gt;
+ &lt;/coral-alert&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <coral-alert>
+                      <coral-alert-header>INFO</coral-alert-header>
+                      <coral-alert-content>This is an alert</coral-alert-content>
+                    </coral-alert>
+                  </div>
+                  <p>
+                    Alternately, you can instantiate components using the JavaScript <code>new</code> operator or by calling <code>document.createElement()</code>.
+                    
+                  </p>
+                  <h3 class="coral-Heading coral-Heading--4">JavaScript Examples</h3>
+                  <p>Using <code>document.createElement</code>:</p>
+                  <pre class="prettyprint">var alert = document.createElement('coral-alert');</pre>
+                  <p>Using <code>document.createElement</code>:</p>
+                  <pre class="prettyprint">var alert = new Coral.Alert();</pre>
+                  <h3 class="coral-Heading coral-Heading--3">Extending Native Elements</h3>
+                  <p>
+                    A few CoralUI components use the <code>is</code> attribute to extend a native element. Here is an example using <code>&lt;button&gt;</code> via markup. The resulting DOM element is the identical to one instantiated with JavaScript and will have the same methods and properties.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint"> &lt;button is="coral-button"&gt;Default Button&lt;/button&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <button is="coral-button">Default Button</button>
+                  </div>
+                  <p>
+                    Instantiation using <code>createElement</code> is a bit special for these type of components due to the fact that <code>Coral.Button</code> extends the native <code>HTMLButtonElement</code>. The <code>createElement</code> function takes the <code>is</code> attribute as a second parameter.
+                    
+                  </p>
+                  <pre class="prettyprint">var button = document.createElement('button', 'coral-Button');</pre>
+                  <p>You may still use the <code>new</code> operator for these components:</p>
+                  <pre class="prettyprint">var button = new Coral.Button();</pre>
+                  <p>
+                    In some cases, you may need to wait for a component to be upgraded.  Do this by passing a callback to <code>Coral.commons.nextFrame()</code>. It is advised that you use the <code>new</code> operator or <code>createElement</code> when building elements in JavaScript. If you are rendering a template, be sure to pass attributes for anything that needs to be set dynamically and
+                    wait until the next animation frame before setting or getting the element's properties.
+                    
+                    
+                  </p>
+                  <h3 class="coral-Heading coral-Heading--3">Tabs in CoralUI</h3>
+                  <p>
+                    Here is an example of how create tabs in CoralUI. This requires a <code>Coral.TabView</code> container, which holds a <code>Coral.TabList</code> and a <code>Coral.PanelStack</code>.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint">&lt;coral-tabview&gt;
+  &lt;coral-tablist target="coral-demo-panel-1"&gt;
+    &lt;coral-tab&gt;Tab 1
+    &lt;/coral-tab&gt;
+    &lt;coral-tab&gt;Tab 2
+    &lt;/coral-tab&gt;
+    &lt;coral-tab&gt;Tab 3
+    &lt;/coral-tab&gt;
+    &lt;coral-tab&gt;Tab 4
+    &lt;/coral-tab&gt;
+  &lt;/coral-tablist&gt;
+  &lt;coral-panelstack id="coral-demo-panel-1"&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 1 Content
+    &lt;/coral-panel&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 2 Content
+    &lt;/coral-panel&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 3 Content
+    &lt;/coral-panel&gt;
+    &lt;coral-panel class="coral-Well"&gt;Tab 4 Content
+    &lt;/coral-panel&gt;
+  &lt;/coral-panelstack&gt;
+&lt;/coral-tabview&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <coral-tabview>
+                      <coral-tablist target="coral-demo-panel-2">
+                        <coral-tab>Tab1</coral-tab>
+                        <coral-tab>Tab2</coral-tab>
+                        <coral-tab>Tab3</coral-tab>
+                        <coral-tab disabled>Tab4 (disabled)</coral-tab>
+                      </coral-tablist>
+                      <coral-panelstack id="coral-demo-panel-2">
+                        <coral-panel class="coral-Well">Tab 1 Content</coral-panel>
+                        <coral-panel class="coral-Well">Tab 2 Content</coral-panel>
+                        <coral-panel class="coral-Well">Tab 3 Content</coral-panel>
+                        <coral-panel class="coral-Well">Tab 4 Content (disabled)</coral-panel>
+                      </coral-panelstack>
+                    </coral-tabview>
+                  </div>
+                  <p>
+                    You can also initialize a tabbed UI directly in JavaScript. First, the <code>Coral.TabList</code> and <code>Coral.PanelStack</code> are created. Finally, a <code>Coral.TabView</code> is created to contain the first two elements.
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">JavaScript example</label>
+                  <pre class="prettyprint">  // new Coral.TabList()
+  var tablist = new Coral.TabList().set({
+    target: 'coral-demo-panel-3'
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 1'
+    }
+    selected: true
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 2'
+    }
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 3'
+    }
+  });
+  tablist.items.add({
+    label: {
+      innerHTML: 'Tab 4 (disabled)'
+    }
+    disabled: true
+  });
+  // new Coral.PanelStack()
+  var panelstack = new Coral.PanelStack().set({
+    id: 'coral-demo-panel-3'
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 1 Content.',
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 2 Content.',
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 3 Content.',
+  });
+  panelstack.items.add({
+    content.innerHTML: 'Tab 4 Content.',
+  });
+  // new Coral.TabView()
+  var tabview = new Coral.TabView().set({
+    panelStack: panelstack,
+    tabList: tablist
+  });</pre>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="howDoIWorkWithCoralUIStyles?" guide-toc-title="Working with Styles"><a class="coral-Link coral-Link--subtle" href="#howDoIWorkWithCoralUIStyles?">How do I work with CoralUI Styles?</a></h3>
+                  <p>
+                    There are still some CoralUI components that are markup and CSS only. These are documented in the <a href="styles.html" class="coral-Link">Styles</a> section of this site.  They are not custom elements, and as such are used by setting CSS selectors on normal HTML markup. An example of this would be the <a class="coral-Link" href="styles.html#coral.Well">Well</a> component:
+                    
+                  </p>
+                  <label class="coral-Form-fieldlabel">Markup Example</label>
+                  <pre class="prettyprint"> &lt;section class="coral-Well"&gt;Well content goes here.&lt;/section&gt;</pre>
+                  <label class="coral-Form-fieldlabel">Result</label>
+                  <div class="gettingStarted-Example u-columnMedium">
+                    <section class="coral-Well">Well content goes here.</section>
+                  </div>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="canICustomizeACoralUIBuild?" guide-toc-title="Custom Builds"><a class="coral-Link coral-Link--subtle" href="#canICustomizeACoralUIBuild?">Can I customize a CoralUI build?</a></h3>
+                  <p>
+                    Custom builds are possible, allowing you to limit the number of components that are bundled with CoralUI.  This can reduce the size of the CoralUI dependencies in your project.  To do this, simply follow the documentation in our <a href="downloads.html#creating" class="coral-Link">custom builds</a> documentation.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="wantToLearnMore?" guide-toc-title="Learn More"><a class="coral-Link coral-Link--subtle" href="#wantToLearnMore?">Want to Learn More?</a></h3>
+                  <p>
+                    The <a class="coral-Link" href="styles.html">Styles</a> and <a href="components.html">Components</a> sections provide detailed information on consuming each component in CoralUI, including the different attributes available and the API methods and events for the JavaScript enabled components.
+                    
+                  </p>
+                  <p>
+                    The <a class="coral-Link" href="documentation.html">Docs &amp; Guide</a> section provide detailed information about developing and contribution to CoralUI
+                    
+                  </p>
+                  <p>This should get you started, but there is a lot more to CoralUI. For more information or specific questions, please contact the <a class="coral-Link" href="mailto:coralui@adobe.com">CoralUI</a> mailing list.</p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="cSSThemes"><a class="coral-Link coral-Link--subtle" href="#cSSThemes">CSS Themes</a></h2>
+                <p>
+                  CoralUI has CSS theme support, and the theme used by a build of CoralUI is determined by what theme is included when CoralUI is built. There are currently only two themes available for CoralUI; the original <a href='https://git.corp.adobe.com/coral/coralui-theme-cloudui' class-'coral-Link'>CloudUI theme</a> that CoralUI has always been based on, and the new <a href='https://git.corp.adobe.com/coral/coralui-theme-spectrum' class-'coral-Link'>Spectrum theme</a>.  At this time, the default build of CoralUI will continue to use CloudUI, but this will be switched and default to Spectrum at some point in 2016.
+                  
+                </p>
+                <p>
+                  To change the theme of CoralUI, you will need a <a href='downloads.html#creating' class='coral-Link'>custom build</a>, which will allow you to modify the included theme.  The <a href='styles.html' class='coral-Link'>Styles</a> documentation also includes more background on how themes work.
+                  
+                </p>
+                <p>CoralUI does not support a mixed build that contains multiple themes.</p>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="usingTypekit"><a class="coral-Link coral-Link--subtle" href="#usingTypekit">Using Typekit</a></h2>
+                <p>CoralUI uses Typekit to securely deliver the Adobe Clean corporate font.</p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="defaultConfiguration"><a class="coral-Link coral-Link--subtle" href="#defaultConfiguration">Default Configuration</a></h3>
+                  <p>CoralUI comes preconfigured with a kit that is limited to the following domains.</p>
+                  <h3 class="coral-Heading coral-Heading--3">Domains</h3>
+                  <p>If you are using CoralUI on a server on a domain <i>other</i> than these, you will need to request and configure your own Typekit kit. Otherwise, you will get a Javascript error on page load.</p>
+                  <pre class="prettyprint">*.adobe.com
+*.demdex.com
+*.acrobat.com
+*.omniture.com
+*.day.com
+localhost
+127.0.0.1
+0.0.0.0</pre>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="requestingAKitForAdditionalDomains" guide-toc-title="Requesting a Kit"><a class="coral-Link coral-Link--subtle" href="#requestingAKitForAdditionalDomains">Requesting a Kit for Additional Domains</a></h3>
+                  <p>If you need to enable CoralUI on additional domains, you will need to obtain a <i>voucher</i> for Adobe Clean from the Typekit team.</p>
+                  <ol class="coral-List">
+                    <li class="coral-List-Item">
+                      <p>Create a <a href="https://inside.corp.adobe.com/itech/kc/KB1312968.html" class="coral-Link">generic Adobe account</a> to use as your Typekit account. (recommended)</p>
+                    </li>
+                    <li class="coral-List-Item">
+                      <p>Visit <a href="https://wiki.corp.adobe.com/display/devrel/Using+Typekit+at+Adobe" class="coral-Link">Adobe TypeKit Wiki</a> for further help on Adobe TypeKit accounts.</p>
+                    </li>
+                    <li class="coral-List_Item">
+                      <p>Configure your kit per the Kit Configuration settings below.</p>
+                    </li>
+                    <li class="coral-List_Item">
+                      <p>Configure CoralUI to use your default kit per the instructions below.</p>
+                    </li>
+                  </ol>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="kitConfiguration"><a class="coral-Link coral-Link--subtle" href="#kitConfiguration">Kit Configuration</a></h3>
+                  <p>Your Kit should be configured with following font variations included.</p>
+                  <pre class="prettyprint">Adobe Clean - Light
+Adobe Clean - Regular
+Adobe Clean - Bold
+Adobe Clean - Italic
+Adobe Clean Condensed - Bold
+Adobe Clean Condensed - Italic</pre>
+                  <p>Choose default language support for both families.</p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="usingACustomKitWithCoralUI" guide-toc-title="Custom Kit"><a class="coral-Link coral-Link--subtle" href="#usingACustomKitWithCoralUI">Using a Custom Kit with CoralUI</a></h3>
+                  <p>Include your Typekit ID as a CoralUI option before CoralUI gets loaded.</p>
+                  <pre class="prettyprint">&lt;script&gt;
+  window.Coral = window.Coral || {};
+  Coral.options = { typeKitId: 'xwm7izk'};
+&lt;/script&gt;</pre>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="fontLoading,FOUT,AndCoralUI"><a class="coral-Link coral-Link--subtle" href="#fontLoading,FOUT,AndCoralUI">Font Loading, FOUT, and CoralUI</a></h3>
+                  <p>
+                    Typekit typically relies on a <code>.wf-loading</code> selector to hide content and prevent the
+                    Flash Of Unstyled Text (FOUT) that is associated with web fonts.
+                    
+                  </p>
+                  <pre class="prettyprint">.wf-loading {
+  visibility: hidden;
+}</pre>
+                  <p>
+                    That selector would work in conjunction with the function in the <code>typekit.js</code>
+                    JavaScript file to remove the selector from the DOM when Typekit has loaded. However, experience
+                    has shown that hiding content and blocking until Typekit loads can can make the page or app
+                    unresponsive on initial load.
+                    
+                    There is a lot of reading around alternate solutions for this problem the web, including
+                    <a href='http://www.filamentgroup.com/lab/font-events.html' class='coral-Link' target='_blank'>this article</a>
+                    about the upcoming FontEvents API.
+                    
+                    CoralUI has removed our implementation of a solution in favor of remaining agnostic.  Consumers must implement their
+                    own solution to avoid Flash Of Unstyled Text during font loading.
+                  </p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="whatAboutFrameworkSupport?" guide-toc-title="Frameworks"><a class="coral-Link coral-Link--subtle" href="#whatAboutFrameworkSupport?">What about framework support?</a></h2>
+                <p>
+                  CoralUI is a library of UI Components and supporting usage of different frameworks.
+                  
+                </p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="torq"><a class="coral-Link coral-Link--subtle" href="#torq">Torq</a></h3>
+                  <p>
+                    One well-supported option is using <a href="http://torq.corp.adobe.com">Torq</a> together with CoralUI out-of-the-box.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="angularJS"><a class="coral-Link coral-Link--subtle" href="#angularJS">AngularJS</a></h3>
+                  <p>
+                    Another option is AngularJS, supported via the
+                    <a href="https://git.corp.adobe.com/Coral/coralui-support-angular/">coralui-support-angular</a> project.
+                    
+                  </p>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="react"><a class="coral-Link coral-Link--subtle" href="#react">React</a></h3>
+                  <p>
+                    We are also looking into React, which will be supported via the
+                    <a href="https://git.corp.adobe.com/Coral/coralui-support-react">coralui-support-react</a> project.
+                  </p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="isThereADemoAppToReference?" guide-toc-title="Demo Apps"><a class="coral-Link coral-Link--subtle" href="#isThereADemoAppToReference?">Is there a demo app to reference?</a></h2>
+                <p>
+                  The CoralUI team has provided a
+                  <a class="coral-Link" href="documentation.html#demoApplications">demo application</a>
+                  for helping understand the usage of CoralUI.  This application also provides an example of different
+                  variations that might be needed when implementing CoralUI.
+                  
+                </p>
+                <p>See the <a class="coral-Link" href="documentation.html#demoApplications">Demo Apps</a>
+                  documentation for more detail.
+                </p>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="problem?"><a class="coral-Link coral-Link--subtle" href="#problem?">Problem?</a></h2>
+                <p>
+                  Does any of this not make sense, or was too hard to follow? Do you have a question or concern?
+                  CoralUI has an active DL for providing support to the community.  Just introduce yourself on
+                  <a href="mailto:coral@adobe.com" class="coral-Link">&lt;DL-CoralUI&gt;coralui@adobe.com</a> and
+                  ask your questions there.  There is also a Slack channel, just sign up at `coralui.slack.com`.
+                  
+                </p>
+                <p>
+                  If you have discovered a problem with CoralUI, you can file an issue in our
+                  <a href="https://jira.corp.adobe.com/browse/CUI" class="coral-Link">JIRA project</a>.
+                  
+                </p>
+                <p>When creating a new issue, be sure to include:</p>
+                <ul>
+                  <li>The correct issue type (we use 'bug' or 'story').</li>
+                  <li>A short, sensible summary.</li>
+                  <li>A realistic priority: don't put "Blocker" or "Critical" without a valid justification.</li>
+                  <li>The CoralUI component that is affected.</li>
+                  <li>Ideally an affects version (CoralUI version you are using).</li>
+                  <li>Some environment information (what browsers have the issue).</li>
+                  <li>A detailed description.</li>
+                  <li>An example (using the bug template), a screenshot or steps to reproduce the issue.</li>
+                  <li>If the issue is blocking another project, link the CUI issue to the corresponding one in the other project.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        Coral.Guide.initNavigation({
+          tocContentQuerySelector: '.guide-Component',
+          tocItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--section',
+          tocSubItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--subsection'
+        })
+      </script>
+      <script>
+        var s=s_gi("coralui");
+        s.pageName=document.title;
+        var s_code=s.t();if(s_code)document.write(s_code);
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+
+Panel
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/layouts/sidepanels/panel
+   :layout:
+   :deprecated:
+
+   The layout to render Endor inner rail panel.
+
+   It expects the main resource to have the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorLayoutsSidePanelsPanelMain]
+
+      /**
+       * The title of the panel.
+       */
+      - jcr:title (String)
+
+   It expects the layout resource to have the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorLayoutsSidePanelsPanel]
+
+      /**
+       * ``true`` to make the form (assigned to this layout) submitable when pressing "Enter".
+       * It is implemented by generating the submit button automatically, and leverage the native browser behavior.
+       */
+      - autosubmitForm (Boolean)
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + search
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        - jcr:title = "Search"
+        + layout
+          - sling:resourceType = "granite/ui/components/endor/layouts/sidepanels/panel"
+        + items
+          + item1
+          + item2

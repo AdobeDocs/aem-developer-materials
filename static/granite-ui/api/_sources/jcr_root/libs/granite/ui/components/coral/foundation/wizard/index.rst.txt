@@ -1,0 +1,122 @@
+
+Wizard
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/wizard
+
+   The wizard.
+
+   It is implementing :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/wizard` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Wizard] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The title of the wizard.
+       */
+      - jcr:title (StringEL) mandatory i18n
+
+      /**
+       * The URL to navigate when the wizard is cancelled by the user.
+       */
+      - cancelHref (StringEL)
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       * By default the value of ``jcr:title`` is used.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String)
+
+   Each item (the step) at least has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:WizardStep]
+
+      /**
+       * The wizard step title.
+       */
+      - jcr:title (StringEL) mandatory i18n
+
+      /**
+       * The item specific config for the wizard.
+       */
+      + parentConfig (granite:WizardStepParentconfig)
+
+
+      [granite:WizardStepParentconfig]
+
+      /**
+       * ``false`` to skip validation for this particular step. Otherwise the validation is performed when the change to the next step is about to occur.
+       */
+      - validation (Boolean) = 'true'
+
+      /**
+       * The action component (e.g. button, hyperlink) to go to the previous step.
+       *
+       * If this resource is not specified, a default action is generated:
+       *
+       * prev action
+       *    If it is not the first step, a default generic prev action to go back to previous step is generated.
+       * cancel action
+       *    If it is the first step, a cancel action is generated using ``cancelHref`` property of the parent resource.
+       *
+       * Regarding tracking, there is no need to specify the action's ``trackingFeature``, ``trackingElement``, etc as the wizard will manage them.
+       */
+      + prev
+
+      /**
+       * The action component (e.g. button, hyperlink) to go to the next step.
+       *
+       * If this resource is not specified, a default generic next action to go to next step is generated.
+       *
+       * Regarding tracking, there is no need to specify the action's ``trackingFeature``, ``trackingElement``, etc as the wizard will manage them.
+       */
+      + next
+
+   Example::
+
+      + mywizard
+        - sling:resourceType = "granite/ui/components/coral/foundation/wizard"
+        - jcr:title = "Create Site"
+        - cancelHref = '${empty header.Referer ? granite:concat("/sites.html", granite:encodeURIPath(requestPathInfo.suffix)) : header.Referer}'
+        + items
+          + step1
+            - jcr:title = "Step 1"
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+          + step2
+            - jcr:title = "Step 2"
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+            + parentConfig
+              - validation = "false"
+              + prev
+                - sling:resourceType = "granite/ui/components/coral/foundation/button"
+                - granite:class = "foundation-wizard-control"
+                - text = "Back"
+                + granite:data
+                  - foundation-wizard-control-action = "prev"
+              + next
+                - sling:resourceType = "granite/ui/components/coral/foundation/button"
+                - granite:class = "foundation-wizard-control"
+                - text = "Submit"
+                + granite:data
+                  - foundation-wizard-control-action = "next"
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

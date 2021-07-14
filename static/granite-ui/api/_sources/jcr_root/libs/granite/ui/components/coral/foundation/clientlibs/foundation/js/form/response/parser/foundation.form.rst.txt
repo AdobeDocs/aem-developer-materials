@@ -1,0 +1,62 @@
+foundation.form.response.parser: foundation.form
+================================================
+
+``foundation.form`` is a response parser of :doc:`../../index`.
+
+It is designed to parse :javadoc:`Granite UI's HTMLResponse.class <com/adobe/granite/ui/components/HtmlResponse.html>`.
+
+
+Matching Condition
+------------------
+
+selector
+   ``*``
+
+contentType
+   ``/text\/html/``
+
+content
+   The response HTML MUST have an element with `.foundation-form-response-status-code` selector with non empty value.
+
+
+Parsed Data
+-----------
+
+It returns a JS object with the following interface:
+
+.. code-block:: ts
+
+   interface FoundationFormResponseParserFoundationForm {
+     /**
+      * The status code of the response.
+      * The value of ".foundation-form-response-status-code".
+      */
+     statusCode: string;
+
+     /**
+      * The message of the status.
+      */
+     message: string;
+
+     /**
+      * The redirect URL.
+      */
+     redirect: string;
+
+     /**
+      * The absolute path of the item upon which the request operated.
+      */
+     path: string;
+
+     /**
+      * The title of the response.
+      * The value of ".foundation-form-response-title".
+      */
+     title: string;
+
+     /**
+      * The description of the response.
+      * The value of ".foundation-form-response-description".
+      */
+     description: string;
+   }

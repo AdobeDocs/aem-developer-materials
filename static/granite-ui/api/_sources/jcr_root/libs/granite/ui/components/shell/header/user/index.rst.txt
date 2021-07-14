@@ -1,0 +1,40 @@
+User
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/header/user
+
+   Component to render the avatar of the current user for the Shell's header action.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellHeaderUser] > granite:commonAttrs
+
+      /**
+       * The default icon name.
+       *
+       * The user photo is used as the icon. When it is not available, the default icon specified by this property is used instead.
+       */
+      - icon (String) = 'user'
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String) = 'user'
+
+      /**
+       * The name of the widget.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingWidgetName (String)

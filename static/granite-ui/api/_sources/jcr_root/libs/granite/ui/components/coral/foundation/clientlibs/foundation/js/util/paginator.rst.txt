@@ -1,0 +1,188 @@
+*************************
+foundation-util-paginator
+*************************
+
+Paginator is a utility class for the purpose of infinity scrolling.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-util-paginator``
+
+condition
+   ``window`` object
+
+returned type
+   Constructor of type ``FoundationUtilPaginator``
+
+.. code-block:: ts
+
+   interface FoundationUtilPaginator {
+     /**
+      * The container element that the scroll event and dimensions are registered and measured.
+      * @readonly
+      */
+     el: Element;
+
+     /**
+      * Indicates if the paginator is currently loading.
+      * @readonly
+      */
+     isLoading: boolean;
+
+     /**
+      * Indicates if there is more item to be loaded.
+      * @readonly
+      */
+     hasNext: boolean;
+
+     /**
+      * The current offset.
+      * @readonly
+      */
+     offset: number;
+
+     /**
+      * The page size.
+      * @readonly
+      */
+     limit: number;
+
+     /**
+      * Instanciates a new paginator.
+      */
+     new(config: FoundationUtilPaginatorConfig);
+
+     /**
+      * Starts the pagination process:
+      * - The scroll event handler is registered.
+      * - Start loading items when there is available space.
+      *
+      * @param offset The initial offset. Set this param when there is existing items.
+      * @param hasNext <code>true</code> to indicate if there is more item to be loaded; <code>false</code> otherwise.
+      * @param forceFirstLoad <code>true</code> to force doing the first load regardless of available space.
+      * @param delay The delay, in millisecond, when to start the process.
+      */
+     start(offset = 0, hasNext = true, forceFirstLoad = false, delay = 0): void;
+
+     /**
+      * Restarts the pagination process:
+      * - Start loading items when there is available space.
+      *
+      * This method is usually used when the items are added or removed by external party.
+      * Hence the paginator internal state needs to reflect that new items.
+      * Aborts the loading process if the paginator is currently loading.
+      *
+      * @param offset The initial offset. Set this param when there is existing items.
+      * @param hasNext <code>true</code> to indicate if there is more item to be loaded; <code>false</code> otherwise.
+      * @param forceFirstLoad <code>true</code> to force doing the first load regardless of available space.
+      */
+     restart(offset = 0, hasNext = true, forceFirstLoad = false): void;
+
+     /**
+      * Destroys the paginator. The instance MUST NOT be used anymore.
+      */
+     destroy(): void;
+   }
+
+   interface FoundationUtilPaginatorConfig {
+     /**
+      * The container element that the scroll event and dimensions are registered and measured.
+      */
+     el: Element;
+
+     /**
+      * The page size. Default is 20.
+      */
+     limit?: number;
+
+     /**
+      * Returns a URL for the given paginator values (offset and limit).
+      * The URL is used to fetch the next page.
+      */
+     resolveURL(paginator: FoundationUtilPaginator): string;
+
+     /**
+      * Processes the returned response.
+      *
+      * @returns A promise of the length of new items; and if more item to be loaded.
+      */
+     processResponse(paginator: FoundationUtilPaginator, response: any): Promise<FoundationUtilPaginatorResponse>;
+
+     /**
+      * Shows a wait mask.
+      */
+     wait?: (paginator: FoundationUtilPaginator) => FoundationUtilPaginatorWait;
+
+     /**
+      * The callback when the new page is loaded and the paginator's states are updated.
+      * It is called after <code>#processResponse</code>.
+      */
+     onNewPage?: (paginator: FoundationUtilPaginator) => void;
+   }
+
+   interface FoundationUtilPaginatorWait {
+     /**
+      * Clears the wait.
+      */
+     clear(): void;
+   }
+
+   interface FoundationUtilPaginatorResponse {
+     /**
+      * The length of new items.
+      */
+     length: number;
+
+     /**
+      * <code>true</code> if more item to be loaded.
+      */
+     hasMode: boolean;
+   }
+
+
+Example
+=======
+
+.. code-block:: js
+
+   var Paginator = $(window).adaptTo("foundation-util-paginator");
+
+   var paginator = new Paginator({
+     el: scrollContainer,
+
+     resolveURL: function(paginator) {
+       return URITemplate.expand(src, {
+         offset: paginator.offset,
+         limit: paginator.limit
+       });
+     },
+
+     processResponse: function(paginator, html) {
+       var deferred = $.Deferred();
+
+       var processed = Granite.UI.Foundation.Utils.processHtml(html, undefined, function() {
+         var el = $(processed);
+         var items = getItems(el);
+         appendItems(items);
+         deferred.resolve(items.length, items.length >= paginator.limit);
+       });
+
+       return deferred.promise();
+     },
+
+     wait: function(paginator) {
+       var wait = getWait(table);
+       wait.show();
+
+       return {
+         clear: function() {
+           wait.hide();
+         }
+       };
+     }
+   });
+
+   paginator.start(collection.find(".foundation-collection-item").length);

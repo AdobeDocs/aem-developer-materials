@@ -1,0 +1,34 @@
+
+AutocompleteTags
+================
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/autocomplete/tags
+   :deprecated:
+
+   The values implementation showing the selections as tags.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormAutocompleteTags]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n

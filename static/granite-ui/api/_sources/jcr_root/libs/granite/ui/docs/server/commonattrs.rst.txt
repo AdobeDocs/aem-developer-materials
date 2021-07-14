@@ -1,0 +1,71 @@
+Common Attributes
+=================
+
+UI components often share certain intentions. This topic is describing the current intentions available, such that the benefit of standardization can be leveraged. When developing a new server component, it is RECOMMENDED to use these shared intentions, instead of creating your own names. Any common intention arises in the future will be also added here.
+
+This concept is analogous to `HTML global attributes <https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes>`_.
+
+Currently the following properties and nodes are common:
+
+.. gnd:gnd::
+
+   [granite:commonAttrs]
+
+   /**
+    * The HTML id attribute.
+    */
+   - granite:id (String)
+
+   /**
+    * The HTML class attribute. This is used to indicate the semantic relationship of the component similar to HTML ``rel`` attribute.
+    */
+   - granite:rel (String)
+
+   /**
+    * The HTML class attribute.
+    */
+   - granite:class (String)
+
+   /**
+    * The HTML title attribute.
+    */
+   - granite:title (String) i18n
+
+   /**
+    * The HTML hidden attribute.
+    */
+   - granite:hidden (Boolean)
+
+   /**
+    * The HTML itemscope attribute.
+    */
+   - granite:itemscope (Boolean)
+
+   /**
+    * The HTML itemtype attribute.
+    */
+   - granite:itemtype (String)
+
+   /**
+    * The HTML itemprop attribute.
+    */
+   - granite:itemprop (String)
+
+   /**
+    * Each property of this node is converted into a `HTML data-* attribute <https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*>`_.
+    * If the property value is an instance of a String, it will be interpreted as :doc:`StringEL <el>`.
+    * The property with a prefixed name is ignored.
+    */
+   + granite:data
+
+
+Component Development
+---------------------
+
+To leverage these common attributes in your component, you can use :javadoc:`ComponentHelper#populateCommonAttrs(AttrBuilder) <com/adobe/granite/ui/components/ComponentHelper.html#populateCommonAttrs(com.adobe.granite.ui.components.AttrBuilder)>`:
+
+.. code-block:: java
+
+   Tag tag = cmp.consumeTag();
+   AttrBuilder attrs = tag.getAttrs();
+   cmp.populateCommonAttrs(attrs);

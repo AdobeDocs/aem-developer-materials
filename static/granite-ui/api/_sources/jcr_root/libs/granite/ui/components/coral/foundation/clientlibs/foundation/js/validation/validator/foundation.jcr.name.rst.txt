@@ -1,0 +1,18 @@
+foundation.validation.validator: foundation.jcr.name
+====================================================
+
+``foundation.jcr.name`` is a validator of :doc:`../index`.
+
+Checks the value of the field against valid JCR name. If the value is empty, this validator is voting abstain.
+This is an equivalence to `JcrUtil.html#isValidName(String) <http://dev.day.com/docs/en/cq/current/javadoc/com/day/cq/commons/jcr/JcrUtil.html#isValidName%28java.lang.String%29>`_
+
+
+Relationship Graph
+------------------
+
+.. graphviz::
+
+   digraph "foundation-validation" {
+     rankdir=BT;
+     "foundation.jcr.name" -> "foundation-validation" [label="provides validator"];
+   }

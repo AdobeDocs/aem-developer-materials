@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <title>Downloads | CoralUI</title>
+    <link rel="shortcut icon" type="image/ico" href="../resources/favicon_coral.ico">
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/js/libs/moment.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/js/libs/jquery.js"></script>
+    <script src="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/js/coral.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jenkins-coral.bsl.eur.adobe.com/job/Build_Coral_coralui3+spectrum/lastSuccessfulBuild/artifact/build/css/coral.css">
+    <script src="../js/guide.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/guide.min.css">
+  </head>
+  <body class="coral--light guide-Background u-coral-clearFix">
+    <div class="guide-Progress"></div>
+    <div class="guide-Container">
+      <header class="guide-Header coral--dark">
+        <div class="guide-Header-menu">
+          <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right">
+            <div class="guide-Header--left"><img src="../resources/adobe_icon.png" alt="CoralUI Logo">
+              <div class="guide-Header-home"><a href="index.html">
+                  <h2 class="coral-Heading coral-Heading--2 guide-Header-title">Coral<span class="guide-Header-subtitle">UI</span></h2></a></div>
+            </div>
+            <nav class="guide-Header-nav"><a class="coral-Heading coral-Heading--2 guide-Header-link" href="getting-started.html">Getting Started</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="styles.html">Styles</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="components.html">Components</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="shell3.html">Shell 3</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="playground.html">Playground</a><a class="coral-Heading coral-Heading--2 guide-Header-link" href="documentation.html">Docs &amp; Guides</a><a class="coral-Heading coral-Heading--2 guide-Header-link is-selected" href="downloads.html">Downloads</a>
+              <div class="guide-ThemeSwitcher">
+                <coral-tag><a class="coral-Link" href="../theme-cloudui">CloudUI</a><span> |</span><a class="coral-Link is-selected" href="../theme-spectrum"> Spectrum</a></coral-tag>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="guide-MainContent guide-Scroll" role="main">
+        <div class="guide-Content guide-Content--full guide-Content--padding-left guide-Content--padding-right guide-Content--padding-top">
+          <div class="guide-ScrollNav" role="complementary">
+            <div class="guide-Scroll guide-ScrollNav_Wrapper"></div>
+          </div>
+          <div class="guide-ScrollContent--right">
+            <div class="guide-Component">
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="latestRelease"><a class="coral-Link coral-Link--subtle" href="#latestRelease">Latest Release</a></h2>
+                <p>
+                  To grab a pre-built copy of CoralUI, use the buttons below to grab the zip or gzip of the latest release.  This
+                  will include the default set of CoralUI components.
+                  
+                </p><a is="coral-anchorbutton" variant="primary" icon="download" href="https://git.corp.adobe.com/Coral/coralui/tags">Download</a>
+                <p>After downloading, we highly recommend to check out the instructions in the <a class="coral-Link" href="getting-started.html">Getting Started</a> section.</p>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="consumingBuildsUsingNPM"><a class="coral-Link coral-Link--subtle" href="#consumingBuildsUsingNPM">Consuming Builds Using NPM</a></h2>
+                <p>
+                  While you can download build files from the links above and copy them into your own project,
+                  some consumers find it easier to manage their dependency on CoralUI using <a class="coral-Link" href="https://www.npmjs.org/" target="_blank">npm</a>.
+                  To do so, add a dependency entry to your project's package.json file making sure that the correct version tag is referenced.
+                  Below is an example of how your project's package.json might appear after the entry has been added.
+                </p>
+                <pre class="prettyprint guide-Code-snippet" id="guide-26bdb54c-d715-4a5f-a638-5e8d40e1e6e1" data-src-id="guide-26bdb54c-d715-4a5f-a638-5e8d40e1e6e1">
+                  {
+                    "name": "YourPackageName",
+                    "version": "0.0.1",
+                    "dependencies": {
+                      "@coralui/coralui": "3.x.x"
+                    }
+                  }</pre>
+                <p>At this point you may run <code>npm install</code> from within your project directory and the CoralUI build will be placed within within a node_modules subdirectory.</p>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="customBuilds"><a class="coral-Link coral-Link--subtle" href="#customBuilds">Custom Builds</a></h2>
+                <p>Don't want all of CoralUI, or want to add components that aren't in the default build? No problem! We'll show you how to customize a build.</p>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="creatingACustomBuild"><a class="coral-Link coral-Link--subtle" href="#creatingACustomBuild">Creating a Custom Build</a></h3><br>
+                  <ol class="coral-List">
+                    <li class="coral-List-item"><a class="coral-Link" href="https://help.github.com/articles/fork-a-repo" target="_blank">Fork</a> the <a class="coral-Link" href="https://git.corp.adobe.com/Coral/CoralUI" target="_blank">CoralUI repository</a> on GitHub.</li>
+                    <li class="coral-List-item">Clone your fork.</li>
+                    <li class="coral-List-item">Open package.json. Here you will see a JSON object that, among other things, manages which packages should be included in a build and the order in which they should be included.</li>
+                    <li class="coral-List-item">Under the <code>dependencies</code> node you will see a list of packages. Remove the packages you would like excluded from the build. If you would like to add packages that aren't part of the standard build, add the package entries here.</li>
+                    <li class="coral-List-item">Likewise, add or remove the name of the components in the <code>coral.imports</code> node.
+                      <p>Below is an example of a package.json that has been configured to just include Autocomplete and Multifield. Note that Multifield is not part of the default CoralUI build and therefore has been added to the list. While not entirely necessary, we also recommend explicitly specifying <code>coralui-core</code> at the top of the coral.imports list.  This will ensure that the version you specified as your NPM dependency is the version that gets leveraged.</p>
+                      <div class="u-columnLarge">
+                        <coral-alert size="L" variant="info">
+                          <coral-alert-header>NOTE</coral-alert-header>
+                          <coral-alert-content>
+                            Since CoralUI 3.18.0 all components are available on Adobe's internal artifactory server.
+                            Please see <a class="coral-Link" href="https://wiki.corp.adobe.com/pages/viewpage.action?pageId=1088480979" target="_blank">CoralUI@artifactory.corp.adobe.com</a> for more information.
+                            
+                          </coral-alert-content>
+                        </coral-alert>
+                      </div>
+                      <pre class="prettyprint guide-Code-snippet" id="guide-e6958564-21f1-4390-9784-e77bb60b04e5" data-src-id="guide-e6958564-21f1-4390-9784-e77bb60b04e5">
+                        {
+                          "dependencies": {
+                            "@coralui/coralui-core": "^4.2.0",
+                            "@coralui/coralui-theme-spectrum": "^1.1.8",
+                            "@coralui/coralui-component-autocomplete": "^3.4.0",
+                            "@coralui/coralui-component-multifield": "^2.1.0"
+                          },
+                          "coral": {
+                            "imports": [
+                              "@coralui/coralui-core",
+                              "@coralui/coralui-component-autocomplete",
+                              "@coralui/coralui-component-multifield"
+                            ]
+                          }
+                        }</pre>
+                    </li>
+                    <li class="coral-List-item">Now that package.json is configured, run <code>npm install</code> from the command line which will pull down the packages and place them under the node_modules directory.</li>
+                    <li class="coral-List-item">Run <code>grunt</code> from the command line. This will generate the build under a build directory.</li>
+                  </ol>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="changingTheme"><a class="coral-Link coral-Link--subtle" href="#changingTheme">Changing Theme</a></h3>
+                  <p>If you want to change from CoralUI's default theme to an alternative theme, you will need to change the theme dependency in your build's package.json.  For example, the default is:</p>
+                  <pre class="prettyprint guide-Code-snippet" id="guide-ff9efe38-e9ef-4e8e-9858-e226fb3a0311" data-src-id="guide-ff9efe38-e9ef-4e8e-9858-e226fb3a0311">
+                    {
+                      "dependencies": {
+                        ...
+                        "@coralui/coralui-theme-cloudui": "^8.2.8",
+                        ...
+                    }
+                    </pre>
+                  <p>This would be replaced with:</p>
+                  <pre class="prettyprint guide-Code-snippet" id="guide-d391661d-84a4-495c-8556-3ea33463dde9" data-src-id="guide-d391661d-84a4-495c-8556-3ea33463dde9">
+                    {
+                      "dependencies": {
+                        ...
+                        "@coralui/coralui-theme-spectrum": "^1.1.8",
+                        ...
+                    }
+                    </pre>
+                </div>
+                <div class="guide-SubSection">
+                  <h3 class="coral-Heading coral-Heading--3 js-guide-heading-toc js-guide-heading-toc--subsection" id="consumingACustomBuildUsingNPM"><a class="coral-Link coral-Link--subtle" href="#consumingACustomBuildUsingNPM">Consuming a Custom Build using NPM</a></h3>
+                  <p>With any luck, you've created a custom build and are now able to copy files out of the build directory to your own project. If you use <a class="coral-Link" href="https://www.npmjs.org/" target="_blank">npm</a> to manage dependencies within your own project, you can <a class="coral-Link" href="http://git-scm.com/book/en/Git-Basics-Tagging" target="_blank">tag</a> your custom CoralUI build so it can be referenced as a dependency from your project's package.json.
+                    <ol class="coral-List">
+                      <li class="coral-List-item">Commit and push the CoralUI package.json changes to your fork of CoralUI.</li>
+                      <li class="coral-List-item">Within the CoralUI directory, run <code>grunt release --git-only</code> from the command line.</li>
+                      <li class="coral-List-item">You should receive a prompt asking "What is the kind of release for CoralUI?" Select "Custom".</li>
+                      <li class="coral-List-item">You should receive a prompt asking "What specific version would you like?" Enter a name that describes your custom build. If the build were intended for use within Social and derived from the official CoralUI 2.0.1 build, an approriate name might be <code>2.0.1-social-1</code>.</li>
+                      <li class="coral-List-item">Once the release process completes, a tag will have been created and pushed to your CoralUI fork. At this point you can add the tag as a dependency to your project's package.json file. Below is an example of how your project's package.json might appear after the entry has been added.
+                        <pre class="prettyprint guide-Code-snippet" id="guide-52e61506-5c3b-4116-b0c8-5ecc0853218c" data-src-id="guide-52e61506-5c3b-4116-b0c8-5ecc0853218c">
+                          {
+                            "name": "Social",
+                            "version": "0.0.1",
+                            "dependencies": {
+                              "coralui": "git+ssh://git@git.corp.adobe.com:Social/coralui.git#2.0.1-social-1"
+                            }
+                          }</pre>
+                      </li>
+                      <li class="coral-List-item">At this point you may run <code>npm install</code> from within your project directory and the custom CoralUI build will be placed within a node_modules subdirectory.</li>
+                    </ol>
+                  </p>
+                </div>
+              </div>
+              <div class="guide-Section">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="pastVersions"><a class="coral-Link coral-Link--subtle" href="#pastVersions">Past Versions</a></h2>
+                <p>
+                  Past versions of CoralUI are also available but should only be used as reference for current consumers.  The
+                  <a class="coral-Link" href="http://coralui.corp.adobe.com/2.x">CoralUI 2.x</a> documentation is also available if needed.
+                  
+                </p>
+                <coral-accordion class="guide-Archive" hidden>
+                  <coral-accordion-item>
+                    <coral-accordion-item-label>Release Archive</coral-accordion-item-label>
+                    <coral-accordion-item-content>
+                      <table class="coral-Table">
+                        <thead class="coral-Table-head">
+                          <tr class="coral-Table-row">
+                            <th class="coral-Table-headerCell">Version</th>
+                            <th class="coral-Table-headerCell">Download</th>
+                            <th class="coral-Table-headerCell">Github</th>
+                            <th class="coral-Table-headerCell">Documentation</th>
+                          </tr>
+                          <tr></tr>
+                        </thead>
+                        <tbody class="coral-Table-body"></tbody>
+                      </table>
+                    </coral-accordion-item-content>
+                  </coral-accordion-item>
+                </coral-accordion><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        Coral.Guide.initNavigation({
+          tocContentQuerySelector: '.guide-Component',
+          tocItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--section',
+          tocSubItemQuerySelector: '.js-guide-heading-toc.js-guide-heading-toc--subsection'
+        });
+        Coral.Guide.loadArchive();
+      </script>
+      <script>
+        var s=s_gi("coralui");
+        s.pageName=document.title;
+        var s_code=s.t();if(s_code)document.write(s_code);
+      </script>
+    </div>
+  </body>
+</html>

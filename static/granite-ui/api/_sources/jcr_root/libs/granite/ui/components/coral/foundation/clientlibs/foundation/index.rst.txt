@@ -1,0 +1,12 @@
+*********************************
+Granite UI Foundation Client-side
+*********************************
+
+Clientlib: ``granite.ui.coral.foundation``
+
+.. toctree::
+   :titlesonly:
+
+   vocabulary/index
+   js/index
+   js/betty/index

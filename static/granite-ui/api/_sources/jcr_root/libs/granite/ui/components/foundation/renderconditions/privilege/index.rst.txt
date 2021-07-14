@@ -1,0 +1,26 @@
+
+Privilege
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/renderconditions/privilege
+   :rendercondition:
+   :deprecated:
+
+   A condition that decides based on `AccessControlManager#hasPrivileges(String, Privilege[]) <http://www.day.com/maven/jsr170/javadocs/jcr-2.0/javax/jcr/security/AccessControlManager.html#hasPrivileges%28java.lang.String,%20javax.jcr.security.Privilege[]%29>`_.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:RenderConditionsPrivilege]
+
+      /**
+       * The path.
+       */
+      - path (StringEL)
+
+      /**
+       * The privilege names.
+       */
+      - privileges (String) multiple
+

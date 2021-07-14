@@ -1,0 +1,908 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.grid.GridView-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.grid.GridView-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.grid.GridView-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CQ.Ext.grid.GridView-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CQ.Ext.grid.GridView"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.util.Observable" ext:member="" href="output/CQ.Ext.util.Observable.html">Observable</a>
+  <img src="resources/docs/elbow-end.gif"/>GridView</pre></div>
+                <h1>Class&nbsp;CQ.Ext.grid.GridView</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext.grid</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/GridView.js" target="_blank">GridView.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">GridView</td></tr>
+                        <tr><td class="label">Subclasses:</td><td class="hd-info"><a ext:cls="CQ.Ext.grid.GroupingView" href="output/CQ.Ext.grid.GroupingView.html">GroupingView</a>, <a ext:cls="CQ.Ext.grid.PivotGridView" href="output/CQ.Ext.grid.PivotGridView.html">PivotGridView</a></td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.util.Observable" ext:member="" href="output/CQ.Ext.util.Observable.html">CQ.Ext.util.Observable</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    <p>This class encapsulates the user interface of an <a ext:cls="CQ.Ext.grid.GridPanel" href="output/CQ.Ext.grid.GridPanel.html">CQ.Ext.grid.GridPanel</a>.
+Methods of this class may be used to access user interface elements to enable
+special display effects. Do not change the DOM structure of the user interface.</p>
+<p>This class does not provide ways to manipulate the underlying data. The data
+model of a Grid is held in an <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a>.</p>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.grid.GridView-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-autoFill"></a>
+            <b>autoFill</b> : Boolean            <div class="mdesc">
+                                    <div class="short">Defaults to false. Specify true to have the column widths re-proportioned when the grid is initially rendered. The in...</div>
+            <div class="long">
+                Defaults to <tt>false</tt>. Specify <tt>true</tt> to have the column widths re-proportioned when the grid is <b>initially rendered</b>. The <a ext:cls="CQ.Ext.grid.Column" ext:member="width" href="output/CQ.Ext.grid.Column.html#width">initially configured width</a></tt> of each column will be adjusted to fit the grid width and prevent horizontal scrolling. If columns are later resized (manually or programmatically), the other columns in the grid will <b>not</b> be resized to fit the grid width. See <tt><a ext:cls="CQ.Ext.grid.GridView" ext:member="forceFit" href="output/CQ.Ext.grid.GridView.html#forceFit">forceFit</a></tt> also.            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-cellSelector"></a>
+            <b>cellSelector</b> : String            <div class="mdesc">
+                                    <div class="short">The selector used to find cells internally (defaults to 'td.x-grid3-cell')</div>
+            <div class="long">
+                The selector used to find cells internally (defaults to <tt>'td.x-grid3-cell'</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-cellSelectorDepth"></a>
+            <b>cellSelectorDepth</b> : Number            <div class="mdesc">
+                                    <div class="short">The number of levels to search for cells in event delegation (defaults to 4)</div>
+            <div class="long">
+                The number of levels to search for cells in event delegation (defaults to <tt>4</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-columnsText"></a>
+            <b>columnsText</b> : String            <div class="mdesc">
+                                    <div class="short">The text displayed in the 'Columns' menu item (defaults to 'Columns')</div>
+            <div class="long">
+                The text displayed in the 'Columns' menu item (defaults to <tt>'Columns'</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-deferEmptyText"></a>
+            <b>deferEmptyText</b> : Boolean            <div class="mdesc">
+                                    <div class="short">True to defer emptyText being applied until the store's first load (defaults to true).</div>
+            <div class="long">
+                True to defer <tt><a ext:cls="CQ.Ext.grid.GridView" ext:member="emptyText" href="output/CQ.Ext.grid.GridView.html#emptyText">emptyText</a></tt> being applied until the store's first load (defaults to <tt>true</tt>).            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-emptyText"></a>
+            <b>emptyText</b> : String            <div class="mdesc">
+                                    <div class="short">Default text (html tags are accepted) to display in the grid body when no rows are available (defaults to ''). This v...</div>
+            <div class="long">
+                Default text (html tags are accepted) to display in the grid body when no rows are available (defaults to ''). This value will be used to update the <tt><a ext:cls="CQ.Ext.grid.GridView" ext:member="mainBody" href="output/CQ.Ext.grid.GridView.html#mainBody">mainBody</a></tt>: <pre><code>this.mainBody.update(<em>'&lt;div class="x-grid-empty"&gt;'</em> + <b>this</b>.emptyText + <em>'&lt;/div&gt;'</em>);</code></pre>            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-enableRowBody"></a>
+            <b>enableRowBody</b> : Boolean            <div class="mdesc">
+                                    <div class="short">True to add a second TR element per row that can be used to provide a row body that spans beneath the data row. Use t...</div>
+            <div class="long">
+                True to add a second TR element per row that can be used to provide a row body that spans beneath the data row. Use the <a ext:cls="CQ.Ext.grid.GridView" ext:member="getRowClass" href="output/CQ.Ext.grid.GridView.html#getRowClass">getRowClass</a> method's rowParams config to customize the row body.            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-forceFit"></a>
+            <b>forceFit</b> : Boolean            <div class="mdesc">
+                                    <div class="short">Defaults to false. Specify true to have the column widths re-proportioned at all times. The initially configured widt...</div>
+            <div class="long">
+                <p>Defaults to <tt>false</tt>. Specify <tt>true</tt> to have the column widths re-proportioned at <b>all times</b>.</p> <p>The <a ext:cls="CQ.Ext.grid.Column" ext:member="width" href="output/CQ.Ext.grid.Column.html#width">initially configured width</a></tt> of each column will be adjusted to fit the grid width and prevent horizontal scrolling. If columns are later resized (manually or programmatically), the other columns in the grid <b>will</b> be resized to fit the grid width.</p> <p>Columns which are configured with <code>fixed: true</code> are omitted from being resized.</p> <p>See <tt><a ext:cls="CQ.Ext.grid.GridView" ext:member="autoFill" href="output/CQ.Ext.grid.GridView.html#autoFill">autoFill</a></tt>.</p>            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-headerMenuOpenCls"></a>
+            <b>headerMenuOpenCls</b> : String            <div class="mdesc">
+                                        The CSS class to add to the header cell when its menu is visible. Defaults to 'x-grid3-hd-menu-open'                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-headersDisabled"></a>
+            <b>headersDisabled</b> : Boolean            <div class="mdesc">
+                                    <div class="short">True to disable the grid column headers (defaults to false). Use the ColumnModel menuDisabled config to disable the m...</div>
+            <div class="long">
+                True to disable the grid column headers (defaults to <tt>false</tt>). Use the <a ext:cls="CQ.Ext.grid.ColumnModel" href="output/CQ.Ext.grid.ColumnModel.html">ColumnModel</a> <tt><a ext:cls="CQ.Ext.grid.ColumnModel" ext:member="menuDisabled" href="output/CQ.Ext.grid.ColumnModel.html#menuDisabled">menuDisabled</a></tt> config to disable the <i>menu</i> for individual columns. While this config is true the following will be disabled:<div class="mdetail-params"><ul> <li>clicking on header to sort</li> <li>the trigger to reveal the menu.</li> </ul></div>            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-markDirty"></a>
+            <b>markDirty</b> : Boolean            <div class="mdesc">
+                                    <div class="short">True to show the dirty cell indicator when a cell has been modified. Defaults to true.</div>
+            <div class="long">
+                True to show the dirty cell indicator when a cell has been modified. Defaults to <tt>true</tt>.            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowBodySelector"></a>
+            <b>rowBodySelector</b> : String            <div class="mdesc">
+                                    <div class="short">The selector used to find row bodies internally (defaults to 'div.x-grid3-row')</div>
+            <div class="long">
+                The selector used to find row bodies internally (defaults to <tt>'div.x-grid3-row'</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowBodySelectorDepth"></a>
+            <b>rowBodySelectorDepth</b> : Number            <div class="mdesc">
+                                    <div class="short">The number of levels to search for row bodies in event delegation (defaults to 10)</div>
+            <div class="long">
+                The number of levels to search for row bodies in event delegation (defaults to <tt>10</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowOverCls"></a>
+            <b>rowOverCls</b> : String            <div class="mdesc">
+                                        The CSS class added to each row when it is hovered over. Defaults to 'x-grid3-row-over'                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowSelector"></a>
+            <b>rowSelector</b> : String            <div class="mdesc">
+                                    <div class="short">The selector used to find rows internally (defaults to 'div.x-grid3-row')</div>
+            <div class="long">
+                The selector used to find rows internally (defaults to <tt>'div.x-grid3-row'</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowSelectorDepth"></a>
+            <b>rowSelectorDepth</b> : Number            <div class="mdesc">
+                                    <div class="short">The number of levels to search for rows in event delegation (defaults to 10)</div>
+            <div class="long">
+                The number of levels to search for rows in event delegation (defaults to <tt>10</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-scrollOffset"></a>
+            <b>scrollOffset</b> : Number            <div class="mdesc">
+                                    <div class="short">The amount of space to reserve for the vertical scrollbar (defaults to undefined). If an explicit value isn't specifi...</div>
+            <div class="long">
+                The amount of space to reserve for the vertical scrollbar (defaults to <tt>undefined</tt>). If an explicit value isn't specified, this will be automatically calculated.            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-selectedRowClass"></a>
+            <b>selectedRowClass</b> : String            <div class="mdesc">
+                                    <div class="short">The CSS class applied to a selected row (defaults to 'x-grid3-row-selected'). An example overriding the default styli...</div>
+            <div class="long">
+                The CSS class applied to a selected row (defaults to <tt>'x-grid3-row-selected'</tt>). An example overriding the default styling: <pre><code>.x-grid3-row-selected {background-color: yellow;}</code></pre> Note that this only controls the row, and will not do anything for the text inside it. To style inner facets (like text) use something like: <pre><code>.x-grid3-row-selected .x-grid3-cell-inner {
+        color: #FFCC00;
+    }</code></pre>            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-sortAscText"></a>
+            <b>sortAscText</b> : String            <div class="mdesc">
+                                    <div class="short">The text displayed in the 'Sort Ascending' menu item (defaults to 'Sort Ascending')</div>
+            <div class="long">
+                The text displayed in the 'Sort Ascending' menu item (defaults to <tt>'Sort Ascending'</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-sortClasses"></a>
+            <b>sortClasses</b> : Array            <div class="mdesc">
+                                    <div class="short">The CSS classes applied to a header when it is sorted. (defaults to ['sort-asc', 'sort-desc'])</div>
+            <div class="long">
+                The CSS classes applied to a header when it is sorted. (defaults to <tt>['sort-asc', 'sort-desc']</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-sortDescText"></a>
+            <b>sortDescText</b> : String            <div class="mdesc">
+                                    <div class="short">The text displayed in the 'Sort Descending' menu item (defaults to 'Sort Descending')</div>
+            <div class="long">
+                The text displayed in the 'Sort Descending' menu item (defaults to <tt>'Sort Descending'</tt>)            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.grid.GridView-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-bodyTpl"></a>
+            <b>bodyTpl</b> : CQ.Ext.Template            <div class="mdesc">
+                                        The template to use when rendering the body. Has a default template                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-cellTpl"></a>
+            <b>cellTpl</b> : CQ.Ext.Template            <div class="mdesc">
+                                        The template to use to render each cell. Has a default template                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-dragZone"></a>
+            <b>dragZone</b> : CQ.Ext.grid.GridDragZone            <div class="mdesc">
+                                    <div class="short">
+A customized implementation of a DragZone which provides default implementations
+of the template methods of DragZone...</div>
+            <div class="long">
+                
+<p>A customized implementation of a <a ext:cls="CQ.Ext.dd.DragZone" href="output/CQ.Ext.dd.DragZone.html">DragZone</a> which provides default implementations
+of the template methods of DragZone to enable dragging of the selected rows of a GridPanel.
+See <a ext:cls="CQ.Ext.grid.GridDragZone" href="output/CQ.Ext.grid.GridDragZone.html">CQ.Ext.grid.GridDragZone</a> for details.</p>
+<p>This will <b>only</b> be present:<div class="mdetail-params"><ul>
+<li><i>if</i> the owning GridPanel was configured with <a ext:cls="CQ.Ext.grid.GridPanel" ext:member="enableDragDrop" href="output/CQ.Ext.grid.GridPanel.html#enableDragDrop">enableDragDrop</a>: <tt>true</tt>.</li>
+<li><i>after</i> the owning GridPanel has been rendered.</li>
+</ul></div>            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-headerTpl"></a>
+            <b>headerTpl</b> : CQ.Ext.Template            <div class="mdesc">
+                                        The template to use when rendering headers. Has a default template                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-mainBody"></a>
+            <b>mainBody</b> : CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Read-only. The GridView's body Element which encapsulates all rows in the Grid.
+This Element is only available after ...</div>
+            <div class="long">
+                <i>Read-only</i>. The GridView's body Element which encapsulates all rows in the Grid.
+This <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">Element</a> is only available after the GridPanel has been rendered.            </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-masterTpl"></a>
+            <b>masterTpl</b> : masterTpl            <div class="mdesc">
+                                        
+The master template to use when rendering the GridView. Has a default template                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.grid.GridView-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-GridView"></a>
+            <b>GridView</b>(&nbsp;<code>Object config</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : Object<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-enableBubble"></a>
+            <b>enableBubble</b>(&nbsp;<code>String/Array events</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Enables events fired by this Observable to bubble up an owner hierarchy by calling
+this.getBubbleTarget() if present....</div>
+            <div class="long">
+                <p>Enables events fired by this Observable to bubble up an owner hierarchy by calling
+<code>this.getBubbleTarget()</code> if present. There is no implementation in the Observable base class.</p>
+<p>This is commonly used by CQ.Ext.Components to bubble events to owner Containers. See <a ext:cls="CQ.Ext.Component" ext:member="getBubbleTarget" href="output/CQ.Ext.Component.html#getBubbleTarget">CQ.Ext.Component.getBubbleTarget</a>. The default
+implementation in CQ.Ext.Component returns the Component's immediate owner. But if a known target is required, this can be overridden to
+access the required target more quickly.</p>
+<p>Example:</p><pre><code>CQ.Ext.override(CQ.Ext.form.Field, {
+    <i>//  Add functionality to Field&#39;s initComponent to enable the change event to bubble</i>
+    initComponent : CQ.Ext.form.Field.prototype.initComponent.createSequence(<b>function</b>() {
+        <b>this</b>.enableBubble(<em>'change'</em>);
+    }),
+
+    <i>//  We know that we want Field&#39;s events to bubble directly to the FormPanel.</i>
+    getBubbleTarget : <b>function</b>() {
+        <b>if</b> (!<b>this</b>.formPanel) {
+            <b>this</b>.formPanel = <b>this</b>.findParentByType(<em>'form'</em>);
+        }
+        <b>return</b> this.formPanel;
+    }
+});
+
+<b>var</b> myForm = <b>new</b> CQ.Ext.formPanel({
+    title: <em>'User Details'</em>,
+    items: [{
+        ...
+    }],
+    listeners: {
+        change: <b>function</b>() {
+            <i>// Title goes red <b>if</b> form has been modified.</i>
+            myForm.header.setStyle(<em>'color'</em>, <em>'red'</em>);
+        }
+    }
+});</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>events</code> : String/Array<div class="sub-desc">The event name to bubble, or an Array of event names.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.util.Observable" ext:member="enableBubble" href="output/CQ.Ext.util.Observable.html#enableBubble">Observable</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-findCellIndex"></a>
+            <b>findCellIndex</b>(&nbsp;<code>HTMLElement el</code>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short"><p>Return the index of the grid column which contains the passed HTMLElement.</p>
+See also <a ext:cls="CQ.Ext.grid.GridView" ext:member="findRowIndex" href="output/CQ.Ext.grid.GridView.html#findRowIndex">findRowIndex</a></div>
+            <div class="long">
+                <p>Return the index of the grid column which contains the passed HTMLElement.</p>
+See also <a ext:cls="CQ.Ext.grid.GridView" ext:member="findRowIndex" href="output/CQ.Ext.grid.GridView.html#findRowIndex">findRowIndex</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : HTMLElement<div class="sub-desc">The target element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The column index, or <b>false</b> if the target element is not within a row of this GridView.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-findRow"></a>
+            <b>findRow</b>(&nbsp;<code>HTMLElement el</code>&nbsp;) : HTMLElement            <div class="mdesc">
+                                    <div class="short">Return the HtmlElement representing the grid row which contains the passed element.</div>
+            <div class="long">
+                Return the HtmlElement representing the grid row which contains the passed element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : HTMLElement<div class="sub-desc">The target HTMLElement</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement</code><div class="sub-desc">The row element, or null if the target element is not within a row of this GridView.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-findRowBody"></a>
+            <b>findRowBody</b>(&nbsp;<code>HTMLElement el</code>&nbsp;) : HTMLElement            <div class="mdesc">
+                                    <div class="short">Return the HtmlElement representing the grid row body which contains the passed element.</div>
+            <div class="long">
+                Return the HtmlElement representing the grid row body which contains the passed element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : HTMLElement<div class="sub-desc">The target HTMLElement</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement</code><div class="sub-desc">The row body element, or null if the target element is not within a row body of this GridView.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-findRowIndex"></a>
+            <b>findRowIndex</b>(&nbsp;<code>HTMLElement el</code>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Return the index of the grid row which contains the passed HTMLElement.
+See also <a ext:cls="CQ.Ext.grid.GridView" ext:member="findCellIndex" href="output/CQ.Ext.grid.GridView.html#findCellIndex">findCellIndex</a></div>
+            <div class="long">
+                Return the index of the grid row which contains the passed HTMLElement.
+See also <a ext:cls="CQ.Ext.grid.GridView" ext:member="findCellIndex" href="output/CQ.Ext.grid.GridView.html#findCellIndex">findCellIndex</a>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : HTMLElement<div class="sub-desc">The target HTMLElement</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The row index, or <b>false</b> if the target element is not within a row of this GridView.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-focusCell"></a>
+            <b>focusCell</b>(&nbsp;<code>Number row</code>, <code>Number col</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Focuses the specified cell.</div>
+            <div class="long">
+                Focuses the specified cell.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>row</code> : Number<div class="sub-desc">The row index</div></li><li><code>col</code> : Number<div class="sub-desc">The column index</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-focusRow"></a>
+            <b>focusRow</b>(&nbsp;<code>Number row</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Focuses the specified row.</div>
+            <div class="long">
+                Focuses the specified row.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>row</code> : Number<div class="sub-desc">The row index</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-getCell"></a>
+            <b>getCell</b>(&nbsp;<code>Number row</code>, <code>Number col</code>&nbsp;) : HtmlElement            <div class="mdesc">
+                                    <div class="short">Returns the grid's <tt>&lt;td></tt> HtmlElement at the specified coordinates.</div>
+            <div class="long">
+                Returns the grid's <tt>&lt;td></tt> HtmlElement at the specified coordinates.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>row</code> : Number<div class="sub-desc">The row index in which to find the cell.</div></li><li><code>col</code> : Number<div class="sub-desc">The column index of the cell.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HtmlElement</code><div class="sub-desc">The td at the specified coordinates.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-getGridInnerWidth"></a>
+            <b>getGridInnerWidth</b>() : Number            <div class="mdesc">
+                                    <div class="short">Returns the total internal width available to the grid, taking the scrollbar into account</div>
+            <div class="long">
+                Returns the total internal width available to the grid, taking the scrollbar into account    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The total width</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-getHeaderCell"></a>
+            <b>getHeaderCell</b>(&nbsp;<code>Number index</code>&nbsp;) : HtmlElement            <div class="mdesc">
+                                    <div class="short">Return the <tt>&lt;td></tt> HtmlElement which represents the Grid's header cell for the specified column index.</div>
+            <div class="long">
+                Return the <tt>&lt;td></tt> HtmlElement which represents the Grid's header cell for the specified column index.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>index</code> : Number<div class="sub-desc">The column index</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HtmlElement</code><div class="sub-desc">The td element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-getRow"></a>
+            <b>getRow</b>(&nbsp;<code>Number index</code>&nbsp;) : HtmlElement            <div class="mdesc">
+                                    <div class="short">Return the <tt>&lt;div></tt> HtmlElement which represents a Grid row for the specified index.</div>
+            <div class="long">
+                Return the <tt>&lt;div></tt> HtmlElement which represents a Grid row for the specified index.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>index</code> : Number<div class="sub-desc">The row index</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HtmlElement</code><div class="sub-desc">The div element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-getRowClass"></a>
+            <b>getRowClass</b>(&nbsp;<code>Record record</code>, <code>Number index</code>, <code>Object rowParams</code>, <code>Store store</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Override this function to apply custom CSS classes to rows during rendering.  You can also supply custom
+parameters t...</div>
+            <div class="long">
+                Override this function to apply custom CSS classes to rows during rendering.  You can also supply custom
+parameters to the row template for the current row to customize how it is rendered using the <b>rowParams</b>
+parameter.  This function should return the CSS class name (or empty string '' for none) that will be added
+to the row's wrapping div.  To apply multiple class names, simply return them space-delimited within the string
+(e.g., 'my-class another-class'). Example usage:
+    <pre><code>viewConfig: {
+    forceFit: true,
+    showPreview: true, <i>// custom property</i>
+    enableRowBody: true, <i>// required to create a second, full-width row to show expanded Record data</i>
+    getRowClass: <b>function</b>(record, rowIndex, rp, ds){ <i>// rp = rowParams</i>
+        <b>if</b>(this.showPreview){
+            rp.body = <em>'&lt;p&gt;'</em>+record.data.excerpt+<em>'&lt;/p&gt;'</em>;
+            <b>return</b> <em>'x-grid3-row-expanded'</em>;
+        }
+        <b>return</b> <em>'x-grid3-row-collapsed'</em>;
+    }
+},</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>record</code> : Record<div class="sub-desc">The <a ext:cls="CQ.Ext.data.Record" href="output/CQ.Ext.data.Record.html">CQ.Ext.data.Record</a> corresponding to the current row.</div></li><li><code>index</code> : Number<div class="sub-desc">The row index.</div></li><li><code>rowParams</code> : Object<div class="sub-desc">A config object that is passed to the row template during rendering that allows
+customization of various aspects of a grid row.
+<p>If <a ext:cls="CQ.Ext.grid.GridView" ext:member="enableRowBody" href="output/CQ.Ext.grid.GridView.html#enableRowBody">enableRowBody</a> is configured <b><tt></tt>true</b>, then the following properties may be set
+by this function, and will be used to render a full-width expansion row below each grid row:</p>
+<ul>
+<li><code>body</code> : String <div class="sub-desc">An HTML fragment to be used as the expansion row's body content (defaults to '').</div></li>
+<li><code>bodyStyle</code> : String <div class="sub-desc">A CSS style specification that will be applied to the expansion row's &lt;tr> element. (defaults to '').</div></li>
+</ul>
+The following property will be passed in, and may be appended to:
+<ul>
+<li><code>tstyle</code> : String <div class="sub-desc">A CSS style specification that willl be applied to the &lt;table> element which encapsulates
+both the standard grid row, and any expansion row.</div></li>
+</ul></div></li><li><code>store</code> : Store<div class="sub-desc">The <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a> this grid is bound to</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">a CSS class name to add to the row.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-handleHdMenuClickDefault"></a>
+            <b>handleHdMenuClickDefault</b>(&nbsp;<code>CQ.Ext.menu.BaseItem item</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Called by handleHdMenuClick if any button except a sort ASC/DESC button was clicked. The default implementation provi...</div>
+            <div class="long">
+                Called by handleHdMenuClick if any button except a sort ASC/DESC button was clicked. The default implementation provides
+the column hide/show functionality based on the check state of the menu item. A different implementation can be provided
+if needed.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>item</code> : CQ.Ext.menu.BaseItem<div class="sub-desc">The menu item that was clicked</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-refresh"></a>
+            <b>refresh</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean headersToo</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Refreshs the grid UI</div>
+            <div class="long">
+                Refreshs the grid UI    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>headersToo</code> : Boolean<div class="sub-desc">(optional) True to also refresh the headers</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-relayEvents"></a>
+            <b>relayEvents</b>(&nbsp;<code>Object o</code>, <code>Array events</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.</div>
+            <div class="long">
+                Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>o</code> : Object<div class="sub-desc">The Observable whose events this object is to relay.</div></li><li><code>events</code> : Array<div class="sub-desc">Array of event names to relay.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.util.Observable" ext:member="relayEvents" href="output/CQ.Ext.util.Observable.html#relayEvents">Observable</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-scrollToTop"></a>
+            <b>scrollToTop</b>() : void            <div class="mdesc">
+                                    <div class="short">Scrolls the grid to the top</div>
+            <div class="long">
+                Scrolls the grid to the top    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.grid.GridView-events"></a>
+        <h2>Public Events</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Event</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-beforerefresh"></a>
+            <b>beforerefresh</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired before the view is refreshed.</div>
+            <div class="long">
+                Internal UI Event. Fired before the view is refreshed.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="event-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-beforerowremoved"></a>
+            <b>beforerowremoved</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>, <code>Number rowIndex</code>, <code>CQ.Ext.data.Record record</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired before a row is removed.</div>
+            <div class="long">
+                Internal UI Event. Fired before a row is removed.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li><li><code>rowIndex</code> : Number<div class="sub-desc">The index of the row to be removed.</div></li><li><code>record</code> : CQ.Ext.data.Record<div class="sub-desc">The Record to be removed</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-beforerowsinserted"></a>
+            <b>beforerowsinserted</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>, <code>Number firstRow</code>, <code>Number lastRow</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired before rows are inserted.</div>
+            <div class="long">
+                Internal UI Event. Fired before rows are inserted.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li><li><code>firstRow</code> : Number<div class="sub-desc">The index of the first row to be inserted.</div></li><li><code>lastRow</code> : Number<div class="sub-desc">The index of the last row to be inserted.</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="event-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-refresh"></a>
+            <b>refresh</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired after the GridView's body has been refreshed.</div>
+            <div class="long">
+                Internal UI Event. Fired after the GridView's body has been refreshed.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowremoved"></a>
+            <b>rowremoved</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>, <code>Number rowIndex</code>, <code>CQ.Ext.data.Record record</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired after a row is removed.</div>
+            <div class="long">
+                Internal UI Event. Fired after a row is removed.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li><li><code>rowIndex</code> : Number<div class="sub-desc">The index of the row that was removed.</div></li><li><code>record</code> : CQ.Ext.data.Record<div class="sub-desc">The Record that was removed</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="event-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowsinserted"></a>
+            <b>rowsinserted</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>, <code>Number firstRow</code>, <code>Number lastRow</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired after rows are inserted.</div>
+            <div class="long">
+                Internal UI Event. Fired after rows are inserted.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li><li><code>firstRow</code> : Number<div class="sub-desc">The index of the first inserted.</div></li><li><code>lastRow</code> : Number<div class="sub-desc">The index of the last row inserted.</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.grid.GridView-rowupdated"></a>
+            <b>rowupdated</b> : (&nbsp;<code>CQ.Ext.grid.GridView view</code>, <code>Number firstRow</code>, <code>CQ.Ext.data.record record</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Internal UI Event. Fired after a row has been updated.</div>
+            <div class="long">
+                Internal UI Event. Fired after a row has been updated.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>view</code> : CQ.Ext.grid.GridView<div class="sub-desc"></div></li><li><code>firstRow</code> : Number<div class="sub-desc">The index of the row updated.</div></li><li><code>record</code> : CQ.Ext.data.record<div class="sub-desc">The Record backing the row updated.</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">GridView</td>
+    </tr>
+            </table>
+        
+        </div>
