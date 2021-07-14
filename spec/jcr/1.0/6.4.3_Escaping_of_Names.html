@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.3 Escaping of Names (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.3." id="section_6.4.3."></a>6.4.3 Escaping of Names
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Not every item name is a valid XML name. In particular, even though a content repository prefix is always a valid XML prefix, the content repository local name (the part after the colon, or the whole name, if there is no prefix) may not be a valid XML name. For example, a content repository name may contain spaces, whereas XML names cannot.
+								</p>
+							
+							
+								<p class="c5">
+									Consequently, for document view serialization, each content repository name is converted to a valid XML name (as defined by XML 1.0) by translating invalid characters into escaped numeric entity encodings<sup><a class="sdfootnoteanc" name="sdfootnote5anc" href="#sdfootnote5sym" id="sdfootnote5anc"><sup>5</sup></a></sup>.
+								</p>
+							
+							
+								<p class="c5">
+									The escape character is the underscore (“_”). Any invalid character is escaped as <b>_x</b><b><i>HHHH</i></b><b>_</b>, where <b><i>HHHH</i></b> is the four-digit hexadecimal UTF-16 code for the character. When producing escape sequences the implementation should use lowercase letters for the hex digits <b>a</b>-<b>f</b>. When unescaping, however, both upper and lowercase alphabetic hexadecimal characters must be recognized.
+								</p>
+							
+							
+								<p class="c5">
+									Escaping and unescaping is done by parsing the name from left to right.
+								</p>
+							
+							
+								<p class="c5">
+									The underscore character (“_”), when appearing as literal, is itself escaped if it is followed by <b><i>xHHHH</i></b> where <b><i>H</i></b> is one of the following characters: <b>0123456789abcdefABCDEF</b>.
+								</p>
+							
+							
+								<p class="c5">
+									So, for example,
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p>
+					“<b>My Documents</b>” is converted to “<b>My_x0020_Documents</b>”,
+				</p>
+			</li>
+			<li>
+				<p>
+					“<b>My_Documents</b>” is not encoded,
+				</p>
+			</li>
+			<li>
+				<p>
+					“<b>My_x0020Documents</b>” is not encoded either,
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					but “<b>My_x0020_Documents</b>” is encoded as “<b>My_x005f_x0020_Documents</b>”.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

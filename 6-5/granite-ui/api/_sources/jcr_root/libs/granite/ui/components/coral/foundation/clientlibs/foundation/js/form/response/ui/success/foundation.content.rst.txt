@@ -1,0 +1,64 @@
+foundation.form.response.ui.success: foundation.content
+=======================================================
+
+``foundation.content`` is a success response handler of :doc:`../../../index`.
+
+It will process the response to update the content of :doc:`../../../../content/index`.
+
+
+Config
+------
+
+.. code-block:: ts
+
+   interface FoundationFormResponseUISuccessFoundationContent {
+     /**
+      * The selector to an element where the form response will be displayed.
+      * If the element is ``.foundation-content``, ``foundation-content`` will be used;
+      * otherwise the response will replace the element content by mean of ``element.innerHTML``.
+      */
+     target: string;
+
+     /**
+      * The URL to redirect the form to.
+      * If this property is specified, instead of processing the content from the submission response,
+      * the URL will be used to fetch a new content if the new response is a success.
+      */
+     redirect?: string;
+
+     /**
+      * The configuration of the browser history when calling
+      * ``FoundationContent.replace(html, historyConfig)`` or ``FoundationContent.push(html, historyConfig)`` (based on ``replace`` property).
+      */
+     history?: FoundationFormResponseUISuccessFoundationContentHistory;
+
+     /**
+      * <code>true</code> to process the response using ``FoundationContent.replace(html, historyConfig)``;
+      * otherwise ``FoundationContent.push(html, historyConfig)`` is used.
+      */
+     replace?: boolean;
+   }
+
+   interface FoundationFormResponseUISuccessFoundationContentHistory {
+     /**
+      * The URL to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      * This is optional and take precedence over <code>useFormUrl</code> property.
+      */
+     url?: string;
+
+     /**
+      * Indicates that the form's action attribute is used as the URL to be passed to historyConfig param
+      * of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     useFormUrl?: boolean;
+
+     /**
+      * The title to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     title?: string;
+
+     /**
+      * The data to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     data?: any;
+   }

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.4.1 Orderable Same Name Siblings (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.4.1." id="section_4.4.1."></a> 4.4.1 Orderable Same Name Siblings
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If the parent node supports orderable child nodes <i>and</i> same-name siblings then the same-name sibling child nodes will be orderable by the application just like an other child nodes. For example, given the following initial ordering of child nodes,
+								</p>
+							
+							
+								<p class="c5">
+									<b>[A, B, C, A, D]</b>
+								</p>
+							
+							
+								<p class="c5">
+									a call to
+								</p>
+							
+							
+								<p class="c5">
+									<b>orderBefore("A[2]","A[1]")</b>
+								</p>
+							
+							
+								<p class="c5">
+									will cause the child node currently called <b>A[2]</b> to be moved to the position before the child node currently called <b>A[1]</b>, the resulting order will be:
+								</p>
+							
+							
+								<p class="c5">
+									<b>[A, A, B, C, D]</b>
+								</p>
+							
+							
+								<p class="c14">
+									where the first <b>A</b> is the one that was formerly after <b>C</b> and the second <b>A</b> is the one that was formerly at the head of the list.
+								</p>
+							
+							
+								<p class="c5">
+									Note, however, that after the completion of this operation <i>the indices of the two nodes have now switched</i>, due to their new positions relative to each other. What was formerly <b>A[2]</b> is now <b>A[1]</b> and what was formerly <b>A[1]</b> is now <b>A[2]</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

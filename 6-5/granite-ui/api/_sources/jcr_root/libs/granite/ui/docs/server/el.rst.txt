@@ -1,0 +1,117 @@
+*******************
+Expression Language
+*******************
+
+Granite UI supports expression language such that the author can provide a more dynamic value to the property of a component.
+
+The implementation used for Granite UI is `javax.el 2.1 <http://download.oracle.com/otn-pub/jcp/jsp-2.1-fr-spec-oth-JSpec/jsp-2_1-fr-spec-el.pdf>`_.
+
+For example in order to append the current request suffix as a suffix of the ``href`` property of hyperlink—which accepts StringEL as property type—you can use EL::
+
+   + mylink
+     - sling:resourceType = "granite/ui/components/coral/foundation/hyperlink"
+     - href = "/content/geo${granite:encodeURIPath(requestPathInfo.suffix)}"
+
+.. note::
+   ``javax.el`` is intended for general use outside of the JSP and JSF specifications as well.
+   Granite UI makes use of this feature for its EL purpose. Hence the EL context of Granite UI is independent of JSP context.
+   For example if you try to access JSP implicit objects such as ``requestScope``, it will not work.
+   Only the variables and functions given in this document are supported.
+
+
+Supported Variables and Functions
+=================================
+
+param
+   Equivalent to The JSP EL ``param``: Maps a request parameter name to a single value.
+
+   Remember that the value is decoded by the container.
+
+paramValues
+   Equivalent to The JSP EL ``paramValues``: Maps a request parameter name to an array of values.
+
+   Remember that the values are decoded by the container.
+
+header
+   Equivalent to The JSP EL ``header``: Maps a request header name to a single value.
+
+headerValues
+   Equivalent to The JSP EL ``headerValues``: Maps a request header name to an array of values.
+
+cookie
+   Equivalent to The JSP EL ``cookie``: Maps a cookie name to a single cookie.
+
+querystring
+   The `query string <http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getQueryString%28%29>`_ of the current request.
+
+   Remember that the value is not decoded by the container.
+
+requestPathInfo
+   The current `RequestPathInfo <http://sling.apache.org/apidocs/sling7/org/apache/sling/api/request/RequestPathInfo.html>`_ object.
+
+state
+   The :javadoc:`State <com/adobe/granite/ui/components/State.html>` object.
+
+tenant
+   The current `org.apache.sling.tenant.Tenant <https://docs.adobe.com/docs/en/aem/6-1/ref/javadoc/org/apache/sling/tenant/Tenant.html>`_ object.
+
+granite:concat(Object o1, Object o2)
+   Concatenates the object (coerced to string) ``o2`` to the end of object (coerced to string) ``o1``.
+
+granite:encodeURIComponent(String string)
+   Encodes a URL encoding of the string.
+   The characters that don't need encoding are those defined 'unreserved' in section 2.3 of the 'URI generic syntax' RFC 2396.
+
+granite:encodeURIPath(String path)
+   Encodes a URL encoding of the path.
+   The characters that don't need encoding are those defined 'unreserved' in section 2.3 of the 'URI generic syntax' RFC 2396.
+   In contrast to the granite:encodeURIComponent(String) method, not the entire path string is escaped, but every individual part (i.e. the slashes are not escaped).
+
+granite:uritemplate(String string)
+   Manipulates the given string for the purpose of uritemplate.
+   If the string starts with "/" (i.e. an absolute path), the context path of the request if added to the string.
+
+granite:absUritemplate(String string)
+   Manipulates the given string for the purpose of uritemplate.
+   The context path of the request if added to the string no matter what.
+   This is very useful when the variable is the URL path itself. e.g. ``${granite:absUritemplate("{path}.html")}``.
+
+granite:url(String string)
+   Manipulates the given string for the purpose of URL.
+   If the string starts with "/" (i.e. an absolute path), the context path of the request if added to the string.
+
+granite:relativeParent(String path, int level)
+   Returns the n-th relative parent of the path, where n=level.
+
+   Examples::
+
+      granite:relativeParent("/a/b/c/d", 0) == "/a/b/c/d"
+      granite:relativeParent("/a/b/c/d", 1) == "/a/b/c"
+
+granite:toJSONArray(String[] array)
+   Converts the given string array to its JSON counterpart.
+
+granite:toQueryString(String name, String[] array)
+   Converts the given string array to query string of the given name.
+   Example, calling ``toQueryString("name1", new String[] { "a", "b", "c" })`` would result in ``name1=a&name1=b&name1=c``.
+
+granite:contains(String haystack, String needle)
+   Returns ``true`` if and only if the ``haystack`` contains the ``needle`` values.
+
+granite:containsIgnoreCase(String haystack, String needle)
+   Returns ``true`` if and only if the ``haystack`` contains the ``needle`` values, while ignoring case considerations.
+
+
+Component Development
+=====================
+
+To support EL in your component, you can use :javadoc:`ExpressionResolver <com/adobe/granite/ui/components/ExpressionResolver.html>` service.
+There is also :javadoc:`ExpressionHelper <com/adobe/granite/ui/components/ExpressionHelper.html>` as a convenient helper, which you can initialize yourself or simply use :javadoc:`ComponentHelper#getExpressionHelper() <com/adobe/granite/ui/components/ComponentHelper.html#getExpressionHelper%28%29>`.
+
+
+Extending the EL
+----------------
+
+There is :javadoc:`ExpressionCustomizer <com/adobe/granite/ui/components/ExpressionCustomizer.html>` that allows a certain customization when resolving the expression.
+For example this feature allows the resource type implementation of CQ Dialog to register a custom variable named ``cqDesign``
+so that it can be used in EL expression.

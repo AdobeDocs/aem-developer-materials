@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25.2.3.5 Whitespace and Short Forms (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>25.2.3.5 Whitespace and Short Forms</H4>
+	<P>The notation can be
+	compacted by taking advantage of the following the fact that spacing
+	around keychars <FONT FACE="Courier New, monospace"><FONT SIZE=2>([
+	] &gt; , - ( ) = &lt;</FONT></FONT>), newlines and
+	indentation are not required. So, the following is also well-formed:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[x]&gt;y,z
+	orderable mixin -p(DATE)=a,b primary mandatory autocreated protected
+	multiple VERSION &lt;c,d</FONT></P>
+	<P>Additionally, though
+	spaces are required around the keywords (orderable, mixin, date,
+	mandatory, etc.), short forms for keywords can be used. So, this:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[x]&gt;y,z o
+	m-p(DATE)=a,b ! m a p * VERSION &lt;c,d</FONT></P>
+	<P>is also well-formed.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

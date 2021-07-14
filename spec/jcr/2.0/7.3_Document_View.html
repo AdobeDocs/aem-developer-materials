@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7.3 Document View (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>7.3 Document View</H2>
+	<P>The document view
+	provides a more human-readable serialization than system view.
+	Unlike system view, document view is lossy. It does not preserve all
+	information in the subgraph.</P>
+	<OL>
+		<LI><P>For every
+		namespace used within the subgraph rooted at <I>N</I>, the
+		corresponding JCR namespace mapping in the current session <I>is
+		included</I> in the exported document such that any use of the
+		namespace prefix in the exported document is within the scope of
+		the appropriate namespace declaration.</P>
+		<LI><P>Other JCR
+		namespace mappings in the current session <I>may be included</I> as
+		XML namespace declarations in the exported document.</P>
+		<LI><P>The JCR namespace
+		mapping of the prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>
+		<I>may be excluded</I> from the namespace declarations in the
+		exported document.</P>
+		<LI><P>Each JCR node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes an XML element of the same name, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If the root node
+		of a workspace is included in the serialized subgraph, it becomes
+		an XML elements with the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>.</P>
+		<LI><P>Each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes a subelement <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>The order of the
+		subelements of element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		must reflect the order in which the corresponding child nodes are
+		returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes</FONT></FONT>.</P>
+		<LI><P>Each property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes an XML attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		of XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		property its value is Base64 encoded. The resulting string becomes
+		the value of the XML attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		is a non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		property its value is converted to string form according to the
+		standard conversion (see §3.6.4 <I>Property Type Conversion</I>).
+		Entity references are used to escape characters which cannot be
+		included as literals within attribute values (see §7.5 <I>Escaping
+		of Values</I>).</P>
+	</OL>
+	<P>A writable repository
+	may<B> </B>support document view import (see §11.1 <I>Importing
+	Arbitrary XML</I>).</P>
+	<P>The following sections
+	describe the exceptions to the above general rules.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

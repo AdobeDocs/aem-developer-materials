@@ -1,0 +1,13 @@
+foundation.form.response.ui.success: foundation.redirect
+========================================================
+
+``foundation.redirect`` is a success response handler of :doc:`../../../index`.
+
+It will redirect the page to the configured location.
+
+Config
+------
+
+href
+   The URI Template to redirect to.
+   The URI Template is resolved with parsed response data as the variables.

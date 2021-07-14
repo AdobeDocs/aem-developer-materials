@@ -1,0 +1,240 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PathField &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../" src="../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../search.html" />
+    <link rel="next" title="RadioGroup" href="../radiogroup/index.html" />
+    <link rel="prev" title="Password" href="../password/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../radiogroup/index.html" title="RadioGroup"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../password/index.html" title="Password"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../server.html" >Granite UI Foundation Server-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Form</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pathfield">
+<h1>PathField<a class="headerlink" href="#pathfield" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/coral/foundation/form/pathfield">
+<dt>
+<code class="descname">/libs/granite/ui/components/coral/foundation/form/pathfield</code></dt>
+<dd><p>A field that allows the user to enter path.</p>
+<p>It extends <a class="reference internal" href="../field/index.html#/libs/granite/ui/components/coral/foundation/form/field" title="/libs/granite/ui/components/coral/foundation/form/field"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Field</span></code></a> component.</p>
+<p>It supports the concept of suggestion where the list of options are presented based on what the user types.
+It also supports the concept of picker where the user allows to pick the value in more advanced way (usually implemented as a dialog showing a tree view).</p>
+<p><strong>Usage Guidelines</strong></p>
+<p>In Sling, a resource (thus a path) is a first class citizen. So naturally many things, such as WCM Pages, DAM Assets, Commerce Products are represented as paths.
+This field can then be used for that purpose. However, this field is only meant for general purpose pathfield, even though the suggestion and picker can be configured.
+It is recommended to create a dedicated field for each resource type accordingly.
+e.g. It is better to create a dedicated field for the purpose of selecting CQ Pages, with the applicable configuration configured OOTB.
+This is to allow convenient usage of the said field without forcing the author to know about URL, which can be an implementation detail.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:FormTextField</span><ol class="gnd-values supertypes"><li class="gnd-values-item supertype">granite:FormField</li></ol></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">name</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The name that identifies the field when submitting the form.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">emptyText</span><span class="propertytype gnd-name">string</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">i18n</dt><dd class="gnd-attributes-value"></dd></dl><p>A hint to the user of what can be entered in the field.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">disabled</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the field is in disabled state.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">required</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the field is mandatory to be filled.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">validation</span><span class="propertytype gnd-name">string</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">multiple</dt><dd class="gnd-attributes-value"></dd></dl><p>The name of the validator to be applied. E.g. <code class="docutils literal notranslate"><span class="pre">foundation.jcr.name</span></code>.
+See <a class="reference internal" href="../../clientlibs/foundation/js/validation/index.html"><span class="doc">validation</span></a> in Granite UI.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">multiple</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the user is able to select multiple selections.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">forceSelection</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the user must only select from the list of given options.
+If it is not forced, the user can enter arbitrary value.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">deleteHint</span><span class="propertytype gnd-name">boolean</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">true</li></ol></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to generate the <a class="reference external" href="http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete">SlingPostServlet &#64;Delete</a> hidden input based on the field name.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">suggestionSrc</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI template that returns the suggestion markup.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>query</dt>
+<dd>The query entered by the user.</dd>
+<dt>offset</dt>
+<dd>The offset of the pagination.</dd>
+<dt>limit</dt>
+<dd>The limit of the pagination.</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">pickerSrc</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI template that returns the picker markup.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>value</dt>
+<dd>The value of the first item.</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">rootPath</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">/</li></ol></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">mandatory</dt><dd class="gnd-attributes-value"></dd></dl><p>The path of the root of the pathfield.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">filter</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">hierarchyNotFile</li></ol><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">folder</li><li class="gnd-values-item valueconstraint">hierarchy</li><li class="gnd-values-item valueconstraint">hierarchyNotFile</li><li class="gnd-values-item valueconstraint">nosystem</li></ol></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">mandatory</dt><dd class="gnd-attributes-value"></dd></dl><p>The filter applied to suggestion and picker.</p>
+<p>Valid values are:</p>
+<dl class="docutils">
+<dt>folder</dt>
+<dd>Shows only <code class="docutils literal notranslate"><span class="pre">nt:folder</span></code> nodes.</dd>
+<dt>hierarchy</dt>
+<dd>Shows only <code class="docutils literal notranslate"><span class="pre">nt:hierarchyNode</span></code> nodes.</dd>
+<dt>hierarchyNotFile</dt>
+<dd>Shows only <code class="docutils literal notranslate"><span class="pre">nt:hierarchyNode</span></code> nodes that are not <code class="docutils literal notranslate"><span class="pre">nt:file</span></code>.</dd>
+<dt>nosystem</dt>
+<dd>Shows non-system nodes: <code class="docutils literal notranslate"><span class="pre">!node.getName().startsWith(&quot;rep:&quot;)</span> <span class="pre">&amp;&amp;</span> <span class="pre">!node.getName().equals(&quot;jcr:system&quot;)</span></code>.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../password/index.html"
+                        title="previous chapter">Password</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../radiogroup/index.html"
+                        title="next chapter">RadioGroup</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/form/pathfield/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../radiogroup/index.html" title="RadioGroup"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../password/index.html" title="Password"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../server.html" >Granite UI Foundation Server-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Form</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

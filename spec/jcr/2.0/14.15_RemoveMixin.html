@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.15 RemoveMixin (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>14.15 RemoveMixin</H2>
+	<P>If an attempt is made
+	to remove the <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	mixin node type from a node in a shared set the implementation may
+	either throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>
+	or allow the removal and change the subgraph in some
+	implementation-specific manner. One possibility is to replace the
+	node with a copy that has no children (if this does not violate the
+	node type restrictions of that node). Another possibility is to give
+	the node a copy of all of its descendants (unless the resulting copy
+	operation would be unfeasible, as would be the case if a share cycle
+	were involved).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

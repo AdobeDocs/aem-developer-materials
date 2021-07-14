@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.6.7 Node Type Attribute Subtyping Rules (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.6.7 Node Type Attribute Subtyping Rules</H4>
+	<P>If <I>T'</I> is a
+	subtype of <I>T</I> then the following must hold:</P>
+	<P>The name of <I>T'</I> must differ from
+	the name of <I>T</I>.</P>
+	<UL>
+		<LI><P>The supertypes
+		list of <I>T'</I> must include either <I>T</I> or a subtype of <I>T</I>.
+				</P>
+		<LI><P>If <I>T</I> is a
+		primary type, <I>T'</I> must be a primary type. However, if <I>T</I>
+		is a mixin then <I>T'</I> may be either a mixin or a primary type.</P>
+	</UL>
+	<P>If <I>T</I> has orderable child nodes
+	then <I>T'</I> must have orderable child nodes.</P>
+	<P>If <I>T</I> specifies a primary item <I>I</I>
+	then <I>T'</I> inherits that setting and must not specify a primary
+	item other than <I>I</I>.</P>
+	<P><I>T'</I> may declare any number of
+	property definitions as long as they are not invalid (see §3.7.6.8
+	<I>Item Definitions in Subtypes</I>).</P>
+	<P><I>T'</I> may declare any number of
+	child node definitions as long as they are not invalid (see §3.7.6.8
+	<I>Item Definitions in Subtypes</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

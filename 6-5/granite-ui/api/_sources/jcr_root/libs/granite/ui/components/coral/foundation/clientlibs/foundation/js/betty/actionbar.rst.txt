@@ -1,0 +1,92 @@
+***************
+betty-ActionBar
+***************
+
+``.betty-ActionBar`` is an extension of coral-actionbar to satisfy the requirement of Betty Actionbar.
+
+
+Markup
+======
+
+
+.betty-ActionBar
+----------------
+
+Indicates the root of the component.
+
+Selector Rule::
+
+   coral-actionbar.betty-ActionBar
+
+
+.betty-ActionBar-item
+---------------------
+
+Indicates the item of the ActionBar.
+
+By default `.betty-ActionBar-item` is assumed to be Coral.Button, where its padding is used as part of the calculation of the gap between items.
+So if there is a need to create a different item type, most likely effort is to have the same horizontal padding as Coral.Button.
+
+Selector Rule::
+
+   coral-actionbar-item > .betty-ActionBar-item
+
+
+Variants
+========
+
+
+.betty-ActionBar--large
+-----------------------
+
+The variant to represent Shell3 specific of the ActionBar.
+
+Selector Rule::
+
+   .betty-ActionBar.betty-ActionBar--large
+
+
+.betty-ActionBar--overlay
+-------------------------
+
+The variant that is required to be used in overlay scenario.
+
+Selector Rule::
+
+   .betty-ActionBar.betty-ActionBar--overlay
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <coral-actionbar class="betty-ActionBar">
+     <coral-actionbar-primary>
+       <coral-actionbar-item>
+         <button class="betty-ActionBar-item" is="coral-button" variant="quiet">Create</button>
+       </coral-actionbar-item>
+       <coral-actionbar-item>
+         <button class="betty-ActionBar-item" is="coral-button" variant="quiet">Edit</button>
+       </coral-actionbar-item>
+     </coral-actionbar-primary>
+     <coral-actionbar-secondary>
+       <coral-actionbar-item>
+         <button class="betty-ActionBar-item" is="coral-button" variant="quiet">Cancel</button>
+       </coral-actionbar-item>
+       <coral-actionbar-item>
+         <button class="betty-ActionBar-item" is="coral-button" variant="primary">Save</button>
+       </coral-actionbar-item>
+     </coral-actionbar-secondary>
+   </coral-actionbar>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "betty-ActionBar" {
+     rankdir=BT;
+     "betty-SimpleBar" -> "betty-ActionBar" [label="similar to"];
+   }

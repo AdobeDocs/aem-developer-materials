@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.6 Workspace Import Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.6." id="section_7.3.6."></a> 7.3.6 Workspace Import Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Workspace</b> interface provides the following methods for importing content into the repository:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Workspace</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>ContentHandler</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getImportContentHandler(<br>
+										String parentAbsPath,<br>
+										int uuidBehavior)</b>
+									</p>
+									<p class="c5">
+										Returns an <b>org.xml.sax.ContentHandler</b> which can be used to push SAX events into the repository. If the incoming XML stream (in the form of SAX events) does not appear to be a <i>system view</i> XML document then it is interpreted as a <i>document view</i> XML document.
+									</p>
+									<p class="c5">
+										The incoming XML is deserialized into a subtree of items immediately below the node at <b>parentAbsPath</b>.
+									</p>
+									<p class="c5">
+										This method simply returns the <b>ContentHandler</b> without altering the state of the repository; the actual deserialization is done through the methods of the <b>ContentHandler</b>. Invalid XML data will cause the <b>ContentHandler</b> to throw a <b>SAXException</b>.
+									</p>
+									<p class="c5">
+										As SAX events are fed into the <b>ContentHandler</b>, changes are made directly at the workspace level, without going through the <b>Session</b>. As a result, there is not need to call <b>save</b>. The advantage of this direct-to-workspace method is that a large import will not result in a large cache of pending nodes in the <b>Session</b>. The disadvantage is that structures that violate node type constraints cannot be imported, fixed and then saved. Instead, a constraint violation will cause the <b>ContentHandler</b> to throw a <b>SAXException</b>. See <b>Session.getImportContentHandler</b> for a version of this method that <i>does</i> go through the <b>Session</b>.
+									</p>
+									<p class="c5">
+										The flag <b>uuidBehavior</b> governs how the UUIDs of incoming (deserialized) nodes are handled. There are four options (defined as constants in the interface <b>javax.jcr.ImportUUIDBehavior</b>):
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_CREATE_NEW</b>: Incoming referenceable nodes are assigned newly created UUIDs upon addition to the workspace. As a result UUID collisions never occur.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then the already existing node (and its subtree) is removed from wherever it may be in the workspace before the incoming node is added. Note that this can result in nodes “disappearing” from locations in the workspace that are remote from the location to which the incoming subtree is being written.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REPLACE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace, then the already existing node is replaced by the incoming node in the same position as the existing node. Note that this may result in the incoming subtree being disaggregated and “spread around” to different locations in the workspace. In the most extreme case this behavior may result in no node at all being added as child of <b>parentAbsPath</b>. This will occur if the topmost element of the incoming XML has the same UUID as an existing node elsewhere in the workspace.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_THROW</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then a <b>SAXException</b> is thrown by the <b>ContentHandler</b> during deserialization.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										A <b>SAXException</b> will be thrown by the returned <b>ContentHandler</b> during deserialization if the top-most element of the incoming XML would deserialize to a node with the same name as an existing child of <b>parentAbsPath</b> and that child does not allow same-name siblings.
+									</p>
+									<p class="c5">
+										A <b>SAXException</b> will also be thrown by the returned <b>ContentHandler</b> during deserialization if <b>uuidBehavior</b> is set to <b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b> and an incoming node has the same UUID as the node at <b>parentAbsPath</b> or one of its ancestors.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if no node exists at <b>parentAbsPath</b>.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown if the new subtree cannot be added to the node at <b>parentAbsPath</b> due to node-type or other implementation-specific constraints, and this can be determined before the first SAX event is sent.
+									</p>
+									<p class="c5">
+										Unlike <b>Session.getImportContentHandler</b>, this method will also enforce node type constraints by having the returned <b>ContentHandler</b> throw a <b>SAXException</b> during deserialization. However, which node type constraints are enforced depends upon whether node type information in the imported data is respected, and this is an implementation-specific issue (see 7.3.3 Respecting Property Semantics).
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the node at <b>parentAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the addition of the subtree.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the session associated with this <b>Workspace</b> object does not have sufficient permissions to perform the import.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>importXML(String parentAbsPath,<br>
+										InputStream in,<br>
+										int uuidBehavior)</b>
+									</p>
+									<p class="c5">
+										Deserializes an XML document and adds the resulting item subtree as a child of the node at <b>parentAbsPath</b>.
+									</p>
+									<p class="c5">
+										If the incoming XML stream does not appear to be a <i>system view</i> XML document then it is interpreted as a <i>document view</i> XML document.
+									</p>
+									<p class="c5">
+										Changes are made directly at the workspace level, without going through the <b>Session</b>. As a result, there is not need to call <b>save</b>. The advantage of this direct-to-workspace method is that a large import will not result in a large cache of pending nodes in the <b>Session</b>. The disadvantage is that invalid data cannot be imported, fixed and then saved. Instead, invalid data will cause this method to throw an <b>InvalidSerializedDataException</b>. See <b>Session.importXML</b> for a version of this method that <i>does</i> go through the <b>Session</b>.
+									</p>
+									<p class="c5">
+										The flag <b>uuidBehavior</b> governs how the UUIDs of incoming (deserialized) nodes are handled. There are four options (defined as constants in the interface <b>javax.jcr.ImportUUIDBehavior</b>):
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_CREATE_NEW</b>: Incoming referenceable nodes are assigned newly created UUIDs upon addition to the workspace. As a result UUID collisions never occur.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then the already existing node (and its subtree) is removed from wherever it may be in the workspace before the incoming node is added. Note that this can result in nodes “disappearing” from locations in the workspace that are remote from the location to which the incoming subtree is being written.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REPLACE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then the already existing node is replaced by the incoming node in the same position as the existing node. Note that this may result in the incoming subtree being disaggregated and “spread around” to different locations in the workspace. In the most extreme edge case this behavior may result in no node at all being added as child of <b>parentAbsPath</b>. This will occur if the topmost element of the incoming XML has the same UUID as an existing node elsewhere in the workspace.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_THROW</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then an <b>ItemExistsException</b> is thrown.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										An <b>ItemExistsException</b> will be thrown if the top-most element of the incoming XML would deserialize to a node with the same name as an existing child of <b>parentAbsPath</b> and that child does not allow same-name siblings.
+									</p>
+									<p class="c5">
+										An <b>IOException</b> is thrown if an I/O error occurs.
+									</p>
+									<p class="c5">
+										If no node exists at <b>parentAbsPath</b>, a <b>PathNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										If node-type or other implementation-specific constraints prevent the addition of the subtree, a <b>ConstraintViolationException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will also be thrown if <b>uuidBehavior</b> is set to <b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b> and an incoming node has the same UUID as the node at <b>parentAbsPath</b> or one of its ancestors.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the node at <b>parentAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the addition of the subtree.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the session associated with this <b>Workspace</b> object does not have sufficient permissions to perform the import.
+									</p>
+									<p class="c5">
+										If another error occurs, a <b>RepositoryException</b> is thrown.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 24.4 Implementation Issues (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>24.4 Implementation Issues</H2>
+	<P>JCR adapters built
+	against some existing repositories may require a connection to the
+	back-end repository to determine whether a feature is supported.
+	Using methods on <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	(as opposed, for example, to methods on <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>)
+	to test support for a feature is therefore potentially problematic.
+	However, several approaches are open to such adapters:</P>
+	<UL>
+		<LI><P>Establish a
+		transient connection to the back-end (for example, using
+		service-to-service authentication or as “guest”) to determine
+		support for a feature.</P>
+		<LI><P>Determine the
+		features supported by the back-end upon application deployment, and
+		store this in configuration file locally available to the JCR
+		adapter at runtime.</P>
+		<LI><P>Report the
+		feature set supported by the type of back end, which may be a
+		superset of the feature set supported by the specific instance of
+		that back-end type.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

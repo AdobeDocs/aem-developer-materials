@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.1.1 Repository (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.1.1." id="section_6.1.1."></a>6.1.1 Repository
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The naming service lookup (or whatever mechanism is used) will return an object implementing the <b>Repository</b> interface.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Repository</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>login(Credentials&nbsp;credentials,<br>
+										String workspaceName)</b>
+									</p>
+									<p class="c5">
+										Authenticates the user using the supplied <b>credentials</b>. If <b>workspaceName</b> is recognized as the name of an existing workspace in the repository and authorization to access that workspace is granted, then a new <b>Session</b> object is returned. The format of the string <b>workspaceName</b> depends upon the implementation.
+									</p>
+									<p class="c5">
+										If <b>credentials</b> is <b>null</b>, it is assumed that authentication is handled by a mechanism external to the repository itself (for example, through the JAAS framework) and that the repository implementation exists within a context (for example, an application server) that allows it to handle authorization of the request for access to the specified workspace. See <a href="8.4_Locking.html">8.4</a> <i>Access Control</i> for more details.
+									</p>
+									<p class="c5">
+										If <b>workspaceName</b> is <b>null</b>, a default workspace is automatically selected by the repository implementation. This may, for example, be the “home workspace” of the user whose credentials were passed, though this is entirely up to the configuration and implementation of the repository. Alternatively, this may be a “null workspace” that serves only to provide the method <b>Workspace.getAccessibleWorkspaceNames</b>, allowing the client to select from among available “real” workspaces (see <a href="6.2.2_Workspace_Read_Methods.html">6.2.2</a> <i>Workspace Read Methods</i>).
+									</p>
+									<p class="c5">
+										If authentication or authorization for the specified workspace fails, a <b>LoginException</b> is thrown.
+									</p>
+									<p class="c5">
+										If <b>workspaceName</b> is not recognized, a <b>NoSuchWorkspaceException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>login(Credentials credentials)</b>
+									</p>
+									<p class="c5">
+										Equivalent to <b>login(credentials, null)</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>login(String workspaceName)</b>
+									</p>
+									<p class="c5">
+										Equivalent to <b>login(null, workspaceName)</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>login()</b>
+									</p>
+									<p class="c5">
+										Equivalent to <b>login(null, null)</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDescriptorKeys()</b>
+									</p>
+									<p class="c5">
+										Returns a string array holding all descriptor keys available for this implementation. This set must contain at least the built-in keys defined by the string constants in this interface (see below). Used in conjunction with <b>Repository.getDescriptor(String name)</b> to query information about this repository implementation.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDescriptor(String key)</b>
+									</p>
+									<p class="c5">
+										Returns the descriptor for the specified key. Used to query information about this repository implementation. The set of available keys can be found by calling <b>getDescriptorKeys</b>. If the specified key is not found, <b>null</b> is returned.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

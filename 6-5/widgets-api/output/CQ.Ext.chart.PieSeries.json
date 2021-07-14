@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.chart.PieSeries","doc":"PieSeries class for the charts widget.","configs":[],"props":[{"name":"displayName","doc":"The human-readable name of the series."},{"name":"type","doc":"The type of series."}],"methods":[],"events":[]}

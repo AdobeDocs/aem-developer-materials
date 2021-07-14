@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.11.1.2 Example (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.11.1.2." id="section_4.11.1.2."></a>4.11.1.2 Example
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following diagram illustrates a possible repository architecture.
+								</p>
+							
+							
+								<p>
+									<img src="jsr170-4_11_1_2.png">
+								</p>
+							
+							
+								<p class="c5">
+									This diagram shows a repository that supports versioning and contains two workspaces. The version storage is represented by the area in the bottom. It contains a version history for each versionable node in the repository. The versionable nodes in the workspaces are shown in various shadings. The nonversionable nodes are shown in white.
+								</p>
+							
+							
+								<p class="c5">
+									All versionable nodes are referenceable, though not all referenceable nodes are versionable (for example the node <i>03</i> in <b>WS</b><b><sub>1</sub></b> is referenceable, because it has a UUID, but it is not versionable). Both <b>WS</b><b><sub>1</sub></b> and <b>WS</b><b><sub>2</sub></b> also contain nonreferenceable nodes (the nodes <b>c</b> below <i>01</i>).
+								</p>
+							
+							
+								<p class="c5">
+									In the diagram the version histories are represented by stacked circles of differing shades. Each versionable node shares its version history with its corresponding node in the other workspace.
+								</p>
+							
+							
+								<p class="c5">
+									At any given time a particular workspace may hold nodes based on various versions stored in version storage. In the diagram, <b>WS</b><sub><b>1</b></sub> holds nodes based on the “light gray” version of the nodes <i>00</i>, <i>01</i> and <i>02</i>. <b>WS</b><sub><b>2</b></sub>, in contrast, has nodes based on the “dark gray” version of <i>00</i>, the “light gray” version of <i>01</i> and the “dotted” version of <i>02</i>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that for the purposes of illustration, each version history is depicted as containing three versions. This is a simplification; in an actual system the version histories of distinct nodes may differ. Furthermore, in this picture, parent child relations within the version storage are not shown. See <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i> for a more detailed description.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

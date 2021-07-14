@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.3.8 Interaction with the Transient Layer and Transactions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.3.8 Interaction with the Transient Layer and Transactions</H3>
+	<P>Changes to access
+	control are session-write operations (see §10.1.1 <I>Session-Write</I>)
+	and interact with the transient layer and persistent store no
+	differently than other such operations:</P>
+	<UL>
+		<LI><P>A node which has
+		had a policy set or removed is marked as modified until the changes
+		are saved.</P>
+		<LI><P>The access
+		control modifications can be reverted by calling
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh(false)</FONT></FONT>.</P>
+		<LI><P>The changes are
+		visible to sessions other than the session making the change <I>no
+		earlier than</I> its being dispatched (i.e., saved if outside a
+		transaction, committed if within a transaction).</P>
+		<LI><P>Depending on the
+		repository implementation, the changes may not be reflected in
+		another session until that session reacquires the modified node
+		(for example, by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh</FONT></FONT>).</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

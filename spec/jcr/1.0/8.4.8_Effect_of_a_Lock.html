@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.8 Effect of a Lock (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.8." id="section_8.4.8."></a>8.4.8 Effect of a Lock
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If a lock applies to particular node (i.e., the node either holds the lock or is a descendant of a node holding a deep lock), that node cannot be changed by anyone except the user who is the token holder for that lock. The user need not be the lock owner.
+								</p>
+							
+							
+								<p class="c5">
+									Note that since at most one session per repository may hold the same lock token, serial access to the locked item is ensured.
+								</p>
+							
+							
+								<p class="c5">
+									More precisely, a lock applying to a node prevents all non-token holders from doing any of the following:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Adding or removing its properties.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Changing the values of its properties.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Adding or removing its child nodes.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Adding or removing its mixin node types.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<i>Removing</i> a node is considered an alteration of <i>its parent</i>. This means that a locked node may be removed by any user with sufficient access permissions as long as its parent node is not locked.
+								</p>
+							
+							
+								<p class="c5">
+									Similarly, a locked node and its subtree may be moved, if both the source parent and the destination parent-to-be are not locked. Locked nodes can always be read and copied (that is, serve as the source of a copy) by any user with sufficient access permissions.
+								</p>
+							
+							
+								<p class="c5">
+									When an action is prevented due to a lock, a <b>LockException</b> is thrown either immediately or on the subsequent <b>save</b>. Implementations may differ on which of these behaviors is used to enforce locking.
+								</p>
+							
+							
+								<p class="c5">
+									There is at most one lock on any node at one time.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

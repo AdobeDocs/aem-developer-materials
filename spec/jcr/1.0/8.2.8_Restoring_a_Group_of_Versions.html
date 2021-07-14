@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.8 Restoring a Group of Versions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.8." id="section_8.2.8."></a> 8.2.8 Restoring a Group of Versions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In certain circumstances a “chicken and egg” problem may arise due to a cycle of <b>REFERENCE</b> properties when attempting to restore a node that has been removed.
+								</p>
+							
+							
+								<p class="c5">
+									For example, let us say that there is a node <b>/A</b> with child nodes <b>/A/B</b> and <b>/A/C</b>. Furthermore let there be <b>REFERENCE</b> properties <b>/A/B/X /A/C/Y</b> such that <b>X</b> refers to <b>/A/C</b> and <b>Y</b> refers to <b>/A/B</b>. Now assume that <b>A</b>, <b>B</b> and <b>C</b> are first checked-in (thus creating versions of all three nodes) and then <b>B</b> and <b>C</b> are deleted from the workspace.
+								</p>
+							
+							
+								<p class="c5">
+									In order to restore <b>B</b> or <b>C</b> the other must be restored first, since the reference properties <b>X</b> and <b>Y</b> both require the existence of the node to which they refer. This is the “chicken and egg” problem.
+								</p>
+							
+							
+								<p class="c5">
+									To deal with such situations the method
+								</p>
+							
+							
+								<p class="c5">
+									<b>Workspace.restore(Version[] versions,<br>
+									boolean removeExisting)</b>
+								</p>
+							
+							
+								<p class="c5">
+									is provided. This method allows the client to simultaneously restore two or more versions. In this case the client must first find the <b>Version</b> objects (call them <b>Va</b>, <b>Vb</b> and <b>Vc</b>) that correspond to the versions of <b>A</b>, <b>B</b> and <b>C</b> that are to be restored and calling
+								</p>
+							
+							
+								<p class="c5">
+									<b>ws.restore(new Version[]{Va, Vb, Vc}, removeExisting)</b>
+								</p>
+							
+							
+								<p class="c5">
+									Notice that in order to restore <b>B</b> and <b>C</b>, the previous version of <b>A</b> must also be restored because its state contains the child links to <b>B</b> and <b>C</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>removeExisting</b> flag governs what happens in cases of UUID collision.
+								</p>
+							
+							
+								<p class="c5">
+									See <a href="8.2.14.2_Workspace_Versioning_Methods.html">8.2.14.2</a> <i>Workspace Versioning Methods</i>, for more information.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.2 Path Resolution (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.4.2 Path Resolution</H3>
+	<P>The successive path
+	segments of JCR path <I>P</I> = (<I>S</I><SUB><I>0</I></SUB>, <I>S</I><SUB><I>1</I></SUB>,
+	..., <I>S</I><SUB><I>n</I></SUB>) define a route through workspace <I>W</I>
+	to a <I>target</I> item as follows:</P>
+	<UL>
+		<LI><P>If <I>S</I><SUB><I>0</I></SUB>
+		is the root segment then the path is absolute and the <I>current</I>
+		item is the root node of <I>W</I>.</P>
+		<LI><P>If <I>S</I><SUB><I>0</I></SUB>
+		is an identifier segment <I>U</I>, then the path is absolute and
+		the <I>current</I> item is the node in <I>W</I> with the identifier
+		<I>U</I>.</P>
+		<LI><P>Otherwise, the
+		path is relative and the <I>current</I> item is determined by the
+		context of use.</P>
+		<LI><P>For each segment
+		<I>S</I> in path <I>P</I>:</P>
+		<UL>
+			<LI><P>If <I>S</I> is a
+			self segment then the <I>current</I> item does not change.</P>
+			<LI><P>If <I>S</I> is a
+			parent segment then the new <I>current</I> item is a parent of the
+			old <I>current</I> item (see §3.4.2.1 <I>Parent Resolution</I>).</P>
+			<LI><P>If <I>S</I> is a
+			name segment then the new current item is the child of the old
+			<I>current</I> item identified by <I>S</I> (see §3.4.2.2 <I>Child
+			Resolution</I>).</P>
+		</UL>
+		<LI><P>Once all segments
+		have been traversed, the <I>current</I> item is the <I>target</I>
+		item.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

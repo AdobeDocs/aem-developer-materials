@@ -1,0 +1,369 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-wizard &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="Granite UI Foundation JS Components" href="../js/index.html" />
+    <link rel="prev" title="foundation-toggleable" href="toggleable.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../js/index.html" title="Granite UI Foundation JS Components"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="toggleable.html" title="foundation-toggleable"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-wizard">
+<h1>foundation-wizard<a class="headerlink" href="#foundation-wizard" title="Permalink to this headline">¶</a></h1>
+<p>A wizard is a user interaction that is defined by a sequence of predefined steps. Usually it is used in conjunction with a form.</p>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.foundation-wizard<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element is a wizard. A wizard MUST NOT be nested inside another wizard.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-wizard-step">
+<h3>.foundation-wizard-step<a class="headerlink" href="#foundation-wizard-step" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element is a step of a wizard. It MUST be a descendant of <code class="docutils literal notranslate"><span class="pre">.foundation-wizard</span></code> element.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-wizard-step-title">
+<h3>[data-foundation-wizard-step-title]<a class="headerlink" href="#data-foundation-wizard-step-title" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the title of the step.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span><span class="o">-</span><span class="n">title</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-wizard-step-active">
+<h3>.foundation-wizard-step-active<a class="headerlink" href="#foundation-wizard-step-active" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the step that is currently active. It MUST be applied to <code class="docutils literal notranslate"><span class="pre">.foundation-wizard-step</span></code> element. There MUST be exactly one active step at a time. <code class="docutils literal notranslate"><span class="pre">foundation-wizard-stepchange</span></code> event MUST be triggered after moving from one step to another. See <code class="docutils literal notranslate"><span class="pre">foundation-wizard-stepchange</span></code> event section for details.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span><span class="o">-</span><span class="n">active</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-wizard-step-validation">
+<h3>[data-foundation-wizard-step-validation]<a class="headerlink" href="#data-foundation-wizard-step-validation" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">false</span></code> to skip validation for this particular step. Otherwise the validation is performed when step change is about to occur.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">step</span><span class="o">-</span><span class="n">validation</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="foundation-wizard-control">
+<h2>.foundation-wizard-control<a class="headerlink" href="#foundation-wizard-control" title="Permalink to this headline">¶</a></h2>
+<p>Indicates the element to control the transition from one step to another. The <code class="docutils literal notranslate"><span class="pre">.foundation-wizard</span></code> element managed by this control is determined by the closest ancestor (i.e. equivalent using jQuery: <code class="docutils literal notranslate"><span class="pre">control.closest(&quot;.foundation-wizard&quot;)</span></code>).</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">control</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-wizard-control-action">
+<h2>[data-foundation-wizard-control-action]<a class="headerlink" href="#data-foundation-wizard-control-action" title="Permalink to this headline">¶</a></h2>
+<p>Indicates the action to take. The valid values are:</p>
+<dl class="docutils">
+<dt>prev</dt>
+<dd>Go to previous step; <code class="docutils literal notranslate"><span class="pre">.foundation-wizard-step-active</span></code> and <code class="docutils literal notranslate"><span class="pre">foundation-wizard-stepchange</span></code> event MUST be handled accordingly.</dd>
+<dt>next</dt>
+<dd>Go to next step; <code class="docutils literal notranslate"><span class="pre">.foundation-wizard-step-active</span></code> and <code class="docutils literal notranslate"><span class="pre">foundation-wizard-stepchange</span></code> event MUST be handled accordingly.</dd>
+<dt>cancel</dt>
+<dd>Cancel the wizard; the component handling <code class="docutils literal notranslate"><span class="pre">foundation-wizard</span></code> is free to decide the behavior of cancel.</dd>
+</dl>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">control</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">action</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-wizard-control-src">
+<h2>[data-foundation-wizard-control-src]<a class="headerlink" href="#data-foundation-wizard-control-src" title="Permalink to this headline">¶</a></h2>
+<p>Indicates that upon control activation, additional steps will be fetched and added as the next steps. The valid value is a <a class="reference external" href="http://tools.ietf.org/html/rfc6570">URI Template</a>, where each HTML input (e.g. &lt;input&gt;, &lt;select&gt;) of the steps up to the active one is passed as variable. The HTML input’s name and value are used as variable name and value respectively.</p>
+<p>The valid response returned by the URI—by expanding the mentioned URI Template—is the valid HTML markup of <code class="docutils literal notranslate"><span class="pre">.foundation-wizard-step</span></code>. For example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-step&quot;</span> <span class="na">data-foundation-wizard-step-title</span><span class="o">=</span><span class="s">&quot;Additional Step 1&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;prev&quot;</span><span class="p">&gt;</span>Prev<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;next&quot;</span><span class="p">&gt;</span>Next<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- The content of the step --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-step&quot;</span> <span class="na">data-foundation-wizard-step-title</span><span class="o">=</span><span class="s">&quot;Additional Step 2&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;prev&quot;</span><span class="p">&gt;</span>Prev<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;next&quot;</span><span class="p">&gt;</span>Next<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- The content of the step --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This attribute is only applicable to <code class="docutils literal notranslate"><span class="pre">[data-foundation-wizard-control-action]</span></code> with the value of <code class="docutils literal notranslate"><span class="pre">next</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">action</span><span class="o">=</span><span class="nb">next</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">src</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-step&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/home.html&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;cancel&quot;</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;next&quot;</span><span class="p">&gt;</span>Next<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;p1&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;abc&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-step foundation-wizard-step-active&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;prev&quot;</span><span class="p">&gt;</span>Prev<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-wizard-control&quot;</span> <span class="na">data-foundation-wizard-control-action</span><span class="o">=</span><span class="s">&quot;next&quot;</span> <span class="na">data-foundation-wizard-control-src</span><span class="o">=</span><span class="s">&quot;/nextsteps.html?p1={p1}&amp;p2={p2}&quot;</span><span class="p">&gt;</span>Next<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;p2&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;xyz&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Upon clicking next, the value of <code class="docutils literal notranslate"><span class="pre">[data-foundation-wizard-control-src]</span></code> is expanded into <code class="docutils literal notranslate"><span class="pre">/nextsteps.html?p1=abc&amp;p2=xyz</span></code>.</p>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="foundation-wizard-stepchange">
+<h3>foundation-wizard-stepchange<a class="headerlink" href="#foundation-wizard-stepchange" title="Permalink to this headline">¶</a></h3>
+<p>This event MUST be triggered after moving from one step to another. It is triggered at <code class="docutils literal notranslate"><span class="pre">.foundation-wizard</span></code> element, with the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationWizardStepchangeEvent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @param to The current active step</span>
+<span class="cm">   * @param from The previous active step</span>
+<span class="cm">   */</span>
+  <span class="p">(</span><span class="nx">to</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">from?</span>: <span class="kt">Element</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-wizard-stepchange&quot;</span><span class="p">,</span> <span class="s2">&quot;.foundation-wizard&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">)</span> <span class="p">{});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-wizard</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">.foundation-wizard</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationWizard</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationWizard</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Toggles the next button. This method will try to find all next buttons of the current step.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param enable A boolean value to determine whether the button should be enabled or disabled</span>
+<span class="cm">   */</span>
+  <span class="nx">toggleNext</span><span class="p">(</span><span class="nx">enable</span>: <span class="kt">boolean</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Toggles the prev button. This method will try to find all prev buttons of the current step.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param enable A boolean value to determine whether the button should be enabled or disabled</span>
+<span class="cm">   */</span>
+  <span class="nx">togglePrev</span><span class="p">(</span><span class="nx">enable</span>: <span class="kt">boolean</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Toggles the cancel button. This method will try to find all cancel buttons of the current step.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param enable A boolean value to determine whether the button should be enabled or disabled</span>
+<span class="cm">   */</span>
+  <span class="nx">toggleCancel</span><span class="p">(</span><span class="nx">enable</span>: <span class="kt">boolean</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Toggle an action button. This method will try to find all buttons of the current step with the given action.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param action=prev|next|cancel The action buttons to toggle</span>
+<span class="cm">   * @param enable A boolean value to determine whether the button should be enabled or disabled</span>
+<span class="cm">   */</span>
+  <span class="nx">toggle</span><span class="p">(</span><span class="nx">action</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">enable</span>: <span class="kt">boolean</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Go to the next step. This method will show the next step regardless if it&#39;s logically make sense or not (e.g. due to validation).</span>
+<span class="cm">   * If there is no next step, this method does nothing.</span>
+<span class="cm">   */</span>
+  <span class="nx">next</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Go to the previous step. This method will show the previous step regardless if it&#39;s logically make sense or not.</span>
+<span class="cm">   * If there is no previous step, this method does nothing.</span>
+<span class="cm">   */</span>
+  <span class="nx">prev</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Appends the given array of step elements to the wizard.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Since the wizard can have complex layout, the exact requirement of structure of the step element (the markup) is decided at the implementation level.</span>
+<span class="cm">   * The implementation may transform the element to produce the final step element implementing &lt;code&gt;.foundation-wizard-step&lt;/code&gt;.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param steps The steps to be appended</span>
+<span class="cm">   * @param index The index the step is added. If not passed, the step is added as the last one.</span>
+<span class="cm">   */</span>
+  <span class="nx">append</span><span class="p">(</span><span class="nx">steps</span>: <span class="kt">Element</span><span class="p">[],</span> <span class="nx">index?</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Appends the given array of step elements to the wizard after the given reference step.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Since the wizard can have complex layout, the exact requirement of structure of the step element (the markup) is decided at the implementation level.</span>
+<span class="cm">   * The implementation may transform the element to produce the final step element implementing &lt;code&gt;.foundation-wizard-step&lt;/code&gt;.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param steps The steps to be appended</span>
+<span class="cm">   * @param refStep The reference step</span>
+<span class="cm">   */</span>
+  <span class="nx">appendAfter</span><span class="p">(</span><span class="nx">steps</span>: <span class="kt">Element</span><span class="p">[],</span> <span class="nx">refStep</span>: <span class="kt">Element</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Removes the given array of step elements from the wizard.</span>
+<span class="cm">   * If the current step is removed, the resulting behaviour is undefined.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param steps The steps to be removed</span>
+<span class="cm">   */</span>
+  <span class="nx">remove</span><span class="p">(</span><span class="nx">steps</span>: <span class="kt">Element</span><span class="p">[])</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the previous steps of the given step.</span>
+<span class="cm">   */</span>
+  <span class="nx">getPrevSteps</span><span class="p">(</span><span class="nx">step</span>: <span class="kt">Element</span><span class="p">)</span><span class="o">:</span> <span class="nx">Element</span><span class="p">[];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-wizard</span></code> implementation MUST provide validation of the current step just before changing to a next step depending on the configuration of <code class="docutils literal notranslate"><span class="pre">[data-foundation-wizard-step-validation]</span></code>.</p>
+<p>Also, the next button of a step is enabled/disabled according to the validity of the step.
+Note for this particular feature, since it can be implemented generically to only depend on <code class="docutils literal notranslate"><span class="pre">foundation-wizard</span></code> vocabulary, it is provided OOTB. Implementor doesn’t need to implement it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-wizard</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-wizard</a></li>
+<li><a class="reference internal" href="#foundation-wizard-step">.foundation-wizard-step</a></li>
+<li><a class="reference internal" href="#data-foundation-wizard-step-title">[data-foundation-wizard-step-title]</a></li>
+<li><a class="reference internal" href="#foundation-wizard-step-active">.foundation-wizard-step-active</a></li>
+<li><a class="reference internal" href="#data-foundation-wizard-step-validation">[data-foundation-wizard-step-validation]</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#foundation-wizard-control">.foundation-wizard-control</a></li>
+<li><a class="reference internal" href="#data-foundation-wizard-control-action">[data-foundation-wizard-control-action]</a></li>
+<li><a class="reference internal" href="#data-foundation-wizard-control-src">[data-foundation-wizard-control-src]</a></li>
+<li><a class="reference internal" href="#event">Event</a><ul>
+<li><a class="reference internal" href="#foundation-wizard-stepchange">foundation-wizard-stepchange</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="toggleable.html"
+                        title="previous chapter">foundation-toggleable</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../js/index.html"
+                        title="next chapter">Granite UI Foundation JS Components</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/wizard.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../js/index.html" title="Granite UI Foundation JS Components"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="toggleable.html" title="foundation-toggleable"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Granite UI Foundation Vocabulary</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

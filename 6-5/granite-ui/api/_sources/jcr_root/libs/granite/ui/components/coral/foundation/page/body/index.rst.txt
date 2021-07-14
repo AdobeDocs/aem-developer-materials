@@ -1,0 +1,13 @@
+
+Body
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/page/body
+
+   A page body component (``<body>``).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:PageBody] > granite:commonAttrs, granite:container

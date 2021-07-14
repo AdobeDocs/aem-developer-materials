@@ -1,0 +1,11 @@
+Responses
+=========
+
+The components related to the response handler of :doc:`../../clientlibs/foundation/js/form/index`.
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

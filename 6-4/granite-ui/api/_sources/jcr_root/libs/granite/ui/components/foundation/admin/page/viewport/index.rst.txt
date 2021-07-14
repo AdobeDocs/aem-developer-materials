@@ -1,0 +1,7 @@
+
+Viewport
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/admin/page/viewport
+
+   The component to specify the viewport meta of the page. This viewport is designed for admin page.

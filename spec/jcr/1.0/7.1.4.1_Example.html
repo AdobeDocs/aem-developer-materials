@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.4.1 Example (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.4.1." id="section_7.1.4.1."></a>7.1.4.1 Example
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If we wish to add a new “shape” to our product information, we might do it like this:
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node productsNode = root.getNode("products");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node triangleNode = productsNode.addNode("triangle");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node contentNode = triangleNode.addNode("jcr:content");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>contentNode.setProperty("myapp:title", "Triangle: an<br>
+									economical choice");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>contentNode.setProperty("myapp:price", 50);</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>contentNode.setProperty("myapp:lead", "Triangles have</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>three sides, but they're not always</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>equal!");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>productsNode.save();</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									This would add the new node <b>triangle</b> below the <b>products</b> node and add to <b>triangle</b>'s <b>jcr:content</b> node the properties <b>myapp:title</b>, <b>myapp:price</b> and <b>myapp:lead</b> with the specified values.
+								</p>
+							
+							
+								<p class="c5">
+									As another example, suppose we wish to iterate through a collection of strings and add each as a new paragraph under the node <b>triangle/jcr:content</b>. In that case, we might do the following:
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node contentNode = triangleNode.getNode("jcr:content");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>for (Iterator i = strings.iterator(); i.hasNext();) {</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>String text = (String) i.next();</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node paraNode = contentNode.addNode("paragraph"); paraNode.setProperty("text", text);</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>}</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									For each string retrieved from <b>strings</b> a new node is created called <b>paragraph</b> which is given a new property called <b>text</b>, which, in turn, is assigned the retrieved string.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

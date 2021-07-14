@@ -1,0 +1,929 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.6 Property Type Conversion (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.6." id="section_6.2.6."></a> 6.2.6 Property Type Conversion
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a read or write of a property is performed with an access method or value of a different type than the property, an attempt will be made to automatically convert between types using the principles described in the following table:
+								</p>
+							
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+		<table border="1" cellpadding="1" cellspacing="0" rules="GROUPS">
+			<colgroup>
+				
+			</colgroup>
+			<colgroup>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</colgroup>
+			<tbody>
+				<tr>
+					<td valign="bottom" bgcolor="#33CCCC">
+						<p class="c18">
+							<i><b>From</b></i>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<i><b>To</b></i>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99"></td>
+					<td valign="bottom" bgcolor="#FFCC99"></td>
+					<td valign="bottom" bgcolor="#FFCC99"></td>
+					<td valign="bottom" bgcolor="#FFCC99"></td>
+					<td valign="bottom" bgcolor="#FFCC99"></td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						
+							
+								
+									
+										
+											
+												<p>
+													<br>
+												</p>
+											
+										
+									
+								
+							
+						
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						
+							
+								
+									
+										
+											
+												<p>
+													<br>
+												</p>
+											
+										
+									
+								
+							
+						
+					</td>
+					<td valign="top" bgcolor="#FFCC99">
+						
+							
+								
+									
+										
+											
+												<p>
+													<br>
+												</p>
+											
+										
+									
+								
+							
+						
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" bgcolor="#33CCCC">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>String</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Binary</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Date</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Double</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Long</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Boolean</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Name</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Path</b>
+						</p>
+					</td>
+					<td valign="bottom" bgcolor="#FFCC99">
+						<p class="c18">
+							<b>Reference</b>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>String</b>
+						</p>
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							UTF-8
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							ISO 8601:2000. Throw on format error.
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								java.lang.<br>
+								Double.<br>
+								valueOf(String)
+							
+							
+								<br>
+								(base 10 conversion)
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								java.lang.<br>
+								Long.<br>
+								valueOf(String)
+							
+							
+								<br>
+								(base 10 conversion)
+							
+						
+					</td>
+					<td>
+						<p class="c18">
+							java.lang.<br>
+							Boolean.<br>
+							valueOf(String)
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Throw on format error.
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Throw on format error.
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Throw on format error.
+						</p>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Binary</b>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							UTF-8.<br>
+							If binary is not UTF-8 behavior is implementation-specific
+						</p>
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Date</b>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							ISO 8601:2000
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Milliseconds since 1970-01-01T00:00:00Z. Throw on out-of- range.
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Milliseconds since 1970-01-01T00:00:00Z. Throw on out-of- range.
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throws ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Double</b>
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								java.lang.<br>
+								Double.<br>
+								toString()
+							
+							
+								<br>
+								(base 10 conversion)
+							
+						
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Milliseconds since 1970-01-01T00:00:00Z
+						</p>
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Standard Java conversion
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Long</b>
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								java.lang.<br>
+								Long.toString()
+							
+							
+								<br>
+								(base 10 conversion)
+							
+						
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Milliseconds since 1970-01-01T00:00:00Z
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Standard Java conversion
+						</p>
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Boolean</b>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							java.lang.<br>
+							Boolean.<br>
+							toString()
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Name</b>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Direct
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Name becomes relative path
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Path</b>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Direct
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						<p class="c18">
+							If Path is relative and one element long and has no index, convert directly, other wise throw ValueFormat Exception
+						</p>
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr valign="top">
+					<td bgcolor="#33CCCC">
+						<p class="c18">
+							<b>Reference</b>
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							Direct
+						</p>
+					</td>
+					<td>
+						<p class="c18">
+							via String
+						</p>
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td>
+						
+							
+								<br>
+								Throw ValueFormat
+							
+							
+								<br>
+								Exception
+							
+						
+					</td>
+					<td bgcolor="#A6A6A6">
+						<p>
+							<br>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+<script type="text/javascript" src="footer.js"></script></body></html>

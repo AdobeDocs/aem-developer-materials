@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.6 Version Graph (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.6 Version Graph</H3>
+	<P>The versions within a
+	version history form a <I>version graph</I> where the versions are
+	the vertices and each <I>direct successor/direct predecessor</I>
+	pair are joined by a directed edge.</P>
+	<P>Under simple
+	versioning, branching and merging are not supported, so the version
+	graph is always a linear series of successive versions.</P>
+	<P>Under full versioning
+	branching and merging are supported, so a version may have multiple
+	direct predecessors, multiple direct successors, or both. Also,
+	under full versioning, the version graph is exposed in content with
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	nodes as the vertices and the edges defined by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:successors</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>.
+		</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

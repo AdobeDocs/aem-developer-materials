@@ -1,0 +1,156 @@
+*****************
+betty-breadcrumbs
+*****************
+
+``betty-breadcrumbs`` is a custom element to satisfy the requirement of Betty Breadcrumbs.
+
+
+Markup
+======
+
+
+betty-breadcrumbs
+-----------------
+
+Indicates the root of the component.
+
+Selector Rule::
+
+   betty-breadcrumbs
+
+
+[icon]
+------
+
+Indicates the icon of the breadcrumbs, where it usually represents the icon of the current page.
+
+Selector Rule::
+
+   betty-breadcrumbs[icon]
+
+
+[trackingfeature]
+-----------------
+
+Indicates the name of the feature that the interaction takes place.
+See :doc:`:-foundation-tracking <../tracking/index>`.
+
+Selector Rule::
+
+   betty-breadcrumbs[trackingfeature]
+
+
+[trackingelement]
+-----------------
+
+Indicates the element this breadcrumbs represents for the purpose of tracking.
+See :doc:`:-foundation-tracking <../tracking/index>`.
+
+Selector Rule::
+
+   betty-breadcrumbs[trackingelement]
+
+
+betty-breadcrumbs-item
+----------------------
+
+Indicates the item, where each item represents a page of the hierarchy.
+
+The order of the items is from the current page to its ancestors.
+
+Selector Rule::
+
+   betty-breadcrumbs > betty-breadcrumbs-item
+
+
+[trackingelement]
+-----------------
+
+Indicates the element this item represents for the purpose of tracking.
+See :doc:`:-foundation-tracking <../tracking/index>`.
+
+Selector Rule::
+
+   betty-breadcrumbs-item[trackingelement]
+
+
+Event
+=====
+
+
+change
+------
+
+target
+   ``betty-breadcrumbs``
+
+bubble
+   yes
+
+cancelable
+   no
+
+default action
+   none
+
+This event is triggered when there is a change of breadcrumbs' selection committed by the user.
+
+
+DOM API
+=======
+
+
+betty-breadcrumbs
+-----------------
+
+.. code-block:: ts
+
+   interface BettyBreadcrumbs {
+     /**
+      * The icon of the breadcrumbs, where it usually represents the icon of the current page.
+      */
+     icon: string;
+
+     /**
+      * The item element that is currently selected.
+      *
+      * When an item is selected, it means that it is the current page in the hierarchy.
+      */
+     readonly selectedItem: Element;
+   }
+
+
+betty-breadcrumbs-item
+----------------------
+
+.. code-block:: ts
+
+   interface BettyBreadcrumbsItem {
+     /**
+      * <code>true</code> if the item is selected; <code>false</code> otherwise.
+      */
+     selected: boolean;
+   }
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <betty-breadcrumbs icon="pages">
+     <betty-breadcrumbs-item>English</betty-breadcrumbs-item>
+     <betty-breadcrumbs-item>Geo Outdoor</betty-breadcrumbs-item>
+     <betty-breadcrumbs-item>Sites</betty-breadcrumbs-item>
+   </betty-breadcrumbs>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "betty-breadcrumbs" {
+     rankdir=BT;
+     "betty-titlebar" -> "betty-breadcrumbs" [label="related to"];
+   }

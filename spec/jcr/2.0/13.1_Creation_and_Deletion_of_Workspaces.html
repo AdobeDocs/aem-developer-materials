@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 13.1 Creation and Deletion of Workspaces (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>13.1 Creation and Deletion of Workspaces</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.createWorkspace(String name)</FONT></FONT></P>
+	<P>creates a new
+	workspace with the specified name. The new workspace will contain
+	only a root node. The new workspace can be accessed through a login
+	specifying its name.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.createWorkspace(String name,<BR> 
+	 String srcWorkspace)</FONT></FONT></P>
+	<P>creates a new
+	workspace with the specified name initialized with a clone of the
+	content of the workspace <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	(see §10.8.1 <I>Cloning Nodes Across Workspaces</I>). Semantically,
+	this method is equivalent to creating a new workspace and manually
+	cloning <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	to it. However, this method may assist some implementations in
+	optimizing subsequent <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.update</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.merge</FONT></FONT>
+	calls between the new workspace and its source. The new workspace
+	can be accessed through a login specifying its name.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.deleteWorkspace(String name)</FONT></FONT></P>
+	<P>Deletes the workspace
+	with the specified name from the repository, deleting all content
+	within it.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

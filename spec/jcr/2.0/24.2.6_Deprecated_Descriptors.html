@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 24.2.6 Deprecated Descriptors (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>24.2.6 Deprecated Descriptors</H3>
+	<TABLE WIDTH=641 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=242>
+		<COL WIDTH=365>
+		<TR VALIGN=TOP>
+			<TD WIDTH=242>
+				<P><FONT SIZE=1 ><B>Key</B></FONT></P>
+			</TD>
+			<TD WIDTH=365>
+				<P><FONT SIZE=1 ><B>Descriptor</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=242>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=1 >LEVEL_1_SUPPORTED</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=365>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns true if and only if</FONT></P>
+				<UL>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_XML_EXPORT_SUPPORTED</FONT></FONT></FONT><FONT SIZE=1 >
+					= </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					and</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_LANGUAGES</FONT></FONT></FONT><FONT SIZE=1 >
+					is of non-zero length.</FONT></P>
+				</UL>
+				<P><FONT SIZE=1 >These
+				semantics are identical to those in JCR 1.0. This constant is
+				</FONT><FONT SIZE=1 ><B>deprecated</B></FONT><FONT SIZE=1 >.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=242>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=1 >LEVEL_2_SUPPORTED</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=365>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns true if and only if</FONT></P>
+				<UL>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >LEVEL_1_SUPPORTED</FONT></FONT></FONT><FONT SIZE=1 >
+					= </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >,</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >WRITE_SUPPORTED</FONT></FONT></FONT><FONT SIZE=1 >
+					= </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					and</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_XML_IMPORT_SUPPORTED</FONT></FONT></FONT><FONT SIZE=1 >
+					= </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >.</FONT></P>
+				</UL>
+				<P><FONT SIZE=1 >These
+				semantics are identical to those in JCR 1.0. This constant is
+				</FONT><FONT SIZE=1 ><B>deprecated</B></FONT><FONT SIZE=1 >.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=242>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=1 >OPTION_QUERY_SQL_SUPPORTED</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=365>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if the (deprecated) JCR 1.0 SQL query language is
+				supported . This constant is </FONT><FONT SIZE=1 ><B>deprecated</B></FONT><FONT SIZE=1 >.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=242>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=1 >QUERY_XPATH_POS_INDEX</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=365>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >false</FONT></FONT></FONT><FONT SIZE=1 >
+				unless the (deprecated) JCR 1.0 XPath query language is
+				supported. If JCR 1.0 XPath is supported then this descriptor has
+				the same semantics as in JCR 1.0. This constant is </FONT><FONT SIZE=1 ><B>deprecated</B></FONT><FONT SIZE=1 >.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=242>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=1 >QUERY_XPATH_DOC_ORDER</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=365>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >false</FONT></FONT></FONT><FONT SIZE=1 >
+				unless the (deprecated) JCR 1.0 XPath query language is
+				supported. If JCR 1.0 XPath is supported then this descriptor has
+				the same semantics as in JCR 1.0. This constant is </FONT><FONT SIZE=1 ><B>deprecated</B></FONT><FONT SIZE=1 >.</FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

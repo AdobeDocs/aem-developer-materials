@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.3 Check-Out (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>15.3 Check-Out</H2>
+	<P>A checked-in node is
+	checked-out using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	void
+	VersionManager.checkout(String absPath)</FONT></FONT>,
+		</P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is the absolute path of the node.</P>
+	<P>The checked-out state
+	indicates to the repository and other clients that the latest
+	version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is “being worked on” and will typically be checked-in again at
+	some point in the future, thus creating a new version.</P>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>
+	of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is already checked-out, this method has no effect.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is not versionable, an <FONT FACE="Courier New, monospace"><FONT SIZE=2>UnsupportedRepositoryOperationException</FONT></FONT>
+		is thrown.</P>
+	</UL>
+	<P>Otherwise,</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and all nodes and properties in the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		lose their read-only status.</P>
+		<LI><P>Under full
+		versioning, the current value of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is copied to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+	</UL>
+	<P>This method is a
+	workspace-write. There is no need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

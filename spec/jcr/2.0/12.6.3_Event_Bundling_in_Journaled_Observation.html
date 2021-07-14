@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.6.3 Event Bundling in Journaled Observation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>12.6.3 Event Bundling in Journaled Observation</H3>
+	<P>In journaled
+	observation dispatching is done by the implementation writing to the
+	event journal.</P>
+	<P>If event bundling is
+	supported a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	event is dispatched when a persistent change is made to workspace
+	bracketing the set of events associated with that change. This
+	exposes event bundle boundaries in the event journal.</P>
+	<P>Note that a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	event will never appear within an <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventIterator</FONT></FONT>
+	since, in asynchronous observation, the iterator itself serves to
+	define the event bundle.</P>
+	<P>In repositories that
+	do not support event bundling, <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	events do not appear in the event journal.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

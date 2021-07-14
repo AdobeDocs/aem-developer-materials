@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.7.1 Multi-Value Properties (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.7.1." id="section_4.7.1."></a>4.7.1 Multi-Value Properties
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In some cases, a property may have more than one value. A property that may have more than one value is referred to as a multi-valued property (regardless of whether it currently has one or more than one value).
+								</p>
+							
+							
+								<p class="c5">
+									Whether a particular property is a multi-valued property is governed by the property definition applicable to it, which is determined by the node type of the property's parent node.
+								</p>
+							
+							
+								<p class="c5">
+									The values within a multi-valued property are ordered.
+								</p>
+							
+							
+								<p class="c5">
+									Accessing the values of such a property is done with the method <b>Property.getValues</b>, which returns an array of <b>Value</b> objects that contains the values in their prescribed order.
+								</p>
+							
+							
+								<p class="c5">
+									Accessing a multi-valued property with <b>Property.getValue</b>, or a single-value property with <b>Property.getValues</b> will throw a <b>ValueFormatException</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The values stored within a multi-valued property are all of the same type.
+								</p>
+							
+							
+								<p class="c5">
+									As with single-value properties, there is no such thing as a <b>null</b> value. If a value within a multi-value property is set to <b>null</b>, this is equivalent to removing that value from the value array. In such a case the array is automatically compacted: shifting the indexes of those values with indexes greater than that of the removed value by -1.
+								</p>
+							
+							
+								<p class="c5">
+									Note that this <i>does</i> mean that a multi-value property can have <i>no values</i> (i.e., be an empty array), whereas a single-value property either has a (non-null) value or does not exist.
+								</p>
+							
+							
+								<p class="c5">
+									See <a href="7.1.5_Adding_and_Writing_Properties.html">7.1.5</a> <i>Adding and Writing Properties</i> for more details.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

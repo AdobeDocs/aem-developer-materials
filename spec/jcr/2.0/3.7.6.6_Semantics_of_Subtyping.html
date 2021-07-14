@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.6.6 Semantics of Subtyping (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.6.6 Semantics of Subtyping</H4>
+	<P>The general principle
+	guiding inheritance is to preserve the <I>is-a</I> relation across
+	subtyping. This implies that if <I>T'</I> is a subtype of <I>T</I>
+	and <I>N</I> is a valid instance of <I>T'</I> then:</P>
+	<UL>
+		<LI><P><I>N</I> must be a valid instance
+		of <I>T</I>.</P>
+		<LI><P>A method call that depends on the
+		truth of the test <I>N is of type T</I> must not fail <I>solely</I>
+		due to <I>N</I> being of type <I>T'</I>.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

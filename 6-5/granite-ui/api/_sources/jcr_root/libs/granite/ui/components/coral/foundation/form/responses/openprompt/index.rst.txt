@@ -1,0 +1,52 @@
+
+OpenPrompt
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/responses/openprompt
+
+   ``OpenPrompt`` is success response handler that shows a prompt to the user to open a resource.
+   This is mainly used in creation form, where the user is given a choice to open the newly created resource.
+
+   It is implemented in the client by :doc:`../../../clientlibs/foundation/js/form/response/ui/success/foundation.prompt.open`.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormResponsesOpenPrompt] > granite:commonAttrs
+
+      /**
+       * The URI Template to open the resource.
+       */
+      - open (StringEL)
+
+      /**
+       * The URI Template for redirection.
+       */
+      - redirect (StringEL)
+
+      /**
+       * The title of the prompt.
+       */
+      - jcr:title (String) i18n
+
+      /**
+       * The text of the prompt.
+       */
+      - text (String) i18n
+
+   Example::
+
+      + myform
+        - sling:resourceType = "granite/ui/components/coral/foundation/form"
+        - method = "post"
+        - action = "/my/new/resource"
+        - foundationForm = true
+        + successresponse
+          - sling:resourceType = "granite/ui/components/coral/foundation/form/responses/openprompt"
+          - open = "/bin/wcmcommand?cmd=open&_charset_=utf-8&path={Path}"
+          - redirect = "/sites.html${granite:encodeURIPath(requestPathInfo.suffix)}"
+          - jcr:title = "Site Created"
+        + items
+          + field1
+          + field2

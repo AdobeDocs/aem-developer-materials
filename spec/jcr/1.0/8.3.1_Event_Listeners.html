@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.3.1 Event Listeners (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.3.1." id="section_8.3.1."></a>8.3.1 Event Listeners
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									An application registers its interest in events by registering an event listener with the workspace. Listeners are <i>per workspace</i>, not repository-wide; they only receive events for the workspace in which they are registered.
+								</p>
+							
+							
+								<p class="c5">
+									Note that it is up to the implementation whether changes made to the subtree below <b>jcr:system</b> trigger events (6.8 System Node).
+								</p>
+							
+							
+								<p class="c5">
+									When an persistent change occurs, the repository calls the <b>onEvent</b> method of each registered listener that is entitled (based on the filters set for that listener) to receive notification, and passes it an <b>EventIterator</b> object. The <b>EventIterator</b> contains the bundle of events (again, filtered for that particular listener) that describe the persistent changes made to the workspace.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.observation.<b><br>
+										EventListener</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>onEvent(EventIterator event)</b>
+									</p>
+									<p class="c5">
+										This method is called when a bundle of events is dispatched. See <a href="8.3.4_Event_Production.html">8.3.4</a> <i>Event Production</i>.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.5.5 Version Labels (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.5.5 Version Labels</H4>
+	<P>A version label is a
+	JCR name, unique among the labels within a version history, that
+	identifies a single version within that history. A version can have
+	zero or more labels. 
+	</P>
+	<P>Labels are can be
+	assigned, removed and retrieved through the API. Versions can also
+	be retrieved by label (see §15.4 <I>Version Labels</I>). 
+	</P>
+	<P>Under full versioning
+	labels are also exposed through an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>
+	child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionLabels</FONT></FONT>.
+	This node holds a set of reference properties that record all labels
+	that have been assigned to the versions within this version history.
+	Each label is represented by a single reference property which uses
+	the label itself as its name and points to that <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	child node to which the label applies (see §15.4.1.2 <I>Adding a
+	Version Label</I>). The <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>
+	node type has the following definition:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:versionLabels]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">- *
+	(REFERENCE) protected ABORT &lt; 'nt:version'</FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

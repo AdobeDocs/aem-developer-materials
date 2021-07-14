@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>betty-ActionBar &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="betty-SimpleBar" href="simplebar.html" />
+    <link rel="prev" title="Granite UI Betty Components" href="index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="simplebar.html" title="betty-SimpleBar"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Granite UI Betty Components"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Granite UI Betty Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="betty-actionbar">
+<h1>betty-ActionBar<a class="headerlink" href="#betty-actionbar" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">.betty-ActionBar</span></code> is an extension of coral-actionbar to satisfy the requirement of Betty Actionbar.</p>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.betty-ActionBar<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the root of the component.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coral</span><span class="o">-</span><span class="n">actionbar</span><span class="o">.</span><span class="n">betty</span><span class="o">-</span><span class="n">ActionBar</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="betty-actionbar-item">
+<h3>.betty-ActionBar-item<a class="headerlink" href="#betty-actionbar-item" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the item of the ActionBar.</p>
+<p>By default <cite>.betty-ActionBar-item</cite> is assumed to be Coral.Button, where its padding is used as part of the calculation of the gap between items.
+So if there is a need to create a different item type, most likely effort is to have the same horizontal padding as Coral.Button.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coral</span><span class="o">-</span><span class="n">actionbar</span><span class="o">-</span><span class="n">item</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">betty</span><span class="o">-</span><span class="n">ActionBar</span><span class="o">-</span><span class="n">item</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variants">
+<h2>Variants<a class="headerlink" href="#variants" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="betty-actionbar-large">
+<h3>.betty-ActionBar–large<a class="headerlink" href="#betty-actionbar-large" title="Permalink to this headline">¶</a></h3>
+<p>The variant to represent Shell3 specific of the ActionBar.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">betty</span><span class="o">-</span><span class="n">ActionBar</span><span class="o">.</span><span class="n">betty</span><span class="o">-</span><span class="n">ActionBar</span><span class="o">--</span><span class="n">large</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="betty-actionbar-overlay">
+<h3>.betty-ActionBar–overlay<a class="headerlink" href="#betty-actionbar-overlay" title="Permalink to this headline">¶</a></h3>
+<p>The variant that is required to be used in overlay scenario.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">betty</span><span class="o">-</span><span class="n">ActionBar</span><span class="o">.</span><span class="n">betty</span><span class="o">-</span><span class="n">ActionBar</span><span class="o">--</span><span class="n">overlay</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">coral-actionbar</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;betty-ActionBar&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">coral-actionbar-primary</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;betty-ActionBar-item&quot;</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-button&quot;</span> <span class="na">variant</span><span class="o">=</span><span class="s">&quot;quiet&quot;</span><span class="p">&gt;</span>Create<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;betty-ActionBar-item&quot;</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-button&quot;</span> <span class="na">variant</span><span class="o">=</span><span class="s">&quot;quiet&quot;</span><span class="p">&gt;</span>Edit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">coral-actionbar-primary</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">coral-actionbar-secondary</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;betty-ActionBar-item&quot;</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-button&quot;</span> <span class="na">variant</span><span class="o">=</span><span class="s">&quot;quiet&quot;</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;betty-ActionBar-item&quot;</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-button&quot;</span> <span class="na">variant</span><span class="o">=</span><span class="s">&quot;primary&quot;</span><span class="p">&gt;</span>Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">coral-actionbar-item</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">coral-actionbar-secondary</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">coral-actionbar</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../../_images/graphviz-5113ff464615a8a804e0bd057356b3e90db827c4.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;betty-ActionBar&quot; {
+  rankdir=BT;
+  &quot;betty-SimpleBar&quot; -&gt; &quot;betty-ActionBar&quot; [label=&quot;similar to&quot;];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">betty-ActionBar</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.betty-ActionBar</a></li>
+<li><a class="reference internal" href="#betty-actionbar-item">.betty-ActionBar-item</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variants">Variants</a><ul>
+<li><a class="reference internal" href="#betty-actionbar-large">.betty-ActionBar–large</a></li>
+<li><a class="reference internal" href="#betty-actionbar-overlay">.betty-ActionBar–overlay</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Granite UI Betty Components</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="simplebar.html"
+                        title="next chapter">betty-SimpleBar</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/betty/actionbar.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="simplebar.html" title="betty-SimpleBar"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Granite UI Betty Components"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Granite UI Betty Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,364 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Picker &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../" src="../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../search.html" />
+    <link rel="next" title="Popover" href="../popover/index.html" />
+    <link rel="prev" title="RailPanel" href="../panel/railpanel/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../popover/index.html" title="Popover"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../panel/railpanel/index.html" title="RailPanel"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" accesskey="U">Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="picker">
+<h1>Picker<a class="headerlink" href="#picker" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/coral/foundation/picker">
+<dt>
+<code class="descname">/libs/granite/ui/components/coral/foundation/picker</code></dt>
+<dd><p>The component to render the picker dialog.</p>
+<p>It implements <a class="reference internal" href="../clientlibs/foundation/vocabulary/picker.html"><span class="doc">foundation-picker</span></a> vocabulary.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:Picker</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">jcr:title</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The title of the picker.</p>
+<p>e.g. “Select Path”</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">modeGroup</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">[data-foundation-mode-group]</span></a>
+that the collection is part of.</p>
+<p>This property is required to be set when <code class="docutils literal notranslate"><span class="pre">actions/selection</span></code> is set.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">targetCollection</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The selector to the collection.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">path</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path representing the current location of the picker.</p>
+<p>This path will be used as the starting location to generate the breadcrumbs up to <code class="docutils literal notranslate"><span class="pre">rootPath</span></code>.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">rootPath</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">/</li></ol></dt>
+<dd><p>The path representing the root location of the picker.</p>
+<p>This path will be used as the root location to generate the breadcrumbs.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionCount</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">multiple</li></ol></dt>
+<dd><p>The count of item to be selected:</p>
+<dl class="docutils">
+<dt>single</dt>
+<dd>Only maximum single selection allowed</dd>
+<dt>multiple</dt>
+<dd>Zero or more selection allowed</dd>
+</dl>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">views</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">mandatory</dt><dd class="gnd-attributes-value"></dd></dl><p>The folder for the available views (i.e. the rendering) of the collection,
+where each can any component implementing <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">foundation-collection</span></a>.</p>
+<p>At least one view needs to be provided.
+If there are at least two views, the following properties are needed to be able to switch the view:</p>
+<dl class="docutils">
+<dt>icon (String)</dt>
+<dd>The icon of the view.</dd>
+<dt>jcr:title (String)</dt>
+<dd>The title of the view.</dd>
+<dt>src (StringEL)</dt>
+<dd><p class="first">The URI Template that is returning the HTML response of the new view.
+It supports the following variables:</p>
+<dl class="last docutils">
+<dt>offset</dt>
+<dd>The item offset of the current request.</dd>
+<dt>limit</dt>
+<dd>The item limit of the pagination.</dd>
+<dt>id</dt>
+<dd>The id of the collection (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>).</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">search</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:PickerSearch</li></ol></dt>
+<dd><p>A folder to configure search feature.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">actions</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:PickerActions</li></ol></dt>
+<dd><p>The folder for the actions applicable in the context of the collection.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:PickerSearch</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">name</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute for the main text field of the search.</p>
+<p>e.g. “fulltext”</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">targetCollection</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The selector to the search result collection.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">form</span></dt>
+<dd><p>The folder containing the form fields.
+These fields are in addition to the main text field of the search.</p>
+<p>The HTML form will be setup if this resource is specified.
+The form’s <code class="docutils literal notranslate"><span class="pre">action</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Text.escapePath(resource.getPath())</span> <span class="pre">+</span> <span class="pre">&quot;.result.&quot;</span> <span class="pre">+</span> <span class="pre">selectionCount</span> <span class="pre">+</span> <span class="pre">&quot;.html&quot;</span></code>,
+which means that the search handler are given two request selectors: <code class="docutils literal notranslate"><span class="pre">result</span></code> and the value of <code class="docutils literal notranslate"><span class="pre">selectionCount</span></code>.
+The form values would be sent as form request body as usual.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">views</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">mandatory</dt><dd class="gnd-attributes-value"></dd></dl><p>The folder for the available views (i.e. the rendering) of the search result collection,
+where each can any component implementing <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">foundation-collection</span></a>.</p>
+<p>At least one view needs to be provided.
+If there are at least two views, the following properties are needed to be able to switch the view:</p>
+<dl class="docutils">
+<dt>icon (String)</dt>
+<dd>The icon of the view.</dd>
+<dt>jcr:title (String)</dt>
+<dd>The title of the view.</dd>
+<dt>src (StringEL)</dt>
+<dd><p class="first">The URI Template that is returning the HTML response of the new view.
+It supports the following variables:</p>
+<dl class="last docutils">
+<dt>offset</dt>
+<dd>The item offset of the current request.</dd>
+<dt>limit</dt>
+<dd>The item limit of the pagination.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:PickerActions</span></dt>
+<dd><dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">selection</span></dt>
+<dd><p>The folder for actions applicable during selection mode. (e.g. when one of the collection item is selected)</p>
+<p>The action can be any action component such as <a class="reference internal" href="../button/index.html"><span class="doc">Button</span></a>,
+<a class="reference internal" href="../anchorbutton/index.html"><span class="doc">AnchorButton</span></a>,
+<a class="reference internal" href="../pulldown/index.html"><span class="doc">Pulldown</span></a>,
+<a class="reference internal" href="../collection/index.html"><span class="doc">Collection</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">actionBar</span></code> variant of the components above SHOULD be used, unless <code class="docutils literal notranslate"><span class="pre">primary</span></code> variant is used.</p>
+<p>Usually the action is implementing <a class="reference internal" href="../clientlibs/foundation/js/collection/action/index.html"><span class="doc">foundation-collection-action</span></a>,
+with <code class="docutils literal notranslate"><span class="pre">relScope</span></code> = <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p>The actions are wrapped inside <a class="reference internal" href="../clientlibs/foundation/js/collection/action/index.html"><span class="doc">.foundation-collection-actionbar</span></a>
+element where <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-actionbar-target]</span></code> is set as the value of <code class="docutils literal notranslate"><span class="pre">targetCollection</span></code> property.
+This way setting the <code class="docutils literal notranslate"><span class="pre">target</span></code> property at individual action is not required.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">picker</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/picker&quot;</span>
+  <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Select Path&quot;</span>
+  <span class="o">-</span> <span class="n">targetCollection</span> <span class="o">=</span> <span class="s2">&quot;#example-pathfield-collection&quot;</span>
+  <span class="o">-</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.suffix}</span><span class="s2">&quot;</span>
+  <span class="o">-</span> <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;/content&quot;</span>
+  <span class="o">-</span> <span class="n">selectionCount</span> <span class="o">=</span> <span class="s2">&quot;single&quot;</span>
+  <span class="o">+</span> <span class="n">views</span>
+    <span class="o">+</span> <span class="n">column</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/columnview&quot;</span>
+      <span class="o">-</span> <span class="n">granite</span><span class="p">:</span><span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;example-pathfield-collection&quot;</span>
+      <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Column View&quot;</span>
+      <span class="o">-</span> <span class="n">icon</span> <span class="o">=</span> <span class="s2">&quot;viewColumn&quot;</span>
+      <span class="o">-</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">40</span>
+      <span class="o">-</span> <span class="n">size</span> <span class="o">=</span> <span class="s1">&#39;${empty requestPathInfo.selectors[1] ? &quot;40&quot; : requestPathInfo.selectors[1]}&#39;</span>
+      <span class="o">-</span> <span class="n">loadAncestors</span> <span class="o">=</span> <span class="n">true</span>
+      <span class="o">-</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.suffix}</span><span class="s2">&quot;</span>
+      <span class="o">-</span> <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;/content&quot;</span>
+      <span class="o">-</span> <span class="n">selectionCount</span> <span class="o">=</span> <span class="s2">&quot;single&quot;</span>
+      <span class="o">-</span> <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;/apps/my/picker/views/column{.offset,limit}.html{+id}&quot;</span><span class="o">&gt;</span>
+      <span class="o">+</span> <span class="n">datasource</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;example/datasources/children&quot;</span>
+        <span class="o">-</span> <span class="n">itemResourceType</span> <span class="o">=</span> <span class="s2">&quot;example/columnitem&quot;</span>
+        <span class="o">-</span> <span class="n">offset</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.selectors[0]}</span><span class="s2">&quot;</span>
+        <span class="o">-</span> <span class="n">limit</span> <span class="o">=</span> <span class="s1">&#39;${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}&#39;</span>
+        <span class="o">-</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.suffix}</span><span class="s2">&quot;</span>
+  <span class="o">+</span> <span class="n">search</span>
+    <span class="o">-</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;fulltext&quot;</span>
+    <span class="o">-</span> <span class="n">targetCollection</span> <span class="o">=</span> <span class="s2">&quot;#example-pathfield-search-collection&quot;</span>
+    <span class="o">+</span> <span class="n">form</span>
+      <span class="o">+</span> <span class="n">rootpath</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/form/textfield&quot;</span>
+        <span class="o">-</span> <span class="n">fieldLabel</span> <span class="o">=</span> <span class="s2">&quot;Path&quot;</span>
+        <span class="o">-</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;path&quot;</span>
+        <span class="o">-</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;/content&quot;</span>
+      <span class="o">+</span> <span class="n">orderby</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/form/hidden&quot;</span>
+        <span class="o">-</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;orderby&quot;</span>
+        <span class="o">-</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;@jcr:score&quot;</span>
+      <span class="o">+</span> <span class="n">orderby</span><span class="o">.</span><span class="n">sort</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/form/hidden&quot;</span>
+        <span class="o">-</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;orderby.sort&quot;</span>
+        <span class="o">-</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;desc&quot;</span>
+    <span class="o">+</span> <span class="n">views</span>
+      <span class="o">+</span> <span class="n">card</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/masonry&quot;</span>
+        <span class="o">-</span> <span class="n">granite</span><span class="p">:</span><span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;example-pathfield-search-collection&quot;</span>
+        <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Card View&quot;</span>
+        <span class="o">-</span> <span class="n">icon</span> <span class="o">=</span> <span class="s2">&quot;viewCard&quot;</span>
+        <span class="o">-</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="o">-</span> <span class="n">selectionCount</span> <span class="o">=</span> <span class="s2">&quot;single&quot;</span>
+        <span class="o">-</span> <span class="n">selectionMode</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="o">-</span> <span class="n">size</span> <span class="o">=</span> <span class="s1">&#39;${empty requestPathInfo.selectors[3] ? &quot;20&quot; : requestPathInfo.selectors[3]}&#39;</span>
+        <span class="o">-</span> <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;/apps/my/picker/search/views/card.result.$</span><span class="si">{requestPathInfo.selectors[1]}</span><span class="s2">{.offset,limit}.html?$</span><span class="si">{querystring}</span><span class="s2">&quot;</span>
+        <span class="o">+</span> <span class="n">datasource</span>
+          <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/querybuilder/datasource&quot;</span>
+          <span class="o">-</span> <span class="n">itemResourceType</span> <span class="o">=</span> <span class="s2">&quot;example/card&quot;</span>
+          <span class="o">-</span> <span class="n">offset</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.selectors[2]}</span><span class="s2">&quot;</span>
+          <span class="o">-</span> <span class="n">limit</span> <span class="o">=</span> <span class="s1">&#39;${empty requestPathInfo.selectors[3] ? &quot;21&quot; : requestPathInfo.selectors[3] + 1}&#39;</span>
+  <span class="o">+</span> <span class="n">actions</span>
+    <span class="o">+</span> <span class="n">selection</span>
+      <span class="o">+</span> <span class="n">button1</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/button&quot;</span>
+        <span class="o">-</span> <span class="n">variant</span> <span class="o">=</span> <span class="s2">&quot;actionBar&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button 1&quot;</span>
+      <span class="o">+</span> <span class="n">button2</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/button&quot;</span>
+        <span class="o">-</span> <span class="n">variant</span> <span class="o">=</span> <span class="s2">&quot;actionBar&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button 2&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../panel/railpanel/index.html"
+                        title="previous chapter">RailPanel</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../popover/index.html"
+                        title="next chapter">Popover</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/picker/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../popover/index.html" title="Popover"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../panel/railpanel/index.html" title="RailPanel"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" >Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

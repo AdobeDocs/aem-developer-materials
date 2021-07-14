@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.19 Predefined Node Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.19." id="section_6.7.19."></a>6.7.19 Predefined Node Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Every repository must support at least the primary node type <b>nt:base</b>. All other primary node types must be subtypes of <b>nt:base</b>. A number of predefined primary node types are defined for common application domains.
+								</p>
+							
+							
+								<p class="c5">
+									In general, support for these additional primary node types is optional.
+								</p>
+							
+							
+								<p class="c5">
+									Three mixin node types <b>mix:referenceable</b>, <b>mix:versionable</b> and <b>mix:lockable</b> are defined. In general support for these types is also optional. However:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>mix:referenceable</b> is required in order to support UUID-bearing nodes, which in turn support <b>REFERENCE</b> property types and versioning.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					Additionally, versioning requires the mixin node type <b>mix:versionable</b> and the primary node types <b>nt:version</b>, <b>nt:versionHistory</b>, <b>nt:versionLabels</b>, <b>nt:versionedChild</b> and <b>nt:frozenNode</b>. See <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Locking requires the mixin node type <b>mix:lockable</b>. See <a href="8.4_Locking.html">8.4</a> <i>Locking</i>.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

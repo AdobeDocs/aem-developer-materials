@@ -1,0 +1,304 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-advancedselect &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-anchor" href="../anchor/index.html" />
+    <link rel="prev" title="foundation-adapter" href="../adapter/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../anchor/index.html" title="foundation-anchor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../adapter/index.html" title="foundation-adapter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-advancedselect">
+<h1>foundation-advancedselect<a class="headerlink" href="#foundation-advancedselect" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-advancedselect</span></code> is a concept of select—similar purpose as &lt;select&gt;—that leverages <a class="reference internal" href="../../vocabulary/collection.html"><span class="doc">foundation-collection</span></a> and <a class="reference internal" href="../../vocabulary/selections.html"><span class="doc">foundation-selections</span></a> vocabulary to indicates its options. This would allow arbitary component implementing <code class="docutils literal notranslate"><span class="pre">foundation-collection</span></code> to be used, while still providing the concept of select.</p>
+<p>It works with &lt;form&gt; submission. It will submit the selected values in that case.</p>
+<p>It listens to <code class="docutils literal notranslate"><span class="pre">foundation-selections-change</span></code> event, which upon trigger performs the following:</p>
+<ol class="arabic simple">
+<li>Update the selection values (<code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-values</span></code>)</li>
+<li>Update the selection count (<code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-status</span></code>)</li>
+</ol>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.foundation-advancedselect<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the <code class="docutils literal notranslate"><span class="pre">foundation-advancedselect</span></code> element.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span>
+</pre></div>
+</div>
+<p>Example</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect&quot;</span> <span class="na">data-foundation-advancedselect-name</span><span class="o">=</span><span class="s">&quot;myselect&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-navigator&quot;</span> <span class="na">data-foundation-advancedselect-navigator-path</span><span class="o">=</span><span class="s">&quot;/a/b&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-control&quot;</span> <span class="na">data-foundation-advancedselect-control-src</span><span class="o">=</span><span class="s">&quot;/a.advancedselect.html&quot;</span><span class="p">&gt;</span>Item A<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-collection foundation-collection&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span> <span class="na">data-foundation-collection-item-id</span><span class="o">=</span><span class="s">&quot;/a/b/c&quot;</span><span class="p">&gt;</span>Item C<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span> <span class="na">data-foundation-collection-item-id</span><span class="o">=</span><span class="s">&quot;/a/b/z&quot;</span><span class="p">&gt;</span>Item Z<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-values&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-advancedselect-name">
+<h3>[data-foundation-advancedselect-name]<a class="headerlink" href="#data-foundation-advancedselect-name" title="Permalink to this headline">¶</a></h3>
+<p>The name of hidden inputs (&lt;input type=”hidden”&gt;), which store the selected values (<code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-values</span></code>).</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">name</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-advancedselect-values">
+<h3>.foundation-advancedselect-values<a class="headerlink" href="#foundation-advancedselect-values" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element acting as the container of the selected values, which represented by hidden inputs (&lt;input type=”hidden”&gt;), each has <code class="docutils literal notranslate"><span class="pre">name</span></code> property equals to value of <code class="docutils literal notranslate"><span class="pre">[data-foundation-advancedselect-name]</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> property equals to value of <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-item-id]</span></code> of the selected item.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">values</span>
+</pre></div>
+</div>
+<p>Example</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect&quot;</span> <span class="na">data-foundation-advancedselect-name</span><span class="o">=</span><span class="s">&quot;myselect&quot;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-collection foundation-collection&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item foundation-selections-item&quot;</span> <span class="na">data-foundation-collection-item-id</span><span class="o">=</span><span class="s">&quot;/a/b/c&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span> <span class="na">data-foundation-collection-item-id</span><span class="o">=</span><span class="s">&quot;/a/b/z&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-values&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;myselect&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;/a/b/c&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-advancedselect-collection">
+<h3>.foundation-advancedselect-collection<a class="headerlink" href="#foundation-advancedselect-collection" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element is a <code class="docutils literal notranslate"><span class="pre">foundation-collection</span></code> under management of the <code class="docutils literal notranslate"><span class="pre">foundation-advancedselect</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">collection</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-advancedselect-navigator">
+<h3>.foundation-advancedselect-navigator<a class="headerlink" href="#foundation-advancedselect-navigator" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element acting as the navigator, which is usually used to contain <code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-control</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">navigator</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-advancedselect-navigator-path">
+<h3>[data-foundation-advancedselect-navigator-path]<a class="headerlink" href="#data-foundation-advancedselect-navigator-path" title="Permalink to this headline">¶</a></h3>
+<p>The current path of the navigator.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">navigator</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">navigator</span><span class="o">-</span><span class="n">path</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-advancedselect-status">
+<h3>.foundation-advancedselect-status<a class="headerlink" href="#foundation-advancedselect-status" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the element of the selection status.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">status</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-advancedselect-status-template">
+<h3>[data-foundation-advancedselect-status-template]<a class="headerlink" href="#data-foundation-advancedselect-status-template" title="Permalink to this headline">¶</a></h3>
+<p>The template string to generate the value of the status. Currently only <code class="docutils literal notranslate"><span class="pre">count</span></code> variable is supported. The variable is indicated by <code class="docutils literal notranslate"><span class="pre">{{count}}</span></code> pattern.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">status</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">status</span><span class="o">-</span><span class="n">template</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Example</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span>
+  <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-status&quot;</span>
+  <span class="na">data-foundation-advancedselect-status-template</span><span class="o">=</span><span class="s">&quot;{{count}} selected&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-advancedselect-control">
+<h3>.foundation-advancedselect-control<a class="headerlink" href="#foundation-advancedselect-control" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the control to manipulate <code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect</span></code>. Upon activation, it will perform the action specified by <code class="docutils literal notranslate"><span class="pre">[data-foundation-advancedselect-control-action]</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">control</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-advancedselect-control-action">
+<h3>[data-foundation-advancedselect-control-action]<a class="headerlink" href="#data-foundation-advancedselect-control-action" title="Permalink to this headline">¶</a></h3>
+<p>The action to be performed when <code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-control</span></code> is activated.</p>
+<p>Currently only <code class="docutils literal notranslate"><span class="pre">foundation.navigate</span></code> is supported.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">control</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">action</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="foundation-navigate">
+<h4>foundation.navigate<a class="headerlink" href="#foundation-navigate" title="Permalink to this headline">¶</a></h4>
+<p>Navigate the current view of <code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-collection</span></code> to another, which is located at <code class="docutils literal notranslate"><span class="pre">[data-foundation-advancedselect-control-src]</span></code>. This action is usually used to navigate to different “folder” similar to a file system.</p>
+<p>Given <code class="docutils literal notranslate"><span class="pre">newContent</span></code> as the newly fetched content, the following will be performed:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect-navigator</span></code> of <code class="docutils literal notranslate"><span class="pre">newContent</span></code> replaces the old one</li>
+<li><code class="docutils literal notranslate"><span class="pre">.foundation-collection-item</span></code> of <code class="docutils literal notranslate"><span class="pre">newContent</span></code> replaces the old ones</li>
+<li><code class="docutils literal notranslate"><span class="pre">.foundation-collection-item</span></code> of <code class="docutils literal notranslate"><span class="pre">newContent</span></code> that are previously selected will be selected again, using value of <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-item-id]</span></code> as the key.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="data-foundation-advancedselect-control-src">
+<h3>[data-foundation-advancedselect-control-src]<a class="headerlink" href="#data-foundation-advancedselect-control-src" title="Permalink to this headline">¶</a></h3>
+<p>The URL returning the HTML of a <code class="docutils literal notranslate"><span class="pre">.foundation-advancedselect</span></code> to replace the old one as specified by the <code class="docutils literal notranslate"><span class="pre">[data-foundation-advancedselect-control-action]</span></code>, for example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-navigator&quot;</span> <span class="na">data-foundation-advancedselect-navigator-path</span><span class="o">=</span><span class="s">&quot;/a/b/c&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-advancedselect-collection foundation-collection&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span> <span class="na">data-foundation-collection-item-id</span><span class="o">=</span><span class="s">&quot;/a/b/c/d1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span> <span class="na">data-foundation-collection-item-id</span><span class="o">=</span><span class="s">&quot;/a/b/c/d2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">control</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">advancedselect</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">src</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../../_images/graphviz-4a628ff606c7b9823f7febe2efbda6d9dc99b9a3.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-advancedselect&quot; {
+  rankdir=BT;
+  &quot;foundation-selections&quot; -&gt; &quot;foundation-collection&quot; [label=&quot;extends&quot;];
+  &quot;foundation-advancedselect&quot; -&gt; &quot;foundation-selections&quot; [label=&quot;implements&quot;];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-advancedselect</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-advancedselect</a></li>
+<li><a class="reference internal" href="#data-foundation-advancedselect-name">[data-foundation-advancedselect-name]</a></li>
+<li><a class="reference internal" href="#foundation-advancedselect-values">.foundation-advancedselect-values</a></li>
+<li><a class="reference internal" href="#foundation-advancedselect-collection">.foundation-advancedselect-collection</a></li>
+<li><a class="reference internal" href="#foundation-advancedselect-navigator">.foundation-advancedselect-navigator</a></li>
+<li><a class="reference internal" href="#data-foundation-advancedselect-navigator-path">[data-foundation-advancedselect-navigator-path]</a></li>
+<li><a class="reference internal" href="#foundation-advancedselect-status">.foundation-advancedselect-status</a></li>
+<li><a class="reference internal" href="#data-foundation-advancedselect-status-template">[data-foundation-advancedselect-status-template]</a></li>
+<li><a class="reference internal" href="#foundation-advancedselect-control">.foundation-advancedselect-control</a></li>
+<li><a class="reference internal" href="#data-foundation-advancedselect-control-action">[data-foundation-advancedselect-control-action]</a><ul>
+<li><a class="reference internal" href="#foundation-navigate">foundation.navigate</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-foundation-advancedselect-control-src">[data-foundation-advancedselect-control-src]</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../adapter/index.html"
+                        title="previous chapter">foundation-adapter</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../anchor/index.html"
+                        title="next chapter">foundation-anchor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/advancedselect/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../anchor/index.html" title="foundation-anchor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../adapter/index.html" title="foundation-adapter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"name":"CQ.Timing","doc":"A helper class providing load time statistics.\nTo enable go to Apache Felix Web Management Consol...","configs":[],"props":[],"methods":[{"name":"stamp","doc":"Logs the specified text and the duration since the last entry of the\nsame ID. The usage of IDs al..."}],"events":[]}

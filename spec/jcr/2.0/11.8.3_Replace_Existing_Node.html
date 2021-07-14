@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.8.3 Replace Existing Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>11.8.3 Replace Existing Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REPLACE_EXISTING</FONT></FONT>:
+	If an incoming non-shareable node has the same identifier as a node
+	already existing in the workspace, then the already existing node is
+	replaced by the incoming node in the same position as the existing
+	node. Note that this may result in the incoming subgraph being
+	disaggregated and “spread around” to different locations in the
+	workspace. In the most extreme case this behavior may result in no
+	node at all being added as child of <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentAbsPath</FONT></FONT>.
+	This will occur if the topmost element of the incoming XML has the
+	same identifier as an existing node elsewhere in the workspace. In
+	the case of shareable node, however, the behavior differs (see
+	§14.1.2 <I>Shared Node Creation on Import</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

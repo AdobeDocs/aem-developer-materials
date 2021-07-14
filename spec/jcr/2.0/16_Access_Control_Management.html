@@ -1,0 +1,627 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16 Access Control Management (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>16 Access Control Management</H1>
+	<P>A repository may
+	support <I>access control management</I>, enabling the following:</P>
+	<UL>
+		<LI><P>Privilege discovery: Determining
+		the privileges that a user has in relation to a node.</P>
+		<LI><P>Assigning access control
+		policies: Setting the privileges that a user has in relation to a
+		node using access control policies specific to the implementation.</P>
+	</UL>
+	<P>Whether a particular
+	implementation supports access control can be determined by querying
+	the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_ACCESS_CONTROL_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="16.1 Access Control Manager"></a>	<H2>16.1 Access Control Manager</H2>
+	<P>Access control is
+	exposed through a</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.security.AccessControlManager</FONT></FONT></P>
+	<P>acquired from the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlManager
+	Session.getAccessControlManager()</FONT></FONT>.</P>
+<a name="16.2 Privilege Discovery"></a>	<H2>16.2 Privilege Discovery</H2>
+	<P>A privilege represents
+	the ability to perform a particular set of operations on a node.
+	Each privilege is identified by a JCR name. 
+	</P>
+	<P>JCR defines a set of
+	standard privileges within the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	interface. An implementation may add additional privileges, using an
+	appropriate implementation-specific namespace for their names.</P>
+<a name="16.2.1 Aggregate Privileges"></a>	<H3>16.2.1 Aggregate Privileges</H3>
+	<P>A privilege may be an
+	<I>aggregate privilege</I>. Aggregate privileges are sets of other
+	privileges. Granting, denying, or testing an aggregate privilege is
+	equivalent to individually granting, denying, or testing each
+	privilege it contains. The privileges contained by an aggregate
+	privilege may themselves be aggregate privileges if the resulting
+	privilege graph is acyclic.</P>
+<a name="16.2.2 Abstract Privileges"></a>	<H3>16.2.2 Abstract Privileges</H3>
+	<P>A privilege may be an
+	<I>abstract privilege</I>. Abstract privileges cannot themselves be
+	granted or denied, but can be individually tested and can be
+	composed into aggregate privileges which are granted or denied.</P>
+	<P>Abstract privileges
+	facilitate application interoperability against repositories
+	supporting different privilege granularities. For example, consider
+	aggregate privilege <I>p</I> containing privileges <I>p1</I> and <I>p2</I>.
+	In repository A, <I>p1</I> and <I>p2</I> are not abstract and can
+	therefore be individually granted, whereas in repository B both <I>p1</I>
+	and <I>p2</I> are abstract and cannot be individually granted. For
+	both repositories, however, an application can test whether a user
+	has privilege <I>p1</I>, even though in repository B, <I>p1</I> can
+	only be acquired through non-abstract privilege <I>p</I>.</P>
+	<P>A privilege can be
+	both aggregate and abstract.</P>
+<a name="16.2.3 Standard Privileges"></a>	<H3>16.2.3 Standard Privileges</H3>
+	<P>A repository must
+	support the following standard privileges identified by the string
+	constants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.security.Privilege</FONT></FONT>:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read</FONT></FONT>:
+		The privilege to retrieve a node and get its properties and their
+		values.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT>:
+		The privilege to create, remove and modify the values of the
+		properties of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNodes</FONT></FONT>:
+		The privilege to create child nodes of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>:
+		The privilege to remove a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>:
+		The privilege to remove child nodes of a node. 
+		</P>
+	</UL>
+	<P>In order to
+	actually remove a node requires <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>
+	on that node and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+	on the parent node. The distinction is provided in order to
+	distinguish implementations that internally model a “remove” as
+	a “delete” from those that model it as an “unlink”. A
+	repository that uses the “delete” model can have
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+	in every access control policy, so that removal is effectively
+	controlled by <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>.
+	Conversely, a repository that uses the “unlink” model can have
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>
+	in every access control policy.</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT>:
+		An aggregate privilege that contains:</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNodes</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT></P>
+		</UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:readAccessControl</FONT></FONT>:
+		The privilege to read the access control settings of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyAccessControl</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">:
+		</FONT></FONT></FONT>The privilege to modify the
+		access control settings of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockManagement</FONT></FONT>:
+		The privilege to lock and unlock a node (see §17 <I>Locking</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionManagement</FONT></FONT>:
+		The privilege to perform versioning operations on a node (see §15
+		<I>Versioning</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:nodeTypeManagement</FONT></FONT>:
+		The privilege to add and remove mixin node types and change the
+		primary node type of a node (see §10.10 <I>Node Type Assignment</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:retentionManagement</FONT></FONT>:
+		The privilege to perform retention management operations on a node
+		(see §20 <I>Retention and Hold</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lifecycleManagement</FONT></FONT>:
+		The privilege to perform lifecycle operations on a node (see §18
+		<I>Lifecycle Management</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>:
+		An aggregate privilege that contains:</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:readAccessControl</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyAccessControl</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:nodeTypeManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:retentionManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lifecycleManagement</FONT></FONT></P>
+		</UL>
+	</UL>
+	<P>Whether a privilege is
+	abstract is an implementation variant, with the exception that
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>
+	is never an abstract privilege. For example, a repository unable to
+	separately control the abilities to add child nodes, remove child
+	nodes, and set properties could make <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNodes</FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+	abstract privileges within the aggregate privilege <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT>.</P>
+	<P>Similarly, whether any
+	one of these privileges is aggregate is an implementation variant,
+	with the exception that <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>
+	are always aggregate privileges.</P>
+	<P>A repository should
+	also add all implementation-defined privileges to <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>.</P>
+	<P>The standard privilege
+	names are defined as expanded form JCR names in string constants of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.security.Privilege</FONT></FONT>.</P>
+<a name="16.2.4 Supported Privileges"></a>	<H3>16.2.4 Supported Privileges</H3>
+	<P>The privileges
+	available for a particular node can be determined through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege[]<BR>
+	 AccessControlManager.<BR> getSupportedPrivileges(String absPath)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is the location of the node. Note that this method does not return
+	the privileges <I>held</I> by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	with respect to the specified node, but rather the privileges
+	<I>supported</I> by the repository with respect to that node (see
+	§16.3.7 <I>Testing Privileges</I>).</P>
+<a name="16.2.5 Retrieving Privileges by Name"></a>	<H3>16.2.5 Retrieving Privileges by Name</H3>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	object can be obtained from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlManager</FONT></FONT>
+	through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege<BR>
+	 AccessControlManager.<BR> privilegeFromName(String
+	privilegeName)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>privilegeName</FONT></FONT>
+	identifies an existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	(see §16.3.6 <I>Privilege Object</I>). Since the privilege name is
+	a JCR name it may be passed in either qualified or expanded form
+	(see §3.2.6 <I>Use of Qualified and Expanded Names</I>).</P>
+<a name="16.2.6 Privilege Object"></a>	<H3>16.2.6 Privilege Object</H3>
+	<P>The characteristics of
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	object are exposed through the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	String
+	Privilege.getName()</FONT></FONT></P>
+	<P>returns the name of
+	this privilege. Since the privilege name is a JCR name it must be
+	returned in qualified form (see §3.2.6 <I>Use of Qualified and
+	Expanded Names</I>).</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	boolean
+	Privilege.isAbstract()</FONT></FONT></P>
+	<P>returns whether the
+	privilege is abstract.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	boolean
+	Privilege.isAggregate()</FONT></FONT></P>
+	<P>returns whether the
+	privilege is aggregate.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	Privilege[]
+	Privilege.getDeclaredAggregatePrivileges()</FONT></FONT>.</P>
+	<P>If this privilege is
+	aggregate, this method returns the privileges directly contained
+	within it. Otherwise, it returns an empty array.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	Privilege[]
+	Privilege.getAggregatePrivileges()</FONT></FONT>.</P>
+	<P>If this privilege is
+	aggregate, this method returns the privileges it contains, the
+	privileges contained by any aggregate privileges among those, and so
+	on (i.e., the transitive closure of privileges contained by the
+	initial privilege). Otherwise, it returns an empty array.</P>
+<a name="16.2.7 Testing Privileges"></a>	<H3>16.2.7 Testing Privileges</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	AccessControlManager.<BR> hasPrivileges(String absPath, Privilege[]
+	privileges)</FONT></FONT></P>
+	<P>returns whether the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	has the specified privileges for the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	Testing an aggregate privilege is equivalent to testing each
+	non-aggregate privilege among the set returned by calling
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege.getAggregatePrivileges()</FONT></FONT>.		</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege[]
+	AccessControlManager.getPrivileges(String absPath)</FONT></FONT></P>
+	<P>returns the privileges
+	the session has for absolute path <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	The returned privileges are those for which <FONT FACE="Courier New, monospace"><FONT SIZE=2>hasPrivileges</FONT></FONT>
+	would return <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	<P>The set of <I>privileges</I>
+	held by a session with respect to a particular node are the result
+	of</P>
+	<UL>
+		<LI><P>access control policies applied
+		using JCR (see §16.4 <I>Access Control Policies</I>),</P>
+		<LI><P>privilege affecting mechanisms
+		external to JCR, if any.</P>
+	</UL>
+	<P>The set of privileges
+	reported by the privilege test methods reflects the current net
+	<I>effect</I> of these mechanisms. It does not reflect unsaved
+	access control policies.</P>
+<a name="16.3 Access Control Policies"></a>	<H2>16.3 Access Control Policies</H2>
+	<P>The privileges granted
+	to a user can be controlled by assigning <I>access control policies</I>
+	to nodes. The content and semantics of these policies are
+	implementation specific and may be based on any mechanism, including
+	access control lists or role-responsibility assignments. JCR does
+	not expose the internals of policies, nor does it provide a
+	mechanism for defining them. However, it does provide a marker
+	interface <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy</FONT></FONT>
+	and two derived interfaces <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamedAccessControlPolicy</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	(see §16.6 <I>Access Control Lists</I>). Furthermore, JCR provides
+	means to:</P>
+	<UL>
+		<LI><P>Find which
+		polices are available to be bound to a node.</P>
+		<LI><P>Bind a policy to
+		a node.</P>
+		<LI><P>Get the policies
+		bound to a given node (including transient modifications).</P>
+		<LI><P>Get the policies
+		that affect access to a given node.</P>
+		<LI><P>Unbind a policy
+		from a node.</P>
+	</UL>
+	<P>In addition to these
+	methods, any <I>effect</I> that a policy has on a node is always
+	reflected in the information returned by the privilege discovery
+	methods (see §16.2.7 <I>Testing Privileges</I>). Note that the
+	<I>scope</I> of the effect of an access control policy may not be
+	identical to the node to which that policy is bound (see §16.4.2
+	<I>Binding a Policy to a Node</I>).</P>
+<a name="16.3.1 Applicable Policies"></a>	<H3>16.3.1 Applicable Policies</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicyIterator<BR>
+	 AccessControlManager.getApplicablePolicies(String absPath)</FONT></FONT></P>
+	<P>returns a list of
+	access control policies that are capable of being applied to the
+	node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	The mechanism for defining the set of policies applicable to a
+	particular node is implementation-dependent. For a given node, the
+	set of applicable policies available at a specific time may depend
+	on the set of policies bound to the node at that time. Therefore,
+	the set returned by this method may vary between calls as policies
+	are bound and unbound.</P>
+<a name="16.3.2 Binding a Policy to a Node"></a>	<H3>16.3.2 Binding a Policy to a Node</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	AccessControlManager.<BR> setPolicy(String absPath,
+	AccessControlPolicy policy)</FONT></FONT></P>
+	<P>binds a <FONT FACE="Courier New, monospace"><FONT SIZE=2>policy</FONT></FONT>
+	to the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	The behavior of the call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>acm.setPolicy(absPath,
+	policy)</FONT></FONT></P>
+	<P>differs depending on
+	how the <FONT FACE="Courier New, monospace"><FONT SIZE=2>policy</FONT></FONT>
+	object was originally acquired. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>policy</FONT></FONT>
+	was acquired through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>acm.getApplicablePolicies(absPath)</FONT></FONT></P>
+	<P>then <FONT FACE="Courier New, monospace"><FONT SIZE=2>policy</FONT></FONT>
+	is added to the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	On the other hand, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>policy</FONT></FONT>
+	was acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>acm.getPolicies(absPath)
+	</FONT></FONT>
+	</P>
+	<P>then that <FONT FACE="Courier New, monospace"><FONT SIZE=2>policy</FONT></FONT>
+	object (after, presumably, being altered) replaces its older version
+	on the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	(see §16.3.4 <I>Getting the Bound Policies</I>)</P>
+<a name="16.3.3 Binding vs. Effect"></a>	<H3>16.3.3 Binding vs. Effect</H3>
+	<P>A policy is <I>bound</I>
+	to a node upon completion of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>setPolicy</FONT></FONT>
+	call but only <I>takes</I> <I>effect</I> upon <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>.</P>
+<a name="16.3.4 Getting the Bound Policies"></a>	<H3>16.3.4 Getting the Bound Policies</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy[]<BR>
+	 AccessControlManager.getPolicies(String absPath)</FONT></FONT></P>
+	<P>returns the policies
+	bound to the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	If this method is called from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlManager</FONT></FONT>
+	of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	which holds pending, unsaved policy bindings, then the policies
+	returned will reflect the transient state instead of the persisted
+	state. If there are no policies bound to the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	through the JCR API this method returns an empty array.</P>
+<a name="16.3.5 Scope of a Policy"></a>	<H3>16.3.5 Scope of a Policy</H3>
+	<P>When an access control
+	policy takes effect, it may affect the accessibility characteristics
+	not only of the node to which it is bound but also of nodes
+	elsewhere in the workspace.<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote20anc" HREF="#sdfootnote20sym"><SUP>20</SUP></A></SUP>
+	The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy[]<BR>
+	 AccessControlManager.getEffectivePolicies(String absPath)</FONT></FONT></P>
+	<P>performs a best-effort
+	search to determine the policies in effect on the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+		</P>
+<a name="16.3.6 Default Access Control"></a>	<H3>16.3.6 Default Access Control</H3>
+	<P>If a node has no
+	effective policy assigned through the JCR API, then an
+	implementation-specific default policy must be in effect and this
+	policy must be returned by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlManager.getEffectivePolicies</FONT></FONT>.
+	The default privileges for the node are determined by the
+	implementation in accordance with this default policy.</P>
+<a name="16.3.7 Removing a Policy"></a>	<H3>16.3.7 Removing a Policy</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	void
+	AccessControlManager.<BR>		removePolicy(String absPath,
+	AccessControlPolicy policy)</FONT></FONT></P>
+	<P>removes the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy</FONT></FONT>
+	from the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	An <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy</FONT></FONT>
+	can only be removed if it was previously bound to the specified node
+	through this API. The effect of the removal only takes place upon
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.</P>
+<a name="16.3.8 Interaction with the Transient Layer and Transactions"></a>	<H3>16.3.8 Interaction with the Transient Layer and Transactions</H3>
+	<P>Changes to access
+	control are session-write operations (see §10.1.1 <I>Session-Write</I>)
+	and interact with the transient layer and persistent store no
+	differently than other such operations:</P>
+	<UL>
+		<LI><P>A node which has
+		had a policy set or removed is marked as modified until the changes
+		are saved.</P>
+		<LI><P>The access
+		control modifications can be reverted by calling
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh(false)</FONT></FONT>.</P>
+		<LI><P>The changes are
+		visible to sessions other than the session making the change <I>no
+		earlier than</I> its being dispatched (i.e., saved if outside a
+		transaction, committed if within a transaction).</P>
+		<LI><P>Depending on the
+		repository implementation, the changes may not be reflected in
+		another session until that session reacquires the modified node
+		(for example, by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh</FONT></FONT>).</P>
+	</UL>
+<a name="16.3.9 Access to Properties"></a>	<H3>16.3.9 Access to Properties</H3>
+	<P>Access to a property
+	is controlled by the effective access control policies of its parent
+	node.</P>
+<a name="16.3.10 Access Control Restrictions"></a>	<H3>16.3.10 Access Control Restrictions</H3>
+	<P>A repository may
+	restrict which nodes may be access controlled. For example a
+	document-centric repository might allow only <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:hierarchyNode</FONT></FONT>
+	nodes to be access controlled. A repository may automatically add
+	access control policies to a newly created node based upon an
+	implementation-determined default.</P>
+<a name="16.3.11 Exposing Policies in Content"></a>	<H3>16.3.11 Exposing Policies in Content</H3>
+	<P>A repository may
+	expose a node's access control policies as child nodes or
+	properties. If it does so, then the add, remove and save semantics
+	of the item must match those of the policy it represents.</P>
+<a name="16.3.12 Interaction with Protected Properties"></a>	<H3>16.3.12 Interaction with Protected Properties</H3>
+	<P>Many features of JCR
+	expose repository metadata as protected properties defined by mixin
+	node types. For example, locking status is exposed by the properties
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	defined by <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>.
+	Changes to protected properties can only be made indirectly through
+	a feature-specific API (for example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.lock</FONT></FONT>),
+	not through a generic write method like <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>.
+	Such changes <I>are not</I> governed by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT>
+	privilege, but rather by the particular feature-specific privilege,
+	for example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockManagement</FONT></FONT>
+	(see §16.2.3 <I>Standard Privileges</I>).</P>
+<a name="16.3.13 Interaction with Versioning  "></a>	<H3>16.3.13 Interaction with Versioning  </H3>
+	<P>JCR does not mandate a
+	specific approach to access control of versioning nodes. Whatever
+	approach is taken, any restrictions placed on operations as a
+	consequence of access control are <I>in addition</I> to the
+	restrictions imposed by the versioning feature itself (for example,
+	checked-in nodes being immutable).</P>
+<a name="16.4 Named Access Control Policies"></a>	<H2>16.4 Named Access Control Policies</H2>
+	<P>The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NamedAccessControlPolicy</FONT></FONT>
+	extends the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy</FONT></FONT>
+	marker interface. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamedAccessControlPolicy</FONT></FONT>
+	represents an opaque, immutable policy with a name, which must be a
+	JCR name. The name is accessed through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	String
+	NamedAccessControlPolicy.getName()</FONT></FONT>.</P>
+<a name="16.5 Access Control Lists"></a>	<H2>16.5 Access Control Lists</H2>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	extends the<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	AccessControlPolicy</FONT></FONT> marker interface. An
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	represents a list of <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlEntry</FONT></FONT>
+	objects. Before being bound to a node, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	is mutable.</P>
+<a name="16.5.1 Access Control Entries"></a>	<H3>16.5.1 Access Control Entries</H3>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlEntry</FONT></FONT>
+	represents the association of one or more
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.security.Privilege</FONT></FONT>
+	objects with a specific <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.security.Principal</FONT></FONT>.
+	These are accessed through</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege[]
+	AccessControlEntry.getPrivileges()</FONT></FONT></P>
+	<P>and</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>java.security.Principal
+	AccessControlEntry.getPrincipal()</FONT></FONT>.</P>
+<a name="16.5.2 Getting the Access Control Entries"></a>	<H3>16.5.2 Getting the Access Control Entries</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlEntry[]
+		AccessControlList.getAccessControlEntries()</FONT></FONT></P>
+	<P>returns all access
+	control entries present on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	policy. It reflects the current state of the policy including
+	modifications that have not yet been persisted.</P>
+<a name="16.5.3 Adding an Access Control Entry"></a>	<H3>16.5.3 Adding an Access Control Entry</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	AccessControlList.addAccessControlEntry(<BR>	java.security.Principal
+	prinicipal,<BR> Privilege[] privileges)</FONT></FONT></P>
+	<P>adds an access control
+	entry consisting of the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>principal</FONT></FONT>
+	and the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>privileges</FONT></FONT>
+	to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList
+	</FONT></FONT>policy and returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	was thereby modified.</P>
+	<P>How the entries are
+	grouped within the list is implementation-specific. An
+	implementation may, for example, combine the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>privileges</FONT></FONT>
+	with those added by a previous call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>addAccessControlEntry</FONT></FONT>
+	for the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Principal</FONT></FONT>.
+	However, a call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>addAccessControlEntry</FONT></FONT>
+	for a given <FONT FACE="Courier New, monospace"><FONT SIZE=2>Principal</FONT></FONT>
+	can never remove a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	added by a previous call.</P>
+<a name="16.5.4 Removing an Access Control Entry"></a>	<H3>16.5.4 Removing an Access Control Entry</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	AccessControlList.<BR>	removeAccessControlEntry(AccessControlEntry
+	ace)</FONT></FONT></P>
+	<P>removes the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlEntry</FONT></FONT>
+	from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	policy. This method is guaranteed to affect only the privileges of
+	the principal defined within the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlEntry</FONT></FONT>.
+	Only exactly those entries obtained from
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList.getAccessControlEntries</FONT></FONT>
+	can be removed through this API.</P>
+<a name="16.5.5 Modification vs. Effect"></a>	<H3>16.5.5 Modification vs. Effect</H3>
+	<P>An access control
+	entry is added to or removed from an <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	upon completion of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>addAccessControlEntry</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeAccessControlEntry</FONT></FONT>
+	call, respectively. However, those modifications only <I>take</I>
+	<I>effect</I> once the policy has been bound to a node through
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlManager.setPolicy</FONT></FONT>
+	and saved.</P>
+<a name="16.5.6 Privileges to Manage Entries"></a>	<H3>16.5.6 Privileges to Manage Entries</H3>
+	<P>The user must have the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyAccessControl</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>
+	</B></FONT></FONT>privilege to add or remove access
+	control entries and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:readAccessControl</FONT></FONT>
+	privilege to read access control entries from an <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>.</P>
+<a name="16.5.7 Principal Discovery"></a>	<H3>16.5.7 Principal Discovery</H3>
+	<P>The discovery of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>java.security.Principal</FONT></FONT>s
+	is outside the scope of this specification.</P>
+<a name="16.6 Privileges Permissions and Capabilities  "></a>	<H2>16.6 Privileges Permissions and Capabilities  </H2>
+	<P>In JCR, the terms
+	<I>privilege</I>, <I>permission</I> and <I>capability</I> have
+	precise and distinct meanings.</P>
+<a name="16.6.1 Privileges"></a>	<H3>16.6.1 Privileges</H3>
+	<P>The set of <I>privileges</I>
+	held by a session with respect to a particular node are the result
+	of access control policies applied using JCR and any other privilege
+	affecting mechanisms external to JCR that may exist, if any.</P>
+<a name="16.6.2 Permissions"></a>	<H3>16.6.2 Permissions</H3>
+	<P>Testing for
+	<I>permissions</I> is a feature that all repositories must support
+	regardless of whether they support access control management. 
+	</P>
+	<P>In repositories that
+	do support access control management, the permissions encompass the
+	restrictions imposed by privileges, but also include any additional
+	policy-internal refinements with effects too fine-grained to be
+	exposed through privilege discovery. A common case may be to provide
+	finer-grained access restrictions to individual properties or child
+	nodes of the node to which the policy applies. 
+	</P>
+	<P>In the case of a
+	policy that does not define any refinements, testing privileges is
+	equivalent to using these methods with the following mapping:</P>
+	<TABLE WIDTH=649 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=114>
+		<COL WIDTH=93>
+		<COL WIDTH=392>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><B>The action</B></P>
+			</TD>
+			<TD WIDTH=93>
+				<P><B>on </B><I><B>I,</B></I><B>
+				a</B></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><B>is equivalent to</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>add_node</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>node</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNode
+				</FONT></FONT>on the parent of <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>set_property</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>property</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties
+				</FONT></FONT>on the parent of <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>node</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+				on the parent of <I>I</I> and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>
+				on <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>property</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties
+				</FONT></FONT>on the parent of <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>read</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>node</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read</FONT></FONT>
+				on <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>read</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>property</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read
+				</FONT></FONT>on the parent of <I>I.</I></P>
+			</TD>
+		</TR>
+	</TABLE>
+<a name="16.6.3 Capabilities"></a>	<H3>16.6.3 Capabilities</H3>
+	<P><I>Capabilities</I>
+	encompass the restrictions imposed by permissions, but also include
+	any further restrictions unrelated to access control. These include
+	constraints enforced by node types, versioning or any other JCR or
+	implementation-specific mechanism. Capabilities are reported by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.hasCapability</FONT></FONT>
+	(see §9.2 <I>Capabilities</I>). The reporting of capabilities is
+	always subject to practical limitations, but should be as accurate
+	as possible, given the design of the implementation. 
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

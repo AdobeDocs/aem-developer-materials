@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.9 Merge (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>15.9 Merge</H2>
+	<P>The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	VersionManager.<BR> merge(String absPath, String srcWorkspace,<BR>
+	 boolean bestEffort, boolean isShallow)</FONT></FONT></P>
+	<P>performs the first
+	step in a <I>merge</I> of two corresponding nodes:</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	method can be called on a versionable or non-versionable node.</P>
+	<P>Like <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	does not respect the checked-in status of nodes. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	may change a node even if it is currently checked-in.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node (the one on which <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	is called) does not have a corresponding node in the indicated
+	workspace, then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	method returns quietly and no changes are made.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node, despite having a corresponding node, is nevertheless
+	non-versionable then the merge method also returns quietly and no
+	changes are made.</P>
+	<P>Otherwise, the
+	following happens:</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then a merge test is performed on <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node, call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	If<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	isShallow</FONT></FONT> is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	then a merge test is performed recursively on each versionable node,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	within the subgraph rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node.</P>
+	<P>The merge test is performed by
+	comparing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	with its corresponding node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>.</P>
+	<P>The merge test is done by comparing
+	<I>the base version of </I><FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>)
+	and <I>the base version of </I><FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>).</P>
+	<P>For any versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	there are three possible outcomes of the merge test: <I>update</I>,
+	<I>leave</I> or <I>failed</I>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	does not have a corresponding node then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is <I>leave</I>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is currently checked-in then:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is an eventual successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>,
+		then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>update</I>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		or if <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		are identical (i.e., are actually the same version), then the merge
+		result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>leave</I>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		is neither an eventual successor of, eventual predecessor of, nor
+		identical with <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>,
+		then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>failed</I>. This is the case where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		represent divergent branches of the version graph.</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is currently checked-out then:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		or if <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		are identical (i.e., are actually the same version), then the merge
+		result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>leave</I>.</P>
+		<LI><P>If any other
+		relationship holds between <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>,
+		then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>fail</I>.</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	then the first time a merge result of <I>fail</I> occurs, the entire
+	merge operation on this subgraph is aborted, no changes are made to
+	the subgraph and a <FONT FACE="Courier New, monospace"><FONT SIZE=2>MergeException</FONT></FONT>
+	is thrown. If no merge result of <I>fail</I> occurs then:</P>
+	<UL>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>update</I> is updated to reflect the state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>.
+		The state of a node in this context refers to its set of properties
+		and child node links.</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>leave</I> is left unchanged, <I>unless </I><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>N</I></FONT></FONT><I>
+		is the child of a node with status </I>update<I> and </I><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>N</I></FONT></FONT><I>
+		does not have a corresponding node in </I><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>srcWorkspace</I></FONT></FONT><I>,
+		in which case it is removed.</I></P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then:</P>
+	<UL>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>update</I> is updated to reflect the state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>.
+		The state of a node in this context refers to its set of properties
+		and child node links.</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>leave</I> is left unchanged, unless <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the child of a node with status <I>update</I> and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		does not have a corresponding node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>.
+		I such a case, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is removed.</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>failed</I> is left unchanged except that the
+		identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		(which is, in some sense, the “offending” version; the one that
+		caused the merge to fail on that <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>)
+		is added to the multi-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		If the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is already in <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>,
+		it is not added again. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property never contains repeated references to the same version. If
+		the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property does not yet exist then it is created. If present, the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property will always contain at least one value. If not present on
+		a node, this indicates that no merge failure has occurred on that
+		node. Note that the presence of this property on a node will in any
+		case prevent it from being checked-in because the <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnParentVersion</FONT></FONT>
+		setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		is <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>.</P>
+		<LI><P>This property can
+		later be used by the application to find those nodes in the
+		subgraph that have failed to merge and thus require special
+		attention (see §15.9.2 <I>Merging Branches</I>). This property is
+		multi-valued so that a record of successive failed merges can be
+		kept.</P>
+	</UL>
+	<P>In either case, (regardless of whether
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>)
+	for each non-versionable node (including both referenceable and
+	non-referenceable), if the merge result of its <I>nearest
+	versionable ancestor</I> is <I>update, </I>or if it has <I>no
+	versionable ancestor</I>, then it is updated to reflect the state of
+	its corresponding node. Otherwise, it is left unchanged. The
+	definition of corresponding node in this context is the same as
+	usual: the match is done by identifier.</P>
+	<P>Note that a deep <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	performed on a subgraph with no versionable nodes at all (or indeed
+	in a repository that does not support versioning in the first place)
+	will be equivalent to an update.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	method returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator</FONT></FONT>
+	over all versionable nodes in the subgraph that received a merge
+	result of fail.</P>
+	<P>Note that if
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then merge will either return an empty iterator (since no merge
+	failure occurred) or throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>MergeException</FONT></FONT>
+	(on the first merge failure that was encountered).</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	then the iterator will contain all nodes that received a fail during
+	the course of this merge operation.</P>
+	<P>All changes made by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	are workspace-write, and therefore this method does not require a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.12.3 Getting the Lock Holding Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.12.3 Getting the Lock Holding Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Lock.getNode()</FONT></FONT></P>
+	<P>returns the lock
+	holding node. Note that <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getLock().getNode()</FONT></FONT>
+	(where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is a locked node) will only return <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is the lock holder. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is in the subgraph of the lock holder, <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+	then this call will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

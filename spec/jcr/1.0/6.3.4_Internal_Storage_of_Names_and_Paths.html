@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.3.4 Internal Storage of Names and Paths (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.3.4." id="section_6.3.4."></a> 6.3.4 Internal Storage of Names and Paths
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Note that the names of nodes and properties must be stored internally in such a way that when accessed they will reflect the current namespace mapping. One way of achieving this is to store them internally using fully qualified names and, upon access, dynamically produce the correct prefixed name or path based on the current mapping. Other mechanisms may also be used to achieve the same result.
+								</p>
+							
+							
+								<p class="c5">
+									Similarly, all properties of type <b>NAME</b> or <b>PATH</b> must also dynamically reflect the current mapping. All accesses to the values of these properties should shield the client from the raw fully-qualified name and translate the value using the currently mapped prefix (see <a href="6.2.5.2_Name.html">6.2.5.2</a> <i>Name</i> and <a href="6.2.5.3_Path.html">6.2.5.3</a> <i>Path</i>).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.10 Merge (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.10." id="section_8.2.10."></a>8.2.10 Merge
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The method <b>Node.merge</b> can be thought of as a <i>version-sensitive</i> <b>Node.update</b>. It works as follows:
+								</p>
+							
+							
+								<p class="c5">
+									The <b>merge</b> method can be called on a versionable or non-versionable node.
+								</p>
+							
+							
+								<p class="c5">
+									Like <b>update</b>, <b>merge</b> does not respect the checked-in status of nodes. A <b>merge</b> may change a node even if it is currently checked-in.
+								</p>
+							
+							
+								<p class="c5">
+									If <b>this</b> node (the one on which <b>merge</b> is called) does not have a corresponding node in the indicated workspace, then the <b>merge</b> method returns quietly and no changes are made.
+								</p>
+							
+							
+								<p class="c5">
+									If <b>this</b> node does have a corresponding node, then the following happens:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					For each versionable node <b>N</b> in the subtree rooted at <b>this</b> node, a <i>merge test</i> is performed comparing <b>N</b> with its corresponding node in <b>srcWorkspace</b>, <b>N'</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The merge test is done by comparing <i>the base version of</i> <b>N</b> (call it <b>V</b>) and <i>the base version of</i> <b>N'</b> (call it <b>V'</b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					For any versionable node <b>N</b> there are three possible outcomes of the merge test: <i>update</i>, <i>leave</i> or <i>failed</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If <b>N</b> does not have a corresponding node then the merge result for <b>N</b> is <i>leave</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If <b>N</b> is currently checked-in then:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							If <b>V'</b> is a successor (to any degree) of <b>V</b>, then the merge result for <b>N</b> is <i>update</i>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							If <b>V'</b> is a predecessor (to any degree) of <b>V</b> or if <b>V</b> and <b>V'</b> are identical (i.e., are actually the same version), then the merge result for <b>N</b> is <i>leave</i>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							If <b>V</b> is neither a successor of, predecessor of, nor identical with <b>V'</b>, then the merge result for <b>N</b> is <i>failed</i>. This is the case where <b>N</b> and <b>N'</b> represent divergent branches of the version graph, thus determining the result of a merge is non-trivial.
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					If <b>N</b> is currently checked-out then:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							If <b>V'</b> is a predecessor (to any degree) of <b>V</b> or if <b>V</b> and <b>V'</b> are identical (i.e., are actually the same version), then the merge result for <b>N</b> is <i>leave</i>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							If any other relationship holds between <b>V</b> and <b>V'</b>, then the merge result for <b>N</b> is <i>fail</i>.
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					If <b>bestEffort</b> is <b>false</b> then the first time a merge result of <i>fail</i> occurs, the entire merge operation on this subtree is aborted, no changes are made to the subtree and a <b>MergeException</b> is thrown. If no merge result of <i>fail</i> occurs then:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							Each versionable node <b>N</b> with result <i>update</i> is updated to reflect the state of <b>N'</b>. The state of a node in this context refers to its set of properties and child node links.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Each versionable node <b>N</b> with result <i>leave</i> is left unchanged, <i>unless</i> <b><i>N</i></b> <i>is the child of a node with status</i> update <i>and</i> <b><i>N</i></b> <i>does not have a corresponding node in</i> <b><i>srcWorkspace</i></b><i>, in which case it is removed.</i>
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					If <b>bestEffort</b> is <b>true</b> then:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							Each versionable node <b>N</b> with result <i>update</i> is updated to reflect the state of <b>N'</b>. The state of a node in this context refers to its set of properties and child node links.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Each versionable node <b>N</b> with result <i>leave</i> is left unchanged, <i>unless</i> <b><i>N</i></b> <i>is the child of a node with status</i> update <i>and</i> <b><i>N</i></b> <i>does not have a corresponding node in</i> <b><i>srcWorkspace</i></b><i>, in which case it is removed</i>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Each versionable node <b>N</b> with result <i>failed</i> is left unchanged except that the UUID of <b>V'</b> (which is, in some sense, the “offending” version; the one that caused the merge to fail on that <b>N</b>) is added to the multi-value <b>REFERENCE</b> property <b>jcr:mergeFailed</b> of <b>N</b>. If the UUID of <b>V'</b> is already in <b>jcr:mergeFailed</b>, it is not added again. The <b>jcr:mergeFailed</b> property never contains repeated references to the same version. If the <b>jcr:mergeFailed</b> property does not yet exist then it is created. If present, the <b>jcr:mergeFailed</b> property will always contain at least one value. If not present on a node, this indicates that no merge failure has occurred on that node. Note that the presence of this property on a node will in any case prevent it from being checked-in because the <b>OnParentVersion</b> setting of <b>jcr:mergeFailed</b> is <b>ABORT</b>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							This property can later be used by the application to find those nodes in the subtree that have failed to merge and thus require special attention (see <a href="8.2.10.2_Merging_Branches.html">8.2.10.2</a> <i>Merging Branches</i>, immediately below). This property is multi-valued so that a record of successive failed merges can be kept.
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					In either case, (regardless of whether <b>bestEffort</b> is <b>true</b> or <b>false</b>) for each non-versionable node (including both referenceable and non-referenceable), if the merge result of its <i>nearest versionable ancestor</i> is <i>update,</i> or if it has <i>no versionable ancestor</i>, then it is updated to reflect the state of its corresponding node. Otherwise, it is left unchanged. The definition of corresponding node in this context is the same as usual: the match is done by UUID (for a referenceable nodes) or UUID plus relative path (for non-referenceable nodes).
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Note that as a result of the final rule, above, a <b>merge</b> performed on a subtree with no versionable nodes at all (or indeed in a repository that does not support versioning in the first place) will be equivalent to an <b>update</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The merge method returns a <b>NodeIterator</b> over all versionable nodes in the subtree that received a merge result of <i>fail</i>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that if <b>bestEffort</b> is <b>false</b>, then <b>merge</b> will either return an empty iterator (since no merge failure occurred) or throw a <b>MergeException</b> (on the first merge failure that was encountered).
+								</p>
+							
+							
+								<p class="c5">
+									If <b>bestEffort</b> is <b>true</b>, then the iterator will contain all nodes that received a <i>fail</i> during the course of this <b>merge</b> operation.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

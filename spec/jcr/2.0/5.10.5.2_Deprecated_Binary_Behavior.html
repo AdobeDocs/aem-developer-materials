@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.10.5.2 Deprecated Binary Behavior (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>5.10.5.2 Deprecated Binary Behavior</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary</FONT></FONT>
+	interface and its related methods in <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	replace the deprecated <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value.getStream()</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getStream()</FONT></FONT>
+	methods from JCR 1.0. Though these methods have been deprecated, for
+	reasons of backward compatibility their behavior must conform to the
+	following rules:</P>
+	<UL>
+		<LI><P>Once a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		object has been read once using <FONT FACE="Courier New, monospace"><FONT SIZE=2>getStream()</FONT></FONT>,
+		all subsequent calls to <FONT FACE="Courier New, monospace"><FONT SIZE=2>getStream()</FONT></FONT>
+		will return the same stream object. This may mean, for example,
+		that the stream returned is fully or partially consumed. In order
+		to get a fresh stream the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		object must be reacquired via <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValue()</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues()</FONT></FONT>.</P>
+		<LI><P>Unlike in JCR
+		1.0, calling a <FONT FACE="Courier New, monospace"><FONT SIZE=2>get</FONT></FONT>
+		method other than getStream before calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>getStream</FONT></FONT>
+		on the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		object will never cause an <FONT FACE="Courier New, monospace"><FONT SIZE=2>IllegalStateException</FONT></FONT>.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

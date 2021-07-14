@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.11.11 nt:address (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.11.11 nt:address</H4>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>[nt:address]</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:protocol (STRING)</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:host (STRING)</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:port (STRING)</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:repository (STRING)</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:workspace (STRING)</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:path (PATH)</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:id (WEAKREFERENCE)</FONT></FONT></FONT></P>
+	<P>This node type may be
+	used to represent the location of a JCR item not just within a
+	particular workspace but within the space of all workspaces in all
+	JCR repositories.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:protocol</FONT></FONT>
+	property stores a string holding the protocol through which the
+	target repository is to be accessed.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:host</FONT></FONT>
+	property stores a string holding the host name of the system through
+	which the repository is to be accessed.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:port</FONT></FONT>
+	property stores a string holding the port number through which the
+	target repository is to be accessed.</P>
+	<P>The semantics of these
+	properties are left undefined but are assumed to be known by the
+	application. The names and descriptions of the properties are not
+	normative and the repository does not enforce any particular
+	semantic interpretation on them.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:repository</FONT></FONT>
+	property stores a string holding the name of the target repository.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:workspace
+	</FONT></FONT>property stores the name of a workspace.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:path</FONT></FONT>
+	property stores a path to an item.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:id</FONT></FONT>
+	property stores a weak reference to a node.</P>
+	<P>In most cases either
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:path</FONT></FONT>
+	or the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:id</FONT></FONT>
+	property would be used, but not both, since they may point to
+	different nodes. If any of the properties other than <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:path</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:id</FONT></FONT>
+	are missing, the address can be interpreted as <I>relative</I> to
+	the current container at the same level as the missing specifier.
+	For example, if no repository is specified, then the address can be
+	interpreted as referring to a workspace and path or id within the
+	current repository.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

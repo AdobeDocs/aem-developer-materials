@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.8.1.1 mix:referenceable (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.8.1.1 mix:referenceable</H4>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:referenceable]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">- jcr:uuid
+	(STRING) mandatory autocreated protected</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">INITIALIZE</FONT></P>
+	<P>This node type adds an
+	auto-created, mandatory, protected <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+	property to the node, called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>,
+	which exposes the identifier of the node. Note that the term “UUID”
+	is used for backward compatibility with JCR 1.0 and does not
+	necessarily imply the use of the UUID syntax, or global uniqueness.</P>
+	<P>The identifier of a
+	referenceable node must be a <I>referenceable identifier</I>.
+	Referenceable identifiers must fulfill a number of constraints
+	beyond the minimum required of standard identifiers (see §3.8.3
+	<I>Referenceable Identifiers</I>).</P>
+	<P>A reference property
+	is a property that holds the referenceable identifier of a
+	referenceable node and therefore serves as a pointer to that node.
+	The two types of reference properties, <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	differ in that the former enforces referential integrity while the
+	latter does not (see §3.8.2 <I>Referential Integrity</I>). A
+	repository may support only <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	or both <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property types.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.3.1 Namespace Registry (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.3.1." id="section_6.3.1."></a>6.3.1 Namespace Registry
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Each repository has a single, persistent namespace registry represented by the <b>NamespaceRegistry</b> object, accessed via <b>Workspace.getNamespaceRegistry()</b>. The following describes the methods of <b>NamespaceRegistry</b> supported in level 1. <b>NamespaceRegistry</b> also has other methods that are supported in level 2. In level 1 repositories these methods either do nothing or throw an exception. See <a href="7.2_Adding_and_Deleting_Namespaces.html">7.2</a> <i>Adding and Deleting Namespaces</i> for more details.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>NamespaceRegistry</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPrefixes()</b>
+									</p>
+									<p class="c5">
+										Returns an array holding all currently registered prefixes.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getURIs()</b>
+									</p>
+									<p class="c5">
+										Returns an array holding all currently registered URIs.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getURI(String prefix)</b>
+									</p>
+									<p class="c5">
+										Returns the URI to which the given <b>prefix</b> is mapped. If a mapping with the specified <b>prefix</b> does not exist, a <b>NamespaceException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPrefix(String uri)</b>
+									</p>
+									<p class="c5">
+										Returns the prefix which is mapped to the given <b>uri</b>. If a mapping with the specified <b>uri</b> does not exist, a <b>NamespaceException</b> is thrown
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<br>
+									A registered prefix can be used in the name of any node or property in the repository. The prefix serves as shorthand for the URI to which it is mapped. Because the space of URIs is universally managed, the combination of the per-repository namespace and the larger URI namespace can be used to provide universal uniqueness of node or property names. Of course, just as in the case of XML namespaces, ensuring this universal uniqueness requires applications to map their application-specific prefixes to URIs that are uniquely identified with that particular application.
+								</p>
+							
+							
+								<p class="c5">
+									The namespace registry always contains at least the following built-in mappings:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>jcr -&gt; http://www.jcp.org/jcr/1.0</b><br>
+					Reserved for items defined within built-in node types. For example <b>jcr:content</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>nt -&gt; http://www.jcp.org/jcr/nt/1.0<br></b>Reserved for the names of built-in primary node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>mix -&gt; http://www.jcp.org/jcr/mix/1.0<br></b>Reserved for the names of built-in mixin node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>xml</b> <b>-&gt; http://www.w3.org/XML/1998/namespace</b><br>
+					Reserved for reasons of compatibility with XML. This prefix should not be used by clients of the API in the names of normal nodes or properties, since doing so will cause problems on export to XML.
+				</p>
+			</li>
+			<li>
+				<p>
+					“” (the empty prefix) <b>-&gt;</b> “” (the empty URI)<br>
+					This makes the <i>default namespace</i> the <i>empty URI</i>. In effect this means that a name without a prefix is identical in both its prefixed form and in its fully qualified form (i.e. when it is stored internally as <i>URI plus local name</i>). See <a href="6.3.3_Session_Namespace_Remapping.html">6.6.1</a> <i>Internal Storage of Names and Values</i>.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In a level 1 repository there is no provision for adding new namespaces to the registry (or deleting namespaces from it), this functionality is part of level 2 (see <a href="7.2_Adding_and_Deleting_Namespaces.html">7.2</a> <i>Adding and Deleting Namespaces</i>). However, a level 1 implementation may provide any number of built-in namespaces, in addition to the five required ones listed above. As well, level 1 supports the temporary assignment of new prefixes to existing namespaces within the scope of a particular <b>Session</b> (see immediately below).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

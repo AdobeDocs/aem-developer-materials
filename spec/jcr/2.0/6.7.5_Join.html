@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.5 Join (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.5 Join</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Join extends Source ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source left,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source right,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinType joinType,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinCondition joinCondition</FONT></P>
+	<P><BR>
+	</P>
+	<P>Performs a join
+	between two node-tuple sources.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>left</FONT></FONT>
+	evaluates to <B>L</B>, a set of <I>m</I>-tuples, and <FONT FACE="Courier New, monospace"><FONT SIZE=2>right</FONT></FONT>
+	evaluates to <B>R</B>, a set of <I>n</I>-tuples, then the join
+	evaluates to <B>J</B>, a set of (<I>m + n</I>)-tuples. The members
+	of <B>J</B><B> </B>depend on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinCondition</FONT></FONT>.</P>
+	<P>Let <B>L</B> x <B>R</B>
+	be the Cartesian product of <B>L</B> and <B>R</B> as a set of (<I>m
+	+ n</I>)-tuples</P>
+	<P><B>L</B>
+	x <B>R</B> = { ℓ <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT>r
+	: ℓ <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><B>L</B>,
+	r <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><B>R</B>
+	}</P>
+	<P>and <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(A)
+	be the selection over <B>A</B> of its members satisfying
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>joinCondition</FONT></FONT>
+	<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB></P>
+	<P><SUB>c</SUB>(<B>A</B>)
+	= { a : a <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><B>A</B>,
+	<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(a)
+	}</P>
+	<P>Then if <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>Inner</FONT></FONT>:</P>
+	<P><B>J</B>
+	= <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)</P>
+	<P>Otherwise, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>LeftOuter</FONT></FONT>:</P>
+	<P><B>J</B> = <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>) <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT>(<B>L</B>
+	– <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>L</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)))</P>
+	<P>where <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>L</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)) is the projection of the <I>m</I>-tuples contributed by
+	<B>L</B> from the <I>(m + n)</I>-tuples of <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>).</P>
+	<P>Otherwise, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>RightOuter</FONT></FONT>:</P>
+	<P><B>J</B> = <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>) <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT>(<B>R</B>
+	– <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>R</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)))</P>
+	<P>where <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>R</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)) is the projection of the <I>n</I>-tuples contributed by
+	<B>R</B> from the <I>(m + n)</I>-tuples of <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>).</P>
+	<P>The query is <I>invalid</I>
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>left</FONT></FONT>
+	is the same source as <FONT FACE="Courier New, monospace"><FONT SIZE=2>right</FONT></FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Join ::= left [JoinType] 'JOIN'
+	right 'ON' JoinCondition </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">// If JoinType is
+	omitted INNER is assumed.</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">left ::= Source</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">right ::= Source</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Join</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Join
+	QueryObjectModelFactory.<BR> join(Source left,<BR> Source
+	right,<BR> String joinType,<BR> JoinCondition
+	joinCondition)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Join</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source
+	Join.getLeft()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source
+	Join.getRight()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Join.getJoinType()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition
+	Join.getJoinCondition()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

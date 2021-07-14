@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.2.8 Null Values (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.2.8." id="section_8.5.2.8."></a>8.5.2.8 Null Values
+		</h4>
+		<ul>
+			<li>
+				<p class="c5">
+					In the <b>WHERE</b> clause the term <b>property IS NULL</b> is true if <b>property</b> is missing from a particular node instance. This covers the cases where:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							The property is declared explicitly in the node type but happens not to be present on this particular node.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							The node type has a residual property declaration that <i>would</i> allow the specified property to be present on the node, but it happens not to be present on this particular node.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							The property is not declared at all (neither explicitly nor implicitly) in the node type and hence is not present on this particular node.
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					Similarly, <b>property IS NOT NULL</b> tests for the existence of the property in the node instance (and of course if does exist it will either be explicitly defined or present due to an implicit declaration as a residual property).
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,89 @@
+
+Modal
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/modal
+   :layout:
+
+   The layout to render the modal.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsModal]
+
+      /**
+       * ``true`` to render the build-in close button (usually at the top right of the modal).
+       */
+      - closable (BooleanEL) = 'true'
+
+      /**
+       * The type of the modal.
+       */
+      - type (StringEL) = 'default' < 'default', 'error', 'notice', 'success', 'help', 'info'
+
+      /**
+       * The layout style of the form. This property only makes sense when the main component is a form.
+       *
+       * vertical
+       *    The form fields (and their labels) are laid out in vertical manner.
+       * aligned
+       *    The each form field is laid out side-by-side with its label.
+       */
+      - formStyle (String) = 'vertical' < 'vertical', 'aligned'
+
+   It has the following content structure at the main resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsModalMain]
+
+      /**
+       * The modal title.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * The footer area of the modal.
+       */
+      + footer
+
+   The body of the modal is specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Each footer item can be any component. It supports a standard ``layoutConfig`` node with the following properties:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsModalFooterItemLayoutconfig]
+
+      /**
+       * ``true`` to indicate that this item is used to close the modal.
+       */
+      - close (BooleanEL)
+
+   Example::
+
+      + mymodal
+        - sling:resourceType = "granite/ui/components/foundation/form"
+        - jcr:title = "My Modal"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/modal"
+          - formStyle = "vertical"
+          - closable = true
+          - type = "default"
+        + items
+          + item1
+            - sling:resourceType = "granite/ui/components/foundation/container"
+          + item2
+            - sling:resourceType = "granite/ui/components/foundation/container"
+        + footer
+          + close
+            - sling:resourceType = "granite/ui/components/foundation/button"
+            - text = "Cancel"
+            + layoutConfig
+              - close = true
+          + submit
+            - sling:resourceType = "granite/ui/components/foundation/form/submit"
+            - text = "Save"

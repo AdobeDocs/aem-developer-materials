@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.11.1 COPY (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.11.1." id="section_8.2.11.1."></a>8.2.11.1 COPY
+		</h4>
+		
+			
+				
+					
+						
+							
+								<h5>
+									Child Node
+								</h5>
+							
+							
+								<p class="c5">
+									On <b>checkin</b> of <b>N</b>, <b>C</b> and all its descendent items, down to the leaves of the subtree, will be copied to the version storage as a child subtree of <b>V</b><b><sub>N</sub></b>. The copy of <b>C</b> and its subtree will not have its own version history but will be part of the state preserved in <b>V</b><b><sub>N</sub></b>. <b>C</b> itself need not be versionable.
+								</p>
+							
+							
+								<p class="c5">
+									On <b>restore</b> of <b>V</b><b><sub>N</sub></b>, the copy of <b>C</b> and its subtree stored will be restored as well, replacing the current <b>C</b> and its subtree in the workspace.
+								</p>
+							
+							
+								<h5>
+									Property
+								</h5>
+							
+							
+								<p class="c5">
+									On <b>checkin</b> of <b>N</b>, <b>P</b> will be copied to the version storage as a child of <b>V</b><b><sub>N</sub></b>. This copy of <b>P</b> is part of the state preserved in <b>V</b><b><sub>N</sub></b>.
+								</p>
+							
+							
+								<p class="c5">
+									On <b>restore</b> of <b>V</b><b><sub>N</sub></b>, the copy of <b>P</b> stored as its child will be restored as well, replacing the current <b>P</b> in the workspace.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

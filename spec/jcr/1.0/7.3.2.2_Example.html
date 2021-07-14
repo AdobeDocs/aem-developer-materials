@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.2.2 Example (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.2.2." id="section_7.3.2.2."></a>7.3.2.2 Example
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following XML document
+								</p>
+							
+						
+					
+				
+			
+			
+				<br>
+				&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+			
+			
+				<br>
+				&lt;myapp:document xmlns:myapp="http://mycorp.com/myapp"
+			
+			
+				<br>
+				myapp:title="JSR 170"
+			
+			
+				<br>
+				myapp:lead="Content Repository"&gt;
+			
+			
+				<br>
+				&lt;myapp:body&gt;
+			
+			
+				<br>
+				&lt;myapp:paragraph myapp:title="Node Types"&gt;
+			
+			
+				<br>
+				myapp:text="An important feature..."/&gt;
+			
+			
+				<br>
+				&lt;/myapp:body&gt;
+			
+			
+				<br>
+				&lt;/myapp:document&gt;
+			
+			
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									when imported in document view would result in the addition of the following mapping to the repository namespace registry:
+								</p>
+							
+							
+								<p class="c5">
+									<b>myapp -&gt; http://mycorp.com/myapp<br>
+									<br></b> and the creation of the following subtree
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property = "value"</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:document</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:primaryType = "nt:unstructured"</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:title = "JSR 170"</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:lead = "Content Repository"</b>
+								</p>
+							
+							
+								<p>
+									└─<b>myapp:body</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:primaryType = "nt:unstructured"</b>
+								</p>
+							
+							
+								<p>
+									└─<b>myapp:paragraph</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:primaryType = "nt:unstructured"</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:title = "Node Types"</b>
+								</p>
+							
+							
+								<p>
+									└─<b>myapp:text = "An important feature..."</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									Note that the use of <b>nt:unstructured</b> as the default node type is an implementation-level issue, so the example is a valid outcome of the import, but not the only one.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

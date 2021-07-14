@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.11.7 Reflecting Item State (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.11.7 Reflecting Item State</H3>
+	<P>When changes are made
+	to an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object, those changes are recorded in its bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and immediately reflected in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object itself. A subsequent re-retrieval of the same item entity
+	through a method bound to the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	will return an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object reflecting the recent change. Note that this includes
+	acquisition of nodes and properties through standard getter methods
+	such as <FONT FACE="Courier New, monospace"><FONT SIZE=2>getNode</FONT></FONT>
+	and also retrieval through other means, such as a query (see §6
+	<I>Query</I>).</P>
+	<P>Whether the second
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object is the same actual Java object instance as the first is an
+	implementation issue. However, the state reflected by the object
+	must at all times be consistent with any other <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object bound to the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	that represents the same actual item entity. The criteria of item
+	identity in this context are those described in §10.11.4 <I>Persisting
+	by Identifier</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.8 Importing jcr:root (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.8." id="section_7.3.8."></a>7.3.8 Importing jcr:root
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If the root node of a workspace is exported it will be rendered in XML (in either view) under the name <b>jcr:root</b> (see <a href="6.4_XML_Mappings.html">6.4</a> <i>XML Mappings</i>). In addition, if the root node has a UUID (in many implementations it will, see <a href="4.9_Referenceable_Nodes.html">4.9</a> <i>Referenceable Nodes</i>) this will also be recorded in the serialization.
+								</p>
+							
+							
+								<p class="c5">
+									If this XML document is imported back into the workspace a number of different results may occur, depending on the methods and settings used to perform the import. The following summarizes the possible results of using various <b>uuidBehavior</b> values (in either using either <b>Workspace.getImportContentHandler</b> or <b>Workspace.importXML</b>) when a node with the same UUID as the existing root node is encountered on import (the constants below are defined in the interface <b>javax.jcr.ImportUUIDBehavior</b>).
+								</p>
+							
+							
+								<p class="c5">
+									<b>IMPORT_UUID_CREATE_NEW</b>: The XML element representing <b>jcr:root</b> is rendered as a normal node at the position specified (with the name <b>jcr:root</b>). It gets a new UUID, so there is no effect on the existing root node of the workspace.
+								</p>
+							
+							
+								<p class="c5">
+									<b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b>: If deserialization is done through a <b>ContentHandler</b> (acquired by <b>getImportContentHandler</b>) a <b>SAXException</b> will be thrown. Similarly, if deserialization is done through <b>importXML</b> a <b>ConstraintViolationException</b> will be thrown. Note that this is simply a special case of the general rule that under this <b>uuidBehavior</b> setting, an exception will be thrown on any attempt to import a node with the same UUID as the node at <b>parentAbsPath</b> <i>or any of its ancestors</i> (which, of course, includes the root node).
+								</p>
+							
+							
+								<p class="c5">
+									<b>IMPORT_UUID_COLLISION_REPLACE_EXISTING</b>: This setting is equivalent to importing into the <b>Session</b> and then calling <b>save</b> since <b>save</b> always operates according to UUID (plus relative path, for non-referenceables). In both cases the result is that the root node of the workspace will be replaced along with its subtree (i.e., the whole workspace), just as if the root node had been altered through the normal <b>getNode</b>, <i>change</i>, <b>save</b> cycle.
+								</p>
+							
+							
+								<p class="c5">
+									<b>IMPORT_UUID_COLLISION_THROW</b>: Under this setting a <b>ContentHandler</b> will throw a <b>SAXException</b> and the <b>importXML</b> method will throw <b>ItemExistsException</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that an implementation is always free to prevent the replacement of a root node (or indeed any node) either through access control restrictions or other implementation-specific restrictions.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

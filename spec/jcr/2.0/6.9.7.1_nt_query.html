@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.9.7.1 nt:query (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>6.9.7.1 nt:query</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:query</FONT></FONT>
+	node type is defined as follows:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:query]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:statement (STRING)</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:language (STRING)</FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:statement</FONT></FONT>
+	holds the string returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getStatement()</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:language</FONT></FONT>
+	holds the string returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getLanguage()</FONT></FONT>.</P>
+	<P>If the language of
+	this query is JCR-JQOM, <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:statement</FONT></FONT>
+	will hold the JCR-SQL2 serialization of the JCR-JQOM object tree and
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getStatement()</FONT></FONT>
+	will return that string. Also, since the original query was
+	constructed using JCR-JQOM, <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:language</FONT></FONT>
+	records the language as “<FONT FACE="Courier New, monospace"><FONT SIZE=2>JCR-JQOM</FONT></FONT>”
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getLanguage()</FONT></FONT>
+	returns “<FONT FACE="Courier New, monospace"><FONT SIZE=2>JCR-JQOM</FONT></FONT>”.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

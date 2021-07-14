@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.1.6 Sharing Versionable Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.1.6 Sharing Versionable Nodes</H3>
+	<P>Under both simple and
+	full versioning, when a new node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+	is added to the shared set of a shareable, versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P>The shared node
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		is created, as usual.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		is initialized to have the same version history and base version as
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		Unlike in the case of cloning (see §15.1.5 <I>Cloning Versionable
+		Nodes</I>) the base versions of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		will always remain identical.</P>
+	</UL>
+	<P>Under full versioning:</P>
+	<UL>
+		<LI><P>Because nodes in
+		the same shared set have identical properties, <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+		nodes in the same shared set will necessarily have identical
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		properties.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

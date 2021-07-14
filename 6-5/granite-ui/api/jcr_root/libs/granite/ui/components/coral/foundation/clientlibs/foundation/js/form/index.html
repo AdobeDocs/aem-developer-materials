@@ -1,0 +1,641 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-form &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation.form.response.parser: foundation.form" href="response/parser/foundation.form.html" />
+    <link rel="prev" title="foundation-field-autosubmit" href="../field/autosubmit.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="response/parser/foundation.form.html" title="foundation.form.response.parser: foundation.form"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../field/autosubmit.html" title="foundation-field-autosubmit"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-form">
+<h1>foundation-form<a class="headerlink" href="#foundation-form" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> is an enhancement of &lt;form&gt;.</p>
+<p>The form is often used in conjunction with its associated form fields. See <a class="reference internal" href="../../vocabulary/field.html"><span class="doc">foundation-field</span></a> for standardized field vocabulary.</p>
+<p>The form validation is performed by <a class="reference internal" href="../validation/index.html"><span class="doc">foundation-validation</span></a>.</p>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.foundation-form<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>A marker class to host enhancement related to form.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-ajax">
+<h3>[data-foundation-form-ajax]<a class="headerlink" href="#data-foundation-form-ajax" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the form is to be submitted using ajax asynchronously, instead of standard synchronous behavior.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-output-replace">
+<h3>[data-foundation-form-output-replace]<a class="headerlink" href="#data-foundation-form-output-replace" title="Permalink to this headline">¶</a></h3>
+<p>The selector to an element where the form submit output will be displayed.
+If the element is <code class="docutils literal notranslate"><span class="pre">.foundation-content</span></code>, <code class="docutils literal notranslate"><span class="pre">FoundationContent.replace(html,</span> <span class="pre">historyConfig)</span></code> will be used;
+otherwise the output will replace the element content by mean of <code class="docutils literal notranslate"><span class="pre">element.innerHTML</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="n">replace</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is legacy approach to handle the response. Please use <a class="reference internal" href="response/ui/success/foundation.content.html"><span class="doc">foundation.form.response.ui.success: foundation.content</span></a> instead.</p>
+</div>
+</div>
+<div class="section" id="data-foundation-form-output-push">
+<h3>[data-foundation-form-output-push]<a class="headerlink" href="#data-foundation-form-output-push" title="Permalink to this headline">¶</a></h3>
+<p>The selector to an element where the form submit output will be displayed.
+If the element is <code class="docutils literal notranslate"><span class="pre">.foundation-content</span></code>, <code class="docutils literal notranslate"><span class="pre">FoundationContent.push(html,</span> <span class="pre">historyConfig)</span></code> will be used;
+otherwise the output will replace the element content by mean of <code class="docutils literal notranslate"><span class="pre">element.innerHTML</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="n">push</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is legacy approach to handle the response. Please use <a class="reference internal" href="response/ui/success/foundation.content.html"><span class="doc">foundation.form.response.ui.success: foundation.content</span></a> instead.</p>
+</div>
+</div>
+<div class="section" id="data-foundation-form-history">
+<h3>[data-foundation-form-history]<a class="headerlink" href="#data-foundation-form-history" title="Permalink to this headline">¶</a></h3>
+<p>The JSON config to configure the browser history when calling <code class="docutils literal notranslate"><span class="pre">FoundationContent.replace(html,</span> <span class="pre">historyConfig)</span></code> or <code class="docutils literal notranslate"><span class="pre">FoundationContent.push(html,</span> <span class="pre">historyConfig)</span></code>
+by mean of <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-replace]</span></code> or <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-push]</span></code> respectively.</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormHistoryConfig</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The URL to be passed to historyConfig param of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   * This is optional and take precedence over &lt;code&gt;useFormUrl&lt;/code&gt; property.</span>
+<span class="cm">   */</span>
+  <span class="nx">url?</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Indicates that the form&#39;s action attribute is used as the URL to be passed to historyConfig param</span>
+<span class="cm">   * of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">useFormUrl?</span>: <span class="kt">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The title to be passed to historyConfig param of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">title?</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The data to be passed to historyConfig param of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">data?</span>: <span class="kt">any</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The behavior when History API is not available.</span>
+<span class="cm">   *</span>
+<span class="cm">   * WARNING: This config is no longer supported, as IE9 is no longer supported, hence History API is always supported.</span>
+<span class="cm">   *</span>
+<span class="cm">   * ignore (default): Ignores history manipulation.</span>
+<span class="cm">   * disableAjax: Equivalent to setting &lt;code&gt;[data-foundation-form-ajax]&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">noSupportBehaviour?</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">history</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is legacy approach to handle the response. Please use <a class="reference internal" href="response/ui/success/foundation.content.html"><span class="doc">foundation.form.response.ui.success: foundation.content</span></a> instead.</p>
+</div>
+</div>
+<div class="section" id="data-foundation-form-redirect">
+<h3>[data-foundation-form-redirect]<a class="headerlink" href="#data-foundation-form-redirect" title="Permalink to this headline">¶</a></h3>
+<p>The URL to redirect the form to.</p>
+<p>If this attribute is specified, instead of processing the content from the submission response,
+the URL will be used to fetch a new content if it is a success response.
+The new content is processed according to output processing attributes, namely <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-replace]</span></code> or <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-push]</span></code> accordingly.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is legacy approach to handle the response. Please use <a class="reference internal" href="response/ui/success/foundation.content.html"><span class="doc">foundation.form.response.ui.success: foundation.content</span></a> instead.</p>
+</div>
+</div>
+<div class="section" id="data-foundation-form-ui">
+<h3>[data-foundation-form-ui]<a class="headerlink" href="#data-foundation-form-ui" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">none</span></code> to suppress certain UI behavior. Otherwise <code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> will show an error dialog during error response.
+This attribute is applicable only when <code class="docutils literal notranslate"><span class="pre">data-foundation-form-ajax</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ui</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-loadingmask">
+<h3>[data-foundation-form-loadingmask]<a class="headerlink" href="#data-foundation-form-loadingmask" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">true</span></code> to show a mask during form submission. Otherwise no mask is shown at all.</p>
+<p>The mask is used to cover the element specified at <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-replace]</span></code>, or <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-push]</span></code>, or the whole screen.</p>
+<p>This attribute is applicable only when <code class="docutils literal notranslate"><span class="pre">data-foundation-form-ajax</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">loadingmask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-form-response-ui-success">
+<h3>.foundation-form-response-ui-success<a class="headerlink" href="#foundation-form-response-ui-success" title="Permalink to this headline">¶</a></h3>
+<p>The config element to indicate the handler of success response.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">response</span><span class="o">-</span><span class="n">ui</span><span class="o">-</span><span class="n">success</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-response-ui-success">
+<h3>[data-foundation-form-response-ui-success]<a class="headerlink" href="#data-foundation-form-response-ui-success" title="Permalink to this headline">¶</a></h3>
+<p>The JSON config to configure the behaviour of success response handler, which satisfies <code class="docutils literal notranslate"><span class="pre">FoundationFormResponseUISuccessConfig</span></code> interface.</p>
+<p>This attribute is either specified at <code class="docutils literal notranslate"><span class="pre">.foundation-form</span></code> (first priority) or <code class="docutils literal notranslate"><span class="pre">.foundation-form-response-ui-success</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">response</span><span class="o">-</span><span class="n">ui</span><span class="o">-</span><span class="n">success</span><span class="p">],</span>
+<span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">response</span><span class="o">-</span><span class="n">ui</span><span class="o">-</span><span class="n">success</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">response</span><span class="o">-</span><span class="n">ui</span><span class="o">-</span><span class="n">success</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-form&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;xyz&quot;</span> <span class="na">data-foundation-form-ajax</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+  <span class="na">data-foundation-form-response-ui-success</span><span class="o">=</span><span class="s">&#39;{&quot;name&quot;: &quot;foundation.redirect&quot;, &quot;href&quot;: &quot;/bin/wcmcommand?cmd=open&amp;_charset_=utf-8&amp;path={Path}&quot;}&#39;</span>
+<span class="p">&gt;&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-form&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;xyz&quot;</span> <span class="na">data-foundation-form-ajax</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-form-response-ui-success&quot;</span> <span class="na">data-foundation-form-response-ui-success</span><span class="o">=</span><span class="s">&#39;{&quot;name&quot;: &quot;foundation.redirect&quot;, &quot;href&quot;: &quot;/bin/wcmcommand?cmd=open&amp;_charset_=utf-8&amp;path={Path}&quot;}&#39;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="foundation-form-submitted">
+<h3>foundation-form-submitted<a class="headerlink" href="#foundation-form-submitted" title="Permalink to this headline">¶</a></h3>
+<p>This event is triggered after the submission of the form is completely finished—i.e. when no further action is performed by <code class="docutils literal notranslate"><span class="pre">foundation-form</span></code>.
+The event has the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormSubmittedEvent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @param status &lt;code&gt;true&lt;/code&gt; when the form is successfully submitted; &lt;code&gt;false&lt;/code&gt; otherwise</span>
+<span class="cm">   * @param xhr The normalized jQuery XHR object</span>
+<span class="cm">   */</span>
+  <span class="p">(</span><span class="nx">status</span>: <span class="kt">boolean</span><span class="p">,</span> <span class="nx">xhr</span>: <span class="kt">JQueryXHR</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">form.foundation-form</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationForm</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationForm</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Submits the form asynchronously.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Note that this is merely a convenience method to submit a form using Ajax.</span>
+<span class="cm">   * The behaviour of foundation-form is not performed by this method.</span>
+<span class="cm">   * Please submit the form by triggering the submit event normally to achieve that.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The promise of the response</span>
+<span class="cm">   */</span>
+  <span class="nx">submitAsync</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Resets the form. This method is intended to also reset &lt;code&gt;foundation-field&lt;/code&gt; in addition to standard form controls.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param skipNative Skips the native form reset method (HTMLFormElement#reset)</span>
+<span class="cm">   */</span>
+  <span class="nx">reset</span><span class="p">(</span><span class="nx">skipNative?</span>: <span class="kt">boolean</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the form is dirty; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Dirty form is when there is a change in the underlying fields by mean of &lt;code&gt;foundation-field-change&lt;/code&gt; event.</span>
+<span class="cm">   * And when the form is submitted successfully, the dirty state is reset to &lt;code&gt;false&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">isDirty</span><span class="p">()</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="response-handling">
+<h2>Response Handling<a class="headerlink" href="#response-handling" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> provides a pluggable system to handle the form response.</p>
+<p>The response is handled by the following steps:</p>
+<ol class="arabic simple">
+<li>The response is parsed by the matching response parser, which will return a parsing result (<code class="docutils literal notranslate"><span class="pre">ParsedData</span></code>).</li>
+<li>If there is no matching parser, then jQuery default parsing behavior is used (e.g. <code class="docutils literal notranslate"><span class="pre">application/json</span></code> -&gt; JS object; <code class="docutils literal notranslate"><span class="pre">text/html</span></code> -&gt; string).</li>
+<li>If the response is a success, <code class="docutils literal notranslate"><span class="pre">ParsedData</span></code> is passed to the matching success response handler and the handler is executed.</li>
+<li>Likewise, if the response is an error, <code class="docutils literal notranslate"><span class="pre">ParsedData</span></code> is passed to the matching error response handler and the handler is executed.</li>
+</ol>
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Given the following markup:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-form&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;xyz&quot;</span> <span class="na">data-foundation-form-ajax</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+  <span class="na">data-foundation-form-response-ui-success</span><span class="o">=</span><span class="s">&#39;{&quot;name&quot;: &quot;foundation.redirect&quot;, &quot;href&quot;: &quot;/bin/wcmcommand?cmd=open&amp;_charset_=utf-8&amp;path={Path}&quot;}&#39;</span>
+<span class="p">&gt;&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>where the response of the markup is Sling’ <a class="reference external" href="https://sling.apache.org/apidocs/sling7/org/apache/sling/api/servlets/HtmlResponse.html">HTMLResponse</a>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+      <span class="c">&lt;!-- ... --&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;Status&quot;</span><span class="p">&gt;</span>200<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;Message&quot;</span><span class="p">&gt;</span>Site created<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/content/geometrixx5&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;Location&quot;</span><span class="p">&gt;</span>/content/geometrixx5<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;Path&quot;</span><span class="p">&gt;</span>/content/geometrixx5<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="c">&lt;!-- ... --&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>There is a response parser that is able to parse the response, which is returning the following <code class="docutils literal notranslate"><span class="pre">ParsedData</span></code>:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">parsedData</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">Status</span><span class="o">:</span> <span class="s2">&quot;200&quot;</span><span class="p">,</span>
+   <span class="nx">Message</span><span class="o">:</span> <span class="s2">&quot;Site created&quot;</span><span class="p">,</span>
+   <span class="nx">Location</span><span class="o">:</span> <span class="s2">&quot;/content/geometrixx5&quot;</span><span class="p">,</span>
+   <span class="nx">Path</span><span class="o">:</span> <span class="s2">&quot;/content/geometrixx5&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The configured success response is <code class="docutils literal notranslate"><span class="pre">foundation.redirect</span></code>, where it uses the <code class="docutils literal notranslate"><span class="pre">ParsedData</span></code> as the variables to resolve the URI Template for redirection.
+Hence, the resolved URL based on the <code class="docutils literal notranslate"><span class="pre">href</span></code> config above is <code class="docutils literal notranslate"><span class="pre">/bin/wcmcommand?cmd=open&amp;_charset_=utf-8&amp;path=%2Fcontent%2Fgeometrixx5</span></code>.</p>
+</div>
+</div>
+<div class="section" id="response-parser">
+<h2>Response Parser<a class="headerlink" href="#response-parser" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> allows the response parser to be pluggable,
+by registering to the <a class="reference internal" href="../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.form.response.parser</span></code> as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormResponseParser</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Only the element satisfying the selector will be handled by this parser.</span>
+<span class="cm">   * It will be passed to &lt;code&gt;jQuery.fn.is&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">selector</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The regular expression to match the content type of the response,</span>
+<span class="cm">   * where the matching one will be handled by this parser.</span>
+<span class="cm">   */</span>
+  <span class="nx">contentType</span>: <span class="kt">RegExp</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The handler to actually perform the action.</span>
+<span class="cm">   *</span>
+<span class="cm">   * If &lt;code&gt;false&lt;/code&gt; is returned, the next handler in the chain will be evaluated.</span>
+<span class="cm">   * Otherwise the chain stops and the return value is used as the parsed data.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param form The element of the &lt;code&gt;.foundation-form&lt;/code&gt;</span>
+<span class="cm">   * @param xhr The normalized jQuery XHR object</span>
+<span class="cm">   * @param parsedResponse The result of parsing the response of the given xhr according to its content type (e.g. &quot;text/html&quot; =&gt; DocumentFragment).</span>
+<span class="cm">   *                       Use this instead of &lt;code&gt;xhr.responseText&lt;/code&gt; for performance.</span>
+<span class="cm">   */</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">form</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">xhr</span>: <span class="kt">JQueryXHR</span><span class="p">,</span> <span class="nx">parsedResponse</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">any</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Parser for Sling&#39;s &lt;code&gt;HTMLResponse.class&lt;/code&gt;.</span>
+<span class="cm"> */</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.form.response.parser&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;foundation.sling&quot;</span><span class="p">,</span>
+    <span class="nx">selector</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="nx">contentType</span><span class="o">:</span> <span class="sr">/text\/html/</span><span class="p">,</span>
+    <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">parsedResponse</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">frag</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">parsedResponse</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">frag</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;#Status&quot;</span><span class="p">).</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">reduce</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">frag</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;[id]&quot;</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">memo</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">href</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">memo</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">memo</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">memo</span><span class="p">;</span>
+        <span class="p">},</span> <span class="p">{});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="success-response-handler">
+<h2>Success Response Handler<a class="headerlink" href="#success-response-handler" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> allows the success response to be pluggable. The handler is picked based on the matching name specified in the config at <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-response-ui-success]</span></code>.</p>
+<p>The success response handler can be registered to the <a class="reference internal" href="../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.form.response.ui.success</span></code>
+as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormResponseUISuccess</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The name of the handler. It is recommended that it is namespaced using dot notation according to application that register the handler.</span>
+<span class="cm">   * &quot;foundation&quot; namespace is reserved for Granite UI.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @example</span>
+<span class="cm">   * foundation.redirect</span>
+<span class="cm">   */</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The handler to actually perform the action.</span>
+<span class="cm">   * If &lt;code&gt;false&lt;/code&gt; is returned, the next handler in the chain will be evaluated. Otherwise the chain stops.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param form The element of the &lt;code&gt;.foundation-form&lt;/code&gt;</span>
+<span class="cm">   * @param config The value of &lt;code&gt;[data-foundation-form-response-ui-success]&lt;/code&gt;</span>
+<span class="cm">   * @param data The result of parsing the raw response by &lt;code&gt;FoundationFormResponseParser&lt;/code&gt;</span>
+<span class="cm">   * @param textStatus The status string from XHR</span>
+<span class="cm">   * @param xhr The normalized jQuery XHR object</span>
+<span class="cm">   * @param parsedResponse The result of parsing the response of the given xhr according to its content type (e.g. &quot;text/html&quot; =&gt; DocumentFragment).</span>
+<span class="cm">   *                       Use this instead of &lt;code&gt;xhr.responseText&lt;/code&gt; for performance.</span>
+<span class="cm">   */</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">form</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">config</span>: <span class="kt">FoundationFormResponseUISuccessConfig</span><span class="p">,</span> <span class="nx">data</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">textStatus</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">xhr</span>: <span class="kt">JQueryXHR</span><span class="p">,</span> <span class="nx">parsedResponse</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The config of FoundationFormResponseUISuccess.</span>
+<span class="cm"> * The only required property is &lt;code&gt;name&lt;/code&gt;. The handler implementation is allowed to define any other property according to what it needs.</span>
+<span class="cm"> * Consult individual handler documentation.</span>
+<span class="cm"> */</span>
+<span class="kr">interface</span> <span class="nx">FoundationFormResponseUISuccessConfig</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The name of the handler to be performed when success response is returned by the server.</span>
+<span class="cm">   */</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A chain of registered handlers is created using LIFO (last in, first out) algorithm.
+The handler will be called when the name matches. If false is returned by the handler, the next handler in the chain will be evaluated. Otherwise the chain stops.</p>
+<div class="section" id="id4">
+<h3>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Do a redirect to the given href.</span>
+<span class="cm"> */</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.form.response.ui.success&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;foundation.redirect&quot;</span><span class="p">,</span>
+    <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">textStatus</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">parsedResponse</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">URITemplate</span><span class="p">.</span><span class="nx">expand</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">href</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">href</span> <span class="o">&amp;&amp;</span> <span class="nx">href</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// only navigate when it starts with &quot;/&quot; to prevent open redirect</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">href</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="error-response-handler">
+<h2>Error Response Handler<a class="headerlink" href="#error-response-handler" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> allows the error response to be pluggable.
+Unlike success response, there is no markup associated with error response config.
+This is due to the fact that error is usually unpredictable.
+Rather each handler needs to inspect the response and decide to act upon it or simply pass it to the next handler.</p>
+<p>The error response handler can be registered to the <a class="reference internal" href="../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.form.response.ui.error</span></code> as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormResponseUIError</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The handler to actually perform the action.</span>
+<span class="cm">   * If &lt;code&gt;false&lt;/code&gt; is returned, the next handler in the chain will be evaluated. Otherwise the chain stops.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param form The element of the &lt;code&gt;.foundation-form&lt;/code&gt;</span>
+<span class="cm">   * @param data The result of parsing the raw response by &lt;code&gt;FoundationFormResponseParser&lt;/code&gt;</span>
+<span class="cm">   * @param xhr The normalized jQuery XHR object</span>
+<span class="cm">   * @param textStatus A string describing the type of error that occurred (e.g. &lt;code&gt;null&lt;/code&gt;, &quot;timeout&quot;, &quot;error&quot;, &quot;abort&quot;, &quot;parsererror&quot;)</span>
+<span class="cm">   * @error errorThrown Usually the textual portion of the HTTP status, such as &quot;Not Found&quot; or &quot;Internal Server Error&quot;</span>
+<span class="cm">   */</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">form</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">data</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">xhr</span>: <span class="kt">JQueryXHR</span><span class="p">,</span> <span class="nx">textStatus</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">errorThrown</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A chain of registered handlers is created using LIFO (last in, first out) algorithm. If false is returned by the handler, the next handler in the chain will be evaluated. Otherwise the chain stops.</p>
+<div class="section" id="id5">
+<h3>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Show an alert showing the message from the response of Sling&#39;s &lt;code&gt;HTMLResponse.class&lt;/code&gt;.</span>
+<span class="cm"> */</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.form.response.ui.error&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;foundation.sling&quot;</span><span class="p">,</span>
+    <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">errorThrown</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">.</span><span class="nx">Status</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">Granite</span><span class="p">.</span><span class="nx">I18n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Message</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">ui</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-ui&quot;</span><span class="p">);</span>
+        <span class="nx">ui</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">message</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="submit-hook">
+<h2>Submit Hook<a class="headerlink" href="#submit-hook" title="Permalink to this headline">¶</a></h2>
+<p>There is a pluggable hook to apply extra logic during submission.</p>
+<p>The hook can be registered to the <a class="reference internal" href="../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.form.submit</span></code> as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormSubmit</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Only the element satisfying the selector will be handled by this parser.</span>
+<span class="cm">   * It will be passed to &lt;code&gt;jQuery.fn.is&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">selector</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The handler to actually perform the hook.</span>
+<span class="cm">   *</span>
+<span class="cm">   * This method is executed before the submission (i.e. it is a pre-submit hook).</span>
+<span class="cm">   * It can perform async operation, where the result is returned as a promise at &lt;code&gt;FoundationFormSubmitResult#preResult&lt;/code&gt;.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param form The element of the &lt;code&gt;.foundation-form&lt;/code&gt;</span>
+<span class="cm">   */</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">form</span>: <span class="kt">Element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">FoundationFormSubmitResult</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationFormSubmitResult</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The result of pre-submit hook.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The submission is blocked until all the returned promises of all registered hooks are fulfilled.</span>
+<span class="cm">   * When the promise is rejected, the submission is cancelled.</span>
+<span class="cm">   */</span>
+  <span class="nx">preResult?</span>: <span class="kt">Promise</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The post-submit hook, which is executed after the submission.</span>
+<span class="cm">   *</span>
+<span class="cm">   * It can perform async operation, where the result is returned as a promise.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The form subsequent logic is blocked until all the returned promises are fulfilled.</span>
+<span class="cm">   * Regardless of the result of the promise, the form logic will continue.</span>
+<span class="cm">   */</span>
+  <span class="nx">post</span><span class="o">?:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Promise</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-form</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-form</a></li>
+<li><a class="reference internal" href="#data-foundation-form-ajax">[data-foundation-form-ajax]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-output-replace">[data-foundation-form-output-replace]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-output-push">[data-foundation-form-output-push]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-history">[data-foundation-form-history]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-redirect">[data-foundation-form-redirect]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-ui">[data-foundation-form-ui]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-loadingmask">[data-foundation-form-loadingmask]</a></li>
+<li><a class="reference internal" href="#foundation-form-response-ui-success">.foundation-form-response-ui-success</a></li>
+<li><a class="reference internal" href="#data-foundation-form-response-ui-success">[data-foundation-form-response-ui-success]</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event">Event</a><ul>
+<li><a class="reference internal" href="#foundation-form-submitted">foundation-form-submitted</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+<li><a class="reference internal" href="#response-handling">Response Handling</a><ul>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#response-parser">Response Parser</a><ul>
+<li><a class="reference internal" href="#id3">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#success-response-handler">Success Response Handler</a><ul>
+<li><a class="reference internal" href="#id4">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-response-handler">Error Response Handler</a><ul>
+<li><a class="reference internal" href="#id5">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submit-hook">Submit Hook</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../field/autosubmit.html"
+                        title="previous chapter">foundation-field-autosubmit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="response/parser/foundation.form.html"
+                        title="next chapter">foundation.form.response.parser: foundation.form</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/form/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="response/parser/foundation.form.html" title="foundation.form.response.parser: foundation.form"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../field/autosubmit.html" title="foundation-field-autosubmit"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"name":"CQ.themes.wcm.ContentFinder","doc":"The theme-specific constants for CQ.wcm.ContentFinder.This class is a singleton and cannot be cre...","configs":[],"props":[{"name":"CLIPBOARD_HEIGHT","doc":"&lt;static&gt; The height of the clipboard panel."},{"name":"FINDER_WIDTH","doc":"&lt;static&gt; The width of the left panel."}],"methods":[],"events":[]}

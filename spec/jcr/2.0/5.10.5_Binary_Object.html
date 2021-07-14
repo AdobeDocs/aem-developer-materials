@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.10.5 Binary Object (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>5.10.5 Binary Object</H3>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary</FONT></FONT>
+	object returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value.getBinary()</FONT></FONT>
+	provides the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>InputStream
+	Binary.getStream()</FONT></FONT>,</P>
+	<P>which returns an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>InputStream</FONT></FONT>
+	representation of the value. Each call to this method returns a new
+	stream and the API consumer is responsible for calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>close()</FONT></FONT>
+	on the returned stream.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	Binary.read(byte[] b, long position)</FONT></FONT>,</P>
+	<P>which reads successive
+	bytes starting from the specified position in the value into the
+	passed byte array until either the byte array is full or the end of
+	the value is encountered.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long
+	Binary.getSize()</FONT></FONT>,</P>
+	<P>which returns the size
+	of the value in bytes.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

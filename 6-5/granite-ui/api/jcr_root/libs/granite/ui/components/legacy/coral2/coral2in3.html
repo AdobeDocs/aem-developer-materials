@@ -1,0 +1,284 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../" src="../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Granite UI Foundation" href="../../foundation/index.html" />
+    <link rel="prev" title="Migration Guide to CoralUI 3-based" href="migration.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../foundation/index.html" title="Granite UI Foundation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="migration.html" title="Migration Guide to CoralUI 3-based"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Legacy CoralUI 2 Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-strategy-to-support-coralui-2-based-code-in-a-coralui-3-based-page">
+<h1>The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page<a class="headerlink" href="#the-strategy-to-support-coralui-2-based-code-in-a-coralui-3-based-page" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>AEM as a product allows the customer to extend our web page for his own purposes.
+This extensions are manifested in many different forms and may be implemented in CoralUI 2-based code.
+Thus as AEM page is upgraded to use CoralUI 3, there is a need to support CoralUI 2-based code.</p>
+</div>
+<div class="section" id="the-extension-scenarios">
+<h2>The Extension Scenarios<a class="headerlink" href="#the-extension-scenarios" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overlay">
+<h3>Overlay<a class="headerlink" href="#overlay" title="Permalink to this headline">¶</a></h3>
+<p>There are two types of overlays:</p>
+<ol class="arabic">
+<li><p class="first">Component overlay</p>
+<p>When the product has a component at /libs/granite/ui/components/foundation/button,
+the customer may overlay it at /apps/granite/ui/components/foundation/button</p>
+</li>
+<li><p class="first">Content overlay</p>
+<p>This is done via <a class="reference external" href="https://docs.adobe.com/docs/en/aem/6-1/develop/platform/sling-resource-merger.html">Resource Merger</a>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="component-dialog">
+<h3>Component Dialog<a class="headerlink" href="#component-dialog" title="Permalink to this headline">¶</a></h3>
+<p>The customer may create his own component and its associated dialog.</p>
+</div>
+</div>
+<div class="section" id="strategy">
+<h2>Strategy<a class="headerlink" href="#strategy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="coralui-2-and-coralui-3-side-by-side">
+<h3>CoralUI 2 and CoralUI 3 Side-by-Side<a class="headerlink" href="#coralui-2-and-coralui-3-side-by-side" title="Permalink to this headline">¶</a></h3>
+<p>We have a clientlib for CoralUI 2, which is <code class="docutils literal notranslate"><span class="pre">coralui2</span></code>, while we have <code class="docutils literal notranslate"><span class="pre">coralui3</span></code> for CoralUI 3.
+Even though CoralUI 2 and CoralUI 3 are designed to coexist in a page, both <code class="docutils literal notranslate"><span class="pre">coralui2</span></code> and <code class="docutils literal notranslate"><span class="pre">coralui3</span></code> cannot be loaded together as is.
+This is due to some code overlap that will produce issue when executed twice.
+Therefore, in a page where CoralUI 2 and CoralUI 3 are needed to be loaded together, there is a need to create a merged version of the clientlibs.</p>
+<p>Due to the limitation of technology of clientlib, it is recommended for a clientlib not to declare a dependency to <code class="docutils literal notranslate"><span class="pre">coralui3</span></code>.
+Rather, <code class="docutils literal notranslate"><span class="pre">coralui3</span></code> needs to be included at the individual page.
+This is to allow each page to configure which exact CoralUI 3 clientlib to be used (e.g. <code class="docutils literal notranslate"><span class="pre">coralui3</span></code> or something else).</p>
+<p>However due to compatibility reason, it cannot be said for <code class="docutils literal notranslate"><span class="pre">coralui2</span></code>, where existing clientlibs may already declare a dependency to it.</p>
+<p>For this reason, instead of creating a new merged clientlib, <code class="docutils literal notranslate"><span class="pre">coralui2</span></code> is modified to also deliver CoralUI 3.</p>
+<p>So when there is a need to support both CoralUI 2 and CoralUI 3 in a page, <code class="docutils literal notranslate"><span class="pre">coralui2</span></code> clientlib needs to be used.</p>
+<p>The possible scenarios are mapped in the following table.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="59%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Requirement</th>
+<th class="head">Clientlib</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CoralUI 2</td>
+<td>coralui2</td>
+</tr>
+<tr class="row-odd"><td>CoralUI 3</td>
+<td>coralui3</td>
+</tr>
+<tr class="row-even"><td>CoralUI 2 + 3</td>
+<td>coralui2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="granite-ui-foundation-clientlib">
+<h3>Granite UI Foundation Clientlib<a class="headerlink" href="#granite-ui-foundation-clientlib" title="Permalink to this headline">¶</a></h3>
+<p>For Granite UI Foundation clientlib, we have a CoralUI 2-based, named <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code> and CoralUI 3-based, named <code class="docutils literal notranslate"><span class="pre">granite.ui.coral.foundation</span></code>.</p>
+<p>Just like <code class="docutils literal notranslate"><span class="pre">coralui2</span></code> clientlib, we cannot guarantee that the existing clientlibs will not declare dependency to <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code>.
+Therefore we need to follow similar approach as <code class="docutils literal notranslate"><span class="pre">coralui2</span></code>, where <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code> needs to also deliver CoralUI 3-based implementation.</p>
+<p>To do this, we make <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code> declare the dependency to <code class="docutils literal notranslate"><span class="pre">granite.ui.coral.foundation</span></code> and remove the duplicate code (that is not CoralUI specific) from <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code>.
+i.e. including <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code> will deliver both the CoralUI 3-based code of <code class="docutils literal notranslate"><span class="pre">granite.ui.coral.foundation</span></code> and CoralUI 2 specific code (that is not covered by <code class="docutils literal notranslate"><span class="pre">granite.ui.coral.foundation</span></code>).</p>
+<p>For simplicity, the relevant features of <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation.admin</span></code> are merged into <code class="docutils literal notranslate"><span class="pre">granite.ui.coral.foundation</span></code> (for generic, non CoralUI 2-specific) and <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code> (for CoralUI 2-specific).
+There is no independent <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation.admin</span></code> anymore. <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation.admin</span></code> is configured as an alias of <code class="docutils literal notranslate"><span class="pre">granite.ui.foundation</span></code> for compatibility.</p>
+<p>The possible scenarios are mapped in the following table.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Requirement</th>
+<th class="head">Clientlib</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CoralUI 2</td>
+<td>granite.ui.foundation</td>
+</tr>
+<tr class="row-odd"><td>CoralUI 3</td>
+<td>granite.ui.coral.foundation</td>
+</tr>
+<tr class="row-even"><td>CoralUI 2 + 3</td>
+<td>granite.ui.foundation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h3>Overlay<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Regardless of the overlay types described above, because of our policy that requires the customers to review their overlays when upgrading,
+the customers can leverage Resource Merger to modify the clientlib included in a page.</p>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>Given a content structure of a page in our product:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">libs</span><span class="o">/</span><span class="n">page</span>
+  <span class="o">-</span> <span class="n">clientlibs</span> <span class="o">=</span> <span class="s2">&quot;coralui3, granite.ui.coral.foundation&quot;</span>
+  <span class="o">+</span> <span class="n">toolbar</span>
+    <span class="o">+</span> <span class="n">items</span>
+      <span class="o">+</span> <span class="n">button1</span>
+        <span class="o">-</span> <span class="n">RT</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/button&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button 1&quot;</span>
+      <span class="o">+</span> <span class="n">button2</span>
+        <span class="o">-</span> <span class="n">RT</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/button&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button 2&quot;</span>
+</pre></div>
+</div>
+<p>The customer needs to add his own button to the toolbar. And the button is implemented in CoralUI 2.
+In order to do this, the customer may overlay our structure using Resource Merger to add the button like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">page</span>
+  <span class="o">+</span> <span class="n">toolbar</span>
+    <span class="o">+</span> <span class="n">items</span>
+      <span class="o">+</span> <span class="n">button3</span>
+        <span class="o">-</span> <span class="n">RT</span> <span class="o">=</span> <span class="s2">&quot;customer/components/button&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button 3&quot;</span>
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">customer/components/button</span></code> is implemented in CoralUI 2, the configured clientlibs of that page may not satisfy the requirement.
+To solve this, the customer may also leverage Resource Merger to modify the clientlibs to add CoralUI 2 support.
+The final structure should be like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">page</span>
+  <span class="o">-</span> <span class="n">clientlibs</span> <span class="o">=</span> <span class="s2">&quot;coralui2, granite.ui.foundation&quot;</span>
+  <span class="o">+</span> <span class="n">toolbar</span>
+    <span class="o">+</span> <span class="n">items</span>
+      <span class="o">+</span> <span class="n">button3</span>
+        <span class="o">-</span> <span class="n">RT</span> <span class="o">=</span> <span class="s2">&quot;customer/components/button&quot;</span>
+</pre></div>
+</div>
+<p>i.e. By replacing “coralui3, granite.ui.coral.foundation” with “coralui2, granite.ui.foundation”.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Component Dialog<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Since the customer can create his own dialog and component, which may be implemented in CoralUI 2,
+in order to maintain compatibility, Page Authoring is using the merged version of clientlibs that can handle both CoralUI 2 and CoralUI 3, namely <code class="docutils literal notranslate"><span class="pre">coralui2,</span> <span class="pre">granite.ui.foundation</span></code>.</p>
+<p>This is not only limited to Page Authoring. Any page that allow customer component/clientlib to be executed, NOT via overlay, needs to do this.
+Good examples in Sites are Page Properties, Create Page Wizard, as they load dialog definition into the page.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The Strategy to Support CoralUI 2-based Code in a CoralUI 3-based Page</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#the-extension-scenarios">The Extension Scenarios</a><ul>
+<li><a class="reference internal" href="#overlay">Overlay</a></li>
+<li><a class="reference internal" href="#component-dialog">Component Dialog</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#strategy">Strategy</a><ul>
+<li><a class="reference internal" href="#coralui-2-and-coralui-3-side-by-side">CoralUI 2 and CoralUI 3 Side-by-Side</a></li>
+<li><a class="reference internal" href="#granite-ui-foundation-clientlib">Granite UI Foundation Clientlib</a></li>
+<li><a class="reference internal" href="#id1">Overlay</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">Component Dialog</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="migration.html"
+                        title="previous chapter">Migration Guide to CoralUI 3-based</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../foundation/index.html"
+                        title="next chapter">Granite UI Foundation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../_sources/jcr_root/libs/granite/ui/components/legacy/coral2/coral2in3.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../foundation/index.html" title="Granite UI Foundation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="migration.html" title="Migration Guide to CoralUI 3-based"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Legacy CoralUI 2 Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

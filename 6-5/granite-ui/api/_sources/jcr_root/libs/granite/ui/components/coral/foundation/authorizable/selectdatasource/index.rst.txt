@@ -1,0 +1,24 @@
+
+SelectDatasource
+================
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/authorizable/selectdatasource
+   :datasource:
+
+   A datasource providing authorizable. It is compatible with
+   :granite:servercomponent:`Select </libs/granite/ui/components/coral/foundation/form/select>` and :granite:servercomponent:`Autocomplete </libs/granite/ui/components/coral/foundation/form/autocomplete>`.
+   Internally it uses `AuthorizableQueryManager`_.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:AuthorizableSelectDatasource]
+
+      /**
+       * The query JSON string as documented at `AuthorizableQueryManager`_.
+       */
+      - query (String)
+
+
+.. _AuthorizableQueryManager: http://jackrabbit.apache.org/api/2.4/org/apache/jackrabbit/commons/jackrabbit/user/AuthorizableQueryManager.html

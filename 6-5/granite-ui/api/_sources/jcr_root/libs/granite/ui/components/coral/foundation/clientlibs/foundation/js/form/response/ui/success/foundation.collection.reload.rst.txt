@@ -1,0 +1,16 @@
+foundation.form.response.ui.success: foundation.collection.reload
+=================================================================
+
+``foundation.collection.reload`` is a success response handler of :doc:`../../../index`.
+
+It will reload the :doc:`../../../../../vocabulary/collection` by calling ``FoundationCollection#reload``.
+Upon reload, the notification message is also shown.
+
+Config
+------
+
+message
+   The message to notify the user. If it is not provided, default message is used.
+
+target
+   The selector of the collection.

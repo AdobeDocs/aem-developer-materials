@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.11 Saving (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>10.11 Saving</H2>
+	<P>When a change is made
+	to an item through a session-write method bound to a session <I>S</I>,
+	that change is immediately visible through all subsequent read
+	method calls through <I>S</I>. When</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.save()</FONT></FONT></P>
+	<P>is performed on <I>S</I>,
+	all pending changes recorded in <I>S</I> are dispatched. Without
+	transactions this causes the changes to be persisted. Within a
+	transaction the changes must first be committed in order to be
+	persisted. When a change is persisted it becomes visible to other
+	sessions bound to the same persistent workspace.</P>
+	<P>From the point of view
+	of a session <I>S</I>, the apparent state of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	bound to <I>S</I> does not change upon a <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	of <I>S</I> (apart from the values returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>isNew</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>isModified</FONT></FONT>,
+	see §10.11.3 <I>Item Status</I>) since that state will have been
+	visible <I>to S</I> since the session-write method call that caused
+	it.</P>
+	<P>If one or more of the
+	pending changes cause an exception to be thrown on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>,
+	then <I>no</I> pending changes are dispatched and the set of pending
+	changes recorded on the session is left unaffected.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

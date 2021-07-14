@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.2.3 Auto-Created (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.2.3 Auto-Created</H4>
+	<P>An
+	item may be declared <I>auto-created</I>,
+	meaning that it is automatically created upon creation of its parent
+	node. The auto-created attribute is a boolean.</P>
+	<H5>3.7.2.3.1 Auto-Created and Non-Protected</H5>
+	<P>If an item is
+	auto-created but not protected then it <I>must</I> be <I>immediately</I>
+	created in transient space when its parent node is created. Creation
+	of auto-created non-protected items must never be delayed until save
+	(see §10.11 <I>Saving</I>).</P>
+	<H5>3.7.2.3.2 Auto-Created and Protected</H5>
+	<P>If an item is both
+	auto-created and protected, then it <I>should</I> be immediately
+	created in transient space when its parent node is created. Creation
+	of auto-created protected items should not be delayed until save,
+	though doing so does not violate JCR compliance. In some
+	implementations the value of an auto-created property may be
+	assigned upon save, in such cases the creation of the property may
+	also be delayed until save (see, for example, §3.7.1 <I>Identifier
+	Assignment</I>).</P>
+	<H5>3.7.2.3.3 Auto-created and Same-Name Siblings</H5>
+	<P>In a repository that
+	supports same-name siblings (see §22 <I>Same-Name Siblings</I>), a
+	child node definition may specify that a node be both auto-created
+	and allow same-name siblings. In that case the repository must
+	create at least one such child node with the specified name upon
+	parent node creation, though it may create more than one.</P>
+	<H5>3.7.2.3.4 Auto-created and Residual Definitions</H5>
+	<P>In repositories that
+	support residual definitions, an item cannot be both auto-created
+	and residual (see §3.7.2.1.2 <I>Item Definition Name and Residual
+	Definitions</I>).</P>
+	<H5>3.7.2.3.5 Chained Auto-creation</H5>
+	<P>An auto-created node
+	may itself have auto-created child items, resulting in the automatic
+	creation of a tree of items. However, chaining that produces an
+	infinite loop of item creation is not permitted. A repository must
+	ensure that at no time does it have a set of registered node types
+	that could result in such behavior (see §19 <I>Node Type
+	Management</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

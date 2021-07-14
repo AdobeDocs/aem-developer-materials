@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.2.1 Item Definition Name (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.2.1 Item Definition Name</H4>
+	<P>The name attribute
+	specifies the set of child nodes or properties to which the
+	definition applies. This set is called the <I>scope</I> of the
+	definition. An item within the scope of a given definition is called
+	a <I>scoped item</I> (scoped property, scoped child node) of that
+	definition. The definition within whose scope a given item falls is
+	called the <I>scoping definition</I> of that item.</P>
+	<P>In the standard case
+	the scope consists of the single item named by the attribute and
+	must be a JCR name. 
+	</P>
+	<H5>3.7.2.1.1 Item Definition Name and Same-Name-Siblings</H5>
+	<P>In a repository that
+	supports <I>same-name siblings </I>(see §22 <I>Same-Name Siblings</I>),
+	the name attribute of a child node definition will have scope over
+	all the child nodes of that name. In this case the attribute must
+	also be a JCR name.</P>
+	<H5>3.7.2.1.2 Item Definition Name and Residual Definitions  </H5>
+	<P>In a repository that
+	supports <I>residual definitions</I> the name attribute may be “<FONT FACE="Courier New, monospace"><FONT SIZE=2>*</FONT></FONT>”<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	</FONT></FONT>(asterisk), specifying that the
+	definition is residual, meaning that its scope consists of all other
+	properties (child nodes), which are not otherwise scoped by any of
+	the other property (child node) definitions in the effective node
+	type of the node (see §3.7.6.5 <I>Effective Node Type</I>).</P>
+	<H5>3.7.2.1.3 Multiple Item Definitions with the Same Name</H5>
+	<P>A
+	node type may have two or more item definitions with identical <I>name</I>
+	attributes. On <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>,
+	the repository must choose among the available definitions for one
+	which matches the name and possible type information specified in
+	the method call. If this information is insufficient to select a
+	single definition unambiguously, the repository may choose a
+	definition based on some implementation-specific criteria or fail
+	the operation (see §10.4 <I>Adding Nodes and Setting Properties</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

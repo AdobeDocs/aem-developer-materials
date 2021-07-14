@@ -1,0 +1,21 @@
+
+Well
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/well
+
+   The container to render each item as a column, which has a fixed width.
+   This is mainly designed such that two columns fit a tablet device in landscape mode nicely.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Well] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+   The items are specified using :ref:`ItemDataSource <ItemDataSource>`.

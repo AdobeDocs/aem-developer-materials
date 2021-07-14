@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.2.2 Child Resolution (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.4.2.2 Child Resolution</H4>
+	<P>Given a name segment <I>S</I>
+	= (<I>J</I>, <I>I</I>), <I>J</I> is the name of the child item
+	indicated by that segment while <I>I </I>indicates the index of the
+	item. The index is an integer greater than or equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>1</FONT></FONT>
+	and is used to distinguish between sibling child nodes with the same
+	name. If there is only one child node with the name <I>J </I>then
+	its index is always <FONT FACE="Courier New, monospace"><FONT SIZE=2>1</FONT></FONT>.
+	If there is more than one node with the name <I>J</I> then each has
+	a unique index (see §22 <I>Same-Name Siblings</I>).</P>
+	<P>The child item
+	indicated by <I>S</I> is determined as follows:</P>
+	<UL>
+		<LI><P>If the <I>S</I>
+		<I>is not</I> the last segment of the path then, if a child node
+		with name <I>J</I> and index <I>I</I> exists, <I>S</I> resolves to
+		that node. Otherwise, resolution fails.</P>
+		<LI><P>If <I>S</I> <I>is</I>
+		the last segment of the path then,</P>
+	</UL>
+	<UL>
+		<LI><P>if <I>S</I> is
+		constrained to resolve to a <I>gettable node</I> (as in the case of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNode</FONT></FONT>)
+		and a child node with name <I>J</I> and index <I>I</I> is
+		retrievable, <I>S</I> resolves to that node. Otherwise,</P>
+		<LI><P>if <I>S</I> is
+		constrained to resolve to an <I>addable node</I> (as in the case of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>)
+		and a child node named <I>J</I> can be legally added and <I>I</I>
+		is equal to 1, then <I>J</I> is used as the name of the new node
+		which, if necessary, is given an appropriate index. Otherwise,</P>
+		<LI><P>if <I>S</I> is
+		constrained to resolve to a <I>gettable property</I> (as in the
+		case of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getProperty</FONT></FONT>)
+		then, if a property with name <I>J</I> is retrievable, and <I>I</I>
+		is equal to 1, <I>S</I> resolves to that property. Otherwise,</P>
+		<LI><P>if <I>S</I> is
+		constrained to resolve to a <I>settable property</I> (as in the
+		case of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>)
+		then, if a property with name <I>J</I> or if a property named <I>J</I>
+		can be legally added, and <I>I</I> is equal to 1, <I>S</I> resolves
+		to that property. Otherwise,</P>
+		<LI><P>if <I>S</I> is
+		constrained to resolve to a <I>gettable item</I> (as in the case of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getItem</FONT></FONT>)
+		then if a node with name <I>J</I> and index <I>I</I> is
+		retrievable, <I>S</I> resolves to that node. Otherwise, if there
+		exists a property with name J and <I>I</I> is equal to 1, then <I>S</I>
+		resolves to that property.</P>
+		<LI><P>Otherwise,
+		resolution fails.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

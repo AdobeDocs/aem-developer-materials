@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.4.12 <i>text()</i> Node Test (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.4.12." id="section_6.6.4.12."></a>6.6.4.12 <i>text()</i> Node Test
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									As discussed in <a href="7.3.2_Import_from_Document_View.html">7.3.2</a> <i>Import from Document View</i> and <a href="6.4.2.3_XML_Text.html">6.4.2.3</a> <i>XML Text</i>, document view import converts XML text nodes into the special structure <b>jcr:xmltext/jcr:xmlcharacters</b>, importing the actual text into the value of the <b>jcr:xmlcharacters</b> property.
+								</p>
+							
+							
+								<p class="c5">
+									In the virtual XML document against which XPath is run, this structure appears as an element and attribute. For example:
+								</p>
+							
+							
+								<p class="c5">
+									<b>&lt;limerick&gt;<br>
+									&lt;jcr:xmltext jcr:xmlcharacters="There once was a..."/&gt;<br>
+									&lt;/limerick&gt;</b>
+								</p>
+							
+							
+								<p class="c5">
+									However, as a convenience, the XPath <b>text()</b> node test <i>may</i> be supported in such a way as to make the text also simultaneously visible to XPath in its original form, as an XML text node:
+								</p>
+							
+							
+								<p class="c5">
+									<b>&lt;limerick&gt;There once was a...&lt;/limerick&gt;</b>
+								</p>
+							
+							
+								<p class="c5">
+									If the <b>text()</b> node test is supported, the result is simply that <b>text()</b> becomes equivalent to <b>jcr:xmltext</b> as a node test within an XPath statement. For example, the XPaths <b>/jcr:root/limerick/jcr:xmltext</b> and <b>/jcr:root limerick/text()</b> would be equivalent.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

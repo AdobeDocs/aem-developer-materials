@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.34 Literal (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.34 Literal</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Literal extends
+	StaticOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">javax.jcr.Value Value</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>A JCR value.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Literal ::= CastLiteral |
+	UncastLiteral</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">CastLiteral ::= 'CAST('
+	UncastLiteral ' AS ' PropertyType ')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">PropertyType ::= 'STRING' |
+	'BINARY' | 'DATE' | 'LONG' | 'DOUBLE' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'DECIMAL' |
+	'BOOLEAN' | 'NAME' | 'PATH' | </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'REFERENCE' |
+	'WEAKREFERENCE' | 'URI'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">UncastLiteral ::=
+	UnquotedLiteral | ''' UnquotedLiteral ''' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'“'
+	UnquotedLiteral '“'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">UnquotedLiteral ::= /* String
+	form of a JCR Value, as defined in</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">§3.5.4
+	Conversion of Values */</FONT></P>
+	<P><BR>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>UncastLiteral</FONT></FONT>
+	may be interpreted as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of property type <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+	or some other type inferred from static analysis. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>CastLiteral</FONT></FONT>,
+	on the other hand, is interpreted as the string form of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType</FONT></FONT>
+	indicated.</P>
+	<P><B>JCR-JQOM</B></P>
+	<P>A JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>.
+	A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object can be created using <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	(see §6.10 <I>Literal Values</I>). Note that unlike in the case of
+	JCR-SQL2, property type information is intrinsic to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object, so no equivalent of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>CAST</FONT></FONT>
+	function is needed in JCR-JQOM.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

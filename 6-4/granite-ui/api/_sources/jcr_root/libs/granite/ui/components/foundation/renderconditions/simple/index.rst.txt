@@ -1,0 +1,19 @@
+
+Simple
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/renderconditions/simple
+   :rendercondition:
+
+   A condition that takes a simple boolean for the decision.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:RenderConditionsSimple]
+
+      /**
+       * The expression to evaluate.
+       */
+      - expression (BooleanEL) = true

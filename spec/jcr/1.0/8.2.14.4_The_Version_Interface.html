@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.14.4 The Version Interface (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.14.4." id="section_8.2.14.4."></a>8.2.14.4 The Version Interface
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A <b>Version</b> object provides an interface for an <b>nt:version</b> node. It provides convenient access to version information.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c5">
+										javax.jcr.version.<br><b>Version</b> <b>extends Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>VersionHistory</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getContainingHistory()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>VersionHistory</b> that contains this <b>Version</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Calendar</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getCreated()</b>
+									</p>
+									<p class="c5">
+										Returns the date this version was created. This corresponds to the value of the <b>jcr:created</b> property in the <b>nt:version</b> node that represents this version.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Version[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getSuccessors()</b>
+									</p>
+									<p class="c5">
+										Returns the successor versions of this version. This corresponds to returning all the <b>nt:version</b> nodes referenced by the <b>jcr:successors</b> multi-value property in the <b>nt:version</b> node that represents this version.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Version[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPredecessors()</b>
+									</p>
+									<p class="c5">
+										Returns the predecessor versions of this version. This corresponds to returning all the <b>nt:version</b> nodes whose <b>jcr:successors</b> property includes a reference to the <b>nt:version</b> node that represents this version.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 5.2 A WebDAV-backed Content Repository (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_5.2." id="section_5.2."></a> 5.2 A WebDAV-backed Content Repository
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Consider a repository with some arbitrary underlying implementation structure (file system, database) but which exposes its content via a WebDAV interface.
+								</p>
+							
+							
+								<p class="c5">
+									In such a case, the implementer might choose to implement this specification not directly on top of the underlying system but on top of the existing WebDAV layer.
+								</p>
+							
+							
+								<p class="c5">
+									The mapping from the exposed WebDAV structure to the repository hierarchy can be done quite directly using a mapping similar to that described above in the file system example.
+								</p>
+							
+							
+								<p class="c5">
+									In addition to this, all supplemental information of a WebDAV resource, such as properties, locking information, etc. can be mapped to repository properties.
+								</p>
+							
+						
+					
+				
+			
+		
+		<table border="1" cellpadding="7" cellspacing="0">
+			
+			
+			<tr valign="top">
+				<td>
+					<p>
+						<br>
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						<b>/</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>/newpaintings/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>newpaintings</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>bigredstripe.gif</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>bigredstripe.gif</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>&lt;PROPFIND/newpaintings/bigredstripe.gif&gt;</i></b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>DAV:displayname</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>myapp:name = "Big Red Stripe"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>DAV:creationdate</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>jcr:created = "2001-05-03<br>
+						│ T00:00:00.000Z"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<br>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>jcr:content</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>DAV:getlastmodified</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>jcr:lastModified = "2001-05-03<br>
+						│ T00:00:00.000Z"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>DAV:getcontenttype</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>jcr:mimeType = "image/gif"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>&lt;GET /newpaintings/bigredstripe.gif&gt;</i></b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>jcr:data = &lt;binary data&gt;</b>
+					</p>
+				</td>
+			</tr>
+		</table>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									In this example, the file <b>bigredstripe.gif</b> is represented by a subtype of <b>nt:file</b> and the <b>jcr:content</b> subnode is of type <b>nt:resource</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

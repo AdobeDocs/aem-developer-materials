@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.3.4 Parsing Lexical Paths (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.4.3.4 Parsing Lexical Paths</H4>
+	<P>When parsing a lexical
+	path, the parser must distinguish between name segments that are in
+	expanded form and those that are in qualified form (see §3.2.5
+	<I>Lexical Form of JCR Names</I>). When making this determination,
+	the repository cannot assume that every namespace URI encountered in
+	an expanded name will be registered within the repository.</P>
+	<P>An otherwise valid
+	path containing an expanded name with an unregistered <I>namespace
+	URI </I>will always resolve into a valid internal representation of
+	a path (i.e., an ordered list of path segments, see §3.4 <I>Paths</I>).
+	Any errors that arise from passing such a path must therefore be as
+	a result of further processing (not merely parsing) that depends on
+	the semantics of the path and the context of use.</P>
+	<P>However, a path
+	containing a qualified name with an unregistered <I>prefix</I> will
+	<I>not</I> resolve into a valid internal path representation. An
+	attempt to pass such a path will therefore fail at the parsing
+	stage.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

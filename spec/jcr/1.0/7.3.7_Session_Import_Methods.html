@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.7 Session Import Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.7." id="section_7.3.7."></a>7.3.7 Session Import Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Session</b> contains the following methods for importing and exporting content:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Session</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>ContentHandler</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getImportContentHandler(String parentAbsPath,<br>
+										int uuidBehavior)</b>
+									</p>
+									<p class="c5">
+										Returns an <b>org.xml.sax.ContentHandler</b> which can be used to push SAX events into the repository. If the incoming XML stream (in the form of SAX events) does not appear to be a <i>system view</i> XML document then it is interpreted as a <i>document view</i> XML document.
+									</p>
+									<p class="c5">
+										The incoming XML is deserialized into a subtree of items immediately below the node at <b>parentAbsPath</b>.
+									</p>
+									<p class="c5">
+										This method simply returns the <b>ContentHandler</b> without altering the state of the session; the actual deserialization to the session transient space is done through the methods of the <b>ContentHandler</b>. Invalid XML data will cause the <b>ContentHandler</b> to throw a <b>SAXException</b>.
+									</p>
+									<p class="c5">
+										As SAX events are fed into the <b>ContentHandler</b>, the tree of new items is built in the transient storage of the session. In order to persist the new content, <b>save</b> must be called. The advantage of this through-the- session method is that (depending on what constraint checks the implementation leaves until <b>save</b>) structures that violate node type constraints can be imported, fixed and then saved. The disadvantage is that a large import will result in a large cache of pending nodes in the session. See <b>Workspace.getImportContentHandler</b> for a version of this method that <i>does not</i> go through the session.
+									</p>
+									<p class="c5">
+										The flag <b>uuidBehavior</b> governs how the UUIDs of incoming (deserialized) nodes are handled. There are four options (defined as constants in the interface <b>javax.jcr.ImportUUIDBehavior</b>):
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_CREATE_NEW</b>: Incoming referenceable nodes are added in the same way that new node is added with <b>Node.addNode</b>. That is, they are either assigned newly created UUIDs upon addition or upon <b>save</b> (depending on the implementation, see <a href="4.9.1.1_When_UUIDs_are_Assigned.html">4.9.1.1</a> <i>When UUIDs are Assigned</i>). In either case, UUID collisions will not occur.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then the already existing node (and its subtree) is removed from wherever it may be in the workspace before the incoming node is added. Note that this can result in nodes “disappearing” from locations in the workspace that are remote from the location to which the incoming subtree is being written. Both the removal and the new addition will be persisted on <b>save</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REPLACE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace, then the already-existing node is replaced by the incoming node in the same position as the existing node. Note that this may result in the incoming subtree being disaggregated and “spread around” to different locations in the workspace. In the most extreme case this behavior may result in no node at all being added as child of <b>parentAbsPath</b>. This will occur if the topmost element of the incoming XML has the same UUID as an existing node elsewhere in the workspace. The change will be persisted on <b>save</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_THROW</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then a <b>SAXException</b> is thrown by the <b>ContentHandler</b> during deserialization.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										Unlike <b>Workspace.getImportContentHandler</b>, this method does not necessarily enforce all node type constraints during deserialization. Those that would be immediately enforced in a normal write method (<b>Node.addNode</b>, <b>Node.setProperty</b> etc.) of this implementation cause the returned <b>ContentHandler</b> to throw an immediate <b>SAXException</b> during deserialization. All other constraints are checked on <b>save</b>, just as they are in normal write operations. However, which node type constraints are enforced also depends upon whether node type information in the imported data is respected, and this is an implementation-specific issue (see 7.3.3 Respecting Property Semantics).
+									</p>
+									<p class="c5">
+										A <b>SAXException</b> will also be thrown by the returned <b>ContentHandler</b> during deserialization if <b>uuidBehavior</b> is set to <b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b> and an incoming node has the same UUID as the node at <b>parentAbsPath</b> or one of its ancestors.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown either immediately or on <b>save</b> if no node exists at <b>parentAbsPath</b>. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown either immediately or on <b>save</b> if the new subtree cannot be added to the node at <b>parentAbsPath</b> due to node-type or other implementation-specific constraints. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown either immediately or on <b>save</b> if the node at <b>parentAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown either immediately or on <b>save</b> if a lock prevents the addition of the subtree. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>importXML(String parentAbsPath,<br>
+										InputStream in,<br>
+										int uuidBehavior)</b>
+									</p>
+									<p class="c5">
+										Deserializes an XML document and adds the resulting item subtree as a child of the node at <b>parentAbsPath</b>.
+									</p>
+									<p class="c5">
+										If the incoming XML stream does not appear to be a <i>system view</i> XML document then it is interpreted as a <i>document view</i> XML document.
+									</p>
+									<p class="c5">
+										The tree of new items is built in the transient storage of the <b>Session</b>. In order to persist the new content, <b>save</b> must be called. The advantage of this through-the- session method is that (depending on what constraint checks the implementation leaves until <b>save</b>) structures that violate node type constraints can be imported, fixed and then saved. The disadvantage is that a large import will result in a large cache of pending nodes in the <b>session</b>. See <b>Workspace.importXML</b> for a version of this method that <i>does not</i> go through the <b>Session</b>.
+									</p>
+									<p class="c5">
+										The flag <b>uuidBehavior</b> governs how the UUIDs of incoming (deserialized) nodes are handled. There are four options (defined as constants in the interface <b>javax.jcr.ImportUUIDBehavior</b>):
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_CREATE_NEW</b>: Incoming referenceable nodes are added in the same way that new node is added with <b>Node.addNode</b>. That is, they are either assigned newly created UUIDs upon addition or upon <b>save</b> (depending on the implementation, see <a href="4.9.1.1_When_UUIDs_are_Assigned.html">4.9.1.1</a> <i>When UUIDs are Assigned</i>). In either case, UUID collisions will not occur.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then the already existing node (and its subtree) is removed from wherever it may be in the workspace before the incoming node is added. Note that this can result in nodes “disappearing” from locations in the workspace that are remote from the location to which the incoming subtree is being written. Both the removal and the new addition will be persisted on <b>save</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_REPLACE_EXISTING</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace, then the already-existing node is replaced by the incoming node in the same position as the existing node. Note that this may result in the incoming subtree being disaggregated and “spread around” to different locations in the workspace. In the most extreme case this behavior may result in no node at all being added as child of <b>parentAbsPath</b>. This will occur if the topmost element of the incoming XML has the same UUID as an existing node elsewhere in the workspace. The change will be persisted on <b>save</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>IMPORT_UUID_COLLISION_THROW</b>: If an incoming referenceable node has the same UUID as a node already existing in the workspace then an <b>ItemExistsException</b> is thrown.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										Unlike <b>Workspace.importXML</b>, this method does not necessarily enforce all node type constraints during deserialization. Those that would be immediately enforced in a normal write method (<b>Node.addNode</b>, <b>Node.setProperty</b> etc.) of this implementation cause an immediate <b>ConstraintViolationException</b> during deserialization. All other constraints are checked on <b>save</b>, just as they are in normal write operations. However, which node type constraints are enforced depends upon whether node type information in the imported data is respected, and this is an implementation-specific issue (see 7.3.3 Respecting Property Semantics).
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will also be thrown immediately if <b>uuidBehavior</b> is set to <b>IMPORT_UUID_COLLISION_REMOVE_EXISTING</b> and an incoming node has the same UUID as the node at <b>parentAbsPath</b> or one of its ancestors.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown either immediately or on <b>save</b> if no node exists at <b>parentAbsPath</b>. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown either immediately or on <b>save</b> if the node at <b>parentAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown either immediately or on <b>save</b> if a lock prevents the addition of the subtree. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

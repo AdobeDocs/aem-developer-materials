@@ -1,0 +1,52 @@
+
+NestedCheckboxList
+==================
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/nestedcheckboxlist
+
+   NestedCheckboxList is a tree of checkboxes. When a checkbox is checked/unchecked:
+
+   * Its descendant checkboxes are checked/unchecked also (i.e. the check/uncheck all concept)
+   * Its ancestor checkboxes are updated to reflect theirs immediate children check status. When all the children are not checked/unchecked, the checkbox's will be rendered as partially checked.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormNestedCheckboxList] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * ``true`` to make each checkbox change to avoid checking/unchecking other checkboxes.
+       */
+      - disconnected (Boolean)
+
+   The items (checkboxes) are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Each checkbox can have a subnode named ``sublist`` to indicate the sublist of that checkbox:
+
+   .. gnd:gnd::
+
+      [granite:FormNestedCheckboxListSublist]
+
+      /**
+       * The sublist of the checkbox. The resource type would be another nestedcheckboxlist (or its derivative).
+       */
+      + sublist
+
+   Example::
+
+      + mynestescheckboxlist
+        - sling:resourceType = "granite/ui/components/foundation/form/nestedcheckboxlist"
+        + items
+          + level1
+            - sling:resourceType = "granite/ui/components/foundation/form/checkbox"
+            - text = "Level 1"
+            + sublist
+              - sling:resourceType = "granite/ui/components/foundation/form/nestedcheckboxlist"
+              + items
+                + level2a
+                  - sling:resourceType = "granite/ui/components/foundation/form/checkbox"
+                  - text = "Level 2 A"
+                + level2b
+                  - sling:resourceType = "granite/ui/components/foundation/form/checkbox"
+                  - text = "Level 2 B"

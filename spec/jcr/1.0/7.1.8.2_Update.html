@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.8.2 Update (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.8.2." id="section_7.1.8.2."></a>7.1.8.2 Update
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Node correspondence governs the behavior of the <b>update</b> method. This method causes <b>this</b> node to be updated to reflect the state of its corresponding node in <b>srcWorkspace</b>.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>update(String srcWorkspaceName)</b>
+									</p>
+									<p class="c5">
+										If this node does have a corresponding node in the workspace <b>srcWorkspaceName</b>, then this replaces this node and its subtree with a clone of the corresponding node and its subtree.
+									</p>
+									<p class="c5">
+										If this node does not have a corresponding node in the workspace <b>srcWorkspaceName</b>, then the update method has no effect.
+									</p>
+									<p class="c5">
+										If the <b>update</b> succeeds, the changes made to <b>this</b> node and its subtree are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										Note that <b>update</b> does not respect the checked-in status of nodes. An <b>update</b> may change a node even if it is currently checked-in (this fact is only relevant in an implementation that supports versioning, see <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i>).
+									</p>
+									<p class="c5">
+										If the specified <b>srcWorkspace</b> does not exist, a <b>NoSuchWorkspaceException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the current session does not have sufficient permissions to perform the operation, then an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the update.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

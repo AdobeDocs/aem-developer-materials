@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.3.1.1 Testing for Checked-Out Status (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.3.1.1 Testing for Checked-Out Status</H4>
+	<P>Only the actual
+	versionable node has a <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+	property, however, the checked-in read-only effect extends into the
+	subgraph of the versionable node (see §15.2.2 <I>Read-Only on
+	Check-In</I>). The method</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=1 ><B><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	VersionManager.</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>isCheckedOut(String
+	absPath)</FONT></FONT></B></FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	if the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is read-only due to a check-in operation. The method returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+	<P>Alternatively, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.isCheckedOut()</FONT></FONT></P>
+	<P>can also be used
+	directly on the node in question.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

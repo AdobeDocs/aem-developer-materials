@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2 Reading Repository Content (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_6.2." id="section_6.2."></a> 6.2 Reading Repository Content
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Reading repository content involves accessing nodes (either directly or by traversing the hierarchy step by step) and reading the values of properties.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>Session</b> object returned by <b>Repository.login</b> encapsulates both the authorization settings of a particular user (as determined by the <b>Credentials</b> object) and a binding to the workspace specified by the <b>workspaceName</b> passed on <b>login</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Each <b>Session</b> object is associated one-to-one with a <b>Workspace</b> object. The <b>Workspace</b> object represents a “view” of an actual repository workspace entity as seen through the authorization settings of its associated <b>Session</b>.
+								</p>
+							
+							
+								<p class="c5">
+									There is an important distinction between the <b>Workspace</b> object instance associated with a particular <b>Session</b> and the actual workspace entity in the repository. If multiple <b>Session</b>s access a particular workspace each will have its own <b>Workspace</b> object, even though all of these <b>Workspace</b> objects may represent the same actual workspace entity in the repository. In other words, a <b>Workspace</b> object corresponds to a <i>view</i> of a particular workspace entity, and that view is determined by the <b>Session</b> associated with the <b>Workspace</b> object.
+								</p>
+							
+							
+								<p class="c5">
+									On the other hand, each <b>Session</b> object represents a separate session entity. Two or more <b>Session</b> instances can exist for the same <b>Credentials</b> and the same <b>workspaceName</b> but still have different states.
+								</p>
+							
+							
+								<p class="c5">
+									Since <b>Session</b> and <b>Workspace</b> instances are always associated one-to-one, combining them into a single object might seem logical. However, the distinction between the two objects comes into play in level 2 implementations, where writing to the repository can occur in two ways, either through transient storage (associated with the <b>Session</b> object) or directly to the persistent layer (associated with the <b>Workspace</b> object). It is primarily to differentiate these two modes of writing that the distinction between the two objects is maintained. See <a href="4.1.3.2_Transient_Storage_in_the_Session.html">4.1.3.2</a> <i>Transient Storage in the Session</i> and <a href="7.1_Writing_Repository_Content.html">7.1</a> <i>Writing Repository Content</i> for more details.
+								</p>
+							
+							
+								<p class="c5">
+									In a level 1 repository the distinction between <b>Session</b> and <b>Workspace</b> objects does not play a significant role. It exists simply for the sake of compatibility with level 2.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

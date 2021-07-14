@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.3 Access Control Policies (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>16.3 Access Control Policies</H2>
+	<P>The privileges granted
+	to a user can be controlled by assigning <I>access control policies</I>
+	to nodes. The content and semantics of these policies are
+	implementation specific and may be based on any mechanism, including
+	access control lists or role-responsibility assignments. JCR does
+	not expose the internals of policies, nor does it provide a
+	mechanism for defining them. However, it does provide a marker
+	interface <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicy</FONT></FONT>
+	and two derived interfaces <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamedAccessControlPolicy</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	(see §16.6 <I>Access Control Lists</I>). Furthermore, JCR provides
+	means to:</P>
+	<UL>
+		<LI><P>Find which
+		polices are available to be bound to a node.</P>
+		<LI><P>Bind a policy to
+		a node.</P>
+		<LI><P>Get the policies
+		bound to a given node (including transient modifications).</P>
+		<LI><P>Get the policies
+		that affect access to a given node.</P>
+		<LI><P>Unbind a policy
+		from a node.</P>
+	</UL>
+	<P>In addition to these
+	methods, any <I>effect</I> that a policy has on a node is always
+	reflected in the information returned by the privilege discovery
+	methods (see §16.2.7 <I>Testing Privileges</I>). Note that the
+	<I>scope</I> of the effect of an access control policy may not be
+	identical to the node to which that policy is bound (see §16.4.2
+	<I>Binding a Policy to a Node</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.5.5 order by Clause (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.5.5." id="section_6.6.5.5."></a>6.6.5.5 order by Clause
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									As described in 6.6.3.5 Ordering Specifier, it may be desirable to sort the result of an XPath query into either ascending or descending order based on the value of a property. This is done by adding the order by clause to a location path expression. The additions to the syntax of the XPath location clause are as follows:
+								</p>
+							
+						
+					
+				
+			
+			
+				<table border="0" cellpadding="7" cellspacing="0">
+					
+					
+					
+					<tr valign="top">
+						<td>
+							<p class="c12">
+								JCRXPathExpr
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								(XPath OrderByClause?)?
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td>
+							<p class="c12">
+								OrderByClause
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								"order by" OrderSpecList
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td>
+							<p class="c12">
+								OrderSpecList
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								OrderSpec ("," OrderSpec)*
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td>
+							<p class="c12">
+								OrderSpec
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								("@" AttributeName OrderModifier) |<br>
+								(ScoreFunction OrderModifer)
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td>
+							<p class="c12">
+								OrderModifier
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								("ascending" | "descending")?
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td>
+							<p class="c5">
+								ScoreFunction
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								"jcr:score(" ParamList ")"
+							</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td>
+							<p class="c12">
+								ParamList
+							</p>
+						</td>
+						<td>
+							<p class="c12">
+								::=
+							</p>
+						</td>
+						<td>
+							<p class="c5">
+								<i>/* zero or more comma separated parameters */</i>
+							</p>
+						</td>
+					</tr>
+				</table>
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									For example, the query to find all nodes of type <b>car</b> where the <b>color</b> is “<b>green</b>” and sort them by price in ascending order, the following query might be used:
+								</p>
+							
+							
+								<p class="c5">
+									<b>//element(*, car)[@brand='green'] order by @price ascending</b>
+								</p>
+							
+							
+								<p class="c5">
+									Note that if neither <b>ascending</b> nor <b>descending</b> are explicitly specified the default behavior is <b>ascending</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

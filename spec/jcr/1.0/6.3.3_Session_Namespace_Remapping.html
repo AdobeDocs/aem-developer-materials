@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.3.3 Session Namespace Remapping (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.3.3." id="section_6.3.3."></a> 6.3.3 Session Namespace Remapping
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Any registered namespace can be temporarily remapped to a new prefix within the scope of a particular <b>Session</b>.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Session</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setNamespacePrefix(String prefix, String uri)</b>
+									</p>
+									<p class="c5">
+										Within the scope of this <b>Session</b>, remaps a persistently registered namespace URI to the new <b>prefix</b>. The remapping only affects operations done through this session. To clear all remappings, the client must acquire a new <b>Session</b>.
+									</p>
+									<p class="c5">
+										A prefix that is currently already mapped to some URI (either persistently in the repository <b>NamespaceRegistry</b> or transiently within this <b>Session</b>) cannot be remapped to a new URI using this method, since this would make any content stored using the old URI unreadable. An attempt to do this will throw a <b>NamespaceException</b>.
+									</p>
+									<p class="c5">
+										As well, a <b>NamespaceException</b> will be thrown if an attempt is made to remap an existing namespace URI to a prefix beginning with the characters “<b>xml</b>” (in any combination of case).
+									</p>
+									<p class="c5">
+										A <b>NamespaceException</b> will also be thrown if the specified <b>uri</b> is not among those registered in the <b>NamespaceRegistry</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNamespacePrefixes()</b>
+									</p>
+									<p class="c5">
+										Returns all prefixes currently set for this <b>Session</b>. This includes all those registered in the <b>NamespaceRegistry</b> but <i>not temporarily over-ridden</i> by a <b>Session.setNamespacePrefix,</b> plus those currently set locally by <b>Session.setNamespacePrefix</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNamespaceURI(String prefix)</b>
+									</p>
+									<p class="c5">
+										Returns the URI to which the given <b>prefix</b> is mapped as currently set in this <b>Session</b>.
+									</p>
+									<p class="c5">
+										A <b>NamespaceException</b> is thrown if the specified <b>prefix</b> is unknown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNamespacePrefix(String uri)</b>
+									</p>
+									<p class="c5">
+										Returns the prefix to which the given URI is mapped as currently set in this <b>Session</b>.
+									</p>
+									<p class="c5">
+										A <b>NamespaceException</b> is thrown if the specified <b>uri</b> is unknown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

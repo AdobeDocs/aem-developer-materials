@@ -1,0 +1,318 @@
+*******************
+foundation-tracking
+*******************
+
+Granite UI supports tracking the usage of the application for analytic purposes.
+
+
+Mechanic
+========
+
+The tracking API is done using layerred approach.
+This is done mainly to allow a certain abstraction to avoid application developer to use the actual tracking engine directly,
+which allows the engine to be switched.
+
+.. graphviz::
+
+   digraph "Tracking Layers" {
+     "Tracking Engine Adapter" -> "Actual Tracking Engine" [label="wraps"];
+     "foundation-tracker API" -> "Tracking Engine Adapter" [label="uses"];
+     "Declarative Approach" -> "foundation-tracker API" [label="uses"];
+   }
+
+
+Actual Tracking Engine
+======================
+
+This is the lowest layer where the actual tagging library such as Adobe DTM is located.
+
+.. note::
+   `foundation-tracking` uses Adobe DTM as the tracking engine out-of-the-box.
+
+
+Tracking Engine Adapter
+=======================
+
+The concept of tracking is usually done by the tracking engine that exposes a mechanic to track and send the beacons to the tracking server.
+This tracking engine is external to Granite UI and thus there is a need to establish an adapter between Granite UI and the engine.
+
+The adapter needs to be created at ``window.Granite.Tracking.Tracker`` variable, implementing the following interface:
+
+.. code-block:: ts
+
+   interface GraniteTracker {
+     /**
+      * Tracks the page having the given data.
+      *
+      * The data is an object that can have arbitrary structure, which is determined by business need.
+      */
+     trackPage: (data: any) => void;
+
+     /**
+      * Tracks the event having the given data.
+      *
+      * The data is an object that can have arbitrary structure, which is determined by business need.
+      */
+     trackEvent: (data: any) => void;
+   }
+
+.. note::
+   `foundation-tracking` implements the adapter to Adobe DTM out-of-the-box.
+
+Example
+-------
+
+This is the adapter example using Adobe DTM with data schema described at "Tracking Data Schema" section.
+
+.. code-block:: js
+
+   window.Granite = window.Granite || {};
+   window.Granite.Tracking = window.Granite.Tracking || {};
+
+   window.Granite.Tracking.Tracker = {
+     trackPage: function(data) {
+       try {
+         var page = window.digitalData.page;
+
+         Object.keys(data).forEach(function(key) {
+           page[key] = data[key];
+         });
+
+         _satellite.track("page");
+       } catch (error) {
+         console.error(error);
+       }
+     },
+
+     trackEvent: function(data) {
+       try {
+         if (window.digitalData.event instanceof Array === false) {
+           window.digitalData.event = [];
+         }
+
+         window.digitalData.event.push(data);
+
+         _satellite.track("event");
+       } catch (error) {
+         console.error(error);
+       }
+     }
+   };
+
+
+foundation-tracker API
+======================
+
+This AdaptTo API is intented to be the go to imperative API.
+In the event that a use case cannot be expressed using declarative approach, this API can be used as the "catch all" fallback.
+
+For application developer, instead of calling ``GraniteTracker`` directly, it is recomended to use this API instead.
+
+
+foundation-tracker
+------------------
+
+type
+   ``foundation-tracker``
+
+condition
+   ``window``
+
+returned type
+   ``FoundationTracker``
+
+.. code-block:: ts
+
+   interface FoundationTracker {
+     /**
+      * Tracks the page having the given data.
+      *
+      * The data is an object that can have arbitrary structure, which is determined by business need.
+      */
+     trackPage: (data: any) => void;
+
+     /**
+      * Tracks the event having the given data.
+      *
+      * The data is an object that can have arbitrary structure, which is determined by business need.
+      */
+     trackEvent: (data: any) => void;
+   }
+
+
+Declarative Approach
+====================
+
+The idea of tracking is pretty repetitive, thus can be generalized simply by annotating the existing markup.
+This way there can be a general purpose code that can read the annotation and call the imperative API accordingly.
+This will in turn avoid the need for application developer to create an extra JS code for tracking purpose.
+
+
+Declarative Page Tracking
+=========================
+
+If the following markup exist during DOM `DOMContentLoaded <https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference/DOMContentLoaded>`_ event,
+the page will be tracked.
+
+
+meta[name="foundation.tracking.page"]
+-------------------------------------
+
+The page data to be tracked.
+The value of ``content`` attribute of the ``<meta>`` is JSON that is passed to ``FoundationTracker#trackPage``.
+
+The JSON value needs to follow the schema described at "Tracking Data Schema" section.
+
+Selector Rule::
+
+   head > meta[name="foundation.tracking.page"]
+
+
+Note that this automatic page tracking is only done once during page load.
+So if there is page change in SPA (Single Page Application), calling the ``trackPage`` manually is still needed.
+
+
+Example
+-------
+
+.. code-block:: html
+
+   <meta name="foundation.tracking.page" content='{"type": "collection", "hierarchy": "sites", "name": "sites"}'>
+
+
+Declarative Event Tracking
+==========================
+
+If the element has the following markup, it will be tracked when it is activated.
+
+The actual handler to process the tracking is customizable. See the section below.
+
+
+[data-foundation-tracking-event]
+--------------------------------
+
+The JSON to be passed to ``FoundationTracker#trackEvent``.
+
+The JSON value needs to follow the schema described at "Tracking Data Schema" section.
+
+Selector Rule::
+
+   [data-foundation-tracking-event]
+
+
+Example
+-------
+
+.. code-block:: html
+
+   <button data-foundation-tracking-event='{"feature": "sites", "element": "create", "type": "button", "action": "click"}'>Create</button>
+
+
+Customizing Event Tracking Handler
+==================================
+
+The handler to process the tracking is pluggable by providing an AdaptTo API for the element.
+This is to allow a specific element to do a special handling about the tracking data or process.
+
+
+foundation-tracking-event
+-------------------------
+
+type
+   ``foundation-tracking-event``
+
+returned type
+   ``FoundationTrackingEvent``
+
+.. code-block:: ts
+
+   interface FoundationTrackingEvent {
+     /**
+      * Tracks the event.
+      *
+      * @param event The DOM event object of the current event
+      */
+     track: (event: Event) => void;
+   }
+
+There is a default implementation with the following behaviour:
+
+condition
+   ``[data-foundation-tracking-event]``
+
+behaviour
+   JSON from ``[data-foundation-tracking-event]`` is processed with the following behaviour:
+
+   ===================  ============  =================================
+   Property             Status        Default Value
+   ===================  ============  =================================
+   ``feature``          Optional      ``""``
+   ``element``          Mandatory
+   ``type``             Mandatory
+   ``action``           Fixed         ``click``
+   ``widget.name``      Optional      The value of ``element``
+   ``widget.type``      Mandatory
+   <others>             Optional
+   ===================  ============  =================================
+
+
+Tracking Data Schema
+====================
+
+
+Value Conventions
+-----------------
+
+Values can be objects, arrays, ints, booleans, or strings.
+If the value is a string, it should be in all lower case, even abbreviations, and white space is allowed between words, but not to start or end the string.
+No punctuation is allowed, except commas to indicate a list of multiple values within the string, and colons to indicate a hierarchy within the string.
+
+For example::
+
+  "admin"
+  "report suites"
+  "aem"
+  "components:segments"
+  "apples,bananas,oranges"
+
+
+Page
+----
+
+===================  ============  ===============================================================================================
+Property             Status        Description
+===================  ============  ===============================================================================================
+``hierarchy``        Mandatory     Colon delimited string providing the contextual location of the page being viewed.
+                                   Typically, this should mirror the navigational structure to access the page.
+                                   If a page can be accessed through multiple navigational paths,
+                                   a single navigational path should be chosen to represent the hierarchy location of the page.
+                                   A page should NOT have multiple hierarchy values attributed to it.
+``name``             Mandatory     The name of the page being viewed.
+                                   This should not include an assetId. Instead, it should contain a friendly name for the page.
+                                   While the ``name`` does not need to be unique to the solution, the combination of the
+                                   ``hierarchy`` and ``name`` should be unique.
+                                   Generic page names, such as homepage or welcome page, should be avoided if at all possible.
+``type``             Optional      The type, template, or form factor of the page.
+                                   The page type should not contain the feature related to the page, but should be an abstraction
+                                   of the type of page.
+``assetId``          Optional      The unique identifier for the content that is being displayed on the page,
+                                   such as the asset ID, content ID, segment ID, etc.
+===================  ============  ===============================================================================================
+
+
+Event
+-----
+
+===================  ============  =================================
+Property             Status        Description
+===================  ============  =================================
+``feature``          Mandatory     The name of the feature that the interaction takes place
+``widget.name``      Mandatory     The name of the widget the element being interacted with belongs.
+                                   For groups of related elements, or a friendly name for the element if it doesn't belong to a group of elements.
+``widget.type``      Mandatory     The type of widget where the event occurred.
+                                   These typically should mirror the components of the CoralUI, but are not limited to the existing CoralUI components.
+``element``          Mandatory     The element that the user interacted with.
+``type``             Mandatory     The type of element being interacted with.
+``action``           Mandatory     The action that the user conducted on the element.
+                                   These typically should correspond with standard DOM event.
+===================  ============  =================================

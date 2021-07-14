@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.11.2 Getting a Lock (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.11.2 Getting a Lock</H3>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=1 ><B><FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock
+	LockManager.getLock(String absPath)</FONT></FONT></B></FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object that applies to the node at absPath. This may be either a
+	lock on the node itself or a deep lock on a node above that node.</P>
+	<P>If the current session
+	holds the lock token for this lock and the lock is open-scoped, then
+	the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object contains that lock token (accessible through
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockToken</FONT></FONT>).
+	If this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	does not hold the applicable lock token and the lock is open-scoped,
+	the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object <I>may</I> return the lock token. Otherwise, the returned
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object will not contain the lock token and its <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockToken</FONT></FONT>
+	method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	(see §17.12.4 <I>Getting a Lock Token</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

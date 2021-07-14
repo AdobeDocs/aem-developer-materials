@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.4 Property Read Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.4." id="section_6.2.4."></a>6.2.4 Property Read Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following are the level 1 methods of <b>Property</b>. They are used for reading a property. The <b>Property</b> interface has other methods as well, though in a level 1-only implementation they will either do nothing or throw an exception.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Property</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getValue()</b>
+									</p>
+									<p class="c5">
+										Returns the value of this property as a <b>Value</b> object.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										The object returned is a copy of the stored value and is immutable.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getValues()</b>
+									</p>
+									<p class="c5">
+										Returns an array of all the values of this property. This method is used to access multi-value properties.
+									</p>
+									<p class="c5">
+										If the property is single-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										The array returned is a copy of the stored values, so changes to it are not reflected in internal storage.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getString()</b>
+									</p>
+									<p class="c5">
+										Returns a <b>String</b> representation of the value of this property. A shortcut for <b>Property.getValue().getString()</b>. See <a href="6.2.7_Value.html">6.2.7</a> <i>Value</i>.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										If the value of this property cannot be converted to a <b>String</b>, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>InputStream</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getStream()</b>
+									</p>
+									<p class="c5">
+										Returns an <b>InputStream</b> representation of the value of this property. A shortcut for <b>Property.getValue().getStream()</b>. See <a href="6.2.7_Value.html">6.2.7</a> <i>Value</i>.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>long</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLong()</b>
+									</p>
+									<p class="c5">
+										Returns a <b>long</b> representation of the value of this property. A shortcut for <b>Property.getValue().getLong()</b>. See <a href="6.2.7_Value.html">6.2.7</a> <i>Value</i>.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										If the value of this property cannot be converted to a <b>long</b>, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>double</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDouble()</b>
+									</p>
+									<p class="c5">
+										Returns a <b>double</b> representation of the value of this property. A shortcut for <b>Property.getValue().getDouble()</b>. See <a href="6.2.7_Value.html">6.2.7</a> <i>Value</i>.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										If the value of this property cannot be converted to a <b>double</b>, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Calendar</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDate()</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Calendar</b> representation of the value of this property. A shortcut for <b>Property.getValue().getDate()</b> See <a href="6.2.7_Value.html">6.2.7</a> <i>Value</i>.
+									</p>
+									<p class="c5">
+										The object returned is a copy of the stored value, so changes to it are not reflected in internal storage.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										If the value of this property cannot be converted to a <b>Calendar</b>, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getBoolean()</b>
+									</p>
+									<p class="c5">
+										Returns a <b>boolean</b> representation of the value of this property. A shortcut for <b>Property.getValue().getBoolean()</b>. See <a href="6.2.7_Value.html">6.2.7</a> <i>Value</i>.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										If the value of this property cannot be converted to a <b>boolean</b>, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Item</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNode()</b>
+									</p>
+									<p class="c5">
+										If this property is of type <b>REFERENCE</b> this method returns the <b>Node</b> to which this property refers.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										If this property cannot be converted to a reference, then a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										If this property is a <b>REFERENCE</b> property but is currently part of the frozen state of a version in version storage, this method will throw a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>long</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLength()</b>
+									</p>
+									<p class="c5">
+										Returns the length of the value of this property in bytes if the value is a <b>PropertyType.BINARY</b>, otherwise it returns the number of characters needed to display the value in its string form as defined in 6.2.6 Property Type Conversion<i>.</i>
+									</p>
+									<p class="c5">
+										Returns <b>–1</b> if the implementation cannot determine the length of the value.
+									</p>
+									<p class="c5">
+										If this property is multi-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>long[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLengths()</b>
+									</p>
+									<p class="c5">
+										Returns an array holding the lengths of the values of this (multi-value) property in bytes if the values are <b>PropertyType.BINARY</b>, otherwise it returns the number of characters needed to display each value in its string form as defined in 6.2.6 Property Type Conversion). The order of the length values corresponds to the order of the values in the property.
+									</p>
+									<p class="c5">
+										Returns a <b>–1</b> in the appropriate position if the implementation cannot determine the length of a value.
+									</p>
+									<p class="c5">
+										If this property is single-valued, this method throws a <b>ValueFormatException</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>int</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getType()</b>
+									</p>
+									<p class="c5">
+										Returns the type of this <b>Property</b>. The type returned is that which was set at property creation. Note that for some property <b>p</b>, the type returned by <b>p.getType()</b> may differ from the type returned by <b>p.getDefinition.getRequiredType()</b> only in the case where the latter returns <b>UNDEFINED</b>. The type of a property instance is never <b>UNDEFINED</b> (it must always have some actual type). See <a href="6.2.5_Property_Types.html">6.2.5</a> <i>Property Types</i> and <a href="6.7.18_Discovery_of_Constraints_on_Existing_Items.html">6.7.18</a> <i>Discovery of Constraints on Existing Items</i>.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

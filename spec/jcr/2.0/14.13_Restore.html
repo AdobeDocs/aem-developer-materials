@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.13 Restore (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>14.13 Restore</H2>
+	<P>The effect of shared
+	nodes on <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+	falls into three cases:</P>
+	<UL>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		that causes the creation of a new shared node (see §14.1.1 <I>Shared
+		Node Creation on Restore</I>).</P>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		that causes the removal of a shared node: In this case the
+		particular shared node is removed but its descendants continue to
+		exist below the remaining members of the shared set.</P>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		causes a change to the state of a shared node: Any change is
+		reflected in all nodes in its shared set.</P>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		that causes a change below a shared node: The subgraph is changed
+		as usual and the change is visible through many paths.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

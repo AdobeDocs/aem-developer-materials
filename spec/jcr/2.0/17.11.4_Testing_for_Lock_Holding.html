@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.11.4 Testing for Lock Holding (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.11.4 Testing for Lock Holding</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	LockManager.holdsLock(String absPath)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	holds a lock; otherwise returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.
+	To <I>hold</I> a lock means that the node has actually had a lock
+	placed on it specifically, as opposed to having a lock <I>apply</I>
+	to it due to a deep lock held by a node above.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

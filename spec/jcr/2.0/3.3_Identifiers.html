@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.3 Identifiers (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>3.3 Identifiers</H2>
+	<P>Every node has an
+	<I>identifier</I>. An identifier is a string whose format is not
+	defined by this specification but which adheres to the following
+	constraints:</P>
+	<UL>
+		<LI><P>The identifier of a non-shared
+		node is unique within a workspace. The identifier of a shared node
+		is common to each member of that node's share-set (see §3.9
+		<I>Shareable Nodes Model</I>).</P>
+		<LI><P>An identifier <I>must</I> be the
+		most stable one available to the implementation. For example, in
+		some implementations this might be nothing more than the node path
+		itself. Other implementations might support node identifiers that
+		are partly or entirely independent of the path.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

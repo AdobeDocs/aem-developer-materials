@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.9 SameNodeJoinCondition (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.9 SameNodeJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type SameNodeJoinCondition
+	extends JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector1Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector2Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path? selector2Path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests whether two nodes are “the
+	same” according to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.isSame</FONT></FONT>
+	method.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+	is omitted:</P>
+	<UL>
+		<LI><P>Tests whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		node is the same as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		node. A node-tuple satisfies the constraint only if:</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node.isSame(selector2Node)</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>.</P>
+	<P>Otherwise, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+	is specified:</P>
+	<UL>
+		<LI><P>Tests whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		node is the same as a node identified by relative path
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+		from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		node. A node-tuple satisfies the constraint only if:</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node.isSame(<BR>
+	 selector2Node.getNode(selector2Path))</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		is the same as <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>,
+		or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+		is not a syntactically valid relative path, as defined in §3.4.3.3
+		<I>Lexical Path Grammar</I>. However, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+		is syntactically valid but does not identify a node in the
+		workspace visible to this session, the query is valid but the
+		constraint is not satisfied.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">SameNodeJoinCondition ::=</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'ISSAMENODE('
+	selector1Name ','</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">selector2Name</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">[','
+	selector2Path] ')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selector2Path ::= Path</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition
+	QueryObjectModelFactory.<BR> sameNodeJoinCondition(String
+	selector1Name,<BR> String selector2Name,<BR> 
+	 String selector2Path)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNodeJoinCondition.getSelector1Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNodeJoinCondition.getSelector2Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNodeJoinCondition.getSelector2Path()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,106 @@
+**************
+betty-titlebar
+**************
+
+``betty-titlebar`` is a custom element to satisfy the requirement of Betty TitleBar.
+
+
+Markup
+======
+
+
+betty-titlebar
+--------------
+
+Indicates the root of the component.
+
+Selector Rule::
+
+   betty-titlebar
+
+
+betty-titlebar-title
+--------------------
+
+Indicates the title area of the TitleBar.
+
+The element should contain the title of the current page. Usually it is a :doc:`breadcrumbs <breadcrumbs>`.
+
+This element is mandatory.
+
+Selector Rule::
+
+   betty-titlebar > betty-titlebar-title
+
+
+betty-titlebar-primary
+----------------------
+
+Indicates the primary area of the TitleBar.
+
+By default the child of this element is assumed to be Coral.Button, where its padding is used as part of the calculation of the gap between items.
+So if there is a need to create a different item type, most likely effort is to have the same horizontal padding as Coral.Button.
+
+This element is mandatory, even if there is no child.
+
+Selector Rule::
+
+   betty-titlebar > betty-titlebar-primary
+
+
+betty-titlebar-secondary
+------------------------
+
+Indicates the secondary area of the TitleBar.
+
+By default the child of this element is assumed to be Coral.Button, where its padding is used as part of the calculation of the gap between items.
+So if there is a need to create a different item type, most likely effort is to have the same horizontal padding as Coral.Button.
+
+This element is mandatory, even if there is no child.
+
+Selector Rule::
+
+   betty-titlebar > betty-titlebar-secondary
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <betty-titlebar>
+     <betty-titlebar-title>
+       <betty-breadcrumbs icon="pages">
+         <betty-breadcrumbs-item>English</betty-breadcrumbs-item>
+         <betty-breadcrumbs-item>Geo Outdoor</betty-breadcrumbs-item>
+         <betty-breadcrumbs-item>Sites</betty-breadcrumbs-item>
+       </betty-breadcrumbs>
+     </betty-titlebar-title>
+     <betty-titlebar-primary>
+       <coral-cyclebutton>
+         <coral-cyclebutton-item icon="railLeft">Content Only</coral-cyclebutton-item>
+         <coral-cyclebutton-item>Timeline</coral-cyclebutton-item>
+         <coral-cyclebutton-item>References</coral-cyclebutton-item>
+         <coral-cyclebutton-item>Filter</coral-cyclebutton-item>
+       </coral-cyclebutton>
+     </betty-titlebar-primary>
+     <betty-titlebar-secondary>
+       <button type="button" is="coral-button" variant="primary">Create</button>
+       <coral-cyclebutton>
+         <coral-cyclebutton-item icon="viewColumn">Column View</coral-cyclebutton-item>
+         <coral-cyclebutton-item icon="viewCard">Card View</coral-cyclebutton-item>
+         <coral-cyclebutton-item icon="viewList">List View</coral-cyclebutton-item>
+       </coral-cyclebutton>
+     </betty-titlebar-secondary>
+   </betty-titlebar>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "betty-titlebar" {
+     rankdir=BT;
+     "betty-breadcrumbs" -> "betty-titlebar" [label="related to"];
+   }

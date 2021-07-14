@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 22.2 Addressing Same-Name Siblings by Path (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>22.2 Addressing Same-Name Siblings by Path</H2>
+	<P>A particular node
+	within a same-name sibling group can be addressed by embedding an
+	array-like notation within the path. For example the path
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/b[2]/c[3]</FONT></FONT>
+	specifies the third child node called <FONT FACE="Courier New, monospace"><FONT SIZE=2>c</FONT></FONT>
+	of the second child node called <FONT FACE="Courier New, monospace"><FONT SIZE=2>b</FONT></FONT>
+	of the node <FONT FACE="Courier New, monospace"><FONT SIZE=2>a</FONT></FONT>
+	below the root.</P>
+	<P>The indexing of
+	same-name siblings begins at <FONT FACE="Courier New, monospace"><FONT SIZE=2>1</FONT></FONT>,
+	not <FONT FACE="Courier New, monospace"><FONT SIZE=2>0</FONT></FONT>.
+	This is done for backwards compatibility with JCR 1.0 and in
+	particular the support in that specification for XPath, which uses a
+	base-1 index.</P>
+	<P>A name in a content
+	repository path that does not explicitly specify an index implies an
+	index of <FONT FACE="Courier New, monospace"><FONT SIZE=2>1</FONT></FONT>.
+	For example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/b/c</FONT></FONT>
+	is equivalent to <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a[1]/b[1]/c[1]</FONT></FONT>.</P>
+	<P>The indexing is based
+	on the order in which child nodes are returned in the iterator
+	acquired through <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes()</FONT></FONT>.</P>
+	<P>Same-name siblings are
+	indexed by their position relative to each other in this larger
+	ordered set. For example, the order of child nodes returned by a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getNodes</FONT></FONT>
+	on some parent might be:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>[A,
+	B, C, A, D]</FONT></FONT></P>
+	<P>In this case, <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[1]</FONT></FONT>
+	refers the first node in the list and <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[2]</FONT></FONT>
+	refers to the fourth node in the list.</P>
+	<P>If a node with
+	same-name siblings is removed, this decrements by one the indices of
+	all the siblings with indices greater than that of the removed node.
+	In other words, a removal compacts the array of same-name siblings
+	and causes the minimal re-numbering required to maintain the
+	original order but leave no gaps in the numbering.</P>
+	<P>The relative ordering
+	of a set of same-name sibling nodes is not guaranteed to be
+	persistent unless the nodes are specified to also be orderable (see
+	§23 <I>Orderable Child Nodes</I>). Non-orderable same-name siblings
+	can only be relied upon to act as an anonymous, unordered collection
+	of nodes, though an implementation is free to make the ordering more
+	stable.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

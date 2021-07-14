@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.5.2 jcr:contains Function (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.5.2." id="section_6.6.5.2."></a>6.6.5.2 jcr:contains Function
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<b>jcr:contains(</b><i>$scope as node()</i><b>,<br></b> <i>$exp as xs:string</i><b>)</b> <i>as xs:boolean</i>
+								</p>
+							
+							
+								<p class="c5">
+									This function is used to embed a statement in a full-text search language. It is functionally equivalent to the SQL CONTAINS function (for level 2 implementations) described in <a href="8.5.4.5_CONTAINS.html">8.5.4.5</a> <i>CONTAINS.</i>
+								</p>
+							
+							
+								<p class="c5">
+									The first parameter defines the scope of the contains predicate. It can be either “<b>.</b>” (meaning this node, i.e., the node-set defined by the current location step) or it can be an XML attribute name (and therefore a content repository property), for example <b>@my:property</b>, specifying a particular property of the node-set defined by the current location step). If the scope is “<b>.</b>” then all properties of the current node set for which the implementation maintains an index are searched. If a specific property is specified then only the value of that property is searched (if the property is not indexed then the function will return false).
+								</p>
+							
+							
+								<p class="c5">
+									As described in 6.6.3.3 Property Constraint, support for the <b>jcr:contains()</b> function is required to work <i>at the node level</i> in those repositories which support full text searching. In other words only support for “<b>.</b>” is required. Support for property specific full-text search is optional.
+								</p>
+							
+							
+								<p class="c5">
+									The EBNF for the second parameter is:
+								</p>
+							
+							
+								<p class="c12">
+									searchexp ::= [-]term {whitespace [OR]<br>
+									whitespace [-]term}
+								</p>
+							
+							
+								<p class="c12">
+									term ::= word | '"' word {whitespace word} '"'
+								</p>
+							
+							
+								<p class="c12">
+									word ::= <i>/* A string containing no whitespace */</i>
+								</p>
+							
+							
+								<p class="c12">
+									whitespace ::= <i>/* A string of only whitespace*/</i>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									At minimum, all implementations must support the <i>simple search-engine syntax</i> defined by <i>exp</i> in the EBNF above. This syntax is based on the syntax of search engines like Google.
+								</p>
+							
+							
+								<p class="c5">
+									The semantics of the simple search expression are as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Terms separated by whitespace are implicitly <b>AND</b>ed together.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Terms may also be <b>OR</b>ed with explicit use of the <b>OR</b> keyword.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>AND</b> has higher precedence than <b>OR</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Terms may be excluded by prefixing with a <b>–</b> (minus sign) character. This means that the result set <i>must not</i> contain the excluded term.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A term may be either a single word or a phrase delimited by double quotes (<b>"</b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The entire text search expression (<b>searchexp</b> in the EBNF, above) <i>must be</i> delimited by single quotes (<b>'</b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Within the <b>searchexp</b> literal instances of single quote (“<b>'</b>”), double quote (“<b>"</b>”) and hyphen (“<b>-</b>”) must be escaped with a backslash (“<b>\</b>”). Backslash itself must therefore also be escaped, ending up as double backslash (“<b>\\</b>”).
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									For example, the query “Find all nodes with some property that contains the text ‘JSR 170’ ” is expressed as:
+								</p>
+							
+							
+								<p class="c12">
+									<b>//*[jcr:contains(., 'JSR 170')]</b>
+								</p>
+							
+							
+								<p class="c5">
+									the optionally supported query “Find all nodes with a property called <b>myapp:title</b> that contain the text ‘JSR 170’ ” is expressed as:
+								</p>
+							
+							
+								<p class="c12">
+									<b>//*[jcr:contains(@myapp:title, 'JSR 170')]</b>
+								</p>
+							
+							
+								<p class="c5">
+									The relevance score for each node may be returned in (one or more) score columns (<b>jcr:score</b> or <b>jcr:score(...)</b>) however the details of how the score is calculated are implementation-specific (see 8.5.2.4 Pseudo-property<i>,</i> 6.6.5.2 jcr:contains Function and 8.5.4.5 CONTAINS).
+								</p>
+							
+							
+								<p class="c5">
+									An implementation may choose to support other embedded full-text search languages other than the simple search engine style shown here.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

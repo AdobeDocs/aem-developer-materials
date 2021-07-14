@@ -1,0 +1,109 @@
+******
+Layout
+******
+
+Layout is a mechanism to allow a component (usually a container-like component) to offload the actual rendering. It is intended such that (1) the component can focus on its actual semantic purpose; (2) the technical implementation of the layout can be extracted out from both the component and the content. This way the content can be strictly semantic based on intention of the author.
+
+A component supports a layout by means of configuring a sub-node named ``layout``.
+
+For example given the following contents::
+
+   + /apps/example/mycontainer
+     - sling:resourceType = "granite/ui/components/foundation/container"
+     + layout
+       - sling:resourceType = "granite/ui/components/foundation/layouts/container"
+     + items
+       + button1
+         - sling:resourceType = "granite/ui/components/foundation/button"
+         - text = "Button1"
+       + button2
+         - sling:resourceType = "granite/ui/components/foundation/button"
+         - text = "Button2"
+
+The above content will be rendered as:
+
+.. code-block:: html
+
+   <div>
+     <button>Button1</button>
+     <button>Button2</button>
+   </div>
+
+Here ``/apps/example/mycontainer`` node has a resource type of :granite:servercomponent:`/libs/granite/ui/components/foundation/container`. The container component renders the content as ``<div></div>``. And as it is a container-like component, it understands the concept of layout. The layout used is :granite:servercomponent:`/libs/granite/ui/components/foundation/layouts/container`, where it will render each item as defined by the renderer of the item, without any manipulation. (Refer to individual component documentation for detailed behavior)
+
+Another example is :granite:servercomponent:`/libs/granite/ui/components/foundation/layouts/mode`, where it needs to prepare more complex markup::
+
+   + /apps/example/mycontainer
+     - sling:resourceType = "granite/ui/components/foundation/container"
+     + layout
+       - sling:resourceType = "granite/ui/components/foundation/layout/mode"
+       - group = "cq-siteadmin-admin-childpages"
+     + items
+       + default
+         - sling:resourceType = "granite/ui/components/foundation/container"
+       + selection
+         - sling:resourceType = "granite/ui/components/foundation/container"
+
+The above content will be rendered as (as of this writing):
+
+.. code-block:: html
+
+   <div class="foundation-layout-mode2" data-foundation-layout='{"name":"foundation-layout-mode2","group":"cq-siteadmin-admin-childpages"}'>
+     <div class="foundation-layout-mode2-item foundation-layout-mode2-item-active" data-foundation-layout-mode2-item-mode="default"></div>
+     <div class="foundation-layout-mode2-item" data-foundation-layout-mode2-item-mode="selection"></div>
+   </div>
+
+
+Component Development
+=====================
+
+A component can support layout conveniently by using :javadoc:`ComponentHelper <com/adobe/granite/ui/components/ComponentHelper.html>` class.
+
+Here is the essence of the code of :granite:servercomponent:`/libs/granite/ui/components/foundation/container` to support layout (as of this writing):
+
+.. code-block:: jsp
+
+   <%@include file="/libs/granite/ui/global.jsp"%><%
+   %><%@page session="false"
+             import="com.adobe.granite.ui.components.AttrBuilder,
+                     com.adobe.granite.ui.components.ComponentHelper.Options,
+                     com.adobe.granite.ui.components.Tag"%><%
+
+       Tag tag = cmp.consumeTag();
+       tag.setName("div");
+
+       AttrBuilder attrs = tag.getAttrs();
+       cmp.populateCommonAttrs(attrs);
+
+       cmp.includeForLayout(resource, new Options().tag(tag));
+   %>
+
+It uses :javadoc:`Tag <com/adobe/granite/ui/components/Tag.html>` class to prepare the tag information—including the attributes—required for container markup and then pass the tag to the layout renderer—using ``ComponentHelper#includeForLayout``. The layout renderer in turn can set more information to this passed tag and then render the content. The following is the code of :granite:servercomponent:`granite/ui/components/foundation/layouts/container` layout (as of this writing):
+
+.. code-block:: jsp
+
+   <%@include file="/libs/granite/ui/global.jsp"%><%
+   %><%@page session="false"
+             import="java.util.Iterator,
+                     com.adobe.granite.ui.components.AttrBuilder,
+                     com.adobe.granite.ui.components.LayoutBuilder,
+                     com.adobe.granite.ui.components.Tag"%><%
+
+       Tag tag = cmp.consumeTag();
+
+       LayoutBuilder layout = cmp.getLayout();
+
+       if (layout.hasName()) {
+           AttrBuilder attrs = tag.getAttrs();
+           attrs.addClass(layout.getName());
+           attrs.add("data-foundation-layout", layout.toJSON().toString());
+       }
+
+       tag.printlnStart(out);
+
+       for (Iterator<Resource> items = cmp.getItemDataSource().iterator(); items.hasNext();) {
+           %><sling:include resource="<%= items.next() %>" /><%
+       }
+
+       tag.printlnEnd(out);
+   %>

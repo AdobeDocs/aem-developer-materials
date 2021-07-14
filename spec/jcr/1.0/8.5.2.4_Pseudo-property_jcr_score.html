@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.2.4 Pseudo-property jcr:score (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.2.4." id="section_8.5.2.4."></a>8.5.2.4 Pseudo-property jcr:score
+		</h4>
+		<ul>
+			<li>
+				<p class="c5">
+					Another special column, <b>jcr:score</b>, that does not correspond to any actual property, must also be present in the result table.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>jcr:score</b> can be used to return a relevance value for each row. The calculation of this value is not defined. It is not required to always be meaningful. If it is meaningful then it may, for example, be associated with the result of a <b>CONTAINS()</b> function (see <a href="8.5.4.5_CONTAINS.html">8.5.4.5</a> <i>CONTAINS</i>). Alternatively it may not be connected to full text search at all, and may reflect a relevance value derived according to some other criteria.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Support for comparing <b>jcr:score</b> in the <b>WHERE</b> clause is not required.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					In some implementations the label for this column may not be literally “<b>jcr:score</b>” but instead be the function name “<b>jcr:score(...)</b>”.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					See also 6.6.3.3 Property Constraint and 6.6.5.2 jcr:contains Function.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

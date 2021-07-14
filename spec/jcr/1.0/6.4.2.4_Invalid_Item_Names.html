@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.2.4 Invalid Item Names (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.2.4." id="section_6.4.2.4."></a>6.4.2.4 Invalid Item Names
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If the name of a content repository item <b>I</b> is not a valid XML element or attribute name (as the case may be) then how it is handled depends upon the context in which the document view is being used:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>Export</b>: In the context of export, the repository may either ignore the item in question or employ the escaping scheme described below (see <a href="6.4.3_Escaping_of_Names.html">6.4.3</a> <i>Escaping Names</i>). Which approach taken is up to the implementation.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>XPath</b>: In the context of an XPath query, the escaping scheme described below (see <a href="6.4.3_Escaping_of_Names.html">6.4.3</a> <i>Escaping Names</i>) <i>must</i> be used in the virtual document view XML stream against which the query is run. Consequently, the same escaping scheme must be used within any XPath statement that refers to the item <b>I</b>.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

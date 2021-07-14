@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.2.5 Base Version Reference (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.2.5 Base Version Reference</H4>
+	<P>Each versionable node
+	has a <I>base version</I> within its version history. When a new
+	version of a node is created, it is placed in that node’s version
+	history as a direct successor of the base version. That version
+	itself then becomes the new base version (see §3.13.6.2 <I>Base
+	Version</I>).</P>
+	<P>Under simple
+	versioning, the base version of a versionable node is always the
+	<I>most recent version</I> in its version history. 
+	</P>
+	<P>Under full versioning,
+	corresponding versionable nodes in different workspaces, while
+	having the same version history, may have different base versions
+	<I>within</I> that history. Therefore, the base version of a full
+	versionable node may not be the most recent version in that node's
+	version history (see §3.13.6.2 <I>Base Version</I>).</P>
+	<P>The base version is
+	accessed through <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.getBaseVersion</FONT></FONT>
+	(see §15.1.2 <I>Getting the Base Version</I>) which returns a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object (see 15.2.1 <I>Version Object</I>). Under full versioning the
+	connection to the base version is also represented by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>,
+	which points to an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node (see §3.13.2.3 <I>mix:versionable</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

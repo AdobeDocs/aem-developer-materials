@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.12 Activities (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>15.12 Activities</H2>
+	<P>Activities provide a
+	way of grouping together a set of logically related changes
+	performed in a workspace and then later merging this set of changes
+	into another workspace.</P>
+	<P>Before starting to
+	make a particular set of changes, the user sets the<I> current
+	activity</I>. Each subsequent <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>
+	made within the scope of that activity will associate that activity
+	with that checked-out versionable, and will create a version that is
+	tagged with the specified activity when that versionable is
+	subsequently checked-in.</P>
+	<P>Abstractly, therefore,
+	an activity is a set of changes that produce new versions. However,
+	if that set includes changes that produce more than one version
+	within a particular version history, then those versions must all be
+	on the same line of descent, that is, there must be a non-branching
+	sequence of direct successor relationships beginning at the root
+	version of the version history that reaches every version in the
+	set. This ensures that there is always at most one “latest”
+	version that contains all changes in a given version history for a
+	given activity.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.3 Selector (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.3 Selector</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Selector extends Source ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name nodeType,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName</FONT></P>
+	<P><BR>
+	</P>
+	<P>Selects a subset of
+	the nodes in the workspace based on node type.</P>
+	<P>The query is invalid
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>
+	refers to a node type that has a <I>queryable node type</I>
+	attribute of <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(see §3.7.1.5 <I>Queryable Node Type</I>). Otherwise, if the
+	<I>queryable node type</I> attribute is true, the following holds:</P>
+	<P>A selector selects
+	every node in the workspace, subject to access control constraints,
+	that satisfies at least one of the following conditions:</P>
+	<UL>
+		<LI><P>the node’s primary node type is
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>,
+		or</P>
+		<LI><P>the node’s primary node type is
+		a subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>,
+		or</P>
+		<LI><P>the node has a mixin node type
+		that is <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>,
+		or</P>
+		<LI><P>the node has a mixin node type
+		that is a subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>.</P>
+	</UL>
+	<P>A selector has a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>selectorName</FONT></FONT>
+	that can be used elsewhere in the query to identify the selector.</P>
+	<P>The query is <I>invalid</I>
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>selectorName</FONT></FONT>
+	is identical to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selectorName</FONT></FONT>
+	of another selector in the query.</P>
+	<P>The query is also
+	<I>invalid</I> if <FONT FACE="Courier New, monospace">nodeType</FONT>
+	is not a valid JCR name or is a valid JCR name but not the name of a
+	node type available in the repository.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Selector ::= nodeTypeName ['AS'
+	selectorName]</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">nodeTypeName ::= Name</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector</FONT></FONT>
+	is created with: 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector
+	QueryObjectModelFactory.<BR> selector(String nodeTypeName, String
+	selectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Selector.getNodeTypeName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Selector.getSelectorName()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

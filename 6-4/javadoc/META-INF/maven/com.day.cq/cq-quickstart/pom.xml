@@ -1,0 +1,1604 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+/*************************************************************************
+ *
+ * ADOBE CONFIDENTIAL
+ * __________________
+ *
+ *  Copyright 2012 Adobe Systems Incorporated
+ *  All Rights Reserved.
+ *
+ * NOTICE:  All information contained herein is, and remains
+ * the property of Adobe Systems Incorporated and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to Adobe Systems Incorporated and its
+ * suppliers and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Adobe Systems Incorporated.
+ **************************************************************************/
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <!-- ====================================================================== -->
+  <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
+  <!-- ====================================================================== -->
+  <parent>
+    <groupId>com.day.cq</groupId>
+    <artifactId>parent</artifactId>
+    <version>60</version>
+  </parent>
+
+  <!-- ====================================================================== -->
+  <!-- P R O J E C T  D E S C R I P T I O N                                   -->
+  <!-- ====================================================================== -->
+  <artifactId>cq-quickstart</artifactId>
+  <version>6.4.1-SNAPSHOT</version>
+  <packaging>quickstart</packaging>
+  <name>Adobe AEM Quickstart</name>
+  <description>The Adobe AEM Quickstart and Web Application.</description>
+  <inceptionYear>2010</inceptionYear>
+  <organization>
+    <name>Adobe Systems Incorporated</name>
+    <url>http://www.adobe.com/</url>
+  </organization>
+
+  <scm>
+    <connection>scm:git:git@git.corp.adobe.com:CQ/quickstart.git</connection>
+    <developerConnection>scm:git:git@git.corp.adobe.com:CQ/quickstart.git</developerConnection>
+    <url>https://git.corp.adobe.com/CQ/quickstart/tree/release/640</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <cq.java.version>8</cq.java.version>
+    <testing.additional.runmode />
+    <quickstart.createWebapp>true</quickstart.createWebapp>
+    <quickstart.properties.file>${project.build.directory}/quickstart-runner.properties</quickstart.properties.file>
+    <enableBaselining>true</enableBaselining>
+
+    <quickstart.vm.args.codeCoverage />
+    <quickstart.vm.args>${quickstart.vm.args.codeCoverage}</quickstart.vm.args>
+    <jacoco.version>0.7.6.201602180812</jacoco.version>
+
+    <!-- For evergreen -->
+    <evergreen.modules.destination>${project.build.directory}/it-modules</evergreen.modules.destination>
+    <test.group>include-all-evergreen-</test.group>
+    <skipSmokeTests>false</skipSmokeTests>
+    <skip.quickstart>false</skip.quickstart>
+    <filterCategory>FlakyTest</filterCategory>
+    <sling.it.ignorelist />
+    <test.server.mock.host>localhost</test.server.mock.host>
+    <test.server.mock.smtp.port />
+    <granite.it.logintokenauth>true</granite.it.logintokenauth>
+
+    <!-- Evergreen backwards compatibility -->
+    <bc.flaky>
+      com.adobe.cq.wcm.it.http.pageproperties.PageIT#searchAndReplaceInPagesTest,
+      com.adobe.cq.wcm.it.http.pageproperties.PageIT#searchInPagesTest,
+      com.adobe.cq.wcm.it.http.versioning.PageVersioningIT#deletePageAutoVersioning,
+      <!-- Flaky replication behavior in cq-testing-clients -->
+      com.adobe.cq.commerce.it.http.weretail.ProductReferenceIT,
+      com.adobe.cq.commerce.it.http.weretail.SmartlistIT#testContextHubSmartlistServletWithProducts,
+
+      <!-- CQ-4231046 -->
+      com.adobe.mcm.integrationtest.author.NewsletterIT#testSendNewsletterFromAList,
+      com.adobe.mcm.integrationtest.author.NewsletterIT#testSendNewsletterFromANewsletter,
+
+      com.adobe.cq.foundation.it.http.components.SearchComponentIT,
+      <!-- Flaky test -->
+      com.adobe.cq.xf.it.XFLaunchesIT#endToEndPromoteAtDate,
+    </bc.flaky>
+    <bc.exceptions>
+      <!-- CQ-4224618 - exception OK -->
+      com.adobe.cq.foundation.it.http.components.SlideshowComponentIT#testSlideshowEditDialogExists,
+      <!-- CQ-4225100 - exception OK -->
+      com.adobe.cq.foundation.it.http.form.FormHiddenIT#testHiddenFieldExists,
+      <!-- CQ-4225101 - exception OK -->
+      com.adobe.cq.foundation.it.http.components.sightly.ParsysIT#testDecorationTagPreviewMode,
+      <!-- CQ-4225102 - exception OK -->
+      com.adobe.cq.foundation.it.http.components.SearchComponentIT#testDoubleByteContentSearch,
+      <!-- CQ-4225103 - exception OK -->
+      com.adobe.cq.foundation.it.http.form.FormActionStoreContentIT#testStoreLocationWithoutSlash,
+      <!-- CQ-4225103 - exception OK -->
+      com.adobe.cq.foundation.it.http.form.FormActionStoreContentIT#testStoreLocationWithSlash,
+      <!-- CQ-4225104 - exception OK -->
+      com.adobe.cq.foundation.it.http.form.FormCaptchaIT#testCaptchaFailure,
+      <!-- CQ-4225104 - exception OK -->
+      com.adobe.cq.foundation.it.http.form.FormCaptchaIT#testCaptchaExists,
+      <!-- CQ-4226735 - exception OK -->
+      com.adobe.cq.commerce.it.http.weretail.SmartlistIT#testContextHubSmartlistServletEmpty,
+      <!-- CQ-4207462 - exception OK -->
+      com.adobe.cq.xf.it.PlainHTMLRenderIT#testPlainHtmlRender,
+      <!-- CQ-4224305 - exception OK -->
+      com.adobe.cq.xf.it.ConvertToXFIT#addToAnExistingXFTest,
+      <!-- CQ-4225800 - exception OK -->
+      com.adobe.cq.commerce.it.http.weretail.CatalogBlueprintProductIT#testBlueprintProductPageAddedEvent,
+      com.adobe.cq.commerce.it.http.weretail.CatalogBlueprintProductIT#testBlueprintProductPageDeletedEvent,
+      com.adobe.cq.commerce.it.http.weretail.CatalogBlueprintProxyIT#testBlueprintProxyProductPageDeletedEvent,
+      com.adobe.cq.commerce.it.http.weretail.CatalogBlueprintProxyIT#testBlueprintProxyProductPageAddedEvent,
+
+      <!-- CQ-4225434- exception OK -->
+      com.adobe.cq.screens.core.it.http.DeviceStatusIT#testDeviceStatusChange,
+      com.adobe.cq.screens.core.it.http.DeviceStatusIT#testGetDeviceTypeDeviceStatus,
+      com.adobe.cq.screens.core.it.http.DeviceStatusIT#testDeviceRemoteAddress,
+      com.adobe.cq.screens.core.it.http.DeviceStatusIT#testDeviceHeartBeatIsConstantByDefault,
+      com.adobe.cq.screens.core.it.http.DeviceStatusIT#testGetDeviceHeartBeat,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testChannelBroadcastInvalidPayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testChannelBroadcastInvalidPayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDisplayBroadcastSimpleCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDisplayBroadcastSimpleCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testCommandResponseIncludesLocation,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testCommandResponseIncludesLocation,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDeviceSimpleCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDeviceSimpleCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDisplayBroadcastInvalidPayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDisplayBroadcastInvalidPayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDisplayBroadcastPayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDisplayBroadcastPayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDevicePayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDevicePayloadCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDeviceCommandIsRemovedWithPing,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testDeviceCommandIsRemovedWithPing,
+      com.adobe.cq.screens.core.it.http.DeviceLogsIT#testDeviceLogs,
+      com.adobe.cq.screens.core.it.http.DevicePreferencesServletIT#testSetPreferences,
+      com.adobe.cq.screens.core.it.http.DevicePreferencesServletIT#testGetPreferences,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInUnregisteredStatusCausesInvalidCommandErrorMessageWithDeviceIdAndUnregisteredCommand,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInUndefinedStatusEntersUnregisteredStatusWithDeviceIdAndMetadata,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInUnregisteredStatusCausesErrorMessageWithoutDeviceId,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInUndefinedStatusEntersUnregisteredStatusOnlyWithDeviceId,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInUndefinedStatusIsBeingIgnoredWithoutAnyParameters,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegistrationStatusEntersRegisteredStatusWithDeviceIdAndTenantAndDeviceCodeAndRegisteredCommand,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInPreRegistrationStatusEntersRegistrationStatusWithDeviceIdAndDeviceCode,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInUnregisteredStatusCausesErrorMessageWithoutCmd,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegistrationStatusCausesProvideTenantNameErrorMessageWithoutTenant,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInRegistrationStatusCausesInProgressMessageWithDeviceIdAndDeviceCode,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegisteredStatusCausesAlreadyRegisteredMessageWithDeviceIdAndRegisteredCommand,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegistrationStatusCausesCodeValidationErrorMessageWithWrongDeviceCode,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInRegisteredStatusCausesAlreadyRegisteredMessageWithDeviceId,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInUnregisteredStatusEntersPreRegistrationStatusWithDeviceIdAndPreRegistrationCommand,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegistrationStatusCausesCodeValidationErrorMessageWithNullDeviceCode,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInPreRegistrationStatusCausesWaitMessageWithDeviceIdAndPreRegistrationCommand,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegistrationStatusCausesProvideTenantNameErrorMessageEmptyTenant,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#dccRequestInRegistrationStatusCausesInvalidCommandErrorMessageWithPreRegistrationCommand,
+      com.adobe.cq.screens.core.it.http.DeviceRegistrationIT#deviceRequestInPreRegistrationStatusEntersProvideDeviceCodeStatusWithDeviceId,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testChannelModificationAndDisplayPingTimestamp,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testDeviceConfigModificationAndPingTimestamp,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testPingTimestamp,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testDisplayModificationAndPingTimestamp,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testDeviceModificationAndPingTimestamp,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testHeartbeat,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testChannelModificationAndPingTimestamp,
+      com.adobe.cq.screens.core.it.http.DevicePingIT#testSubChannelModificationAndPingTimestamp,
+      com.adobe.cq.wcm.it.http.WcmRegisteredCommandsIT#testWcmCommandsPresent,
+      <!-- CQ-4224368- exception OK -->
+      com.adobe.cq.wcm.it.http.confcapabilities.DataModelsIT#createConf,
+
+      <!-- CQ-4224369- exception OK -->
+      com.adobe.cq.wcm.it.http.confcapabilities.MultipleCapabilitiesIT#createConf,
+      com.adobe.cq.wcm.it.http.mobile.MobileDetectionIT#testClientSideDetectionEnabled,
+      com.adobe.cq.wcm.it.http.versioning.DAMVersioningIT#restoreAssetVersion,
+      com.adobe.cq.projects.actions.ProjectsGadgetIT#startWorkflow,
+      com.adobe.cq.projects.servlet.ProjectWorkListDatasourceIT#showWork,
+      com.adobe.cq.projects.servlet.ProjectsServletIT#showWork,
+      com.adobe.cq.projects.servlet.ProjectsServletIT#showTasks,
+      com.adobe.cq.projects.team.ProjectsTeamIT#getTeamPage,
+       <!-- CQ-4229390 - exception OK -->
+      com.adobe.cq.commerce.it.http.weretail.UserSharingIT,
+
+      <!-- CQ-4224150- exception OK -->
+      com.adobe.cq.wcm.msm.it.http.MSMEditRelationshipIT#testOverWriteDeep,
+      com.adobe.cq.wcm.msm.it.http.MSMVersionCopyActionIT#testLeaveOutNonVersioned,
+      com.adobe.cq.wcm.msm.it.http.EventBasedRolloutIT#testModificationRolledOut,
+      com.adobe.cq.wcm.msm.it.http.EventBasedRolloutIT#testRolloutRestore,
+      com.adobe.cq.wcm.msm.it.http.EventBasedRolloutIT#testReplicationRolledOut,
+      com.adobe.cq.wcm.msm.it.http.MSMBlueprintIT#testBlueprintConfigChange,
+      com.adobe.cq.wcm.msm.it.http.MSMBlueprintIT#testBlueprintConfigFound,
+      com.adobe.cq.wcm.msm.it.http.MSMCopyIT,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigInheritedMissingPage,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigInherited,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigExistsActivate,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigEmptyNoParentConfig,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigExistsDefault,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigExistsPushOnModify,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateLivecopyIT#testRolloutConfigExistsDeactivate,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateSiteIT#testRolloutConfigDefault,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateSiteIT#testRolloutConfigEmpty,
+      com.adobe.cq.wcm.msm.it.http.MSMCreateSiteIT#testRolloutConfigMultipleSelection,
+      com.adobe.cq.wcm.msm.it.http.MSMRelationRolloutConfigIT#testChangeRolloutConfig,
+      com.adobe.cq.wcm.msm.it.http.MSMRelationRolloutConfigIT#testSetRolloutConfig,
+      com.adobe.cq.wcm.msm.it.http.MSMRelationRolloutConfigIT#testChangeLiveCopyInheritance,
+      com.adobe.cq.wcm.msm.it.http.MSMRelationRolloutConfigIT#testGetRolloutConfigFromBlueprint,
+      com.adobe.cq.wcm.msm.it.http.MSMRelationRolloutConfigIT#testUpdateRolloutConfigsOnBlueprintRoot,
+      com.adobe.cq.wcm.msm.it.http.MSMRelationRolloutConfigIT#testChangeRolloutConfigFromBlueprint,
+
+      <!-- GRANITE-20014 - exception OK -->
+      com.adobe.cq.platform.security.it.http.CreateUserIT#testCreateUserProfilePermissionsWithIntermediatePath,
+      com.adobe.cq.platform.security.it.http.CreateUserIT#testCreateUserProfilePermissions,
+    </bc.exceptions>
+    <bc.ignorelist>
+      com.adobe.cq.launches.it.http.LaunchesIT#testCheckIsLiveCopy,
+      com.adobe.cq.wcm.core.authoring.it.http.PageInfoIT#testBlueprint,
+      com.adobe.cq.screens.core.it.http.OfflineChannelsIT#testOfflineChannelUpdatesOnlyWhenConfigRebuilt,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testChannelBroadcastSimpleCommand,
+      com.adobe.cq.screens.core.it.http.DeviceCommandsIT#testChannelBroadcastPayloadCommand,
+      com.adobe.cq.screens.core.it.http.OfflineChannelsIT#testOfflineZipContainsTimestampFile,
+    </bc.ignorelist>
+
+
+    <!-- Sling instance params -->
+
+    <sling.it.instances>2</sling.it.instances>
+    <sling.it.instance.url.1>http://localhost:4502</sling.it.instance.url.1>
+    <sling.it.instance.runmode.1>author</sling.it.instance.runmode.1>
+
+    <sling.it.instance.url.2>http://localhost:4503</sling.it.instance.url.2>
+    <sling.it.instance.runmode.2>publish</sling.it.instance.runmode.2>
+
+    <sling.it.instance.url.3 />
+    <sling.it.instance.runmode.3 />
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-file-size</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <rules>
+                <requireFilesSize>
+                  <maxsize>546000000</maxsize>
+                  <!--
+                      size history
+                      + increasing size to 546 MB (+6mb) for CQ-4235011 (Restore deleted assets breaking demo site)
+                      + increasing size to 539 MB (+1mb) for GRANITE-20166 (CRX2Oak 1.8 addition)
+                      + decreasing size to 538 MB (-20mb) for CQ-53171 (FileVault removal)
+                      + increasing size to 558 MB (+4mb) for GRANITE-19087
+                      + increasing size to 554 MB (+11mb) for CQ-4227678
+                      + increasing size to 553 MB (+1mb) for CQ-4216584
+                      + increasing size to 552 MB (+1mb) for CQ-4215110
+                      + increasing size to 551 MB (+1mb) for CQ-4194964
+                      + reducing size to 548 MB (-38MB) for GRANITE-14736
+                      + increasing size to 586 MB (+15mb) for CQ-102079
+                      + increasing size to 535 MB (+3MB) for CQ-100408 (security compiler settings for DM libraries)
+                      + increasing size to 532 MB (+5MB) for CQ-95753
+                      + increasing size to 528 MB (+5MB) for GRANITE-13596
+                      + increasing size to 523 MB (+5MB) for CQ-100245
+                      + increasing size to 518 MB (+6MB) for CQ-61847
+                      + reducing size to 512MB (-6MB gained by CQ-98630)
+                      + reducing size to 518MB (-12MB gained by CQ-96504)
+                      + increasing size temporarily to 530MB for CQ-98599
+                      + increasing size to 520 for GRANITE-13799
+                      + increasing size to 519 for GRANITE-1354
+                      + increasing size to 518 for CQ-92580
+                      + increasing from 510 to 515 in matter of integration tests to be run
+                      + size peaked at 527 MB; reducing to 510 MB for CQ-54253 (XZ compression of scene7 dynamic imaging binaries)
+                      + increasing from 525 to 526 for CQ-42757 (RTC not needed)
+                      + increasing from 517 to 525 for CQ-39027 (RTC available at CQ-51011)
+                      + increasing from 512 to 517 for CQ-45521 (addition of google closure compiler)
+                      + increasing from 508 to 512 for CQ-43969 (Introduction of DPS 2015)
+                      + increasing from 507 to 508 for CQ-50034
+                      + increasing from 506 to 507 for CQ-42774 and CQ-42785
+                      + increasing from 500 to 506 for CQ-25958 (aem-assets-companion-app-osx-1.2.0.55 size increase)
+                      + increasing from 495 to 500 for CQ-40125 (crx2oak size increase)
+                      + increasing from 494 to 498 for CQ-38967
+                      + increasing from 493 to 494 for CQ-23766
+                      + increasing to 480 due CQ-18597 (cq-geometrixx-all-pkg due geometrixx-gov addition)
+                      + increasing from 470 MB to 483 - CQ-15336 crx2-crx3 migration tool
+                      + increasing from 466 MB to 470 - added small thumbnails for the Geo Outdoors new content
+                      + increasing from 464 to 466 MB to accommodate new Geometrixx Outdoors content CQ-16439
+                      + increasing to 420 MB for scene7 dynamic imaging (adds 80 MB), see CQ-6551
+                      + size peaked at 317 MB; reducing to 280 MB for CQ5-23559 and CQ5-23560
+                      + increased from 256 to 306 MB - see bug #39110, CQ5-21825
+                      + increased from 140 to 334 MB - CQ-101915 (adds 34 MB)
+                  -->
+                  <minsize>140000000</minsize>
+                  <files>
+                    <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                  </files>
+                </requireFilesSize>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+          <execution>
+            <!--
+              Before starting ITs, check if an AEM is already running which can interfere
+              with the integration tests due to the offloading autodiscovery feature.
+
+              This can be removed if offloading will be disabled by default GRANITE-16443
+            -->
+            <id>enforce-no-other-cq-running</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <evaluateBeanshell>
+                  <condition>
+                    <![CDATA[
+                    import org.slf4j.*;
+
+                    Logger log = LoggerFactory.getLogger("enforce-no-other-cq-running");
+
+                    boolean portUsed(int port) {
+                        try {
+                            Socket s = new Socket("localhost", port);
+                            try {
+                                s.close();
+                            } catch (e) {}
+                            // Socket was successfully created means port is up
+                            return true;
+                        } catch (e) {
+                            // Socket could not be created because port not up
+                            return false;
+                        }
+                    }
+
+                    if ("true".equals(System.getProperty("skip.otherCqRunningCheck"))) {
+                      log.info("Skipping CQ already running check due to -Dskip.otherCqRunningCheck=true.");
+                      return true;
+
+                    } else if ("true".equals(System.getProperty("maven.test.skip"))
+                        || (System.getProperty("skipTests") != null)) {
+                        log.info("Skipping CQ already running check because tests are skipped.");
+                        return true;
+
+                    } else {
+                        // check for something on the main author & publish ports
+                        return !portUsed(4502) && !portUsed(4503);
+                    }
+                    ]]>
+                  </condition>
+                  <message>
+                    .
+                    There seems to be another CQ quickstart running on port 4502 or 4503.
+
+                    This can make the integration tests fail as it affects topology auto discovery and performance.
+                    Please shut it down before running the full quickstart build with integration tests.
+
+                    You can skip this check by running mvn with "-Dskip.otherCqRunningCheck=true".
+                    It also gets skipped if you skip tests via "-DskipTests".
+
+                    See also CQ-4200728.
+                    .
+                  </message>
+                </evaluateBeanshell>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-java</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <!-- CQ-4202810 -->
+                  <message>Java 8 or higher is required to build CQ Quickstart</message>
+                  <version>1.8.0</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.adobe.granite.maven</groupId>
+        <artifactId>quickstart-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <quickstartReadyTimeOutSec>1200</quickstartReadyTimeOutSec>
+          <quickstartId>cq</quickstartId>
+          <productName>Adobe Experience Manager</productName>
+          <createWebapp>${quickstart.createWebapp}</createWebapp>
+          <!-- Integration Test configuration -->
+          <quickstartVMOptions>-Xmx1576m -XX:MaxPermSize=300m -Djava.awt.headless=true
+          </quickstartVMOptions>
+          <resources>
+            <resource>
+              <directory>${project.build.directory}</directory>
+              <includes>
+                <include>cq-portlet-components.zip</include>
+              </includes>
+              <targetPath>static/opt/portal</targetPath>
+            </resource>
+            <resource>
+              <directory>${project.build.directory}</directory>
+              <includes>
+                <include>crx2oak.*</include>
+                <include>composite-init.*</include>
+              </includes>
+              <targetPath>static/opt/extensions</targetPath>
+            </resource>
+          </resources>
+          <quickstartConfigurations>
+            <quickstartConfiguration>
+              <runmode>author${testing.additional.runmode}</runmode>
+            </quickstartConfiguration>
+          </quickstartConfigurations>
+          <allowedConfigBundlePaths>
+              <path>/apps/core/wcm</path>
+              <path>/apps/weretail</path>
+              <path>/apps/we-unlimited-app</path>
+              <path>/apps/we-retail-client-app</path>
+              <path>/apps/we-retail-communities</path>
+          </allowedConfigBundlePaths>
+        </configuration>
+        <executions>
+          <!-- Start author and publish instances for integration tests -->
+          <execution>
+            <id>run-quickstart-author</id>
+            <goals>
+              <goal>start-multiple</goal>
+              <goal>stop-multiple</goal>
+            </goals>
+          </execution>
+          <execution>
+            <goals>
+              <goal>analyse-model</goal>
+            </goals>
+            <configuration>
+                <enableBundleBaselining>${enableBundleBaselining}</enableBundleBaselining>
+                <failOnEmbeddedArtifacts>true</failOnEmbeddedArtifacts>
+                <baselineCQVersions>cq63</baselineCQVersions>
+                <ignoreEmbeddedArtifactsIn>
+
+                  <!-- These content packages are excluded as they are just sample content for we.retail
+                       which is not using the provisioning model -->
+                    <package>com.adobe.aem.sample/we.retail.community.apps</package>
+                    <package>com.adobe.cq.sample/we.retail.all</package>
+                    <package>com.adobe.cq/core.wcm.components.all</package>
+                    <package>com.adobe.cq/core.wcm.components.extension</package>
+                </ignoreEmbeddedArtifactsIn>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <argLine>-Xmx256M</argLine>
+          <systemPropertiesFile>${quickstart.properties.file}</systemPropertiesFile>
+          <runOrder>alphabetical</runOrder>
+          <classpathDependencyExcludes>
+            <classpathDependencyExclude>org.apache.sling:org.apache.sling.commons.log
+            </classpathDependencyExclude>
+            <classpathDependencyExclude>org.slf4j:slf4j-simple</classpathDependencyExclude>
+            <classpathDependencyExclude>ch.qos.logback:logback-classic</classpathDependencyExclude>
+            <classpathDependencyExclude>com.adobe.pdf:tika-app</classpathDependencyExclude>
+          </classpathDependencyExcludes>
+          <includes>
+            <include>com/day/cq/quickstart/it/**</include>
+            <include>com/adobe/granite/**/*IT.java</include>
+          </includes>
+          <excludes>
+            <exclude>com/adobe/granite/quickstart/it/**</exclude>
+            <exclude>com/adobe/granite/rest/assets/it/AssetsIT.java</exclude>
+            <exclude>com/adobe/granite/monitoring/dashboard/it/HealthReportsIT.java</exclude>
+            <exclude>com/adobe/granite/monitoring/dashboard/it/MaintenanceIT.java</exclude>
+            <exclude>com/adobe/granite/security/it/http/UserPropertiesIT.java</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-portlet-director</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.day.cq.portlet</groupId>
+                  <artifactId>cq-portlet-components</artifactId>
+                  <type>zip</type>
+                  <destFileName>cq-portlet-components.zip</destFileName>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-crx2oak</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.adobe.granite</groupId>
+                  <artifactId>crx2oak</artifactId>
+                  <version>1.8.4</version>
+                  <classifier>all-in-one</classifier>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <destFileName>crx2oak.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-composite-init-extension</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.adobe.granite</groupId>
+                  <artifactId>composite-init-extension</artifactId>
+                  <version>1.0.6</version>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <destFileName>composite-init.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.adobe.granite.maven</groupId>
+          <artifactId>quickstart-maven-plugin</artifactId>
+          <version>2.11.34</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>2.0.0</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <!-- start of granite profile -->
+    <profile>
+      <id>granite</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.adobe.granite.maven</groupId>
+            <artifactId>quickstart-maven-plugin</artifactId>
+            <configuration>
+              <quickstartId>crx</quickstartId>
+              <productName>Adobe Granite</productName>
+              <modelPattern>base-granite-model.txt</modelPattern>
+              <!-- Integration Test configuration -->
+              <testModes>
+                <param>granite</param>
+                <param>granite-only</param>
+              </testModes>
+              <quickstartVMOptions>-Xmx1200m -XX:MaxPermSize=300m -Djava.awt.headless=true ${quickstart.vm.args}</quickstartVMOptions>
+              <quickstartConfigurations>
+                <quickstartConfiguration>
+                  <runmode>author${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+              </quickstartConfigurations>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <argLine>-Xmx256M</argLine>
+              <systemPropertiesFile>${quickstart.properties.file}</systemPropertiesFile>
+              <systemPropertyVariables>
+                <!--
+                  Configuration for the log file test.
+                  The following are exclude patterns that are ignored
+                -->
+                <!--
+                     https://bugs.day.com/bugzilla/show_bug.cgi?id=29628
+                -->
+                <granite.testing.logfile.excludes.1>ItemStateReferenceCache overwriting cached entry</granite.testing.logfile.excludes.1>
+                <granite.testing.logfile.excludes.3>No such authorizable</granite.testing.logfile.excludes.3>
+
+                <!--
+                      JCR-3406
+                 -->
+                <granite.testing.logfile.excludes.4>org.apache.jackrabbit.core.cluster.ClusterNode No record prepared.</granite.testing.logfile.excludes.4>
+                <granite.testing.logfile.excludes.6>Item#refresh invokes Session#refresh!</granite.testing.logfile.excludes.6>
+
+                <!--
+                      GRANITE-4712
+                 -->
+                <granite.testing.logfile.excludes.7>*Logback Status*</granite.testing.logfile.excludes.7>
+
+                <!--
+                      GRANITE-11369 (replacing formerly excluded GRANITE-5702)
+                 -->
+                <granite.testing.logfile.excludes.8>No discovery available, therefore not executing job org.apache.jackrabbit.oak.plugins.index.AsyncIndexUpdate</granite.testing.logfile.excludes.8>
+                <granite.testing.logfile.excludes.9>No discovery available, therefore not executing job org.apache.sling.distribution.trigger.impl.ScheduledDistributionTrigger$ScheduledDistribution@</granite.testing.logfile.excludes.9>
+
+                <!--
+                      GRANITE-6938 remove once OAK-2115 is implemented and in the quickstart
+                 -->
+                <granite.testing.logfile.excludes.10>org.apache.jackrabbit.oak.plugins.segment.SegmentNodeStore Failed to create checkpoint</granite.testing.logfile.excludes.10>
+                <granite.testing.logfile.excludes.11>org.apache.jackrabbit.oak.plugins.index.AsyncIndexUpdate Unable to retrieve newly created checkpoint</granite.testing.logfile.excludes.11>
+
+                <!--
+                     Ignore warnings from jcr.resource for now
+                -->
+                <granite.testing.logfile.excludes.13>DEPRECATION WARNING: JcrResourceResolverFactory is deprecated. Please use ResourceResolverFactory instead.</granite.testing.logfile.excludes.13>
+                <granite.testing.logfile.excludes.14>DEPRECATION WARNING: JcrPropertyMap is deprecated. Please switch to resource API.</granite.testing.logfile.excludes.14>
+
+                <!--
+                  GRANITE-11389, can be removed after FELIX-5186 gets into quickstart
+                -->
+                <granite.testing.logfile.excludes.15>Cannot create component instance due to failure to bind reference</granite.testing.logfile.excludes.15>
+                <granite.testing.logfile.excludes.16>Failed creating the component instance; see log for reason</granite.testing.logfile.excludes.16>
+
+              </systemPropertyVariables>
+              <runOrder>alphabetical</runOrder>
+              <classpathDependencyExcludes>
+                <classpathDependencyExclude>org.apache.sling:org.apache.sling.commons.log</classpathDependencyExclude>
+                <classpathDependencyExclude>org.slf4j:slf4j-simple</classpathDependencyExclude>
+                <classpathDependencyExclude>ch.qos.logback:logback-classic</classpathDependencyExclude>
+                <classpathDependencyExclude>com.adobe.pdf:tika-app</classpathDependencyExclude>
+              </classpathDependencyExcludes>
+              <excludes>
+                <exclude>com/day/cq/quickstart/it/*.*</exclude>
+              </excludes>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of granite profile -->
+
+    <!-- start of release profile -->
+    <profile>
+      <id>release</id>
+      <properties>
+        <!-- default -sources package generation disabled, delegated to UberJar -->
+        <source.skip>true</source.skip>
+        <!-- default -javadoc package generation disabled, delegated to UberJar -->
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.adobe.granite.maven</groupId>
+            <artifactId>quickstart-maven-plugin</artifactId>
+            <configuration>
+              <!--
+               | enable the configuration below if there is the
+               | need to include bundles declaring packages with
+               | null or 0.0.0 version.
+               |
+               | Disabled by default to not break the build in the CI.
+              -->
+              <bundleBaseliningFile>src/main/quickstart/baseline-bundles-cq63.json</bundleBaseliningFile>
+              <failOnPackageVersionNotAllowed>false</failOnPackageVersionNotAllowed>
+              <excludedPackages>
+                <excludedPackage>com.adobe.cq.aam.client.spi</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.impl.servlets</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.index.impl.comment</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.listing.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.notification.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.tagcloud.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.tagging.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.ugc.impl.index</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.ugc.impl.servlets</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.review.client.endpoints.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.review.client.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.client.endpoints.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.client.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.comments.endpoints.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.comments.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.comments.listing.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.comments.search.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.digest.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.commons.emailreply.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.review.client.listing.impl</excludedPackage>
+                <excludedPackage>com.adobe.cq.social.review.index.impl</excludedPackage>
+
+                <!--
+                CQ-4236986, adding some of the packages to exclusion but this needs to be revisited and fixed in 6.5
+                -->
+                <excludedPackage>com.adobe.cq.social.sync.diagnostics.internal</excludedPackage>
+                <excludedPackage>com.day.cq.mcm.emailprovider.impl.types</excludedPackage>
+                <excludedPackage>com.notnoop.apns</excludedPackage>
+                <excludedPackage>com.notnoop.apns.internal</excludedPackage>
+                <excludedPackage>com.notnoop.exceptions</excludedPackage>
+                <excludedPackage>com.petebevin.markdown</excludedPackage>
+                <excludedPackage>org.openxmlformats.schemas*</excludedPackage>
+                <excludedPackage>com.adobe.granite.workflow.console.servlet</excludedPackage>
+                <excludedPackage>com.adobe.granite.workflow.console.timeout.autoadvance</excludedPackage>
+                <excludedPackage>com.adobe.granite.workflow.core.event</excludedPackage>
+                <excludedPackage>com.day.cq.workflow.compatibility</excludedPackage>
+                <excludedPackage>com.adobe.cq.projects.ui</excludedPackage>
+                <excludedPackage>com.adobe.cq.media.publishing</excludedPackage>
+                <excludedPackage>com.adobe.cq.media.publishing.commands</excludedPackage>
+                <excludedPackage>com.adobe.cq.media.publishing.dps</excludedPackage>
+                <excludedPackage>com.adobe.cq.media.publishing.dps.fp</excludedPackage>
+                <excludedPackage>com.twelvemonkeys.imageio.plugins.psd</excludedPackage>
+                <excludedPackage>com.adobe.cq.wcm.core.components.*</excludedPackage>
+                <excludedPackage>we.retail.*</excludedPackage>
+                <excludedPackage>com.adobe.cq.dam.dm.delivery.api</excludedPackage>
+                <excludedPackage>com.adobe.cq.dam.dm.icc.api</excludedPackage>
+                <excludedPackage>com.adobe.cq.dam.dm.process.api</excludedPackage>
+                <excludedPackage>com.adobe.cq.dam.dm.internalapi</excludedPackage>
+                <excludedPackage>com.adobe.cq.dam.dm.internalapi.tools</excludedPackage>
+                <excludedPackage>org.apache.sling.scripting.javascript</excludedPackage>
+                <excludedPackage>org.apache.sling.discovery.base*</excludedPackage>
+                <excludedPackage>com.adobe.dam.print.ids.utils</excludedPackage>
+                <excludedPackage>com.day.cq.dam.api.async</excludedPackage>
+                <excludedPackage>com.day.cq.dam.commons.job</excludedPackage>
+		<excludedPackage>com.day.cq.reporting.helpers</excludedPackage>
+		<excludedPackage>com.day.cq.spellchecker</excludedPackage>
+
+                <excludedPackage>java.*</excludedPackage>
+                <excludedPackage>javax.*</excludedPackage>
+                <excludedPackage>org.mozilla.*</excludedPackage>
+                <excludedPackage>info.geometrixx.*</excludedPackage>
+
+                <!-- GRANITE-19254 -->
+                <excludedPackage>org.apache.commons.lang.enum*</excludedPackage>
+
+                <!--temporarily excluded since they were not part of uber.jar in 6.3 and need further clarification-->
+                <excludedPackage>opennlp.*</excludedPackage>
+
+                <!-- excluded aem forms related packages from quickstart uber jar -->
+                <excludedPackage>com.adobe.forms.foundation.*</excludedPackage>
+				<excludedPackage>com.adobe.aem.formsndocuments*</excludedPackage>
+                <excludedPackage>com.adobe.aemds.guide*</excludedPackage>
+                <excludedPackage>com.adobe.fd.fp*</excludedPackage>
+                <excludedPackage>com.adobe.aemforms.fm*</excludedPackage>
+                <excludedPackage>com.adobe.forms.common*</excludedPackage>
+                <excludedPackage>com.adobe.aemfd.expeditor*</excludedPackage>
+                <!-- end of aem forms related packages -->
+
+                <excludedPackage>com.adobe.xmp.worker.files</excludedPackage>
+                <excludedPackage>org.apache.felix.cm*</excludedPackage>
+                <excludedPackage>org.osgi.service.cm</excludedPackage>
+
+                <!-- Apache Oak internal packages (GRANITE-17980, GRANITE-20400) -->
+                <excludedPackage>org.apache.jackrabbit.oak.blob.cloud.aws.s3</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.blob.cloud.azure.blobstorage</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.cache</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.benchmark</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.cache</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.concurrent</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.hash</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.io</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.jmx</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.json</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons.sort</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.commons</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.composite</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.composite.checks</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.jcr</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.json</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.management</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.namepath.impl</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.osgi</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.atomic</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.blob.datastore</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.blob</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.commit</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.document.spi</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.identifier</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.aggregate</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.counter</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.fulltext</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.importer</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.lucene.util</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.lucene</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.nodetype</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.property.jmx</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.property.strategy</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.property</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.reference</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.solr.configuration</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.solr.index</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.solr.query</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.solr.server</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.solr.util</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index.solr</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.index</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.itemsave</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.lock</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.memory</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.migration</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.migration.report</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.name</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.nodetype.write</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.nodetype</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.observation.filter</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.observation</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.tree.factories</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.value.jcr</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.value</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.plugins.version</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.query.fulltext</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.query</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.security.authentication.ldap</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.security</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.blob.split</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.blob.stats</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.blob</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.cluster</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.descriptors</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.filter</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.gc</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.mount</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.namespace</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.nodetype</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.observation</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.query.fulltext</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.query</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.spi.version</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.stats</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak.util</excludedPackage>
+                <excludedPackage>org.apache.jackrabbit.oak</excludedPackage>
+
+                <!-- Apache Oak dependencies (GRANITE-20400) -->
+                <excludedPackage>com.mongodb*</excludedPackage>
+                <excludedPackage>org.bson*</excludedPackage>
+                <excludedPackage>org.h2*</excludedPackage>
+
+		<!-- Forms Internal Packages -->
+		<excludedPackage>com.adobe.aemds.guide.fdinternal.api</excludedPackage>
+		<excludedPackage>com.adobe.fd.ccm.multichannel.fdinternal.api.model</excludedPackage>
+
+		<!-- CQ-4236985 -->
+		<excludedPackage>com.adobe.cq.dam.mac.sync.helper</excludedPackage>
+
+                <!-- CQ-4237004 - Implementation leaked in integrations API -->
+                <excludedPackage>com.day.cq.analytics.testandtarget</excludedPackage>
+                <excludedPackage>com.day.cq.searchpromote</excludedPackage>
+              </excludedPackages>
+              <suppressResolvedProfiles>
+                <suppressResolvedProfile>java6plus</suppressResolvedProfile>
+                <suppressResolvedProfile>java8</suppressResolvedProfile>
+                <suppressResolvedProfile>default</suppressResolvedProfile>
+                <suppressResolvedProfile>port-java6</suppressResolvedProfile>
+                <suppressResolvedProfile>port-java7</suppressResolvedProfile>
+                <suppressResolvedProfile>port-java8</suppressResolvedProfile>
+                <suppressResolvedProfile>disable-ldap-integration</suppressResolvedProfile>
+                <suppressResolvedProfile>findbugs-jdk6</suppressResolvedProfile>
+              </suppressResolvedProfiles>
+              <packageDependencyExceptions>
+                <packageDependencyException>com.adobe.fontengine.font</packageDependencyException>
+                <packageDependencyException>com.adobe.fontengine.inlineformatting</packageDependencyException>
+                <packageDependencyException>com.adobe.fontengine.fontmanagement</packageDependencyException>
+                <packageDependencyException>com.adobe.internal</packageDependencyException>
+                <packageDependencyException>com.adobe.xfa</packageDependencyException>
+                <packageDependencyException>com.adobe.xmp</packageDependencyException>
+                <packageDependencyException>com.adobe.agl.text</packageDependencyException>
+                <packageDependencyException>com.day.image</packageDependencyException>
+                <packageDependencyException>com.day.cq.commons</packageDependencyException>
+                <!-- CQ-4236986 -->
+                <packageDependencyException>com.adobe.cq.social.commons.emailreply</packageDependencyException>
+                <packageDependencyException>com.adobe.cq.social.user.endpoints</packageDependencyException>
+                <packageDependencyException>com.adobe.cq.social.handlebars.api</packageDependencyException> 
+                <packageDependencyException>com.adobe.cq.social.site.api</packageDependencyException>
+                <packageDependencyException>com.adobe.cq.social.connect.ui</packageDependencyException>
+                <!-- GRANITE-20756 -->
+                <packageDependencyException>com.adobe.granite.auth.saml.util</packageDependencyException>
+                <!-- GRANITE-20753 -->
+                <packageDependencyException>com.adobe.granite.ui.components.htl</packageDependencyException>
+                <!-- CQ-4237004 -->
+                <packageDependencyException>com.day.cq.analytics.testandtarget</packageDependencyException>
+                <packageDependencyException>com.day.cq.searchpromote</packageDependencyException>
+                <!-- CQ-4237296 -->
+                <packageDependencyException>com.day.cq.dam.core.process</packageDependencyException>
+                <!-- CQ-4237011 -->
+                <packageDependencyException>com.day.cq.dam.scene7.api</packageDependencyException>
+                <!-- CQ-4237007 -->
+                <packageDependencyException>com.day.cq.mcm.exacttarget</packageDependencyException>
+                <!-- CQ-4237013 -->
+                <packageDependencyException>com.day.cq.rewriter.linkchecker</packageDependencyException>
+                <!-- CQ-4237113 -->
+                <packageDependencyException>com.day.cq.security.util</packageDependencyException>
+                <!-- CQ-4237115 -->
+                <packageDependencyException>com.day.cq.spellchecker</packageDependencyException>
+                <!-- CQ-4237120 -->
+                <packageDependencyException>com.day.cq.wcm.designimporter</packageDependencyException>
+                <packageDependencyException>com.day.cq.wcm.foundation</packageDependencyException>
+                <packageDependencyException>com.day.cq.wcm.foundation.model</packageDependencyException>
+                <packageDependencyException>com.day.cq.wcm.tags</packageDependencyException>
+                <!-- OAK-7287 -->
+                <packageDependencyException>org.apache.jackrabbit.oak.namepath</packageDependencyException>
+              </packageDependencyExceptions>
+              <javadocLinks>
+                <javadocLink>http://docs.oracle.com/javase/7/docs/api/</javadocLink>
+                <javadocLink>http://tomcat.apache.org/tomcat-8.0-doc/servletapi/</javadocLink>
+                <javadocLink>http://www.day.com/maven/jsr170/javadocs/jcr-2.0/</javadocLink>
+                <javadocLink>http://sling.apache.org/apidocs/sling8/</javadocLink>
+                <javadocLink>http://jackrabbit.apache.org/api/2.14/</javadocLink>
+                <javadocLink>https://osgi.org/javadoc/r6/core/</javadocLink>
+                <javadocLink>https://osgi.org/javadoc/r6/annotation/</javadocLink>
+                <javadocLink>https://osgi.org/javadoc/r6/cmpn/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-io/javadocs/api-2.5/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-imaging/apidocs/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-exec/apidocs/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-lang/javadocs/api-3.5/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-collections/javadocs/api-3.2.2/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-codec/archives/1.10/apidocs/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-compress/javadocs/api-1.13/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-fileupload/apidocs/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-math/javadocs/api-2.2/</javadocLink>
+                <javadocLink>http://commons.apache.org/proper/commons-email/javadocs/api-1.2/</javadocLink>
+              </javadocLinks>
+              <obsfucationSkipPatterns>
+                <obsfucationSkipPattern>org/apache/.*</obsfucationSkipPattern>
+                <obsfucationSkipPattern>ch/randelshofer/.*</obsfucationSkipPattern>
+                <obsfucationSkipPattern>com/google/.*</obsfucationSkipPattern>
+                <obsfucationSkipPattern>com/twelvemonkeys/.*</obsfucationSkipPattern>
+              </obsfucationSkipPatterns>
+              <quickstartConfigurations>
+                <quickstartConfiguration>
+                  <runmode>author${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+              </quickstartConfigurations>
+              <skipQuickstart>${skip.quickstart}</skipQuickstart>
+              <testModes>
+                <param>granite</param>
+                <param>aem</param>
+              </testModes>
+            </configuration>
+            <executions>
+              <!-- Create the UberJar artifacts -->
+              <execution>
+                <id>uber-jar</id>
+                <goals>
+                  <goal>uber-jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of release profile -->
+
+    <!-- start of smoke-it profile -->
+    <profile>
+      <id>smoke-it</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.adobe.granite.maven</groupId>
+            <artifactId>quickstart-maven-plugin</artifactId>
+            <configuration>
+              <quickstartConfigurations>
+                <quickstartConfiguration>
+                  <runmode>author${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+              </quickstartConfigurations>
+              <skipQuickstart>${skip.quickstart}</skipQuickstart>
+              <testModes>
+                <param>granite</param>
+                <param>aem</param>
+              </testModes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of smoke-it profile -->
+
+    <!-- start of evergreen-it profile -->
+    <profile>
+      <id>evergreen-it</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <!-- For starting AEM author and publish-->
+          <plugin>
+            <groupId>com.adobe.granite.maven</groupId>
+            <artifactId>quickstart-maven-plugin</artifactId>
+            <configuration>
+              <testModes>
+                <param>granite</param>
+                <param>aem</param>
+                <param>packages-evergreen</param>
+              </testModes>
+              <quickstartConfigurations>
+                <quickstartConfiguration>
+                  <runmode>author${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+              </quickstartConfigurations>
+              <skipQuickstart>${skip.quickstart}</skipQuickstart>
+              <testGroups>
+                <testGroup>
+                  <testRunmode>${test.group}</testRunmode>
+                  <destination>${evergreen.modules.destination}/${test.group}</destination>
+                </testGroup>
+              </testGroups>
+            </configuration>
+          </plugin>
+
+          <!-- Run normal failsafe tests before and maybe skip -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <systemPropertiesFile>${quickstart.properties.file}</systemPropertiesFile>
+              <skip>${skipSmokeTests}</skip>
+            </configuration>
+          </plugin>
+
+          <!-- For running the IT modules -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <configuration>
+              <projectsDirectory>${evergreen.modules.destination}</projectsDirectory>
+
+              <pomIncludes>
+                <pomInclude>*/*/pom.xml</pomInclude>
+              </pomIncludes>
+
+              <postBuildHookScript>verify</postBuildHookScript>
+              <streamLogs>true</streamLogs>
+
+              <profiles>
+                <profile>test-all</profile>
+                <profile>category-non-failing</profile>
+              </profiles>
+              <goals>
+                <goal>verify</goal>
+              </goals>
+              <properties>
+                <system.properties.file>${quickstart.properties.file}</system.properties.file>
+                <test.server.mock.host>${test.server.mock.host}</test.server.mock.host>
+                <test.server.mock.smtp.port>${test.server.mock.smtp.port}</test.server.mock.smtp.port>
+                <filterCategory>${filterCategory}</filterCategory>
+                <sling.it.ignorelist>${sling.it.ignorelist}</sling.it.ignorelist>
+                <granite.it.logintokenauth>${granite.it.logintokenauth}</granite.it.logintokenauth>
+                <!-- Serverside tests optimisation of ephemeral ports -->
+                <http.maxConnections>100</http.maxConnections>
+              </properties>
+            </configuration>
+            <executions>
+              <execution>
+                <id>test-all</id>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-site</artifactId>
+            <version>2.0.1</version>
+            <configuration />
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of evergreen-it profile -->
+
+    <!-- start of evergreen-bc-it profile -->
+    <profile>
+      <id>evergreen-bc-it</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <!-- For starting AEM author and publish-->
+          <plugin>
+            <groupId>com.adobe.granite.maven</groupId>
+            <artifactId>quickstart-maven-plugin</artifactId>
+            <configuration>
+              <modelPattern>^(?!testing-model).*\.txt$</modelPattern>
+              <testModes>
+                <param>granite-bc</param>
+                <param>packages-evergreen-bc</param>
+              </testModes>
+              <quickstartConfigurations>
+                <quickstartConfiguration>
+                  <runmode>author${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+              </quickstartConfigurations>
+              <skipQuickstart>${skip.quickstart}</skipQuickstart>
+              <testGroups>
+                <testGroup>
+                  <testRunmode>${test.group}</testRunmode>
+                  <destination>${evergreen.modules.destination}/${test.group}</destination>
+                </testGroup>
+              </testGroups>
+            </configuration>
+          </plugin>
+
+          <!-- Run normal failsafe tests before and maybe skip -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <excludes>
+                <!-- To be fixed for BC -->
+                <exclude>com/day/cq/quickstart/it/LogFileIT.java</exclude>
+                <!-- From granite -->
+                <exclude>com/adobe/granite/quickstart/it/**</exclude>
+                <exclude>com/adobe/granite/rest/assets/it/AssetsIT.java</exclude>
+                <exclude>com/adobe/granite/monitoring/dashboard/it/HealthReportsIT.java</exclude>
+                <exclude>com/adobe/granite/monitoring/dashboard/it/MaintenanceIT.java</exclude>
+                <exclude>com/adobe/granite/security/it/http/UserPropertiesIT.java</exclude>
+              </excludes>
+              <systemPropertiesFile>${quickstart.properties.file}</systemPropertiesFile>
+              <properties>
+                <exclude.compat.exception.list>true</exclude.compat.exception.list>
+              </properties>
+              <skip>${skipSmokeTests}</skip>
+              <systemPropertyVariables>
+                <exclude.compat.exception.list>true</exclude.compat.exception.list>
+
+                <!--
+                  Configuration for the log file test.
+                  The following are exclude patterns that are ignored
+                -->
+                <!--
+                     https://bugs.day.com/bugzilla/show_bug.cgi?id=29628
+                -->
+                <granite.testing.logfile.excludes.1>ItemStateReferenceCache overwriting cached entry</granite.testing.logfile.excludes.1>
+                <granite.testing.logfile.excludes.3>No such authorizable</granite.testing.logfile.excludes.3>
+
+                <!--
+                      JCR-3406
+                 -->
+                <granite.testing.logfile.excludes.4>org.apache.jackrabbit.core.cluster.ClusterNode No record prepared.</granite.testing.logfile.excludes.4>
+                <granite.testing.logfile.excludes.6>Item#refresh invokes Session#refresh!</granite.testing.logfile.excludes.6>
+
+                <!--
+                      GRANITE-4712
+                 -->
+                <granite.testing.logfile.excludes.7>*Logback Status*</granite.testing.logfile.excludes.7>
+
+                <!--
+                      GRANITE-11369 (replacing formerly excluded GRANITE-5702)
+                 -->
+                <granite.testing.logfile.excludes.8>No discovery available, therefore not executing job org.apache.jackrabbit.oak.plugins.index.AsyncIndexUpdate</granite.testing.logfile.excludes.8>
+                <granite.testing.logfile.excludes.9>No discovery available, therefore not executing job org.apache.sling.distribution.trigger.impl.ScheduledDistributionTrigger$ScheduledDistribution@</granite.testing.logfile.excludes.9>
+
+                <!--
+                      GRANITE-6938 remove once OAK-2115 is implemented and in the quickstart
+                 -->
+                <granite.testing.logfile.excludes.10>org.apache.jackrabbit.oak.plugins.segment.SegmentNodeStore Failed to create checkpoint</granite.testing.logfile.excludes.10>
+                <granite.testing.logfile.excludes.11>org.apache.jackrabbit.oak.plugins.index.AsyncIndexUpdate Unable to retrieve newly created checkpoint</granite.testing.logfile.excludes.11>
+
+                <!--
+                     Ignore warnings from jcr.resource for now
+                -->
+                <granite.testing.logfile.excludes.13>DEPRECATION WARNING: JcrResourceResolverFactory is deprecated. Please use ResourceResolverFactory instead.</granite.testing.logfile.excludes.13>
+                <granite.testing.logfile.excludes.14>DEPRECATION WARNING: JcrPropertyMap is deprecated. Please switch to resource API.</granite.testing.logfile.excludes.14>
+
+                <!--
+                  GRANITE-11389, can be removed after FELIX-5186 gets into quickstart
+                -->
+                <granite.testing.logfile.excludes.15>Cannot create component instance due to failure to bind reference</granite.testing.logfile.excludes.15>
+                <granite.testing.logfile.excludes.16>Failed creating the component instance; see log for reason</granite.testing.logfile.excludes.16>
+
+                <!-- BC -->
+                <!-- TBD -->
+
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+
+          <!-- For running the IT modules -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <configuration>
+              <projectsDirectory>${evergreen.modules.destination}</projectsDirectory>
+
+              <pomIncludes>
+                <pomInclude>*/*/pom.xml</pomInclude>
+              </pomIncludes>
+
+              <postBuildHookScript>verify</postBuildHookScript>
+              <streamLogs>true</streamLogs>
+
+              <profiles>
+                <profile>test-all</profile>
+                <profile>category-non-failing</profile>
+              </profiles>
+              <goals>
+                <goal>verify</goal>
+              </goals>
+              <properties>
+                <system.properties.file>${quickstart.properties.file}</system.properties.file>
+                <test.server.mock.host>${test.server.mock.host}</test.server.mock.host>
+                <test.server.mock.smtp.port>${test.server.mock.smtp.port}</test.server.mock.smtp.port>
+                <filterCategory>${filterCategory}</filterCategory>
+                <sling.it.ignorelist>${bc.ignorelist},${bc.exceptions},${bc.flaky}</sling.it.ignorelist>
+                <granite.it.logintokenauth>${granite.it.logintokenauth}</granite.it.logintokenauth>
+                <!-- Serverside tests optimisation of ephemeral ports -->
+                <http.maxConnections>100</http.maxConnections>
+              </properties>
+            </configuration>
+            <executions>
+              <execution>
+                <id>test-all</id>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-site</artifactId>
+            <version>2.0.1</version>
+            <configuration />
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of evergreen-bc-it profile -->
+
+    <!-- start of all-granite-it profile -->
+    <profile>
+      <id>all-granite-it</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+      <plugins>
+        <plugin>
+          <groupId>com.adobe.granite.maven</groupId>
+          <artifactId>quickstart-maven-plugin</artifactId>
+          <configuration>
+            <testModes>
+              <param>granite</param>
+              <param>granite-only</param>
+          </testModes>
+              <quickstartConfigurations>
+                  <quickstartConfiguration>
+                      <runmode>author${testing.additional.runmode}</runmode>
+                  </quickstartConfiguration>
+                  <quickstartConfiguration>
+                      <runmode>publish${testing.additional.runmode}</runmode>
+                  </quickstartConfiguration>
+              </quickstartConfigurations>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+                <argLine>-Xmx256M</argLine>
+                <systemPropertiesFile>${quickstart.properties.file}</systemPropertiesFile>
+                <systemPropertyVariables>
+                  <!--
+                    Configuration for the log file test.
+                    The following are exclude patterns that are ignored
+                  -->
+                  <!--
+                       https://bugs.day.com/bugzilla/show_bug.cgi?id=29628
+                  -->
+                  <granite.testing.logfile.excludes.1>ItemStateReferenceCache overwriting cached entry</granite.testing.logfile.excludes.1>
+                  <granite.testing.logfile.excludes.3>No such authorizable</granite.testing.logfile.excludes.3>
+
+                  <!--
+                        JCR-3406
+                   -->
+                  <granite.testing.logfile.excludes.4>org.apache.jackrabbit.core.cluster.ClusterNode No record prepared.</granite.testing.logfile.excludes.4>
+                  <granite.testing.logfile.excludes.6>Item#refresh invokes Session#refresh!</granite.testing.logfile.excludes.6>
+
+                  <!--
+                        GRANITE-4712
+                   -->
+                  <granite.testing.logfile.excludes.7>*Logback Status*</granite.testing.logfile.excludes.7>
+
+                  <!--
+                        GRANITE-11369 (replacing formerly excluded GRANITE-5702)
+                   -->
+                  <granite.testing.logfile.excludes.8>No discovery available, therefore not executing job org.apache.jackrabbit.oak.plugins.index.AsyncIndexUpdate</granite.testing.logfile.excludes.8>
+                  <granite.testing.logfile.excludes.9>No discovery available, therefore not executing job org.apache.sling.distribution.trigger.impl.ScheduledDistributionTrigger$ScheduledDistribution@</granite.testing.logfile.excludes.9>
+
+                  <!--
+                        GRANITE-6938 remove once OAK-2115 is implemented and in the quickstart
+                   -->
+                  <granite.testing.logfile.excludes.10>org.apache.jackrabbit.oak.plugins.segment.SegmentNodeStore Failed to create checkpoint</granite.testing.logfile.excludes.10>
+                  <granite.testing.logfile.excludes.11>org.apache.jackrabbit.oak.plugins.index.AsyncIndexUpdate Unable to retrieve newly created checkpoint</granite.testing.logfile.excludes.11>
+
+                  <!--
+                       Ignore warnings from jcr.resource for now
+                  -->
+                  <granite.testing.logfile.excludes.13>DEPRECATION WARNING: JcrResourceResolverFactory is deprecated. Please use ResourceResolverFactory instead.</granite.testing.logfile.excludes.13>
+                  <granite.testing.logfile.excludes.14>DEPRECATION WARNING: JcrPropertyMap is deprecated. Please switch to resource API.</granite.testing.logfile.excludes.14>
+
+                  <!--
+                    GRANITE-11389, can be removed after FELIX-5186 gets into quickstart
+                  -->
+                  <granite.testing.logfile.excludes.15>Cannot create component instance due to failure to bind reference</granite.testing.logfile.excludes.15>
+                  <granite.testing.logfile.excludes.16>Failed creating the component instance; see log for reason</granite.testing.logfile.excludes.16>
+
+                  </systemPropertyVariables>
+                  <runOrder>alphabetical</runOrder>
+                  <classpathDependencyExcludes>
+                      <classpathDependencyExclude>org.apache.sling:org.apache.sling.commons.log</classpathDependencyExclude>
+                  </classpathDependencyExcludes>
+                  <excludes>
+                      <exclude>com/day/cq/quickstart/it/*.*</exclude>
+                  </excludes>
+              </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of all-granite-it profile -->
+
+    <!-- start of it-pubsync profile -->
+    <profile>
+      <id>it-pubsync</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <argLine>-Xmx256M</argLine>
+              <systemPropertiesFile>${quickstart.properties.file}</systemPropertiesFile>
+              <runOrder>alphabetical</runOrder>
+              <classpathDependencyExcludes>
+                <classpathDependencyExclude>org.apache.sling:org.apache.sling.commons.log</classpathDependencyExclude>
+              </classpathDependencyExcludes>
+              <includes>
+                <include>com/adobe/granite/distribution/it/http/*.*</include>
+                <include>com/adobe/granite/replication/it/http/*.*</include>
+              </includes>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>com.adobe.granite.maven</groupId>
+            <artifactId>quickstart-maven-plugin</artifactId>
+            <configuration>
+              <testModes>
+                <param>granite</param>
+                <param>granite-only</param>
+              </testModes>
+              <quickstartConfigurations>
+                <quickstartConfiguration>
+                  <runmode>author${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+                <quickstartConfiguration>
+                  <id>publish2</id>
+                  <runmode>publish${testing.additional.runmode}</runmode>
+                </quickstartConfiguration>
+              </quickstartConfigurations>
+              <quickstartReadyTimeOutSec>2000</quickstartReadyTimeOutSec>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- end of it-pubsync profile -->
+
+    <!-- start of codeCoverage profile -->
+    <profile>
+        <id>codeCoverage</id>
+        <properties>
+            <!-- start the 0.7.2.201409121644 agent with quickstart for code coverage of IT tests -->
+            <jacocoResultFileName>jacoco-it.exec</jacocoResultFileName>
+            <quickstart.vm.args.codeCoverage>
+            -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.version}/org.jacoco.agent-${jacoco.version}-runtime.jar=destfile=${jacocoResultFileName},append=true,output=file
+            </quickstart.vm.args.codeCoverage>
+        </properties>
+    </profile>
+    <!-- start of codeCoverage profile -->
+
+    <!-- start of 0dt profile -->
+    <!-- This profile is used to exclude tests which are in conflict with the 0DT setup -->
+    <profile>
+        <id>0dt</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>com.adobe.granite.maven</groupId>
+                    <artifactId>quickstart-maven-plugin</artifactId>
+                    <configuration>
+                        <testExcludes>
+                            <testExclude>**/UIBackendInstallUninstallPackageIT*</testExclude>
+                        </testExcludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+    <!-- end of 0dt profile -->
+
+  </profiles>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.day.commons</groupId>
+      <artifactId>day-commons-cli</artifactId>
+      <version>2.0.6</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.day.cq.portlet</groupId>
+      <artifactId>cq-portlet-components</artifactId>
+      <type>zip</type>
+      <version>5.4.36</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.granite</groupId>
+      <artifactId>com.adobe.granite.testing.clients</artifactId>
+      <version>1.2.6</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>0.9.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <version>0.9.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>biz.aQute.bnd</groupId>
+      <artifactId>bndlib</artifactId>
+      <version>2.1.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>org.jacoco.agent</artifactId>
+      <version>${jacoco.version}</version>
+      <classifier>runtime</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>1.0-groovy-2.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>2.4.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+       <groupId>nekohtml</groupId>
+       <artifactId>nekohtml</artifactId>
+       <version>1.9.6.2</version>
+       <scope>test</scope>
+    </dependency>
+    <dependency>
+       <groupId>org.apache.httpcomponents</groupId>
+       <artifactId>httpclient</artifactId>
+       <version>4.5.2</version>
+       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.api</artifactId>
+      <version>2.10.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

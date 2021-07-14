@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.6.2 JCR-SQL2 Notation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.6.2 JCR-SQL2 Notation</H3>
+	<P>JCR–SQL2 is a
+	mapping of the AQM to a string serialization based on the SQL
+	language.</P>
+	<P>Each non-terminal in
+	the JCR-SQL2 EBNF grammar corresponds to the type of the same name
+	in the AQM grammar. The semantics of each JCR-SQL2 production is
+	described by reference to the semantics of the corresponding AQM
+	production. The two grammars are, however, entirely distinct and
+	self- contained. Care should be taken not to mix productions from
+	one grammar with those of the other.</P>
+	<P>The JCR-SQL2 grammar
+	is written like this:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Alpha ::= 'FOO' Foo ['BAR' Bar]
+	'BAZ' bazes<BR> ['QUUX' quuxes]</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Foo ::= Snap | Crackle | Pop</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Snap ::= 'SNAP'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Crackle ::= 'CRACKLE'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Pop ::= 'POP'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Bar ::= /* a Bar */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">bazes ::= Baz {Baz}</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Baz ::= /* a Baz */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">quuxes ::= Quux {Quux}</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Quux ::= /* a Quux */</FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.5 Normalized Paths (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.4.5 Normalized Paths</H3>
+	<P>A JCR path is
+	normalized by the following steps:</P>
+	<UL>
+		<LI><P>All self segments
+		are removed.</P>
+		<LI><P>All redundant
+		parent segments are collapsed. A redundant parent segment is one
+		which can be removed by also removing a preceding name segment
+		while preserving the location indicated by the path. For example,
+		the path <FONT FACE="Courier New, monospace"><FONT SIZE=2>/A/B/C/../..</FONT></FONT>
+		can be collapsed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>/A</FONT></FONT>.
+		Note therefore, that if a normalized path contains any parent
+		segments, they must all precede the first name segment.</P>
+		<LI><P>If the path is an
+		identifier-based absolute path, it is replaced by a root-based
+		absolute path that picks out the same node in the workspace as the
+		identifier it replaces.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

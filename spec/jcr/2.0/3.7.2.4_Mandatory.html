@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.2.4 Mandatory (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.2.4 Mandatory</H4>
+	<P>An
+	item may be declared <I>mandatory</I>,
+	meaning that the item must exist before its parent node is saved.</P>
+	<H5>3.7.2.4.1 Mandatory and Multi-Value Properties</H5>
+	<P>Since single-value
+	properties either have a value or do not exist (there being no
+	concept of the null value, see §10.4.2.4 <I>No Null Values</I>), a
+	mandatory single-value property must have a value. A mandatory
+	multi-value property, on the other hand, may have zero or more
+	values.</P>
+	<H5>3.7.2.4.2 Mandatory and Same-Name Siblings</H5>
+	<P>In a repository that
+	supports same-name siblings, a child node definition may specify
+	that a node be both mandatory and allow same-name siblings. In that
+	case at least one child node must exist upon save of the parent node
+	(see §22 <I>Same-Name Siblings</I>). 
+	</P>
+	<H5>3.7.2.4.3 Mandatory and Residual Definitions</H5>
+	<P>In repositories that
+	support residual definitions, an item cannot be both mandatory and
+	residual (see §3.7.2.1.2 <I>Item Definition Name and Residual
+	Definitions</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

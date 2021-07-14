@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.5 Determining Property Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.5." id="section_7.3.5."></a> 7.3.5 Determining Property Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In document view import (unlike system view import) property type information is not explicitly recorded. As a result, the implementation must determine a suitable property type for each incoming property. The determination of the property type for a particular incoming property must be done according to the following principles:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					If the property type is determinable from the node type assigned to its node (regardless of how this node type is itself determined; see <a href="7.3.4_Determining_Node_Types.html">7.3.4</a> <i>Determining Node Types</i>) then that property type is used.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If the property type is not determinable from the node type assigned to its node then the determination of the property is left up to the implementation. The most common possibility is to default to the type <b>STRING</b>, though this is not required. Some implementations may choose, for example, to attempt “guess” the type according to an analysis of the content. This specification does not attempt to define or restrict how an implementation handles this case.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

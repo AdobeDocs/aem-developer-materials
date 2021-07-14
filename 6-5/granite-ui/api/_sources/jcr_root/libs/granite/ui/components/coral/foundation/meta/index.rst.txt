@@ -1,0 +1,23 @@
+
+Meta
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/meta
+
+   The component to specify the metadata (``<meta>``) in the page.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Meta]
+
+      /**
+       * The name of the meta.
+       */
+      - name (String)
+
+      /**
+       * The content of the meta.
+       */
+      - content (String)

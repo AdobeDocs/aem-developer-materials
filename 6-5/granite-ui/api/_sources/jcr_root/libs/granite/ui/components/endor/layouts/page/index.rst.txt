@@ -1,0 +1,95 @@
+
+Page
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/layouts/page
+   :layout:
+   :deprecated:
+
+   The layout to render Endor page. It only makes sense to be applied to body component.
+
+   It expects the main resource to have the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorLayoutsPageMain]
+
+      /**
+       * The rail.
+       */
+      + rail
+
+      /**
+       * The breadcrumb links of the current page.
+       * Only links up to the parent of current page are required. The current page would be specified at ``title``.
+       * You may use ``/libs/granite/ui/components/endor/layouts/breadcrumbs`` layout.
+       */
+      + breadcrumbs
+
+      /**
+       * The title of current page.
+       */
+      + title
+
+      /**
+       * The popover activator for help.
+       */
+      + helpactivator
+
+      /**
+       * The badge component.
+       */
+      + badge
+
+      /**
+       * The user component. You may use ``/libs/granite/ui/components/endor/user``.
+       */
+      + user
+
+      /**
+       * The help popover.
+       */
+      + help
+
+      /**
+       * Notifications popover.
+       */
+      + notifications
+
+      /**
+       * The account popover.
+       */
+      + account
+
+      /**
+       * The actual content of the page.
+       */
+      + content
+
+   Example::
+
+      + mybody
+        - sling:resourceType = "granite/ui/components/foundation/page/body"
+        + layout
+          - sling:resourceType = "granite/ui/components/endor/layouts/page"
+        + rail
+          - sling:resourceType = "granite/ui/components/endor/navcolumns"
+        + breadcrumbs
+          - sling:resourceType = "granite/ui/components/foundation/navigation"
+          + layout
+            - sling:resourceType = "granite/ui/components/endor/layout/breadcrumbs"
+          + items
+            + title
+              - sling:resourceType = "granite/ui/components/foundation/hyperlink"
+              - text = "Properties"
+              - href = "#"
+        + helpactivator
+          - sling:resourceType = "granite/ui/components/foundation/hyperlink"
+        + badge
+        + user
+          - sling:resourceType = "granite/ui/components/endor/user"
+        + help
+        + notifications
+        + account
+        + content
+          - sling:resourceType = "granite/ui/components/foundation/container"

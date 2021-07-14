@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25.1 Treatment of Identifiers (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>25.1 Treatment of Identifiers</H2>
+	<P>A number of different
+	methods in the API transfer node state from one location to another.
+	They often differ in how they treat the identifier of the node. Some
+	methods always behave the same way in this regard, others have
+	various options that control their behavior. The following table
+	summarizes the behaviors of the methods.</P>
+	<TABLE WIDTH=628 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=146>
+		<COL WIDTH=188>
+		<COL WIDTH=243>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=32>
+				<P><B>Method</B></P>
+			</TD>
+			<TD WIDTH=188>
+				<P><B>Referenceable
+				Identifiers</B></P>
+			</TD>
+			<TD WIDTH=243>
+				<P><B>Non-referenceable
+				Identifiers</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=74>
+				<P><B>Save<BR></B><BR>
+				</P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=447>
+				<P>Identifiers <I>must</I>
+				be preserved, with the possible exception of the first save of a
+				new node (see §3.7.1 <I>Identifier Assignment</I>). The state of
+				a transient node is saved to the persistent node with the same
+				identifier.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=19>
+				<P><B>Copy<BR></B><FONT SIZE=1 >(within
+				a workspace)</FONT></P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=447>
+				<P>New identifiers
+				<I>must</I> be created.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=19>
+				<P><B>Copy<BR></B><FONT SIZE=1 >(between
+				workspaces)</FONT></P>
+			</TD>
+			<TD WIDTH=188>
+				<P>New referenceable
+				identifiers <I>must</I> be created.</P>
+			</TD>
+			<TD WIDTH=243>
+				<P>New
+				non-referenceable identifiers <I>may</I> be created. The
+				stability of non-referenceable identifiers is a repository
+				implementation variant.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=33>
+				<P><B>Move </B>
+				</P>
+			</TD>
+			<TD WIDTH=188>
+				<P>Referenceable
+				identifiers <I>must</I> be preserved.</P>
+			</TD>
+			<TD ROWSPAN=3 WIDTH=243>
+				<P>Non-referenceable
+				identifiers <I>may</I> be preserved. The stability of
+				non-referenceable identifiers is a repository implementation
+				variant.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=136>
+				<P><B>Clone, Restore</B></P>
+			</TD>
+			<TD WIDTH=188>
+				<P>Referenceable
+				identifiers <I>must</I> be preserved. On conflict with an
+				existing node a flag governs whether the existing node is removed
+				or an exception thrown.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=19>
+				<P><B>Update, Merge</B></P>
+			</TD>
+			<TD WIDTH=188>
+				<P>Referenceable
+				identifiers <I>must</I> be preserved. On conflict with an
+				existing node, that node is replaced at its existing location in
+				the target workspace.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=18>
+				<P><B>Import</B></P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=447>
+				<P>A flag determines
+				whether new identifiers are created or incoming ones preserved.
+				On conflict with an existing node the options are to either
+				replace the existing node in place, remove the existing node, or
+				throw an exception.</P>
+			</TD>
+		</TR>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,191 @@
+****************
+foundation-field
+****************
+
+``foundation-field`` is a vocabulary to standardize the form field.
+In an application it is possible that we use many form field components from many different vendors.
+For example, native HTML provides ``<input>`` while CoralUI provides ``<coral-numberinput>``.
+Because of this, the standardization into a normalized API is good way to interact with them, such that the application code can be more independent.
+
+To select a logical field, you can use :doc:`:-foundation-submittable <../js/validation/index>` selector.
+
+
+Event
+=====
+
+foundation-field-change
+-----------------------
+
+The event that MUST be triggered when the field value is changed.
+
+The event has the following interface:
+
+.. code-block:: ts
+
+   interface FoundationFieldChangeEvent {
+     (): void;
+   }
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-field``
+
+condition
+   Any field element that can be adapted to this type
+
+returned type
+   ``FoundationField``
+
+.. code-block:: ts
+
+   interface FoundationField {
+     /**
+      * Returns the name that identifies the field when submitting the form.
+      */
+     getName(): string;
+
+     /**
+      * Returns <code>true</code> if the field is disabled; <code>false</code> otherwise.
+      */
+     isDisabled(): boolean;
+
+     /**
+      * Indicates if the field is disabled.
+      */
+     setDisabled(disabled: boolean): void;
+
+     /**
+      * Returns <code>true</code> if the field is invalid in term of UI; <code>false</code> otherwise.
+      *
+      * The semantic meaning of invalid here means to indicate the field is invalid in term of UI, not necessarily implied to be due to validation.
+      * However if the field is invalid in term of validation, it is very likely that this method returns <code>true</code>.
+      * To check if the field is valid in term of validation, please check <code>foundation-validation</code>.
+      */
+     isInvalid(): boolean;
+
+     /**
+      * Indicates if the field is invalid in term of UI.
+      */
+     setInvalid(invalid: boolean): void;
+
+     /**
+      * Returns <code>true</code> if the field is mandatory to be filled; <code>false</code> otherwise.
+      */
+     isRequired(): boolean;
+
+     /**
+      * Indicates if the field is required.
+      */
+     setRequired(required: boolean): void;
+
+     /**
+      * Returns the submit value of the field.
+      * If the field supports multiple values, the first value is returned.
+      * If the field has no value, then <code>null</code> is returned.
+      *
+      * @see "Understanding Getting and Setting the Value" section
+      */
+     getValue(): string;
+
+     /**
+      * Sets a single value to the field, such that the field changes its internal state to hold that values.
+      *
+      * @see "Understanding Getting and Setting the Value" section
+      */
+     setValue(value: string): void;
+
+     /**
+      * Returns a space-separated list of element IDs used to label the field.
+      */
+     getLabelledBy(): string;
+
+     /**
+      * Sets a space-separated list of element IDs used to label the field.
+      */
+     setLabelledBy(value: string): void;
+
+     /**
+      * Returns the values of the field.
+      * If the field doesn't support multiple values, the array of the single value is returned.
+      * If the field has no value, then empty array is returned.
+      *
+      * @see "Understanding Getting and Setting the Value" section
+      */
+     getValues(): string[];
+
+     /**
+      * Sets multiple values to the field, such that the field changes its internal state to hold that values.
+      *
+      * @see "Understanding Getting and Setting the Value" section
+      */
+     setValues(values: string[]): void;
+   }
+
+
+Understanding Getting and Setting the Value
+===========================================
+
+It is important to note that the "value" when using ``getValue``, ``setValue`` and their plural counterparts is meant to deal with submit value.
+The submit value is not necessarily meant that the value is indicated by ``value`` attribute of an element.
+This is designed this way as ``foundation-field`` is used to get or set the stored value, but not to configure the definition of the form fields themselves.
+
+A good example for this is ``<input type="checkbox" value="value1">``.
+It has a user semantic that allow the user to check/uncheck to indicate if the value is submitted or not.
+However the user doesn't change the definition value when she does that.
+
+So in this case, calling ``FoundationField#getValue()``, it will return ``value1`` when the checkbox is checked, otherwise it is ``null``.
+Contrast this when you read its native ``value`` property, you will get ``value1`` regardless of checked state.
+
+Likewise, when calling ``FoundationField#setValue()``, it will set ``checked`` property to ``true`` only if its value matches the passed parameter, without modifying its ``value`` property.
+Contrast this when you write its native ``value`` property, you will set ``value1`` regardless of checked state.
+
+
+Example
+=======
+
+Given the following HTML:
+
+.. code-block:: html
+
+   <fieldset>
+     <input name="textfield" value="textfieldOld">
+
+     <input name="checkbox1" value="checkbox">
+     <input name="checkbox2" value="checkbox" checked>
+     <input name="checkbox3" value="checkbox">
+
+     <select name="select">
+       <option value="select1">Select 1</option>
+       <option value="select2" selected>Select 2</option>
+       <option value="select3">Select 3</option>
+     </select>
+   </fieldset>
+
+Fetching the value of each field using ``FoundationField#getValue()`` produces the following results:
+
+* textfield returns ``textfieldOld`` string
+* checkbox1 and checkbox3 returns ``null`` because they are unchecked
+* checkbox2 returns ``checkbox`` string because it is checked
+* select returns ``select2`` string
+
+Setting the value of each field using ``FoundationField#setValue()`` with the following values, match by name:
+
+.. code-block:: js
+
+   var values = {
+     textfield: "textfield1",
+     checkbox1: "checkbox",
+     checkbox2: "othervalue",
+     checkbox3: ["othervalue", "checkbox"]
+     select: "select3"
+   };
+
+produces the following results:
+
+* textfield has value of ``textfield1``
+* checkbox1 and checkbox3 are checked, due to the matching value
+* checkbox2 is not checked, due to non matching value
+* ``Select 3`` option is selected, while other options are not

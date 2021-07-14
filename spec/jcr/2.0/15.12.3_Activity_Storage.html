@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.12.3 Activity Storage (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.12.3 Activity Storage</H3>
+	<P>Activities are
+	persisted as nodes of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	under system-generated node names in activity storage below
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:activities</FONT></FONT>.</P>
+	<P>The organization of
+	this subgraph is left up to the implementation (for example, there
+	may be intervening nodes structuring the activity storage). 
+	</P>
+	<P>Similar to the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:versionStorage</FONT></FONT>
+	subgraph, the activity storage is a single repository wide store,
+	but is reflected into each workspace. However access control may be
+	employed so that different sessions see different parts of the tree.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

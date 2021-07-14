@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.2.3 XML Text (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.2.3." id="section_6.4.2.3."></a>6.4.2.3 XML Text
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In level 2, on document view import XML text is converted to the special node/property structure <b>jcr:xmltext/jcr:xmlcharacters</b> (see <a href="7.3.2_Import_from_Document_View.html">7.3.2</a> <i>Import from Document View</i>). When this structure is mapped back to XML the following rules apply.
+								</p>
+							
+							
+								<p class="c5">
+									If a child node of <b>N</b> called <b>jcr:xmltext</b> is encountered and that <b>jcr:xmltext</b> node has one and only one child item and that item is a single-valued property called <b>jcr:xmlcharacters</b>, then the treatment of that <b>jcr:xmltext</b> depends on the context within which the document view is being used:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>Export</b>: In the context of export, the <b>jcr:xmltext</b> node is not converted into an XML element. Instead, the value of the <b>jcr:xmlcharacters</b> property becomes text within the body of the XML element <b>N</b>. Entity references are used to escape characters which should not be included as literals within XML text (see <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>) however, escaping of whitespace is not performed (see 6.4.2.5 Multi-value Properties). Note also that two or more <b>jcr:xmltext</b> nodes adjacent within the ordering of a child node set will have the values of their respective <b>jcr:xmlcharacters</b> concatenated into a single resulting XML text node.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>XPath</b>: In the context of an XPath query <b>jcr:xmltext</b> nodes and <b>jcr:xmlcharacters</b> properties are treated just like any other nodes and properties, appearing as elements and attributes, respectively, within the virtual document view stream against which XPath queries are run. See <a href="6.6.4.12__i_text____i__Node_Test.html">6.6.4.12</a> <i>text() Node Test</i> for more details.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

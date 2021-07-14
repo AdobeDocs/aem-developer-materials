@@ -1,0 +1,33 @@
+*******************************
+foundation-wizard-lazycontainer
+*******************************
+
+A step component that will load its content when :doc:`../../vocabulary/wizard` is navigating to it.
+Use this component when you need a step that is depending on the user input in the preceding steps.
+
+
+Markup
+======
+
+
+.foundation-wizard-lazycontainer
+--------------------------------
+
+Indicates the component.
+Whenever ``foundation-wizard-stepchange`` event is triggered, this component will load its content.
+
+Selector Rule::
+
+   .foundation-wizard-lazycontainer
+
+
+[data-foundation-wizard-lazycontainer-src]
+------------------------------------------
+
+The `URI Template <http://tools.ietf.org/html/rfc6570>`_ to fetch the content of the container.
+The variables passed to the template are the fields (e.g. textfield, select) of the preceding steps.
+The field's name and value are used as variable name and value respectively.
+
+Selector Rule::
+
+	 .foundation-wizard-lazycontainer[data-foundation-wizard-lazycontainer-src]

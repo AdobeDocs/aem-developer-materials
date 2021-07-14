@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 9.1 Permissions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>9.1 Permissions</H2>
+	<P><I>Permissions</I>
+	encompass the restrictions imposed by any access control
+	restrictions that may be in effect upon the content of a repository,
+	either implementation specific or JCR-defined (see §16 <I>Access
+	Control Management</I>).</P>
+	<P>In repositories that
+	support <I>Access Control</I> this will include the restrictions
+	governed by privileges but may also include any additional
+	policy-internal refinements with effects too fine-grained to be
+	exposed through privilege discovery (see §16.2 <I>Privilege
+	Discovery</I>).</P>
+	<P>Permissions are
+	reported through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Session.hasPermission(String absPath, String actions)</FONT></FONT></P>
+	<P>which returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	has permission to perform all of the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>actions</FONT></FONT>
+	at the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	and returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise. Similarly, 
+	</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.checkPermission(String absPath, String actions)</FONT></FONT></P>
+	<P>throws an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessDeniedException</FONT></FONT>
+	if the this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	does not have permission to perform the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>actions</FONT></FONT>
+	and returns quietly if it does.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>actions</FONT></FONT>
+	parameter is a comma separated list of action strings, of which
+	there are four, defined as follows:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>add_node</FONT></FONT>:
+	The permission to add a node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>set_property</FONT></FONT>:
+	The permission to set (add or change) a property at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT>:
+	The permission to remove an item at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>read</FONT></FONT>:
+	The permission to retrieve (and read the value of, in the case of a
+	property) an item at absPath.</P>
+	<P>The permission actions
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>add_node</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>set_property</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT>
+	will only be relevant in a <I>writable repository</I>. In a
+	read-only repository they will always return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.</P>
+	<P>The information
+	returned through these methods only reflects access control-related
+	restrictions, not other kinds of restrictions such as node type
+	constraints. For example, even though <FONT FACE="Courier New, monospace"><FONT SIZE=2>hasPermission</FONT></FONT>
+	may indicate that a particular <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	may add a property at <FONT FACE="Courier New, monospace"><FONT SIZE=2>/A/B/C</FONT></FONT>,
+	the node type of the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>/A/B</FONT></FONT>
+	may prevent the addition of a property called <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.</P>
+	<P>Methods for testing
+	restrictions more broadly are provided by the <I>capabilities</I>
+	feature (see §9.2 <I>Capabilities</I>). For information on the
+	relationships among <I>permissions</I>, <I>privileges</I> and
+	<I>capabilities</I>, see §16.6 <I>Privileges Permissions and
+	Capabilities</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

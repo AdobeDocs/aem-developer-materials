@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.1 Lockable (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.1 Lockable</H2>
+	<P>A lock is placed on a
+	node by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	(see §17.11.1 <I>LockManager.lock</I>). The node on which a lock is
+	placed is called the<I> holding node</I> of that lock. Only nodes
+	with mixin node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	(inherited as part of their primary node type or explicitly
+	assigned) may hold locks. The definition of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	is:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:lockable]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:lockOwner (STRING) protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:lockIsDeep (BOOLEAN) protected IGNORE</FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

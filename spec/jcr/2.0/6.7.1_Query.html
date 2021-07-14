@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.1 Query (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.1 Query</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Query ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source source,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint? constraint,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Ordering* orderings,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Column* columns</FONT></P>
+	<P><BR>
+	</P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	consists of:</P>
+	<UL>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>.
+		When the query is evaluated, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+		evaluates its selectors and the joins between them to produce a
+		(possibly empty) set of node-tuples. This is a set of 1-tuples if
+		the query has one selector (and therefore no joins), a set of
+		2-tuples if the query has two selectors (and therefore one join), a
+		set of 3-tuples if the query has three selectors (two joins), and
+		so forth.</P>
+		<LI><P>An optional <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>.
+		When the query is evaluated, the constraint filters the set of
+		node-tuples.</P>
+		<LI><P>A list of zero or more <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>s.
+		The orderings specify the order in which the node-tuples appear in
+		the query results. The relative order of two node-tuples is
+		determined by evaluating the specified orderings, in list order,
+		until encountering an ordering for which one node-tuple precedes
+		the other. If no orderings are specified, or if there is no
+		ordering specified in which one node-tuple precedes the other, then
+		the relative order of the node-tuples is implementation determined
+		(and may be arbitrary).</P>
+		<LI><P>A list of zero or more <FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>s
+		to include in the tabular view of the query results. If no columns
+		are specified, the columns available in the tabular view are
+		implementation determined, but minimally include, for each
+		selector, a column for each single-valued non-residual property of
+		the selector's node type.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Query ::= 'SELECT' columns</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'FROM' Source</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">['WHERE' Constraint]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">['ORDER BY' orderings]</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A query is represented
+	by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	object, created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel
+	QueryObjectModelFactory.<BR> createQuery(Source source,<BR> 
+	 Constraint constraint,<BR> Ordering[]
+	orderings,<BR> Column[] columns)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.query.Query</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source
+	QueryObjectModel.getSource()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	QueryObjectModel.getConstraint()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering[]
+	QueryObjectModel.getOrderings()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Column[]
+	QueryObjectModel.getColumns()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

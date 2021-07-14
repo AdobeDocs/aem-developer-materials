@@ -1,0 +1,6 @@
+foundation.response.parser: foundation.html
+===========================================
+
+``foundation.html`` is a response parser of :doc:`../index`.
+
+It will handle the response with content type = ``text/html`` and returns ``DocumentFragment``.

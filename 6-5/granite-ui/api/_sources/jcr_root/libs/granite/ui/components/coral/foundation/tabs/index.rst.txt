@@ -1,0 +1,98 @@
+
+Tabs
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/tabs
+
+   The tab panel.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Tabs] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The orientation of the tabs.
+       */
+      - orientation (String) = 'horizontal' < 'horizontal', 'vertical'
+
+      /**
+       * The size of the tabs.
+       */
+      - size (String) = 'M' < 'M', 'L'
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * Make the element maximized to fill the available space.
+       */
+      - maximized (Boolean)
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The name of the widget.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingWidgetName (String)
+
+   Each item at least has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:TabsItem]
+
+      /**
+       * The tab title.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       * By default the value of ``jcr:title`` is used.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String)
+
+      /**
+       * The item specific config for the parent.
+       */
+      + parentConfig (granite:TabsItemParentconfig)
+
+
+      [granite:TabsItemParentconfig]
+
+      /**
+       * Indicates if the tab is active. If no single tab's ``active`` property is specifically set to ``true``, then the first tab is active.
+       */
+      - active (Boolean)
+
+      /**
+       * Indicates the icon of the tab.
+       */
+      - icon (String)
+
+   Example::
+
+      + mytabs
+        - sling:resourceType = "granite/ui/components/coral/foundation/tabs"
+        + items
+          + tab1
+            - jcr:title = "Tab 1"
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+          + tab2
+            - jcr:title = "Tab 2"
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+            + parentConfig
+              - active = true

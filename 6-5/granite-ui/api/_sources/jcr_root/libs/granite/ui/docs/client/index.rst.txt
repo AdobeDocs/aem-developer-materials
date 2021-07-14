@@ -1,0 +1,219 @@
+**********************
+Granite UI Client-side
+**********************
+
+HTML and DOM Programming Refresh
+================================
+
+Let’s refresh what we already understood about HTML programming.
+
+Say we have the following markup:
+
+.. code-block:: html
+
+   <a id="mylink" href="mylink.html">My link</a>
+
+We know the meaning of ``<a>``, where it creates an anchor for hyperlinking. We also know that ``href`` attribute indicates the URI of the hyperlinked resource. We also know the behavior. When the user clicks the anchor, the user agent will navigate to the resource. We understood all these as described by the `HTML specification <http://www.w3.org/TR/html5/>`_.
+
+Now let’s look how to do some programming around that existing markup:
+
+.. code-block:: js
+
+   // select the element
+   var mylink = $("#mylink");
+
+   // activate the element
+   mylink.trigger("click");
+
+   // inspect the property
+   var href = mylink.prop("href");
+
+We can also create the element from scratch and inject it to the current document:
+
+.. code-block:: js
+
+   // create the element
+   var mylink = $("<a />")
+     .prop("id", "mylink")
+     .prop("href", "mylink.html");
+
+   // inject it to current document
+   mylink.appendTo(document.body);
+
+Let’s move to more complex example:
+
+.. code-block:: html
+
+   <form id="myform" action="myform.html">
+     <input type="text" name="text">
+     <textarea name="textarea"></textarea>
+
+     <input type="submit" value="Submit">
+   </form>
+
+As before, we know the semantic and behaviour of the above markup. We know that the form will be submitted when the user click the submit button. We can also manipulate the form programmatically:
+
+.. code-block:: js
+
+   // submitting the form
+   $("#myform").trigger("submit");
+
+   // listening to submit event
+   $("#myform").on("submit", function(e) {});
+
+   // listening to submit event leveraging event bubbling
+   $(document).on("submit", "#myform", function(e) {});
+
+The key take away here is that we can do everything above because everybody already agreed on it. There is a shared understanding among many parties involved, namely the markup author, the javascript programmer and the user agent. This shared understanding is the vocabulary and standarized in the form of HTML specification.
+
+Another key point about HTML is that the mechanism to do thing doesn’t change much. We still have markup, DOM, event, scripting. The things that change are the vocabulary itself. For example we have ``<font>``, that is deprecated; ``<input type="number">`` that is relatively new. And maybe someday we will have the ability to input geolocation (``<input type="geo">``), that allows us to pick a location from geolocation service (e.g. Google Maps), or a brand new element to express a new thing.
+
+Since we have requirement that is more complex than HTML can provide currently, why don’t we jump the curve and invent "HTML6"?
+
+
+Introducing Granite UI
+======================
+
+The role of Granite UI in the client-side is to expand the vocabulary of HTML with the vocabulary related to RIA.
+
+For example, we have a scenario where we need to navigate the browser history—the back and forward buttons. HTML doesn’t provide any markup to do this. Fortunately it provides ``<button>``, which we can extend.
+
+.. code-block:: html
+
+   <button id="mybackbutton"
+     class="foundation-history-control" data-foundation-history-control-action="back"
+   >Back</button>
+
+In this case Granite UI provides :doc:`../../components/coral/foundation/clientlibs/foundation/js/history/index`. We are extending button by assigning a class name ``foundation-history-control``. This class is a marker to indicate that the button is used to control the browser history. ``data-foundation-history-control-action`` attribute is used to indicate the attribute of ``foundation-history-control``, which has the valid values of either ``back`` or ``forward``. When the user clicks the button, the browser will navigate backward/forward in the history stack.
+
+We can also manipulate the element programmatically, just like the anchor element shown before:
+
+.. code-block:: js
+
+   // select the element
+   var button = $("#mybackbutton");
+
+   // activate the element
+   button.trigger("click");
+
+   // inspect the property
+   var action = button.attr("data-foundation-history-control-action");
+
+
+Decoupling Semantic Intention from Implementation
+=================================================
+
+By defining the semantic markup—which is representing the semantic intention—the component developer can implement that semantic independently using any JS framework/library. The author then simply needs to prepare the markup accordingly, without knowing too much how things are implemented, possibly using an authoring tool or a markup templating library.
+
+This is how Granite UI achieves independent evolution.
+
+.. tip:: Remember that semantic intention doesn't change much, but implementation usually changes dramatically.
+
+The following code is the simplest implementation of :doc:`../../components/coral/foundation/clientlibs/foundation/js/history/index`:
+
+.. code-block:: js
+
+   (function(window, document, $) {
+     "use strict";
+
+     $(document).on("click", ".foundation-history-control", function(e) {
+       e.preventDefault();
+
+       var control = $(this);
+       var action = control.data("foundationHistoryControlAction");
+
+       if (action === "back") {
+         window.history.back();
+       } else if (action === "forward") {
+         window.history.forward();
+       }
+     });
+   })(window, document, Granite.$);
+
+
+Eventing
+========
+
+DOM has event mechanic such that other code can do something related to the event.
+
+For example to use ``<a>`` example above, in HTML you can access its DOM API:
+
+.. code-block:: js
+
+   // select the element
+   var mylink = $("#mylink");
+
+   // listen to click event
+   mylink.on("click", function(event) {
+     console.log("mylink is clicked");
+   });
+
+Granite UI also exposes jQuery-based event for its vocabulary and components.
+
+For example given :doc:`../../components/coral/foundation/clientlibs/foundation/js/form/index` markup:
+
+.. code-block:: html
+
+   <div id="myform" class="foundation-form" data-foundation-form-ajax="true"></div>
+
+the following code can be used to listen to ``foundation-form-submitted`` event:
+
+.. code-block:: js
+
+   // select the element
+   var myform = $("#myform");
+
+   // listen to the event
+   myform.on("foundation-form-submitted", function(event, status, xhr) {
+     console.log("myform submission is complete");
+   });
+
+
+Exposing JS API via AdaptTo
+===========================
+
+HTML as a markup language is represented as DOM at the runtime. As Granite UI expands the vocabulary of HTML (the markup), it also needs a mechanism to expose JS API (the equivalence of DOM) for its vocabulary and components.
+
+For example to use ``<a>`` example above, in HTML you can access its DOM API:
+
+.. code-block:: js
+
+   // select the element
+   var mylink = $("#mylink");
+
+   // access its href API
+   var href = mylink.prop("href");
+
+Granite UI exposes its JS API via :doc:`../../components/coral/foundation/clientlibs/foundation/js/adapter/index`.
+
+For example given :doc:`../../components/coral/foundation/clientlibs/foundation/vocabulary/collection` and :doc:`../../components/coral/foundation/clientlibs/foundation/vocabulary/selections` markup:
+
+.. code-block:: html
+
+   <div id="mycollection" class="foundation-collection">
+     <div class="foundation-collection-item foundation-selections-item">Item 1</div>
+     <div class="foundation-collection-item">Item 2</div>
+     <div class="foundation-collection-item">Item 3</div>
+   </div>
+
+where it is a collection where "Item 1" is selected, the following code can be used to access :doc:`../../components/coral/foundation/clientlibs/foundation/vocabulary/selections` AdaptTo API to get the total selection count:
+
+.. code-block:: js
+
+   // select the element
+   var mycollection = $("#mycollection");
+
+   // get the total selection count
+   var selectionAPI = mycollection.adaptTo("foundation-selection");
+   var count = selectionAPI.getCount();
+
+
+Concepts
+========
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   vocabulary
+   component

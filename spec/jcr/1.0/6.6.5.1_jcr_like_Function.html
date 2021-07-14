@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.5.1 jcr:like Function (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.5.1." id="section_6.6.5.1."></a>6.6.5.1 jcr:like Function
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This function is based on the <b>LIKE</b> predicate found in SQL. Support for this function is required, as described in 6.6.3.3 Property Constraint.
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:like(</b><i>$property as attribute(),<br>
+									$pattern as xs:string</i><b>)</b> <i>as xs:boolean</i>
+								</p>
+							
+							
+								<p class="c5">
+									For example, the query “Find all <b>para</b>s in <b>document</b> whose title property includes the substring ‘Java’ ”, is expressed as:
+								</p>
+							
+							
+								<p class="c5">
+									<b>/jcr:root/document/para[jcr:like(@title,'%Java%')]</b>
+								</p>
+							
+							
+								<p class="c5">
+									As in SQL, the character ‘%’ represents any string of zero or more characters, and the character ‘_’ (underscore) represents any single character. Any literal use of these two characters must be escaped with a backslash (“<b>\</b>”). Consequently, any literal instance of a backslash must also be escaped, resulting in a double backslash (“<b>\\</b>”).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.6 Check Out (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.6." id="section_8.2.6."></a>8.2.6 Check Out
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In order to alter a versionable node (and its non-versionable subtree) the node must be checked-out. The checked-out state indicates to the repository and other clients that the current base version (the one pointed to be <b>jcr:baseVersion</b>) of <b>N</b> is “being worked on” and will (usually) be checked-in again at some point in the future, thus creating a new version. When a versionable node is first created (or an existing node is first made versionable, in those implementations that allow that) it will already be in the checked-out state (its <b>jcr:checkedOut</b> property is set to <b>true</b>).
+								</p>
+							
+							
+								<p class="c5">
+									To check-out a versionable node <b>N</b>, the client calls <b>N.checkout</b>. If the node is already checked out, this method has no effect. If <b>N</b> is not versionable then an <b>UnsupportedRepositoryOperationException</b> is thrown. Otherwise, a <b>N.checkout</b> will cause the following series of events:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The current value of <b>N</b>'s <b>jcr:baseVersion</b> is copied to <b>N</b>'s <b>jcr:predecessor</b><b>s</b> property.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b>’s <b>jcr:isCheckedOut</b> property is set to <b>true</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b> and <b>N</b>'s <i>connected non-versionable subtree</i> lose their read-only status (see <a href="8.2.5_Check_In.html">8.2.5</a> <i>Check In,</i> for an explanation of the term “connected non-versionable subtree”).
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This method acts directly on the workspace and the version storage. All changes are persisted immediately. There is no need to call <b>save</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

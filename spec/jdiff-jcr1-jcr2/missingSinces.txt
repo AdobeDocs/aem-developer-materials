@@ -1,0 +1,290 @@
+OK: javax.jcr.version.ActivityViolationException Class
+OK: javax.jcr.Binary Interface
+OK: javax.jcr.observation.EventJournal Interface
+OK: javax.jcr.GuestCredentials Class
+OK: javax.jcr.InvalidLifecycleTransitionException Class
+OK: javax.jcr.nodetype.InvalidNodeTypeDefinitionException Class
+OK: javax.jcr.version.LabelExistsVersionException Class
+OK: javax.jcr.lock.LockManager Interface
+OK: javax.jcr.nodetype.NodeDefinitionTemplate Interface
+OK: javax.jcr.nodetype.NodeTypeDefinition Interface
+OK: javax.jcr.nodetype.NodeTypeExistsException Class
+OK: javax.jcr.nodetype.NodeTypeTemplate Interface
+OK: javax.jcr.nodetype.PropertyDefinitionTemplate Interface
+OK: javax.jcr.RepositoryFactory Interface
+OK: javax.jcr.version.VersionManager Interface
+MISSING @SINCE TAG: javax.jcr.lock.LockException Constructor (java.lang.String, java.lang.Throwable, java.lang.String)
+OK: javax.jcr.query.Query Method bindValue(java.lang.String, javax.jcr.Value)
+OK: javax.jcr.nodetype.NodeType Method canRemoveNode(java.lang.String)
+OK: javax.jcr.nodetype.NodeType Method canRemoveProperty(java.lang.String)
+OK: javax.jcr.ValueFactory Method createBinary(java.io.InputStream)
+OK: javax.jcr.nodetype.NodeTypeManager Method createNodeDefinitionTemplate()
+OK: javax.jcr.nodetype.NodeTypeManager Method createNodeTypeTemplate()
+OK: javax.jcr.nodetype.NodeTypeManager Method createNodeTypeTemplate(javax.jcr.nodetype.NodeTypeDefinition)
+OK: javax.jcr.nodetype.NodeTypeManager Method createPropertyDefinitionTemplate()
+MISSING @SINCE TAG: javax.jcr.ValueFactory Method createValue(javax.jcr.Node, boolean)
+OK: javax.jcr.ValueFactory Method createValue(java.math.BigDecimal)
+MISSING @SINCE TAG: javax.jcr.ValueFactory Method createValue(java.io.InputStream)
+OK: javax.jcr.ValueFactory Method createValue(javax.jcr.Binary)
+OK: javax.jcr.Workspace Method createWorkspace(java.lang.String, java.lang.String)
+OK: javax.jcr.Workspace Method createWorkspace(java.lang.String)
+OK: javax.jcr.Workspace Method deleteWorkspace(java.lang.String)
+OK: javax.jcr.Node Method followLifecycleTransition(java.lang.String)
+OK: javax.jcr.Session Method getAccessControlManager()
+OK: javax.jcr.version.VersionHistory Method getAllFrozenNodes()
+OK: javax.jcr.version.VersionHistory Method getAllLinearFrozenNodes()
+MISSING @SINCE TAG: javax.jcr.version.VersionHistory Method getAllLinearVersions()
+OK: javax.jcr.Node Method getAllowedLifecycleTransistions()
+OK: javax.jcr.nodetype.PropertyDefinition Method getAvailableQueryOperators()
+OK: javax.jcr.Property Method getBinary()
+OK: javax.jcr.Value Method getBinary()
+OK: javax.jcr.query.Query Method getBindVariableNames()
+OK: javax.jcr.observation.Event Method getDate()
+OK: javax.jcr.Property Method getDecimal()
+OK: javax.jcr.Value Method getDecimal()
+OK: javax.jcr.nodetype.NodeType Method getDeclaredSubtypes()
+OK: javax.jcr.nodetype.NodeDefinition Method getDefaultPrimaryTypeName()
+OK: javax.jcr.Repository Method getDescriptorValue(java.lang.String)
+OK: javax.jcr.Repository Method getDescriptorValues(java.lang.String)
+MISSING @SINCE TAG: javax.jcr.observation.ObservationManager Method getEventJournal()
+MISSING @SINCE TAG: javax.jcr.observation.ObservationManager Method getEventJournal(int, java.lang.String, boolean, java.lang.String[], java.lang.String[])
+MISSING @SINCE TAG: javax.jcr.lock.LockException Method getFailureNodePath()
+OK: javax.jcr.version.Version Method getFrozenNode()
+OK: javax.jcr.Node Method getIdentifier()
+OK: javax.jcr.observation.Event Method getIdentifier()
+OK: javax.jcr.observation.Event Method getInfo()
+MISSING @SINCE TAG: javax.jcr.version.Version Method getLinearPredecessor()
+MISSING @SINCE TAG: javax.jcr.version.Version Method getLinearSuccessor()
+OK: javax.jcr.Workspace Method getLockManager()
+OK: javax.jcr.Session Method getNode(java.lang.String)
+OK: javax.jcr.query.Row Method getNode()
+OK: javax.jcr.query.Row Method getNode(java.lang.String)
+OK: javax.jcr.Session Method getNodeByIdentifier(java.lang.String)
+OK: javax.jcr.Node Method getNodes(java.lang.String[])
+OK: javax.jcr.query.Row Method getPath()
+OK: javax.jcr.query.Row Method getPath(java.lang.String)
+OK: javax.jcr.Node Method getProperties(java.lang.String[])
+OK: javax.jcr.Property Method getProperty()
+OK: javax.jcr.Session Method getProperty(java.lang.String)
+OK: javax.jcr.query.QueryManager Method getQOMFactory()
+OK: javax.jcr.Node Method getReferences(java.lang.String)
+OK: javax.jcr.nodetype.NodeDefinition Method getRequiredPrimaryTypeNames()
+OK: javax.jcr.Session Method getRetentionManager()
+OK: javax.jcr.query.Row Method getScore()
+OK: javax.jcr.query.Row Method getScore(java.lang.String)
+OK: javax.jcr.lock.Lock Method getSecondsRemaining()
+MISSING @SINCE TAG: javax.jcr.query.QueryResult Method getSelectorNames()
+OK: javax.jcr.Node Method getSharedSet()
+OK: javax.jcr.nodetype.NodeType Method getSubtypes()
+OK: javax.jcr.observation.Event Method getUserData()
+OK: javax.jcr.version.VersionHistory Method getVersionableIdentifier()
+OK: javax.jcr.Workspace Method getVersionManager()
+OK: javax.jcr.Node Method getWeakReferences()
+OK: javax.jcr.Node Method getWeakReferences(java.lang.String)
+OK: javax.jcr.Session Method hasCapability(java.lang.String, java.lang.Object, java.lang.Object[])
+OK: javax.jcr.nodetype.NodeTypeManager Method hasNodeType(java.lang.String)
+OK: javax.jcr.Session Method hasPermission(java.lang.String, java.lang.String)
+OK: javax.jcr.nodetype.PropertyDefinition Method isFullTextSearchable()
+OK: javax.jcr.lock.Lock Method isLockOwningSession()
+MISSING @SINCE TAG: javax.jcr.Property Method isMultiple()
+OK: javax.jcr.nodetype.PropertyDefinition Method isQueryOrderable()
+OK: javax.jcr.Repository Method isSingleValueDescriptor(java.lang.String)
+OK: javax.jcr.Repository Method isStandardDescriptor(java.lang.String)
+OK: javax.jcr.Session Method nodeExists(java.lang.String)
+OK: javax.jcr.Session Method propertyExists(java.lang.String)
+OK: javax.jcr.nodetype.NodeTypeManager Method registerNodeType(javax.jcr.nodetype.NodeTypeDefinition, boolean)
+OK: javax.jcr.nodetype.NodeTypeManager Method registerNodeTypes(javax.jcr.nodetype.NodeTypeDefinition[], boolean)
+OK: javax.jcr.Session Method removeItem(java.lang.String)
+OK: javax.jcr.Node Method removeShare()
+OK: javax.jcr.Node Method removeSharedSet()
+MISSING @SINCE TAG: javax.jcr.Node Method restore(java.lang.String, boolean)
+OK: javax.jcr.query.Query Method setLimit(long)
+OK: javax.jcr.query.Query Method setOffset(long)
+OK: javax.jcr.Node Method setPrimaryType(java.lang.String)
+OK: javax.jcr.Node Method setProperty(java.lang.String, java.math.BigDecimal)
+OK: javax.jcr.Node Method setProperty(java.lang.String, javax.jcr.Binary)
+MISSING @SINCE TAG: javax.jcr.observation.ObservationManager Method setUserData(java.lang.String)
+OK: javax.jcr.Property Method setValue(java.math.BigDecimal)
+MISSING @SINCE TAG: javax.jcr.Property Method setValue(java.io.InputStream)
+OK: javax.jcr.Property Method setValue(javax.jcr.Binary)
+OK: javax.jcr.nodetype.NodeTypeManager Method unregisterNodeType(java.lang.String)
+OK: javax.jcr.nodetype.NodeTypeManager Method unregisterNodeTypes(java.lang.String[])
+OK: javax.jcr.Session Field ACTION_ADD_NODE
+OK: javax.jcr.Session Field ACTION_READ
+OK: javax.jcr.Session Field ACTION_REMOVE
+OK: javax.jcr.Session Field ACTION_SET_PROPERTY
+OK: javax.jcr.PropertyType Field DECIMAL
+OK: javax.jcr.Repository Field IDENTIFIER_STABILITY
+OK: javax.jcr.Repository Field IDENTIFIER_STABILITY_INDEFINITE_DURATION
+OK: javax.jcr.Repository Field IDENTIFIER_STABILITY_METHOD_DURATION
+OK: javax.jcr.Repository Field IDENTIFIER_STABILITY_SAVE_DURATION
+OK: javax.jcr.Repository Field IDENTIFIER_STABILITY_SESSION_DURATION
+OK: javax.jcr.Property Field JCR_ACTIVITY
+OK: javax.jcr.Property Field JCR_AUTOCREATED
+OK: javax.jcr.Property Field JCR_BASE_VERSION
+OK: javax.jcr.Node Field JCR_CHILD_NODE_DEFINITION
+OK: javax.jcr.Property Field JCR_CHILD_VERSION_HISTORY
+OK: javax.jcr.Property Field JCR_CONFIGURATION
+OK: javax.jcr.Node Field JCR_CONTENT
+OK: javax.jcr.Property Field JCR_CONTENT
+OK: javax.jcr.Property Field JCR_COPIED_FROM
+OK: javax.jcr.Property Field JCR_CREATED
+OK: javax.jcr.Property Field JCR_CREATED_BY
+OK: javax.jcr.Property Field JCR_CURRENT_LIFECYCLE_STATE
+OK: javax.jcr.Property Field JCR_DATA
+OK: javax.jcr.Property Field JCR_DEFAULT_PRIMARY_TYPE
+OK: javax.jcr.Property Field JCR_DEFAULT_VALUES
+OK: javax.jcr.Property Field JCR_DESCRIPTION
+OK: javax.jcr.Property Field JCR_ENCODING
+OK: javax.jcr.Property Field JCR_FROZEN_MIXIN_TYPES
+OK: javax.jcr.Node Field JCR_FROZEN_NODE
+OK: javax.jcr.Property Field JCR_FROZEN_PRIMARY_TYPE
+OK: javax.jcr.Property Field JCR_FROZEN_UUID
+OK: javax.jcr.Property Field JCR_HAS_ORDERABLE_CHILD_NODES
+OK: javax.jcr.Property Field JCR_HOST
+OK: javax.jcr.Property Field JCR_ID
+OK: javax.jcr.Property Field JCR_IS_ABSTRACT
+OK: javax.jcr.Property Field JCR_IS_CHECKED_OUT
+OK: javax.jcr.Property Field JCR_IS_MIXIN
+OK: javax.jcr.query.Query Field JCR_JQOM
+OK: javax.jcr.Property Field JCR_LANGUAGE
+OK: javax.jcr.Property Field JCR_LAST_MODIFIED
+OK: javax.jcr.Property Field JCR_LAST_MODIFIED_BY
+OK: javax.jcr.Property Field JCR_LIFECYCLE_POLICY
+OK: javax.jcr.Property Field JCR_LOCK_IS_DEEP
+OK: javax.jcr.Property Field JCR_LOCK_OWNER
+OK: javax.jcr.Property Field JCR_MANDATORY
+OK: javax.jcr.Property Field JCR_MERGE_FAILED
+OK: javax.jcr.Property Field JCR_MIMETYPE
+OK: javax.jcr.Property Field JCR_MIXIN_TYPES
+OK: javax.jcr.Property Field JCR_MULTIPLE
+OK: javax.jcr.Property Field JCR_NAME
+OK: javax.jcr.Property Field JCR_NODE_TYPE_NAME
+OK: javax.jcr.Property Field JCR_ON_PARENT_VERSION
+OK: javax.jcr.Property Field JCR_PATH
+OK: javax.jcr.Property Field JCR_PORT
+OK: javax.jcr.Property Field JCR_PREDECESSORS
+OK: javax.jcr.Property Field JCR_PRIMARY_ITEM_NAME
+OK: javax.jcr.Property Field JCR_PRIMARY_TYPE
+OK: javax.jcr.Node Field JCR_PROPERTY_DEFINITION
+OK: javax.jcr.Property Field JCR_PROTECTED
+OK: javax.jcr.Property Field JCR_PROTOCOL
+OK: javax.jcr.Property Field JCR_REPOSITORY
+OK: javax.jcr.Property Field JCR_REQUIRED_PRIMARY_TYPES
+OK: javax.jcr.Property Field JCR_REQUIRED_TYPE
+OK: javax.jcr.Property Field JCR_ROOT
+OK: javax.jcr.Node Field JCR_ROOT_VERSION
+OK: javax.jcr.Property Field JCR_SAME_NAME_SIBLINGS
+OK: javax.jcr.query.Query Field JCR_SQL2
+OK: javax.jcr.Property Field JCR_STATEMENT
+OK: javax.jcr.Property Field JCR_SUCCESSORS
+OK: javax.jcr.Property Field JCR_SUPERTYPES
+OK: javax.jcr.Property Field JCR_TITLE
+OK: javax.jcr.Property Field JCR_UUID
+OK: javax.jcr.Property Field JCR_VALUE_CONSTRAINTS
+OK: javax.jcr.Property Field JCR_VERSION_HISTORY
+OK: javax.jcr.Node Field JCR_VERSION_LABELS
+OK: javax.jcr.Property Field JCR_VERSIONABLE_UUID
+OK: javax.jcr.Property Field JCR_WORKSPACE
+OK: javax.jcr.nodetype.NodeType Field MIX_CREATED
+OK: javax.jcr.nodetype.NodeType Field MIX_LANGUAGE
+OK: javax.jcr.nodetype.NodeType Field MIX_LAST_MODIFIED
+OK: javax.jcr.nodetype.NodeType Field MIX_LIFECYCLE
+OK: javax.jcr.nodetype.NodeType Field MIX_LOCKABLE
+OK: javax.jcr.nodetype.NodeType Field MIX_MIMETYPE
+OK: javax.jcr.nodetype.NodeType Field MIX_REFERENCEABLE
+OK: javax.jcr.nodetype.NodeType Field MIX_SHAREABLE
+OK: javax.jcr.nodetype.NodeType Field MIX_SIMPLE_VERSIONABLE
+OK: javax.jcr.nodetype.NodeType Field MIX_TITLE
+OK: javax.jcr.nodetype.NodeType Field MIX_VERSIONABLE
+OK: javax.jcr.Workspace Field NAME_ACTIVITIES_NODE
+OK: javax.jcr.Workspace Field NAME_CONFIGURATIONS_NODE
+OK: javax.jcr.Workspace Field NAME_JCR_XMLCHARACTERS
+OK: javax.jcr.Workspace Field NAME_JCR_XMLTEXT
+OK: javax.jcr.Workspace Field NAME_NODE_TYPES_NODE
+OK: javax.jcr.Workspace Field NAME_SYSTEM_NODE
+OK: javax.jcr.Workspace Field NAME_UNFILED_NODE
+OK: javax.jcr.Workspace Field NAME_VERSION_STORAGE_NODE
+OK: javax.jcr.Workspace Field NAME_WORKSPACE_ROOT
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field NAMESPACE_EMPTY
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field NAMESPACE_JCR
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field NAMESPACE_MIX
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field NAMESPACE_NT
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field NAMESPACE_XML
+OK: javax.jcr.observation.Event Field NODE_MOVED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_INHERITANCE
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_OVERRIDES_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_PROPERTY_TYPES
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_SAME_NAME_SIBLINGS_SUPPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPORTED
+OK: javax.jcr.Repository Field NODE_TYPE_MANAGEMENT_VALUE_CONSTRAINTS_SUPPORTED
+OK: javax.jcr.nodetype.NodeType Field NT_ACTIVITY
+OK: javax.jcr.nodetype.NodeType Field NT_ADDRESS
+OK: javax.jcr.nodetype.NodeType Field NT_BASE
+OK: javax.jcr.nodetype.NodeType Field NT_CHILD_NODE_DEFINITION
+OK: javax.jcr.nodetype.NodeType Field NT_CONFIGURATION
+OK: javax.jcr.nodetype.NodeType Field NT_FILE
+OK: javax.jcr.nodetype.NodeType Field NT_FOLDER
+OK: javax.jcr.nodetype.NodeType Field NT_FROZEN_NODE
+OK: javax.jcr.nodetype.NodeType Field NT_HIERARCHY_NODE
+OK: javax.jcr.nodetype.NodeType Field NT_LINKED_FILE
+OK: javax.jcr.nodetype.NodeType Field NT_NODE_TYPE
+OK: javax.jcr.nodetype.NodeType Field NT_PROPERTY_DEFINITION
+OK: javax.jcr.nodetype.NodeType Field NT_QUERY
+OK: javax.jcr.nodetype.NodeType Field NT_RESOURCE
+OK: javax.jcr.nodetype.NodeType Field NT_UNSTRUCTURED
+OK: javax.jcr.nodetype.NodeType Field NT_VERSION
+OK: javax.jcr.nodetype.NodeType Field NT_VERSION_HISTORY
+OK: javax.jcr.nodetype.NodeType Field NT_VERSIONED_CHILD
+OK: javax.jcr.Repository Field OPTION_ACCESS_CONTROL_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_ACTIVITIES_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_BASELINES_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_JOURNALED_OBSERVATION_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_LIFECYCLE_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_RETENTION_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_SHAREABLE_NODES_SUPPORTED
+NO DOC BLOCK: javax.jcr.Repository Field OPTION_SIMPLE_VERSIONING_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_UNFILED_CONTENT_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_UPDATE_MIXIN_NODE_TYPES_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_UPDATE_PRIMARY_NODE_TYPE_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_WORKSPACE_MANAGEMENT_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_XML_EXPORT_SUPPORTED
+OK: javax.jcr.Repository Field OPTION_XML_IMPORT_SUPPORTED
+OK: javax.jcr.Workspace Field PATH_ACTIVITIES_NODE
+OK: javax.jcr.Workspace Field PATH_CONFIGURATIONS_NODE
+OK: javax.jcr.Workspace Field PATH_NODE_TYPES_NODE
+OK: javax.jcr.Workspace Field PATH_SYSTEM_NODE
+OK: javax.jcr.Workspace Field PATH_UNFILED_NODE
+OK: javax.jcr.Workspace Field PATH_VERSION_STORAGE_NODE
+OK: javax.jcr.Workspace Field PATH_WORKSPACE_ROOT
+OK: javax.jcr.observation.Event Field PERSIST
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field PREFIX_EMPTY
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field PREFIX_JCR
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field PREFIX_MIX
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field PREFIX_NT
+MISSING @SINCE TAG: javax.jcr.NamespaceRegistry Field PREFIX_XML
+OK: javax.jcr.Repository Field QUERY_FULL_TEXT_SEARCH_SUPPORTED
+OK: javax.jcr.Repository Field QUERY_JOINS
+OK: javax.jcr.Repository Field QUERY_JOINS_INNER
+OK: javax.jcr.Repository Field QUERY_JOINS_INNER_OUTER
+OK: javax.jcr.Repository Field QUERY_JOINS_NONE
+OK: javax.jcr.Repository Field QUERY_LANGUAGES
+OK: javax.jcr.Repository Field QUERY_STORED_QUERIES_SUPPORTED
+OK: javax.jcr.Workspace Field RELPATH_JCR_XMLCHARACTERS
+OK: javax.jcr.PropertyType Field TYPENAME_DECIMAL
+OK: javax.jcr.PropertyType Field TYPENAME_URI
+OK: javax.jcr.PropertyType Field TYPENAME_WEAKREFERENCE
+OK: javax.jcr.PropertyType Field URI
+OK: javax.jcr.PropertyType Field WEAKREFERENCE
+OK: javax.jcr.Repository Field WRITE_SUPPORTED

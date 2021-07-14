@@ -1,0 +1,111 @@
+
+ColumnView
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/columnview
+   :layout:
+
+   The layout to render the items as *Miller columns*.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/vocabulary/selections` vocabulary.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsColumnView]
+
+      /**
+       * The URI Template that is returning the HTML response for pagination.
+       * It supports the following variables:
+       *
+       * offset
+       *    The item offset of the current request.
+       * limit
+       *    The item limit of the pagination.
+       * path
+       *    The path of the item. This variable will be substituted in the server. It supports URITemplate Level 1 and 2
+       *    expansion: ``{+path}``, ``{#path}`` and ``{path}``.
+       *
+       * e.g. ``/a/b/c{.offset,limit}.html{+path}``
+       */
+      - src (StringEL)
+
+      /**
+       * Path of the item that will be loaded. It will be substituted into the ``src`` in order to create the src
+       * URL for each column. If provided, the columns for the item to the root will be generated, otherwise, just
+       * the final column is generated.
+       *
+       * e.g. ``${requestPathInfo.suffix}``
+       */
+      - path (StringEL)
+
+      /**
+       * ``true`` to also load the parents of the current columns up to the ``rootPath``; ``false`` otherwise.
+       */
+      - loadParents (Boolean)
+
+      /**
+       * Path of the root that is used to determine when we've reached the top-most folder.
+       */
+      - rootPath (StringEL) = '/'
+
+      /**
+       * ``true`` to allow the user to select multiple items in the same folder; ``false`` otherwise.
+       */
+      - multiselect (Boolean)
+
+      /**
+       * The resource type for each item.
+       */
+      - itemResourceType (String)
+
+      /**
+       * The item limit of the pagination.
+       */
+      - limit (Long)
+
+      /**
+       * The id of the client-side state for this layout.
+       *
+       * The following state is saved:
+       *
+       * The active layout
+       *    See ``layoutId`` property.
+       */
+      - stateId (String)
+
+      /**
+       * The name associated with this layout.
+       *
+       * The client-side state with key ``<stateId>.layoutId`` will have the value of this name.
+       *
+       * This is useful when :doc:`../multilayouts/index` is used, so that when the user refreshes the browser, the active layout can be restored by the MultiLayouts.
+       *
+       * It will only be effective when ``stateId`` property is set.
+       */
+      - layoutId (String)
+
+      /**
+       * The ``itemprop`` attribute of each item.
+       */
+      - itemprop (String)
+
+      /**
+       * The preview renderer.
+       * If there is no item and this resource is specified then it will be included instead.
+       */
+      + preview
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mycolumns
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/columnview"
+          - stateId = "cq.sites.childpages"
+          - layoutId = "columns"
+          - src = "/a/b/c{.offset,limit}.html"
+        + datasource
+          - sling:resourceType = "my/datasource"

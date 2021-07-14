@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.11.8 Invalid Items (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.11.8 Invalid Items</H3>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object may become invalid for a number of reasons.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.remove</FONT></FONT>
+	has been called on the item any subsequent calls to any read or
+	write methods or invocations of <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>refresh</FONT></FONT>
+	on that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>,
+	from within the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	will throw an <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>.
+	Before the removal is saved it may be cancelled by a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh(false)</FONT></FONT>.
+	At this point the invalid <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object may become valid again, or the repository may require a new
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object to be acquired. Which approach is taken is a matter of
+	implementation.</P>
+	<P>An
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>
+	<I>may</I> be thrown immediately on a write method of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	if the change being made would, upon persist, conflict with a change
+	made and persisted through another <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	If detection of the conflict is only possible at persist-time, then
+	an <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>
+	will be thrown at that point. Whether a conflict is detected when
+	the change is made or on persist depends on the implementation. 
+	</P>
+	<P>Apart from these
+	specific cases, the validity of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	must be as stable as the <I>identifiers</I> used in the repository
+	(see §3.3 <I>Identifiers</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

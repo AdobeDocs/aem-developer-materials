@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.22.3 nt:base (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.22.3." id="section_6.7.22.3."></a>6.7.22.3 nt:base
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c12">
+									<i>NodeTypeName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:base</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>Supertypes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>[]</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>IsMixin</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>HasOrderableChildNodes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PrimaryItemName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:primaryType</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>NAME</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>[]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>COMPUTE</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:mixinTypes</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>NAME</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>[]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>COMPUTE</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>true</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									<i>This node type is required.</i>
+								</p>
+							
+							
+								<p class="c5">
+									All node types inherit from <b>nt:base</b>. As its name suggests it is the base type for all other types, and hence has no supertypes.
+								</p>
+							
+							
+								<p class="c5">
+									This node type specifies the special properties <b>jcr:primaryType</b>, and <b>jcr:mixinTypes</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>jcr:primaryType</b> property is a <b>NAME</b> property holding the name of the primary node type of its node. This property is mandatory.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>jcr:mixinTypes</b> is a multi-value <b>NAME</b> property that holds the names of the node’s assigned mixin node types, if any. This property may not exist if the node in question has no mixin types assigned.
+								</p>
+							
+							
+								<p class="c5">
+									Since this information is itself stored as content, it will be serialized and deserialized along with all other content. This allows the preservation of node type information across serialization/deserialization cycles. See <a href="7.4.5_Serialization_and_Node_Types.html">7.4.5</a> <i>Serialization and Node Types</i>.
+								</p>
+							
+							
+								<p class="c5">
+									These properties are protected and are therefore maintained entirely by the repository itself. An application using the API can read the properties but cannot remove or alter them.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

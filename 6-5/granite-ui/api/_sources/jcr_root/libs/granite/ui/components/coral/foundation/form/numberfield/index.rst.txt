@@ -1,0 +1,70 @@
+
+NumberField
+===========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/numberfield
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   A field that allows user to enter number.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormNumberField] > granite:FormField
+
+      /**
+       * The name that identifies the field when submitting the form.
+       * The `SlingPostServlet @TypeHint <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#typehint>`_ hidden input with value matching ``typeHint`` property is also generated based on the name.
+       */
+      - name (String)
+
+      /**
+       * The value of the field.
+       */
+      - value (StringEL)
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The value of `SlingPostServlet @TypeHint <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#typehint>`_.
+       */
+      - typeHint (String)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The minimum value allowed.
+       */
+      - min (Double)
+
+      /**
+       * The maximum value allowed.
+       */
+      - max (Double)
+
+      /**
+       * The increment/decrement step amount.
+       *
+       * ``number``
+       *    A double that is greater than zero.
+       *    In this case, the field accepts only values at multiples of the step value greater than the minimum.
+       *
+       * ``"any"``
+       *    The value can be in any number.
+       */
+      - step (String) = "1"

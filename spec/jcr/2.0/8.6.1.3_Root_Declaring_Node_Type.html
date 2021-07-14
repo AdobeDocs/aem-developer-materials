@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 8.6.1.3 Root Declaring Node Type (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>8.6.1.3 Root Declaring Node Type</H4>
+	<P>Calling
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaringNodeType()</FONT></FONT>
+	on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	of the root node must return a valid <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object. The values returned by the methods of this object must be as
+	follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getName()</FONT></FONT>
+		returns the name of a node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is implementation-determined.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.day.com/maven/jsr170/javadocs/jcr-1.0/javax/jcr/nodetype/NodeType.html#isNodeType%28java.lang.String%29">isNodeType</A></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>(String&nbsp;nodeTypeName)</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+		if an only if <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeTypeName</FONT></FONT>
+		is <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		or a supertype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.day.com/maven/jsr170/javadocs/jcr-1.0/javax/jcr/nodetype/NodeType.html#getChildNodeDefinitions%28%29">getChildNodeDefinitions</A></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>()</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaredChildNodeDefinitions()</FONT></FONT>
+		both return an array containing the child node definition of the
+		root node.</P>
+	</UL>
+	<P>All other methods either return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(if they return a <FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean</FONT></FONT>)
+	or an empty array (if they return an array).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

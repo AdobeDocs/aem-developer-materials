@@ -1,0 +1,1920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15 Versioning (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>15 Versioning</H1>
+	<P>A repository may
+	support <I>simple versioning</I> or <I>full versioning</I>. This
+	section describes the syntax and behavior of the Java API for both
+	types of versioning. Details on the underlying concepts, data
+	structures and node types can be found in §3.13 <I>Versioning
+	Model</I>. 
+	</P>
+	<P>Whether an
+	implementation supports simple versioning can be determined by
+	querying the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_SIMPLE_VERSIONING_SUPPORTED</FONT></FONT>.</P>
+	<P>Whether it supports
+	full versioning can be determined by querying 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_VERSIONING_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="15.1 Creating a Versionable Node"></a>	<H2>15.1 Creating a Versionable Node</H2>
+	<P>A new versionable node
+	is created by assigning it the appropriate mixin type: 
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:simpleVersionable</FONT></FONT>
+	under simple versioning or <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	under full versioning. This may be done either to an existing node,
+	through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addMixin</FONT></FONT>
+	or at node creation, through assignment of a primary type that
+	inherits from the mixin. Some repositories may also automatically
+	assign a versionable mixin on creation of certain nodes (see §3.7.6
+	<I>Node Type Inheritance</I> and §10.10 <I>Node Type Assignment</I>).</P>
+	<P>Under both simple and
+	full versioning, on persist of a new versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N
+	</FONT></FONT>that neither corresponds nor shares with
+	an existing node:</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+		and</P>
+		<LI><P>A new
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+		(<FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>)
+		is created for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+		contains one <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>,
+		the root version (<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>)
+		(see §3.13.5.2 <I>Root Version</I>).</P>
+	</UL>
+	<P>Additionally, under
+	full versioning:</P>
+	<UL>
+		<LI><P>A new
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+		node is created and bound to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+		object <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+		.</P>
+		<UL>
+			<LI><P>The
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionableUuid</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+			is set to the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+			<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+			is the result of a copy operation then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:copiedFrom</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+			is set as described in §15.1.4 <I>Copying Versionable Nodes and
+			Version Lineage</I>. Otherwise this property is not added.</P>
+			<LI><P>A new
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>
+			node (<FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>)
+			is created as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionLabels</FONT></FONT>
+			child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.</P>
+			<LI><P>A new <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+			node is created and bound to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+			This node becomes the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:rootVersion</FONT></FONT>
+			child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.</P>
+			<UL>
+				<LI><P>A new
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:frozenNode</FONT></FONT>
+				node (<FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>)
+				is created as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenNode</FONT></FONT>
+				child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+				does not hold any state information about <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+				except the node type and identifier information found in
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenPrimaryType</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenMixinTypes</FONT></FONT>,
+				and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenUuid</FONT></FONT>
+				properties (see §3.13.4 <I>Frozen Nodes</I>).</P>
+			</UL>
+		</UL>
+		<LI><P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is initialized to the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.
+		This constitutes a reference from <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		to its version history.</P>
+		<LI><P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is initialized to the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+		This constitutes a reference from <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		to its current base version.</P>
+		<LI><P>The multi-value
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is initialized to contain a single identifier, that of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>
+		(the same as <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>).</P>
+	</UL>
+<a name="15.1.1 VersionHistory Object"></a>	<H3>15.1.1 VersionHistory Object</H3>
+	<P>The version history of
+	a versionable node is represented by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	object acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory
+	Node.getVersionHistory()</FONT></FONT></P>
+	<P>or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory<BR>	VersionManager.getVersionHistory(String
+	absPath)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is the absolute path to the node. 
+	</P>
+	<P>Conversely, given a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>,
+	the versionable node to which it belongs can be found through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	VersionHistory.getVersionableIdentifier()</FONT></FONT></P>
+	<P>which returns the
+	identifier of the versionable node, which can then be used to get
+	the node itself (see §5.1.4 <I>Getting a Node by Identifier</I>).</P>
+<a name="15.1.1.1 Root Version"></a>	<H4>15.1.1.1 Root Version</H4>
+	<P>The root version of a
+	version history is accessed through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionHistory.getRootVersion()</FONT></FONT>.</P>
+	<P>Under full versioning
+	the root version can also be accessed through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNode</FONT></FONT>
+	or an equivalent standard content access method, since it also
+	exists as an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	child node of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node, called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:rootVersion.</FONT></FONT></P>
+<a name="15.1.1.2 Versions"></a>	<H4>15.1.1.2 Versions</H4>
+	<P>The full set of
+	versions within a version history can be retrieved through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionIterator
+	VersionHistory.getAllVersions()</FONT></FONT>.</P>
+	<P>If the version graph
+	of this history is linear then the versions are returned in order of
+	creation date, from oldest to newest. Otherwise the order of the
+	returned versions is implementation-dependent.</P>
+	<P>Alternatively, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionIterator
+	VersionHistory.getAllLinearVersions()</FONT></FONT></P>
+	<P>returns an iterator
+	over all the versions in the <I>line of descent</I> from the root
+	version to the base version that is bound to the workspace through
+	which this <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	was acquired.</P>
+	<P>Within a version
+	history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	is the base version bound to workspace <FONT FACE="Courier New, monospace"><FONT SIZE=2>W</FONT></FONT>
+	if and only if there exists a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>W</FONT></FONT>
+	whose version history is <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	is the base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		</P>
+	<P>The line of descent
+	from version <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	is an eventual successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>,
+	is the ordered list of versions starting with <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>
+	and proceeding through each direct successor to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>.</P>
+	<P>The versions are
+	returned in order of creation date, from oldest to newest.</P>
+	<P>Note that in a simple
+	versioning repository the behavior of this method is equivalent to
+	returning all versions in the version history in order from oldest
+	to newest.</P>
+	<P>Versions can also be
+	retrieved directly by name, using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionHistory.getVersion(String versionName)</FONT></FONT>,</P>
+	<P>or by label, using,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionHistory.getVersionByLabel(String label)</FONT></FONT></P>
+	<P>(see §15.4 <I>Version
+	Labels</I>).</P>
+<a name="15.1.1.3 Frozen Nodes"></a>	<H4>15.1.1.3 Frozen Nodes</H4>
+	<P>The frozen nodes
+	within each of the versions within the history can be accessed
+	directly from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	VersionHistory.getAllFrozenNodes()</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	VersionHistory.getAllLinearFrozenNodes()</FONT></FONT>.</P>
+	<P>These methods return
+	the frozen nodes within the version history corresponding to, and in
+	the same order as, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	objects returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.getAllVersions</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.getAllLinearVersions</FONT></FONT>,
+	respectively.</P>
+<a name="15.1.1.4 VersionHistory Extends Node"></a>	<H4>15.1.1.4 VersionHistory Extends Node</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	interface extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	Under simple versioning version histories are not represented by
+	nodes in content, so the methods inherited from <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	are not required to function and may instead throw a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>.
+	Under full versioning the <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	object represents the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node and its <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	methods must function accordingly.</P>
+<a name="15.1.2 Getting the Base Version"></a>	<H3>15.1.2 Getting the Base Version</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionManager.getBaseVersion(String absPath)</FONT></FONT></P>
+	<P>returns the current
+	base version of the versionable node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.</P>
+<a name="15.1.3 Moving Versionable Nodes"></a>	<H3>15.1.3 Moving Versionable Nodes</H3>
+	<P>When an existing
+	versionable node is moved to a new location with <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>,
+	it maintains the same version history and no changes are made to
+	that history.</P>
+<a name="15.1.4 Copying Versionable Nodes and Version Lineage"></a>	<H3>15.1.4 Copying Versionable Nodes and Version Lineage</H3>
+	<P>Under both simple and
+	full versioning, when an existing versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is copied to a new location either in the same workspace or another,
+	and the repository preserves the versionable mixin (see §10.7.4
+	<I>Dropping Mixins on Copy</I>):</P>
+	<UL>
+		<LI><P>A copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>,
+		is created, as usual.</P>
+		<LI><P>A new, empty,
+		version history for <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>,
+		call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>M</SUB></FONT></FONT>,
+		is also created.</P>
+	</UL>
+	<P>Under full versioning:</P>
+	<UL>
+		<LI><P>The properties
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		are not copied from <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		but are initialized as usual.</P>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:copiedFrom</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>M</SUB></FONT></FONT>
+		is set to point to the base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+				</P>
+	</UL>
+<a name="15.1.4.1 Version Lineage"></a>	<H4>15.1.4.1 Version Lineage</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:copiedFrom</FONT></FONT>
+	property allows an application to determine the <I>lineage</I> of a
+	version across version histories that were produced by copying a
+	versionable node to a new location.</P>
+<a name="15.1.5 Cloning Versionable Nodes"></a>	<H3>15.1.5 Cloning Versionable Nodes</H3>
+	<P>Under both simple and
+	full versioning, when a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is cloned to another workspace:</P>
+	<UL>
+		<LI><P>A clone of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>,
+		is created, as usual.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		is initialized to have the same version history and base version as<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		N</FONT></FONT>.</P>
+	</UL>
+	<P>Under full versioning:</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		properties of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		are copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		unchanged<FONT FACE="Courier New, monospace"><FONT SIZE=2>.</FONT></FONT></P>
+	</UL>
+<a name="15.1.6 Sharing Versionable Nodes"></a>	<H3>15.1.6 Sharing Versionable Nodes</H3>
+	<P>Under both simple and
+	full versioning, when a new node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+	is added to the shared set of a shareable, versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P>The shared node
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		is created, as usual.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		is initialized to have the same version history and base version as
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		Unlike in the case of cloning (see §15.1.5 <I>Cloning Versionable
+		Nodes</I>) the base versions of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		will always remain identical.</P>
+	</UL>
+	<P>Under full versioning:</P>
+	<UL>
+		<LI><P>Because nodes in
+		the same shared set have identical properties, <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+		nodes in the same shared set will necessarily have identical
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		properties.</P>
+	</UL>
+<a name="15.2 Check-In: Creating a Version"></a>	<H2>15.2 Check-In: Creating a Version</H2>
+	<P>A new <I>version</I>
+	of a versionable node is created using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	Version
+	VersionManager.checkin(String absPath)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is the absolute path of the node.</P>
+	<P>On check-in of a
+	versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	with version history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is not <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:simpleVersionable</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+		an <FONT FACE="Courier New, monospace"><FONT SIZE=2>UnsupportedRepositoryOperationException</FONT></FONT>
+		is thrown, otherwise,</P>
+		<LI><P>if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		has unsaved changes pending, an <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>
+		is thrown, otherwise,</P>
+		<LI><P>if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is already <I>checked-in</I>, this method has no effect and returns
+		the <I>base version</I> (see §3.13.6.2 <I>Base Version</I>) of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		otherwise,</P>
+		<LI><P>if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		has a <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property present, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionException</FONT></FONT>
+		is thrown (notice that this is enforced in any case due to the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		setting of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property's <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnParentVersion</FONT></FONT>
+		attribute).</P>
+	</UL>
+	<P>Otherwise:</P>
+	<UL>
+		<LI><P>The subgraph
+		rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is made <I>read-only</I> (see §15.2.2 <I>Read-Only on Check-In</I>).</P>
+		<LI><P>A new <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>,
+		is created with a system-determined <I>version name</I> (see
+		§15.2.1.1 <I>Version Name</I>) and a <I>created date</I> (see
+		§15.2.1.2 <I>Created Date</I>) as part of its state. Under full
+		versioning, a new <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+		node is bound to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and added as a child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+		with the version name as its node name and the created date as the
+		value of its <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:created</FONT></FONT>
+		property.</P>
+		<LI><P>The <I>versionable
+		state</I> of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is recorded in the <I>frozen node</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		as described in §3.13.9 <I>Versionable State</I>. Under full
+		versioning, <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+		is added as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenNode</FONT></FONT>
+		child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		is added to the version history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		as the direct successor of the <I>base version</I> of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		Under full versioning:</P>
+		<UL>
+			<LI><P>The
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+			is copied to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.</P>
+			<LI><P>The
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+			is set to the empty array. 
+			</P>
+			<LI><P>A reference to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+			is added to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:successors</FONT></FONT>
+			property of each of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+			nodes referred to by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.</P>
+		</UL>
+		<LI><P>The base version
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is changed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.
+		Under full versioning, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is changed to refer to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.</P>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.
+		This change is a workspace-write and therefore does not require a
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+				</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is now <I>checked-in</I>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		is returned.</P>
+	</UL>
+<a name="15.2.1 Version Object"></a>	<H3>15.2.1 Version Object</H3>
+	<P>A version is
+	represented by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object.</P>
+<a name="15.2.1.1 Version Name"></a>	<H4>15.2.1.1 Version Name</H4>
+	<P>The name given to a
+	version is automatically generated and must be unique within its
+	version history. How the name is generated is up to the
+	implementation. The name of a version is retrieved with the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Item.getName()</FONT></FONT>,</P>
+	<P>inherited by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>.
+	Under simple versioning this is the only inherited method that is
+	required to function (see §15.2.1.7 <I>Version Extends Node</I>).</P>
+<a name="15.2.1.2 Created Date"></a>	<H4>15.2.1.2 Created Date</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Calendar
+	Version.getCreated()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">returns
+	a timestamp indicating the date and time that the version was
+	created. The precision of the timestamp is implementation-dependent</FONT></FONT></FONT>.</P>
+<a name="15.2.1.3 Containing History"></a>	<H4>15.2.1.3 Containing History</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory
+	Version.getContainingHistory()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">returns
+	the </FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">
+	that contains this </FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">.</FONT></FONT></FONT></P>
+<a name="15.2.1.4 Predecessors"></a>	<H4>15.2.1.4 Predecessors</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version[]
+	Version.getPredecessors()</FONT></FONT></P>
+	<P>returns the direct
+	predecessors of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>.
+	Under simple versioning this set will be at most of size 1. Under
+	full versioning, this set maybe of size greater than 1, indicating a
+	merge within the version graph.</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	Version.getLinearPredecessor()</FONT></FONT></P>
+	<P>returns the direct
+	predecessor of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	along the same line of descent returned by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.getAllLinearVersions</FONT></FONT>
+	in the current workspace (see §3.1.8.2 <I>Current Session and
+	Workspace</I>), or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if no such direct predecessor exists. Note that under simple
+	versioning the behavior of this method is equivalent to getting the
+	unique direct predecessor (if any) of this version.</P>
+<a name="15.2.1.5 Successors"></a>	<H4>15.2.1.5 Successors</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version[]
+	Version.getSuccessors()</FONT></FONT></P>
+	<P>returns the direct
+	successors of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>.
+	Under simple versioning this set will be at most of size 1. Under
+	full versioning, this set maybe of size greater than 1, indicating a
+	branch within the version graph.</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	Version.getLinearSuccessor()</FONT></FONT></P>
+	<P>returns the direct
+	successor of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	along the same line of descent returned by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.getAllLinearVersions</FONT></FONT>
+	in the current workspace (see §3.1.8.2 <I>Current Session and
+	Workspace</I>), or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if no such direct successor exists. Note that under simple
+	versioning the behavior of this method is equivalent to getting the
+	unique direct successor (if any) of this version.</P>
+<a name="15.2.1.6 Frozen Node"></a>	<H4>15.2.1.6 Frozen Node</H4>
+	<P>The frozen node of a
+	version is access with</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Version.getFrozenNode()</FONT></FONT>.</P>
+	<P>Under simple
+	versioning without in-content version store the frozen node has no
+	parent and therefore methods that depend on a node being within the
+	workspace tree (<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getPath()</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getParent()</FONT></FONT>,
+	etc.) throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>.
+	Under full versioning a frozen node is the child of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	within the in-content version store and so has all the
+	characteristics of a normal node.</P>
+<a name="15.2.1.7 Version Extends Node"></a>	<H4>15.2.1.7 Version Extends Node</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	interface extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	Under simple versioning, however, versions are not represented by
+	nodes in content, consequently the inherited methods, other than
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getName()</FONT></FONT>
+	(see §15.2.1.1 <I>Version Name</I>), are not required to function.
+	These methods may throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>.
+	Under full versioning the methods of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	inherited from <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	function on the actual node in content that backs that version (see
+	§3.13.3.1 <I>nt:version</I>).</P>
+<a name="15.2.2 Read-Only on Check-In"></a>	<H3>15.2.2 Read-Only on Check-In</H3>
+	<P>When a versionable
+	node is checked in, it and its subgraph become <I>read-only.</I> The
+	effect of read-only status on a node depends on the
+	on-parent-version (OPV) status of each of its child items.</P>
+	<P>When a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	becomes read-only:</P>
+	<UL>
+		<LI><P>No property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		can be added, removed or have its value changed <I>unless</I> it
+		has an <I>on-parent-version</I> setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>.</P>
+		<LI><P>No child node of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		can be added or removed <I>unless</I> it has an <I>on-parent-version</I>
+		setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>.</P>
+		<LI><P>Every existing
+		child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes read-only unless it has an <I>on-parent-version</I> setting
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		or has an <I>on-parent-version</I> setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		and is itself versionable.</P>
+	</UL>
+	<P>These restrictions
+	apply to all methods with the exception of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore,
+	VersionManager.restoreByLabel</FONT></FONT> (see §15.7
+	<I>Restoring a Version</I>), <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.merge</FONT></FONT>
+	(see §15.9 <I>Merge</I>) and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.update</FONT></FONT>
+	(see §10.8.3 <I>Updating Nodes Across Workspaces</I>).<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	</FONT></FONT>These operations do not respect
+	checked-in status.</P>
+	<P>Note that <FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT>
+	of a read-only node is possible, as long as its parent is not
+	read-only, since removal is an alteration of the parent node.</P>
+<a name="15.3 Check-Out"></a>	<H2>15.3 Check-Out</H2>
+	<P>A checked-in node is
+	checked-out using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	void
+	VersionManager.checkout(String absPath)</FONT></FONT>,
+		</P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is the absolute path of the node.</P>
+	<P>The checked-out state
+	indicates to the repository and other clients that the latest
+	version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is “being worked on” and will typically be checked-in again at
+	some point in the future, thus creating a new version.</P>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>
+	of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is already checked-out, this method has no effect.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is not versionable, an <FONT FACE="Courier New, monospace"><FONT SIZE=2>UnsupportedRepositoryOperationException</FONT></FONT>
+		is thrown.</P>
+	</UL>
+	<P>Otherwise,</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and all nodes and properties in the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		lose their read-only status.</P>
+		<LI><P>Under full
+		versioning, the current value of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is copied to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+	</UL>
+	<P>This method is a
+	workspace-write. There is no need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.3.1.1 Testing for Checked-Out Status"></a>	<H4>15.3.1.1 Testing for Checked-Out Status</H4>
+	<P>Only the actual
+	versionable node has a <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+	property, however, the checked-in read-only effect extends into the
+	subgraph of the versionable node (see §15.2.2 <I>Read-Only on
+	Check-In</I>). The method</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=1 ><B><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	VersionManager.</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>isCheckedOut(String
+	absPath)</FONT></FONT></B></FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	if the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is read-only due to a check-in operation. The method returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+	<P>Alternatively, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.isCheckedOut()</FONT></FONT></P>
+	<P>can also be used
+	directly on the node in question.</P>
+<a name="15.3.2 Checkpoint"></a>	<H3>15.3.2 Checkpoint</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionManager.checkpoint(String absPath)</FONT></FONT></P>
+	<P>is a shortcut for
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	followed immediately by <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>.</P>
+<a name="15.4 Version Labels"></a>	<H2>15.4 Version Labels</H2>
+	<P>A version label is a
+	JCR name (see §3.2 <I>Names</I>) associated with a version. A
+	version may have zero or more labels. Within a given version
+	history, a particular label may appear a maximum of once. Labels are
+	typically used to add application-level information to a stored
+	version.</P>
+	<P>Under simple
+	versioning labels are added, accessed and removed only through the
+	version-label-specific API. 
+	</P>
+	<P>Under full versioning
+	version labels are also exposed in content. Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node has a subnode called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionLabels</FONT></FONT>
+	of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>:</P>
+<a name="15.4.1.1 nt:versionLabels"></a>	<H4>15.4.1.1 nt:versionLabels</H4>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:versionLabels]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">- *
+	(REFERENCE) protected ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>Each version label is
+	stored as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property whose name is the label name and whose target is the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node within the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	to which the label applies. Dereferencing a label property is
+	equivalent to calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.getVersionByLabel</FONT></FONT>.</P>
+<a name="15.4.1.2 Adding a Version Label"></a>	<H4>15.4.1.2 Adding a Version Label</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionHistory.<BR> addVersionLabel(String versionName,<BR> 
+	 String label,<BR> boolean
+	moveLabel)</FONT></FONT>.</P>
+	<P>adds the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>
+	to the version with the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>versionName</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>
+	must be a JCR name in either qualified or expanded form and
+	therefore must conform to the syntax restrictions that apply to such
+	names. In particular a colon (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT>”)
+	should not be used unless it is intended as a prefix delimiter in a
+	qualified name (see §3.2.5 <I>Lexical Form of JCR Names</I>).</P>
+	<P>In a full versioning
+	system, <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.addVersionLabel
+	</FONT></FONT>adds the appropriate <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>
+	node. The addition of a label is a workspace-write and therefore
+	does not require a <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+		</P>
+	<P>If the specified label
+	is already assigned to a version in this history and <FONT FACE="Courier New, monospace"><FONT SIZE=2>moveLabel</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then the label is removed from its current location and added to the
+	version with the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>versionName</FONT></FONT>.
+	If <FONT FACE="Courier New, monospace"><FONT SIZE=2>moveLabel</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then an attempt to add a label that already exists in this version
+	history will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LabelExistsVersionException</FONT></FONT>.</P>
+<a name="15.4.1.3 Testing for a Version Label"></a>	<H4>15.4.1.3 Testing for a Version Label</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	VersionHistory.hasVersionLabel(String label)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if any version in the version history has the given <FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>.
+	The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	VersionHistory.hasVersionLabel(Version version,<BR> 
+	 String label)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+	has the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>.</P>
+<a name="15.4.1.4 Getting Version Labels"></a>	<H4>15.4.1.4 Getting Version Labels</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	VersionHistory.getVersionLabels()</FONT></FONT></P>
+	<P>returns all the
+	version labels on all the versions in the version history. The
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	VersionHistory.getVersionLabels(Version version)</FONT></FONT></P>
+	<P>returns all version
+	labels on the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>.</P>
+<a name="15.4.1.5 Removing a Version Label"></a>	<H4>15.4.1.5 Removing a Version Label</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionHistory.removeVersionLabel(String label)</FONT></FONT></P>
+	<P>removes the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>
+	from this version history. 
+	</P>
+	<P>In a full versioning
+	system, <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.removeVersionLabel</FONT></FONT>
+	removes the appropriate <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>.
+	The change is a workspace-write and therefore does not require a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.5 Searching Version Histories"></a>	<H2>15.5 Searching Version Histories</H2>
+	<P>In simple versioning,
+	version histories are not searchable from within the JCR API. In
+	order to make version histories searchable under JCR, version
+	storage must be exposed in content. Since simple versioning
+	repositories <I>may</I> expose version storage (it is simply not
+	<I>required</I>), searchable versions are effectively an optional
+	extension of simple versioning (see §3.13.7 <I>Version Storage</I>
+	and §6 <I>Query</I>).</P>
+	<P>Under full versioning,
+	the exposure of version storage as content in the workspace allows
+	the stored versions and their associated version meta-data to be
+	searched or traversed just like any other part of the workspace.</P>
+<a name="15.6 Retrieving Version Storage Nodes"></a>	<H2>15.6 Retrieving Version Storage Nodes</H2>
+	<P>When an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory
+	</FONT></FONT>or <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node is acquired through a query or directly through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>getNode</FONT></FONT>,
+	the actual Java type of the returned object must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	(in the case <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	nodes) or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	(in the case of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	nodes). This allows the application to cast the returned object to
+	either <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	and use it in methods that take those types.</P>
+<a name="15.7 Restoring a Version"></a>	<H2>15.7 Restoring a Version</H2>
+	<P>Restoring a
+	versionable node to the state recorded in an earlier version can be
+	done with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionManager.restore (Version version,<BR> 
+	 boolean removeExisting)</FONT></FONT>.</P>
+	<P>Given a version <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	and a boolean flag <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>,
+	and letting <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	be the versionable node in this workspace of which <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	is a version and <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	be the frozen node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>,
+	on <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore(V,
+	B)</FONT></FONT>, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	has unsaved changes pending, an <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>
+	is thrown, otherwise:</P>
+<a name="15.7.1 Simple vs. Full Versioning Before Restore"></a>	<H3>15.7.1 Simple vs. Full Versioning Before Restore</H3>
+	<P>Under simple
+	versioning, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is checked-in then it is automatically checked-out before the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+	is performed.</P>
+	<P>Under full versioning
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+	methods work regardless of whether the node in question is
+	checked-out or checked-in. 
+	</P>
+	<P>Under both simple and
+	full versioning, the changes are made through workspace-write and
+	therefore do not require <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.7.2 Restoring Type and Identifier"></a>	<H3>15.7.2 Restoring Type and Identifier</H3>
+	<P>The
+	primary type, mixin types and identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	are set as follows:</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		(and, semantically, the actual primary node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>)
+		is set to the value recorded in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenPrimaryType</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>F.</FONT></FONT>
+		
+		</P>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		(and, semantically, the actual mixin node types of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>)
+		 is set to the value(s) recorded in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenMixinTypes</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>.</P>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		(and, semantically, the actual identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>)
+		is set to the value recorded in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenUuid</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>.</P>
+	</UL>
+<a name="15.7.3 Restoring Properties"></a>	<H3>15.7.3 Restoring Properties</H3>
+	<P>For each property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	(other than <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenPrimaryType</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenMixinTypes</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenUuid</FONT></FONT>):</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>F/P</FONT></FONT>
+		is copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>,
+		replacing any existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+		will never have a property with an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		(see §15.2 <I>Check-In: Creating a Version</I>).</P>
+	</UL>
+	<P>For each property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	but not on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		is removed. Note that while a node with a child item of OPV <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT
+		</FONT></FONT>cannot be versioned, it is legal for a
+		previously versioned node to have such a child item added to it and
+		then for it to be restored to the state that it had before that
+		item was added, as this step indicates.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		then no change is made to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>
+		then, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		has a default value (either defined in the node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		or implementation-defined) its value is changed to that default
+		value. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		has no default value then it is left unchanged.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		then the value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		may be changed according to an implementation-specific mechanism.</P>
+	</UL>
+<a name="15.7.4 Identifier collision"></a>	<H3>15.7.4 Identifier collision</H3>
+	<P>An identifier
+	collision occurs when a node exists outside the subgraph rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	with the same identifier as a node that would be introduced by the
+	restore operation. The result in such a case is governed by the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	flag. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	then the incoming node takes precedence, and the existing node (and
+	its subgraph) is removed (if possible; otherwise a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>
+	is thrown). If <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	is thrown and no changes are made.</P>
+<a name="15.7.5 Chained Versions on Restore"></a>	<H3>15.7.5 Chained Versions on Restore</H3>
+	<P>Each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	is represented in <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	not as a copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+	but as special node containing a reference to the version history of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.
+	On restore, the following occurs.</P>
+	<UL>
+		<LI><P>If the workspace
+		currently has an already existing node corresponding to <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>’s
+		version history and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+		flag of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+		then that instance of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		becomes the child of the restored <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If the workspace
+		currently has an already existing node corresponding to <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>’s
+		version history and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+		flag of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+		then an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+		is thrown.</P>
+		<LI><P>If the workspace
+		does not have an instance of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		then one is restored from <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>’s
+		version history:</P>
+		<UL>
+			<LI><P>If the restore
+			was initiated through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>restoreByLabel</FONT></FONT>
+			where <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+			is the specified label and there is a version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			with the label <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+			then that version is restored.</P>
+			<LI><P>If the version
+			history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			does not contain a version with the label <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+			or the restore was initiated by a method call that does not
+			specify a label then the workspace in which the restore is being
+			performed will determine which particular version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			will be restored. This determination depends on the configuration
+			of the workspace and is outside the scope of this specification.</P>
+		</UL>
+	</UL>
+<a name="15.7.6 Restoring Child Nodes"></a>	<H3>15.7.6 Restoring Child Nodes</H3>
+	<P>For each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>:</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+			is true, then <FONT FACE="Courier New, monospace"><FONT SIZE=2>F/C</FONT></FONT>
+			and its subgraph is copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>,
+			replacing any existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+			and its subgraph <I>and</I> any node in the workspace with the
+			same identifier as <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			or a node in the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			is removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+			is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+			then <FONT FACE="Courier New, monospace"><FONT SIZE=2>F/C</FONT></FONT>
+			and its subgraph is copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>,
+			replacing any existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+			and its subgraph <I>unless</I> there exists a node in the
+			workspace with the same identifier as <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>,
+			or a node in the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>,
+			in which case an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+			is thrown , all changes made by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+			are rolled back leaving <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+			unchanged.</P>
+		</UL>
+	</UL>
+	<P>Under
+	full versioning each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is versionable, is represented in <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	not as a copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+	but as special node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionedChild</FONT></FONT>
+	containing a reference to the version history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.
+	On restore, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+	in the workspace is replaced by a version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.
+	The determination of which version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	to use is implementation-dependent (see §15.7.5 <I>Chained Versions
+	on Restore</I>).</P>
+	<P>In a
+	repository that supports orderable child nodes, the relative
+	ordering of the set of child nodes C that are copied from F is
+	preserved.</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+		will never have a child node with an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		(see §15.2 <I>Check-In: Creating a Version</I>).</P>
+	</UL>
+	<P>For each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	but not on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+		is removed. Note that while a node with a child item of OPV <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT
+		</FONT></FONT>cannot be versioned, it is legal for a
+		previously versioned node to have such a child item added to it and
+		then for it to be restored to the state that it had before that
+		item was added, as this step indicates.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		then no change is made to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+		is re-initialized as if it were newly created, as defined in its
+		node type.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+		may be re-initialized according to an implementation-specific
+		mechanism.</P>
+	</UL>
+<a name="15.7.7 Simple vs. Full Versioning after Restore"></a>	<H3>15.7.7 Simple vs. Full Versioning after Restore</H3>
+	<P>Under simple
+	versioning <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is automatically checked-in.</P>
+	<P>Under full versioning the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(though the other elements of a check-in are not performed).
+	Additionally, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.
+	Note that after the next check-out (see §15.3 <I>Check-Out</I>) and
+	subsequent check-in of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	the version <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	will acquire an additional direct successor, forming a branch.</P>
+<a name="15.7.8 Restore Variants"></a>	<H3>15.7.8 Restore Variants</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionManager.restore(String absPath,<BR> 
+	 Version version,<BR> boolean
+	removeExisting)</FONT></FONT></P>
+	<P>takes the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object and a target path. This method only works in cases where no
+	node exists at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	It is used to restore nodes that have been removed or to introduce
+	new subgraphs into a workspace based on state stored in a version.</P>
+<a name="15.7.8.1 Restore by Version Name"></a>	<H4>15.7.8.1 Restore by Version Name</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionManager.restore(String absPath,<BR> 
+	 String versionName,<BR> boolean
+	removeExisting)</FONT></FONT></P>
+	<P>takes a version name
+	instead of the actual <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object. The version to be restored is identified by name from within
+	the version history of the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	This method requires that the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	exist and be a versionable node.</P>
+<a name="15.7.8.2 Restore by Version Label"></a>	<H4>15.7.8.2 Restore by Version Label</H4>
+	<P>The
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionManager.restoreByLabel(String absPath, <BR>			 	 
+	String versionLabel,<BR> boolean
+	removeExisting)</FONT></FONT></P>
+	<P>takes a version label
+	instead of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object (see §15.2.1 <I>Version Object</I>). The version to be
+	restored is identified by label from within the version history of
+	the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	This method requires that the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	exist and be a versionable node.</P>
+<a name="15.7.8.3 Restoring a Group of Versions"></a>	<H4>15.7.8.3 Restoring a Group of Versions</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionManager.<BR> restore(Version[] versions, boolean
+	removeExisting)</FONT></FONT></P>
+	<P>is used to
+	simultaneously restore multiple versions. This may be necessary in
+	cases where sequential restoration is impossible due to a cycle of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties in the nodes to be restored. 
+	</P>
+<a name="15.8 Removing a Version"></a>	<H2>15.8 Removing a Version</H2>
+	<P>In some
+	implementations it may be possible to remove versions from within a
+	version history using <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.removeVersion</FONT></FONT>.
+	In such cases the version graph must be automatically repaired so
+	that the direct successor of the removed version becomes the direct
+	successor of the direct predecessor of the removed version.</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionHistory.removeVersion(String versionName)</FONT></FONT></P>
+	<P>removes the named
+	version from this version history and automatically repairs the
+	version graph. If the version to be removed is <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>'s
+	direct predecessor set is <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>'s
+	direct successor set is <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>,
+	then the version graph is repaired s follows:</P>
+	<UL>
+		<LI><P>For each member
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>,
+		remove the reference to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		from its direct successor list and add references to each member of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.</P>
+		<LI><P>For each member
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>,
+		remove the reference to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		from its direct predecessor list and add references to each member
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+	</UL>
+	<P>This change is a
+	workspace-write; there is no need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.9 Merge"></a>	<H2>15.9 Merge</H2>
+	<P>The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	VersionManager.<BR> merge(String absPath, String srcWorkspace,<BR>
+	 boolean bestEffort, boolean isShallow)</FONT></FONT></P>
+	<P>performs the first
+	step in a <I>merge</I> of two corresponding nodes:</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	method can be called on a versionable or non-versionable node.</P>
+	<P>Like <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	does not respect the checked-in status of nodes. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	may change a node even if it is currently checked-in.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node (the one on which <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	is called) does not have a corresponding node in the indicated
+	workspace, then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	method returns quietly and no changes are made.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node, despite having a corresponding node, is nevertheless
+	non-versionable then the merge method also returns quietly and no
+	changes are made.</P>
+	<P>Otherwise, the
+	following happens:</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then a merge test is performed on <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node, call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	If<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	isShallow</FONT></FONT> is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	then a merge test is performed recursively on each versionable node,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	within the subgraph rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node.</P>
+	<P>The merge test is performed by
+	comparing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	with its corresponding node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>.</P>
+	<P>The merge test is done by comparing
+	<I>the base version of </I><FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>)
+	and <I>the base version of </I><FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>).</P>
+	<P>For any versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	there are three possible outcomes of the merge test: <I>update</I>,
+	<I>leave</I> or <I>failed</I>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	does not have a corresponding node then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is <I>leave</I>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is currently checked-in then:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is an eventual successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>,
+		then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>update</I>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		or if <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		are identical (i.e., are actually the same version), then the merge
+		result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>leave</I>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		is neither an eventual successor of, eventual predecessor of, nor
+		identical with <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>,
+		then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>failed</I>. This is the case where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		represent divergent branches of the version graph.</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is currently checked-out then:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		or if <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		are identical (i.e., are actually the same version), then the merge
+		result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>leave</I>.</P>
+		<LI><P>If any other
+		relationship holds between <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>,
+		then the merge result for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is <I>fail</I>.</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	then the first time a merge result of <I>fail</I> occurs, the entire
+	merge operation on this subgraph is aborted, no changes are made to
+	the subgraph and a <FONT FACE="Courier New, monospace"><FONT SIZE=2>MergeException</FONT></FONT>
+	is thrown. If no merge result of <I>fail</I> occurs then:</P>
+	<UL>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>update</I> is updated to reflect the state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>.
+		The state of a node in this context refers to its set of properties
+		and child node links.</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>leave</I> is left unchanged, <I>unless </I><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>N</I></FONT></FONT><I>
+		is the child of a node with status </I>update<I> and </I><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>N</I></FONT></FONT><I>
+		does not have a corresponding node in </I><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>srcWorkspace</I></FONT></FONT><I>,
+		in which case it is removed.</I></P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then:</P>
+	<UL>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>update</I> is updated to reflect the state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>.
+		The state of a node in this context refers to its set of properties
+		and child node links.</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>leave</I> is left unchanged, unless <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the child of a node with status <I>update</I> and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		does not have a corresponding node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>.
+		I such a case, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is removed.</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		with result <I>failed</I> is left unchanged except that the
+		identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		(which is, in some sense, the “offending” version; the one that
+		caused the merge to fail on that <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>)
+		is added to the multi-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		If the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+		is already in <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>,
+		it is not added again. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property never contains repeated references to the same version. If
+		the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property does not yet exist then it is created. If present, the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		property will always contain at least one value. If not present on
+		a node, this indicates that no merge failure has occurred on that
+		node. Note that the presence of this property on a node will in any
+		case prevent it from being checked-in because the <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnParentVersion</FONT></FONT>
+		setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+		is <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>.</P>
+		<LI><P>This property can
+		later be used by the application to find those nodes in the
+		subgraph that have failed to merge and thus require special
+		attention (see §15.9.2 <I>Merging Branches</I>). This property is
+		multi-valued so that a record of successive failed merges can be
+		kept.</P>
+	</UL>
+	<P>In either case, (regardless of whether
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>)
+	for each non-versionable node (including both referenceable and
+	non-referenceable), if the merge result of its <I>nearest
+	versionable ancestor</I> is <I>update, </I>or if it has <I>no
+	versionable ancestor</I>, then it is updated to reflect the state of
+	its corresponding node. Otherwise, it is left unchanged. The
+	definition of corresponding node in this context is the same as
+	usual: the match is done by identifier.</P>
+	<P>Note that a deep <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	performed on a subgraph with no versionable nodes at all (or indeed
+	in a repository that does not support versioning in the first place)
+	will be equivalent to an update.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	method returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator</FONT></FONT>
+	over all versionable nodes in the subgraph that received a merge
+	result of fail.</P>
+	<P>Note that if
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then merge will either return an empty iterator (since no merge
+	failure occurred) or throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>MergeException</FONT></FONT>
+	(on the first merge failure that was encountered).</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	then the iterator will contain all nodes that received a fail during
+	the course of this merge operation.</P>
+	<P>All changes made by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	are workspace-write, and therefore this method does not require a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.9.1 Merge Algorithm"></a>	<H3>15.9.1 Merge Algorithm</H3>
+	<P>The above declarative
+	description can also be expressed in pseudo-code as follows:</P>
+	<P>let <FONT FACE="Courier New, monospace"><FONT SIZE=2>ws'</FONT></FONT>
+	be the workspace against which the <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	is done.<BR>let <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	be the flag passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>.<BR>let
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	be the flag passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>.<BR>let
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>failedset</FONT></FONT>
+	be a set of identifiers, initially empty.<BR>let <FONT FACE="Courier New, monospace"><FONT SIZE=2>startnode</FONT></FONT>
+	be the node on which <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	was called.<BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(startnode)</FONT></FONT>.<BR>return
+	the nodes with the identifiers in <FONT FACE="Courier New, monospace"><FONT SIZE=2>failedset</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(n)</FONT></FONT><BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	be the corresponding node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>ws'</FONT></FONT>.<BR>
+	 if no such <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)</FONT></FONT>.<BR>
+	 else if <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	is not versionable <FONT FACE="Courier New, monospace"><FONT SIZE=2>doupdate(n,
+	n')</FONT></FONT>.<BR> else if <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	is not versionable <FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>v</FONT></FONT>
+	be base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	be base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>.<BR>
+	 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	is an eventual successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>v</FONT></FONT>
+	and<BR> <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	is not checked-in <FONT FACE="Courier New, monospace"><FONT SIZE=2>doupdate(n,
+	n')</FONT></FONT>.<BR> else if <FONT FACE="Courier New, monospace"><FONT SIZE=2>v</FONT></FONT>
+	is equal to or an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)</FONT></FONT>.<BR>
+	 else <FONT FACE="Courier New, monospace"><FONT SIZE=2>dofail(n,
+	v')</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>dofail(n,
+	v')<BR></FONT></FONT> if <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>MergeException</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2><BR></FONT></FONT>
+	 else add identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	(if not already present) to the<BR> <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>,<BR>
+	 add identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>failedset</FONT></FONT>,<BR>
+	 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT><BR>
+	 for each versionable child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>c</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(c)</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)<BR></FONT></FONT>
+	 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT><BR>
+	 for each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>c</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(c)</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>doupdate(n,
+	n')</FONT></FONT><BR> replace set of properties of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	with those of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	be the set of child nodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+	be the set of child nodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>.<BR>
+	 judging by the name of the child node:<BR> let <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	be the set of nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT><BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>
+	be the set of nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	but not in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>D'</FONT></FONT>
+	be the set of nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+	but not in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.<BR>
+	 remove from <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	all child nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>.<BR>
+	 for each child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>D'</FONT></FONT>
+	copy it (and its subgraph) to <FONT FACE="Courier New, monospace"><FONT SIZE=2>n<BR></FONT></FONT>
+	 as a new child node (if an incoming node has the same<BR> 
+	 identifier as a node already existing in this workspace,<BR> 
+	 the already existing node is removed).<BR> for each child node
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>m</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(m)</FONT></FONT>.</P>
+<a name="15.9.2 Merging Branches"></a>	<H3>15.9.2 Merging Branches</H3>
+	<P>When a merge test on a
+	node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	fails, this indicates that the two base versions <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	are on separate branches of the version graph. Consequently,
+	determining the result of the merge is not simply a matter of
+	determining which version is the eventual successor of the other in
+	terms of version history. Instead, the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	must be merged into the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	according to some domain specific criteria which must be performed
+	at the application level, for example, through a merge tool provided
+	to the user.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property is used to tag nodes that fail the merge test so that an
+	application can find them and deal appropriately with them. The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property is multi-valued so that information about merge failures is
+	not lost if more than one successive merge is attempted before being
+	dealt with by the application.</P>
+	<P>After the subgraph of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	is merged into <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	the application must also merge the two branches of the version
+	graph. This is done by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.doneMerge(V')</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	is retrieved by following the reference stored in the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	This has the effect of moving the reference-to-<FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	to its <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+	property.</P>
+	<P>If, on the other hand,
+	the application chooses not to join the two branches, then
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge(V')</FONT></FONT>
+	is performed. This has the effect of removing the reference to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	without adding it to <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>.</P>
+	<P>Once the last
+	reference in <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	has been either moved to <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+	(with <FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge</FONT></FONT>)
+	or just removed from <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	(with <FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge</FONT></FONT>)
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property is automatically removed, thus enabling this node to be
+	checked-in, creating a new version (note that before the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	is removed, its <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnParentVersion</FONT></FONT>
+	setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+	prevents check-in). This new version will have a direct predecessor
+	connection to each version for which <FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge
+	</FONT></FONT>was called, thus joining those branches
+	of the version graph.</P>
+	<P>All changes made by <FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge</FONT></FONT>
+	are workspace-write and therefore do not require <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.9.3 Merging Activities"></a>	<H3>15.9.3 Merging Activities</H3>
+	<P>In repositories that
+	support activities (see §15.12 <I>Activities</I>) merging an
+	activity into another workspace is done with the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.merge(Node
+	activityNode)</FONT></FONT>.</P>
+	<P>(see §15.12.7 <I>Merging
+	an Activity into Another Workspace</I>).</P>
+<a name="15.10 Serialization of Version Storage"></a>	<H2>15.10 Serialization of Version Storage</H2>
+	<P>Serialization of
+	version information can be done in the same way as normal
+	serialization by serializing the subgraph below
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:versionStorage</FONT></FONT>.
+	The special status of these nodes with respect to versioning is
+	transparent to the serialization mechanism.</P>
+	<P>The serialized content
+	of the source version storage can be imported as “normal”
+	content on the target repository, but it will not actually be
+	interpreted and integrated into the repository as version storage
+	data unless it is integrated into or used to replace the target
+	repository's own version storage.</P>
+	<P>Methods for doing this
+	kind of “behind the scenes” alteration to an existing version
+	storage (whether based on the serialized version storage of another
+	repository, or otherwise) are beyond the scope of this
+	specification.</P>
+<a name="15.11 Versioning within a Transaction"></a>	<H2>15.11 Versioning within a Transaction</H2>
+	<P>In a repository that
+	supports both versioning and transactions, all versioning operations
+	must be fully transactional, meaning that they can be bracketed
+	within a transaction and rolled-back just like any other set of
+	operations.</P>
+<a name="15.12 Activities"></a>	<H2>15.12 Activities</H2>
+	<P>Activities provide a
+	way of grouping together a set of logically related changes
+	performed in a workspace and then later merging this set of changes
+	into another workspace.</P>
+	<P>Before starting to
+	make a particular set of changes, the user sets the<I> current
+	activity</I>. Each subsequent <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>
+	made within the scope of that activity will associate that activity
+	with that checked-out versionable, and will create a version that is
+	tagged with the specified activity when that versionable is
+	subsequently checked-in.</P>
+	<P>Abstractly, therefore,
+	an activity is a set of changes that produce new versions. However,
+	if that set includes changes that produce more than one version
+	within a particular version history, then those versions must all be
+	on the same line of descent, that is, there must be a non-branching
+	sequence of direct successor relationships beginning at the root
+	version of the version history that reaches every version in the
+	set. This ensures that there is always at most one “latest”
+	version that contains all changes in a given version history for a
+	given activity.</P>
+<a name="15.12.1 Support for Activities"></a>	<H3>15.12.1 Support for Activities</H3>
+	<P>Support for activities
+	is an optional addition to the full versioning feature. An
+	implementation that supports versioning <I>may</I> support
+	activities.</P>
+	<P>Whether a particular
+	implementation supports activities can be determined by querying the
+	repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_ACTIVITIES_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support for activities (see §24.2 <I>Repository
+	Descriptors</I>).</P>
+<a name="15.12.2 Related Node Types"></a>	<H3>15.12.2 Related Node Types</H3>
+	<P>Activities are
+	represented by nodes of node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>[nt:activity]
+	&gt; mix:referenceable</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:activityTitle (STRING)</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>
+	</B></FONT></FONT>mandatory
+	autocreated protected</FONT></P>
+	<P>The relationship
+	between version and activity is modeled by the property
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>,
+	in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node types:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:versionable] &gt;
+	mix:simpleVersionable, mix:referenceable<BR> mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:versionHistory (REFERENCE) mandatory protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:versionHistory'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:baseVersion (REFERENCE) mandatory protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:predecessors (REFERENCE) mandatory protected multiple</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">IGNORE
+	&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:mergeFailed (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>-
+	jcr:activity (REFERENCE) protected IGNORE &lt; 'nt:activity'</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:configuration (REFERENCE) protected IGNORE<BR> &lt;
+	'nt:configuration'</FONT></P>
+	<P><BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:version] &gt;
+	mix:referenceable</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:created (DATE) mandatory autocreated protected<BR> ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:predecessors (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:successors (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>-
+	jcr:activity (REFERENCE) protected ABORT &lt; 'nt:activity'</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">+
+	jcr:frozenNode (nt:frozenNode) protected ABORT</FONT></P>
+<a name="15.12.3 Activity Storage"></a>	<H3>15.12.3 Activity Storage</H3>
+	<P>Activities are
+	persisted as nodes of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	under system-generated node names in activity storage below
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:activities</FONT></FONT>.</P>
+	<P>The organization of
+	this subgraph is left up to the implementation (for example, there
+	may be intervening nodes structuring the activity storage). 
+	</P>
+	<P>Similar to the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:versionStorage</FONT></FONT>
+	subgraph, the activity storage is a single repository wide store,
+	but is reflected into each workspace. However access control may be
+	employed so that different sessions see different parts of the tree.</P>
+<a name="15.12.3.1 Activity Storage is Read-Only"></a>	<H4>15.12.3.1 Activity Storage is Read-Only</H4>
+	<P>The activity storage
+	subgraph is not writable through the core write methods (see §10.2
+	<I>Core Write Methods</I>). It can only be altered through the
+	activity-specific write methods described in this section.</P>
+<a name="15.12.4 Creating an Activity"></a>	<H3>15.12.4 Creating an Activity</H3>
+	<P>Activities are created
+	using:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	VersionManager.createActivity(String title)</FONT></FONT></P>
+	<P>creates a new
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	node at an implementation-determined location in <FONT FACE="Courier New, monospace"><FONT SIZE=2>the
+	/jcr:system/jcr:activities</FONT></FONT> subgraph and
+	returns it.</P>
+	<P>The name of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	node is automatically generated by the repository. The repository
+	<I>may</I> use the <FONT FACE="Courier New, monospace"><FONT SIZE=2>title</FONT></FONT>
+	parameter as a hint to give a value to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activityTitle</FONT></FONT>
+	property of the new node. The new node addition is dispatched
+	immediately and therefore does not require a <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.12.5 Setting the Current Activity"></a>	<H3>15.12.5 Setting the Current Activity</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	VersionManager.setActivity(Node activity)</FONT></FONT></P>
+	<P>is called by the user
+	to set the current activity on the session by specifying a
+	previously created <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	node. Changing the current activity is done by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>setActivity</FONT></FONT>
+	again. Cancelling the current activity is done by calling
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>setActivity(null)</FONT></FONT>
+	and results in the session having no current activity. The method
+	returns the <I>previously set</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	node or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if no such node exists.</P>
+	<P>Assuming, 
+	</P>
+	<UL>
+		<LI><P>the current
+		activity of session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		is represented by node <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		and</P>
+		<LI><P>node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is a versionable node with version history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,</P>
+	</UL>
+	<P>then each <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>
+	of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	made through <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	while <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	is in effect causes the following:</P>
+	<UL>
+		<LI><P>If there exists another workspace
+		with node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		also has version history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		is checked out and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		references <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+		then the check-out fails with an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ActivityViolationException</FONT></FONT>
+		indicating which workspace currently has the check-out.</P>
+		<LI><P>If there is a version in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+		that is not an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		but whose <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		references <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+		then the check-out fails with an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ActivityViolationException</FONT></FONT>.</P>
+		<LI><P>Otherwise, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to reference <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		and when <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is subsequently checked in, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of the new version is set to reference <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+		and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is removed.</P>
+	</UL>
+<a name="15.12.6 Getting the Current Activity"></a>	<H3>15.12.6 Getting the Current Activity</H3>
+	<P>The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	VersionManager.getActivity()</FONT></FONT></P>
+	<P>returns the node
+	representing the current activity or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if there is no current activity.</P>
+<a name="15.12.7 Merging an Activity into Another Workspace"></a>	<H3>15.12.7 Merging an Activity into Another Workspace</H3>
+	<P>Once an activity has
+	been completed, the changes that it records can be imported into
+	another workspace. This is done with a variant of the merge method:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	VersionManager.merge(Node activityNode)</FONT></FONT></P>
+	<P>This method merges the
+	changes that were made under the specified activity into <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	workspace.</P>
+	<P>An activity <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	will be associated with a set of versions through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+	reference of each version node in the set. We call each such
+	associated version a member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+	<P>For each version
+	history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	that contains one or more members of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+	one such member will be the latest member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.
+	The latest member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	is the version in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	that is a member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	and that has no eventual successor versions that are also members of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+	<P>The set of versions
+	that are the latest members of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in their respective version histories is called the change set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.
+	It fully describes the changes made under the activity <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+	<P>This method performs a
+	shallow merge, with <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	into this workspace (see §15.9 <I>Merge</I>) of each version in the
+	change set of the activity specified by <FONT FACE="Courier New, monospace"><FONT SIZE=2>activityNode</FONT></FONT>.
+	If there is no corresponding node in this workspace for a given
+	member of the change set, that member is ignored.</P>
+	<P>This method returns a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator</FONT></FONT>
+	over all versionable nodes in the subgraph that received a merge
+	result of <I>fail</I> (see §15.9.1 <I>Merge Algorithm</I>).</P>
+	<P>All changes made
+	through this method are workspace-write and therefore do not require
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.12.8 Removing an Activity"></a>	<H3>15.12.8 Removing an Activity</H3>
+	<P>Some
+	repositories may support</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionManager.removeActivity(Node activityNode)</FONT></FONT></P>
+	<P>which
+	removes the specified activity node from the activity storage and
+	automatically removes all <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties referring to that node in all workspaces, with the
+	exception of <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties in version storage. The existence of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	to the activity node from within version storage will cause an
+	exception to be thrown. Changes made through this method are
+	workspace-write and therefore do not require <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<a name="15.13 Configurations and Baselines"></a>	<H2>15.13 Configurations and Baselines</H2>
+	<P>A <I>configuration</I>
+	is the subgraph of a specifically designated versionable node
+	(called the <I>configuration root node</I>) in a workspace, minus
+	any parts of that subgraph that are themselves designated as
+	configurations. A <I>baseline</I> is the state of a configuration at
+	some point in time, recorded in version storage as a version object.</P>
+<a name="15.13.1 Support for Configurations and Baselines"></a>	<H3>15.13.1 Support for Configurations and Baselines</H3>
+	<P>Support for
+	configurations and baselines is an optional addition to the full
+	versioning feature. An implementation that supports full versioning
+	<I>may</I> support configurations and baselines. Whether a
+	particular implementation supports configurations and baselines can
+	be determined by querying the repository descriptor table with</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_BASELINES_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support for configurations and baselines (see §24.2
+	<I>Repository Descriptors</I>).</P>
+<a name="15.13.2 Configuration Proxy Nodes"></a>	<H3>15.13.2 Configuration Proxy Nodes</H3>
+	<P>Each configuration in
+	a given workspace is represented by a distinct <I>proxy node</I> of
+	type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	located in <I>configuration storage</I> within the same workspace
+	under <FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:configurations/</FONT></FONT>.
+	The configuration storage in a particular workspace is specific to
+	that workspace. It is not a common repository-wide store mirrored
+	into each workspace, as is the case with version storage.</P>
+	<P>The proxy node of a
+	configuration is used to perform certain operations on that
+	configuration. In particular, version operations performed on the
+	proxy node act not only on that node itself but also on the
+	configuration it represents, as a whole. Creating a baseline, for
+	example, is done by performing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	on a configuration’s proxy node.</P>
+<a name="15.13.2.1 nt:configuration"></a>	<H4>15.13.2.1 nt:configuration</H4>
+	<P>Every configuration
+	proxy node is of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>:</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>[nt:configuration]
+	&gt; mix:versionable</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:root (REFERENCE) </FONT></FONT>mandatory
+	autocreated protected</FONT></P>
+	<P>This node type is a
+	subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	and adds a single property, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>,
+	which points to the root node of the configuration that this proxy
+	represents.</P>
+	<P>Since every
+	configuration proxy node is versionable, each has a version history.
+	The versions within this history store state information about
+	configuration represented by the proxy node, in addition to
+	information about the proxy node itself.</P>
+<a name="15.13.2.2 Structure of Configuration Storage"></a>	<H4>15.13.2.2 Structure of Configuration Storage</H4>
+	<P>The organization of
+	configuration storage is left up to the implementation (for example,
+	there may be intervening nodes structuring the storage). It is
+	expected that access control will also be employed to ensure that
+	only sessions with appropriate authorization may create or have
+	access to particular configurations.</P>
+<a name="15.13.3 Creating a Configuration"></a>	<H3>15.13.3 Creating a Configuration</H3>
+	<P>A configuration is
+	created by designating a <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	in the workspace as a configuration root node. This is done by
+	calling</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	VersionManager.<BR> createConfiguration(String absPath)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is the path of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+	<P>On creation of a new
+	configuration with root <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	a new proxy node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>,
+	of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>,
+	is created under <FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:configurations/</FONT></FONT>
+	and a new version history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>C</SUB></FONT></FONT>
+	is created for <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	with a root version <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+	Note that <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>C</SUB></FONT></FONT>
+	is also called a <I>baseline history</I> and its contained versions,
+	including <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>,
+	are called <I>baselines</I>. The baselines within <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>C</SUB></FONT></FONT>
+	store not only the state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	but also the state of the configuration represented by <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	(see 15.13.4.1 <I>Creating a Baseline</I>).</P>
+	<P>The properties of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	are initialized as follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N/jcr:configuration</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">
+		points to </FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">.</FONT></FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:root</FONT></FONT>
+		points to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:versionHistory</FONT></FONT>
+		points to <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>C</SUB></FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:baseVersion</FONT></FONT>
+		points to <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.</P>
+	</UL>
+	<P>The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>createConfiguration</FONT></FONT>
+	call will fail if</P>
+	<UL>
+		<LI><P>the node at
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+		is not <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>.</P>
+		<LI><P>the node at
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+		is already a configuration root (i.e., if it already has a
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:configuration</FONT></FONT>
+		property).</P>
+		<LI><P>There exists in
+		the subgraph at <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		a versionable node that has never been checked-in (i.e., one whose
+		base version is still its root version).</P>
+	</UL>
+	<P>The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>createConfiguration</FONT></FONT>
+	method is workspace-write. Therefore the changes it makes are
+	dispatched immediately and a <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	is not required.</P>
+<a name="15.13.4 Baselines"></a>	<H3>15.13.4 Baselines</H3>
+	<P>A baseline records the
+	state of a configuration at some particular time and is represented
+	by a version (i.e., an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node) of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	node in question.</P>
+<a name="15.13.4.1 Creating a Baseline"></a>	<H4>15.13.4.1 Creating a Baseline</H4>
+	<P>A baseline is created
+	by performing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	on a configuration proxy node (i.e., a node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	found in configuration storage). Note that since <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	is subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	a configuration node will have its own version history, <I>distinct
+	from the version history of its configuration root node</I>.</P>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	of the configuration proxy node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>:</P>
+	<UL>
+		<LI><P>The state of the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		is recorded in a new baseline <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+		just as it would be in a normal version.</P>
+		<LI><P>In addition, the
+		current base version of every versionable node in the configuration
+		is also recorded. 
+		</P>
+	</UL>
+	<P>How the configuration
+	state information is stored is up to the repository. It need not be
+	stored as content in the substructure of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node. For example, some repositories are likely to have some
+	efficient internal mechanisms involving lists of identifiers,
+	possibly stated as a delta against the direct predecessor baseline.
+	The only requirement is that baselines be “restoreable”.</P>
+<a name="15.13.4.2 Restoring a Baseline"></a>	<H4>15.13.4.2 Restoring a Baseline</H4>
+	<P>Using the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore(Version
+	version, boolean removeExisting)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+	is a baseline <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object,<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	C</FONT></FONT> is the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	node whose version history contains <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is the configuration root node pointed to by <FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:root</FONT></FONT>:</P>
+	<UL>
+		<LI><P>The state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		is restored to the state recorded in <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:baseVersion</FONT></FONT>
+		is set to point to <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+		(as in the restore of any normal version).</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in the subgraph below and including <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is restored to the state recorded in <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		is the version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>’s
+		version history that was recorded in <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+		(i.e., the base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		at the time <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+		was created).</P>
+	</UL>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	parameter behaves just as in a normal restore expect that that it
+	applies to all nodes restored below <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	The same behavior applies for the multi-version signature of
+	restore,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore(Version[]
+	versions,<BR> boolean removeExisting)</FONT></FONT></P>
+	<P>except that multiple
+	baselines may be restored simultaneously.</P>
+<a name="15.13.4.3 Creating a Configuration from an Existing Baseline"></a>	<H4>15.13.4.3 Creating a Configuration from an Existing Baseline</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore(String
+	absPath,<BR> Version version,<BR> 
+	 boolean removeExisting)</FONT></FONT>,</P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+	is a baseline <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object and <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is a path to a location where no node exists but which has a
+	suitable parent node, creates a new configuration at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	by restoring the baseline <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>.
+	A configuration proxy node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	with <FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:root</FONT></FONT>
+	pointing to the root node of the new configuration at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	is automatically created in configuration storage. If a node already
+	exists at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>,
+	the method fails. The variant signatures</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore(String
+	absPath,<BR> String versionName,<BR> 
+	 boolean removeExisting)</FONT></FONT>,</P>
+	<P>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restoreByLabel(String
+	absPath,<BR> String label,<BR> 
+	 boolean removeExisting)</FONT></FONT>,</P>
+	<P>work identically
+	except that the baseline to be restored is identified either by name
+	or by label instead of being passed in as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

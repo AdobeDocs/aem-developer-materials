@@ -1,0 +1,57 @@
+**************************
+foundation-util-htmlparser
+**************************
+
+HTMLParser is an utility to parse HTML into a `DocumentFragment <https://developer.mozilla.org/en/docs/Web/API/DocumentFragment>`_.
+It is usually used when parsing raw HTML string from the server.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-util-htmlparser``
+
+condition
+   ``window`` object
+
+returned type
+   ``FoundationUtilHtmlparser``
+
+.. code-block:: ts
+
+   interface FoundationUtilHtmlparser {
+     /**
+      * Parses the given HTML string so that it is suitable to be injected to the DOM (e.g. preventing duplicate JS and CSS).
+      *
+      * This method is also modifying the current document (window.document) such that its JS and CSS are not lost.
+      * This is done by injecting the said files to &lt;head&gt;.
+      *
+      * @param html The html to be parsed.
+      * @param avoidMovingExisting
+      *            Avoid moving the existing CSS and JS elements to &lt;head&gt;.
+      *            Sometimes, moving those elements is needed in order to prevent double loading when the HTML is injected again.
+      */
+     parse(html: string | Element | DocumentFragment, avoidMovingExisting?: boolean): Promise<DocumentFragment>;
+
+     /**
+      * Creates the fragment from the given HTML string.
+      *
+      * @param html The HTML string.
+      */
+     createFragment(html: string): DocumentFragment;
+   }
+
+
+Example
+=======
+
+.. code-block:: js
+
+   var html = "<div></div>";
+
+   var parser = $(window).adaptTo("foundation-util-htmlparser");
+
+   parser.parse(html).then(function(fragment) {
+       // do something with the fragment
+   });

@@ -1,0 +1,75 @@
+******************
+foundation-adapter
+******************
+
+Adapter is mechanism to adapt an object—usually HTMLElement—to different object, which is inspired by `Sling Adapter <http://sling.apache.org/site/adapters.html>`_.
+
+It is typically used to enhance existing functionality of the element according to a certain vocabulary.
+
+
+Registering Adapter
+===================
+
+An adapter is registered by registering to :doc:`foundation-registry <../registry/index>` using ``foundation.adapters`` name and config satisfying ``FoundationAdaptersAdapter`` interface.
+
+.. code-block:: ts
+
+   interface FoundationAdaptersAdapter {
+     type: string;
+     selector: string;
+     adapter: Function;
+   }
+
+
+AdaptTo jQuery Plugin
+=====================
+
+AdaptTo is a jQuery plugin to expose the adapter mechanism.
+
+.. code-block:: ts
+
+   /**
+    * Exposes the API of the given type for the first element in the set of matched elements.
+    * An element can be adapted only when it satisfies the condition of the corresponding type.
+    * If it cannot be adapted, <code>undefined</code> is returned.
+    *
+    * @param type The target type the adaptor will expose
+    * @returns The API object
+    */
+   jQuery.fn.adaptTo: (type: string) => any;
+
+
+Example
+=======
+
+.. code-block:: js
+
+   // Registering an adapter that exposes "foundation-selections" API of ".foundation-collection" element
+   $(window).adaptTo("foundation-registry").register("foundation.adapters", {
+       type: "foundation-selections",
+       selector: ".foundation-collection",
+       adapter: function(el) {
+           var collection = $(el);
+
+           return {
+               count: function() {
+                   return collection.find(".foundation-selections-item").length;
+               },
+
+               clear: function(suppressEvent) {
+                   var length = collection.find(".foundation-selections-item").removeClass("foundation-selections-item").length;
+
+                   if (!suppressEvent && length) {
+                       collection.trigger("foundation-selections-change");
+                   }
+
+                   return this;
+               }
+           };
+       }
+   });
+
+   // Then use it using adaptTo plugin
+   var selectionAPI = $(".foundation-collection").adaptTo("foundation-selections");
+   selectionAPI.count();
+   selectionAPI.clear();

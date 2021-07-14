@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.6.2 Permissions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.6.2 Permissions</H3>
+	<P>Testing for
+	<I>permissions</I> is a feature that all repositories must support
+	regardless of whether they support access control management. 
+	</P>
+	<P>In repositories that
+	do support access control management, the permissions encompass the
+	restrictions imposed by privileges, but also include any additional
+	policy-internal refinements with effects too fine-grained to be
+	exposed through privilege discovery. A common case may be to provide
+	finer-grained access restrictions to individual properties or child
+	nodes of the node to which the policy applies. 
+	</P>
+	<P>In the case of a
+	policy that does not define any refinements, testing privileges is
+	equivalent to using these methods with the following mapping:</P>
+	<TABLE WIDTH=649 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=114>
+		<COL WIDTH=93>
+		<COL WIDTH=392>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><B>The action</B></P>
+			</TD>
+			<TD WIDTH=93>
+				<P><B>on </B><I><B>I,</B></I><B>
+				a</B></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><B>is equivalent to</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>add_node</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>node</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNode
+				</FONT></FONT>on the parent of <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>set_property</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>property</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties
+				</FONT></FONT>on the parent of <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>node</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+				on the parent of <I>I</I> and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>
+				on <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>property</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties
+				</FONT></FONT>on the parent of <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>read</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>node</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read</FONT></FONT>
+				on <I>I</I>.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=114>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>read</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=93>
+				<P>property</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read
+				</FONT></FONT>on the parent of <I>I.</I></P>
+			</TD>
+		</TR>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

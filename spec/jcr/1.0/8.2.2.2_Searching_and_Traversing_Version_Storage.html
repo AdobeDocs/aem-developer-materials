@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.2.2 Searching and Traversing Version Storage (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.2.2." id="section_8.2.2.2."></a>8.2.2.2 Searching and Traversing Version Storage
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Exposing the version storage as content in the workspace allows the stored versions and their associated version meta-data to be searched or traversed just like any other part of the workspace.
+								</p>
+							
+							
+								<p class="c5">
+									This allows, for example, an application to search for a particular version according to the value of its properties. In a repository that supports SQL queries, the following query would return all versions where <b>productName</b> is “Car” and <b>price</b> is greater than 30,000:
+								</p>
+							
+							
+								<p class="c5">
+									<b>SELECT *<br>
+									FROM nt:version<br>
+									WHERE productName = "Car"<br>
+									AND price &gt; "30000"<br>
+									AND jcr:path LIKE<br>
+									"/jcr:system/jcr:versionStorage/%"</b>
+								</p>
+							
+							
+								<p class="c5">
+									When an <b>nt:versionHistory</b> or <b>nt:version</b> node is acquired through a query or directly through a <b>getNode</b>, the actual Java type of the returned object must be <b>VersionHistory</b> (in the case <b>nt:versionHistory</b> nodes) or <b>Version</b> (in the case of <b>nt:version</b> nodes). This allows the application to then cast the returned object down to either <b>Version</b> or <b>VersionHistory</b> and then use it in methods that take those types, for example <b>Node.restore(Version version, boolean removeExisting)</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

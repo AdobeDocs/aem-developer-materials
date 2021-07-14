@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.10 Locks and Transactions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.10 Locks and Transactions</H2>
+	<P><FONT FACE="Verdana, sans-serif">Locking
+	and unlocking are treated just like any other operation in the
+	context of a transaction. For example, consider the following series
+	of operations:</FONT></P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 lock<BR> </FONT></FONT><I>do A<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> </FONT></FONT><I>do B<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> unlock<BR></FONT></FONT><I>commit</I></P>
+	<P>In this example the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>lock</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>
+	have no effect. This series of operations is equivalent to:</P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 </FONT></FONT><I>do A<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> </FONT></FONT><I>do B<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR></FONT></FONT><I>commit</I></P>
+	<P>The reason for this is
+	that changes to a workspace are only made visible to other <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>s
+	upon commit of the transaction, and this includes changes in the
+	locked status of a node. As a result, if a lock is enabled and then
+	disabled within the same transaction, its effect never makes it to
+	the persistent workspace and therefore it does nothing.</P>
+	<P>In order to use locks
+	properly (that is, to prevent the “lost update problem”),
+	locking and unlocking must be done in separate transactions. For
+	example:</P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 lock<BR></FONT></FONT><I>commit</I></P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 </FONT></FONT><I>do A<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> </FONT></FONT><I>do B<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> unlock<BR></FONT></FONT><I>commit</I></P>
+	<P>This series of
+	operations would ensure that the actions <I>A</I> and <I>B</I> are
+	protected by the lock.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.1.1 Roundtripping (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>11.1.1 Roundtripping</H3>
+	<P>Not all information
+	within the infoset of an XML document is maintained on import to
+	document view. Information lost will include processing
+	instructions, the distinction between text and CDATA and namespace
+	scoping at the sub-document level. As a result, perfect
+	roundtripping of a full XML infoset is not possible through document
+	view.</P>
+	<P>On document view
+	import, the repository will automatically add repository metadata in
+	the form of JCR properties (at least <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>,
+	for example), if these are not already present in the incoming XML.
+	When re-exported using document view, the resulting XML will contain
+	these properties in the form of XML attributes. As a result, the
+	application must take care of stripping out unwanted repository
+	metadata.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

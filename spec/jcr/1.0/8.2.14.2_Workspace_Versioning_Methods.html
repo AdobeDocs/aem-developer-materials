@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.14.2 Workspace Versioning Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.14.2." id="section_8.2.14.2."></a>8.2.14.2 Workspace Versioning Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Workspace</b> object provides the "group restore" method.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Workspace</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>restore(Version[] versions,<br>
+										boolean removeExisting)</b>
+									</p>
+									<p class="c5">
+										Restores a set of versions at once. Used in cases where a "chicken and egg" problem of mutually referring <b>REFERENCE</b> properties would prevent the restore in any serial order.
+									</p>
+									<p class="c5">
+										If the restore succeeds, the changes made are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										This method will work regardless of whether the nodes corresponding to the specified versions are checked-in or not.
+									</p>
+									<p class="c5">
+										The following restrictions apply to the set of versions specified:
+									</p>
+									<p class="c5">
+										If <b>S</b> is the set of versions being restored simultaneously,
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												For every version <b>V</b> in <b>S</b> that corresponds to a <i>missing</i> node in the workspace, there must also be a parent of <b>V</b> in <b>S</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>S</b> must contain at least one version that corresponds to an <i>existing</i> node in the workspace.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												No <b>V</b> in <b>S</b> can be a root version (<b>jcr:rootVersion</b>).
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										If any of these restrictions does not hold, the restore will fail because the system will be unable to determine the path locations to which one or more versions are to be restored. In this case a <b>VersionException</b> is thrown.
+									</p>
+									<p class="c5">
+										The versionable nodes in this workspace that correspond to the versions being restored define a set of (one or more) subtrees. A UUID collision occurs when this workspace contains a node <i>outside these subtrees</i> that has the same UUID as one of the nodes that would be introduced by the <b>restore</b> operation into one of these subtrees. The result in such a case is governed by the <b>removeExisting</b> flag. If <b>removeExisting</b> is <b>true</b> then the incoming node takes precedence, and the existing node (and its subtree) is removed. If <b>removeExisting</b> is <b>false</b> then a <b>ItemExistsException</b> is thrown and no changes are made. Note that this applies not only to cases where the restored node itself conflicts with an existing node but also to cases where a conflict occurs with <i>any</i> node that would be introduced into the workspace by the restore operation. In particular conflicts involving subnodes of the restored node that have <b>OnParentVersion</b> settings of <b>COPY</b> or <b>VERSION</b> (see <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>) are also governed by the <b>removeExisting</b> flag.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if versioning is not supported.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the restore.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

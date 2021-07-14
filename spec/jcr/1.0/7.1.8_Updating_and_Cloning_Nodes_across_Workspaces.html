@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.8 Updating and Cloning Nodes across Workspaces (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.8." id="section_7.1.8."></a> 7.1.8 Updating and Cloning Nodes across Workspaces
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In repositories that have multiple workspaces, a node in one workspace may have <i>corresponding nodes</i> in other workspaces.
+								</p>
+							
+							
+								<p class="c5">
+									As mentioned in 4.10.2 Multiple Workspaces and Corresponding Nodes, a node's corresponding node is defined as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					A node's corresponding nodes are those with the same <i>correspondence identifier</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The correspondence identifier of a referenceable node is its UUID.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The correspondence identifier of a non-referenceable node with at least one referenceable ancestor is the pair consisting of the UUID of its nearest referenceable ancestor and its relative path from that ancestor.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The correspondence identifier of a non-referenceable node with no referenceable ancestor is its absolute path.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Note also that (as stated in 4.9 Referenceable Nodes) if a repository has a workspace with a referenceable root node then <i>all</i> its workspaces must have referenceable root nodes <i>and</i> those root nodes must all have the same UUID.
+								</p>
+							
+							
+								<p class="c5">
+									Apart from having the same correspondence identifier, corresponding nodes need have nothing else in common. They can have entirely different properties and child nodes, for example.
+								</p>
+							
+							
+								<p class="c5">
+									While a node <i>may</i> have a corresponding node in another workspace, it is not <i>required</i> to.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

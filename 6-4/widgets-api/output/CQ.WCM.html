@@ -1,0 +1,2082 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.WCM-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.WCM-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.WCM-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.WCM"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.WCM</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/WCM.js" target="_blank">WCM.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">WCM</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing a set of WCM-related utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.WCM-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-ACTION_COPY"></a>
+            <b>ACTION_COPY</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The action when an item gets added to the clipboard by copying
+(Ctrl + C).                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-ACTION_CUT"></a>
+            <b>ACTION_CUT</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The action when an item gets added to the clipboard by cutting
+(Ctrl + X).                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-EDITABLE_SCRIPT_FINDER"></a>
+            <b>EDITABLE_SCRIPT_FINDER</b> : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; String used to find the DOM script tag corresponding to an editable path.
+$PATH$ is replaced by the ed...</div>
+            <div class="long">
+                &lt;static&gt; String used to find the DOM script tag corresponding to an editable path.
+$PATH$ is replaced by the editable path.            </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-LAYERS_COOKIE"></a>
+            <b>LAYERS_COOKIE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The name of the cookie holding the layers.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-LAYERS_COOKIE_PATH"></a>
+            <b>LAYERS_COOKIE_PATH</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The path for the cookie holding the layers.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-LAYER_LCSTATUS"></a>
+            <b>LAYER_LCSTATUS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The name of the layer for the Live Copy status.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_ANALYTICS"></a>
+            <b>MODE_ANALYTICS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The value for the analytics mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_COOKIE"></a>
+            <b>MODE_COOKIE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The name of the cookie holding the mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_COOKIE_PATH"></a>
+            <b>MODE_COOKIE_PATH</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The path for of the cookie holding the mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_DESIGN"></a>
+            <b>MODE_DESIGN</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The value for the design mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_EDIT"></a>
+            <b>MODE_EDIT</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The value for the edit mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_PREVIEW"></a>
+            <b>MODE_PREVIEW</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The value for the preview mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-MODE_TIMEWARP"></a>
+            <b>MODE_TIMEWARP</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The value for the timewarp mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-PREVIEW_RESPONSIVE"></a>
+            <b>PREVIEW_RESPONSIVE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The value for the responsive preview mode.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-TIMEWARP_COOKIE"></a>
+            <b>TIMEWARP_COOKIE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The name of the cookie holding timewarp information.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-altKey"></a>
+            <b>altKey</b> : Boolean            <div class="mdesc">
+                                        &lt;static&gt; True if the alt key is held down.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getTopWindow"></a>
+            <b>getTopWindow</b> : Object            <div class="mdesc">
+            	        <div><b>Deprecated: since 5.5, use <a ext:cls="CQ.shared.Util" ext:member="getTopWindow" href="output/CQ.shared.Util.html#getTopWindow">CQ.shared.Util.getTopWindow</a> instead</b></div>
+                                        &lt;static&gt; Returns the last accessible ascendant window.                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+            </table>
+                <a id="CQ.WCM-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-areEditablesReady"></a>
+            <b>areEditablesReady</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">Returns if all editables of the page are ready.</div>
+            <div class="long">
+                Returns if all editables of the page are ready.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if ready</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-clearClipboard"></a>
+            <b>clearClipboard</b>() : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Clears the clipboard.</div>
+            <div class="long">
+                &lt;static&gt; Clears the clipboard.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-copy"></a>
+            <b>copy</b>(&nbsp;<code>Object/Object[] item</code>, <span class="optional" title="Optional">[<code>Boolean additive</code>]</span>, <span class="optional" title="Optional">[<code>Boolean move</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Copies an item to the clipboard.</div>
+            <div class="long">
+                &lt;static&gt; Copies an item to the clipboard.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>item</code> : Object/Object[]<div class="sub-desc">The item to copy</div></li><li><code>additive</code> : Boolean<div class="sub-desc">(optional) True if the other clipboard
+items should be kept. Default is false.</div></li><li><code>move</code> : Boolean<div class="sub-desc">(optional) True if the item should be moved
+instead of copied (i.e. cut). Default is false.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The item</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-cut"></a>
+            <b>cut</b>(&nbsp;<code>Object/Object[] item</code>, <span class="optional" title="Optional">[<code>Boolean additive</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Copies an item to the clipboard and marks it for deletion
+after pasting (if the clipboard is cleared b...</div>
+            <div class="long">
+                &lt;static&gt; Copies an item to the clipboard and marks it for deletion
+after pasting (if the clipboard is cleared before, the item
+will not be deleted). Shorthand for <a ext:cls="CQ.WCM" ext:member="copy" href="output/CQ.WCM.html#copy">copy</a> (with move
+parameter true implicitly).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>item</code> : Object/Object[]<div class="sub-desc">The item to cut</div></li><li><code>additive</code> : Boolean<div class="sub-desc">(optional) True if the other clipboard
+items should be kept. Default is false.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The item</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-deselect"></a>
+            <b>deselect</b>(&nbsp;<code>Object item</code>, <span class="optional" title="Optional">[<code>Boolean additive</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes an item from the selection.</div>
+            <div class="long">
+                &lt;static&gt; Removes an item from the selection.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>item</code> : Object<div class="sub-desc">The item to deselect</div></li><li><code>additive</code> : Boolean<div class="sub-desc">(optional) True if the other selected
+items should be kept. Default is false.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The item</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-edit"></a>
+            <b>edit</b>(&nbsp;<code>Object config</code>&nbsp;) : CQ.wcm.EditBase            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Shorthand for <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>.</div>
+            <div class="long">
+                &lt;static&gt; Shorthand for <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : Object<div class="sub-desc">The configuration</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.EditBase</code><div class="sub-desc">The edit component (or null if document not ready yet)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-endMakeEditablesQueue"></a>
+            <b>endMakeEditablesQueue</b>() : void            <div class="mdesc">
+                                    <div class="short">Ends the queue mode for the <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>: all queued editable configs will be built and
+editables created.</div>
+            <div class="long">
+                Ends the queue mode for the <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>: all queued editable configs will be built and
+editables created.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getClipboardRecords"></a>
+            <b>getClipboardRecords</b>() : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the items in the clipboard as Records.
+This method does not remove cut items from the clipboar...</div>
+            <div class="long">
+                &lt;static&gt; Returns the items in the clipboard as <a ext:cls="CQ.Ext.data.Record" href="output/CQ.Ext.data.Record.html">Record</a>s.
+This method does not remove cut items from the clipboard and should
+therefore only be used for viewing purposes. For actual processing
+of clipboard items, use <a ext:cls="CQ.WCM" ext:member="paste" href="output/CQ.WCM.html#paste">paste</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">The items</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getComponentConfig"></a>
+            <b>getComponentConfig</b>(&nbsp;<code>String resourceType</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the page-specific config of the component with the
+specified resource type.</div>
+            <div class="long">
+                &lt;static&gt; Returns the page-specific config of the component with the
+specified resource type.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>resourceType</code> : String<div class="sub-desc">The resource type of the component</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The component config</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getComponentList"></a>
+            <b>getComponentList</b>(&nbsp;<code>String path</code>&nbsp;) : CQ.wcm.ComponentList            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns a ComponentList object for the specified page. If path is
+null, the component list of the curr...</div>
+            <div class="long">
+                &lt;static&gt; Returns a ComponentList object for the specified page. If path is
+null, the component list of the current page is returned.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The path</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.ComponentList</code><div class="sub-desc">The component list</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getContainerStepOptions"></a>
+            <b>getContainerStepOptions</b>(&nbsp;<code>String path</code>, <code>Object record</code>&nbsp;) : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns workflow model options. The list of workflow models is slightly modified in a way, that it exc...</div>
+            <div class="long">
+                &lt;static&gt; Returns workflow model options. The list of workflow models is slightly modified in a way, that it excludes the
+defining model itself. This reduces (but not completely prevents) the building of workflow loops.
+The method parameters follow the signature of the optionsProvider interface.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The path of the container workflow model.</div></li><li><code>record</code> : Object<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">The container step workflow options</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getContentFinder"></a>
+            <b>getContentFinder</b>() : CQ.wcm.ContentFinder            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a> (or
+null if none is available).</div>
+            <div class="long">
+                &lt;static&gt; Returns the <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a> (or
+null if none is available).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.ContentFinder</code><div class="sub-desc">The Content Finder</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getContentUrl"></a>
+            <b>getContentUrl</b>() : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the URL of the content window, independent of the
+presence of the <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns the URL of the content window, independent of the
+presence of the <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The content URL</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getContentWindow"></a>
+            <b>getContentWindow</b>() : Window            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the window of the content page, independent of the
+presence of the <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns the window of the content page, independent of the
+presence of the <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Window</code><div class="sub-desc">The content window</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getDesign"></a>
+            <b>getDesign</b>(&nbsp;<code>String path</code>&nbsp;) : CQ.wcm.Design            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns a design object of the page that is specified by path.</div>
+            <div class="long">
+                &lt;static&gt; Returns a design object of the page that is specified by path.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">page path</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.Design</code><div class="sub-desc">the design</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getDialog"></a>
+            <b>getDialog</b>(&nbsp;<code>String/Object config</code>, <span class="optional" title="Optional">[<code>String key</code>]</span>, <span class="optional" title="Optional">[<code>Boolean nocreate</code>]</span>&nbsp;) : CQ.Dialog            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates and/or returns a Dialog using the
+specified configuration (which may also be a URL serving one...</div>
+            <div class="long">
+                &lt;static&gt; Creates and/or returns a <a ext:cls="CQ.Dialog" href="output/CQ.Dialog.html">Dialog</a> using the
+specified configuration (which may also be a URL serving one of the
+configurations below).
+<p>Single Panel:<br>
+<pre><code>
+"jcr:primaryType": "cq:Panel",
+items: {
+    "jcr:primaryType": "cq:WidgetCollection",
+    field1: {
+        fieldLabel: "Title",
+        name: "./jcr:title",
+    }
+}</pre></code>
+</p>
+<p>Add a title to create a TabPanel with a single Panel:<br>
+<pre><code>
+"jcr:primaryType": "cq:Panel",
+title: "Tab 1"
+items: {
+    ...
+}</pre></code>
+</p>
+<p>An entire TabPanel:<br>
+<pre><code>
+"jcr:primaryType": "cq:TabPanel",
+items: {
+    "jcr:primaryType": "cq:WidgetCollection",
+    tab1 : {
+        "jcr:primaryType": "cq:Panel",
+        title: "Tab 1",
+        items: {
+            "jcr:primaryType": "cq:WidgetCollection",
+            field1: {
+                ...
+            }
+        }
+    }
+    tab2: {
+        ...
+    }
+}</pre></code>
+</p>
+</pre></code>
+</p>
+<p>An entire Dialog (e.g. with a Tab Panel):<br>
+<pre><code>
+"jcr:primaryType": "cq:Dialog",
+items: {
+    "jcr:primaryType": "cq:TabPanel",
+    items: {
+        "jcr:primaryType": "cq:WidgetCollection",
+        tab1 : {
+            "jcr:primaryType": "cq:Panel",
+            title: "Tab 1",
+            items: {
+                ...
+            }
+        }
+    }
+}</pre></code>
+</p>
+<p>The entire dialog config accepts all dialog specific config options:<br>
+<pre><code>
+"jcr:primaryType": "cq:Dialog",
+okText: "Custom OK",
+cancelText: "Custom Cancel",
+buttons: CQ.Dialog.CANCEL,
+params: {
+    hiddenField1: "hiddenValue1",
+    hiddenField2: "hiddenValue2"
+}</pre></code>
+</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : String/Object<div class="sub-desc">The URL to retrieve the dialog config from
+or a config object.</div></li><li><code>key</code> : String<div class="sub-desc">(optional) The key to cache the dialog under
+(set to "NEW" to avoid dialog caching)</div></li><li><code>nocreate</code> : Boolean<div class="sub-desc">(optional) True to only look for dialog in cache</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Dialog</code><div class="sub-desc">The dialog</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getDialogConfig"></a>
+            <b>getDialogConfig</b>(&nbsp;<code>String/Object config</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Completes and returns the specified dialog config (see
+<a ext:cls="CQ.WCM" ext:member="getDialog" href="output/CQ.WCM.html#getDialog">getDialog</a> for options).</div>
+            <div class="long">
+                &lt;static&gt; Completes and returns the specified dialog config (see
+<a ext:cls="CQ.WCM" ext:member="getDialog" href="output/CQ.WCM.html#getDialog">getDialog</a> for options).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : String/Object<div class="sub-desc">The URL to retrieve the dialog config from
+or a config object</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The dialog config</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getDialogs"></a>
+            <b>getDialogs</b>() : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns all dialogs of the content page.</div>
+            <div class="long">
+                &lt;static&gt; Returns all dialogs of the content page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The dialogs</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getDropTargetComponents"></a>
+            <b>getDropTargetComponents</b>() : CQ.Ext.Component[]            <div class="mdesc">
+                                    <div class="short">Gets an array of all currently registered components that work as external drop
+targets.</div>
+            <div class="long">
+                Gets an array of all currently registered components that work as external drop
+targets.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Component[]</code><div class="sub-desc">Array of currently registered external drop targets</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getEditable"></a>
+            <b>getEditable</b>(&nbsp;<code>String path</code>&nbsp;) : CQ.wcm.EditBase            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the edit component for the specified content path.
+Example:
+var editBar = CQ.WCM.getEditable("...</div>
+            <div class="long">
+                &lt;static&gt; Returns the edit component for the specified content path.
+Example:
+<pre><code>var editBar = CQ.WCM.getEditable(<em>"/content/mysite/en/parsys/0001"</em>);</code></pre>
+Edit components must be registered using <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The content path</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.EditBase</code><div class="sub-desc">The edit components or <code>null</code> if no edit component is defined for the given content path</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getEditableFromDOM"></a>
+            <b>getEditableFromDOM</b>(&nbsp;<code>Node element</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Finds the next editable which "contains" the given element.
+Note that this only returns final editables. Use getEdita...</div>
+            <div class="long">
+                Finds the next editable which "contains" the given element.
+Note that this only returns final editables. Use <a ext:cls="CQ.WCM" ext:member="getEditablePathFromDOM" href="output/CQ.WCM.html#getEditablePathFromDOM">getEditablePathFromDOM</a>
+if you want to get the path of an editable, which works as soon as the editable
+was registered using <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>element</code> : Node<div class="sub-desc">DOM node for which to find the containing editable</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getEditablePathFromDOM"></a>
+            <b>getEditablePathFromDOM</b>(&nbsp;<code>Node element</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Finds the path of the next editable which "contains" the given element.
+This will return the path even if an editable...</div>
+            <div class="long">
+                Finds the path of the next editable which "contains" the given element.
+This will return the path even if an editable is already registered
+using <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a> but not yet fully built as ext component. In this case
+a following call to CQ.WCM.getEditable(foundPath) would return null, since the
+final editable has not been created yet.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>element</code> : Node<div class="sub-desc">DOM node for which to find the containing editable</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getEditables"></a>
+            <b>getEditables</b>() : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns all edit components of the content page.</div>
+            <div class="long">
+                &lt;static&gt; Returns all edit components of the content page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The edit components</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getLanguageOptions"></a>
+            <b>getLanguageOptions</b>() : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the available languages as options. This method can be used
+directly as CQ.Selection.optionsPr...</div>
+            <div class="long">
+                &lt;static&gt; Returns the available languages as options. This method can be used
+directly as <a ext:cls="CQ.Selection" ext:member="optionsProvider" href="output/CQ.Selection.html#optionsProvider">CQ.Selection.optionsProvider</a> to draw a language
+selector.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">An array of objects with "value" (language code) and "text" (language/country name) strings</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getLayers"></a>
+            <b>getLayers</b>() : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns all layers of the content page.</div>
+            <div class="long">
+                &lt;static&gt; Returns all layers of the content page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The layers</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getMode"></a>
+            <b>getMode</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns either the current WCM mode: MODE_EDIT,
+MODE_PREVIEW and MODE_DESIGN,
+or MODE_TIMEWARP if the ...</div>
+            <div class="long">
+                &lt;static&gt; Returns either the current WCM mode: <a ext:cls="CQ.WCM" ext:member="MODE_EDIT" href="output/CQ.WCM.html#MODE_EDIT">MODE_EDIT</a>,
+<a ext:cls="CQ.WCM" ext:member="MODE_PREVIEW" href="output/CQ.WCM.html#MODE_PREVIEW">MODE_PREVIEW</a> and <a ext:cls="CQ.WCM" ext:member="MODE_DESIGN" href="output/CQ.WCM.html#MODE_DESIGN">MODE_DESIGN</a>,
+or <a ext:cls="CQ.WCM" ext:member="MODE_TIMEWARP" href="output/CQ.WCM.html#MODE_TIMEWARP">MODE_TIMEWARP</a> if the <a ext:cls="CQ.WCM" ext:member="TIMEWARP_COOKIE" href="output/CQ.WCM.html#TIMEWARP_COOKIE">TIMEWARP_COOKIE</a> is set.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) True to force retrieval of value from cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The WCM mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getNestedEditables"></a>
+            <b>getNestedEditables</b>(&nbsp;<code>String path</code>&nbsp;) : String[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns all the path of the CQ.wcm.EditBase nested into the given content path.
+Example:
+var nestedCmp...</div>
+            <div class="long">
+                &lt;static&gt; Returns all the path of the <a ext:cls="CQ.wcm.EditBase" href="output/CQ.wcm.EditBase.html">CQ.wcm.EditBase</a> nested into the given content path.
+Example:
+<pre><code>var nestedCmps = CQ.WCM.getNestedEditable(<em>"/content/mysite/en/parsys/0001"</em>);</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The content path</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String[]</code><div class="sub-desc">An String array of the paths of the nested edit components or <code>[]</code> if no edit component is found under the given content path</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getPage"></a>
+            <b>getPage</b>(&nbsp;<code>String path</code>, <code>Boolean skipWorkflow</code>&nbsp;) : CQ.wcm.Page            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns a page object for the specified path.</div>
+            <div class="long">
+                &lt;static&gt; Returns a page object for the specified path.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The content path of the page</div></li><li><code>skipWorkflow</code> : Boolean<div class="sub-desc">Flag,which if set to true will not fetch workflow models data</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.Page</code><div class="sub-desc">The page</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getPageInfo"></a>
+            <b>getPageInfo</b>(&nbsp;<code>String path</code>, <span class="optional" title="Optional">[<code>Boolean forceLoad</code>]</span>, <span class="optional" title="Optional">[<code>Boolean skipWorkflow</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Returns the page information for the current user.</div>
+            <div class="long">
+                Returns the page information for the current user.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The content path of the page</div></li><li><code>forceLoad</code> : Boolean<div class="sub-desc">(optional) True to always reload
+(default is false)</div></li><li><code>skipWorkflow</code> : Boolean<div class="sub-desc">(optional) True to not fetch workflow model data</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The page information</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getPageLanguage"></a>
+            <b>getPageLanguage</b>(&nbsp;<code>String path</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns the content language of the page.</div>
+            <div class="long">
+                Returns the content language of the page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The content path of the page</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">a locale code such as "de" or "de_CH"</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getPageLocale"></a>
+            <b>getPageLocale</b>(&nbsp;<code>String path</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Returns the content language of the page as a locale object.</div>
+            <div class="long">
+                Returns the content language of the page as a locale object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">The content path of the page</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">an object with "code" ("de_CH"), "language" ("de") and "country" ("CH") (or null if the page has no language)</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getPagePath"></a>
+            <b>getPagePath</b>() : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the path of the current page usually set by launchSidekick.
+If it is not set the path will be ...</div>
+            <div class="long">
+                &lt;static&gt; Returns the path of the current page usually set by <a ext:cls="CQ.WCM" ext:member="launchSidekick" href="output/CQ.WCM.html#launchSidekick">launchSidekick</a>.
+If it is not set the path will be retrieved from the current window location.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The page path</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getPreviewMode"></a>
+            <b>getPreviewMode</b>() : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the current WCM preview mode: <a ext:cls="CQ.WCM" ext:member="MODE_PREVIEW" href="output/CQ.WCM.html#MODE_PREVIEW">MODE_PREVIEW</a>
+or NULL.</div>
+            <div class="long">
+                &lt;static&gt; Returns the current WCM preview mode: <a ext:cls="CQ.WCM" ext:member="MODE_PREVIEW" href="output/CQ.WCM.html#MODE_PREVIEW">MODE_PREVIEW</a>
+or NULL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The WCM preview mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getSelectedItems"></a>
+            <b>getSelectedItems</b>() : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the items in the selection for processing. This will not
+clear the selection, so this method c...</div>
+            <div class="long">
+                &lt;static&gt; Returns the items in the selection for processing. This will not
+clear the selection, so this method can be called multiple times
+for processing the selected items.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">The items</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getSidekick"></a>
+            <b>getSidekick</b>() : CQ.wcm.Sidekick            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the <a ext:cls="CQ.wcm.Sidekick" href="output/CQ.wcm.Sidekick.html">Sidekick</a> (or null if none is
+available).</div>
+            <div class="long">
+                &lt;static&gt; Returns the <a ext:cls="CQ.wcm.Sidekick" href="output/CQ.wcm.Sidekick.html">Sidekick</a> (or null if none is
+available).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.Sidekick</code><div class="sub-desc">The sidekick</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getStyleOptions"></a>
+            <b>getStyleOptions</b>(&nbsp;<code>String contentPath</code>&nbsp;) : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the styles defined by the design of the component at
+the specified content path as options. Th...</div>
+            <div class="long">
+                &lt;static&gt; Returns the styles defined by the design of the component at
+the specified content path as options. This method can be used
+directly as <a ext:cls="CQ.Selection" ext:member="optionsProvider" href="output/CQ.Selection.html#optionsProvider">CQ.Selection.optionsProvider</a> to draw a style
+selector.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>contentPath</code> : String<div class="sub-desc">The content path</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">The style options</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-getWorkflowPackageOptions"></a>
+            <b>getWorkflowPackageOptions</b>(&nbsp;<code>Object packages</code>&nbsp;) : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the currently defined workflow packages as options. This method can be used
+directly as CQ.Sel...</div>
+            <div class="long">
+                &lt;static&gt; Returns the currently defined workflow packages as options. This method can be used
+directly as <a ext:cls="CQ.Selection" ext:member="optionsProvider" href="output/CQ.Selection.html#optionsProvider">CQ.Selection.optionsProvider</a> to draw a workflow package
+selector.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>packages</code> : Object<div class="sub-desc">Provided list of workflow packages</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">The workflow package options</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-hide"></a>
+            <b>hide</b>() : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Hides all edit components of the content page (i.e. switching to
+preview mode).</div>
+            <div class="long">
+                &lt;static&gt; Hides all edit components of the content page (i.e. switching to
+preview mode).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-hideLayer"></a>
+            <b>hideLayer</b>(&nbsp;<code>String layer</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Hides the specified layer.</div>
+            <div class="long">
+                &lt;static&gt; Hides the specified layer.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>layer</code> : String<div class="sub-desc">The layer to hide</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-hidePlaceholders"></a>
+            <b>hidePlaceholders</b>(&nbsp;<code>Element element</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Hides the placeholders for the specified element.</div>
+            <div class="long">
+                &lt;static&gt; Hides the placeholders for the specified element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>element</code> : Element<div class="sub-desc">The element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isAnalyticsMode"></a>
+            <b>isAnalyticsMode</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_ANALYTICS" href="output/CQ.WCM.html#MODE_ANALYTICS">MODE_ANALYTICS</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_ANALYTICS" href="output/CQ.WCM.html#MODE_ANALYTICS">MODE_ANALYTICS</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) True to force retrieval of value from cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if analytics mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isContentWindow"></a>
+            <b>isContentWindow</b>(&nbsp;<span class="optional" title="Optional">[<code>Window win</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the specified window is the window displaying
+the content page, independent of the pre...</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the specified window is the window displaying
+the content page, independent of the presence of the
+<a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a>. If no window is
+specified, the current window will be checked.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>win</code> : Window<div class="sub-desc">The window (optional)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if window is content window</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isContentWindowLoading"></a>
+            <b>isContentWindowLoading</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the content window is loading.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the content window is loading.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if loading</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isDesignMode"></a>
+            <b>isDesignMode</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_DESIGN" href="output/CQ.WCM.html#MODE_DESIGN">MODE_DESIGN</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_DESIGN" href="output/CQ.WCM.html#MODE_DESIGN">MODE_DESIGN</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) True to force retrieval of value from cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if design mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isEditMode"></a>
+            <b>isEditMode</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_EDIT" href="output/CQ.WCM.html#MODE_EDIT">MODE_EDIT</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_EDIT" href="output/CQ.WCM.html#MODE_EDIT">MODE_EDIT</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) True to force retrieval of value from cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if edit mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isPreviewMode"></a>
+            <b>isPreviewMode</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_PREVIEW" href="output/CQ.WCM.html#MODE_PREVIEW">MODE_PREVIEW</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the current WCM mode equals
+<a ext:cls="CQ.WCM" ext:member="MODE_PREVIEW" href="output/CQ.WCM.html#MODE_PREVIEW">MODE_PREVIEW</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) True to force retrieval of value from cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if preview mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isResponsiveMode"></a>
+            <b>isResponsiveMode</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the current WCM preview mode equals
+<a ext:cls="CQ.WCM" ext:member="PREVIEW_RESPONSIVE" href="output/CQ.WCM.html#PREVIEW_RESPONSIVE">PREVIEW_RESPONSIVE</a>.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the current WCM preview mode equals
+<a ext:cls="CQ.WCM" ext:member="PREVIEW_RESPONSIVE" href="output/CQ.WCM.html#PREVIEW_RESPONSIVE">PREVIEW_RESPONSIVE</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if using responsive preview mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isShownLayer"></a>
+            <b>isShownLayer</b>(&nbsp;<code>String layer</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the specified layer is currently shown.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the specified layer is currently shown.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>layer</code> : String<div class="sub-desc">The layer to check</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if layer is shown</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isSidekickReady"></a>
+            <b>isSidekickReady</b>() : Boolean            <div class="mdesc">
+                                    <div class="short">Returns if the sidekick is ready, i.e. rendered and shown.</div>
+            <div class="long">
+                Returns if the sidekick is ready, i.e. rendered and shown.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if ready</div></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-isTimewarpMode"></a>
+            <b>isTimewarpMode</b>(&nbsp;<span class="optional" title="Optional">[<code>Boolean force</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns true if the <a ext:cls="CQ.WCM" ext:member="TIMEWARP_COOKIE" href="output/CQ.WCM.html#TIMEWARP_COOKIE">TIMEWARP_COOKIE</a> is set.</div>
+            <div class="long">
+                &lt;static&gt; Returns true if the <a ext:cls="CQ.WCM" ext:member="TIMEWARP_COOKIE" href="output/CQ.WCM.html#TIMEWARP_COOKIE">TIMEWARP_COOKIE</a> is set.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>force</code> : Boolean<div class="sub-desc">(optional) True to force retrieval of value from cookie</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">True if timewarp cookie is set</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-launchSidekick"></a>
+            <b>launchSidekick</b>(&nbsp;<span class="optional" title="Optional">[<code>String path</code>]</span>, <code>Object config</code>, <code>Function setup</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates and/or returns the Sidekick.
+The Content Finder invokes this method
+without a path. Later, whe...</div>
+            <div class="long">
+                &lt;static&gt; Creates and/or returns the <a ext:cls="CQ.wcm.Sidekick" href="output/CQ.wcm.Sidekick.html">Sidekick</a>.
+The <a ext:cls="CQ.wcm.ContentFinder" href="output/CQ.wcm.ContentFinder.html">Content Finder</a> invokes this method
+without a path. Later, when the frame itself will be loaded (or if
+the page is loaded without Content Finder), path will be the
+content path of the current page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>path</code> : String<div class="sub-desc">(optional) The content path</div></li><li><code>config</code> : Object<div class="sub-desc">The config object</div></li><li><code>setup</code> : Function<div class="sub-desc">Callback function to call after sidekick is launched</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-loadToolbar"></a>
+            <b>loadToolbar</b>(&nbsp;<code>CQ.Ext.Toolbar/Object toolbar</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Loads the global editing toolbar with the specified
+CQ.Ext.Toolbar (or a toolbar config object}.
+This ...</div>
+            <div class="long">
+                &lt;static&gt; Loads the global editing toolbar with the specified
+<a ext:cls="CQ.Ext.Toolbar" href="output/CQ.Ext.Toolbar.html">CQ.Ext.Toolbar</a> (or a toolbar config object}.
+This will override the default set of toolbar actions.
+Note that you must create the toolbar in the right
+context (for example: CQ.WCM.getTopWindow().CQ.Ext.Toolbar), if
+you specify a toolbar instead of a config object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>toolbar</code> : CQ.Ext.Toolbar/Object<div class="sub-desc">The toolbar</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-makeEditable"></a>
+            <b>makeEditable</b>(&nbsp;<code>Object config</code>&nbsp;) : CQ.wcm.EditBase            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates an edit component using the specified configuration,
+making a certain area of a content page e...</div>
+            <div class="long">
+                &lt;static&gt; Creates an edit component using the specified configuration,
+making a certain area of a content page editable for authors.
+<p>Config options:
+<ul>
+<li>path {String} The content path</li>
+<li>dialog {String} (optional) The URL to the dialog config</li>
+<li>resourceType {String} (optional) The resource type</li>
+<li>editConfig {Object} (optional) The edit component config</li>
+<li>childConfig {Object} (optional) The defaults for child edit components</li>
+</ul></p>
+<p>Example:
+<pre><code>CQ.WCM.makeEditable({
+    path: <em>"/content/mysite/en/parsys/0001"</em>,
+    dialog: <em>"/apps/mysite/components/text/dialog.inifity.json"</em>,
+    resourceType: <em>"mysite/components/text"</em>,
+    editConfig: {...},
+    childConfig: {...}
+});</code></pre></p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : Object<div class="sub-desc">The configuration</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.wcm.EditBase</code><div class="sub-desc">The edit component (or null if document not ready yet)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-onClipboardChange"></a>
+            <b>onClipboardChange</b>(&nbsp;<code>Function listener</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a listener to track clipboard changes.
+
+add Listeners will
+be called with the following arguments...</div>
+            <div class="long">
+                &lt;static&gt; Adds a listener to track clipboard changes.
+<div class="mdetail-params">
+<strong style="font-weight: normal;"><b>add</b> Listeners will
+be called with the following arguments:</strong><ul>
+<li><code>index</code> : Number<div class="sub-desc">The index at
+which the item was added.</div></li>
+<li><code>o</code> : Object<div class="sub-desc">The item added.
+</div></li>
+<li><code>key</code> : String<div class="sub-desc">The key
+associated with the added item.</div></li>
+</ul></div>
+<div class="mdetail-params">
+<strong style="font-weight: normal;"><b>clear</b> Listeners will
+be called with the following arguments:</strong><ul>
+<li>None.</li>
+</ul></div>
+<div class="mdetail-params">
+<strong style="font-weight: normal;"><b>remove</b> Listeners will
+be called with the following arguments:</strong><ul>
+<li><code>o</code> : Object<div class="sub-desc">The item being
+removed.</div></li>
+<li><code>key</code> : String<div class="sub-desc">(optional) The
+key associated with the added item.</div></li>
+</ul></div>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>listener</code> : Function<div class="sub-desc">The function to register</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-onEditableBeforeRender"></a>
+            <b>onEditableBeforeRender</b>(&nbsp;<code>Function listener</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a listener that is called before the specified edit
+component is rendered.</div>
+            <div class="long">
+                &lt;static&gt; Adds a listener that is called before the specified edit
+component is rendered.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>listener</code> : Function<div class="sub-desc">The function to register</div></li><li><code>scope</code> : Object<div class="sub-desc">This of the listener (optional). If scope is not
+defined listeners will be called with the following arguments:
+<ul><li><code>index</code> : CQ.wcm.EditBase<div class="sub-desc">The edit component</div></li></ul></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-onEditableReady"></a>
+            <b>onEditableReady</b>(&nbsp;<code>Function listener</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a listener that is called as soon as the specified edit
+component is ready.</div>
+            <div class="long">
+                &lt;static&gt; Adds a listener that is called as soon as the specified edit
+component is ready.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>listener</code> : Function<div class="sub-desc">The function to register</div></li><li><code>scope</code> : Object<div class="sub-desc">This of the listener (optional). If scope is not
+defined listeners will be called with the following arguments:
+<ul><li><code>index</code> : <div class="sub-desc">CQ.wcm.EditBase The edit component.</div></li></ul></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-onSelectionChange"></a>
+            <b>onSelectionChange</b>(&nbsp;<code>Function listener</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a listener to track selection changes.
+
+add Listeners will
+be called with the following arguments...</div>
+            <div class="long">
+                &lt;static&gt; Adds a listener to track selection changes.
+<div class="mdetail-params">
+<strong style="font-weight: normal;"><b>add</b> Listeners will
+be called with the following arguments:</strong><ul>
+<li><code>index</code> : Number<div class="sub-desc">The index at
+which the item was added.</div></li>
+<li><code>o</code> : Object<div class="sub-desc">The item added.
+</div></li>
+<li><code>key</code> : String<div class="sub-desc">The key
+associated with the added item.</div></li>
+</ul></div>
+<div class="mdetail-params">
+<strong style="font-weight: normal;"><b>clear</b> Listeners will
+be called with the following arguments:</strong><ul>
+<li>None.</li>
+</ul></div>
+<div class="mdetail-params">
+<strong style="font-weight: normal;"><b>remove</b> Listeners will
+be called with the following arguments:</strong><ul>
+<li><code>o</code> : Object<div class="sub-desc">The item being
+removed.</div></li>
+<li><code>key</code> : String<div class="sub-desc">(optional) The
+key associated with the added item.</div></li>
+</ul></div>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>listener</code> : Function<div class="sub-desc">The function to register</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-paste"></a>
+            <b>paste</b>() : Object[]            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the items in the clipboard as an array for processing.
+For copied items, this method can be ca...</div>
+            <div class="long">
+                &lt;static&gt; Returns the items in the clipboard as an array for processing.
+For copied items, this method can be called multiple times,
+whereas cut items can only be processed once: those must
+be removed after the first paste (see <a ext:cls="CQ.WCM" ext:member="remove" href="output/CQ.WCM.html#remove">remove</a>).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object[]</code><div class="sub-desc">The items</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-registerDialog"></a>
+            <b>registerDialog</b>(&nbsp;<code>CQ.Dialog dlg</code>, <code>String key</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Registers the specified dialog under the specified key.</div>
+            <div class="long">
+                &lt;static&gt; Registers the specified dialog under the specified key.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>dlg</code> : CQ.Dialog<div class="sub-desc">The dialog to register</div></li><li><code>key</code> : String<div class="sub-desc">The key</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-registerDropTargetComponent"></a>
+            <b>registerDropTargetComponent</b>(&nbsp;<code>CQ.Ext.Component dropTargetComp</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Registers the specified Ext component that is neither part of a dialog, nor
+an editable, but should nevertheless work...</div>
+            <div class="long">
+                <p>Registers the specified Ext component that is neither part of a dialog, nor
+an editable, but should nevertheless work as a drop target.</p>
+<p>If a component is used inside a <a ext:cls="CQ.Dialog" href="output/CQ.Dialog.html">CQ.Dialog</a>, you must not use this
+method, as the component is automatically detected as a valid drop target.</p>
+<p>Note that you should always explicitly unregister any component you previously
+registered.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>dropTargetComp</code> : CQ.Ext.Component<div class="sub-desc">The drop target component to register</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-remove"></a>
+            <b>remove</b>(&nbsp;<code>Object item</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes the specified item from both the selection and the clipboard,
+then attempts to remove the item...</div>
+            <div class="long">
+                &lt;static&gt; Removes the specified item from both the selection and the clipboard,
+then attempts to remove the item from the content page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>item</code> : Object<div class="sub-desc">The item to remove</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-select"></a>
+            <b>select</b>(&nbsp;<code>Object/Object[] item</code>, <span class="optional" title="Optional">[<code>Boolean additive</code>]</span>, <span class="optional" title="Optional">[<code>Boolean lock</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds an item to the selection.</div>
+            <div class="long">
+                &lt;static&gt; Adds an item to the selection.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>item</code> : Object/Object[]<div class="sub-desc">The item to select</div></li><li><code>additive</code> : Boolean<div class="sub-desc">(optional) True if the other selected
+items should be kept. Default is false.</div></li><li><code>lock</code> : Boolean<div class="sub-desc">(optional) True if the selection should be
+locked (until the next click in the document).</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The item</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-setMode"></a>
+            <b>setMode</b>(&nbsp;<code>String mode</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Sets the WCM mode. Supported WCM modes are: MODE_EDIT,
+MODE_PREVIEW or MODE_DESIGN.
+Clears the value o...</div>
+            <div class="long">
+                &lt;static&gt; Sets the WCM mode. Supported WCM modes are: <a ext:cls="CQ.WCM" ext:member="MODE_EDIT" href="output/CQ.WCM.html#MODE_EDIT">MODE_EDIT</a>,
+<a ext:cls="CQ.WCM" ext:member="MODE_PREVIEW" href="output/CQ.WCM.html#MODE_PREVIEW">MODE_PREVIEW</a> or <a ext:cls="CQ.WCM" ext:member="MODE_DESIGN" href="output/CQ.WCM.html#MODE_DESIGN">MODE_DESIGN</a>.
+Clears the value of <a ext:cls="CQ.WCM" ext:member="TIMEWARP_COOKIE" href="output/CQ.WCM.html#TIMEWARP_COOKIE">TIMEWARP_COOKIE</a>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>mode</code> : String<div class="sub-desc">The new WCM mode</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The WCM mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-setPreviewMode"></a>
+            <b>setPreviewMode</b>(&nbsp;<code>String mode</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Sets the WCM preview mode. Supported preview modes are:
+<a ext:cls="CQ.WCM" ext:member="PREVIEW_RESPONSIVE" href="output/CQ.WCM.html#PREVIEW_RESPONSIVE">PREVIEW_RESPONSIVE</a> or NULL.</div>
+            <div class="long">
+                &lt;static&gt; Sets the WCM preview mode. Supported preview modes are:
+<a ext:cls="CQ.WCM" ext:member="PREVIEW_RESPONSIVE" href="output/CQ.WCM.html#PREVIEW_RESPONSIVE">PREVIEW_RESPONSIVE</a> or NULL.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>mode</code> : String<div class="sub-desc">The new WCM preview mode</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The WCM preview mode</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-show"></a>
+            <b>show</b>() : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Shows all edit components of the content page (i.e. switching to
+edit mode). If the content page has b...</div>
+            <div class="long">
+                &lt;static&gt; Shows all edit components of the content page (i.e. switching to
+edit mode). If the content page has been loaded in preview mode,
+this method will trigger a reload.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-showLayer"></a>
+            <b>showLayer</b>(&nbsp;<code>String layer</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Shows the specified layer.</div>
+            <div class="long">
+                &lt;static&gt; Shows the specified layer.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>layer</code> : String<div class="sub-desc">The layer to show</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-showPlaceholders"></a>
+            <b>showPlaceholders</b>(&nbsp;<code>Element element</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Shows the placeholders for the specified element.</div>
+            <div class="long">
+                &lt;static&gt; Shows the placeholders for the specified element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>element</code> : Element<div class="sub-desc">The element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-startMakeEditablesQueue"></a>
+            <b>startMakeEditablesQueue</b>() : void            <div class="mdesc">
+                                    <div class="short">Starts the queue mode for makeEditable: all subsequent calls to makeEditable
+will be queued. Only a call to endMakeEd...</div>
+            <div class="long">
+                Starts the queue mode for <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>: all subsequent calls to <a ext:cls="CQ.WCM" ext:member="makeEditable" href="output/CQ.WCM.html#makeEditable">makeEditable</a>
+will be queued. Only a call to <a ext:cls="CQ.WCM" ext:member="endMakeEditablesQueue" href="output/CQ.WCM.html#endMakeEditablesQueue">endMakeEditablesQueue</a> will create the editables.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-toggleEditables"></a>
+            <b>toggleEditables</b>(&nbsp;<code>Boolean show</code>, <code>String filter</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Toggles the editables.</div>
+            <div class="long">
+                Toggles the editables.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>show</code> : Boolean<div class="sub-desc">True to show the editables. False to hide.</div></li><li><code>filter</code> : String<div class="sub-desc">Path to filter the editables.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-unClipboardChange"></a>
+            <b>unClipboardChange</b>(&nbsp;<code>Function listener</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Removes the specified listener from clipboard change listeners.</div>
+            <div class="long">
+                Removes the specified listener from clipboard change listeners.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>listener</code> : Function<div class="sub-desc">The listener to remove</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-unSelectionChange"></a>
+            <b>unSelectionChange</b>(&nbsp;<code>Function listener</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Removes the specified listener from selection change listeners.</div>
+            <div class="long">
+                Removes the specified listener from selection change listeners.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>listener</code> : Function<div class="sub-desc">The listener to remove</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-unloadToolbar"></a>
+            <b>unloadToolbar</b>() : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Restores the default set of toolbar actions to the global
+editing toolbar.</div>
+            <div class="long">
+                &lt;static&gt; Restores the default set of toolbar actions to the global
+editing toolbar.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-unregisterDialog"></a>
+            <b>unregisterDialog</b>(&nbsp;<code>String key</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Unregisters the dialog with the specified key.</div>
+            <div class="long">
+                &lt;static&gt; Unregisters the dialog with the specified key.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>key</code> : String<div class="sub-desc">The key</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-unregisterDropTargetComponent"></a>
+            <b>unregisterDropTargetComponent</b>(&nbsp;<code>CQ.Ext.Component dropTarget</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Unregisters the specified component as an external drop target (= a drop
+target that is neither part of a dialog, nor...</div>
+            <div class="long">
+                <p>Unregisters the specified component as an external drop target (= a drop
+target that is neither part of a dialog, nor an editable).</p>
+<p>If the specified component has not been registered before, the call to this
+method is ignored silently.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>dropTarget</code> : CQ.Ext.Component<div class="sub-desc">The drop target to unregister</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+            </table>
+                <a id="CQ.WCM-events"></a>
+        <h2>Public Events</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Event</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-editableready"></a>
+            <b>editableready</b> : (&nbsp;<code>CQ.wcm.EditBase editable</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires when a single editable is ready.
+Not to be confused with editablesready which is called when
+ALL initial page e...</div>
+            <div class="long">
+                Fires when a single editable is ready.
+<p>Not to be confused with <a ext:cls="CQ.WCM" ext:member="editablesready" href="output/CQ.WCM.html#editablesready">editablesready</a> which is called when
+ALL initial page editables are ready.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>editable</code> : CQ.wcm.EditBase<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.6.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="event-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-editablesready"></a>
+            <b>editablesready</b> : (&nbsp;<code>CQ.WCM this</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires when all the page editables are ready
+Not to be confused with editableready which is called when
+a single edita...</div>
+            <div class="long">
+                Fires when all the page editables are ready
+<p>Not to be confused with <a ext:cls="CQ.WCM" ext:member="editableready" href="output/CQ.WCM.html#editableready">editableready</a> which is called when
+a single editable is ready.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : CQ.WCM<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-pageinfoloaded"></a>
+            <b>pageinfoloaded</b> : (&nbsp;<code>CQ.WCM this</code>, <code>Object pageinfo</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires when page info are loaded</div>
+            <div class="long">
+                Fires when page info are loaded    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : CQ.WCM<div class="sub-desc"></div></li><li><code>pageinfo</code> : Object<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="event-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-sidekickready"></a>
+            <b>sidekickready</b> : (&nbsp;<code>CQ.WCM this</code>, <code>CQ.wcm.Sidekick sidekick</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires when the sidekick is ready</div>
+            <div class="long">
+                Fires when the sidekick is ready    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : CQ.WCM<div class="sub-desc"></div></li><li><code>sidekick</code> : CQ.wcm.Sidekick<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.4.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.WCM-wcmmodechange"></a>
+            <b>wcmmodechange</b> : (&nbsp;<code>CQ.WCM this</code>, <code>Object wcmmode</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires when the wcm mode changed</div>
+            <div class="long">
+                Fires when the wcm mode changed    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : CQ.WCM<div class="sub-desc"></div></li><li><code>wcmmode</code> : Object<div class="sub-desc"></div></li>        </ul>
+    </div>
+                </div>
+                        	        <i>Added in CQ 5.5.</i>
+                        </div>
+        </td>
+        <td class="msource">WCM</td>
+    </tr>
+            </table>
+        
+        </div>

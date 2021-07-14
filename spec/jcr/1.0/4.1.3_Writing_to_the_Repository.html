@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.3 Writing to the Repository (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.3." id="section_4.1.3."></a> 4.1.3 Writing to the Repository
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If the repository is level 2 compliant (see <a href="4.2_Compliance_Levels.html">4.2</a> <i>Compliance Levels</i>) then, having acquired a session, the client can write to the repository by adding or removing nodes and properties or changing the values of properties.
+								</p>
+							
+							
+								<p class="c5">
+									For example, the client can retrieve a node, add a child node to it and add a property to that child node:
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Retrieve a node</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node myNode = (Node) mySession.</b><b>getItem</b><b>("/a/e");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Add a child node</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node newNode = myNode.addNode("n");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Add a property</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>newNode.setProperty("x", "Hello");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Persist the changes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>mySession.save();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									The node <b>myNode</b> has the path <b>/a/e</b>, so the new node will have path <b>/a/e/n</b> and the new property will have the path <b>/a/e/n/x</b> and the string value “<b>Hello</b>”.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

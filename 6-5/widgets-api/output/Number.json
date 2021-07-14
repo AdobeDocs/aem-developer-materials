@@ -1,0 +1,1 @@
+{"name":"Number","doc":"","configs":[],"props":[],"methods":[{"name":"constrain","doc":"Checks whether or not the current number is within a desired range.  If the number is already wit..."}],"events":[]}

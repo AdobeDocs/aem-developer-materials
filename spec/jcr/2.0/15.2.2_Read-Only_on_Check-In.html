@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.2.2 Read-Only on Check-In (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.2.2 Read-Only on Check-In</H3>
+	<P>When a versionable
+	node is checked in, it and its subgraph become <I>read-only.</I> The
+	effect of read-only status on a node depends on the
+	on-parent-version (OPV) status of each of its child items.</P>
+	<P>When a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	becomes read-only:</P>
+	<UL>
+		<LI><P>No property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		can be added, removed or have its value changed <I>unless</I> it
+		has an <I>on-parent-version</I> setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>.</P>
+		<LI><P>No child node of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		can be added or removed <I>unless</I> it has an <I>on-parent-version</I>
+		setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>.</P>
+		<LI><P>Every existing
+		child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes read-only unless it has an <I>on-parent-version</I> setting
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		or has an <I>on-parent-version</I> setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		and is itself versionable.</P>
+	</UL>
+	<P>These restrictions
+	apply to all methods with the exception of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore,
+	VersionManager.restoreByLabel</FONT></FONT> (see §15.7
+	<I>Restoring a Version</I>), <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.merge</FONT></FONT>
+	(see §15.9 <I>Merge</I>) and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.update</FONT></FONT>
+	(see §10.8.3 <I>Updating Nodes Across Workspaces</I>).<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	</FONT></FONT>These operations do not respect
+	checked-in status.</P>
+	<P>Note that <FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT>
+	of a read-only node is possible, as long as its parent is not
+	read-only, since removal is an alteration of the parent node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

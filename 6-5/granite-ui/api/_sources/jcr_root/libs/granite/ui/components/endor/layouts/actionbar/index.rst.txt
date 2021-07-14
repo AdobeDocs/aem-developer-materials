@@ -1,0 +1,34 @@
+
+ActionBar
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/layouts/actionbar
+   :layout:
+   :deprecated:
+
+   ActionBar is a layout that renders each items into a toolbar. Typically each item is an action button.
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Each item has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorLayoutsActionBarItem]
+
+      /**
+       * The alignment of the item.
+       */
+      - align (StringEL) = 'left' < 'left', 'right'
+
+   Example::
+
+      + myactionbar
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/endor/layouts/actionbar"
+        + items
+          + button1
+          + button2
+            + layoutConfig
+              - align = "right"

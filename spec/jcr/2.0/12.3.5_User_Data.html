@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.3.5 User Data (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>12.3.5 User Data</H3>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	may also contain arbitrary string data specific to the session that
+	caused the event. A session may set its current user data using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ObservationManager.setUserData(Sting userData)</FONT></FONT>.</P>
+	<P>Typically a session
+	will set this value in order to provide information about its
+	current state or activity. Any events produced by the session while
+	its user data is set to particular value will carry that value with
+	them. A process responding to these events will then be able to
+	access this information through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getUserData()</FONT></FONT></P>
+	<P>and use the retrieved data to provide
+	additional context for the event, beyond that provided by the
+	identify of the causing session alone.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

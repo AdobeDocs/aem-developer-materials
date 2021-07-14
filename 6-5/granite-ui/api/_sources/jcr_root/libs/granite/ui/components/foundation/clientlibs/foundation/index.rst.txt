@@ -1,0 +1,11 @@
+*********************************
+Granite UI Foundation Client-side
+*********************************
+
+Clientlib: ``granite.ui.foundation``
+
+.. toctree::
+   :titlesonly:
+
+   vocabulary/index
+   js/index

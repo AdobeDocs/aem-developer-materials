@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.22.6 nt:file (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.22.6." id="section_6.7.22.6."></a>6.7.22.6 nt:file
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c12">
+									<i>NodeTypeName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:file</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>Supertypes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:hierarchyNode</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>IsMixin</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>HasOrderableChildNodes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PrimaryItemName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>jcr:content</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>ChildNodeDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:content</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredPrimaryTypes <b>[nt:base]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultPrimaryType <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>COPY</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									SameNameSiblings <b>false</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<i>This node type is optional.</i>
+								</p>
+							
+							
+								<p class="c5">
+									Nodes of this node type may be used to represent files. This node type inherits the child nodes and properties of <b>nt:hierarchyNode</b> and requires a single child node called <b>jcr:content</b>. The <b>jcr:content</b> node is used to hold the actual content of the file. This child node is mandatory, but not auto-created. Its node type will be application-dependent and therefore it must be added by the client. A common approach is to make the <b>jcr:content</b> a node of type <b>nt:resource</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The strategy in separating the <b>nt:file</b> node from its <b>jcr:content</b> child node is to divide hierarchy from content. The idea is to provide a common indicator that indicates a cut off point below which the nodes and properties have a different semantic interpretation than they do above. This type of division is common to many hierarchical information structures, such as file systems.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>jcr:content</b> child node is also designated as the primary child item of its parent.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

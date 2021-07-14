@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.5.2 Adding an Event Listener (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>12.5.2 Adding an Event Listener</H3>
+	<P>An event listener is
+	added to a workspace with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ObservationManager.<BR> addEventListener(EventListener listener,<BR>
+	 int eventTypes, <BR> String
+	absPath,<BR> boolean isDeep, <BR> 
+	 String[] uuid,<BR> String[] nodeTypeName,<BR>
+	 boolean noLocal)</FONT></FONT></P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	object passed is provided by the application. As defined by the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	interface, this class must provide an implementation of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>onEvent</FONT></FONT>
+	method: 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	EventListener.onEvent(EventIterator events)</FONT></FONT></P>
+	<P>When an event occurs
+	that falls within the scope of the listener (see 12.6.3 <I>Event
+	Filtering</I>), the repository calls the <FONT FACE="Courier New, monospace"><FONT SIZE=2>onEvent</FONT></FONT>
+	method invoking the application-specific logic that processes the
+	event.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

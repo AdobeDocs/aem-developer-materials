@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.6.2 Base Version (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.6.2 Base Version</H4>
+	<P>For a given
+	versionable node, one version within its version history is its <I>base
+	version. </I>Conceptually, the base version of a versionable node is
+	that version relative to which the current state of the checked-out
+	versionable node constitutes a versionable change. 
+	</P>
+	<P>On check-in, the newly
+	created version becomes a direct successor of the current base
+	version and then itself becomes the <I>new</I> base version. 
+	</P>
+	<P>Under full versioning,
+	corresponding versionable nodes in different workspaces, while
+	sharing the same version history, may have distinct base versions
+	within that history. This means that when one versionable node is
+	checked-in, its version will become direct successor of a particular
+	existing version but when one of its correspondees is checked in,
+	that new version may become direct successor to a <I>different</I>
+	existing version within the same version history.</P>
+	<P>Under simple
+	versioning the linearity of the version graph guarantees that the
+	current base version is always the most recent version. On check-in
+	it becomes the unique direct predecessor of the newly created
+	version, which then becomes the new base version.</P>
+	<P>Under full versioning,
+	the presence of branches and merges means that the current base
+	version for a given versionable node is not guaranteed to be the
+	most recent version.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

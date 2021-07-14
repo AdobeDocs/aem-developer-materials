@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.3 Versions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.3 Versions</H3>
+	<P>Under simple
+	versioning, a version is represented by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object (see §15.2.1 <I>Version Object</I>) and the attributes of
+	the version are accessible only through methods of that class. 
+	</P>
+	<P>Under full versioning
+	a version is represented by both a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object and a node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	within the version storage (see §3.13.7 <I>Version Storage</I>).
+	The attributes of a version are accessible both through methods of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	class and through the properties of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>.</P>
+	<P>Each version has a
+	name unique within its version history that is assigned
+	automatically on creation of the version. The format of the name is
+	implementation-dependant. Under full versioning this is the name of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node representing the version. Under simple versioning this is
+	simply the name returned when <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getName()</FONT></FONT>
+	is called on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	is a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	However, since under simple versioning a version is not represented
+	by a node, most of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	methods inherited by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	are not required to function. The single exception is <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getName()</FONT></FONT>
+	as mentioned above. Under full versioning the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	methods inherited by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	function as expected on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node.</P>
+	<P>Under full versioning
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	nodes representing the versions within a given history are always
+	created as direct child nodes of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node representing that history.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

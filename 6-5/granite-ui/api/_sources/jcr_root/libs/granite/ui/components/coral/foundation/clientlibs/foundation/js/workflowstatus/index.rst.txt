@@ -1,0 +1,126 @@
+*************************
+foundation-workflowstatus
+*************************
+
+An element to unify the workflow status information.
+It displays the number of workflows on the items with details in tooltip.
+
+
+Markup
+======
+
+
+foundation-workflowstatus
+-------------------------
+
+The root element to represent the workflow status.
+
+Selector Rule::
+
+   foundation-workflowstatus
+
+
+[variant]
+---------
+
+Indicates if there is any error in workflow: ``default`` (default), ``error``.
+
+Selector Rule::
+
+   foundation-workflowstatus[variant]
+
+
+foundation-workflowstatus-item
+------------------------------
+
+The element representing single workflow.
+
+Selector Rule::
+
+   foundation-workflowstatus > foundation-workflowstatus-item
+
+
+[author]
+--------
+
+Represents author name that started the workflow.
+
+Selector Rule::
+
+   foundation-workflowstatus-item[author]
+
+
+[timestamp]
+-----------
+
+The timestamp when the workflow was started in ISO 8601 format. e.g. ``1994-11-05T13:15:30Z``.
+
+Selector Rule::
+
+   foundation-workflowstatus-item[timestamp]
+
+
+<content>
+---------
+
+The content of the element represents the title of the workflow.
+
+Example::
+
+   <foundation-workflowstatus-item>Workflow 123</foundation-workflowstatus-item>
+
+
+DOM API
+=======
+
+``foundation-workflowstatus`` element supports the following interface:
+
+.. code-block:: ts
+
+   interface FoundationWorkflowstatus {
+     /**
+      * Indicates if there is any error in workflow: ``default`` (default), ``error``.
+      */
+     variant: string;
+   }
+
+``foundation-workflowstatus-item`` element supports the following interface:
+
+.. code-block:: ts
+
+   interface FoundationWorkflowstatusItem {
+     /**
+      * The user that started the workflow.
+      */
+     author: string;
+
+     /**
+      * The workflow title.
+      */
+     content: string;
+
+     /**
+      * The timestamp (in ISO 8601) when workflow was started.
+      */
+     timestamp: string;
+   }
+
+Example
+=======
+
+.. code-block:: html
+
+   <foundation-workflowstatus>
+     <foundation-workflowstatus-item author="Administrator" timestamp="2018-03-27T08:12:04Z">
+       Workflow Name
+     </foundation-workflowstatus-item>
+   </foundation-workflowstatus>
+
+   <foundation-workflowstatus variant="error">
+     <foundation-workflowstatus-item author="John Doe" timestamp="2018-03-27T08:12:04Z">
+       Workflow Name #1
+     </foundation-workflowstatus-item>
+     <foundation-workflowstatus-item author="Administrator" timestamp="2018-02-20T09:10:00Z">
+       Workflow Name #2
+     </foundation-workflowstatus-item>
+   </foundation-workflowstatus>

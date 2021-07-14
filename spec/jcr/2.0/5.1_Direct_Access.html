@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.1 Direct Access (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>5.1 Direct Access</H2>
+	<P><I>Direct access</I>
+	to an item means being able to retrieve it by absolute and relative
+	path and, in the case of nodes, by identifier.</P>
+	<P>Let <FONT FACE="Courier New, monospace"><FONT SIZE=2>p(x)</FONT></FONT>
+	return the normalized absolute path of item <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>p(x,
+	y)</FONT></FONT> return the normalized relative path
+	from item <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>
+	to item <FONT FACE="Courier New, monospace"><FONT SIZE=2>y</FONT></FONT>
+	and, <FONT FACE="Courier New, monospace"><FONT SIZE=2>id(x)</FONT></FONT>
+	return the identifier of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>.</P>
+	<P>For any session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	the statements below must be either all true or all false. If they
+	are all true then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	if they are all false then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	does not have direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getItem(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.itemExists(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	</UL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getNode(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.nodeExists(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getNodeByIdentifier(id(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the primary item of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getPrimaryItem()</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the root node of the workspace then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getRootNode()</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getNode(p(M,N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.hasNode(p(M,N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	</UL>
+	<P>For any session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>,
+	the statements below must be either all true or all false. If they
+	are all true then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>,
+	if they are all false then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	does not have direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If there is no
+		node at the path <FONT FACE="Courier New, monospace"><FONT SIZE=2>p(P)</FONT></FONT>
+		to which S has read access then</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getItem(p(P))</FONT></FONT>
+			returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+			and</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.itemExists(p(P))</FONT></FONT>
+			returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		</UL>
+	</UL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getProperty(p(P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.propertyExists(p(P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has read access to the value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		(see §9.1 <I>Permissions</I>).</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		is the primary item of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getPrimaryItem()</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getProperty(p(M,P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.
+				</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.hasProperty(p(M,P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

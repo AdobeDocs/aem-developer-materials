@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.10.1 Merge Algorithm (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.10.1." id="section_8.2.10.1."></a>8.2.10.1 Merge Algorithm
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The above declarative description can also be expressed in pseudo-code as follows:
+								</p>
+							
+							
+								<p class="c5">
+									let <b>ws'</b> be the workspace against which the <b>merge</b> is done.<br>
+									let <b>bestEffort</b> be the flag passed to <b>merge</b>.<br>
+									let <b>failedset</b> be a set of UUIDs, initially empty.<br>
+									let <b>startnode</b> be the node on which <b>merge</b> was called.<br>
+									<b>domerge(startnode)</b>.<br>
+									return the nodes with the UUIDs in <b>failedset</b>.
+								</p>
+							
+							
+								<p class="c5">
+									<b>domerge(n)</b><br>
+									let <b>n'</b> be the corresponding node of <b>n</b> in <b>ws'</b>.<br>
+									if no such <b>n'</b> <b>doleave(n)</b>.<br>
+									else if <b>n</b> is not versionable <b>doupdate(n, n')</b>.<br>
+									else if <b>n'</b> is not versionable <b>doleave(n)</b>.<br>
+									let <b>v</b> be base version of <b>n</b>.<br>
+									let <b>v'</b> be base version of <b>n'</b>.<br>
+									if <b>v'</b> is a successor of <b>v</b> and<br>
+									<b>n</b> is not checked-in <b>doupdate(n, n')</b>.<br>
+									else if <b>v</b> is equal to or a predecessor of <b>v'</b> <b>doleave(n)</b>.<br>
+									else <b>dofail(n, v')</b>.
+								</p>
+							
+							
+								<p class="c5">
+									<b>dofail(n, v')<br></b> if <b>bestEffort</b> = <b>false</b> throw <b>MergeException</b>.<b><br></b> else add UUID of <b>v'</b> (if not already present) to the<br>
+									<b>jcr:mergeFailed</b> property of <b>n</b>,<br>
+									add UUID of <b>n</b> to <b>failedset</b>,<br>
+									<b>doleave(n)</b>.
+								</p>
+							
+							
+								<p class="c5">
+									<b>doLeave(n)<br></b> for each child node <b>c</b> of <b>n domerge(c)</b>.<br>
+									<br>
+									<b>doupdate(n, n')</b><br>
+									replace set of properties of <b>n</b> with those of <b>n'</b>.<br>
+									let <b>S</b> be the set of child nodes of <b>n</b>.<br>
+									let <b>S'</b> be the set of child nodes of <b>n'</b>.<br>
+									judging by the name of the child node:<br>
+									let <b>C</b> be the set of nodes in <b>S</b> and in <b>S'</b><br>
+									let <b>D</b> be the set of nodes in <b>S</b> but not in <b>S'</b>.<br>
+									let <b>D'</b> be the set of nodes in <b>S'</b> but not in <b>S</b>.<br>
+									remove from <b>n</b> all child nodes in <b>D</b>.<br>
+									for each child node of <b>n'</b> in <b>D'</b> copy it (and its subtree) to <b>n<br></b> as a new child node (if an incoming node has the same<br>
+									UUID as a node already existing in this workspace,<br>
+									the already existing node is removed).<br>
+									for each child node <b>m</b> of <b>n</b> in <b>C</b> <b>domerge(m)</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

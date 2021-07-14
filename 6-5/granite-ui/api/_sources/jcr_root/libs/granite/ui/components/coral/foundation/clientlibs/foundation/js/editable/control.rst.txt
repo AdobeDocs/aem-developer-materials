@@ -1,0 +1,45 @@
+***************************
+foundation-editable-control
+***************************
+
+``foundation-editable-control`` is a control for :doc:`../../vocabulary/editable`.
+
+
+Markup
+======
+
+
+.foundation-editable-control
+----------------------------
+
+Indicates the control.
+
+Upon activation or Enter keydown, the editor of the element is shown.
+It is thus RECOMMENDED to also specify the ``tabindex`` attribute to make it keyboard navigable.
+
+Selector Rule::
+
+   .foundation-editable.foundation-editable-control
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <span
+     class="foundation-editable foundation-editable-control"
+     tabindex="0"
+     data-foundation-editable-editor="foundation.text">My editable text. Click to edit.</span>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-editable" {
+     rankdir=BT;
+     "foundation-editable-control" -> "foundation-editable" [label="controls", weight=8];
+     "foundation.text" -> "foundation-editable" [label="provides editor to"];
+   }

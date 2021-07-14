@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.4.9 From PATH To (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.6.4.9 From PATH To</H4>
+	<P><B>STRING</B>: Each
+	path is converted to standard form according to the current local
+	namespace mapping (see §3.4.3.1 <I>Standard Form</I>).</P>
+	<P><B>BINARY</B>: The
+	path is converted to a string, as described in §3.6.4.2 <I>From
+	BINARY To</I>, and then encoded using UTF-8.</P>
+	<P><B>NAME</B>: If the
+	path is a relative path of length one it is converted directly,
+	otherwise a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>URI</B>: If the
+	path is root-based absolute (that is, it has a leading “<FONT FACE="Courier New, monospace"><FONT SIZE=2>/</FONT></FONT>”,
+	see §3.4.4.1.1 <I>Root-Based Absolute Paths</I>), it is directly
+	converted into a URI-reference. If the path is identifier-based
+	absolute (§3.4.4.1.2 <I>Identifier-Based Absolute Paths</I>) or
+	relative, it becomes a URI-reference consisting of “<FONT FACE="Courier New, monospace"><FONT SIZE=2>./</FONT></FONT>”
+	followed by the path in standard form. For example, the path
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>foo:bar/foo:baz</FONT></FONT>
+	becomes the URI-reference <FONT FACE="Courier New, monospace"><FONT SIZE=2>./foo:bar/foo:baz</FONT></FONT>.
+	The addition of the leading “<FONT FACE="Courier New, monospace"><FONT SIZE=2>./</FONT></FONT>”
+	is done to ensure that a colon-delimited prefix is not interpreted
+	as a URI scheme name. If the path includes characters that are
+	illegal within a URI-reference (such as any non-ASCII character),
+	the UTF-8 byte representations of these characters are
+	percent-encoded, as described in RFC 3986<SUP>6</SUP>.</P>
+	<P><B>All Others</B>: A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

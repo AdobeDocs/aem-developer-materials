@@ -1,0 +1,106 @@
+
+LazyStep
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/wizard/lazystep
+
+   The component to render the lazy loaded step.
+   Use this component when branching of the steps is needed that is usually depending on the user input in the preceding steps.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:WizardLazyStep]
+
+      /**
+       * The wizard step title.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * ``false`` to skip validation for this particular step. Otherwise the validation is performed when step change is about to occur.
+       */
+      - validation (Boolean) = 'true'
+
+      /**
+       * The action component (e.g. button, hyperlink) to go to the previous step.
+       */
+      + prev
+
+      /**
+       * The action component (e.g. button, hyperlink) to go to the next step.
+       */
+      + next
+
+      /**
+       * The actual content of the step.
+       */
+      + content mandatory
+
+   Example
+
+   Given the example below, only "Step 1" is rendered. Only when the next button is clicked, the new steps ("Step2" and "Step 3") are loaded and added lazily::
+
+      + /apps/mywizard
+        - sling:resourceType = "granite/ui/components/coral/foundation/wizard"
+        + items
+          + step1
+            - jcr:title = "Step 1"
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+            + items
+              + field1
+                - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+                - name = "field1"
+            + parentConfig
+              + prev
+                - sling:resourceType = "granite/ui/components/coral/foundation/anchorbutton"
+                - granite:class = "foundation-wizard-control"
+                - text = "Cancel"
+                + granite:data
+                  - foundation-wizard-control-action = "cancel"
+              + next
+                - sling:resourceType = "granite/ui/components/coral/foundation/button"
+                - granite:class = "foundation-wizard-control"
+                - text = "Next"
+                + granite:data
+                  - foundation-wizard-control-action = "next"
+                  - foundation-wizard-control-src = '${granite:uritemplate("/apps/mylazysteps.html{?field1}")}'
+
+      + /apps/mylazysteps
+        - sling:resourceType = "granite/ui/components/coral/foundation/container"
+        + items
+          + step2
+            - jcr:title = "Step 2"
+            - sling:resourceType = "granite/ui/components/coral/foundation/wizard/lazystep"
+            + prev
+              - sling:resourceType = "granite/ui/components/coral/foundation/button"
+              - granite:class = "foundation-wizard-control"
+              - text = "Back"
+              + granite:data
+                - foundation-wizard-control-action = "prev"
+            + next
+              - sling:resourceType = "granite/ui/components/coral/foundation/button"
+              - granite:class = "foundation-wizard-control"
+              - text = "Next"
+              + granite:data
+                - foundation-wizard-control-action = "next"
+            + content
+              - sling:resourceType = "granite/ui/components/coral/foundation/container"
+          + step3
+            - jcr:title = "Step 3"
+            - sling:resourceType = "granite/ui/components/coral/foundation/wizard/lazystep"
+            + prev
+              - sling:resourceType = "granite/ui/components/coral/foundation/button"
+              - granite:class = "foundation-wizard-control"
+              - text = "Back"
+              + granite:data
+                - foundation-wizard-control-action = "back"
+            + next
+              - sling:resourceType = "granite/ui/components/coral/foundation/button"
+              - granite:class = "foundation-wizard-control"
+              - text = "Next"
+              + granite:data
+                - foundation-wizard-control-action = "next"
+            + content
+              - sling:resourceType = "granite/ui/components/coral/foundation/container"

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.12 The Lock Object (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.12." id="section_8.4.12."></a>8.4.12 The Lock Object
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Lock</b> object represents a lock on a particular node:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.lock.<br>
+										<b>Lock</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLockOwner()</b>
+									</p>
+									<p class="c5">
+										Returns the user ID of the user who owns this lock. This is the value of the <b>jcr:lockOwner</b> property of the lock-holding node. It is also the value returned by <b>Session.getUserID</b> at the time that the lock was placed. The lock owner's identity is only provided for informational purposes. It does not govern who can perform an <b>unlock</b> or make changes to the locked nodes; that depends entirely upon who the token holder is.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isDeep()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this is a deep lock; <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNode()</b>
+									</p>
+									<p class="c5">
+										Returns the lock holding node. Note that <b>N.getLock().getNode()</b> (where <b>N</b> is a locked node) will only return <b>N</b> if <b>N</b> is the lock holder. If <b>N</b> is in the subtree of the lock holder, <b>H</b>, then this call will return <b>H</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLockToken()</b>
+									</p>
+									<p class="c5">
+										May return the lock token for this lock. If this <b>Session</b> holds the lock token for this lock, then this method will return that lock token. If this <b>Session</b> does not hold the applicable lock token then this method will return <b>null</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isLive()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this <b>Lock</b> object represents a lock that is currently in effect. If this lock has been unlocked either explicitly or due to an implementation-specific limitation (like a timeout) then it returns <b>false</b>. Note that this method is intended for those cases where one is holding a <b>Lock</b> Java object and wants to find out whether the lock (the repository-level entity that is attached to the lockable node) that this object originally represented still exists. For example, a timeout or explicit <b>unlock</b> will remove a lock from a node but the <b>Lock</b> Java object corresponding to that lock may still exist, and in that case its <b>isLive</b> method will return <b>false</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isSessionScoped()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this is a session-scoped lock. Returns <b>false</b> if this is an open-scoped lock.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>refresh()</b>
+									</p>
+									<p class="c5">
+										If this lock's time-to-live is governed by a timer, this method resets that timer so that the lock does not timeout and expire. If this lock's time-to-live is not governed by a timer, then this method has no effect.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if this <b>Session</b> does not hold the correct lock token for this lock.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

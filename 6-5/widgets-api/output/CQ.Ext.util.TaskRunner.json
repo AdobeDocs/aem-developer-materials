@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.util.TaskRunner","doc":"Provides the ability to execute one or more arbitrary tasks in a multithreaded\nmanner.  Generally...","configs":[],"props":[],"methods":[{"name":"start","doc":"Starts a new task."},{"name":"stop","doc":"Stops an existing running task."},{"name":"stopAll","doc":"Stops all tasks that are currently running."}],"events":[]}

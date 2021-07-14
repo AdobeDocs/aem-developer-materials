@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.2.5 Multi-value Properties (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.2.5." id="section_6.4.2.5."></a>6.4.2.5 Multi-value Properties
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If a multi-value property <b>P</b> is encountered, then its treatment depends on the context within which the document view is being used:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>Export</b>: In the context of export, the repository may either ignore the multi-value property or serialize it as an attribute whose value is an XML Schema list type<sup><a class="sdfootnoteanc" name="sdfootnote4anc" href="#sdfootnote4sym" id="sdfootnote4anc"><sup>4</sup></a></sup> (i.e., a whitespace-delimited list of strings). If the latter approach is taken then:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							Each value in the property is converted to a string according to standard conversion, see <a href="6.2.6_Property_Type_Conversion.html">6.2.6</a> <i>Property Type Conversion</i>. If the multi-value property contains no values, then it is serialized as an empty string.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							All literal whitespace within each string is escaped, as well as any characters that should not be included as literals in any case, see <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							The final attribute value is constructed by concatenating the resulting strings, with the addition of the space delimiter, into a single string. The order of concatenation must be the same as the order in which the values appear in the <b>Value</b> array returned by <b>Property.getValues</b>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Furthermore, if multi-value property serialization is supported, then a mechanism must be adopted whereby upon re-import the distinction between multi- and single- value properties is not lost, see <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Note that this escaping of space literals does not apply to the value of <b>jcr:xmltext/jcr:xmlcharacters</b> when it is converted to XML text. In that case only the standard XML entity escaping is required, regardless of whether multi-value property serialization is supported (see 6.4.2.3 XML Text and <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>).
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					<b>XPath</b>: In the context of an XPath query, the value array of property <b>P</b> is mapped to a pseudo list type attribute value. We call it a <i>pseudo</i> list type because space delimiters are not used and consequently space literals within individual values are not escaped, nor are the five special characters (<b>&amp;</b>, <b>&lt;</b>, <b>&gt;</b> ,<b>'</b> and <b>"</b>) that would normally be escaped using predefined entity references. This is possible because the XML stream in the XPath context is virtual and therefore it need never be actually serialized. However, tests against multi-value properties in XPath <i>using general comparison</i> operators act as they would if the multi-value property <i>were</i> a list-type attribute, except that spaces and any of the five special characters occurring within value literals in the XPath statement are not escaped (see <a href="6.6.4.10_Searching_Multi-value_Properties.html">6.6.4.10</a> <i>Searching Multi-value Properties</i>).
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

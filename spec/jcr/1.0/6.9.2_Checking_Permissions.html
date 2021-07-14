@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.9.2 Checking Permissions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.9.2." id="section_6.9.2."></a>6.9.2 Checking Permissions
+		</h4>
+		<p class="c5">
+			Permission checking is done through the method <b>Session.checkPermission</b>:
+		</p>
+		
+			
+				
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Session</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>checkPermission(String absPath,<br>
+										String actions)</b>
+									</p>
+									<p class="c5">
+										Determines whether this <b>Session</b> has permission to perform the specified <b>actions</b> at the specified <b>absPath</b>. This method quietly returns if the access request is permitted, or throws a suitable <b>java.security.AccessControlException</b> otherwise.
+									</p>
+									<p class="c5">
+										The actions parameter is a comma separated list of action strings. The following action strings are defined:
+									</p>
+									<p class="c5">
+										<b>add_node<br></b>If <b>checkPermission(path, "add_node")</b> returns quietly, then this <b>Session</b> has permission to add a node at <b>path</b>, otherwise permission is denied.
+									</p>
+									<p class="c5">
+										<b>set_property<br></b>If <b>checkPermission(path, "set_property")</b> returns quietly, then this <b>Session</b> has permission to set (add or change) a property at <b>path</b>, otherwise permission is denied.
+									</p>
+									<p class="c5">
+										<b>remove<br></b>If <b>checkPermission(path, "remove")</b> returns quietly, then this <b>Session</b> has permission to remove an item at <b>path</b>, otherwise permission is denied.
+									</p>
+									<p class="c5">
+										<b>read<br></b>If <b>checkPermission(path, "read")</b> returns quietly, then this <b>Session</b> has permission to retrieve (and read the value of, in the case of a property) an item at <b>path</b>, otherwise permission is denied.
+									</p>
+									<p class="c5">
+										When more than one action is specified in the <b>actions</b> parameter, this method will only return quietly if this <b>Session</b> has permission to perform <i>all</i> of the listed actions at the specified <b>path</b>.
+									</p>
+									<p class="c5">
+										The information returned through this method will only reflect access control policies and not other restrictions that may exist. For example, even though <b>checkPermission</b> may indicate that a particular <b>Session</b> may add a property at <b>/A/B/C</b>, the node type of the node at <b>/A/B</b> may prevent the addition of a property called <b>C</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

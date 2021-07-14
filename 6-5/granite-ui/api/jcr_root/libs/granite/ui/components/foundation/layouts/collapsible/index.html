@@ -1,0 +1,181 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Collapsible &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../" src="../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../search.html" />
+    <link rel="next" title="ColumnView" href="../columnview/index.html" />
+    <link rel="prev" title="CardView" href="../cardview/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../columnview/index.html" title="ColumnView"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../cardview/index.html" title="CardView"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../server.html" >Granite UI Foundation Server-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U">Layouts</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="collapsible">
+<h1>Collapsible<a class="headerlink" href="#collapsible" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/foundation/layouts/collapsible">
+<dt>
+<code class="descname">/libs/granite/ui/components/foundation/layouts/collapsible</code></dt>
+<dd><p>The collapsible layout.</p>
+<p>It has the following content structure at the layout resource:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:LayoutsCollapsible</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">variant</span><span class="propertytype gnd-name">string</span><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">block</li></ol></dt>
+<dd><p>The variant of the collapsible.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemCounter</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The selector to the parent element of the items. The count of the items is displayed as the badge in the header.
+If the value is empty string, then the direct children are used.
+IF the property is not specified at all, the badge is not shown.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>It has the following content structure at the main resource:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:LayoutsCollapsibleMain</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">jcr:title</span><span class="propertytype gnd-name">string</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">mandatory</dt><dd class="gnd-attributes-value"></dd><dt class="gnd-attributes-key gnd-attributes-key--flag">i18n</dt><dd class="gnd-attributes-value"></dd></dl><p>The collapsible title.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">subtitle</span><span class="propertytype gnd-name">string</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">i18n</dt><dd class="gnd-attributes-value"></dd></dl><p>The subtitle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>The body of the collapsible is specified using <a class="reference internal" href="../../../../docs/server/datasource.html#itemdatasource"><span class="std std-ref">ItemDataSource</span></a>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">mycollapsible</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+  <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;My Collapsible&quot;</span>
+  <span class="o">+</span> <span class="n">layout</span>
+    <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/layouts/collapsible&quot;</span>
+  <span class="o">+</span> <span class="n">items</span>
+    <span class="o">+</span> <span class="n">item1</span>
+    <span class="o">+</span> <span class="n">item2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../cardview/index.html"
+                        title="previous chapter">CardView</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../columnview/index.html"
+                        title="next chapter">ColumnView</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../_sources/jcr_root/libs/granite/ui/components/foundation/layouts/collapsible/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../columnview/index.html" title="ColumnView"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../cardview/index.html" title="CardView"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../server.html" >Granite UI Foundation Server-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" >Layouts</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

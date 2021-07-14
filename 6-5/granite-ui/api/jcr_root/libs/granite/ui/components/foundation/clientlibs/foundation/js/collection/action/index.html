@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-collection-action &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation.link" href="action/foundation.link.html" />
+    <link rel="prev" title="foundation-validation-bind" href="../../validation/bind.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="action/foundation.link.html" title="foundation.link"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../validation/bind.html" title="foundation-validation-bind"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../../index.html" accesskey="U">Granite UI Foundation Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-collection-action">
+<h1>foundation-collection-action<a class="headerlink" href="#foundation-collection-action" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-collection-action</span></code> is a control to perform an certain action related to <a class="reference internal" href="../../../vocabulary/selections.html"><span class="doc">foundation-selections</span></a>.</p>
+<div class="section" id="id1">
+<h2>.foundation-collection-action<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Indicates the control.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">action</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-collection-action">
+<h2>[data-foundation-collection-action]<a class="headerlink" href="#data-foundation-collection-action" title="Permalink to this headline">¶</a></h2>
+<p>The JSON config to configure the behaviour of <code class="docutils literal notranslate"><span class="pre">.foundation-collection-action</span></code>, which satisfies <code class="docutils literal notranslate"><span class="pre">FoundationCollectionActionConfig</span></code> interface.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">action</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">action</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activation-behavior">
+<h2>Activation Behavior<a class="headerlink" href="#activation-behavior" title="Permalink to this headline">¶</a></h2>
+<p>Upon activation, the control will execute the action as specified at action property of <code class="docutils literal notranslate"><span class="pre">data-foundation-collection-action</span></code> attribute.</p>
+<p>The selections and collection passed to the action handler are based on the following priority:</p>
+<ol class="arabic simple">
+<li>If the control has internal data named <code class="docutils literal notranslate"><span class="pre">foundationCollectionItem</span></code> of type <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> (jQuery: <code class="docutils literal notranslate"><span class="pre">item</span> <span class="pre">=</span> <span class="pre">control.data(&quot;foundationCollectionItem&quot;)</span></code>), the selection is that item, while the collection is the <code class="docutils literal notranslate"><span class="pre">.foundation-collection</span></code> of that item.</li>
+<li>If the control has <code class="docutils literal notranslate"><span class="pre">target</span></code> property of <code class="docutils literal notranslate"><span class="pre">data-foundation-collection-action</span></code> attribute, the collection is from that property, while the selections are from the <code class="docutils literal notranslate"><span class="pre">.foundation-selections-item</span></code> of that collection.</li>
+<li>If the control is a descendant of <code class="docutils literal notranslate"><span class="pre">.foundation-collection-item</span></code>, the selection is that item, while the collection is the <code class="docutils literal notranslate"><span class="pre">.foundation-collection</span></code> of that item.</li>
+</ol>
+</div>
+<div class="section" id="showing-and-hiding-behavior">
+<h2>Showing and Hiding Behavior<a class="headerlink" href="#showing-and-hiding-behavior" title="Permalink to this headline">¶</a></h2>
+<p>When the control is not a descendant of <code class="docutils literal notranslate"><span class="pre">.foundation-collection-item</span></code>, the control is shown if all the following conditions are true (<code class="docutils literal notranslate"><span class="pre">AND</span></code> logic); otherwise it’s hidden:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">activeCount</span></code> property of <code class="docutils literal notranslate"><span class="pre">data-foundation-collection-action</span></code> attribute is set and its value is evaluated to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">activeSelectionCount</span></code> property of <code class="docutils literal notranslate"><span class="pre">data-foundation-collection-action</span></code> attribute is set and its value is evaluated to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ignoreRel</span></code> property of <code class="docutils literal notranslate"><span class="pre">data-foundation-collection-action</span></code> attribute is evaluated to <code class="docutils literal notranslate"><span class="pre">false</span></code> and the control matches the common relationships of all selected items. i.e. <code class="docutils literal notranslate"><span class="pre">isCommon()</span></code> is evaluated to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</li>
+</ol>
+<div class="section" id="iscommon-algorithm">
+<h3>isCommon() Algorithm<a class="headerlink" href="#iscommon-algorithm" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Returns &lt;code&gt;true&lt;/code&gt; if the given control matches the common relationships of all selected items; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param control The jQuery object wrapping &lt;code&gt;.foundation-collection-action&lt;/code&gt;.</span>
+<span class="cm"> * @param collection The jQuery object wrapping &lt;code&gt;.foundation-collection&lt;/code&gt; specified by &lt;code&gt;target&lt;/code&gt; property of &lt;code&gt;data-foundation-collection-action&lt;/code&gt; attribute.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">isCommon</span><span class="p">(</span><span class="nx">control</span>: <span class="kt">JQuery</span><span class="p">,</span> <span class="nx">collection</span>: <span class="kt">JQuery</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">rels</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.foundation-selections-item&quot;</span><span class="p">).</span><span class="nx">toArray</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">qa</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">item</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.foundation-collection-quickactions&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">rel</span> <span class="o">=</span> <span class="p">(</span><span class="nx">qa</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;foundationCollectionQuickactionsRel&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">).</span><span class="nx">trim</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">rel</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">rel</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\s+/</span><span class="p">)</span> <span class="o">:</span> <span class="p">[];</span>
+  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">noRelAtAll</span> <span class="o">=</span> <span class="nx">rels</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span> <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">noRelAtAll</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">rels</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">rel</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="nx">control</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">rel</span><span class="p">);</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="foundationcollectionactionconfig">
+<h2>FoundationCollectionActionConfig<a class="headerlink" href="#foundationcollectionactionconfig" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollectionActionConfig</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The selector to the &lt;code&gt;.foundation-collection&lt;/code&gt;. This is optional and used when the control is placed outside the collection.</span>
+<span class="cm">   */</span>
+  <span class="nx">target</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The optional property to show or hide the control according to how many &lt;code&gt;.foundation-collection-item&lt;/code&gt; in the collection.</span>
+<span class="cm">   *</span>
+<span class="cm">   * 0: Show when there is no item at all; hide otherwise</span>
+<span class="cm">   * &quot;&gt;0&quot;: Show when there is at least one item; hide otherwise</span>
+<span class="cm">   */</span>
+  <span class="nx">activeCount?</span>: <span class="kt">any</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The optional property to show or hide the control according to how many &lt;code&gt;.foundation-selections-item&lt;/code&gt; in the collection.</span>
+<span class="cm">   *</span>
+<span class="cm">   * &quot;none&quot;: Show when there is no selection at all; hide otherwise</span>
+<span class="cm">   * &quot;single&quot;: Show when there is exactly one selection; hide otherwise</span>
+<span class="cm">   * &quot;multiple&quot;: Show when there is one or more selections; hide otherwise</span>
+<span class="cm">   */</span>
+  <span class="nx">activeSelectionCount?</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The action to be performed when the control is activated. See Action Registration section.</span>
+<span class="cm">   * If this property is not specified, no action will be performed.</span>
+<span class="cm">   */</span>
+  <span class="nx">action?</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The optional property to skip the processing of &lt;code&gt;isCommon()&lt;/code&gt; algorithm.</span>
+<span class="cm">   * &lt;code&gt;true&lt;/code&gt; to skip, &lt;code&gt;false&lt;/code&gt; (default) otherwise.</span>
+<span class="cm">   */</span>
+  <span class="nx">ignoreRel</span>: <span class="kt">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The general purpose data to be used by the action handler. Consult specific action handler for details.</span>
+<span class="cm">   */</span>
+  <span class="nx">data?</span>: <span class="kt">any</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="action-registration">
+<span id="foundation-collection-action-action-legacy"></span><h2>Action Registration<a class="headerlink" href="#action-registration" title="Permalink to this headline">¶</a></h2>
+<p>The action of <code class="docutils literal notranslate"><span class="pre">.foundation-collection-action</span></code> can be registered to the <a class="reference internal" href="../../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.collection.action.action</span></code> as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollectionActionActionAdapter</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The name of the action. It is recommended that it is namespaced using dot notation according to application that register the action.</span>
+<span class="cm">   * &quot;foundation&quot; namespace is reserved for Granite UI.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @example</span>
+<span class="cm">   * foundation.link</span>
+<span class="cm">   */</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The handler to actually perform the action.</span>
+<span class="cm">   * If &lt;code&gt;false&lt;/code&gt; is returned, the next action in the chain will be evaluated. Otherwise the chain stops.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param name The name of the action</span>
+<span class="cm">   * @param el The element of the &lt;code&gt;.foundation-collection-action&lt;/code&gt;</span>
+<span class="cm">   * @param config The value of &lt;code&gt;[data-foundation-collection-action]&lt;/code&gt;</span>
+<span class="cm">   * @param collection The &lt;code&gt;.foundation-collection&lt;/code&gt; associated to the action</span>
+<span class="cm">   * @param selections The array of &lt;code&gt;.foundation-selections-item&lt;/code&gt; elements of the collection</span>
+<span class="cm">   */</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">el</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">config</span>: <span class="kt">FoundationCollectionActionConfig</span><span class="p">,</span> <span class="nx">collection</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">selections</span>: <span class="kt">Element</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A chain of registered actions is created using LIFO (last in, first out) algorithm. The action handler will be called when the name matches. If false is returned by the handler, the next action in the chain will be evaluated. Otherwise the chain stops.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.collection.action.action&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;foundation.link&quot;</span><span class="p">,</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">el</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">collection</span><span class="p">,</span> <span class="nx">selections</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">URITemplate</span><span class="p">.</span><span class="nx">expand</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">href</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">item</span><span class="o">:</span> <span class="nx">selections</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="nx">item</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;foundation-collection-item-id&quot;</span><span class="p">);</span> <span class="p">})</span>
+    <span class="p">});</span>
+
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../../_images/graphviz-a93119cff3e0e39bf032e53b0f6ffa13f3178137.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-collection&quot; {
+  rankdir=BT;
+  &quot;foundation-selections&quot; -&gt; &quot;foundation-collection&quot; [label=&quot;extends&quot;, weight=8];
+  &quot;foundation-collection-action&quot; -&gt; &quot;foundation-selections&quot; [label=&quot;reacts to&quot;];
+  &quot;foundation.link&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+  &quot;foundation.pushstate&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-collection-action</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-collection-action</a></li>
+<li><a class="reference internal" href="#data-foundation-collection-action">[data-foundation-collection-action]</a></li>
+<li><a class="reference internal" href="#activation-behavior">Activation Behavior</a></li>
+<li><a class="reference internal" href="#showing-and-hiding-behavior">Showing and Hiding Behavior</a><ul>
+<li><a class="reference internal" href="#iscommon-algorithm">isCommon() Algorithm</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#foundationcollectionactionconfig">FoundationCollectionActionConfig</a></li>
+<li><a class="reference internal" href="#action-registration">Action Registration</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../../validation/bind.html"
+                        title="previous chapter">foundation-validation-bind</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="action/foundation.link.html"
+                        title="next chapter">foundation.link</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/collection/action/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="action/foundation.link.html" title="foundation.link"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../validation/bind.html" title="foundation-validation-bind"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../../index.html" >Granite UI Foundation Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

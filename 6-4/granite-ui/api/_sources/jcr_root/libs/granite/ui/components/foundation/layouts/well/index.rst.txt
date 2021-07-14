@@ -1,0 +1,20 @@
+
+Well
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/well
+   :layout:
+
+   The well layout.
+
+   The items of the well are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mywell
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/well"
+        + items
+          + item1
+          + item2

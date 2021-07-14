@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 21 Transactions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>21 Transactions</H1>
+	<P>A repository may
+	support <I>transactions</I>. 
+	</P>
+	<P>Whether a particular
+	implementation supports transactions can be determined by querying
+	the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_TRANSACTIONS_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support for transactions (see <I>Repository Descriptors</I>).</P>
+	<P>A repository that
+	supports transactions must adhere to the Java Transaction API (JTA)
+	specification<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote23anc" HREF="#sdfootnote23sym"><SUP>23</SUP></A></SUP>.</P>
+	<P>The actual methods
+	used to control transaction boundaries are not defined by this
+	specification. For example, there are no <I>begin</I>, <I>commit</I>
+	or <I>rollback</I> methods in JCR API. These methods are defined by
+	the JTA specification.</P>
+	<P>The JTA provides for
+	two general approaches to transactions, container managed
+	transactions and user managed transactions. In the first case,
+	container managed transactions, the transaction management is taken
+	care of by the application server and it is entirely transparent to
+	the application using the API. The JTA interfaces
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.transaction.TransactionManager</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.transaction.Transaction</FONT></FONT>
+	are the relevant ones in this context (though the client, as
+	mentioned, will never have a need to use these).</P>
+	<P>In the second case,
+	user managed transactions, the application using the API may choose
+	to control transaction boundaries from within the application. In
+	this case the relevant interface is
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.transaction.UserTransaction</FONT></FONT>.
+	This is the interface that provides the methods <FONT FACE="Courier New, monospace"><FONT SIZE=2>begin</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>commit</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>rollback</FONT></FONT>
+	and so forth. Note that behind the scenes the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.transaction.TransactionManager</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.transaction.Transaction</FONT></FONT>
+	are still employed, but again, the client does not deal with these.</P>
+	<P>A content repository
+	implementation must support both of these approaches if it supports
+	transactions.</P>
+<a name=""></a>	<H2 >
+	21.1Container Managed Transactions: Sample Request Flow</H2>
+	<P><SPAN ID="Frame21" DIR="LTR" >
+		<P ALIGN=CENTER >
+		<FONT FACE="Arial Unicode MS, sans-serif">Transactional<FONT FACE="Courier New, monospace"><FONT SIZE=2><BR>Application</FONT></FONT></FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<SPAN ID="Frame20" DIR="LTR" >
+		<P ALIGN=CENTER >
+		<FONT FACE="Arial Unicode MS, sans-serif">Application<BR>Server</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<SPAN ID="Frame1" DIR="LTR" >
+		<P ALIGN=CENTER >
+		<FONT FACE="Arial Unicode MS, sans-serif">Transaction<BR>Manager</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<SPAN ID="Frame19" DIR="LTR" >
+		<P ALIGN=CENTER >
+		<FONT FACE="Arial Unicode MS, sans-serif">XARepository</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<SPAN ID="Frame17" DIR="LTR" >
+		<P ALIGN=CENTER >
+		<FONT FACE="Arial Unicode MS, sans-serif">XASession</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<SPAN ID="Frame18" DIR="LTR" >
+		<P ALIGN=CENTER >
+		<FONT FACE="Arial Unicode MS, sans-serif">XAResource</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_m56b9e288.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m56b9e288.gif" ALIGN=LEFT HSPACE=14><BR CLEAR=LEFT>
+	<IMG SRC="jcr-spec_html_m56b9e288.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m56b9e288.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m56b9e288.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m56b9e288.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_2c90ff11.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame16" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >begin</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m7bdceca7.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame15" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >getSession</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_1a83eba0.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame14" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >login</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_2c90ff11.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_1a83eba0.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame13" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >new</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<SPAN ID="Frame12" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >new</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_6fb3411e.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_6dd64a19.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame11" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >getXAResource</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_2c90ff11.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame10" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >enlistResource</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_6dd64a19.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame9" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >start</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m5007cd92.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame8" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >application performs operations</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_m5007cd92.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame7" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >logout</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_2c90ff11.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame6" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >delistResource</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_6dd64a19.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame4" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >end</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_2c90ff11.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame5" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >commit</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_6dd64a19.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame3" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >prepare</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_6dd64a19.gif" ALIGN=LEFT HSPACE=14>
+	<SPAN ID="Frame2" DIR="LTR" >
+		<P>
+		<FONT SIZE=1 >commit</FONT></P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+		<P><BR><BR>
+		</P>
+	
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_m696e4930.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_5cea72e2.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_5cea72e2.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_733aaa7.gif" ALIGN=LEFT HSPACE=14>
+	<IMG SRC="jcr-spec_html_410fb51a.gif" ALIGN=LEFT HSPACE=14><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+<a name="21.2 User Managed Transactions: Sample Code"></a>	<H2>21.2 User Managed Transactions: Sample Code</H2>
+	<P>
+	<FONT FACE="Courier New, monospace">// Get user transaction (for
+	example, through JNDI)</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">UserTransaction utx = ...</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Get a node</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Node n = ...</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Start a user transaction</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">utx.begin();</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Do some work</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">n.setProperty(&quot;myapp:title&quot;,
+	&quot;A Tale of Two Cities&quot;)</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">n.save();</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Do some more work</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">n.setProperty(&quot;myapp:author&quot;,
+	&quot;Charles Dickens&quot;)</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">n.save();</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Commit the user transaction</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">utx.commit();</FONT></P>
+<a name="21.3 Save vs. Commit"></a>	<H2>21.3 Save vs. Commit</H2>
+	<P>Throughout this
+	specification we often mention the distinction between <I>transient</I>
+	and <I>persistent</I> levels. The persistent level refers to the
+	(one or more) workspaces that make up the actual content storage of
+	the repository. The transient level refers to in-memory storage
+	associated with a particular <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object.</P>
+	<P>In these discussions
+	we usually assume that operations occur outside the context of
+	transactions; it is assumed that <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	and other workspace-altering methods immediately effect changes to
+	the persistent layer, causing those changes to be made visible to
+	other sessions.</P>
+	<P><I>This is not the
+	case, however, once transactions are introduced</I>. Within a
+	transaction, changes made by <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	(or other, workspace-direct, methods) are transactionalized and are
+	only persisted and published (made visible to other sessions), upon
+	commit of the transaction. A rollback will, conversely, revert the
+	effects of any saves or workspace-direct methods called within the
+	transaction.</P>
+	<P>Note, however, that
+	changes made in the transient storage are <I>not</I> recorded by a
+	transaction. This means that a rollback will not revert changes made
+	to the transient storage of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	After a rollback the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object state will still contain any pending changes that were
+	present before the rollback.</P>
+<a name="21.4 Single Session Across Multiple Transactions"></a>	<H2>21.4 Single Session Across Multiple Transactions</H2>
+	<P>Because modifications
+	in the transient layer are not transactionalized, the possibility
+	exists for some implementations to allow a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	to be shared across transactions. This possibility arises because in
+	JTA, an <FONT FACE="Courier New, monospace"><FONT SIZE=2>XAResource</FONT></FONT>
+	may be successively associated with different global transactions
+	and in many implementations the natural mapping will be to make the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	implement the <FONT FACE="Courier New, monospace"><FONT SIZE=2>XAResource</FONT></FONT>.
+	The following code snippet illustrates how an <FONT FACE="Courier New, monospace"><FONT SIZE=2>XAResource</FONT></FONT>
+	may be shared across two global transactions:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">//
+	Associate the resource (our Session) with a global<BR>// transaction
+	xid1<BR>res.start(xid1, TMNOFLAGS);<BR><BR>// Do something with res,
+	on behalf of xid1<BR>// ...</FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><BR>//
+	Suspend work on this transaction<BR>res.end(xid1, TMSUSPEND);<BR><BR>//
+	Associate (the same!) resource with another<BR>// global transaction
+	xid2<BR>res.start(xid2, TMNOFLAGS);<BR><BR>// Do something with res,
+	on behalf of xid2<BR>// ...<BR><BR>// End work<BR>res.end(xid2,
+	TMSUCCESS);<BR><BR>// Resume work with former
+	transaction<BR>res.start(xid1, TMRESUME);<BR><BR>// Commit work
+	recorded when associated with xid2<BR>res.commit(xid2, true);<BR></FONT></FONT><BR><BR>
+	</P>
+	<P><FONT FACE="Courier New, monospace"><BR></FONT>In
+	cases where the <FONT FACE="Courier New, monospace"><FONT SIZE=2>XAResource</FONT></FONT>
+	corresponds to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	(that is, probably most implementations), items that have been
+	obtained in the context of <FONT FACE="Courier New, monospace"><FONT SIZE=2>xid1</FONT></FONT>
+	would still be valid when the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is effectively associated with <FONT FACE="Courier New, monospace"><FONT SIZE=2>xid2</FONT></FONT>.
+	In other words, all transactions working on the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	would share the transient items obtained through that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.</P>
+	<P>In those
+	implementations that adopt a copy-on-read approach to transient
+	storage (see §10.11.9 <I>Seeing Changes Made by Other Sessions</I>)
+	this will mean that the a session is disassociated from a global
+	transaction. This is however, outside the scope of this
+	specification.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

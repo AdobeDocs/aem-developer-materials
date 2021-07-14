@@ -1,0 +1,50 @@
+
+Footer
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/footer
+   :deprecated:
+
+   Footer is the component to render the Endor's footer.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorFooter]
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The path to the resource that defines the copyright and the items.
+       * If this property is specified, the copyright and the items are taken from this resource instead.
+       */
+      - srcPath (String)
+
+      /**
+       * The copyright notice.
+       */
+      - copyright (String) = '\u00A9 2014 Adobe. All Rights Reserved' i18n
+
+      /**
+       * The items of the footer. Typically a row of hyperlinks.
+       */
+      + items
+
+   Example::
+
+      + footer
+        - sling:resourceType = "granite/ui/components/endor/footer"
+        - srcPath="cq/core/content/footer"
+
+      + footer
+        - sling:resourceType = "granite/ui/components/endor/footer"
+        - copyright = "\u00A9 2014 Adobe. All Rights Reserved"
+        + items
+          + help
+            - sling:resourceType = "granite/ui/components/foundation/hyperlink"
+            - href = "http://www.adobe.com/go/experiencecloud_help"
+            - text = "Help"

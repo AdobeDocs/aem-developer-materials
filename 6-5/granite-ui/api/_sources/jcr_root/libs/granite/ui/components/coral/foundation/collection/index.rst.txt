@@ -1,0 +1,11 @@
+Collection
+==========
+
+The components related to ``foundation-collection``.
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

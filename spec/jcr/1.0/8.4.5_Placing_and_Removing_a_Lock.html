@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.5 Placing and Removing a Lock (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.5." id="section_8.4.5."></a> 8.4.5 Placing and Removing a Lock
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When <b>Node.lock</b> is performed on a <b>mix:lockable</b> node, the properties defined in that node type are automatically created and set as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>jcr:lockOwner</b> is set to the user ID of the user who set the lock (this is the value returned by <b>Session.getUserID</b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>jcr:lockIsDeep</b> is set to reflect whether the lock is deep or not.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When <b>Node.unlock</b> is performed on a locked <b>mix:lockable</b> node, by a user with the correct lock token (see below) these two properties are removed. The identity of the holder of the lock token does not matter (it does not have to be the lock owner). Anyone with the correct token can remove the lock.
+								</p>
+							
+							
+								<p class="c5">
+									Additionally, the content repository may give permission to some users to unlock locks for which they do not have the lock token. Typically such “lock-superuser” capability is intended to facilitate administrational clean-up of orphaned open-scoped locks.
+								</p>
+							
+							
+								<p class="c5">
+									An attempt to call <b>lock</b> or <b>unlock</b> on a node that is not <b>mix:lockable</b> will throw a <b>UnsupportedRepositoryOperationException</b>.
+								</p>
+							
+							
+								<p class="c5">
+									An attempt to lock an already locked node or unlock an already unlocked node will throw a <b>LockException</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

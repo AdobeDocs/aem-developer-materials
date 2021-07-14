@@ -1,0 +1,90 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CUI.rte.plugins.SpellCheckerPlugin-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CUI.rte.plugins.SpellCheckerPlugin-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CUI.rte.plugins.SpellCheckerPlugin-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CUI.rte.plugins.SpellCheckerPlugin-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CUI.rte.plugins.SpellCheckerPlugin"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner">SpellCheckerPlugin</pre></div>
+                <h1>Class&nbsp;CUI.rte.plugins.SpellCheckerPlugin</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CUI.rte.plugins</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/SpellCheckerPlugin.js" target="_blank">SpellCheckerPlugin.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">SpellCheckerPlugin</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">CUI.rte.plugins.Plugin</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    <p>This class implements the spellchecker functionality as a plugin.</p>
+<p>The plugin ID is "<b>spellcheck</b>".</p>
+<p><b>Features</b></p>
+<ul>
+<li><b>checktext</b> - adds a button to spellcheck the entire text</li>
+</ul>	        	        <br><i>Added in CQ 5.3.</i>
+	                </div>
+        
+        <div class="hr"></div>
+                <a id="CUI.rte.plugins.SpellCheckerPlugin-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.plugins.SpellCheckerPlugin-invalidClass"></a>
+            <b>invalidClass</b> : String            <div class="mdesc">
+                                        CSS class that is used to mark wrongly spelled words; defaults to null                                    </div>
+        </td>
+        <td class="msource">SpellCheckerPlugin</td>
+    </tr>
+        <tr class="config-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.plugins.SpellCheckerPlugin-invalidStyle"></a>
+            <b>invalidStyle</b> : String            <div class="mdesc">
+                                        Style definition that is used to mark wrongly spelled words; defaults to "background-color: #ffffaa;"                                    </div>
+        </td>
+        <td class="msource">SpellCheckerPlugin</td>
+    </tr>
+        <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.plugins.SpellCheckerPlugin-method"></a>
+            <b>method</b> : String            <div class="mdesc">
+                                        The HTTP method to be used for spellchecking requests. Defaults to "POST"                                    </div>
+        </td>
+        <td class="msource">SpellCheckerPlugin</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.plugins.SpellCheckerPlugin-spellcheckerUrl"></a>
+            <b>spellcheckerUrl</b> : String            <div class="mdesc">
+                                    <div class="short">URL that is used for requesting the spellchecker. The specified URL is automatically being externalized (the webapp c...</div>
+            <div class="long">
+                URL that is used for requesting the spellchecker. The specified URL is automatically being externalized (the webapp context path is prepended if necessary). Defaults to "/bin/spellcheck"            </div>
+                                    </div>
+        </td>
+        <td class="msource">SpellCheckerPlugin</td>
+    </tr>
+            </table>
+                <a id="CUI.rte.plugins.SpellCheckerPlugin-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CUI.rte.plugins.SpellCheckerPlugin-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="CUI.rte.plugins.SpellCheckerPlugin-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

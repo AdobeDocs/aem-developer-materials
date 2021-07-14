@@ -1,0 +1,126 @@
+
+Checkbox
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/checkbox
+   :supertype: /libs/granite/ui/components/foundation/form/field
+
+   A checkbox component.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormCheckbox]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The submit value of the field when it is checked.
+       *
+       * It is RECOMMENDED that this property is set.
+       */
+      - value (String)
+
+      /**
+       * The submit value of the field when it is unchecked.
+       *
+       * It is RECOMMENDED that this property is set.
+       */
+      - uncheckedValue (String)
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * Indicates if the checkbox is checked.
+       * Providing ``checked`` property (either ``true`` or ``false``) will imply ``ignoreData`` to be ``true``,
+       * and will set the checked state based on this property.
+       */
+      - checked (Boolean)
+
+      /**
+       * If ``false``, the checked state is based on matching the form values by ``name`` and ``value`` properties.
+       * Otherwise, the form values are ignored, and the checked state is based on ``defaultChecked`` property specified.
+       */
+      - ignoreData (Boolean)
+
+      /**
+       * ``true`` to pre-check this field, ``false`` otherwise.
+       */
+      - defaultChecked (Boolean)
+
+      /**
+       * The text of the checkbox.
+       */
+      - text (String) i18n
+
+      /**
+       * ``true`` to automatically submit the form when the checkbox is checked/unchecked.
+       *
+       * Pressing "enter" in the text field will submit the form (when everything is configured properly). This is the equivalence of that for checkbox.
+       */
+      - autosubmit (Boolean)
+
+      /**
+       * The description of the component.
+       */
+      - fieldDescription (String) i18n
+
+      /**
+       * The position of the tooltip relative to the field. Only used when fieldDescription is set.
+       */
+      - tooltipPosition (String) = 'right' < 'left', 'right', 'top', 'bottom'
+
+      /**
+       * Renders the read-only markup as well.
+       */
+      - renderReadOnly (Boolean)
+
+      /**
+       * Shows read-only version even when it is unchecked.
+       */
+      - showEmptyInReadOnly (Boolean)

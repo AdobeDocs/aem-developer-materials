@@ -1,0 +1,280 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-form &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../" src="../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-field-autosubmit" href="../field/autosubmit.html" />
+    <link rel="prev" title="foundation-editable-control" href="../editable/control.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../field/autosubmit.html" title="foundation-field-autosubmit"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../editable/control.html" title="foundation-editable-control"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U">Granite UI Foundation Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-form">
+<h1>foundation-form<a class="headerlink" href="#foundation-form" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> is an enhancement of &lt;form&gt;.</p>
+<div class="section" id="id1">
+<h2>.foundation-form<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>A marker class to host enhancement related to form.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-ajax">
+<h2>[data-foundation-form-ajax]<a class="headerlink" href="#data-foundation-form-ajax" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the form is to be submitted using ajax asynchronously, instead of standard synchronous behavior.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-output-replace">
+<h2>[data-foundation-form-output-replace]<a class="headerlink" href="#data-foundation-form-output-replace" title="Permalink to this headline">¶</a></h2>
+<p>The selector to an element where the form submit output will be displayed. If the element is <code class="docutils literal notranslate"><span class="pre">.foundation-content</span></code>, <code class="docutils literal notranslate"><span class="pre">FoundationContent.replace(html,</span> <span class="pre">historyConfig)</span></code> will be used; otherwise the output will replace the element content by mean of <code class="docutils literal notranslate"><span class="pre">element.innerHTML</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="n">replace</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-output-push">
+<h2>[data-foundation-form-output-push]<a class="headerlink" href="#data-foundation-form-output-push" title="Permalink to this headline">¶</a></h2>
+<p>The selector to an element where the form submit output will be displayed. If the element is <code class="docutils literal notranslate"><span class="pre">.foundation-content</span></code>, <code class="docutils literal notranslate"><span class="pre">FoundationContent.push(html,</span> <span class="pre">historyConfig)</span></code> will be used; otherwise the output will replace the element content by mean of <code class="docutils literal notranslate"><span class="pre">element.innerHTML</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="n">push</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-history">
+<h2>[data-foundation-form-history]<a class="headerlink" href="#data-foundation-form-history" title="Permalink to this headline">¶</a></h2>
+<p>The JSON config to configure the browser history when calling <code class="docutils literal notranslate"><span class="pre">FoundationContent.replace(html,</span> <span class="pre">historyConfig)</span></code> or <code class="docutils literal notranslate"><span class="pre">FoundationContent.push(html,</span> <span class="pre">historyConfig)</span></code> by mean of <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-replace]</span></code> or <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-push]</span></code> respectively.</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormHistoryConfig</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The URL to be passed to historyConfig param of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   * This is optional and take precedence over &lt;code&gt;useFormUrl&lt;/code&gt; property.</span>
+<span class="cm">   */</span>
+  <span class="nx">url?</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Indicates that the form&#39;s action attribute is used as the URL to be passed to historyConfig param</span>
+<span class="cm">   * of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">useFormUrl?</span>: <span class="kt">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The title to be passed to historyConfig param of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">title?</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The data to be passed to historyConfig param of &lt;code&gt;FoundationContent.replace(html, historyConfig)&lt;/code&gt; or &lt;code&gt;FoundationContent.push(html, historyConfig)&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">data?</span>: <span class="kt">any</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The behavior when History API is not available.</span>
+<span class="cm">   *</span>
+<span class="cm">   * WARNING: This config is no longer supported, as IE9 is no longer supported, hence History API is always supported.</span>
+<span class="cm">   *</span>
+<span class="cm">   * ignore (default): Ignores history manipulation.</span>
+<span class="cm">   * disableAjax: Equivalent to setting &lt;code&gt;[data-foundation-form-ajax]&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">noSupportBehaviour?</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">history</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-redirect">
+<h2>[data-foundation-form-redirect]<a class="headerlink" href="#data-foundation-form-redirect" title="Permalink to this headline">¶</a></h2>
+<p>The URL to redirect the form to.</p>
+<p>If this attribute is specified, instead of processing the content from the submission response, the URL will be used to fetch a new content if it is a success response. The new content is processed according to output processing attributes, namely <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-replace]</span></code> or <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-push]</span></code> accordingly.</p>
+</div>
+<div class="section" id="data-foundation-form-ui">
+<h2>[data-foundation-form-ui]<a class="headerlink" href="#data-foundation-form-ui" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">none</span></code> to suppress certain UI behavior. Otherwise <code class="docutils literal notranslate"><span class="pre">foundation-form</span></code> will show an error dialog during error response. This attribute is applicable only when <code class="docutils literal notranslate"><span class="pre">data-foundation-form-ajax</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ui</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-form-loadingmask">
+<h2>[data-foundation-form-loadingmask]<a class="headerlink" href="#data-foundation-form-loadingmask" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">true</span></code> to show a mask during form submission. Otherwise no mask is shown at all.</p>
+<p>The mask is used to cover the element specified at <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-replace]</span></code>, or <code class="docutils literal notranslate"><span class="pre">[data-foundation-form-output-push]</span></code>, or the whole screen.</p>
+<p>This attribute is applicable only when <code class="docutils literal notranslate"><span class="pre">data-foundation-form-ajax</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">ajax</span><span class="p">][</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">loadingmask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-form-submitted-event">
+<h2>foundation-form-submitted event<a class="headerlink" href="#foundation-form-submitted-event" title="Permalink to this headline">¶</a></h2>
+<p>This event is triggered after the submission of the form is completely finished—i.e. when no further action is performed by <code class="docutils literal notranslate"><span class="pre">foundation-form</span></code>. The event has the following parameters:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationFormSubmittedEvent</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @param status &lt;code&gt;true&lt;/code&gt; when the form is successfully submitted; &lt;code&gt;false&lt;/code&gt; otherwise</span>
+<span class="cm">   * @param xhr The normalized jQuery XHR object</span>
+<span class="cm">   */</span>
+  <span class="p">(</span><span class="nx">status</span>: <span class="kt">boolean</span><span class="p">,</span> <span class="nx">xhr</span>: <span class="kt">JQueryXHR</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-form</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">form.foundation-form</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationForm</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationForm</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Submits the form asynchronously.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Note that this is merely a convenience method to submit a form using Ajax.</span>
+<span class="cm">   * The behaviour of foundation-form is not performed by this method.</span>
+<span class="cm">   * Please submit the form by triggering the submit event normally to achieve that.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @returns The promise of the response</span>
+<span class="cm">   */</span>
+  <span class="nx">submitAsync</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Resets the form. This method is intended to also reset &lt;code&gt;foundation-field&lt;/code&gt; in addition to standard form controls.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param skipNative Skips the native form reset method (HTMLFormElement#reset)</span>
+<span class="cm">   */</span>
+  <span class="nx">reset</span><span class="p">(</span><span class="nx">skipNative?</span>: <span class="kt">boolean</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-form</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-form</a></li>
+<li><a class="reference internal" href="#data-foundation-form-ajax">[data-foundation-form-ajax]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-output-replace">[data-foundation-form-output-replace]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-output-push">[data-foundation-form-output-push]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-history">[data-foundation-form-history]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-redirect">[data-foundation-form-redirect]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-ui">[data-foundation-form-ui]</a></li>
+<li><a class="reference internal" href="#data-foundation-form-loadingmask">[data-foundation-form-loadingmask]</a></li>
+<li><a class="reference internal" href="#foundation-form-submitted-event">foundation-form-submitted event</a></li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../editable/control.html"
+                        title="previous chapter">foundation-editable-control</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../field/autosubmit.html"
+                        title="next chapter">foundation-field-autosubmit</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/form/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../field/autosubmit.html" title="foundation-field-autosubmit"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../editable/control.html" title="foundation-editable-control"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" >Granite UI Foundation Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

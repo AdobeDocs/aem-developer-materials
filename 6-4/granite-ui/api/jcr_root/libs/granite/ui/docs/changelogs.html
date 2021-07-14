@@ -1,0 +1,254 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Notable Changes &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Granite UI: The Hypermedia-driven UI" href="index.html" />
+    <link rel="prev" title="Welcome to Granite UI’s documentation!" href="../index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Granite UI: The Hypermedia-driven UI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to Granite UI’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="notable-changes">
+<h1>Notable Changes<a class="headerlink" href="#notable-changes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="select-rt-support-for-forceignorefreshness">
+<h2>Select RT: Support for <code class="docutils literal notranslate"><span class="pre">forceIgnoreFreshness</span></code><a class="headerlink" href="#select-rt-support-for-forceignorefreshness" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/form/select/index.html#/libs/granite/ui/components/coral/foundation/form/select" title="/libs/granite/ui/components/coral/foundation/form/select"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Select</span> <span class="pre">RT</span></code></a> now supports <code class="docutils literal notranslate"><span class="pre">forceIgnoreFreshness</span></code> property.</p>
+<p>It is useful when you have a newly introduced field in the form, and there is a need to specifically set the default selected item.</p>
+</div>
+<div class="section" id="foundation-workflowstatus">
+<h2>foundation-workflowstatus<a class="headerlink" href="#foundation-workflowstatus" title="Permalink to this headline">¶</a></h2>
+<p>We introduce <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/workflowstatus/index.html"><span class="doc">foundation-workflowstatus</span></a> to standardize the presentation of workflows in the UI.</p>
+</div>
+<div class="section" id="includeclientlibs-rt-support-rendercondition">
+<h2>IncludeClientlibs RT: Support rendercondition<a class="headerlink" href="#includeclientlibs-rt-support-rendercondition" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/includeclientlibs/index.html#/libs/granite/ui/components/coral/foundation/includeclientlibs" title="/libs/granite/ui/components/coral/foundation/includeclientlibs"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">IncludeClientlibs</span> <span class="pre">RT</span></code></a> now supports <a class="reference internal" href="server/rendercondition.html"><span class="doc">render condition</span></a>.</p>
+</div>
+<div class="section" id="datepicker-rt-support-typehint-property">
+<h2>DatePicker RT: Support <code class="docutils literal notranslate"><span class="pre">typeHint</span></code> property<a class="headerlink" href="#datepicker-rt-support-typehint-property" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/form/datepicker/index.html#/libs/granite/ui/components/coral/foundation/form/datepicker" title="/libs/granite/ui/components/coral/foundation/form/datepicker"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">DatePicker</span> <span class="pre">RT</span></code></a> now exposes <code class="docutils literal notranslate"><span class="pre">typeHint</span></code> property, which is defaulted to <code class="docutils literal notranslate"><span class="pre">Date</span></code>.</p>
+<p>There is a request to save the field’s value as string. This is mainly to support the Classic UI behaviour.
+However, it is still recommended to save the value as native date in JCR as the best practice.</p>
+</div>
+<div class="section" id="foundation-toggleable-control-support-caching-attribute">
+<h2>foundation-toggleable-control: Support Caching Attribute<a class="headerlink" href="#foundation-toggleable-control-support-caching-attribute" title="Permalink to this headline">¶</a></h2>
+<p>We introduce <code class="docutils literal notranslate"><span class="pre">[data-foundation-toggleable-control-cache]</span></code> to <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/toggleable/control.html"><span class="doc">foundation-toggleable-control</span></a>
+to configure if the <code class="docutils literal notranslate"><span class="pre">.foundation-toggleable</span></code> content loaded at <code class="docutils literal notranslate"><span class="pre">[data-foundation-toggleable-control-src]</span></code> should be cached.</p>
+<p>The primary purpose of this attribute is to disable caching of the loaded content that is dynamic and thus needs to be always loaded freshly.</p>
+</div>
+<div class="section" id="accessibility">
+<h2>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">¶</a></h2>
+<p>We significantly improve our UI’s accessibility by applying ARIA attributes,
+such as <code class="docutils literal notranslate"><span class="pre">aria-label</span></code>, <code class="docutils literal notranslate"><span class="pre">aria-labelledby</span></code>, <code class="docutils literal notranslate"><span class="pre">role=&quot;region&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">role=&quot;main&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">role=&quot;heading&quot;</span></code> to our components.</p>
+<p>We are continuing our investment to make our UI accessible.</p>
+</div>
+<div class="section" id="form-default-value-handling">
+<h2>Form Default Value Handling<a class="headerlink" href="#form-default-value-handling" title="Permalink to this headline">¶</a></h2>
+<p>We review the handling of default values of the form fields.</p>
+<p><a class="reference internal" href="../components/coral/foundation/form/index.html#/libs/granite/ui/components/coral/foundation/form" title="/libs/granite/ui/components/coral/foundation/form"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Form</span> <span class="pre">RT</span></code></a> now supports <code class="docutils literal notranslate"><span class="pre">nameNotFoundMode</span></code> property
+to handle the scenario when the FormData doesn’t have an entry of a certain name.</p>
+<p>This mechanic uses <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/FormData.html">FormData.class</a> that we also introduce.
+To understand deeper about this mode, please consult <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/FormData.NameNotFoundMode.html">FormData.NameNotFoundMode</a>.</p>
+</div>
+<div class="section" id="formdata-class">
+<h2>FormData.class<a class="headerlink" href="#formdata-class" title="Permalink to this headline">¶</a></h2>
+<p>We introduce <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/FormData.html">FormData.class</a> to better handle the form values.</p>
+<p>The key feature of this class is <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/FormData.NameNotFoundMode.html">FormData.NameNotFoundMode</a>,
+which is a mode on how to handle the scenario when the FormData doesn’t have an entry of a certain name.</p>
+</div>
+<div class="section" id="renderconditionhelper-class">
+<h2>RenderConditionHelper.class<a class="headerlink" href="#renderconditionhelper-class" title="Permalink to this headline">¶</a></h2>
+<p>We introduce <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/rendercondition/RenderConditionHelper.html">RenderConditionHelper.class</a>
+to allow getting render condition without <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/ComponentHelper.html">ComponentHelper</a>.</p>
+</div>
+<div class="section" id="button-and-link-rts-support-for-command-and-actionconfigname">
+<h2>Button and Link RTs: Support for <code class="docutils literal notranslate"><span class="pre">command</span></code> and <code class="docutils literal notranslate"><span class="pre">actionConfigName</span></code><a class="headerlink" href="#button-and-link-rts-support-for-command-and-actionconfigname" title="Permalink to this headline">¶</a></h2>
+<p>Add <code class="docutils literal notranslate"><span class="pre">command</span></code> and <code class="docutils literal notranslate"><span class="pre">actionConfigName</span></code> properties to the following components:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../components/coral/foundation/button/index.html#/libs/granite/ui/components/coral/foundation/button" title="/libs/granite/ui/components/coral/foundation/button"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/button</span></code></a></li>
+<li><a class="reference internal" href="../components/coral/foundation/anchorbutton/index.html#/libs/granite/ui/components/coral/foundation/anchorbutton" title="/libs/granite/ui/components/coral/foundation/anchorbutton"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/anchorbutton</span></code></a></li>
+<li><a class="reference internal" href="../components/coral/foundation/collection/action/index.html#/libs/granite/ui/components/coral/foundation/collection/action" title="/libs/granite/ui/components/coral/foundation/collection/action"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/collection/action</span></code></a></li>
+<li><a class="reference internal" href="../components/coral/foundation/collection/actionlink/index.html#/libs/granite/ui/components/coral/foundation/collection/actionlink" title="/libs/granite/ui/components/coral/foundation/collection/actionlink"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/collection/actionlink</span></code></a></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">command</span></code> is the property to specify the keyboard shortcut of the action,
+while <code class="docutils literal notranslate"><span class="pre">actionConfigName</span></code> property is to specify the path to the central configuration of the action.</p>
+</div>
+<div class="section" id="multifield-rt-support-composite-and-nested-multifields">
+<h2>Multifield RT: Support composite and nested multifields<a class="headerlink" href="#multifield-rt-support-composite-and-nested-multifields" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/form/multifield/index.html#/libs/granite/ui/components/coral/foundation/form/multifield" title="/libs/granite/ui/components/coral/foundation/form/multifield"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Multifield</span> <span class="pre">RT</span></code></a> now supports <code class="docutils literal notranslate"><span class="pre">composite</span></code> property
+to handle the form content value as composite.</p>
+<p>Composite multifield supports nesting another multifield (composite or not). However, non-composite one doesn’t support nesting.</p>
+</div>
+<div class="section" id="numberfield-rt-support-for-any-as-step">
+<h2>NumberField RT: Support for <code class="docutils literal notranslate"><span class="pre">any</span></code> as step<a class="headerlink" href="#numberfield-rt-support-for-any-as-step" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/form/numberfield/index.html#/libs/granite/ui/components/coral/foundation/form/numberfield" title="/libs/granite/ui/components/coral/foundation/form/numberfield"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">NumberField</span> <span class="pre">RT</span></code></a> now supports <code class="docutils literal notranslate"><span class="pre">any</span></code> value for <code class="docutils literal notranslate"><span class="pre">step</span></code> property.
+<code class="docutils literal notranslate"><span class="pre">step</span></code> property only allowed number before.</p>
+</div>
+<div class="section" id="select-rt-support-render-conditions-in-the-items">
+<h2>Select RT: Support render conditions in the items<a class="headerlink" href="#select-rt-support-render-conditions-in-the-items" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/form/select/index.html#/libs/granite/ui/components/coral/foundation/form/select" title="/libs/granite/ui/components/coral/foundation/form/select"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Select</span> <span class="pre">RT</span></code></a> now supports
+<a class="reference internal" href="server/rendercondition.html"><span class="doc">render condition</span></a> in the items.</p>
+</div>
+<div class="section" id="include-rt-support-passing-option-class">
+<h2>Include RT: Support passing Option class<a class="headerlink" href="#include-rt-support-passing-option-class" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../components/coral/foundation/include/index.html#/libs/granite/ui/components/coral/foundation/include" title="/libs/granite/ui/components/coral/foundation/include"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">Include</span> <span class="pre">RT</span></code></a> was only passing Tag class as the param to during include.
+There was an enhancement in the past to be able to pass a more generic Option class.
+So, we update the implementation to pass the option instead of just the tag.</p>
+<p>Before:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">cmp</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="n">targetResource</span><span class="o">,</span> <span class="n">cfg</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;resourceType&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">),</span> <span class="n">cmp</span><span class="o">.</span><span class="na">consumeTag</span><span class="o">());</span>
+</pre></div>
+</div>
+<p>After:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">cmp</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="n">targetResource</span><span class="o">,</span> <span class="n">cfg</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;resourceType&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">),</span> <span class="n">cmp</span><span class="o">.</span><span class="na">getOptions</span><span class="o">());</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foundation-form-manage-multiple-submissions">
+<h2>foundation-form: Manage multiple submissions<a class="headerlink" href="#foundation-form-manage-multiple-submissions" title="Permalink to this headline">¶</a></h2>
+<p>At times, there can be a scenario where there are two consecutive form submissions in the quick succession.
+We improve <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/form/index.html"><span class="doc">foundation-form</span></a> by queeing up the submissions serially.</p>
+</div>
+<div class="section" id="foundation-command">
+<h2>foundation-command<a class="headerlink" href="#foundation-command" title="Permalink to this headline">¶</a></h2>
+<p>We improve keyboard support in our UI, hence we introduce <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/vocabulary/command.html"><span class="doc">foundation-command</span></a>
+vocabulary to standardize it.</p>
+</div>
+<div class="section" id="foundation-time">
+<h2>foundation-time<a class="headerlink" href="#foundation-time" title="Permalink to this headline">¶</a></h2>
+<p>In the UI we often display a date for the purpose of presentation.
+Before, we mixed relative and absolute formatting, often having arbitrary formats that hard to internationalize.
+Thus, we introduce <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/time/index.html"><span class="doc">foundation-time</span></a> to standardize the presentation.</p>
+</div>
+<div class="section" id="foundation-preference">
+<h2>foundation-preference<a class="headerlink" href="#foundation-preference" title="Permalink to this headline">¶</a></h2>
+<p>We introduce <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/preference/index.html"><span class="doc">foundation-preference</span></a> to read/write user preferences.</p>
+</div>
+<div class="section" id="foundation-form-response-ui-success-foundation-collection-reload">
+<h2>foundation.form.response.ui.success: foundation.collection.reload<a class="headerlink" href="#foundation-form-response-ui-success-foundation-collection-reload" title="Permalink to this headline">¶</a></h2>
+<p>We add a new form response success handler named <a class="reference internal" href="../components/coral/foundation/clientlibs/foundation/js/form/response/ui/success/foundation.collection.reload.html"><span class="doc">foundation.collection.reload</span></a>
+to reload the <code class="docutils literal notranslate"><span class="pre">foundation-collection</span></code> when the form is successfully submitted.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Notable Changes</a><ul>
+<li><a class="reference internal" href="#select-rt-support-for-forceignorefreshness">Select RT: Support for <code class="docutils literal notranslate"><span class="pre">forceIgnoreFreshness</span></code></a></li>
+<li><a class="reference internal" href="#foundation-workflowstatus">foundation-workflowstatus</a></li>
+<li><a class="reference internal" href="#includeclientlibs-rt-support-rendercondition">IncludeClientlibs RT: Support rendercondition</a></li>
+<li><a class="reference internal" href="#datepicker-rt-support-typehint-property">DatePicker RT: Support <code class="docutils literal notranslate"><span class="pre">typeHint</span></code> property</a></li>
+<li><a class="reference internal" href="#foundation-toggleable-control-support-caching-attribute">foundation-toggleable-control: Support Caching Attribute</a></li>
+<li><a class="reference internal" href="#accessibility">Accessibility</a></li>
+<li><a class="reference internal" href="#form-default-value-handling">Form Default Value Handling</a></li>
+<li><a class="reference internal" href="#formdata-class">FormData.class</a></li>
+<li><a class="reference internal" href="#renderconditionhelper-class">RenderConditionHelper.class</a></li>
+<li><a class="reference internal" href="#button-and-link-rts-support-for-command-and-actionconfigname">Button and Link RTs: Support for <code class="docutils literal notranslate"><span class="pre">command</span></code> and <code class="docutils literal notranslate"><span class="pre">actionConfigName</span></code></a></li>
+<li><a class="reference internal" href="#multifield-rt-support-composite-and-nested-multifields">Multifield RT: Support composite and nested multifields</a></li>
+<li><a class="reference internal" href="#numberfield-rt-support-for-any-as-step">NumberField RT: Support for <code class="docutils literal notranslate"><span class="pre">any</span></code> as step</a></li>
+<li><a class="reference internal" href="#select-rt-support-render-conditions-in-the-items">Select RT: Support render conditions in the items</a></li>
+<li><a class="reference internal" href="#include-rt-support-passing-option-class">Include RT: Support passing Option class</a></li>
+<li><a class="reference internal" href="#foundation-form-manage-multiple-submissions">foundation-form: Manage multiple submissions</a></li>
+<li><a class="reference internal" href="#foundation-command">foundation-command</a></li>
+<li><a class="reference internal" href="#foundation-time">foundation-time</a></li>
+<li><a class="reference internal" href="#foundation-preference">foundation-preference</a></li>
+<li><a class="reference internal" href="#foundation-form-response-ui-success-foundation-collection-reload">foundation.form.response.ui.success: foundation.collection.reload</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Welcome to Granite UI’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="next chapter">Granite UI: The Hypermedia-driven UI</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/jcr_root/libs/granite/ui/docs/changelogs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Granite UI: The Hypermedia-driven UI"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to Granite UI’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

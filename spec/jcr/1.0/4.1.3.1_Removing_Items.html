@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.3.1 Removing Items (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.3.1." id="section_4.1.3.1."></a>4.1.3.1 Removing Items
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									To erase an item, the method <b>Item.remove()</b> is used. For example, continuing from the above code segment, the following code,
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Remove the node /a/e (and its subtree)</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myNode.remove();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Persist the changes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>mySession.save();</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									would result in the node at <b>/a/e</b> (and its child node <b>/a/e/n</b>) being deleted.
+								</p>
+							
+							
+								<p class="c5">
+									In the case of <b>Properties</b>, an alternative to <b>remove</b> is to set the property to <b>null</b>. This can be done in two ways, by calling <b>setValue</b> with <b>null</b> on the property itself, or by calling <b>setProperty</b> with the property name and a <b>null</b> value on the property's parent node:
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Assume we have node /m and two</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// properties /m/p and /m/q</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node m = (Node) mySession.getItem("/m");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property p = m.getProperty("p");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>//Remove p by calling setValue on p itself</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>p.setValue((Value)null);</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>//Remove q by calling setProperty on q's parent node</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>m.setProperty("q", (Value)null);</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Persist the changes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>mySession.save();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									See <a href="4.7.3_No_Null_Values.html">4.7.3</a> <i>No Null Values.</i>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

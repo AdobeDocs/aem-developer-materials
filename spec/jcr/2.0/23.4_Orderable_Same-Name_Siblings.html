@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 23.4 Orderable Same-Name Siblings (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>23.4 Orderable Same-Name Siblings</H2>
+	<P>If a node supports
+	orderable child nodes <I>and</I> same-name siblings then the order
+	of the nodes within a set of same-name siblings must be persisted
+	and be re-orderable by the client. For example, given the following
+	initial ordering of child nodes,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>[A,
+	B, C, A, D]</FONT></FONT></P>
+	<P>a call to</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>orderBefore(“A[2]”,”A[1]”)</FONT></FONT></P>
+	<P>will cause the child
+	node currently called <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[2]</FONT></FONT>
+	to be moved to the position before the child node currently called
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>A[1]</FONT></FONT>,
+	the resulting order will be:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>[A,
+	A, B, C, D]</FONT></FONT></P>
+	<P><FONT FACE="normal, Times New Roman, serif"><FONT FACE="Verdana, sans-serif">where
+	the first </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	<FONT FACE="Verdana, sans-serif">is the
+	one that was formerly after </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT><FONT FACE="Verdana, sans-serif">
+	and the second </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT><FONT FACE="Verdana, sans-serif">
+	is the one that was formerly at the head of the list.</FONT></FONT></P>
+	<P>Note, however, that
+	after the completion of this operation <I>the indices of the two
+	nodes have now switched</I>, due to their new positions relative to
+	each other. What was formerly <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[2]</FONT></FONT>
+	is now <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[1]</FONT></FONT>
+	and what was formerly <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[1]</FONT></FONT>
+	is now <FONT FACE="Courier New, monospace"><FONT SIZE=2>A[2]</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

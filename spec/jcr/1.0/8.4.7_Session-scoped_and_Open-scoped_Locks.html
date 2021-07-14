@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.7 Session-scoped and Open-scoped Locks (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.7." id="section_8.4.7."></a> 8.4.7 Session-scoped and Open-scoped Locks
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a lock is placed on a node, it can be specified to be either a session-scoped lock or an open-scoped lock. A session-scoped lock automatically expires when the session through which the lock owner placed the lock expires. An open-scoped lock does not expire until it is either explicitly unlocked or an implementation-specific limitation intervenes (like a timeout, see below).
+								</p>
+							
+							
+								<p class="c5">
+									In both cases, the lock token must be attached to the current session in order to alter any nodes locked by that token's lock. In the case of session-scoped locks, however, the user need not explicitly do anything since the token is automatically attached to the session and expires with it in any case.
+								</p>
+							
+							
+								<p class="c5">
+									With open–scoped locks the token is also automatically attached to the session. However, the user must additionally ensure that a reference to the lock token is preserved separately so that it can later be attached to another session. By assumption, an open-scoped lock is being used to avoid co-expiration with the initial session. Otherwise, there would be no point in using an open scoped lock, since session scoping would suffice. It is for handling these cases of attaching an existing lock token from a previous session to a new session that the methods <b>addLockToken</b>, <b>removeLockToken</b> and <b>getLockTokens</b> are provided.
+								</p>
+							
+							
+								<p class="c5">
+									To determine an existing lock’s scoping, the method <b>Lock.isSessionScoped()</b> is provided.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

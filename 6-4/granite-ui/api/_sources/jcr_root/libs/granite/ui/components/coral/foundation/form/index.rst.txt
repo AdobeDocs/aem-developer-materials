@@ -1,0 +1,150 @@
+
+Form
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form
+
+   Form is a component to represent a standard HTML form (<form>).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Form] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The ``action`` attribute.
+       */
+      - action (StringEL)
+
+      /**
+       * The ``enctype`` attribute.
+       */
+      - enctype (String)
+
+      /**
+       * The ``method`` attribute.
+       */
+      - method (String) < 'get', 'post'
+
+      /**
+       * The ``target`` attribute.
+       */
+      - target (String)
+
+      /**
+       * Indicates if input elements can by default have their values automatically completed by the browser.
+       *
+       * See also `MDN documentation regarding autocomplete attribute <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form>`_.
+       */
+      - autocomplete (String)
+
+      /**
+       * The ``novalidate`` attribute to indicate that the form is not to be validated when submitted.
+       */
+      - novalidate (Boolean)
+
+      /**
+       * The path to the resource to be used as the values by the contained form fields.
+       *
+       * The ValueMap of the resource is used as the FormData that is matched by ``name`` property of the field.
+       *
+       * Given the following structure::
+       *
+       *    + /apps/example/myformvalues
+       *      - name1 = "value1"
+       *      - name2 = ["value1", "value2"]
+       *
+       *    + /apps/example/myform
+       *      - sling:resourceType = "granite/ui/components/coral/foundation/form"
+       *      - dataPath = "/apps/example/myformvalues"
+       *      + items
+       *        + textfield
+       *          - sling:resourceType = "granite/ui/components/coral/foundation/form/textfield"
+       *          - name = "name1"
+       *
+       * The textfield will be matched with ``name1`` key. The textfield will then use ``value1`` as its value.
+       *
+       * The value of the field ``name`` can be any string that can be passed to `ValueMap#get() <https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ValueMap.html#get-java.lang.String-java.lang.Class->`_.
+       * So relative value works. e.g. ``name1``, ``./name1``, ``./childNode1/prop1``.
+       *
+       * The form is often used in conjunction with `SlingPostServlet <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html>`_
+       * as the submission endpoint, where it defines a certain field name convention.
+       */
+      - dataPath (StringEL)
+
+      /**
+       * The mode on how to handle the scenario when the FormData doesn't have an entry of a certain name.
+       *
+       * See :javadoc:`FormData.NameNotFoundMode <com/adobe/granite/ui/components/FormData.NameNotFoundMode.html>`.
+       */
+      - nameNotFoundMode (String) = 'ignore-freshness' < 'check-freshness', 'ignore-freshness'
+
+      /**
+       * The layout style of the form.
+       *
+       * (no value)
+       *    No style is applied.
+       * vertical
+       *    The form fields (and their labels) are laid out in vertical manner.
+       * aligned
+       *    The each form field is laid out side-by-side with its label.
+       */
+      - style (String) < 'vertical', 'aligned'
+
+      /**
+       * ``true`` to make the form (assigned to this layout) submitable when pressing "Enter".
+       * It is implemented by generating the submit button automatically, and leverage the native browser behavior.
+       */
+      - autosubmitForm (Boolean)
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * Make the element maximized to fill the available space.
+       */
+      - maximized (Boolean)
+
+      /**
+       * Enable the ``foundation-form``.
+       * This will add ``foundation-form`` class to the form.
+       */
+      - foundationForm (Boolean)
+
+      /**
+       * ``true`` if the form is to be submitted using ajax asynchronously, instead of standard synchronous behavior.
+       *
+       * Only applicable when ``foundationForm`` is ``true``.
+       */
+      - async (Boolean) = 'true'
+
+      /**
+       * ``true`` to show a mask during form submission. Otherwise no mask is shown at all.
+       *
+       * Only applicable when ``foundationForm`` is ``true``.
+       */
+      - loadingMask (Boolean) = 'true'
+
+      /**
+       * ``none`` to suppress certain UI behavior; otherwise an error UI is shown during error response.
+       *
+       * Only applicable when ``foundationForm`` is ``true``.
+       */
+      - ui (String)
+
+      /**
+       * The config of success response behaviour. See :doc:`build-in responses <responses/index>`.
+       *
+       * Only applicable when ``foundationForm`` is ``true``.
+       */
+      + successresponse
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

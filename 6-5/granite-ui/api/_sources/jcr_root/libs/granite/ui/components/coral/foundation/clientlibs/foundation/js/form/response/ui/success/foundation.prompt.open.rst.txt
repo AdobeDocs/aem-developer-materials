@@ -1,0 +1,32 @@
+foundation.form.response.ui.success: foundation.prompt.open
+===========================================================
+
+``foundation.prompt.open`` is a success response handler of :doc:`../../../index`.
+
+It will show a prompt give the user options of:
+
+Done
+   Redirect the page to a specified location
+
+Open
+   Open the newly created resource
+
+This handler is usually used by creation form.
+
+
+Config
+------
+
+title
+   The title of the prompt
+
+message
+   The message of the prompt
+
+redirect
+   The URI Template to redirect to.
+   The URI Template is resolved with parsed response data as the variables.
+
+open
+   The URI Template to open the newly created resource.
+   The URI Template is resolved with parsed response data as the variables.

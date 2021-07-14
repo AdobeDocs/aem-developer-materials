@@ -1,0 +1,39 @@
+
+ActionField
+===========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/layouts/actionfield
+   :layout:
+
+   The layout to render a field with an action (usually a submit button) beside it.
+
+   It has the following content structure at the main resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsActionFieldMain]
+
+      /**
+       * The actual field of this action field.
+       * ``fieldLabel`` and ``fieldDescription`` properties of the field are recognized and rendered accordingly for this layout.
+       */
+      + field
+
+      /**
+       * The action of this action field.
+       */
+      + action
+
+   Example::
+
+      + usersearch
+        - sling:resourceType = "granite/ui/components/foundation/form"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/form/layouts/actionfield"
+        + field
+          - sling:resourceType = "granite/ui/components/foundation/form/textfield"
+          - fieldLabel = "User"
+          - fieldDescription = "Type in the user name to search"
+        + action
+          - sling:resourceType = "granite/ui/components/foundation/form/submit"
+          - text = "Search"

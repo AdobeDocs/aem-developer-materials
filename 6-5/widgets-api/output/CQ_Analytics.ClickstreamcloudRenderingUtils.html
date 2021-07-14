@@ -1,0 +1,143 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ_Analytics.ClickstreamcloudRenderingUtils-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ_Analytics.ClickstreamcloudRenderingUtils-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ_Analytics.ClickstreamcloudRenderingUtils-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ_Analytics.ClickstreamcloudRenderingUtils"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ_Analytics.ClickstreamcloudRenderingUtils</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ_Analytics</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/utils.js" target="_blank">utils.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">ClickstreamcloudRenderingUtils</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">personalization.core                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing a set of clickstream cloud rendering utility methods.
+<br>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-createEditablePropertySpan"></a>
+            <b>createEditablePropertySpan</b>(&nbsp;<code>String name</code>, <code>String value</code>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates a span DOM element with format "property = value" and transforms
+it to a text input field on c...</div>
+            <div class="long">
+                &lt;static&gt; Creates a span DOM element with format "property = value" and transforms
+it to a text input field on click.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property label</div></li><li><code>value</code> : String<div class="sub-desc">Value</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">Span DOM element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClickstreamcloudRenderingUtils</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-createLink"></a>
+            <b>createLink</b>(&nbsp;<code>String text</code>, <code>Function func</code>, <code>Object props</code>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates a link DOM element.</div>
+            <div class="long">
+                &lt;static&gt; Creates a link DOM element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>text</code> : String<div class="sub-desc">Text</div></li><li><code>func</code> : Function<div class="sub-desc">Onclick method</div></li><li><code>props</code> : Object<div class="sub-desc">Tag attributes</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">Link DOM element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClickstreamcloudRenderingUtils</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-createNameValue"></a>
+            <b>createNameValue</b>(&nbsp;<code>String label</code>, <code>String value</code>, <code>String cssClass</code>, <code>String title</code>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates a span DOM element with format "property = value"</div>
+            <div class="long">
+                &lt;static&gt; Creates a span DOM element with format "property = value"    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>label</code> : String<div class="sub-desc">Property label</div></li><li><code>value</code> : String<div class="sub-desc">Value</div></li><li><code>cssClass</code> : String<div class="sub-desc">CSS class name</div></li><li><code>title</code> : String<div class="sub-desc">Span title</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">Span DOM element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClickstreamcloudRenderingUtils</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-createStaticLink"></a>
+            <b>createStaticLink</b>(&nbsp;<code>String text</code>, <code>String href</code>, <code>Object title</code>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates a link DOM element.</div>
+            <div class="long">
+                &lt;static&gt; Creates a link DOM element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>text</code> : String<div class="sub-desc">Text</div></li><li><code>href</code> : String<div class="sub-desc">Href</div></li><li><code>title</code> : Object<div class="sub-desc">Title</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">Link DOM element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClickstreamcloudRenderingUtils</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-createText"></a>
+            <b>createText</b>(&nbsp;<code>String text</code>, <code>String cssClass</code>, <code>String title</code>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates a span DOM element</div>
+            <div class="long">
+                &lt;static&gt; Creates a span DOM element    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>text</code> : String<div class="sub-desc">Span inner HTML</div></li><li><code>cssClass</code> : String<div class="sub-desc">CSS class name</div></li><li><code>title</code> : String<div class="sub-desc">Span title</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">Span DOM element.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ClickstreamcloudRenderingUtils</td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.ClickstreamcloudRenderingUtils-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

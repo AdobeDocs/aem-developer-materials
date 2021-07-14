@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.9.1 JAAS (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.9.1." id="section_6.9.1."></a>6.9.1 JAAS
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If an external mechanism is employed, a likely candidate is the Java Authentication and Authorization Service (JAAS) (see http://java.sun.com/products/jaas/).
+								</p>
+							
+							
+								<p class="c5">
+									By providing a signature of <b>Repository.login</b> that does not require <b>Credentials</b>, the content repository allows for authorization and authentication to be handled by JAAS (or another external mechanism) if the implementer so chooses.
+								</p>
+							
+							
+								<p class="c5">
+									To use JAAS authentication to create <b>Session</b>s with end-user identity, invocations of the <b>Repository.login</b> method that do not specify <b>Credentials</b> (i.e., either a <b>null</b> <b>Credentials</b> is passed or a signature without the <b>Credentials</b> parameter is used) <i>should</i> obtain the identity of the already-authenticated user by calling the static <b>getSubject</b> method of <b>javax.security.auth.Subject</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The discovery mechanism for finding what permissions apply is also JAAS-compatible since it uses the JAAS-like concept of <i>actions</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

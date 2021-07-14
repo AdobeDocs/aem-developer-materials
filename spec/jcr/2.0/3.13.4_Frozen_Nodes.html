@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.4 Frozen Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.4 Frozen Nodes</H3>
+	<P>When a version is
+	created, the <I>versionable subgraph</I> of its versionable node is
+	copied to a <I>frozen node</I> within the new version. On check-in
+	the child nodes and properties that constitute the versionable
+	subgraph are copied and placed as child items of the frozen node
+	under the same names as they had under the versionable node.</P>
+	<P>Which child nodes and
+	properties are copied, and in the case of child nodes, the depth of
+	the subgraph to be copied, constitutes the versionable state of the
+	node and is determined by the on-parent-version settings defined in
+	the node type of the versionable node (see §3.7.2.5
+	<I>On-Parent-Version</I>).</P>
+	<P>Regardless of the node
+	type of the original versionable, all frozen nodes are of the type
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:frozenNode</FONT></FONT>.
+	Under both simple and full versioning, the frozen node of a version
+	is accessible directly from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object (see §15.2.1 <I>Version Object</I>). Under full versioning,
+	the frozen node is also accessible as the child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenNode</FONT></FONT>
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node. Under simple versioning the frozen node is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	object but does not have a parent, and consequently methods called
+	on the frozen node that depend upon having a parent will throw an
+	exception. Under full versioning the frozen node's parent is the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node to which it belongs.</P>
+	<P>A frozen node always
+	has the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenNode</FONT></FONT>.
+	Under full versioning this is the name under which it exists as a
+	child of its <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node. Under simple versioning this is simply the name returned when
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getName()</FONT></FONT>
+	is called on the frozen node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

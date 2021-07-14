@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.2.3 mix:versionable (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.2.3 mix:versionable</H4>
+	<P>
+	 <FONT FACE="Courier New, monospace">[mix:versionable] &gt;
+	mix:simpleVersionable, mix:referenceable<BR> mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:versionHistory (REFERENCE) mandatory protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:versionHistory'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:baseVersion (REFERENCE) mandatory protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:predecessors (REFERENCE) mandatory protected multiple</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">IGNORE
+	&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:mergeFailed (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt;
+	'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:activity (REFERENCE) protected IGNORE &lt; 'nt:activity'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:configuration (REFERENCE) protected IGNORE<BR> &lt;
+	'nt:configuration'</FONT></P>
+	<P>The mixin
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	is a subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:simpleVersionable</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:referenceable</FONT></FONT>,
+	and adds properties exposing a number of additional
+	versioning-related attributes.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

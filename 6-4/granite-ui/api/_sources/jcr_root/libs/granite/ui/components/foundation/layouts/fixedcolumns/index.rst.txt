@@ -1,0 +1,34 @@
+
+FixedColumns
+============
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/fixedcolumns
+   :layout:
+
+   The layout to render each item as a column, which has a fixed width.
+   This is mainly designed such that two columns fit a tablet device in landscape mode nicely.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsFixedColumns]
+
+      /**
+       * ``true`` to add vertical margin to the main component; ``false`` otherwise.
+       */
+      - margin (Boolean) = 'true'
+
+   The columns are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mydialog
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/fixedcolumns"
+        + items
+          + column1
+            - sling:resourceType = "granite/ui/components/foundation/container"
+          + column2
+            - sling:resourceType = "granite/ui/components/foundation/container"

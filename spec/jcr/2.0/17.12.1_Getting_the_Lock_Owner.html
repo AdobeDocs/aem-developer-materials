@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.12.1 Getting the Lock Owner (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.12.1 Getting the Lock Owner</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Lock.getLockOwner()</FONT></FONT></P>
+	<P>returns the value of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property. This is either the client-supplied lock owner information,
+	the user ID bound to the session that holds the lock or an
+	implementation-specific string identifying the user (see §4.4.1
+	<I>User</I>).</P>
+	<P>The lock owner's
+	identity is only provided for informational purposes. It does not
+	govern who can perform an unlock or make changes to the locked
+	nodes; that depends entirely upon the session that holds the lock
+	token.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

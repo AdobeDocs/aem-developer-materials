@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.2.3 Standard Privileges (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.2.3 Standard Privileges</H3>
+	<P>A repository must
+	support the following standard privileges identified by the string
+	constants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.security.Privilege</FONT></FONT>:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read</FONT></FONT>:
+		The privilege to retrieve a node and get its properties and their
+		values.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT>:
+		The privilege to create, remove and modify the values of the
+		properties of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNodes</FONT></FONT>:
+		The privilege to create child nodes of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>:
+		The privilege to remove a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>:
+		The privilege to remove child nodes of a node. 
+		</P>
+	</UL>
+	<P>In order to
+	actually remove a node requires <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>
+	on that node and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+	on the parent node. The distinction is provided in order to
+	distinguish implementations that internally model a “remove” as
+	a “delete” from those that model it as an “unlink”. A
+	repository that uses the “delete” model can have
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+	in every access control policy, so that removal is effectively
+	controlled by <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>.
+	Conversely, a repository that uses the “unlink” model can have
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT>
+	in every access control policy.</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT>:
+		An aggregate privilege that contains:</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNodes</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeNode</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT></P>
+		</UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:readAccessControl</FONT></FONT>:
+		The privilege to read the access control settings of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyAccessControl</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Verdana, sans-serif">:
+		</FONT></FONT></FONT>The privilege to modify the
+		access control settings of a node.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockManagement</FONT></FONT>:
+		The privilege to lock and unlock a node (see §17 <I>Locking</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionManagement</FONT></FONT>:
+		The privilege to perform versioning operations on a node (see §15
+		<I>Versioning</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:nodeTypeManagement</FONT></FONT>:
+		The privilege to add and remove mixin node types and change the
+		primary node type of a node (see §10.10 <I>Node Type Assignment</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:retentionManagement</FONT></FONT>:
+		The privilege to perform retention management operations on a node
+		(see §20 <I>Retention and Hold</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lifecycleManagement</FONT></FONT>:
+		The privilege to perform lifecycle operations on a node (see §18
+		<I>Lifecycle Management</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>:
+		An aggregate privilege that contains:</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:read</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:readAccessControl</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyAccessControl</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:nodeTypeManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:retentionManagement</FONT></FONT></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lifecycleManagement</FONT></FONT></P>
+		</UL>
+	</UL>
+	<P>Whether a privilege is
+	abstract is an implementation variant, with the exception that
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>
+	is never an abstract privilege. For example, a repository unable to
+	separately control the abilities to add child nodes, remove child
+	nodes, and set properties could make <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:addChildNodes</FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:removeChildNodes</FONT></FONT>
+	abstract privileges within the aggregate privilege <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT>.</P>
+	<P>Similarly, whether any
+	one of these privileges is aggregate is an implementation variant,
+	with the exception that <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:write</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>
+	are always aggregate privileges.</P>
+	<P>A repository should
+	also add all implementation-defined privileges to <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:all</FONT></FONT>.</P>
+	<P>The standard privilege
+	names are defined as expanded form JCR names in string constants of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.security.Privilege</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

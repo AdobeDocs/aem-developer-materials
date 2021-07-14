@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 24.3 Node Type-Related Features (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>24.3 Node Type-Related Features</H2>
+	<P>The node type registry
+	is used to test support for features which correspond to a
+	JCR-defined node type. For example, support for <I>referenceable
+	nodes</I> as a feature is equivalent to support for the node type
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:referenceable</FONT></FONT>.
+	Such features are more data model-oriented than the behavioral
+	features reported by descriptors. 
+	</P>
+	<P>Testing for the
+	availability of a particular node type is done using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeManager.hasNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P>Any node types
+	associated with a particular feature are described in the section
+	describing that feature. 
+	</P>
+	<P>The presence of the
+	indicated node types in the node type registry (tested with
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager.hasNodeType</FONT></FONT>,
+	see §8.1 <I>NodeTypeManager Object</I>) indicates support for the
+	corresponding feature. 
+	</P>
+	<TABLE WIDTH=642 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=1 CELLSPACING=0>
+		<COL WIDTH=257>
+		<COL WIDTH=379>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=16>
+				<P><FONT SIZE=1 ><B>Node
+				Type</B></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 ><B>Feature</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >mix:referenceable</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 >Referenceable
+				nodes (see §3.8 </FONT><FONT SIZE=1 ><I>Referenceable
+				Nodes</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=191>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >mix:created<BR>mix:mimeType<BR>mix:lastModified<BR>mix:title<BR>mix:language<BR>nt:hierarchyNode<BR>nt:file</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 ><BR>nt:linkedFile<BR>nt:folder<BR>nt:resource<BR>nt:address</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 >Standard
+				application node types, a repository can support a subset (see
+				§3.7.11 </FONT><FONT SIZE=1 ><I>Standard
+				Application Node Types</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >mix:etag</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 >Entity
+				tags (see §3.7.12 </FONT><FONT SIZE=1 ><I>Entity
+				Tags</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >nt:unstructured</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 >Unstructured
+				content (see §3.7.13 </FONT><FONT SIZE=1 ><I>Unstructured
+				Content</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=55>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >nt:nodeType<BR>nt:propertyDefinition<BR>nt:childNodeDefinition</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 >Node
+				type definition storage in content (see §3.7.14 </FONT><FONT SIZE=1 ><I>Node
+				Type Definition Storage</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.1.7 Primary Item (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.1.7 Primary Item</H4>
+	<P>A node type can
+	declare one of its child items as primary, meaning that for all
+	nodes of that type, that child item is accessible through a
+	dedicated API method which does not require the name of the item.
+	(see §5.1.7 <I>Primary Item Access</I>). This feature can help
+	generic API clients intelligently traverse an unknown node
+	structure. The primary item may be an item name, which must be a JCR
+	name, or null, meaning that there is no primary item.</P>
+	<H5>3.7.1.7.1 Primary Item and Same-Name Siblings</H5>
+	<P>In cases where the
+	primary child item specifies the name of a set of same-name sibling
+	child nodes, the node with index <FONT FACE="Courier New, monospace"><FONT SIZE=2>[1]</FONT></FONT>
+	will be regarded as the primary item.</P>
+	<H5>3.7.1.7.2 Property and Child Node With Same Name</H5>
+	<P>In cases where this
+	node has both a child node and a property with the same name and
+	where that name is specified as the primary item name, the child
+	node will be regarded as the primary item (see §22.4 <I>Property
+	and Node with Same Name</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

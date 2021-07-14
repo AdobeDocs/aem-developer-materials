@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.9.1 Merge Algorithm (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.9.1 Merge Algorithm</H3>
+	<P>The above declarative
+	description can also be expressed in pseudo-code as follows:</P>
+	<P>let <FONT FACE="Courier New, monospace"><FONT SIZE=2>ws'</FONT></FONT>
+	be the workspace against which the <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	is done.<BR>let <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	be the flag passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>.<BR>let
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	be the flag passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>.<BR>let
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>failedset</FONT></FONT>
+	be a set of identifiers, initially empty.<BR>let <FONT FACE="Courier New, monospace"><FONT SIZE=2>startnode</FONT></FONT>
+	be the node on which <FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	was called.<BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(startnode)</FONT></FONT>.<BR>return
+	the nodes with the identifiers in <FONT FACE="Courier New, monospace"><FONT SIZE=2>failedset</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(n)</FONT></FONT><BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	be the corresponding node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>ws'</FONT></FONT>.<BR>
+	 if no such <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)</FONT></FONT>.<BR>
+	 else if <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	is not versionable <FONT FACE="Courier New, monospace"><FONT SIZE=2>doupdate(n,
+	n')</FONT></FONT>.<BR> else if <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	is not versionable <FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>v</FONT></FONT>
+	be base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	be base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>.<BR>
+	 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	is an eventual successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>v</FONT></FONT>
+	and<BR> <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	is not checked-in <FONT FACE="Courier New, monospace"><FONT SIZE=2>doupdate(n,
+	n')</FONT></FONT>.<BR> else if <FONT FACE="Courier New, monospace"><FONT SIZE=2>v</FONT></FONT>
+	is equal to or an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)</FONT></FONT>.<BR>
+	 else <FONT FACE="Courier New, monospace"><FONT SIZE=2>dofail(n,
+	v')</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>dofail(n,
+	v')<BR></FONT></FONT> if <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>MergeException</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2><BR></FONT></FONT>
+	 else add identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>v'</FONT></FONT>
+	(if not already present) to the<BR> <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>,<BR>
+	 add identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>failedset</FONT></FONT>,<BR>
+	 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT><BR>
+	 for each versionable child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>c</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(c)</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>doleave(n)<BR></FONT></FONT>
+	 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>isShallow</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT><BR>
+	 for each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>c</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(c)</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>doupdate(n,
+	n')</FONT></FONT><BR> replace set of properties of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	with those of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	be the set of child nodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+	be the set of child nodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>.<BR>
+	 judging by the name of the child node:<BR> let <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	be the set of nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT><BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>
+	be the set of nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	but not in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>.<BR>
+	 let <FONT FACE="Courier New, monospace"><FONT SIZE=2>D'</FONT></FONT>
+	be the set of nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+	but not in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.<BR>
+	 remove from <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	all child nodes in <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>.<BR>
+	 for each child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n'</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>D'</FONT></FONT>
+	copy it (and its subgraph) to <FONT FACE="Courier New, monospace"><FONT SIZE=2>n<BR></FONT></FONT>
+	 as a new child node (if an incoming node has the same<BR> 
+	 identifier as a node already existing in this workspace,<BR> 
+	 the already existing node is removed).<BR> for each child node
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>m</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>domerge(m)</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

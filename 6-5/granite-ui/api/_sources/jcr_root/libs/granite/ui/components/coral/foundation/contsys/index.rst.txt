@@ -1,0 +1,14 @@
+
+Contsys
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/contsys
+
+   A general purpose component to render items without a wrapping element.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Contsys] > granite:renderCondition, granite:container
+

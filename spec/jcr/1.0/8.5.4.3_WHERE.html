@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.4.3 WHERE (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.4.3." id="section_8.5.4.3."></a>8.5.4.3 WHERE
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>WHERE</b> clause allows you to place constraints on the nodes (rows) returned by specifying values or ranges of values for the properties (columns) of those nodes (rows). For example, the query,
+								</p>
+							
+							
+								<p class="c12">
+									<b>SELECT myapp:image FROM mynt:document WHERE height &lt; 100 AND keyword LIKE '%apple%'</b>
+								</p>
+							
+							
+								<p class="c5">
+									would find all the properties called <b>myapp:image</b> of nodes of type <b>mynt:document</b> (and subtypes) that also have:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					a property called <b>height</b> with value less than 100 and
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					a property called <b>keyword</b> with substring “<b>apple</b>”.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The evaluation order within an expression is:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>(...)</b> (Parentheses)
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>&lt;</b>, <b>&gt;</b>, <b>=</b>, <b>&lt;=</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>, <b>LIKE</b>, <b>IS NULL</b>, <b>IS NOT NULL</b> (Operators)
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>CONTAINS</b> (Function)
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>NOT</b> (Logical negation)
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>AND</b> (Logical conjunction)
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>OR</b> (Logical disjunction)
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Literal values of types <b>NAME</b>, <b>PATH</b> and <b>STRING</b> must be enclosed in single quotes. Any literal single quote within the pattern must be escaped as two consecutive single quotes.
+								</p>
+							
+							
+								<p class="c5">
+									The collation sequence used when comparing <b>STRING</b> values using <b>&gt;</b>, <b>&lt;</b>, <b>&gt;=</b> or <b>&lt;=</b> is implementation-specific.
+								</p>
+							
+							
+								<p class="c5">
+									For types <b>LONG</b> and <b>DOUBLE</b> comparisons are done by numeric value, not string representation.
+								</p>
+							
+							
+								<p class="c5">
+									In case of type mismatches in a comparison <b>LONG</b>s can be converted to <b>DOUBLE</b>s; for any other type mismatch each operand is converted to <b>STRING</b> (see <a href="6.2.6_Property_Type_Conversion.html">6.2.6</a> <i>Property Type Conversion</i>) and compared using the established collation sequence.
+								</p>
+							
+							
+								<p class="c5">
+									See also 6.6.3.3 Property Constraint and <a href="6.6.4.10_Searching_Multi-value_Properties.html">6.6.4.10</a> <i>Searching Multi-value Properties</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

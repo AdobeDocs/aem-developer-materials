@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.2 Saving by UUID and Path (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.2." id="section_7.1.2."></a>7.1.2 Saving by UUID and Path
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When an item is saved (either through <b>Item.save</b> or <b>Session.save</b>) the item in persistent storage to which pending changes are written is determined using the same principles as those that govern correspondence of nodes between workspaces (see 4.10.2 Multiple Workspaces and Corresponding Nodes). The difference in this case is that the correspondence is not between two workspaces but between the transient storage of the session and the persistent storage of its associated workspace. In the context of saving a node, those principles amount to the following:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					If the transient item has a UUID, then the changes are written to the persistent item with the same UUID.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If the transient item does not have a UUID, then a combination of the UUID of its nearest UUID-bearing ancestor and its relative path from that ancestor is used to determine the persistent item to which the changes will be written. For example, if
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							node <b>/a/b/c</b> and node <b>/a/b</b> do not have UUIDs;
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							node <b>/a</b> has UUID <b><i>u</i></b>;
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							then, pending changes to transient node <b>/a/b/c</b> are written to the persistent node located at path <b>b/c</b> <i>relative to</i> the persistent node with UUID <b><i>u</i></b>.
+						</p>
+					</li>
+				</ul>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

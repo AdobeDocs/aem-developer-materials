@@ -1,0 +1,34 @@
+
+Redirect
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/responses/redirect
+
+   ``Redirect`` is success response handler to redirect to a another page.
+
+   It is implemented in the client by :doc:`../../../clientlibs/foundation/js/form/response/ui/success/foundation.redirect`.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormResponsesRedirect] > granite:commonAttrs
+
+      /**
+       * The URI Template for redirection.
+       */
+      - href (StringEL)
+
+   Example::
+
+      + myform
+        - sling:resourceType = "granite/ui/components/coral/foundation/form"
+        - method = "post"
+        - action = "/my/new/resource"
+        - foundationForm = true
+        + successresponse
+          - sling:resourceType = "granite/ui/components/coral/foundation/form/responses/redirect"
+          - href = "/my/new/resource/successpage"
+        + items
+          + field1
+          + field2

@@ -1,0 +1,715 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.data.ScriptTagProxy-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.data.ScriptTagProxy-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.data.ScriptTagProxy-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CQ.Ext.data.ScriptTagProxy-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CQ.Ext.data.ScriptTagProxy"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.util.Observable" ext:member="" href="output/CQ.Ext.util.Observable.html">Observable</a>
+  <img src="resources/docs/elbow-end.gif"/><a ext:cls="CQ.Ext.data.DataProxy" ext:member="" href="output/CQ.Ext.data.DataProxy.html">DataProxy</a>
+    <img src="resources/docs/elbow-end.gif"/>ScriptTagProxy</pre></div>
+                <h1>Class&nbsp;CQ.Ext.data.ScriptTagProxy</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext.data</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/ScriptTagProxy.js" target="_blank">ScriptTagProxy.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">ScriptTagProxy</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="" href="output/CQ.Ext.data.DataProxy.html">CQ.Ext.data.DataProxy</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    An implementation of CQ.Ext.data.DataProxy that reads a data object from a URL which may be in a domain
+other than the originating domain of the running page.<br>
+<p>
+<b>Note that if you are retrieving data from a page that is in a domain that is NOT the same as the originating domain
+of the running page, you must use this class, rather than HttpProxy.</b><br>
+<p>
+The content passed back from a server resource requested by a ScriptTagProxy <b>must</b> be executable JavaScript
+source code because it is used as the source inside a &lt;script> tag.<br>
+<p>
+In order for the browser to process the returned data, the server must wrap the data object
+with a call to a callback function, the name of which is passed as a parameter by the ScriptTagProxy.
+Below is a Java example for a servlet which returns data for either a ScriptTagProxy, or an HttpProxy
+depending on whether the callback name was passed:
+<p>
+<pre><code>boolean scriptTag = false;
+String cb = request.getParameter(<em>"callback"</em>);
+<b>if</b> (cb != null) {
+    scriptTag = true;
+    response.setContentType(<em>"text/javascript"</em>);
+} <b>else</b> {
+    response.setContentType(<em>"application/x-json"</em>);
+}
+Writer out = response.getWriter();
+<b>if</b> (scriptTag) {
+    out.write(cb + <em>"("</em>);
+}
+out.print(dataBlock.toJsonString());
+<b>if</b> (scriptTag) {
+    out.write(<em>");"</em>);
+}</code></pre>
+<p>Below is a PHP example to do the same thing:</p><pre><code>$callback = $_REQUEST[<em>'callback'</em>];
+
+<i>// Create the output object.</i>
+$output = array(<em>'a'</em> =&gt; <em>'Apple'</em>, <em>'b'</em> =&gt; <em>'Banana'</em>);
+
+<i>//start output</i>
+<b>if</b> ($callback) {
+    header(<em>'Content-Type: text/javascript'</em>);
+    echo $callback . <em>'('</em> . json_encode($output) . <em>');'</em>;
+} <b>else</b> {
+    header(<em>'Content-Type: application/x-json'</em>);
+    echo json_encode($output);
+}</code></pre>
+<p>Below is the ASP.Net code to do the same thing:</p><pre><code>String jsonString = <em>"{success: true}"</em>;
+String cb = Request.Params.Get(<em>"callback"</em>);
+String responseString = <em>""</em>;
+<b>if</b> (!String.IsNullOrEmpty(cb)) {
+    responseString = cb + <em>"("</em> + jsonString + <em>")"</em>;
+} <b>else</b> {
+    responseString = jsonString;
+}
+Response.Write(responseString);</code></pre>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.data.ScriptTagProxy-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-api"></a>
+            <b>api</b> : Object            <div class="mdesc">
+                                    <div class="short">Specific urls to call on CRUD action methods "read", "create", "update" and "destroy". Defaults to:api: {
+    read   ...</div>
+            <div class="long">
+                Specific urls to call on CRUD action methods "read", "create", "update" and "destroy". Defaults to:<pre><code>api: {
+    read    : undefined,
+    create  : undefined,
+    update  : undefined,
+    destroy : undefined
+}</code></pre> <p>The url is built based upon the action being executed <tt>[load|create|save|destroy]</tt> using the commensurate <tt><a ext:cls="CQ.Ext.data.DataProxy" ext:member="api" href="output/CQ.Ext.data.DataProxy.html#api">api</a></tt> property, or if undefined default to the configured <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a>.<a ext:cls="CQ.Ext.data.Store" ext:member="url" href="output/CQ.Ext.data.Store.html#url">url</a>.</p><br> <p>For example:</p> <pre><code>api: {
+    load :    <em>'/controller/load'</em>,
+    create :  <em>'/controller/<b>new</b>'</em>,  <i>// Server MUST <b>return</b> idProperty of <b>new</b> record</i>
+    save :    <em>'/controller/update'</em>,
+    destroy : <em>'/controller/destroy_action'</em>
+}
+
+<i>// Alternatively, one can use the object-form to specify each API-action</i>
+api: {
+    load: {url: <em>'read.php'</em>, method: <em>'GET'</em>},
+    create: <em>'create.php'</em>,
+    destroy: <em>'destroy.php'</em>,
+    save: <em>'update.php'</em>
+}</code></pre> <p>If the specific URL for a given CRUD action is undefined, the CRUD action request will be directed to the configured <tt><a ext:cls="CQ.Ext.data.Connection" ext:member="url" href="output/CQ.Ext.data.Connection.html#url">url</a></tt>.</p> <br><p><b>Note</b>: To modify the URL for an action dynamically the appropriate API property should be modified before the action is requested using the corresponding before action event. For example to modify the URL associated with the load action: <pre><code><i>// modify the url <b>for</b> the action</i>
+myStore.on({
+    beforeload: {
+        fn: <b>function</b> (store, options) {
+            <i>// use <tt><a ext:cls="CQ.Ext.data.HttpProxy" ext:member="setUrl" href="output/CQ.Ext.data.HttpProxy.html#setUrl">setUrl</a></tt> to change the URL <b>for</b> *just* <b>this</b> request.</i>
+            store.proxy.setUrl(<em>'changed1.php'</em>);
+
+            <i>// set optional second parameter to true to make <b>this</b> URL change</i>
+            <i>// permanent, applying <b>this</b> URL <b>for</b> all subsequent requests.</i>
+            store.proxy.setUrl(<em>'changed1.php'</em>, true);
+
+            <i>// Altering the proxy API should be done using the public</i>
+            <i>// method <tt><a ext:cls="CQ.Ext.data.DataProxy" ext:member="setApi" href="output/CQ.Ext.data.DataProxy.html#setApi">setApi</a></tt>.</i>
+            store.proxy.setApi(<em>'read'</em>, <em>'changed2.php'</em>);
+
+            <i>// Or set the entire API <b>with</b> a config-object.</i>
+            <i>// When using the config-object option, you must redefine the <b>entire</b></i>
+            <i>// API -- not just a specific action of it.</i>
+            store.proxy.setApi({
+                read    : <em>'changed_read.php'</em>,
+                create  : <em>'changed_create.php'</em>,
+                update  : <em>'changed_update.php'</em>,
+                destroy : <em>'changed_destroy.php'</em>
+            });
+        }
+    }
+});</code></pre> </p>            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="api" href="output/CQ.Ext.data.DataProxy.html#api">DataProxy</a></td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-callbackParam"></a>
+            <b>callbackParam</b> : String            <div class="mdesc">
+                                    <div class="short">(Optional) The name of the parameter to pass to the server which tells the server the name of the callback function s...</div>
+            <div class="long">
+                (Optional) The name of the parameter to pass to the server which tells the server the name of the callback function set up by the load call to process the returned data object. Defaults to "callback".<p>The server-side processing must read this parameter value, and generate javascript output which calls this named function passing the data object as its only parameter.            </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-nocache"></a>
+            <b>nocache</b> : Boolean            <div class="mdesc">
+                                        (optional) Defaults to true. Disable caching by adding a unique parameter name to the request.                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="config-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-onRead"></a>
+            <b>onRead</b> : Function            <div class="mdesc">
+                                    <div class="short">Abstract method that should be implemented in all subclasses. Note: Should only be used by custom-proxy developers. C...</div>
+            <div class="long">
+                Abstract method that should be implemented in all subclasses. <b>Note:</b> Should only be used by custom-proxy developers. Callback for read <a ext:cls="CQ.Ext.data.Api" ext:member="actions" href="output/CQ.Ext.data.Api.html#actions">action</a>.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="onRead" href="output/CQ.Ext.data.DataProxy.html#onRead">DataProxy</a></td>
+    </tr>
+        <tr class="config-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-onWrite"></a>
+            <b>onWrite</b> : Function            <div class="mdesc">
+                                    <div class="short">Abstract method that should be implemented in all subclasses. Note: Should only be used by custom-proxy developers. C...</div>
+            <div class="long">
+                Abstract method that should be implemented in all subclasses. <b>Note:</b> Should only be used by custom-proxy developers. Callback for <i>create, update and destroy</i> <a ext:cls="CQ.Ext.data.Api" ext:member="actions" href="output/CQ.Ext.data.Api.html#actions">actions</a>.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="onWrite" href="output/CQ.Ext.data.DataProxy.html#onWrite">DataProxy</a></td>
+    </tr>
+        <tr class="config-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-restful"></a>
+            <b>restful</b> : Boolean            <div class="mdesc">
+                                    <div class="short">Defaults to false. Set to true to operate in a RESTful manner.  Note: this parameter will automatically be set to tru...</div>
+            <div class="long">
+                <p>Defaults to <tt>false</tt>. Set to <tt>true</tt> to operate in a RESTful manner.</p> <br><p> Note: this parameter will automatically be set to <tt>true</tt> if the <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a> it is plugged into is set to <code>restful: true</code>. If the Store is RESTful, there is no need to set this option on the proxy.</p> <br><p>RESTful implementations enable the serverside framework to automatically route actions sent to one url based upon the HTTP method, for example: <pre><code>store: <b>new</b> CQ.Ext.data.Store({
+    restful: true,
+    proxy: <b>new</b> CQ.Ext.data.HttpProxy({url:<em>'/users'</em>}); <i>// all requests sent to /users</i>
+    ...
+)}</code></pre> If there is no <code><a ext:cls="CQ.Ext.data.DataProxy" ext:member="api" href="output/CQ.Ext.data.DataProxy.html#api">api</a></code> specified in the configuration of the proxy, all requests will be marshalled to a single RESTful url (/users) so the serverside framework can inspect the HTTP Method and act accordingly: <pre><u>Method</u>   <u>url</u>        <u>action</u>
+POST     /users     create
+GET      /users     read
+PUT      /users/23  update
+DESTROY  /users/23  delete</pre></p> <p>If set to <tt>true</tt>, a <a ext:cls="CQ.Ext.data.Record" ext:member="phantom" href="output/CQ.Ext.data.Record.html#phantom">non-phantom</a> record's <a ext:cls="CQ.Ext.data.Record" ext:member="id" href="output/CQ.Ext.data.Record.html#id">id</a> will be appended to the url. Some MVC (e.g., Ruby on Rails, Merb and Django) support segment based urls where the segments in the URL follow the Model-View-Controller approach:<pre><code>someSite.com/controller/action/id</code></pre> Where the segments in the url are typically:<div class="mdetail-params"><ul> <li>The first segment : represents the controller class that should be invoked.</li> <li>The second segment : represents the class function, or method, that should be called.</li> <li>The third segment : represents the ID (a variable typically passed to the method).</li> </ul></div></p> <br><p>Refer to <code><a ext:cls="CQ.Ext.data.DataProxy" ext:member="api" href="output/CQ.Ext.data.DataProxy.html#api">CQ.Ext.data.DataProxy.api</a></code> for additional information.</p>            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="restful" href="output/CQ.Ext.data.DataProxy.html#restful">DataProxy</a></td>
+    </tr>
+        <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-timeout"></a>
+            <b>timeout</b> : Number            <div class="mdesc">
+                                        (optional) The number of milliseconds to wait for a response. Defaults to 30 seconds.                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="config-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-url"></a>
+            <b>url</b> : String            <div class="mdesc">
+                                        The URL from which to request the data object.                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.data.ScriptTagProxy-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row inherited">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-load"></a>
+            <b>load</b> : Object            <div class="mdesc">
+            	        <div><b>Deprecated.</b></div>
+                                        <b>Deprecated</b> load method using old method signature. See <a ext:cls="CQ.Ext.data.DataProxy" ext:member="doRequest" href="output/CQ.Ext.data.DataProxy.html#doRequest">doRequest</a> for preferred method.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="load" href="output/CQ.Ext.data.DataProxy.html#load">DataProxy</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.data.ScriptTagProxy-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-ScriptTagProxy"></a>
+            <b>ScriptTagProxy</b>(&nbsp;<code>Object config</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : Object<div class="sub-desc">A configuration object.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-abort"></a>
+            <b>abort</b>() : void            <div class="mdesc">
+                                    <div class="short">Abort the current server request.</div>
+            <div class="long">
+                Abort the current server request.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-destroy"></a>
+            <b>destroy</b>() : void            <div class="mdesc">
+                                    <div class="short">Destroys the proxy by purging any event listeners and cancelling any active requests.</div>
+            <div class="long">
+                Destroys the proxy by purging any event listeners and cancelling any active requests.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="destroy" href="output/CQ.Ext.data.DataProxy.html#destroy">DataProxy</a></td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-doRequest"></a>
+            <b>doRequest</b>(&nbsp;<code>String action</code>, <code>CQ.Ext.data.Record/CQ.Ext.data.Record[] rs</code>, <code>Object params</code>, <code>CQ.Ext.data.DataReader reader</code>, <code>Function callback</code>, <code>Object scope</code>, <code>Object arg</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">HttpProxy implementation of DataProxy#doRequest</div>
+            <div class="long">
+                HttpProxy implementation of DataProxy#doRequest    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>action</code> : String<div class="sub-desc"></div></li><li><code>rs</code> : CQ.Ext.data.Record/CQ.Ext.data.Record[]<div class="sub-desc">If action is <tt>read</tt>, rs will be null</div></li><li><code>params</code> : Object<div class="sub-desc">An object containing properties which are to be used as HTTP parameters
+for the request to the remote server.</div></li><li><code>reader</code> : CQ.Ext.data.DataReader<div class="sub-desc">The Reader object which converts the data
+object into a block of CQ.Ext.data.Records.</div></li><li><code>callback</code> : Function<div class="sub-desc">The function into which to pass the block of CQ.Ext.data.Records.
+The function must be passed <ul>
+<li>The Record block object</li>
+<li>The "arg" argument from the load function</li>
+<li>A boolean success indicator</li>
+</ul></div></li><li><code>scope</code> : Object<div class="sub-desc">The scope (<code>this</code> reference) in which the callback function is executed. Defaults to the browser window.</div></li><li><code>arg</code> : Object<div class="sub-desc">An optional argument which is passed to the callback as its second parameter.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-enableBubble"></a>
+            <b>enableBubble</b>(&nbsp;<code>String/Array events</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Enables events fired by this Observable to bubble up an owner hierarchy by calling
+this.getBubbleTarget() if present....</div>
+            <div class="long">
+                <p>Enables events fired by this Observable to bubble up an owner hierarchy by calling
+<code>this.getBubbleTarget()</code> if present. There is no implementation in the Observable base class.</p>
+<p>This is commonly used by CQ.Ext.Components to bubble events to owner Containers. See <a ext:cls="CQ.Ext.Component" ext:member="getBubbleTarget" href="output/CQ.Ext.Component.html#getBubbleTarget">CQ.Ext.Component.getBubbleTarget</a>. The default
+implementation in CQ.Ext.Component returns the Component's immediate owner. But if a known target is required, this can be overridden to
+access the required target more quickly.</p>
+<p>Example:</p><pre><code>CQ.Ext.override(CQ.Ext.form.Field, {
+    <i>//  Add functionality to Field&#39;s initComponent to enable the change event to bubble</i>
+    initComponent : CQ.Ext.form.Field.prototype.initComponent.createSequence(<b>function</b>() {
+        <b>this</b>.enableBubble(<em>'change'</em>);
+    }),
+
+    <i>//  We know that we want Field&#39;s events to bubble directly to the FormPanel.</i>
+    getBubbleTarget : <b>function</b>() {
+        <b>if</b> (!<b>this</b>.formPanel) {
+            <b>this</b>.formPanel = <b>this</b>.findParentByType(<em>'form'</em>);
+        }
+        <b>return</b> this.formPanel;
+    }
+});
+
+<b>var</b> myForm = <b>new</b> CQ.Ext.formPanel({
+    title: <em>'User Details'</em>,
+    items: [{
+        ...
+    }],
+    listeners: {
+        change: <b>function</b>() {
+            <i>// Title goes red <b>if</b> form has been modified.</i>
+            myForm.header.setStyle(<em>'color'</em>, <em>'red'</em>);
+        }
+    }
+});</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>events</code> : String/Array<div class="sub-desc">The event name to bubble, or an Array of event names.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.util.Observable" ext:member="enableBubble" href="output/CQ.Ext.util.Observable.html#enableBubble">Observable</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-isApiAction"></a>
+            <b>isApiAction</b>(&nbsp;<code>String action</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">Returns true if the specified action is defined as a unique action in the api-config.
+request.  If all API-actions ar...</div>
+            <div class="long">
+                Returns true if the specified action is defined as a unique action in the api-config.
+request.  If all API-actions are routed to unique urls, the xaction parameter is unecessary.  However, if no api is defined
+and all Proxy actions are routed to DataProxy#url, the server-side will require the xaction parameter to perform a switch to
+the corresponding code for CRUD action.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>action</code> : String<div class="sub-desc">[CQ.Ext.data.Api.CREATE|READ|UPDATE|DESTROY]</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="isApiAction" href="output/CQ.Ext.data.DataProxy.html#isApiAction">DataProxy</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-onRead"></a>
+            <b>onRead</b>(&nbsp;<code>String action</code>, <code>Object trans</code>, <code>Object res</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Callback for read actions</div>
+            <div class="long">
+                Callback for read actions    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>action</code> : String<div class="sub-desc">[CQ.Ext.data.Api.actions.create|read|update|destroy]</div></li><li><code>trans</code> : Object<div class="sub-desc">The request transaction object</div></li><li><code>res</code> : Object<div class="sub-desc">The server response
+@protected</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-onWrite"></a>
+            <b>onWrite</b>(&nbsp;<code>String action</code>, <code>Object trans</code>, <code>Object res</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Callback for write actions</div>
+            <div class="long">
+                Callback for write actions    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>action</code> : String<div class="sub-desc">[CQ.Ext.data.Api.actions.create|read|update|destroy]</div></li><li><code>trans</code> : Object<div class="sub-desc">The request transaction object</div></li><li><code>res</code> : Object<div class="sub-desc">The server response
+@protected</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-relayEvents"></a>
+            <b>relayEvents</b>(&nbsp;<code>Object o</code>, <code>Array events</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.</div>
+            <div class="long">
+                Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>o</code> : Object<div class="sub-desc">The Observable whose events this object is to relay.</div></li><li><code>events</code> : Array<div class="sub-desc">Array of event names to relay.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.util.Observable" ext:member="relayEvents" href="output/CQ.Ext.util.Observable.html#relayEvents">Observable</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-request"></a>
+            <b>request</b>(&nbsp;<code>String action</code>, <code>CQ.Ext.data.Record/CQ.Ext.data.Record[]/null rs</code>, <code>Object params</code>, <code>CQ.Ext.data.DataReader reader</code>, <code>Function callback</code>, <code>Object scope</code>, <code>Object options</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">All proxy actions are executed through this method.  Automatically fires the "before" + action event</div>
+            <div class="long">
+                All proxy actions are executed through this method.  Automatically fires the "before" + action event    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>action</code> : String<div class="sub-desc">Name of the action</div></li><li><code>rs</code> : CQ.Ext.data.Record/CQ.Ext.data.Record[]/null<div class="sub-desc">Will be null when action is 'load'</div></li><li><code>params</code> : Object<div class="sub-desc"></div></li><li><code>reader</code> : CQ.Ext.data.DataReader<div class="sub-desc"></div></li><li><code>callback</code> : Function<div class="sub-desc"></div></li><li><code>scope</code> : Object<div class="sub-desc">The scope (<code>this</code> reference) in which the callback function is executed. Defaults to the Proxy object.</div></li><li><code>options</code> : Object<div class="sub-desc">Any options specified for the action (e.g. see <a ext:cls="CQ.Ext.data.Store" ext:member="load" href="output/CQ.Ext.data.Store.html#load">CQ.Ext.data.Store.load</a>).</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="request" href="output/CQ.Ext.data.DataProxy.html#request">DataProxy</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-setApi"></a>
+            <b>setApi</b>(&nbsp;<code>String/Object api</code>, <code>String/Function url</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Redefines the Proxy's API or a single action of an API. Can be called with two method signatures.
+If called with an o...</div>
+            <div class="long">
+                <p>Redefines the Proxy's API or a single action of an API. Can be called with two method signatures.</p>
+<p>If called with an object as the only parameter, the object should redefine the <b>entire</b> API, e.g.:</p><pre><code>proxy.setApi({
+    read    : <em>'/users/read'</em>,
+    create  : <em>'/users/create'</em>,
+    update  : <em>'/users/update'</em>,
+    destroy : <em>'/users/destroy'</em>
+});</code></pre>
+<p>If called with two parameters, the first parameter should be a string specifying the API action to
+redefine and the second parameter should be the URL (or function if using DirectProxy) to call for that action, e.g.:</p><pre><code>proxy.setApi(CQ.Ext.data.Api.actions.read, <em>'/users/new_load_url'</em>);</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>api</code> : String/Object<div class="sub-desc">An API specification object, or the name of an action.</div></li><li><code>url</code> : String/Function<div class="sub-desc">The URL (or function if using DirectProxy) to call for the action.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="setApi" href="output/CQ.Ext.data.DataProxy.html#setApi">DataProxy</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.data.ScriptTagProxy-events"></a>
+        <h2>Public Events</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Event</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="event-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-beforeload"></a>
+            <b>beforeload</b> : (&nbsp;<code>DataProxy this</code>, <code>Object params</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires before a request to retrieve a data object.</div>
+            <div class="long">
+                Fires before a request to retrieve a data object.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : DataProxy<div class="sub-desc">The proxy for the request</div></li><li><code>params</code> : Object<div class="sub-desc">The params object passed to the <a ext:cls="CQ.Ext.data.DataProxy" ext:member="request" href="output/CQ.Ext.data.DataProxy.html#request">request</a> function</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="beforeload" href="output/CQ.Ext.data.DataProxy.html#beforeload">DataProxy</a></td>
+    </tr>
+        <tr class="event-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-beforewrite"></a>
+            <b>beforewrite</b> : (&nbsp;<code>DataProxy this</code>, <code>String action</code>, <code>Record/Record[] rs</code>, <code>Object params</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires before a request is generated for one of the actions CQ.Ext.data.Api.actions.create|update|destroy
+In addition ...</div>
+            <div class="long">
+                <p>Fires before a request is generated for one of the actions CQ.Ext.data.Api.actions.create|update|destroy</p>
+<p>In addition to being fired through the DataProxy instance that raised the event, this event is also fired
+through the CQ.Ext.data.DataProxy <i>class</i> to allow for centralized processing of beforewrite events from <b>all</b>
+DataProxies by attaching a listener to the CQ.Ext.data.DataProxy class itself.</p>    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : DataProxy<div class="sub-desc">The proxy for the request</div></li><li><code>action</code> : String<div class="sub-desc">[CQ.Ext.data.Api.actions.create|update|destroy]</div></li><li><code>rs</code> : Record/Record[]<div class="sub-desc">The Record(s) to create|update|destroy.</div></li><li><code>params</code> : Object<div class="sub-desc">The request <code>params</code> object. Edit <code>params</code> to add parameters to the request.</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="beforewrite" href="output/CQ.Ext.data.DataProxy.html#beforewrite">DataProxy</a></td>
+    </tr>
+        <tr class="event-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-exception"></a>
+            <b>exception</b> : (&nbsp;<code>DataProxy this</code>, <code>String type
+<p>The</code>, <code>String action</code>, <code>Object options</code>, <code>Object response
+<p>The</code>, <code>Mixed arg
+<p>The</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires if an exception occurs in the Proxy during a remote request. This event is relayed
+through a corresponding CQ.E...</div>
+            <div class="long">
+                <p>Fires if an exception occurs in the Proxy during a remote request. This event is relayed
+through a corresponding <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a>.<a ext:cls="CQ.Ext.data.Store" ext:member="exception" href="output/CQ.Ext.data.Store.html#exception">exception</a>,
+so any Store instance may observe this event.</p>
+<p>In addition to being fired through the DataProxy instance that raised the event, this event is also fired
+through the CQ.Ext.data.DataProxy <i>class</i> to allow for centralized processing of exception events from <b>all</b>
+DataProxies by attaching a listener to the CQ.Ext.data.DataProxy class itself.</p>
+<p>This event can be fired for one of two reasons:</p>
+<div class="mdetail-params"><ul>
+<li>remote-request <b>failed</b> : <div class="sub-desc">
+The server did not return status === 200.
+</div></li>
+<li>remote-request <b>succeeded</b> : <div class="sub-desc">
+The remote-request succeeded but the reader could not read the response.
+This means the server returned data, but the configured Reader threw an
+error while reading the response.  In this case, this event will be
+raised and the caught error will be passed along into this event.
+</div></li>
+</ul></div>
+<br><p>This event fires with two different contexts based upon the 2nd
+parameter <tt>type [remote|response]</tt>.  The first four parameters
+are identical between the two contexts -- only the final two parameters
+differ.</p>    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : DataProxy<div class="sub-desc">The proxy that sent the request</div></li><li><code>type
+<p>The</code> : String<div class="sub-desc">value of this parameter will be either <tt>'response'</tt> or <tt>'remote'</tt>.</p>
+<div class="mdetail-params"><ul>
+<li><b><tt>'response'</tt></b> : <div class="sub-desc">
+<p>An <b>invalid</b> response from the server was returned: either 404,
+500 or the response meta-data does not match that defined in the DataReader
+(e.g.: root, idProperty, successProperty).</p>
+</div></li>
+<li><b><tt>'remote'</tt></b> : <div class="sub-desc">
+<p>A <b>valid</b> response was returned from the server having
+successProperty === false. This response might contain an error-message
+sent from the server. For example, the user may have failed
+authentication/authorization or a database validation error occurred.</p>
+</div></li>
+</ul></div></div></li><li><code>action</code> : String<div class="sub-desc">Name of the action (see <a ext:cls="CQ.Ext.data.Api" ext:member="actions" href="output/CQ.Ext.data.Api.html#actions">CQ.Ext.data.Api.actions</a>.</div></li><li><code>options</code> : Object<div class="sub-desc">The options for the action that were specified in the <a ext:cls="CQ.Ext.data.DataProxy" ext:member="request" href="output/CQ.Ext.data.DataProxy.html#request">request</a>.</div></li><li><code>response
+<p>The</code> : Object<div class="sub-desc">value of this parameter depends on the value of the <code>type</code> parameter:</p>
+<div class="mdetail-params"><ul>
+<li><b><tt>'response'</tt></b> : <div class="sub-desc">
+<p>The raw browser response object (e.g.: XMLHttpRequest)</p>
+</div></li>
+<li><b><tt>'remote'</tt></b> : <div class="sub-desc">
+<p>The decoded response object sent from the server.</p>
+</div></li>
+</ul></div></div></li><li><code>arg
+<p>The</code> : Mixed<div class="sub-desc">type and value of this parameter depends on the value of the <code>type</code> parameter:</p>
+<div class="mdetail-params"><ul>
+<li><b><tt>'response'</tt></b> : Error<div class="sub-desc">
+<p>The JavaScript Error object caught if the configured Reader could not read the data.
+If the remote request returns success===false, this parameter will be null.</p>
+</div></li>
+<li><b><tt>'remote'</tt></b> : Record/Record[]<div class="sub-desc">
+<p>This parameter will only exist if the <tt>action</tt> was a <b>write</b> action
+(CQ.Ext.data.Api.actions.create|update|destroy).</p>
+</div></li>
+</ul></div></div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="exception" href="output/CQ.Ext.data.DataProxy.html#exception">DataProxy</a></td>
+    </tr>
+        <tr class="event-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-load"></a>
+            <b>load</b> : (&nbsp;<code>DataProxy this</code>, <code>Object o</code>, <code>Object options</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires before the load method's callback is called.</div>
+            <div class="long">
+                Fires before the load method's callback is called.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : DataProxy<div class="sub-desc">The proxy for the request</div></li><li><code>o</code> : Object<div class="sub-desc">The request transaction object</div></li><li><code>options</code> : Object<div class="sub-desc">The callback's <tt>options</tt> property as passed to the <a ext:cls="CQ.Ext.data.DataProxy" ext:member="request" href="output/CQ.Ext.data.DataProxy.html#request">request</a> function</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="load" href="output/CQ.Ext.data.DataProxy.html#load">DataProxy</a></td>
+    </tr>
+        <tr class="event-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-loadexception"></a>
+            <b>loadexception</b> : (&nbsp;<code>Object this</code>, <code>Object options</code>, <code>Object arg</code>, <code>Error e</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Deprecated in favor of 'exception' event.
+Fires if an exception occurs in the Proxy during data loading.  This event ...</div>
+            <div class="long">
+                <b>Deprecated</b> in favor of 'exception' event.
+Fires if an exception occurs in the Proxy during data loading.  This event can be fired for one of two reasons:
+<ul><li><b>The load call timed out.</b>  This means the load callback did not execute within the time limit
+specified by <a ext:cls="CQ.Ext.data.ScriptTagProxy" ext:member="timeout" href="output/CQ.Ext.data.ScriptTagProxy.html#timeout">timeout</a>.  In this case, this event will be raised and the
+fourth parameter (read error) will be null.</li>
+<li><b>The load succeeded but the reader could not read the response.</b>  This means the server returned
+data, but the configured Reader threw an error while reading the data.  In this case, this event will be
+raised and the caught error will be passed along as the fourth parameter of this event.</li></ul>
+Note that this event is also relayed through <a ext:cls="CQ.Ext.data.Store" href="output/CQ.Ext.data.Store.html">CQ.Ext.data.Store</a>, so you can listen for it directly
+on any Store instance.    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : Object<div class="sub-desc"></div></li><li><code>options</code> : Object<div class="sub-desc">The loading options that were specified (see <a ext:cls="CQ.Ext.data.ScriptTagProxy" ext:member="load" href="output/CQ.Ext.data.ScriptTagProxy.html#load">load</a> for details). If the load
+call timed out, this parameter will be null.</div></li><li><code>arg</code> : Object<div class="sub-desc">The callback's arg object passed to the <a ext:cls="CQ.Ext.data.ScriptTagProxy" ext:member="load" href="output/CQ.Ext.data.ScriptTagProxy.html#load">load</a> function</div></li><li><code>e</code> : Error<div class="sub-desc">The JavaScript Error object caught if the configured Reader could not read the data.
+If the remote request returns success: false, this parameter will be null.</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">ScriptTagProxy</td>
+    </tr>
+        <tr class="event-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.data.ScriptTagProxy-write"></a>
+            <b>write</b> : (&nbsp;<code>DataProxy this</code>, <code>String action</code>, <code>Object data</code>, <code>Object response</code>, <code>Record/Record[] rs</code>, <code>Object options</code>&nbsp;)            <div class="mdesc">
+                                    <div class="short">Fires before the request-callback is called
+In addition to being fired through the DataProxy instance that raised the...</div>
+            <div class="long">
+                <p>Fires before the request-callback is called</p>
+<p>In addition to being fired through the DataProxy instance that raised the event, this event is also fired
+through the CQ.Ext.data.DataProxy <i>class</i> to allow for centralized processing of write events from <b>all</b>
+DataProxies by attaching a listener to the CQ.Ext.data.DataProxy class itself.</p>    <div class="mdetail-params">
+        <strong style="font-weight:normal;">Listeners will be called with the following arguments:</strong>
+        <ul><li><code>this</code> : DataProxy<div class="sub-desc">The proxy that sent the request</div></li><li><code>action</code> : String<div class="sub-desc">[CQ.Ext.data.Api.actions.create|upate|destroy]</div></li><li><code>data</code> : Object<div class="sub-desc">The data object extracted from the server-response</div></li><li><code>response</code> : Object<div class="sub-desc">The decoded response from server</div></li><li><code>rs</code> : Record/Record[]<div class="sub-desc">The Record(s) from Store</div></li><li><code>options</code> : Object<div class="sub-desc">The callback's <tt>options</tt> property as passed to the <a ext:cls="CQ.Ext.data.DataProxy" ext:member="request" href="output/CQ.Ext.data.DataProxy.html#request">request</a> function</div></li>        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.data.DataProxy" ext:member="write" href="output/CQ.Ext.data.DataProxy.html#write">DataProxy</a></td>
+    </tr>
+            </table>
+        
+        </div>

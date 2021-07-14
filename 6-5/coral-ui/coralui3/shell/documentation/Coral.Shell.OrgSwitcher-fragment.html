@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CoralUI - Coral.Shell.OrgSwitcher</title>
+    <meta name="viewport" content="user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+    <script src="../js/libs/jquery.js"></script>
+    <script src="../js/libs/moment.js"></script>
+    <script src="../js/coral.js"></script>
+    <script src="js/prettify.js"></script>
+    <script src="js/coral-docs.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/coral.css">
+    <link rel="stylesheet" type="text/css" href="css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="css/jsdoc-default.css">
+    <link rel="stylesheet" type="text/css" href="css/coral-docs-examples.css">
+    <link rel="stylesheet" type="text/css" href="css/coral-docs-main.css">
+    <!--if lt IE 9
+    script(src = '//html5shiv.googlecode.com/svn/trunk/html5.js')
+    
+    -->
+  </head>
+  <body class="docs-Background coral--light">
+    <section class="docs-Component">
+      <p>This is the stand-alone file for testing the 'overview-fragment' published by each component.</p>
+          <section class="docs-Example-section docs-Example-simpleExample">
+                <h2 class="coral-Heading coral-Heading--2 js-guide-heading-toc js-guide-heading-toc--section" id="coral.Shell.OrgSwitcher"><a class="coral-Link" href="Coral.Shell.OrgSwitcher.html">Coral.Shell.OrgSwitcher</a></h2>
+            <p>
+              The Shell.Orgswitcher can fill a Shell.Menu.Item with an interface to let a user
+              change what organizational area of their application they are using.  In the simplest
+              sense it is just a drop down menu with a search feature.
+            </p>
+            <div class="docs-Example-simpleExampleMarkup">
+              <div class="coral-Well">
+                <!-- you would not need the coral-Well, but it helps the example stand out in docs -->
+                <coral-shell-orgswitcher>
+                  <coral-shell-organization name="facebook" icon="facebookColor">Facebook, Inc.</coral-shell-organization>
+                  <coral-shell-organization name="flickr" icon="flickrColor">Flickr, Inc.</coral-shell-organization>
+                  <coral-shell-organization name="newsgator" icon="newsgatorColor">Newsgator, Inc.</coral-shell-organization>
+                  <coral-shell-organization name="microsoft" icon="windowsColor">Microsoft
+                    <coral-shell-suborganization name="microsoftjapan" icon="adobeTarget" selected>Microsoft Japan
+                    </coral-shell-suborganization>
+                    <coral-shell-suborganization name="microsoftusa" icon="adobeTarget">Microsoft USA
+                    </coral-shell-suborganization>
+                    <coral-shell-suborganization name="microsoftsouthamerica" icon="adobeTarget">Microsoft South America
+                    </coral-shell-suborganization>
+                    </coral-shell-organization>
+                  <coral-shell-orgswitcher-footer>
+                    <button is="coral-button" variant="minimal">Manage Organizations</button>
+                  </coral-shell-orgswitcher-footer>
+                </coral-shell-orgswitcher>
+              </div>
+            </div>
+          </section>
+    </section>
+  </body>
+</html>

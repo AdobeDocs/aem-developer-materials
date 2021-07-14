@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.12.5 Setting the Current Activity (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.12.5 Setting the Current Activity</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	VersionManager.setActivity(Node activity)</FONT></FONT></P>
+	<P>is called by the user
+	to set the current activity on the session by specifying a
+	previously created <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	node. Changing the current activity is done by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>setActivity</FONT></FONT>
+	again. Cancelling the current activity is done by calling
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>setActivity(null)</FONT></FONT>
+	and results in the session having no current activity. The method
+	returns the <I>previously set</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>
+	node or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if no such node exists.</P>
+	<P>Assuming, 
+	</P>
+	<UL>
+		<LI><P>the current
+		activity of session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		is represented by node <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		and</P>
+		<LI><P>node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is a versionable node with version history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,</P>
+	</UL>
+	<P>then each <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>
+	of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	made through <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	while <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	is in effect causes the following:</P>
+	<UL>
+		<LI><P>If there exists another workspace
+		with node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		also has version history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		is checked out and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		references <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+		then the check-out fails with an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ActivityViolationException</FONT></FONT>
+		indicating which workspace currently has the check-out.</P>
+		<LI><P>If there is a version in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+		that is not an eventual predecessor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		but whose <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		references <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+		then the check-out fails with an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ActivityViolationException</FONT></FONT>.</P>
+		<LI><P>Otherwise, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to reference <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		and when <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is subsequently checked in, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of the new version is set to reference <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+		and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is removed.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

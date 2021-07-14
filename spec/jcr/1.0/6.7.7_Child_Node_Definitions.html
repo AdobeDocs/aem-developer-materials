@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.7 Child Node Definitions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.7." id="section_6.7.7."></a>6.7.7 Child Node Definitions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Similarly, each child node definition contains the following information:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The <i><b>name</b></i> of the child node to which this definition applies.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <i><b>required primary node types</b></i> for this child node. That is, the primary node types that this child node must have. This attribute is capable of listing more than one node type to accommodate those implementations that support multiple inheritance of primary node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <i><b>default primary node type</b></i> for this child node. This is the primary node type automatically assigned if no node type information is specified when the node is created.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether this child node will be <i><b>auto-created</b></i> when its parent node is created.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					Whether the child node is <i><b>mandatory</b></i>. A mandatory child node is one that <i>must exist</i>. If a mandatory child node is missing from a parent node then <b>save</b> on the parent node will fail.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <i><b>onParentVersion</b></i> status of the child node. This specifies what to do with the child node if its parent node is versioned.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether the child node is <i><b>protected</b></i>. A protected node is one which cannot be modified (have child items added to it or removed from it) or be removed (except by removing its parent) by the client of this API but which may be modified or removed by the repository implementation itself.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether this child node can have <i><b>same-name siblings</b></i>, meaning that the parent node can have more than one child node of this name.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

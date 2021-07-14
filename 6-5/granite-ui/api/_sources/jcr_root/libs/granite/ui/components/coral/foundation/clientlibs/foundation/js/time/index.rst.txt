@@ -1,0 +1,102 @@
+***************
+foundation-time
+***************
+
+An element to unify the date and time representation in the product.
+
+
+Markup
+======
+
+foundation-time
+---------------
+
+The element representing the date and/or time.
+
+Selector Rule::
+
+   foundation-time
+
+
+[format]
+--------
+
+The format to present the date: ``short``, ``medium``, ``long`` and ``full``.
+
+Selector Rule::
+
+   foundation-time[format]
+
+
+[type]
+------
+
+The type of the date: ``date`` (default), ``time``, ``datetime``.
+
+Selector Rule::
+
+   foundation-time[type]
+
+
+[value]
+-------
+
+The date value in ISO 8601 format. e.g. ``1994-11-05T13:15:30Z``.
+
+Selector Rule::
+
+   foundation-time[value]
+
+
+DOM API
+=======
+
+``foundation-time`` element supports the following interface:
+
+.. code-block:: ts
+
+   interface FoundationTime {
+     /**
+      * The format to present the date: ``short``, ``medium``, ``long`` and ``full``.
+      */
+     format: string;
+
+     /**
+      * The type of the date: ``date`` (default), ``time``, ``datetime``.
+      */
+     type: string;
+
+     /**
+      * The date value in ISO 8601 format. e.g. ``1994-11-05T13:15:30Z``.
+      */
+     value: string;
+
+     /**
+      * The value of the element, interpreted as a Date, or <code>null</code> if conversion is not possible.
+      */
+     valueAsDate: Date;
+   }
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <foundation-time value="1994-11-05T13:15:30Z"></foundation-time>
+   <foundation-time value="1994-11-05T13:15:30Z" format="full" type="datetime"></foundation-time>
+
+
+Usage Guideline
+===============
+
+It is RECOMMENDED to use default value for ``format`` attribute, which is done by not specifiying the attribute at all.
+
+Also, for ``value``, it is RECOMMENDED to specify the time zone.
+The time zone can be in UTC (which is usually represented by "Z") or any other time zone using UTC offset.
+If time zone is not specified, then client's local time zone is used, which is most likely to be incorrect.
+
+.. code-block:: html
+
+   <foundation-time value="1994-11-05T13:15:30Z"></foundation-time>
+   <foundation-time value="1994-11-05T13:15:30+01:00"></foundation-time>

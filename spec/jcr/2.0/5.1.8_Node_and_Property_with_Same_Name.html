@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.1.8 Node and Property with Same Name (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>5.1.8 Node and Property with Same Name</H3>
+	<P>In some repositories a
+	node and property with the same parent may have the same name. The
+	methods<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	Node.getNode, Session.getNode,</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getProperty</FONT></FONT>
+	and<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	Session.getProperty</FONT></FONT> specify whether the
+	desired item is a node or a property. The method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getItem</FONT></FONT>
+	will return the item at the specified path if there is only one such
+	item, if there is both a node and a property at the specified path,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getItem</FONT></FONT>
+	will return the node.</P>
+	<P>Whether an
+	implementation supports this feature can be determined by querying
+	the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

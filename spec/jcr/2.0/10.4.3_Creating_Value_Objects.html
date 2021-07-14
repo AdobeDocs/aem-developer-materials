@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.4.3 Creating Value Objects (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.4.3 Creating Value Objects</H3>
+	<P>In many cases a
+	property must be set using a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object. <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	objects are created using a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>,
+	acquired through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getValueFactory()</FONT></FONT>.</P>
+	<P>The generic <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	creation method is 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value
+	ValueFactory.createValue(String value, int type)</FONT></FONT></P>
+	<P>which takes the
+	string-form of the specified type and returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of that type using standard property type conversion (see §3.6.4
+	<I>Property Type Conversion</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

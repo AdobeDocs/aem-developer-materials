@@ -1,0 +1,57 @@
+foundation.collection.action.action: foundation.link
+====================================================
+
+``foundation.link`` is an :ref:`action of foundation-collection-action <foundation-collection-action-action>`.
+
+When the action is triggered, it will cause the user agent to navigate to a URI, using `window.open <https://developer.mozilla.org/en-US/docs/Web/API/window.open>`_. It supports the following parameters:
+
+config.data.href
+   The URI Template that will be expanded into a URI that the user agent navigates to. The URI Template is expanded using variables satisfying the following interface:
+
+   .. code-block:: ts
+
+      interface FoundationCollectionActionFoundationLinkVariables {
+        /**
+         * The value of <code>data-foundation-collection-id</code> attribute of the given <code>collection</code> parameter.
+         */
+        id: string;
+
+        /**
+         * The array of values of <code>data-foundation-collection-item-id</code> attribute of the given <code>selections</code> parameter.
+         */
+        item: string[];
+      }
+
+config.data.target
+   The target of the navigation. This is the ``strWindowName`` parameter of the window.open().
+
+
+Example
+-------
+
+Given a simple button:
+
+.. code-block:: html
+
+   <button>Navigate</button>
+
+You can annotate it with ``foundation-collection-action`` to navigate to a URL based on collection selections when the user click it:
+
+.. code-block:: html
+
+   <button class="foundation-collection-action" data-foundation-collection-action='{"target": ".myapp-mycollection", "activeSelectionCount": "multiple", "action": "foundation.link", "data": {"href": "/my/link.html{?item*}", "target": "_blank"}}'>Navigate</button>
+
+
+Relationship Graph
+------------------
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.dialog" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

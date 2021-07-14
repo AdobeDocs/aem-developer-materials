@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 4 Connecting (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>4 Connecting</H1>
+<a name="4.1 Repository Object"></a>	<H2>4.1 Repository Object</H2>
+	<P>To begin using a
+	repository, an application must acquire a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object.</P>
+	<P>Access to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object may be provided through a number of standard Java naming and
+	discovery mechanisms, but <I>must</I> at the minimum be provided
+	through an implementation of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	interface.</P>
+	<P>Any implementation of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	must have a zero-argument public constructor. Repository factories
+	may be installed in an instance of the Java platform as extensions,
+	that is, jar files placed into any of the usual extension
+	directories. Factories may also be made available by adding them to
+	the applet or application class path or by some other
+	platform-specific means.</P>
+	<P>A repository factory
+	implementation should support the Java Standard Edition Service
+	Provider mechanism<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote9anc" HREF="#sdfootnote9sym"><SUP>9</SUP></A></SUP>,
+	that is, an implementation should include the file
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>META-INF/services/javax.jcr.RepositoryFactory</FONT></FONT>.
+	This file contains the fully qualified name of the class that
+	implements <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>.</P>
+	<P>Once the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	is acquired, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object itself is acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository&nbsp;RepositoryFactory.getRepository(Map&nbsp;parameters)</FONT></FONT></P>
+	<P>which attempts to
+	retrieve a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object using the given parameters.</P>
+	<P>Parameters are passed
+	in a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	key/value pairs. The keys are not specified by JCR and are
+	implementation specific. However, vendors should use keys that are
+	namespace qualified in the Java package style to distinguish their
+	key names. Alternatively, a client may request a default repository
+	instance by passing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+	<P>The implementation
+	must return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if a default repository instance is requested and the factory is
+	not able to identify such a repository or if parameters are passed
+	and the factory does not understand them. See the associated Javadoc
+	for example connection code.</P>
+<a name="4.1.1 Example Repository Acquisition"></a>	<H3>4.1.1 Example Repository Acquisition</H3>
+	<P>An application may
+	explicitly specify the repository factory implementation. For
+	example:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Map
+	parameters = new HashMap();</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>parameters.put(&quot;com.vendor.address&quot;,</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>&quot;vendor://localhost:9999/repo&quot;);</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory
+	factory = (RepositoryFactory)</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Class.forName(&quot;com.vendor.RepositoryFactoryImpl&quot;);</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository
+	repo = factory.getRepository(parameters);</FONT></FONT></FONT></P>
+	<P>Some implementations
+	may allow acquisition of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ServiceLoader</FONT></FONT>
+	in Java SE 6. For example:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Map
+	parameters = new HashMap();</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>parameters.put(&quot;com.vendor.address&quot;,</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>&quot;vendor://localhost:9999/repo&quot;);</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository
+	repo = null;</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>for
+	(RepositoryFactory factory :</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>ServiceLoader.load(RepositoryFactory.class))
+	{</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>repo
+	= factory.getRepository(parameters);</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>if
+	(repo != null) {</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>//
+	factory accepted parameters</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>break;</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></P>
+	<P>Note that in Java SE
+	prior to version 6, one may use the class
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.imageio.spi.ServiceRegistry</FONT></FONT>
+	to look up the available <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	implementations.</P>
+<a name="4.1.2 Thread Safety"></a>	<H3>4.1.2 Thread Safety</H3>
+	<P>A repository
+	implementation must provide thread-safe implementations of all the
+	methods of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	interfaces. A repository implementation is not required to provide
+	thread-safe implementations of any other interface. As a
+	consequence, an application which concurrently or sequentially
+	operates against objects having affinity to a particular <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	through more than one thread must provide synchronization sufficient
+	to ensure no more than one thread concurrently operates against that
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and changes made by one thread are visible to other threads.</P>
+<a name="4.2 Login"></a>	<H2>4.2 Login</H2>
+	<P>Interaction with the
+	repository begins with the user acquiring a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	through a call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.login</FONT></FONT>.
+	In the most general case, the client supplies a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	object and a workspace name:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session
+	Repository.login(Credentials credentials,<BR> 
+	 String workspaceName)</FONT></FONT>.</P>
+	<P>Other signatures of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>login</FONT></FONT>
+	are also provided (see §4.2.4 <I>External Authentication</I>).</P>
+<a name="4.2.1 Credentials"></a>	<H3>4.2.1 Credentials</H3>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	interface is an empty marker for the object that carries the
+	information necessary to authenticate and authorize the user. A
+	repository may use the supplied <FONT FACE="Courier New, monospace"><FONT SIZE=2>SimpleCredentials</FONT></FONT>
+	implementation or its own implementation. 
+	</P>
+<a name="4.2.2 Guest Credentials"></a>	<H3>4.2.2 Guest Credentials</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>GuestCredentials</FONT></FONT>
+	is used to acquire an anonymous session.</P>
+<a name="4.2.3 Workspace Name"></a>	<H3>4.2.3 Workspace Name</H3>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>workspaceName</FONT></FONT>
+	passed on <FONT FACE="Courier New, monospace"><FONT SIZE=2>login</FONT></FONT>
+	identifies one of the persistent workspaces of the repository. More
+	than one <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	can be simultaneously bound to the same persistent workspace.</P>
+<a name="4.2.4 External Authentication"></a>	<H3>4.2.4 External Authentication</H3>
+	<P>By providing a
+	signature of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.login</FONT></FONT>
+	that does not require <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>,
+	the content repository allows for authorization and authentication
+	to be handled by JAAS (or another external mechanism) if the
+	implementer so chooses.</P>
+	<P>To use such an
+	external mechanism to create sessions with end-user identity,
+	invocations of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.login</FONT></FONT>
+	method that do not specify <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	(i.e., either a <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	is passed or a signature without the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	parameter is used) should obtain the identity of the
+	already-authenticated user through that external mechanism.</P>
+<a name="4.3 Impersonate"></a>	<H2>4.3 Impersonate</H2>
+	<P>A client may also open
+	a new <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	from within an existing one using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session
+	Session.impersonate(Credentials credentials)</FONT></FONT>.</P>
+	<P>The returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is bound to the same workspace as the current <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	though it may (and typically will) have a different authorization.
+	The implementation is free to take both the supplied <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	and the authorization of the current <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	into account in determining the authorization of the returned
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.</P>
+<a name="4.4 Session"></a>	<H2>4.4 Session</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object is granted a set of permissions toward the specified
+	persistent workspace. These are determined by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>'s
+	credentials combined with any access control restrictions, either
+	JCR-defined or implementation-specific, which may apply (see §9.1
+	<I>Permissions</I>).</P>
+<a name="4.4.1 User"></a>	<H3>4.4.1 User</H3>
+	<P>Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	has a user ID, accessed through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Session.getUserID()</FONT></FONT>.</P>
+	<P>How the user ID is set
+	is up to the implementation. It may be passed in as part of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>
+	or it may be acquired in some other way. This method is free to
+	return an “anonymous user ID” or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+<a name="4.4.2 Attributes"></a>	<H3>4.4.2 Attributes</H3>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	may have arbitrary, implementation-specific named attributes bound
+	to its <FONT FACE="Courier New, monospace"><FONT SIZE=2>Credentials</FONT></FONT>.
+	The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	Session.getAttributeNames()</FONT></FONT></P>
+	<P>returns the set of
+	attribute names, and the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Object
+	Session.getAttribute(String name)</FONT></FONT></P>
+	<P>returns the value of a
+	named attribute.</P>
+<a name="4.4.3 Session to Repository"></a>	<H3>4.4.3 Session to Repository</H3>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object through which a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	was acquired is retrieved with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getRepository()</FONT></FONT>.</P>
+<a name="4.4.4 Live Status"></a>	<H3>4.4.4 Live Status</H3>
+	<P>The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Session.isLive()</FONT></FONT></P>
+	<P>is used to check
+	whether a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object represents a live, logged-in session.</P>
+<a name="4.4.5 Logout"></a>	<H3>4.4.5 Logout</H3>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is closed using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.logout()</FONT></FONT>.</P>
+<a name="4.5 Workspace"></a>	<H2>4.5 Workspace</H2>
+	<P>Though more than one
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	can be bound to the same <I>persistent workspace</I>, each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object has a single distinct corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object that <I>represents</I> the actual persistent workspace to
+	which the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is bound. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object can be thought of as a <I>view</I> on to the persistent
+	workspace as seen through the permissions granted to its
+	corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	(see §10 <I>Writing</I>).</P>
+<a name="4.5.1 Session to Workspace"></a>	<H3>4.5.1 Session to Workspace</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace
+	Session.getWorkspace()</FONT></FONT>.</P>
+	<P>returns the Workspace
+	object representing the actual persistent workspace to which a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is bound.</P>
+	<P>Despite their
+	one-to-one relationship, <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	are defined as distinct interfaces in order to separate two types of
+	write behavior: <I>transient</I> vs. <I>immediately persistent</I>,
+	though this distinction is only strictly relevant in writable
+	repositories.</P>
+<a name="4.5.2 Workspace to Session"></a>	<H3>4.5.2 Workspace to Session</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session
+	Workspace.getSession()</FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object to which a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object is bound.</P>
+<a name="4.5.3 Workspace Name"></a>	<H3>4.5.3 Workspace Name</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Workspace.getName()</FONT></FONT></P>
+	<P>returns the name of
+	the persistent workspace represented by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object.</P>
+<a name="4.5.4 Accessible Workspaces"></a>	<H3>4.5.4 Accessible Workspaces</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	Workspace.getAccessibleWorkspaceNames()</FONT></FONT></P>
+	<P>returns an array
+	holding the names of all persistent workspaces accessible from a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object. Accessibility is determined by the permissions granted to
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	to which the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object is bound. In order to access one of the listed workspaces,
+	the user performs another <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.login</FONT></FONT>,
+	specifying the name of the desired workspace, and receives a new
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object.</P>
+	<P> 
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

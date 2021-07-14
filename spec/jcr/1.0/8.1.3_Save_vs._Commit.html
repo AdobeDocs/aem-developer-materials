@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.1.3 Save vs. Commit (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.1.3." id="section_8.1.3."></a>8.1.3 Save vs. Commit
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Throughout this specification we often mention the distinction between <i>transient</i> and <i>persistent</i> levels. The persistent level refers to the (one or more) workspaces that make up the actual content storage of the repository. The transient level refers to in-memory storage associated with a particular <b>Session</b> object.
+								</p>
+							
+							
+								<p class="c5">
+									In these discussions we usually assume that operations occur outside the context of transactions; it is assumed that <b>save</b> and other workspace-altering methods immediately effect changes to the persistent layer, causing those changes to be made visible to other sessions.
+								</p>
+							
+							
+								<p class="c5">
+									<i>This is not the case, however, once transactions are introduced</i>. Within a transaction, changes made by <b>save</b> (or other, workspace-direct, methods) are transactionalized and are only persisted and published (made visible to other sessions), upon commit of the transaction. A rollback will, conversely, revert the effects of any saves or workspace-direct methods called within the transaction.
+								</p>
+							
+							
+								<p class="c5">
+									Note, however, that changes made in the transient storage are <i>not</i> recorded by a transaction. This means that a rollback will not revert changes made to the transient storage of the <b>Session</b>. After a rollback the <b>Session</b> object state will still contain any pending changes that were present before the rollback.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

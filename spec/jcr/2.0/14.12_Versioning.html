@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.12 Versioning (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>14.12 Versioning</H2>
+	<P>If a node is
+	versionable then all nodes within its shared set share the same
+	version history. Under full versioning this follows logically from
+	the fact that the nodes all share the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>
+	reference (see §3.13.2.2 <I>mix:versionable</I>), pointing to a
+	single common <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node (see §3.13.5.1 <I>nt:versionHistory</I>).</P>
+	<P>On check-in of a node
+	<I>N</I> within the shared set, its versionable state is determined
+	just as in the non-shared case, but because the node is shared, the
+	resulting version will also reflect the versionable state of any
+	node <I>N'</I> in the shared set of <I>N</I>.</P>
+	<P>On check-in of a
+	parent <I>M</I> of a shared node <I>N</I> the contribution of <I>N</I>
+	to the versionable state of <I>M</I> is determined according to the
+	OPV of <I>N</I>. Note that the OPV of two nodes <I>N</I> and <I>N</I>'
+	in the same shared set (with parent node <I>M</I> and <I>M'</I>,
+	respectively) may <I>differ</I> because the OPV of <I>N</I> is
+	determined by the node type of <I>M</I>, while that of <I>N'</I> is
+	determined by the node type of <I>M'</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

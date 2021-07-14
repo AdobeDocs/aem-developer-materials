@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.3 Removing Shared Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>14.3 Removing Shared Nodes</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.removeShare()</FONT></FONT> 
+	</P>
+	<P>removes the node from
+	its shared set without affecting the other nodes in the set. The
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.removeSharedSet()</FONT></FONT></P>
+	<P>removes the node and
+	all the members of its shared set.</P>
+	<P>In the first case,
+	assuming more than one member in the shared set, the children of the
+	removed node are unaffected since they still have at least one other
+	node as parent. In the second case, however, the children of the
+	shared set are removed. 
+	</P>
+	<P>In cases where the
+	shared set consists of a single node, or when these methods are
+	called on a non-shareable node, their behavior is identical to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.remove()</FONT></FONT>.
+		</P>
+	<P>When applied to a
+	shared node with at least one other member in its shared set, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Item.remove</FONT></FONT> or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.removeItem</FONT></FONT></P>
+	<P>may behave as
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeShare()</FONT></FONT>
+	or as <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeSharedSet()</FONT></FONT>.
+	Which behavior is adopted is an implementation issue. 
+	</P>
+	<P>The behavior of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.remove()</FONT></FONT>
+	is permitted to vary across repositories because the details of the
+	underlying implementation will make one or the other of the
+	behaviors more natural for that repository. In particular if a
+	repository implements a shared set by one “primary” parent (that
+	controls the lifetime of the child) and zero or more “secondary”
+	parents (that reference that child), then <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.remove</FONT></FONT>
+	is most naturally interpreted differently on the primary parent and
+	one of the secondary parents. To force that repository to do a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeShare</FONT></FONT>
+	on the primary parent would require that implementation to pick one
+	of the secondary parents as the new primary parent, and change all
+	of the other secondary parents to refer to that new primary parent.</P>
+	<P>For all three methods,
+	the removal is dispatched on <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

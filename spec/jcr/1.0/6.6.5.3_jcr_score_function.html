@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.5.3 jcr:score function (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.5.3." id="section_6.6.5.3."></a>6.6.5.3 jcr:score function
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<b>jcr:score(...)</b> <i>as xs:decimal</i>
+								</p>
+							
+							
+								<p class="c5">
+									As described in 6.6.3.1 Column Specifier, a score value is returned for each row the result table. However, how this value is calculated is left up to the implementation. It is not required that its contents always be meaningful.
+								</p>
+							
+							
+								<p class="c5">
+									The XPath function <b>jcr:score(...)</b> is provided to enable queries to specify score calculation parameters in those implementations that support it.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>jcr:score(...)</b> function must therefore be supported, but the number and meaning of its parameters is left up to the implementation. The <b>jcr:score(...)</b> function can be used in either the columns specifier of the query, or the order specifier. It is also possible (though not required) that implementations support multiple <b>jcr:score(...)</b> functions within a single query.
+								</p>
+							
+							
+								<p class="c5">
+									The column within which the score information is returned may be labeled simply <b>jcr:score</b> or it may be labeled with the signature and parameters of the <b>jcr:score(...)</b> function used. Additional score-related columns may be also returned by implementations that support multiple <b>jcr:score(...)</b> functions with varying parameters (see 8.5.2.4 Pseudo-property<i>,</i> 6.6.5.2 jcr:contains Function, and 8.5.4.5 CONTAINS).
+								</p>
+							
+							
+								<p class="c5">
+									Support for comparing <b>jcr:score(...)</b> in a predicate is not required.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

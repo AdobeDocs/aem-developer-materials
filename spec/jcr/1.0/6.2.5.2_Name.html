@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.5.2 Name (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.5.2." id="section_6.2.5.2."></a>6.2.5.2 Name
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A <b>NAME</b> is a pairing of a <i>namespace</i> and a <i>local name</i>. It must be handled internally in such a way that when read through the API the namespace is mapped to the current prefix. For example, if at the time of reading the current prefix to URI mapping is:
+								</p>
+							
+							
+								<p class="c5">
+									<b>myapp -&gt; http://mycorp.com/myapp</b>
+								</p>
+							
+							
+								<p class="c5">
+									then a <b>NAME</b> with fully qualified form
+								</p>
+							
+							
+								<p class="c5">
+									<i>{http://mycorp.com/myapp}</i><b>myItem</b>
+								</p>
+							
+							
+								<p class="c5">
+									would be returned as the string:
+								</p>
+							
+							
+								<p class="c5">
+									<b>myapp:myItem</b>
+								</p>
+							
+							
+								<p class="c5">
+									If the namespace were later remapped to
+								</p>
+							
+							
+								<p class="c5">
+									<b>yourapp -&gt; http://mycorp.com/myapp</b>
+								</p>
+							
+							
+								<p class="c5">
+									then the value returned would be the string
+								</p>
+							
+							
+								<p class="c12">
+									<b>yourapp:myItem</b>
+								</p>
+							
+							
+								<p class="c5">
+									Note however, that how the <b>NAME</b> value is stored internally is up to the implementation, as long as dynamic remapping is supported.
+								</p>
+							
+							
+								<p class="c5">
+									<b>NAME</b> properties are used for recording values such as node type names (see <a href="6.7.5_Special_Properties_jcr_primaryType_and_jcr_mixinTypes.html">6.7.5</a> <i>Special Properties jcr:primaryType and jcr:mixinTypes</i>) that must respect namespace mappings.
+								</p>
+							
+							
+								<p class="c5">
+									Upon <b>save</b>, a <b>NAME</b> property is validated according to two criteria:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The prefix specified (if any) must be currently mapped to a registered namespace (see <a href="6.3_Namespaces.html">6.3</a> <i>Namespaces</i>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The syntax of the string specified must conform to the following EBNF:
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c12">
+									name ::= simplename | prefixedname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									simplename ::= onecharsimplename |
+								</p>
+							
+							
+								<p class="c12">
+									twocharsimplename |
+								</p>
+							
+							
+								<p class="c12">
+									threeormorecharname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									prefixedname ::= prefix ':' localname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									localname ::= onecharlocalname |
+								</p>
+							
+							
+								<p class="c12">
+									twocharlocalname |
+								</p>
+							
+							
+								<p class="c12">
+									threeormorecharname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									onecharsimplename ::= (* Any Unicode character except:<br>
+									'.', '/', ':', '[', ']', '*',<br>
+									''', '"', '|' or any whitespace
+								</p>
+							
+							
+								<p class="c12">
+									character *)
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									twocharsimplename ::= '.' onecharsimplename |
+								</p>
+							
+							
+								<p class="c12">
+									onecharsimplename '.' |
+								</p>
+							
+							
+								<p class="c12">
+									onecharsimplename onecharsimplename
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									onecharlocalname ::= nonspace
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									twocharlocalname ::= nonspace nonspace
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									threeormorecharname ::= nonspace string nonspace
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									prefix ::= (* Any valid XML Name *)
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									string ::= char | string char
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									char ::= nonspace | ' '
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									nonspace ::= (* Any Unicode character except:<br>
+									'/', ':', '[', ']', '*',<br>
+									''', '"', '|' or any whitespace
+								</p>
+							
+							
+								<p class="c12">
+									character *)
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.2 What Constitutes a Node Type (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.2." id="section_6.7.2."></a> 6.7.2 What Constitutes a Node Type
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In a compliant repository, a node type defines which child nodes and properties a node may (or must) have. In order to provide a set of discovery methods for node type information, the range of that information must be defined. To this end, this specification stipulates that every node type has the following attributes:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<i><b>Name</b></i>: Every node type registered with the repository has a unique name. The naming conventions for node types are the same as for items (i.e., they may have a colon delimited prefix). All predefined primary node types are, for example, prefixed with <b>nt</b>. Predefined mixin types are prefixed with <b>mix</b>. See <a href="6.7.19_Predefined_Node_Types.html">6.7.19</a> <i>Predefined Node Types</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i><b>Supertypes</b></i>: A primary node type (with the exception of <b>nt:base</b>) <i>must</i> extend another node type (or more than one node type, if the implementation supports multiple inheritance). A mixin node type <i>may</i> extend another node type. <a href="6.7.8_Inheritance_Among_Node_Types.html">6.7.8</a> <i>Inheritance Among Node Types</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i><b>Mixin status:</b></i> A node type may be either primary or mixin. This status is part of the node type’s definition. See <a href="6.7.4_Primary_and_Mixin_Node_Types.html">6.7.4</a> <i>Primary and Mixin Node Types</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i><b>Orderable child nodes status:</b></i> A primary node type may specify that child nodes are <i>client-orderable</i>. If this status is set to <b>true</b>, then all nodes of that node type <i>must</i> support the method <b>Node.orderBefore</b>. If this status is set to <b>false</b>, then nodes of that node type <i>may</i> support this method. Only primary node types control a node's status in this regard. This setting on a mixin node type will not have any effect on the node. See <a href="7.1.10_Treatment_of_UUIDs.html">7.1.10</a> <i>Ordering Child Nodes</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i><b>Property definitions:</b></i> A node type contains a set of definitions specifying the properties that nodes of this node type are allowed (or required) to have and the characteristics of those properties.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i><b>Child node definitions:</b></i> A node type contains a set of definitions specifying the child nodes that nodes of this node type are allowed (or required) to have and the characteristics of those child nodes (including, in turn, <i>their</i> node types).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i><b>Primary Item Name:</b></i> A node type may specify one child item (property or node) as the primary item. This indicator is used by the method <b>Node.getPrimaryItem()</b>. See <a href="6.2.3_Node_Read_Methods.html">6.2.3</a> <i>Node Read Methods</i>.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

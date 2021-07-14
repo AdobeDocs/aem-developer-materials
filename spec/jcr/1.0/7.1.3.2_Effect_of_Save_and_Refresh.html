@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.3.2 Effect of Save and Refresh (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.3.2." id="section_7.1.3.2."></a>7.1.3.2 Effect of Save and Refresh
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a <b>save</b> is performed on an <b>Item</b>, any changes recorded for that <b>Item</b> in the <b>Session</b> are persisted and the record of that change in the <b>Session</b> is removed. From the perspective of the application, the apparent state of the <b>Item</b> itself does not change (apart from the values returned by <b>isNew</b> or <b>isModified</b>), since the item has reflected the changes since they were initially made. If one or more of the pending changes cause an exception to be thrown on <b>save</b>, then <i>no</i> pending changes are saved, not even those which did not cause the problem. In this case the set of pending changes recorded on the session is left unaffected.
+								</p>
+							
+							
+								<p class="c5">
+									When a <b>refresh(false)</b> is performed on an <b>Item</b>, any pending changes recorded for that <b>Item</b> in the <b>Session</b> are discarded and the state of the <b>Item</b> object reverts to its current saved state in the workspace. If an exception occurs on <b>refresh</b>, the set of pending changes recorded on the session is left unaffected and <b>Item</b> state is similarly unaffected.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

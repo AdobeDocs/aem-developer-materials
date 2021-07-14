@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.5.3.4 Node Characteristics (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>12.5.3.4 Node Characteristics</H4>
+	<P>Node characteristic
+	restrictions on an event are stated in terms of the <I>associated
+	parent node</I> of the event. The associated parent node of an event
+	is the <I>parent</I> node of the item at (or formerly at) the path
+	returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>.</P>
+	<H5>12.5.3.4.1 Location</H5>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	only events whose associated parent node is at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	will be received. 
+	</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	only events whose associated parent node is at or below <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	will be received. 
+	</P>
+	<P>It is permissible to
+	register a listener for a path where no node currently exists.</P>
+	<H5>12.5.3.4.2 Identifier</H5>
+	<P>Only events whose
+	associated parent node has one of the identifiers in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuid</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	array will be received. If this parameter is <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	then no identifier-related restriction is placed on events received.
+	Note that specifying an empty array instead of <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	results in no nodes being listened to. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuid</FONT></FONT>
+	is used for backwards compatibility with JCR 1.0.</P>
+	<H5>12.5.3.4.3 Node Type</H5>
+	<P>Only events whose
+	associated parent node is of one of the node types in the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeTypeNames</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	array will be received. If this parameter is <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	then no node type-related restriction is placed on events received.
+	Note that specifying an empty array instead of <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	results in no nodes being listened to.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

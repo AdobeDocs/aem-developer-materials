@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.7 Length of a Value (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.6.7 Length of a Value</H3>
+	<P>The <I>length</I> of a
+	value is defined as follows:</P>
+	<UL>
+		<LI><P>For a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		value, its length is equal to its length in bytes. This number is
+		returned both by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary.getSize</FONT></FONT>
+		(see §5.10.5 <I>Binary Object</I>) and by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getLength</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getLengths</FONT></FONT>
+		(see §5.10.3 <I>Value Length</I>).</P>
+		<LI><P>For other types,
+		the length is the same value that would be returned by calling
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>java.lang.String.length()</FONT></FONT>
+		on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+		resulting from standard JCR property type conversion (see §3.6.4
+		<I>Property Type Conversion</I>). This number is returned by
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getLength</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getLengths</FONT></FONT>.</P>
+	</UL>
+	<P>For single value
+	properties, the length of a property's value is often referred to as
+	the <I>property length</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

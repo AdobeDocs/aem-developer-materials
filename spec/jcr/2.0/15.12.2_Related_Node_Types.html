@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.12.2 Related Node Types (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.12.2 Related Node Types</H3>
+	<P>Activities are
+	represented by nodes of node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:activity</FONT></FONT>:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>[nt:activity]
+	&gt; mix:referenceable</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>-
+	jcr:activityTitle (STRING)</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>
+	</B></FONT></FONT>mandatory
+	autocreated protected</FONT></P>
+	<P>The relationship
+	between version and activity is modeled by the property
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>,
+	in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node types:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:versionable] &gt;
+	mix:simpleVersionable, mix:referenceable<BR> mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:versionHistory (REFERENCE) mandatory protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:versionHistory'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:baseVersion (REFERENCE) mandatory protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:predecessors (REFERENCE) mandatory protected multiple</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">IGNORE
+	&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:mergeFailed (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>-
+	jcr:activity (REFERENCE) protected IGNORE &lt; 'nt:activity'</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:configuration (REFERENCE) protected IGNORE<BR> &lt;
+	'nt:configuration'</FONT></P>
+	<P><BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:version] &gt;
+	mix:referenceable</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:created (DATE) mandatory autocreated protected<BR> ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:predecessors (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:successors (REFERENCE) protected multiple ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:version'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>-
+	jcr:activity (REFERENCE) protected ABORT &lt; 'nt:activity'</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">+
+	jcr:frozenNode (nt:frozenNode) protected ABORT</FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

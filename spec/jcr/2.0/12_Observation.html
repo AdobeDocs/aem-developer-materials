@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12 Observation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>12 Observation</H1>
+	<P>A repository may
+	support <I>observation</I>, which enables an application to receive
+	notification of persistent changes to a workspace. JCR defines a
+	general event model and specific APIs for asynchronous and journaled
+	observation. A repository may support asynchronous observation,
+	journaled observation or both.</P>
+	<P>Whether an
+	implementation supports asynchronous or journaled observation can be
+	determined by querying the repository descriptor table with the keys</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_OBSERVATION_SUPPORTED</FONT></FONT>
+	or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_JOURNALED_OBSERVATION_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="12.1 Event Model"></a>	<H2>12.1 Event Model</H2>
+	<P>A persisted change to
+	a workspace is represented by a set of one or more <I>events</I>.
+	Each event reports a single simple change to the structure of the
+	persistent workspace in terms of an item added, changed, moved or
+	removed. The six standard event types are:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_ADDED</FONT></FONT>,<BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>,
+	<BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_REMOVED</FONT></FONT>,
+	<BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_ADDED</FONT></FONT>,
+	<BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_REMOVED</FONT></FONT>
+	and <BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_CHANGED</FONT></FONT>.
+		</P>
+	<P>A seventh event type, 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>,
+		</P>
+	<P>may also appear in
+	certain circumstances (see §12.7.3 <I>Event Bundling in Journaled
+	Observation</I>).</P>
+<a name="12.2 Scope of Event Reporting"></a>	<H2>12.2 Scope of Event Reporting</H2>
+	<P>The scope of event
+	reporting is implementation-dependent. An implementation should make
+	a <I>best-effort</I> attempt to report all events, but may exclude
+	events if reporting them would be impractical given implementation
+	or resource limitations. For example, on an import, move or remove
+	of a subgraph containing a large number of items, an implementation
+	may choose to report only events associated with the root node of
+	the affected graph and not those for every subitem in the structure.</P>
+<a name="12.2.1 Externally Caused Events"></a>	<H3>12.2.1 Externally Caused Events</H3>
+	<P>Some implementations
+	may expose capabilities through the JCR API while also being
+	writable through a mechanism external to JCR. Whether events are
+	generated for changes made through such external means is left up to
+	the implementation.</P>
+<a name="12.3 The Event Object"></a>	<H2>12.3 The Event Object</H2>
+	<P>Each event generated
+	by the repository is represented by an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	object.</P>
+<a name="12.3.1 Event Types"></a>	<H3>12.3.1 Event Types</H3>
+	<P>The type of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	is retrieved through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	Event.getType()</FONT></FONT> 
+	</P>
+	<P>which returns one of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>int</FONT></FONT>
+	constants found in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	interface: <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_ADDED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_REMOVED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_ADDED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_REMOVED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_CHANGED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>.</P>
+<a name="12.3.2 Event Information"></a>	<H3>12.3.2 Event Information</H3>
+	<P>Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	is associated with a path, an identifier and an information map, the
+	interpretation of which depend upon the event type.</P>
+	<P>The event path is retrieved through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getPath()</FONT></FONT>,</P>
+	<P>the identifier through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getIdentifier()</FONT></FONT></P>
+	<P>and the information
+	map through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>java.util.Map
+	Event.getInfo()</FONT></FONT></P>
+	<P>If the event is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_ADDED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_REMOVED</FONT></FONT>
+	then, 
+	</P>
+	<OL>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+			returns the absolute path of the node that was added or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+			returns the identifier of the node that was added or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+			returns an empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+			object.</P>
+		</UL>
+	</OL>
+	<P>If the event is
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>
+	then,</P>
+	<OL>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+			returns the absolute path of the <I>destination</I> of the move.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+			returns the identifier of the node that was moved.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+			returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+			containing parameter information from the method that caused the
+			event (see §12.4.3 <I>Event Information on Move and Order</I>).</P>
+		</UL>
+	</OL>
+	<P>If the event is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_ADDED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_CHANGED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_REMOVED</FONT></FONT>
+	then, 
+	</P>
+	<OL>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+			returns the absolute path of the property that was added, changed
+			or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+			returns the identifier of the parent node of the property that was
+			added, changed or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+			returns an empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+			object. 
+			</P>
+		</UL>
+	</OL>
+	<P>If the event is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	(see §12.6.3 <I>Event Bundling in Journaled Observation</I>) then
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+	return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+	returns an empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>.</P>
+<a name="12.3.3 Event Information on Move and Order"></a>	<H3>12.3.3 Event Information on Move and Order</H3>
+	<P>On a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>
+	event, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	object returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+	contains parameter information from the method that caused the
+	event. There are three JCR methods that cause this event type:
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.orderBefore</FONT></FONT>.</P>
+	<P>If the method that
+	caused the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVE</FONT></FONT>
+	event was a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>
+	then the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	has keys <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>
+	with values corresponding to the parameters passed to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>move</FONT></FONT>
+	method, as specified in the Javadoc.</P>
+	<P>If the method that
+	caused the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVE</FONT></FONT>
+	event was a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.orderBefore</FONT></FONT>
+	then the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	has keys <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcChildRelPath</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>destChildRelPath</FONT></FONT>
+	with values corresponding to the parameters passed to the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>orderBefore</FONT></FONT>
+	method, as specified in the Javadoc.</P>
+<a name="12.3.3.1 Externally Caused NODE_MOVED Event"></a>	<H4>12.3.3.1 Externally Caused NODE_MOVED Event</H4>
+	<P>In a repository that
+	reports events caused by mechanisms external to JCR (see §12.2.1
+	<I>Externally Caused Events</I>), the keys and values found in the
+	information map returned on a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>
+	are implementation-dependent.</P>
+<a name="12.3.4 User ID"></a>	<H3>12.3.4 User ID</H3>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	also records the identity of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	that caused it.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getUserID()</FONT></FONT></P>
+	<P>returns the user ID of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	which is the same value that is returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID()</FONT></FONT>
+	(see §4.4.1 <I>User</I>).</P>
+<a name="12.3.5 User Data"></a>	<H3>12.3.5 User Data</H3>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	may also contain arbitrary string data specific to the session that
+	caused the event. A session may set its current user data using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ObservationManager.setUserData(Sting userData)</FONT></FONT>.</P>
+	<P>Typically a session
+	will set this value in order to provide information about its
+	current state or activity. Any events produced by the session while
+	its user data is set to particular value will carry that value with
+	them. A process responding to these events will then be able to
+	access this information through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getUserData()</FONT></FONT></P>
+	<P>and use the retrieved data to provide
+	additional context for the event, beyond that provided by the
+	identify of the causing session alone.</P>
+<a name="12.3.6 Event Date"></a>	<H3>12.3.6 Event Date</H3>
+	<P>An event
+	also records the time of the change that caused it. This acquired
+	through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long
+	Event.getDate()</FONT></FONT></P>
+	<P>The date is represented as a
+	millisecond value that is an offset from the epoch January 1, 1970
+	00:00:00.000 GMT (Gregorian). The granularity of the returned value
+	is implementation-dependent.</P>
+<a name="12.4 Event Bundling"></a>	<H2>12.4 Event Bundling</H2>
+	<P>A repository that
+	supports observation <I>may</I> support event bundling under
+	asynchronous observation, journaled observation, or both.</P>
+	<P>In such a repository,
+	events are produced in bundles where each corresponds to a single
+	atomic change to a persistent workspace and contains only events
+	caused by that change (see §10.1 <I>Types of Write Methods</I>).</P>
+	<P>For example, given a
+	session with a set of pending node and property additions, on
+	persist, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_ADDED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_ADDED</FONT></FONT>
+	is produced, as appropriate, for each new item. This set of events
+	is the event bundle associated with that particular persist
+	operation. By grouping events together in this manner, additional
+	contextual information is provided, simplifying the interpretation
+	of the event stream.</P>
+<a name="12.4.1 Event Ordering"></a>	<H3>12.4.1 Event Ordering</H3>
+	<P>In both asynchronous
+	and journaled observation the order of events within a bundle and
+	the order of event bundles is not guaranteed to correspond to the
+	order of the operations that produced them.</P>
+<a name="12.5 Asynchronous Observation"></a>	<H2>12.5 Asynchronous Observation</H2>
+	<P>Asynchronous
+	observation enables an application to respond to changes made in a
+	workspace as they occur.</P>
+	<P>An application
+	connects with the asynchronous observation mechanism by registering
+	an event listener with the workspace. Listeners apply <I>per
+	workspace</I>, not repository-wide; they only receive events for the
+	workspace in which they are registered. An event listener is an
+	application-specific class implementing the <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	interface that responds to the stream of events to which it has been
+	subscribed.</P>
+	<P>This observation
+	mechanism is <I>asynchronous</I> in that the operation that causes
+	an event to be dispatched does not wait for a response to the event
+	from the listener; execution continues normally on the thread that
+	performed the operation.</P>
+<a name="12.5.1 Observation Manager"></a>	<H3>12.5.1 Observation Manager</H3>
+	<P>Registration of event
+	listeners is done through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ObservationManager</FONT></FONT>
+	object acquired from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ObservationManager
+	Workspace.getObservationManager()</FONT></FONT>.</P>
+<a name="12.5.2 Adding an Event Listener"></a>	<H3>12.5.2 Adding an Event Listener</H3>
+	<P>An event listener is
+	added to a workspace with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ObservationManager.<BR> addEventListener(EventListener listener,<BR>
+	 int eventTypes, <BR> String
+	absPath,<BR> boolean isDeep, <BR> 
+	 String[] uuid,<BR> String[] nodeTypeName,<BR>
+	 boolean noLocal)</FONT></FONT></P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	object passed is provided by the application. As defined by the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	interface, this class must provide an implementation of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>onEvent</FONT></FONT>
+	method: 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	EventListener.onEvent(EventIterator events)</FONT></FONT></P>
+	<P>When an event occurs
+	that falls within the scope of the listener (see 12.6.3 <I>Event
+	Filtering</I>), the repository calls the <FONT FACE="Courier New, monospace"><FONT SIZE=2>onEvent</FONT></FONT>
+	method invoking the application-specific logic that processes the
+	event.</P>
+<a name="12.5.3 Event Filtering"></a>	<H3>12.5.3 Event Filtering</H3>
+	<P>Which events a
+	listener receives are determined as follows.</P>
+<a name="12.5.3.1 Access Privileges"></a>	<H4>12.5.3.1 Access Privileges</H4>
+	<P>An event listener will
+	only receive events for which its <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	(the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	associated with the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ObservationManager</FONT></FONT>
+	through which the listener was added) has sufficient access
+	privileges.</P>
+<a name="12.5.3.2 Event Types"></a>	<H4>12.5.3.2 Event Types</H4>
+	<P>An event listener will
+	only receive events of the types specified by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>eventTypes</FONT></FONT>
+	parameter of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>addEventListener</FONT></FONT>
+	method. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>eventTypes</FONT></FONT>
+	parameter is an <FONT FACE="Courier New, monospace"><FONT SIZE=2>int</FONT></FONT>
+	composed of the bitwise <FONT FACE="Courier New, monospace"><FONT SIZE=2>AND</FONT></FONT>
+	of the desired event type constants.</P>
+<a name="12.5.3.3 Local and Nonlocal"></a>	<H4>12.5.3.3 Local and Nonlocal</H4>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>noLocal</FONT></FONT>
+	parameter is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	then events generated by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	through which the listener was registered are ignored.</P>
+<a name="12.5.3.4 Node Characteristics"></a>	<H4>12.5.3.4 Node Characteristics</H4>
+	<P>Node characteristic
+	restrictions on an event are stated in terms of the <I>associated
+	parent node</I> of the event. The associated parent node of an event
+	is the <I>parent</I> node of the item at (or formerly at) the path
+	returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>.</P>
+	<H5>12.5.3.4.1 Location</H5>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	only events whose associated parent node is at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	will be received. 
+	</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	only events whose associated parent node is at or below <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	will be received. 
+	</P>
+	<P>It is permissible to
+	register a listener for a path where no node currently exists.</P>
+	<H5>12.5.3.4.2 Identifier</H5>
+	<P>Only events whose
+	associated parent node has one of the identifiers in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuid</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	array will be received. If this parameter is <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	then no identifier-related restriction is placed on events received.
+	Note that specifying an empty array instead of <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	results in no nodes being listened to. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuid</FONT></FONT>
+	is used for backwards compatibility with JCR 1.0.</P>
+	<H5>12.5.3.4.3 Node Type</H5>
+	<P>Only events whose
+	associated parent node is of one of the node types in the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeTypeNames</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	array will be received. If this parameter is <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	then no node type-related restriction is placed on events received.
+	Note that specifying an empty array instead of <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	results in no nodes being listened to.</P>
+<a name="12.5.4 Re-registration of Event Listeners"></a>	<H3>12.5.4 Re-registration of Event Listeners</H3>
+	<P>The filters of an
+	already-registered <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	can be changed at runtime by re-registering the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	Java object with a new set of filter arguments. The implementation
+	must ensure that no events are lost during the changeover.</P>
+<a name="12.5.5 Implementation-Specific Restrictions"></a>	<H3>12.5.5 Implementation-Specific Restrictions</H3>
+	<P>In addition to the
+	filters placed on a listener though the <FONT FACE="Courier New, monospace"><FONT SIZE=2>addEventListener</FONT></FONT>
+	method, the scope of observation support, in terms of which
+	subgraphs are observable, may also be subject to
+	implementation-specific restrictions. For example, in some
+	repositories observation of changes in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:system</FONT></FONT>
+	subgraph may not be supported (see 3.11 <I>System Node</I>).</P>
+<a name="12.5.6 Event Iterator"></a>	<H3>12.5.6 Event Iterator</H3>
+	<P>In asynchronous
+	observation the <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventIterator</FONT></FONT>
+	holds an event bundle or a single event, if bundles are not
+	supported. <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventIterator</FONT></FONT>
+	inherits the methods of <FONT FACE="Courier New, monospace"><FONT SIZE=2>RangeIterator</FONT></FONT>
+	and adds an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>-specific
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>next</FONT></FONT>
+	method:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event
+	EventIterator.nextEvent()</FONT></FONT></P>
+	<P>(see §5.9 <I>Iterators</I>)</P>
+<a name="12.5.7 Listing Event Listeners"></a>	<H3>12.5.7 Listing Event Listeners</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListenerIterator
+	ObservationManager.<BR> getRegisteredEventListeners()</FONT></FONT></P>
+<a name="12.5.7.1 EventListenerIterator"></a>	<H4>12.5.7.1 EventListenerIterator</H4>
+	<P>Methods that return a
+	set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	objects (such as <FONT FACE="Courier New, monospace"><FONT SIZE=2>ObservationManager.getRegisteredEventListeners</FONT></FONT>)
+	do so using an <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListenerIterator</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListenerIterator</FONT></FONT>
+	class inherits the methods of <FONT FACE="Courier New, monospace"><FONT SIZE=2>RangeIterator</FONT></FONT>
+	and adds an <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>-specific
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>next</FONT></FONT>
+	method:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener
+	EventListenerIterator.nextEventListener()</FONT></FONT></P>
+	<P>(see §5.9 <I>Iterators</I>)</P>
+<a name="12.5.8 Removing Event Listeners"></a>	<H3>12.5.8 Removing Event Listeners</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ObservationManager.<BR> removeEventListener(EventListener
+	listener)</FONT></FONT></P>
+<a name="12.5.9 User Data"></a>	<H3>12.5.9 User Data</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ObservationManager.setUserData(String userData)</FONT></FONT></P>
+<a name="12.6 Journaled Observation"></a>	<H2>12.6 Journaled Observation</H2>
+	<P>Journaled observation
+	allows an application to periodically connect to the repository and
+	receive a report of changes that have occurred since some specified
+	point in the past (for example, since the last connection). Whether
+	a repository records a per-workspace event journal is up to the
+	implementation's configuration.</P>
+<a name="12.6.1 Event Journal"></a>	<H3>12.6.1 Event Journal</H3>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventJournal</FONT></FONT>
+	of a workspace instance is acquired by calling either</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EventJournal</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ObservationManager.getEventJournal()</FONT></FONT></P>
+	<P>or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EventJournal
+	getEventJournal(int eventTypes,<BR> 
+	String absPath,<BR> boolean isDeep,<BR> 
+	 String[] uuid,<BR> 
+	 String[] nodeTypeName,<BR> boolean
+	noLocal)</FONT></FONT>.</P>
+	<P>Events reported by
+	this <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventJournal</FONT></FONT>
+	instance will be filtered according to the current session's access
+	rights, any additional restrictions specified through
+	implementation-specific configuration and, in the case of the second
+	signature, by the parameters of the method. These parameters are
+	interpreted in the same way as in the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>addEventListener</FONT></FONT>.</P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventJournal</FONT></FONT>
+	is an extension of <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventIterator</FONT></FONT>
+	that provides the additional method <FONT FACE="Courier New, monospace"><FONT SIZE=2>skipTo(Calendar
+	date)</FONT></FONT>. 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	EventJournal.skipTo(Calendar date)</FONT></FONT></P>
+<a name="12.6.2 Journaling Configuration"></a>	<H3>12.6.2 Journaling Configuration</H3>
+	<P>An implementation is
+	free to limit the scope of journaling both in terms of coverage
+	(that is, which parts of a workspace may be observed and which
+	events are reported) and in terms of time and storage space. For
+	example, a repository can limit the size of a journal log by
+	stopping recording after it has reached a certain size, or by
+	recording only the tail of the log (deleting the earliest event when
+	a new one arrives). Any such mechanisms are assumed to be within the
+	scope of implementation configuration.</P>
+<a name="12.6.3 Event Bundling in Journaled Observation"></a>	<H3>12.6.3 Event Bundling in Journaled Observation</H3>
+	<P>In journaled
+	observation dispatching is done by the implementation writing to the
+	event journal.</P>
+	<P>If event bundling is
+	supported a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	event is dispatched when a persistent change is made to workspace
+	bracketing the set of events associated with that change. This
+	exposes event bundle boundaries in the event journal.</P>
+	<P>Note that a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	event will never appear within an <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventIterator</FONT></FONT>
+	since, in asynchronous observation, the iterator itself serves to
+	define the event bundle.</P>
+	<P>In repositories that
+	do not support event bundling, <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	events do not appear in the event journal.</P>
+<a name="12.7 Importing Content"></a>	<H2>12.7 Importing Content</H2>
+	<P>Whether events are
+	generated for each node and property addition that occurs when
+	content is imported into a workspace (see §11 <I>Import</I>) is
+	left up to the implementation.</P>
+<a name="12.8 Exceptions"></a>	<H2>12.8 Exceptions</H2>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener.onEvent</FONT></FONT>
+	does not specify a <FONT FACE="Courier New, monospace"><FONT SIZE=2>throws</FONT></FONT>
+	clause. This does not prevent a listener from throwing a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RuntimeException</FONT></FONT>,
+	although any listener that does should be considered to be in error.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

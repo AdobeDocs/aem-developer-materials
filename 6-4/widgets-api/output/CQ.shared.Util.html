@@ -1,0 +1,240 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.shared.Util-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.shared.Util-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.shared.Util-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.shared.Util"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.shared.Util</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.shared</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Util.js" target="_blank">Util.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Util</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.shared                        </td></tr>
+                    </table>
+        <div class="description">
+	        	        <b>Deprecated: </b><br><br>
+	                    A helper class providing a set of general utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.shared.Util-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-getTopWindow"></a>
+            <b>getTopWindow</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; Returns the top most accessible window.                        	        <i>Added in CQ 5.5.</i>
+                        </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="property-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-patchText"></a>
+            <b>patchText</b> : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Replaces occurrences of {n} in the specified text with
+the texts from the snippets.
+Example 1 (single ...</div>
+            <div class="long">
+                &lt;static&gt; Replaces occurrences of <code>{n}</code> in the specified text with
+the texts from the snippets.
+<p>Example 1 (single snippet):<pre><code>var text = CQ.shared.Util.patchText(<em>"{0} has signed <b>in</b>."</em>, <em>"Jack"</em>);</code></pre>Result 1:<pre><code>Jack has signed <b>in</b>.</code></pre></p>
+<p>Example 2 (multiple snippets):<pre><code>var text = <em>"{0} {1} has signed <b>in</b> from {2}."</em>;
+text = CQ.shared.Util.patchText(text, [<em>"Jack"</em>, <em>"McFarland"</em>, <em>"10.0.0.99"</em>]);</code></pre>Result 2:<pre><code>Jack McFarland has signed <b>in</b> from 10.0.0.99.</code></pre></p>            </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-setIFrameMode"></a>
+            <b>setIFrameMode</b> : Object            <div class="mdesc">
+                                    <div class="short">Allows to define if Granite.Util is running in an iFrame and parent window is in another domain
+(and optionally defin...</div>
+            <div class="long">
+                Allows to define if Granite.Util is running in an iFrame and parent window is in another domain
+(and optionally define what would be the top window in that case.
+This is necessary to use <a ext:cls="getTopWindow" href="output/getTopWindow.html">getTopWindow</a> in a iFrame on WebKit based browsers because
+<a ext:cls="getTopWindow" href="output/getTopWindow.html">getTopWindow</a> iterates on parent windows to find the top one which triggers a security exception
+if one parent window is in a different domain. Exception cannot be caught but is not breaking the JS
+execution.            </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+            </table>
+                <a id="CQ.shared.Util-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-ellipsis"></a>
+            <b>ellipsis</b>(&nbsp;<code>String value</code>, <code>Number length</code>, <code>Boolean word</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Truncates a string and add an ellipsis ('...') to the end if it exceeds the specified length</div>
+            <div class="long">
+                Truncates a string and add an ellipsis ('...') to the end if it exceeds the specified length    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>value</code> : String<div class="sub-desc">The string to truncate</div></li><li><code>length</code> : Number<div class="sub-desc">The maximum length to allow before truncating</div></li><li><code>word</code> : Boolean<div class="sub-desc">True to try to find a common work break</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The converted text</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-eval"></a>
+            <b>eval</b>(&nbsp;<code>Object response</code>&nbsp;) : Object            <div class="mdesc">
+            	        <div><b>Deprecated: Use <a ext:cls="CQ.shared.HTTP" ext:member="eval" href="output/CQ.shared.HTTP.html#eval">CQ.shared.HTTP.eval</a> instead</b></div>
+                                    <div class="short">&lt;static&gt; Evaluates and returns the response text of the specified response
+object.</div>
+            <div class="long">
+                &lt;static&gt; Evaluates and returns the response text of the specified response
+object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>response</code> : Object<div class="sub-desc">The response object</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The evaluated object</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-htmlDecode"></a>
+            <b>htmlDecode</b>(&nbsp;<code>String value</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Converts certain characters (&, <, >, and ") from their HTML character equivalents.</div>
+            <div class="long">
+                Converts certain characters (&, <, >, and ") from their HTML character equivalents.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>value</code> : String<div class="sub-desc">The string to decode</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The decoded text</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-htmlEncode"></a>
+            <b>htmlEncode</b>(&nbsp;<code>String value</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Converts certain characters (&, <, >, and ") to their HTML character equivalents for literal display in web pages.</div>
+            <div class="long">
+                Converts certain characters (&, <, >, and ") to their HTML character equivalents for literal display in web pages.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>value</code> : String<div class="sub-desc">The string to encode</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The encoded text</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-load"></a>
+            <b>load</b>(&nbsp;<code>String url</code>, <span class="optional" title="Optional">[<code>String preventHistory</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Loads the specified URL in the current window.</div>
+            <div class="long">
+                &lt;static&gt; Loads the specified URL in the current window.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>preventHistory</code> : String<div class="sub-desc">(optional) Prevent history</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-open"></a>
+            <b>open</b>(&nbsp;<code>String url</code>, <span class="optional" title="Optional">[<code>Window win</code>]</span>, <span class="optional" title="Optional">[<code>String name</code>]</span>, <span class="optional" title="Optional">[<code>String options</code>]</span>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Opens a new window with the specified URL.
+If no window is specified, the current window will be used.</div>
+            <div class="long">
+                &lt;static&gt; Opens a new window with the specified URL.
+If no window is specified, the current window will be used.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>url</code> : String<div class="sub-desc">The URL</div></li><li><code>win</code> : Window<div class="sub-desc">(optional) The window to reload</div></li><li><code>name</code> : String<div class="sub-desc">(optional) New window name</div></li><li><code>options</code> : String<div class="sub-desc">(optional) New window options</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">New window</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Util-reload"></a>
+            <b>reload</b>(&nbsp;<span class="optional" title="Optional">[<code>Window win</code>]</span>, <span class="optional" title="Optional">[<code>String url</code>]</span>, <span class="optional" title="Optional">[<code>String preventHistory</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Reloads the window or replaces its location with the specified URL.
+If no window is specified, the cur...</div>
+            <div class="long">
+                &lt;static&gt; Reloads the window or replaces its location with the specified URL.
+If no window is specified, the current window will be used.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>win</code> : Window<div class="sub-desc">(optional) The window to reload</div></li><li><code>url</code> : String<div class="sub-desc">(optional) The URL</div></li><li><code>preventHistory</code> : String<div class="sub-desc">(optional) Prevent history</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Util</td>
+    </tr>
+            </table>
+                <a id="CQ.shared.Util-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

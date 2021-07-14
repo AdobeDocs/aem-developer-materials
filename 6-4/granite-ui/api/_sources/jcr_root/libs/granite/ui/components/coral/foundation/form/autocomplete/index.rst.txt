@@ -1,0 +1,98 @@
+
+Autocomplete
+============
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/autocomplete
+   :supertype: /libs/granite/ui/components/coral/foundation/form/field
+
+   An autocomplete component that gives a list of suggestions to help the user to complete the field.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/coral/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormAutocomplete] > granite:FormField
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * The value of the field.
+       *
+       * If ``multiple`` is ``false``, the property type is ``StringEL``, otherwise it is a multiple property of type ``String``.
+       */
+      - value (String)
+
+      /**
+       * A hint to the user of what can be entered in the field.
+       */
+      - emptyText (String) i18n
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * Indicates if the user is able to select multiple selections.
+       */
+      - multiple (Boolean)
+
+      /**
+       * Indicates if the user is forced to select only from the available choices.
+       */
+      - forceSelection (Boolean)
+
+      /**
+       * The icon class.
+       */
+      - icon (String)
+
+      /**
+       * The renderer to render the user selections (given by the options renderer).
+       */
+      + values
+
+      /**
+       * The renderer to render the options to be displayed to the user.
+       */
+      + options
+
+   Example::
+
+      + myfield
+        - sling:resourceType = "granite/ui/components/coral/foundation/form/autocomplete"
+        - multiple = true
+        + datasource
+          - sling:resourceType = "cq/gui/components/common/datasources/tags"
+        + values
+          - sling:resourceType = "granite/ui/components/coral/foundation/form/autocomplete/tags"
+        + options
+          - sling:resourceType = "granite/ui/components/coral/foundation/form/autocomplete/list"
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.7.2 Session Stream-Based Import (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>11.7.2 Session Stream-Based Import</H3>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.importXML</FONT></FONT>
+	changes remain pending until dispatched on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+	Node type constraints that would be immediately enforced on a core
+	write method (see §10.2 <I>Core Write Methods</I>) of that
+	particular implementation will cause an immediate
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>
+	during import. All other node type constraints are enforced as they
+	would be if made through the core write methods. However, which node
+	type constraints are enforced depends upon whether node type
+	information in the imported data is respected, and this is an
+	implementation-specific issue (see §11.3 <I>Respecting Property
+	Semantics</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,60 @@
+************************
+foundation-mode-switcher
+************************
+
+Switcher is a container that leverages :doc:`foundation-mode <../../vocabulary/mode>` to show/hide the item according the active mode.
+When ``foundation-mode-change`` event is triggered, the item having the same mode will be shown; otherwise the item is hidden.
+
+
+Markup
+======
+
+
+.foundation-mode-switcher
+-------------------------
+
+Indicates the root element.
+
+Selector Rule::
+
+   .foundation-mode-switcher
+
+
+[data-foundation-mode-switcher-group]
+-------------------------------------
+
+Indicates the mode group the element belongs to.
+
+Selector Rule::
+
+   .foundation-mode-switcher[data-foundation-mode-switcher-group]
+
+
+.foundation-mode-switcher-item
+------------------------------
+
+Indicates the item element.
+
+Selector Rule::
+
+   .foundation-mode-switcher > .foundation-mode-switcher-item
+
+
+[data-foundation-mode-switcher-item-mode]
+-----------------------------------------
+
+Indicates the mode of the item element.
+
+Selector Rule::
+
+   .foundation-mode-switcher-item[data-foundation-mode-switcher-item-mode]
+
+
+.foundation-mode-switcher-item-active
+-------------------------------------
+
+Indicates that the item is currently active.
+
+Selector Rule::
+
+   .foundation-mode-switcher-item.foundation-mode-switcher-item-active

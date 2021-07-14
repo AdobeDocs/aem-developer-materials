@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1 API Basics (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.1." id="section_4.1."></a>4.1 API Basics
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The repository as a whole is represented by a <b>Repository</b> object<sup><a class="sdfootnoteanc" name="sdfootnote1anc" href="#sdfootnote1sym" id="sdfootnote1anc"><sup>1</sup></a></sup>. A client connects to the repository by calling <b>Repository.login</b> optionally specifying a workspace name and a <b>Credentials</b> object<sup><a class="sdfootnoteanc" name="sdfootnote2anc" href="#sdfootnote2sym" id="sdfootnote2anc"><sup>2</sup></a></sup>. The client then receives a <b>Session</b> object tied to the specified workspace.
+								</p>
+							
+							
+								<p class="c5">
+									How the <b>Repository</b> object is actually acquired is beyond the scope of this specification. However, one possibility, as shown below, is to use JNDI, though this depends entirely on the implementation. Similarly, the specifics of acquiring the <b>Credentials</b> object are also not specified. Below we show one possibility: using the class <b>SimpleCredentials</b> included in the specification. Implementations may provide their own <b>Credentials</b> classes as well.
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Get the Repository object</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>InitialContext ctx = ...</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Repository repository = (Repository)ctx.lookup("myrepo");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Get a Credentials object</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Credentials credentials =<br>
+									new SimpleCredentials("MyName",<br>
+									"MyPassword".toCharArray());</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Get a Session</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Session mySession =<br>
+									repository.login(credentials, "MyWorkspace");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									Through the <b>Session</b> object the client can access any node or property in that tree of the workspace to which the <b>Session</b> is tied. The API provides methods for both traversing the tree step by step and for directly accessing a particular item.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

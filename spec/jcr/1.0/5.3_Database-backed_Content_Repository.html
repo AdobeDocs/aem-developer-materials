@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 5.3 Database-backed Content Repository (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_5.3." id="section_5.3."></a> 5.3 Database-backed Content Repository
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A compliant repository can also be implemented on top of a database. Consider again the following repository structure:
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property = "..."</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<b>/</b>
+								</p>
+							
+							
+								<p>
+									├─<b>newpaintings</b>
+								</p>
+							
+							
+								<p>
+									│ └─<b>bigredstripe</b>
+								</p>
+							
+							
+								<p>
+									│ ├─<b>jcr:created = "2001-05-03T00:00:00.000Z"</b>
+								</p>
+							
+							
+								<p>
+									│ │
+								</p>
+							
+							
+								<p>
+									│ └─<b>jcr:content</b>
+								</p>
+							
+							
+								<p>
+									│ ├─<b>myapp:image = &lt;binary data&gt;</b>
+								</p>
+							
+							
+								<p>
+									│ └─<b>myapp:desc = "An excellent example</b>
+								</p>
+							
+							
+								<p>
+									│ <b>of stripeism."</b>
+								</p>
+							
+							
+								<p>
+									│
+								</p>
+							
+							
+								<p>
+									└─<b>oldpaintings</b>
+								</p>
+							
+							
+								<p>
+									└─<b>sistinechapel</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:created = "2001-06-04T00:00:00.000Z"</b>
+								</p>
+							
+							
+								<p>
+									│
+								</p>
+							
+							
+								<p>
+									└─<b>jcr:content</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:image = &lt;binary data&gt;</b>
+								</p>
+							
+							
+								<p>
+									└─<b>myapp:desc = "Not bad."</b>
+								</p>
+							
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									One possible implementation is to use four tables, a <b>NODES</b> table and three <b>XXXX_</b><b>PROPERTIES</b> tables, one for each of the three property types used in the example:
+								</p>
+							
+						
+					
+					
+						<p class="c12">
+							<b>NODES</b>
+						</p>
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							
+							<tr valign="top">
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>name</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>id</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>parent_id</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>&lt;jcr:root&gt;</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>0</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>0</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>newpaintings</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>1</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>0</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>bigredstripe</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>2</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>1</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>jcr:content</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>3</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>2</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>oldpaintings</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>4</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>0</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>sistinechapel</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>5</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>4</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>jcr:content</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>6</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>5</b>
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+					
+						<p>
+							<br>
+						</p>
+					
+					
+						<p class="c12">
+							<b>DATE_PROPERTIES</b>
+						</p>
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							
+							<tr valign="top">
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>name</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>value</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>parent_id</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>jcr:created</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>2001-05-03T00:00:00.000Z</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>2</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>jcr:created</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>2001-06-04T00:00:00.000Z</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>5</b>
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+					
+						<p>
+							<br>
+						</p>
+					
+					
+						<p class="c12">
+							<b>TEXT_PROPERTIES</b>
+						</p>
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							
+							<tr valign="top">
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>name</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>value</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>parent_id</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>myapp:desc</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>An excellent...</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>3</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>myapp:desc</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>Not bad.</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>6</b>
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+					
+						<p>
+							<br>
+						</p>
+					
+					
+						<p class="c12">
+							<b>BLOB_PROPERTIES</b>
+						</p>
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							
+							<tr valign="top">
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>name</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>value</b>
+									</p>
+								</td>
+								<td bgcolor="#A6A6A6">
+									<p class="c12">
+										<b>parent_id</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>myapp:image</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>&lt;BLOB&gt;</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>3</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>myapp:image</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>&lt;BLOB&gt;</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>6</b>
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

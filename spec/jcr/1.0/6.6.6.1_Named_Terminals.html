@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.6.1 Named Terminals (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.6.1." id="section_6.6.6.1."></a>6.6.6.1 Named Terminals
+		</h4>
+		<table border="0" cellpadding="1" cellspacing="0">
+			
+			
+			
+			
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ExprComment" id="prod-xpath-ExprComment"></a>[1]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ExprComment
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						"(:" (ExprCommentContent | ExprComment)* ":)"
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ExprCommentContent" id="prod-xpath-ExprCommentContent"></a>[2]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ExprCommentContent
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Char
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-IntegerLiteral" id="prod-xpath-IntegerLiteral"></a>[3]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						IntegerLiteral
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Digits
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-DecimalLiteral" id="prod-xpath-DecimalLiteral"></a>[4]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						DecimalLiteral
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						("." Digits) | (Digits "." [0-9]*)
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-DoubleLiteral" id="prod-xpath-DoubleLiteral"></a>[5]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						DoubleLiteral
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						(("." Digits) | (Digits ("." [0-9]*)?)) ("e" | "E") ("+" | "-")? Digits
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-StringLiteral" id="prod-xpath-StringLiteral"></a>[6]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						StringLiteral
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						('"' (('"' '"') | [^"])* '"') | ("'" (("'" "'") | [^'])* "'")
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SchemaGlobalTypeName" id="prod-xpath-SchemaGlobalTypeName"></a>[7]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SchemaGlobalTypeName</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>"type" "(" QName ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SchemaGlobalContext" id="prod-xpath-SchemaGlobalContext"></a>[8]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SchemaGlobalContext</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>QName | SchemaGlobalTypeName</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SchemaContextStep" id="prod-xpath-SchemaContextStep"></a>[9]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SchemaContextStep</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>QName</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-Digits" id="prod-xpath-Digits"></a>[10]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Digits
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						[0-9]+
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-NCName" id="prod-xpath-NCName"></a>[11]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						NCName
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						[http://www.w3.org/TR/REC-xml-names/#NT-NCName]
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-VarName" id="prod-xpath-VarName"></a>[12]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>VarName</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>QName</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-QName" id="prod-xpath-QName"></a>[13]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						QName
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						[http://www.w3.org/TR/REC-xml-names/#NT-QName]
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-Char" id="prod-xpath-Char"></a>[14]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Char
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						[http://www.w3.org/TR/REC-xml#NT-Char]
+					</p>
+				</td>
+			</tr>
+		</table>
+<script type="text/javascript" src="footer.js"></script></body></html>

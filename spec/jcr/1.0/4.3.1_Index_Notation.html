@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.3.1 Index Notation (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.3.1." id="section_4.3.1."></a>4.3.1 Index Notation
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A particular node within a same-name sibling group can be addressed by embedding an array-like notation within the path. For example the path <b>/a/b[2]/c[3]</b> specifies the third child node called <b>c</b> of the second child node called <b>b</b> of the node <b>a</b> below the root.
+								</p>
+							
+							
+								<p class="c5">
+									The indexing of same-name siblings begins at <b>1</b>, not <b>0</b>. This practice stems from the need to allow XPath-based queries on the repository (see <a href="6.6_Searching_Repository_Content.html">6.6</a> <i>Searching Repository Content</i>).
+								</p>
+							
+							
+								<p class="c5">
+									However, as opposed to the semantics of XPath, a name in a content repository path that does not explicitly specify an index implies an index of <b>1</b>. For example, <b>/a/b/c</b> is equivalent to <b>/a[1]/b[1]/c[1]</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The indexing is based on the order in which child nodes are returned in the iterator acquired through <b>Node.getNodes()</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Same-name siblings are indexed by their position relative to each other in this larger ordered set. For example, the order of child nodes returned by a <b>getNodes</b> on some parent might be:
+								</p>
+							
+							
+								<p class="c5">
+									<b>[A, B, C, A, D]</b>
+								</p>
+							
+							
+								<p class="c5">
+									In this case, <b>A[1]</b> refers the first node in the list and <b>A[2]</b> refers to the fourth node in the list.
+								</p>
+							
+							
+								<p class="c5">
+									Note that regardless of whether orderable child nodes are supported in general (see <a href="4.4_Orderable_Child_Nodes.html">4.4</a> <i>Orderable Child Nodes</i>), the relative ordering of a set of same name sibling nodes must be persistent; it cannot change arbitrarily between read method calls or between sessions. This requirement stems from the fact that the path of a node must not change arbitrarily, and in the case of a same-name sibling, its position relative to its co-named siblings defines part of its path.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,257 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Page &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../" src="../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="PropertiesPage" href="../propertiespage/index.html" />
+    <link rel="prev" title="Help" href="../help/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../propertiespage/index.html" title="PropertiesPage"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../help/index.html" title="Help"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Granite UI Shell</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="page">
+<h1>Page<a class="headerlink" href="#page" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/shell/page">
+<dt>
+<code class="descname">/libs/granite/ui/components/shell/page</code></dt>
+<dd><p>The generic page to render Shell.</p>
+<p>It also supports <a class="reference internal" href="../../../docs/server/resourcehiding.html"><span class="doc">resource filtering using FilteringResourceWrapper</span></a> and acts as its container.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ShellPage</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">consoleId</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>A general purpose ID to uniquely identify the console.</p>
+<p>The recommended value is hierarchical separated by “-“.
+e.g. “cq-commerce-report”</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">jcr:title</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>To render the title of the page (<code class="docutils literal notranslate"><span class="pre">&lt;title&gt;</span></code>), resource at <code class="docutils literal notranslate"><span class="pre">head/title</span></code> is first inspected.
+If it doesn’t exist, this property is used accordingly; otherwise do nothing.
+i.e. the title at <code class="docutils literal notranslate"><span class="pre">head/title</span></code> is included naturally.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">redirector</span></dt>
+<dd><p>To redirect the page, this resource can be specified.
+It will be included, where the redirect can be performed.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">head</span></dt>
+<dd><p>A folder to specify the content of <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> of the page.
+Its child resources are iterated and included as is.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">title</span></dt>
+<dd><p>The component to render the title.</p>
+<p>This is optional, and if not specified, the title header is not displayed.
+If the title is just a simple string, <a class="reference internal" href="../title/index.html"><span class="doc">Title</span></a> can be used.</p>
+<p>The only requirement of the component is to generate a simple text without any wrapping markup.
+E.g. To have a title of “My Page”, just make the component do something like <code class="docutils literal notranslate"><span class="pre">out.print(&quot;My</span> <span class="pre">Page&quot;)</span></code>.</p>
+<p>Note if the title and breadcrumbs are provided, only the breadcrumbs will be generated.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">breadcrumbs</span></dt>
+<dd><p>The data source for the list of breadcrumbs.</p>
+<p>This is optional, and if not specified, the breadcrumbs are not displayed.</p>
+<p>Note that only the breadcrumbs can be rendered or the title, not both.  The breadcrumbs
+will take prescience over the title if both are provided.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">actions</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:ShellPageActions</li></ol></dt>
+<dd><p>The folder for the actions applicable in the context of the whole page.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">omnisearchLocationPath</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path to the omnisearch configuration associated with the console.</p>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">/libs/granite/omnisearch/content/metadata/site</span></code></p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">rails</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:ShellCollectionPageRails</li></ol></dt>
+<dd><p>A folder to specify the panels of the rail.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">content</span></dt>
+<dd><p>The actual content of the page.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ShellPageActions</span></dt>
+<dd><dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">primary</span></dt>
+<dd><p>The folder for primary actions.</p>
+<p>The action can be any action component such as <a class="reference internal" href="../../coral/foundation/button/index.html"><span class="doc">Button</span></a>,
+<a class="reference internal" href="../../coral/foundation/anchorbutton/index.html"><span class="doc">AnchorButton</span></a>,
+<a class="reference internal" href="../../coral/foundation/pulldown/index.html"><span class="doc">Pulldown</span></a>,
+<a class="reference internal" href="../../coral/foundation/collection/index.html"><span class="doc">Collection</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">actionBar</span></code> variant of the components above SHOULD be used, unless <code class="docutils literal notranslate"><span class="pre">primary</span></code> variant is used.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">secondary</span></dt>
+<dd><p>The folder for secondary actions.</p>
+<p>The action can be any action component such as <a class="reference internal" href="../../coral/foundation/button/index.html"><span class="doc">Button</span></a>,
+<a class="reference internal" href="../../coral/foundation/anchorbutton/index.html"><span class="doc">AnchorButton</span></a>,
+<a class="reference internal" href="../../coral/foundation/pulldown/index.html"><span class="doc">Pulldown</span></a>,
+<a class="reference internal" href="../../coral/foundation/collection/index.html"><span class="doc">Collection</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">actionBar</span></code> variant of the components above SHOULD be used, unless <code class="docutils literal notranslate"><span class="pre">primary</span></code> variant is used.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ShellCollectionPageRails</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">active</span><span class="propertytype gnd-name">booleanel</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to activate the rail initially.</p>
+<p>Note that you need to also set <code class="docutils literal notranslate"><span class="pre">active</span></code> property of the rail panel to <code class="docutils literal notranslate"><span class="pre">true</span></code> accordingly.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">*</span><ol class="gnd-values requiredtypes"><li class="gnd-values-item requiredtype">granite:PanelRailPanel</li></ol></dt>
+<dd><p>The child resources are considered as the panels, where each MUST be a <a class="reference internal" href="../../coral/foundation/panel/railpanel/index.html"><span class="doc">RailPanel</span></a> (or its derivative).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">mypage</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/shell/page&quot;</span>
+  <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;My Page&quot;</span>
+  <span class="o">+</span> <span class="n">content</span>
+    <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/container&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../help/index.html"
+                        title="previous chapter">Help</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../propertiespage/index.html"
+                        title="next chapter">PropertiesPage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../_sources/jcr_root/libs/granite/ui/components/shell/page/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../propertiespage/index.html" title="PropertiesPage"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../help/index.html" title="Help"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Shell</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

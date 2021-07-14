@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.9.2 Merging Branches (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.9.2 Merging Branches</H3>
+	<P>When a merge test on a
+	node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	fails, this indicates that the two base versions <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	are on separate branches of the version graph. Consequently,
+	determining the result of the merge is not simply a matter of
+	determining which version is the eventual successor of the other in
+	terms of version history. Instead, the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	must be merged into the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	according to some domain specific criteria which must be performed
+	at the application level, for example, through a merge tool provided
+	to the user.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property is used to tag nodes that fail the merge test so that an
+	application can find them and deal appropriately with them. The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property is multi-valued so that information about merge failures is
+	not lost if more than one successive merge is attempted before being
+	dealt with by the application.</P>
+	<P>After the subgraph of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	is merged into <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	the application must also merge the two branches of the version
+	graph. This is done by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.doneMerge(V')</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	is retrieved by following the reference stored in the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	This has the effect of moving the reference-to-<FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	to its <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+	property.</P>
+	<P>If, on the other hand,
+	the application chooses not to join the two branches, then
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge(V')</FONT></FONT>
+	is performed. This has the effect of removing the reference to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V'</FONT></FONT>
+	from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	without adding it to <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>.</P>
+	<P>Once the last
+	reference in <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	has been either moved to <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+	(with <FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge</FONT></FONT>)
+	or just removed from <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	(with <FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge</FONT></FONT>)
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	property is automatically removed, thus enabling this node to be
+	checked-in, creating a new version (note that before the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mergeFailed</FONT></FONT>
+	is removed, its <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnParentVersion</FONT></FONT>
+	setting of <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+	prevents check-in). This new version will have a direct predecessor
+	connection to each version for which <FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge
+	</FONT></FONT>was called, thus joining those branches
+	of the version graph.</P>
+	<P>All changes made by <FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge</FONT></FONT>
+	are workspace-write and therefore do not require <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

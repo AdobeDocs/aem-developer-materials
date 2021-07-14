@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.3 Respecting Property Semantics (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>11.3 Respecting Property Semantics</H2>
+	<P>During either system
+	or document view import, XML elements (in system view) or XML
+	attributes (in document view) may be encountered that correspond to
+	JCR properties with repository-level semantics such as the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr</FONT></FONT>-prefixed
+	properties of such node types as <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:referenceable</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	among others.</P>
+	<P>When an element or
+	attribute representing such a property is encountered, an
+	implementation may either <I>skip</I> it or <I>respect</I> it.</P>
+	<UL>
+		<LI><P>A repository that
+		respects a particular element or attribute must import it and alter
+		the internal state of the repository in accordance with the
+		semantics of the property given the configuration of that
+		repository instance. For example, a repository that respects
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+		will attempt to create a node of the indicated primary node type.
+		If that node type is not supported, the repository will throw an
+		exception.</P>
+		<LI><P>A repository that
+		skips an element or attribute must not import it all. <I>It must
+		not import it but then ignore the semantics of the resulting
+		property</I>.</P>
+	</UL>
+	<P>The
+	implementation-specific policy regarding what to skip and what to
+	respect must be internally consistent. For example, it makes no
+	sense to skip <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+	(thus missing the presence of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>,
+	for example) and yet respect <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>.</P>
+	<P>If an implementation
+	chooses to skip <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>,
+	the node type of the imported node is determined by the
+	implementation (see §11.5 <I>Determining Node Types</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

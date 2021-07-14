@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.12 Query Results (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.12." id="section_6.6.12."></a>6.6.12 Query Results
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Once a query has been defined, it can be executed. The method <b>Query.execute()</b> returns a <b>QueryResult</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The results returned always respect the access restrictions of the current session. In other words if the current session does not have read permissions to a particular item, then that item will not be included in the result set even if it would otherwise constitute a match.
+								</p>
+							
+							
+								<p class="c5">
+									As mentioned, all queries are run against the persistent state of a workspace, pending changes stored in the <b>Session</b> are not searched. However, when an item is accessed from within a <b>QueryResult</b> object, the state of the item returned will obey the same semantics as if it were retrieved using a normal <b>Node.getNode</b> or <b>Node.getProperty</b>, in other words the item state will reflect any pending changes currently stored in the session. As a result, it is possible that a property returned as a match will not reflect the value that caused it to <i>be</i> a match (i.e., its persistent state). Applications can clear the <b>Session</b> (either through <b>save</b> or <b>refresh(false)</b>) before running a query in order to avoid such discrepancies.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>QueryResult</b> is returned in two formats: as a table with property names as the column names and a set of rows of values and as a list of nodes. See 6.6.3 Structure of a Query for details of how the various aspects of these two views are governed by the query. The methods below provide access to the two views:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.query.<br>
+										<b>QueryResult</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getColumnNames()</b>
+									</p>
+									<p class="c5">
+										Returns an array of all the column names in the table view of this result set.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>RowIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getRows()</b>
+									</p>
+									<p class="c5">
+										Returns an iterator over the <b>Row</b>s of the result table. If an <b>ORDER BY</b> clause was specified in the query, then the order of the returned rows in the iterator will reflect the order specified in that clause. If no items match, an empty iterator is returned.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>NodeIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNodes()</b>
+									</p>
+									<p class="c5">
+										Returns an iterator over all nodes that match the query. If an <b>ORDER BY</b> clause was specified in the query, then the order of the returned nodes in the iterator will reflect the order specified in that clause. If no nodes match, an empty iterator is returned.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.query.<br>
+										<b>Row</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Value[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getValues()</b>
+									</p>
+									<p class="c5">
+										Returns an array of all the values in the same order as the column names returned by <b>QueryResult.getColumnNames()</b>.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getValue(String propertyName)</b>
+									</p>
+									<p class="c5">
+										Returns the value of the indicated property in this <b>Row</b>.
+									</p>
+									<p class="c5">
+										If <b>propertyName</b> is not among the column names of the query result table, an <b>ItemNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

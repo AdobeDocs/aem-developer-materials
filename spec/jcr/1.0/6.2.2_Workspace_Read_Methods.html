@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.2 Workspace Read Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.2." id="section_6.2.2."></a>6.2.2 Workspace Read Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In a level 1 repository the <b>Workspace</b> object serves only to encapsulate a number of methods for accessing either information about the <b>Workspace</b> or classes that provide further repository functions. The following are the level 1 methods of <b>Workspace</b>. <b>Workspace</b> has other methods as well, though in a level 1-only implementation these will either do nothing or throw an exception.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Workspace</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getSession()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>Session</b> object through which this <b>Workspace</b> object was acquired.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getName()</b>
+									</p>
+									<p class="c5">
+										Returns the name of the actual persistent workspace represented by this <b>Workspace</b> object. This is the name used in <b>Repository.login</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>QueryManager</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getQueryManager()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>QueryManager</b>, through which search methods are accessed. See <a href="6.6_Searching_Repository_Content.html">6.6</a> <i>Searching Repository Content</i>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NamespaceRegistry</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNamespaceRegistry()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>NamespaceRegistry</b> object, which can be used to access the mapping between prefixes and namespaces. See <a href="6.3_Namespaces.html">6.3</a> <i>Namespaces</i>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeTypeManager</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>getNodeTypeManager()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>NodeTypeManager</b>, which is used to access information about which node types are available in the repository. There is one node type registry per repository, therefore the <b>NodeTypeManager</b> is not workspace-specific; it provides introspection methods for the global, repository-wide set of available node types. See <a href="6.7_Node_Types.html">6.7</a> <i>Node Types</i>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getAccessibleWorkspaceNames()</b>
+									</p>
+									<p class="c5">
+										Returns an string array containing the names of all workspaces in this repository that are accessible to this user, given the <b>Credentials</b> that were used to get the <b>Session</b> to which this <b>Workspace</b> is tied.
+									</p>
+									<p class="c5">
+										In order to access one of the listed workspaces, the user performs another <b>Repository.login</b>, specifying the name of the desired workspace, and receives a new <b>Session</b> object.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.5 Lock Token (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.5 Lock Token</H2>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object. If the lock is open-scoped the lock will contain a lock
+	token. A lock token is a string that uniquely identifies a
+	particular lock and acts as a key granting lock ownership to any
+	session that hold the token.</P>
+	<P>In order to use the
+	lock token as a key, it must be added to the session, thus
+	permitting that session to alter the nodes to which the lock applies
+	or to remove the lock. When a lock token is attached to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	the session becomes an owner of the lock.</P>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	automatically adds the lock token for a newly placed open-scoped
+	lock to the current session.</P>
+	<P>The client can also
+	control which lock tokens are attached to the session through the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager</FONT></FONT>
+	methods <FONT FACE="Courier New, monospace"><FONT SIZE=2>addLockToken</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeLockToken</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>getLockTokens</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

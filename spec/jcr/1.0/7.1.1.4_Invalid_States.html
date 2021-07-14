@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.1.4 Invalid States (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.1.4." id="section_7.1.1.4."></a>7.1.1.4 Invalid States
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If an item has been modified in the <b>Session</b> but not yet saved, and its corresponding item in the persistent workspace is altered through a direct-to-workspace method, this has no effect on the transient state of the <b>Session</b>. The altered item in the <b>Session</b> remains and may be saved later. Of course, the change made to the workspace may render the attempt to save the session-change invalid (for example if the workspace-change removed the parent of the session-change item). Note that this is precisely the same situation as would arise if a change were made to a workspace through <i>another</i> <b>Session</b>. In both cases the <b>save</b> on <i>this</i> <b>Session</b> may throw an <b>InvalidItemStateException</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

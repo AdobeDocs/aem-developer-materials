@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.12 Constraint (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.12 Constraint</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type Constraint</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Filters the set of node-tuples formed
+	by evaluating the query's selectors and the joins between them.</P>
+	<P>To be included in the query results, a
+	node-tuple must satisfy the constraint.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint ::= And | Or | Not |
+	Comparison |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">PropertyExistence
+	| FullTextSearch |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">SameNode |
+	ChildNode | DescendantNode</FONT></P>
+	<P><BR>In JCR-SQL2, the
+	following precedence classes apply, in order of evaluation:</P>
+	<TABLE WIDTH=649 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=49>
+		<COL WIDTH=158>
+		<COL WIDTH=392>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P><B>Class</B></P>
+			</TD>
+			<TD WIDTH=158>
+				<P><B>Constraint
+				Production</B></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><B>JCR-SQL2 Syntax</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>1</P>
+			</TD>
+			<TD WIDTH=158>
+				<P> 
+				</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>()
+				</FONT></FONT><I>(grouping with parentheses)</I></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>2</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>=</FONT></FONT>
+				, <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;&gt;</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;=</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&gt;</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&gt;=</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>LIKE</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IS
+				NOT NULL</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>CONTAINS()</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ISSAMENODE()</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ISCHILDNODE()</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ISDESCENDANTNODE()</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>3</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Not</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NOT</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>4</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AND</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>5</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Or</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>OR</FONT></FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+	<P><BR><BR>
+	</P>
+	<P>
+	<B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Or</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Not</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

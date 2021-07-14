@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.20 Node Type Definitions in Content (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.20." id="section_6.7.20."></a>6.7.20 Node Type Definitions in Content
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									It is <i>optional</i> for the repository to expose the definitions of its available node types as content. However, if it does expose these definitions then it should expose them using the built-in node type <b>nt:nodeType</b> (and its associated node types <b>nt:propertyDefinition</b> and <b>nt:childNodeDefinition</b>). These node types are defined to store node type definitions themselves. For example, to store a <i>PropertyDefinition</i> a node of type <b>nt:propertyDefinition</b> is used. It has properties for each of the attributes: the <i>Name</i> is stored in the property <b>jcr:name</b>, the <i>RequiredType</i> in <b>jcr:requiredType</b> and so on.
+								</p>
+							
+							
+								<p class="c5">
+									The attributes that make up a node type definition may in some cases have no set value. For example, some <i>ChildNodeDefinitions</i> may not define a <i>DefaultPrimaryType</i> (this amounts to stating that when such a child node is created by the client the client <i>must</i> provide a valid node type, otherwise an exception will be thrown; no node type will automatically be assumed).
+								</p>
+							
+							
+								<p class="c5">
+									In order to store this information (i.e., the lack of a value) in a <b>nt:nodeType</b>, <b>nt:childNodeDefinition</b> or <b>nt:propertyDefinition</b> node the property representing that attribute must simply be not present, since null values for properties are not allowed (see <a href="4.7.3_No_Null_Values.html">4.7.3</a> <i>No Null Values</i>).
+								</p>
+							
+							
+								<p class="c5">
+									However, to indicate this state in the node type definitions that follow we do use the value <b>null</b>, even though in an in-content representation of the node type this would be represented by the absence of the property in question. For example, in the definition of the node type <b>nt:file</b>,
+								</p>
+							
+							
+								<p class="c12">
+									<i>NodeTypeName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:file</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>Supertypes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:hierarchyNode</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>IsMixin</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>HasOrderableChildNodes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PrimaryItemName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>jcr:content</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>ChildNodeDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:content</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredPrimaryTypes <b>[nt:base]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultPrimaryType <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>COPY</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									SameNameSiblings <b>false</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									the child node <b>jcr:content</b> must exist (hence Mandatory is <b>true</b>, but it must be added by the client, not automatically (hence AutoCreated is <b>false</b>) and, when created, the client must provide the node type (hence <i>DefaultPrimaryType</i> is <b>null</b>). In an in-content storage of this node type however, the <b>null</b> status of <i>DefaultPrimaryType</i> would be represented by the absence of the property <b>jcr:defaultPrimaryType</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that the <i>PrimaryItemName</i> indicator in <b>nt:nodeType</b> works similarly, if there is no primary item specified then the <b>jcr:primaryItemName</b> property of the <b>nt:nodeType</b> node is simply missing. But in the notation used here, this is indicated by specifying a <b>null</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Again, similarly, to indicate that a property or child node definition is residual, the value returned by <b>ItemDefinition.getName()</b> is “<b>*</b>”. However, “<b>*</b>” is not a valid value for the property <b>jcr:name</b> in a <b>nt:propertyDefinition</b> or <b>nt:childNodeDefinition</b> node (because <b>jcr:name</b> it is a <b>NAME</b> property, not a <b>STRING</b>). As a result, an in-content definition of a residual item will simply not have a <b>jcr:name</b> property. In the notation below, however, the indicator “<b>*</b>” is still used.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

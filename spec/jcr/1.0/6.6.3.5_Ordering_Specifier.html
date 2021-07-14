@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.3.5 Ordering Specifier (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.3.5." id="section_6.6.3.5."></a>6.6.3.5 Ordering Specifier
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This part of the query statement specifies the ordering of the result nodes according to the natural ordering of the values of one or more properties of the result nodes. If no order specification is supplied in the query statement, implementations may support document order on the result nodes (see 6.6.4.2 Document Order).
+								</p>
+							
+							
+								<p class="c5">
+									In both XPath and SQL, ordering is specified by a special clause that lists one or more property names and, for each, whether the order is to be ascending or descending. If neither ascending nor descending is specified after a property name (or <b>jcr:score(...)</b> function), the default is ascending.
+								</p>
+							
+							
+								<p class="c5">
+									Implementations must support ordering on <b>jcr:score</b> (in SQL just the name is used, see 8.5.2.4 Pseudo-property) or <b>jcr:score(...)</b> (in XPath, the function form is used, though the number of parameters depends on the implementation, see 6.6.5.3 jcr:score function).
+								</p>
+							
+							
+								<p class="c5">
+									Support for ordering on <b>PATH</b> and <b>NAME</b> properties is not required. If it is supported then the collation sequence for these types is implementation specific.
+								</p>
+							
+							
+								<p class="c5">
+									<b>XPath</b>: A subset of the order by clause specified in XQuery 1.0 is used to implement the order specification in XPath. If the order modifier (<b>ascending</b> or <b>descending</b>) is missing, the ordering defaults to <b>ascending</b>. See 6.6.5.5 order by Clause.
+								</p>
+							
+							
+								<p class="c5">
+									<b>SQL</b>:The order by clause implements the order specification in SQL. If the order modifier (<b>ASC</b> meaning ascending or <b>DESC</b>, meaning descending) is missing, the ordering defaults to <b>ASC</b>. See 8.5.4.6 ORDER BY.
+								</p>
+							
+							
+								<p class="c5">
+									Examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										ORDER BY my:title
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)<br>
+										order by @my:title
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										ORDER BY my:date DESC, my:title ASC
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)<br>
+										order by @my:date descending, @my:title ascending
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE<br>
+										CONTAINS(*, 'jcr') ORDER BY jcr:score DESC
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)<br>
+										[jcr:contains(., 'jcr')]<br>
+										order by jcr:score() descending
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+		<p>
+			<br>
+			<br>
+		</p>
+<script type="text/javascript" src="footer.js"></script></body></html>

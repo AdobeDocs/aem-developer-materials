@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.8 EquiJoinCondition (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.8 EquiJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type EquiJoinCondition extends
+	JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector1Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name property1Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector2Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name property2Name</FONT></P>
+	<P><BR>
+	</P>
+	<P>Tests whether the value of a property
+	in a first selector is equal to the value of a property in a second
+	selector.</P>
+	<P>A node-tuple satisfies the constraint
+	only if:</P>
+	<UL>
+		<LI><P>the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		node has a property named <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>,
+		and</P>
+		<LI><P>the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		node has a property named <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>,
+		and</P>
+		<LI><P>the value of property
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		<I>is equal to</I> the value of property <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>,
+		as defined in §3.6.5 <I>Comparison of Values</I>.</P>
+	</UL>
+	<P>The query is <I>invalid</I> if</P>
+	<UL>
+		<LI><P>either <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		is equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>,
+		or</P>
+		<LI><P>the <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		is not the same property type as <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>,
+		or</P>
+		<LI><P>either <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>
+		is a multi-valued property, or</P>
+		<LI><P>either <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		property and equality test for <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		properties is not supported (see §3.6.6 <I>Value.equals Method</I>).</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">EquiJoinCondition ::=
+	selector1Name'.'property1Name '='</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">selector2Name'.'property2Name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selector1Name ::= selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selector2Name ::= selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">property1Name ::= propertyName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">property2Name ::= propertyName</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition
+	QueryObjectModelFactory.<BR> equiJoinCondition(String
+	selector1Name,<BR> String property1Name,<BR> 
+	 String selector2Name,<BR> 
+	String property2Name)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition
+	</FONT></FONT>extends<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	JoinCondition</FONT></FONT> and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getSelector1Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getProperty1Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getSelector2Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getProperty2Name()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

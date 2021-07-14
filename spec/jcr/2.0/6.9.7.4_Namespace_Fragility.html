@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.9.7.4 Namespace Fragility (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>6.9.7.4 Namespace Fragility</H4>
+	<P>Note that the query
+	statement stored within a stored query (the value of the property
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:statement</FONT></FONT>)
+	is stored as a simple string. Therefore, if it contains qualified
+	JCR names it will be <I>namespace-fragile</I>. If the stored query
+	is run in a context where a prefix used maps to a different
+	namespace than it did upon creation then the query will not
+	reproduce the original result. To mitigate this, users should
+	either, 
+	</P>
+	<UL>
+		<LI><P>always use
+		expanded form names within queries, or</P>
+		<LI><P>always ensure
+		that appropriate namespace mappings are in place when a stored
+		query is executed.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

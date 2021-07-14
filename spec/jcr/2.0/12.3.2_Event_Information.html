@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.3.2 Event Information (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>12.3.2 Event Information</H3>
+	<P>Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event</FONT></FONT>
+	is associated with a path, an identifier and an information map, the
+	interpretation of which depend upon the event type.</P>
+	<P>The event path is retrieved through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getPath()</FONT></FONT>,</P>
+	<P>the identifier through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Event.getIdentifier()</FONT></FONT></P>
+	<P>and the information
+	map through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>java.util.Map
+	Event.getInfo()</FONT></FONT></P>
+	<P>If the event is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_ADDED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_REMOVED</FONT></FONT>
+	then, 
+	</P>
+	<OL>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+			returns the absolute path of the node that was added or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+			returns the identifier of the node that was added or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+			returns an empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+			object.</P>
+		</UL>
+	</OL>
+	<P>If the event is
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>
+	then,</P>
+	<OL>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+			returns the absolute path of the <I>destination</I> of the move.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+			returns the identifier of the node that was moved.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+			returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+			containing parameter information from the method that caused the
+			event (see §12.4.3 <I>Event Information on Move and Order</I>).</P>
+		</UL>
+	</OL>
+	<P>If the event is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_ADDED</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_CHANGED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_REMOVED</FONT></FONT>
+	then, 
+	</P>
+	<OL>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+			returns the absolute path of the property that was added, changed
+			or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+			returns the identifier of the parent node of the property that was
+			added, changed or removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+			returns an empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+			object. 
+			</P>
+		</UL>
+	</OL>
+	<P>If the event is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PERSIST</FONT></FONT>
+	(see §12.6.3 <I>Event Bundling in Journaled Observation</I>) then
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getPath()</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getIdentifier()</FONT></FONT>
+	return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+	returns an empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

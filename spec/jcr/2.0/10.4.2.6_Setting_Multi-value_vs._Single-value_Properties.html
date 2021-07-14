@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.4.2.6 Setting Multi-value vs. Single-value Properties (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>10.4.2.6 Setting Multi-value vs. Single-value Properties</H4>
+	<P>Multi-value and
+	single-value properties are set using different signatures of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.setValue</FONT></FONT>.
+	Multi-value properties must be set using the signatures that take
+	either a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]</FONT></FONT>.
+	Single-value properties must be set using the signatures that take
+	non-array value arguments. An attempt to set a multi-value property
+	with a non-array value argument, or a single-value property with an
+	array value argument, will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

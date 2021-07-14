@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.2.10 Removal of Versions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.2.10." id="section_8.2.2.10."></a>8.2.2.10 Removal of Versions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In some implementations it may be possible to remove versions from within a version history using <b>VersionHistory.removeVersion</b>. In such cases the version graph must be automatically repaired so that each successor of the removed version becomes a successor of every predecessor of the removed version. Note that allowing remove in this context would not constitute an exception to the requirement that the version storage be protected, since protected status applies to standard write methods (e.g. like <b>Node.addNode</b>) and not version-specific methods (like <b>Node.checkin</b>) that alter the version history as a <i>side-effect</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

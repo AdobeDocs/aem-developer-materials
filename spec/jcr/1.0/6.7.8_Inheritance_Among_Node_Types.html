@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.8 Inheritance Among Node Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.8." id="section_6.7.8."></a> 6.7.8 Inheritance Among Node Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A node type may have one (or in some implementations, more than one) <i>supertype</i>. A subtype inherits the property and child node definitions of its supertype(s) (and possibly other attributes) and may declare further property or child node definitions.
+								</p>
+							
+							
+								<p class="c5">
+									Configuring the inheritance hierarchy of node types available within a particular repository is outside the scope of this specification. For this reason the specification does not define how conflicts between multiple super types are resolved or exactly which attributes of a node type (other than its child node and property definitions) are inherited by its subtypes. For example, the question of whether the orderable child nodes setting of a node type is inherited by its subtypes is left up to the particular implementation. See also, <a href="6.7.22.2_Additions_to_the_Hierarchy.html">6.7.22.2</a> <i>Additions to the Hierarchy</i>.
+								</p>
+							
+							
+								<p class="c5">
+									Some repositories may support multiple inheritance of node types. As a result, the methods for discovering node type information must allow for the possibility that a node type has more than one supertype. See <a href="6.7.11_Discovering_the_Definition_of_a_Node_Type.html">6.7.11</a> <i>Discovering the Definition of a Node Type</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

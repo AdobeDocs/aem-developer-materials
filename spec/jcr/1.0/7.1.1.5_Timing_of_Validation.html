@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.1.5 Timing of Validation (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.1.5." id="section_7.1.1.5."></a>7.1.1.5 Timing of Validation
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									For those write methods that require a <b>save</b>, implementers have considerable flexibility in deciding whether a particular validation is to be performed immediately during the invocation of the write method or later on <b>save</b>. For example, in the case <b>Node.addNode</b>, an implementer might immediately check that the path given is valid while postponing validation of node type constraints until <b>save</b>-time.
+								</p>
+							
+							
+								<p class="c5">
+									The <i>suggestion</i> is that an implementation should perform each validation as soon as possible, given the underlying design of the repository.
+								</p>
+							
+							
+								<p class="c5">
+									The <i>requirement</i> is that an implementation must prohibit the emergence of a persistent state in violation the validation rules defined by this specification. Therefore at the latest, all validation must be done on <b>save</b>.
+								</p>
+							
+							
+								<p class="c5">
+									In the context of a particular change to an item, we often refer to <b>save</b> generically, as in, “the change will be persisted on <b>save</b>”. Such statements refer to any invocation of <b>save</b>, (<b>Session.save</b> or <b>Item.save</b>) that include the changed item within its scope.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

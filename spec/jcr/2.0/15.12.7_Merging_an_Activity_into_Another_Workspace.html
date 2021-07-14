@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.12.7 Merging an Activity into Another Workspace (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.12.7 Merging an Activity into Another Workspace</H3>
+	<P>Once an activity has
+	been completed, the changes that it records can be imported into
+	another workspace. This is done with a variant of the merge method:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	VersionManager.merge(Node activityNode)</FONT></FONT></P>
+	<P>This method merges the
+	changes that were made under the specified activity into <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	workspace.</P>
+	<P>An activity <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	will be associated with a set of versions through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:activity</FONT></FONT>
+	reference of each version node in the set. We call each such
+	associated version a member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+	<P>For each version
+	history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	that contains one or more members of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>,
+	one such member will be the latest member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.
+	The latest member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	is the version in <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	that is a member of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	and that has no eventual successor versions that are also members of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+	<P>The set of versions
+	that are the latest members of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in their respective version histories is called the change set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.
+	It fully describes the changes made under the activity <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+	<P>This method performs a
+	shallow merge, with <FONT FACE="Courier New, monospace"><FONT SIZE=2>bestEffort</FONT></FONT>
+	equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	into this workspace (see §15.9 <I>Merge</I>) of each version in the
+	change set of the activity specified by <FONT FACE="Courier New, monospace"><FONT SIZE=2>activityNode</FONT></FONT>.
+	If there is no corresponding node in this workspace for a given
+	member of the change set, that member is ignored.</P>
+	<P>This method returns a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator</FONT></FONT>
+	over all versionable nodes in the subgraph that received a merge
+	result of <I>fail</I> (see §15.9.1 <I>Merge Algorithm</I>).</P>
+	<P>All changes made
+	through this method are workspace-write and therefore do not require
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.3.12 Interaction with Protected Properties (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.3.12 Interaction with Protected Properties</H3>
+	<P>Many features of JCR
+	expose repository metadata as protected properties defined by mixin
+	node types. For example, locking status is exposed by the properties
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	defined by <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>.
+	Changes to protected properties can only be made indirectly through
+	a feature-specific API (for example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.lock</FONT></FONT>),
+	not through a generic write method like <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>.
+	Such changes <I>are not</I> governed by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:modifyProperties</FONT></FONT>
+	privilege, but rather by the particular feature-specific privilege,
+	for example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockManagement</FONT></FONT>
+	(see §16.2.3 <I>Standard Privileges</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

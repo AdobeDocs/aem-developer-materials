@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.3.3 Event Information on Move and Order (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>12.3.3 Event Information on Move and Order</H3>
+	<P>On a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVED</FONT></FONT>
+	event, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	object returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Event.getInfo()</FONT></FONT>
+	contains parameter information from the method that caused the
+	event. There are three JCR methods that cause this event type:
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.orderBefore</FONT></FONT>.</P>
+	<P>If the method that
+	caused the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVE</FONT></FONT>
+	event was a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>
+	then the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	has keys <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>
+	with values corresponding to the parameters passed to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>move</FONT></FONT>
+	method, as specified in the Javadoc.</P>
+	<P>If the method that
+	caused the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_MOVE</FONT></FONT>
+	event was a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.orderBefore</FONT></FONT>
+	then the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	has keys <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcChildRelPath</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>destChildRelPath</FONT></FONT>
+	with values corresponding to the parameters passed to the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>orderBefore</FONT></FONT>
+	method, as specified in the Javadoc.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

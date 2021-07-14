@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.4.3 Context Node (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.4.3." id="section_6.6.4.3."></a>6.6.4.3 Context Node
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The context node of an XPath query is the XML node relative to which the query expression is evaluated.
+								</p>
+							
+							
+								<p class="c5">
+									A relative XPath statement (one that does not have a leading <b>/</b>) will be interpreted relative to the root node of the workspace, which, in the XML document view is the top-most XML element, <b>&lt;jcr:root&gt;</b>. This means that one should not include <b>jcr:root</b> as the first segment in a relative XPath statement, since that element is already the default context node.
+								</p>
+							
+							
+								<p class="c5">
+									An absolute XPath (one with a leading <b>/</b>), in contrast, will be interpreted relative to a position one level above <b>&lt;jcr:root&gt;</b>. This means that an absolute XPath must either begin with <b>//</b> or with <b>/jcr:root</b> in order to match anything at all.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

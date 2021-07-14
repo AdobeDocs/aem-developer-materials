@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.12.4 Getting a Lock Token (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.12.4 Getting a Lock Token</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Lock.getLockToken()</FONT></FONT></P>
+	<P>may return the lock
+	token for this lock. If this lock is open-scoped and the current
+	session holds the lock token for this lock, then this method will
+	return that lock token. If the lock is open-scoped and the current
+	session does not hold the lock token, it <I>may</I> return the lock
+	token. Otherwise this method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

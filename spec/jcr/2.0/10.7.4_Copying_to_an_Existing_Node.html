@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.7.4 Copying to an Existing Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.7.4 Copying to an Existing Node</H3>
+	<P>When
+	a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is copied to a location where a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	already exists the repository may either immediately throw an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	<I>or</I> attempt to update the node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	by selectively replacing part of its subgraph with a copy of the
+	relevant part of the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	If the node types of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N
+	</FONT></FONT>and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	are compatible, the implementation supports update-on-copy for these
+	node types and no other errors occur, then the copy will succeed.
+	Otherwise an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	is thrown.</P>
+	<P>Which
+	node types can be updated on copy and the details of any such
+	updates are implementation-dependent. For example, some
+	implementations may support update-on-copy for mix:versionable
+	nodes. In such a case the versioning-related properties of the
+	target node would remain unchanged (<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+	etc.) while the substantive content part of the subgraph would be
+	replaced with that of the source node. 
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

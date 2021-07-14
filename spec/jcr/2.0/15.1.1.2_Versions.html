@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.1.1.2 Versions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.1.1.2 Versions</H4>
+	<P>The full set of
+	versions within a version history can be retrieved through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionIterator
+	VersionHistory.getAllVersions()</FONT></FONT>.</P>
+	<P>If the version graph
+	of this history is linear then the versions are returned in order of
+	creation date, from oldest to newest. Otherwise the order of the
+	returned versions is implementation-dependent.</P>
+	<P>Alternatively, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionIterator
+	VersionHistory.getAllLinearVersions()</FONT></FONT></P>
+	<P>returns an iterator
+	over all the versions in the <I>line of descent</I> from the root
+	version to the base version that is bound to the workspace through
+	which this <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	was acquired.</P>
+	<P>Within a version
+	history <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	is the base version bound to workspace <FONT FACE="Courier New, monospace"><FONT SIZE=2>W</FONT></FONT>
+	if and only if there exists a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>W</FONT></FONT>
+	whose version history is <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	is the base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		</P>
+	<P>The line of descent
+	from version <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	is an eventual successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>,
+	is the ordered list of versions starting with <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>
+	and proceeding through each direct successor to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>.</P>
+	<P>The versions are
+	returned in order of creation date, from oldest to newest.</P>
+	<P>Note that in a simple
+	versioning repository the behavior of this method is equivalent to
+	returning all versions in the version history in order from oldest
+	to newest.</P>
+	<P>Versions can also be
+	retrieved directly by name, using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionHistory.getVersion(String versionName)</FONT></FONT>,</P>
+	<P>or by label, using,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	VersionHistory.getVersionByLabel(String label)</FONT></FONT></P>
+	<P>(see §15.4 <I>Version
+	Labels</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

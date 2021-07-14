@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7.3.1 XML Text (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>7.3.1 XML Text</H3>
+	<P>In a repository that
+	supports it, on document view import XML text is converted to the
+	special node/property structure <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext/jcr:xmlcharacters</FONT></FONT>
+	(see §11.1 <I>Importing Document View</I>). When this structure is
+	exported back to XML the process is reversed.</P>
+	<P>If a child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	is encountered and that <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	node has one and only one child item and that item is a
+	single-valued property called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>,
+	then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	node is not converted into an XML element. Instead, the value of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+	property becomes text within the body of the XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	Entity references are used to escape characters which cannot be
+	included as literals within XML text (see §7.5 <I>Escaping of
+	Values</I>) however, escaping of whitespace is not performed (see
+	§7.3.3 <I>Multi-Value Properties</I>). Two or more <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	nodes adjacent within the ordering of a child node set will have the
+	values of their respective <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+	concatenated into a single resulting XML text node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.10 Treatment of UUIDs (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.10." id="section_7.1.10."></a>7.1.10 Treatment of UUIDs
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A number of different methods in the API transfer node state from one location to another. They often differ in how they treat the UUID of the node. Some methods always behave the same way in this regard, others have various options that control their behavior. The following table summarizes the behaviors of the methods.
+								</p>
+							
+						
+					
+				
+			
+		
+		<table border="1" cellpadding="7" cellspacing="0">
+			
+			
+			
+			
+			
+			
+			<tr valign="top">
+				<td rowspan="2">
+					<p class="c5">
+						<b>Method</b>
+					</p>
+				</td>
+				<td rowspan="2">
+					<p class="c5">
+						<b>New UUID</b>
+					</p>
+				</td>
+				<td colspan="3">
+					<p class="c5">
+						<b>Keep UUID</b> (<i>3</i> <i>behaviors on</i> <i>conflict</i>)
+					</p>
+				</td>
+				<td rowspan="2">
+					<p class="c5">
+						<b>Comments</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Throw</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>Remove from existing location</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>Replace at existing location</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Workspace.copy<br></b>(see <a href="7.1.7_Moving_and_Copying.html">7.1.7</a> <i>Moving and Copying</i>)
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>copy</b> (both within and between workspaces) simply creates a new UUID for any referenceable nodes it copies.
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Session.save</b><br>
+						<b>Item.save<br></b>(see <a href="7.1_Writing_Repository_Content.html">7.1</a> <i>Writing Repository Content</i>)
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>save</b> pushes items to the persistent workspace, replacing existing items using UUID matching, wherever they may be in terms of path (non-referenceable nodes are kept bound to their UUID-bearing ancestor, however).
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Node.update<br></b>(see <a href="7.1.8_Updating_and_Cloning_Nodes_across_Workspaces.html">7.1.8</a> <i>Updating and Cloning Nodes across Workspaces</i>)
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>update</b> pulls the state of <b>this</b> node from another workspace using UUID matching, regardless of where (in terms of path) the source node is in the source workspace.
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Workspace.clone<br></b>(see <a href="7.1.7_Moving_and_Copying.html">7.1.7</a> <i>Moving and Copying</i>)
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>clone</b> keeps UUIDs. There are two options to deal with cases where this workspace already contains a node with the same UUID as one being cloned over: either throw, or remove the existing node in this workspace.
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Node.restore</b><br>
+						<b>Node.restoreByLabel</b><br>
+						<b>Workspace.restore<br></b>(see <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i>)
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						no
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>restore</b> and <b>restoreByLabel</b> keep UUIDs. Similar to <b>clone</b>, there are two options to deal with cases where this workspace already contains a node with the same UUID as being copied in as part of a restored version: either throw, or remove the existing node in this workspace.
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c5">
+						<b>Workspace.importXML<br>
+						Session.importXML</b><br>
+						<b>Session.<br>
+						getImportContentHandler</b>,<br>
+						<b>Workspace.<br>
+						getImportContentHandler</b><br>
+						(see <a href="7.3_Importing_Repository_Content.html">7.3</a> <i>Importing Repository Content</i>)
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<b>yes</b>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						All four options are supported.
+					</p>
+				</td>
+			</tr>
+		</table>
+		
+			
+				
+					
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

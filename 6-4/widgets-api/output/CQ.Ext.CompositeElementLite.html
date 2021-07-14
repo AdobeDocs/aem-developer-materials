@@ -1,0 +1,285 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.CompositeElementLite-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.CompositeElementLite-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.CompositeElementLite-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Ext.CompositeElementLite"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.Ext.CompositeElementLite</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/CompositeElementLite.js" target="_blank">CompositeElementLite.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">CompositeElementLite</td></tr>
+                        <tr><td class="label">Subclasses:</td><td class="hd-info"><a ext:cls="CQ.Ext.CompositeElement" href="output/CQ.Ext.CompositeElement.html">CompositeElement</a></td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    <p>This class encapsulates a <i>collection</i> of DOM elements, providing methods to filter
+members, or to perform collective actions upon the whole set.</p>
+<p>Although they are not listed, this class supports all of the methods of <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a> and
+<a ext:cls="CQ.Ext.Fx" href="output/CQ.Ext.Fx.html">CQ.Ext.Fx</a>. The methods from these classes will be performed on all the elements in this collection.</p>
+Example:<pre><code>
+var els = CQ.Ext.select("#some-el div.some-class");
+// or select directly from an existing element
+var el = CQ.Ext.get('some-el');
+el.select('div.some-class');
+
+els.setWidth(100); // all elements become 100 width
+els.hide(true); // all elements fade out and hide
+// or
+els.setWidth(100).hide(true);
+</code>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.CompositeElementLite-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-elements"></a>
+            <b>elements</b> : Array            <div class="mdesc">
+                                    <div class="short">The Array of DOM elements which this CompositeElement encapsulates. Read-only.
+This will not usually be accessed in d...</div>
+            <div class="long">
+                <p>The Array of DOM elements which this CompositeElement encapsulates. Read-only.</p>
+<p>This will not <i>usually</i> be accessed in developers' code, but developers wishing
+to augment the capabilities of the CompositeElementLite class may use it when adding
+methods to the class.</p>
+<p>For example to add the <code>nextAll</code> method to the class to <b>add</b> all
+following siblings of selected elements, the code would be</p><code><pre>CQ.Ext.override(CQ.Ext.CompositeElementLite, {
+    nextAll: function() {
+        var els = this.elements, i, l = els.length, n, r = [], ri = -1;
+
+//      Loop through all elements in this Composite, accumulating
+//      an Array of all siblings.
+        for (i = 0; i < l; i++) {
+            for (n = els[i].nextSibling; n; n = n.nextSibling) {
+                r[++ri] = n;
+            }
+        }
+
+//      Add all found siblings to this Composite
+        return this.add(r);
+    }
+});</pre></code>            </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.CompositeElementLite-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-add"></a>
+            <b>add</b>(&nbsp;<code>Mixed els</code>&nbsp;) : CompositeElement            <div class="mdesc">
+                                    <div class="short">Adds elements to this Composite object.</div>
+            <div class="long">
+                Adds elements to this Composite object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>els</code> : Mixed<div class="sub-desc">Either an Array of DOM elements to add, or another Composite object who's elements should be added.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElement</code><div class="sub-desc">This Composite object.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-clear"></a>
+            <b>clear</b>() : void            <div class="mdesc">
+                                    <div class="short">Removes all elements.</div>
+            <div class="long">
+                Removes all elements.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-each"></a>
+            <b>each</b>(&nbsp;<code>Function fn</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : CompositeElement            <div class="mdesc">
+                                    <div class="short"><p>Calls the passed function for each element in this composite.</p></div>
+            <div class="long">
+                <p>Calls the passed function for each element in this composite.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>fn</code> : Function<div class="sub-desc">The function to call. The function is passed the following parameters:<ul>
+<li><b>el</b> : Element<div class="sub-desc">The current Element in the iteration.
+<b>This is the flyweight (shared) CQ.Ext.Element instance, so if you require a
+a reference to the dom node, use el.dom.</b></div></li>
+<li><b>c</b> : Composite<div class="sub-desc">This Composite object.</div></li>
+<li><b>idx</b> : Number<div class="sub-desc">The zero-based index in the iteration.</div></li>
+</ul></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<i>this</i> reference) in which the function is executed. (defaults to the Element)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElement</code><div class="sub-desc">this</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-fill"></a>
+            <b>fill</b>(&nbsp;<code>Mixed els</code>&nbsp;) : CompositeElement            <div class="mdesc">
+                                    <div class="short">Clears this Composite and adds the elements passed.</div>
+            <div class="long">
+                Clears this Composite and adds the elements passed.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>els</code> : Mixed<div class="sub-desc">Either an array of DOM elements, or another Composite from which to fill this Composite.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElement</code><div class="sub-desc">this</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-filter"></a>
+            <b>filter</b>(&nbsp;<code>String/Function selector</code>&nbsp;) : CompositeElement            <div class="mdesc">
+                                    <div class="short">Filters this composite to only elements that match the passed selector.</div>
+            <div class="long">
+                Filters this composite to only elements that match the passed selector.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String/Function<div class="sub-desc">A string CSS selector or a comparison function.
+The comparison function will be called with the following arguments:<ul>
+<li><code>el</code> : CQ.Ext.Element<div class="sub-desc">The current DOM element.</div></li>
+<li><code>index</code> : Number<div class="sub-desc">The current index within the collection.</div></li>
+</ul></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElement</code><div class="sub-desc">this</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-getCount"></a>
+            <b>getCount</b>() : Number            <div class="mdesc">
+                                    <div class="short">Returns the number of elements in this Composite.</div>
+            <div class="long">
+                Returns the number of elements in this Composite.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-indexOf"></a>
+            <b>indexOf</b>(&nbsp;<code>Mixed el</code>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Find the index of the passed element within the composite collection.</div>
+            <div class="long">
+                Find the index of the passed element within the composite collection.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : Mixed<div class="sub-desc">The id of an element, or an CQ.Ext.Element, or an HtmlElement to find within the composite collection.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">Number The index of the passed CQ.Ext.Element in the composite collection, or -1 if not found.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-item"></a>
+            <b>item</b>(&nbsp;<code>Number index</code>&nbsp;) : CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Returns a flyweight Element of the dom element object at the specified index</div>
+            <div class="long">
+                Returns a flyweight Element of the dom element object at the specified index    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>index</code> : Number<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.CompositeElementLite-replaceElement"></a>
+            <b>replaceElement</b>(&nbsp;<code>Mixed el</code>, <code>Mixed replacement</code>, <span class="optional" title="Optional">[<code>Boolean domReplace</code>]</span>&nbsp;) : CompositeElement            <div class="mdesc">
+                                    <div class="short">Replaces the specified element with the passed element.</div>
+            <div class="long">
+                Replaces the specified element with the passed element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : Mixed<div class="sub-desc">The id of an element, the Element itself, the index of the element in this composite
+to replace.</div></li><li><code>replacement</code> : Mixed<div class="sub-desc">The id of an element or the Element itself.</div></li><li><code>domReplace</code> : Boolean<div class="sub-desc">(Optional) True to remove and replace the element in the document too.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElement</code><div class="sub-desc">this</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">CompositeElementLite</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.CompositeElementLite-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

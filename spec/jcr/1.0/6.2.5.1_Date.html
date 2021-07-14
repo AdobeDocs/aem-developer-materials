@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.5.1 Date (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.5.1." id="section_6.2.5.1."></a>6.2.5.1 Date
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The text format of dates must follow the following ISO 8601:2000-compliant format:
+								</p>
+							
+							
+								<p class="c5">
+									<b><i>sYYYY</i></b><b>-</b><b><i>MM</i></b><b>-</b><b><i>DD</i></b><b>T</b><b><i>hh</i></b><b>:</b><b><i>mm</i></b><b>:</b><b><i>ss</i></b><b>.</b><b><i>sssTZD</i></b>
+								</p>
+							
+							
+								<p class="c5">
+									where:
+								</p>
+							
+							
+								<p class="c5">
+									<b>sYYYY</b> Four-digit year with optional leading positive (‘<b>+</b>’) or negative (‘<b>-</b>’) sign. A negative sign indicates a year BCE. The absence of a sign or the presence of a positive sign indicates a year CE (for example, <b>-0055</b> would indicate the year 55 BCE, while <b>+1969</b> and <b>1969</b> indicate the year 1969 CE).
+								</p>
+							
+							
+								<p class="c5">
+									<b>MM</b> Two-digit month (01 = January, etc.)
+								</p>
+							
+							
+								<p class="c5">
+									<b>DD</b> Two-digit day of month (01 through 31)
+								</p>
+							
+							
+								<p class="c5">
+									<b>hh</b> Two digits of hour (00 through 23)
+								</p>
+							
+							
+								<p class="c5">
+									<b>mm</b> Two digits of minute (00 through 59)
+								</p>
+							
+							
+								<p class="c5">
+									<b>ss.sss</b> Seconds, to three decimal places (00.000<br>
+									through 59.999)
+								</p>
+							
+							
+								<p class="c5">
+									<b>TZD</b> Time zone designator (either <i>Z</i> for Zulu, i.e. UTC, or<br>
+									<i>+hh:mm</i> or <i>-hh:mm</i>, i.e. an offset from UTC)
+								</p>
+							
+							
+								<p class="c5">
+									Note that the <b>"T"</b> separating the date from the time and the separators <b>"-"</b> and <b>":"</b> appear literally in the string. See <b><a href="http://www.w3.org/TR/NOTE-datetime">http://www.w3.org/TR/NOTE-datetime</a></b> for more information.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,13 @@
+foundation.form.response.ui.error: foundation.html
+===================================================
+
+``foundation.html`` is a error response handler of :doc:`../../../index`.
+
+A error handler to show an alert about the error using the message that is usually parsed from `Granite's HTMLResponse.class <https://docs.adobe.com/docs/en/aem/6-2/develop/ref/javadoc/com/adobe/granite/ui/components/HtmlResponse.html>`_.
+The message is taken from the ``description`` or ```messsage`` property of the parsed response data.
+
+
+Matching Condition
+------------------
+
+If the parsed response data is JS object having ``statusCode`` property.

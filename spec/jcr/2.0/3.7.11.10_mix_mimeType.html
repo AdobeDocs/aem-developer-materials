@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.11.10 mix:mimeType (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.11.10 mix:mimeType</H4>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:mimeType] mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:mimeType (STRING) protected? OPV?</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:encoding (STRING) protected? OPV?</FONT></P>
+	<P>This mixin node type
+	can be used to provide standardized mimetype and encoding properties
+	to a node.</P>
+	<P>If a node of this type
+	has a primary item that is a single-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	property then <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mimeType</FONT></FONT>
+	property indicates the media type<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote6anc" HREF="#sdfootnote6sym"><SUP>6</SUP></A></SUP>
+	applicable to the contents of that property and, if that media type
+	is one to which a text encoding applies, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:encoding</FONT></FONT>
+	property indicates the character set<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote7anc" HREF="#sdfootnote7sym"><SUP>7</SUP></A></SUP>
+	used.</P>
+	<P>If a node of this type
+	does not meet the above precondition then the interpretation of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mimeType</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:encoding</FONT></FONT>
+	properties is implementation-dependent.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

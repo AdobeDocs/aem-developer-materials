@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.10.1 nt:base (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.10.1 nt:base</H4>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:base] abstract</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:primaryType (NAME) mandatory autocreated</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">protected
+	COMPUTE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:mixinTypes (NAME) protected multiple COMPUTE</FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	is an abstract primary node type that is the base type for all other
+	primary node types. It is the only primary node type without
+	supertypes.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	exposes type information about a node through the properties
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>.</P>
+	<P>Since every other
+	primary type must be a subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	(see §3.7.6.2 <I>Subtype Relation</I>), every primary node type
+	will inherit these two type-reflective property definitions.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+	is a protected mandatory <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+	property which holds the name of the declared primary node type of
+	its node. The repository must maintain its value accurately
+	throughout the lifetime of the node (see §10.10 <I>Node Type
+	Assignment</I>). Since it is mandatory, every node will have this
+	property.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+	is a non-mandatory protected multi-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+	property which holds a list of the declared mixin node types of its
+	node. It is non-mandatory but is required to be present on any node
+	that has one or more declared mixin types. If it is present, the
+	repository must maintain its value accurately throughout the
+	lifetime of the node (see §10.10.3 <I>Assigning Mixin Node Types</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

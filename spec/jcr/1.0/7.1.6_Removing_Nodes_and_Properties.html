@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.6 Removing Nodes and Properties (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.6." id="section_7.1.6."></a> 7.1.6 Removing Nodes and Properties
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Removing a node or property is done with the <b>Item.remove</b> method:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Item</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>remove()</b>
+									</p>
+									<p class="c5">
+										Removes <b>this</b> item (and its subtree).
+									</p>
+									<p class="c5">
+										To persist a removal, a <b>save</b> must be performed that includes the (former) parent of the removed item within its scope.
+									</p>
+									<p class="c5">
+										A <b>ReferentialIntegrityException</b> will be thrown on <b>save</b> if this item or an item in its subtree is currently the target of a <b>REFERENCE</b> property located in this workspace but outside this item's subtree and the current <b>Session</b> has read access to that <b>REFERENCE</b> property.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> will be thrown on <b>save</b> if this item or an item in its subtree is currently the target of a <b>REFERENCE</b> property located in this workspace but outside this item's subtree and the current <b>Session</b> <i>does not</i> have read access to that <b>REFERENCE</b> property.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if removing this item would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the removal of this item. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									A property can also be removed by setting its value to <b>null</b>. When this is done, the <b>null</b> parameter must be cast to a non-array type for single value properties and an array type for multi-value properties.
+								</p>
+							
+							
+								<p class="c5">
+									Note that setting a multi-value property to an array containing <b>null</b> values is different from setting it to a <b>null</b> cast to an array type. In the former case, all <b>null</b> values within the array are removed and the array is compacted to include only non-null values even if this results in a multi-value property being set to an empty array. In the latter case the entire property is removed. For example,
+								</p>
+							
+							
+								<p class="c5">
+									<b>p.setValue((String[])null)</b>
+								</p>
+							
+							
+								<p class="c5">
+									would remove property <b>p</b>, whereas
+								</p>
+							
+							
+								<p class="c5">
+									<b>p.setValue(new String[]{"a", null, "b"})</b> would set <b>p</b> to <b>["a","b"]</b>
+								</p>
+							
+							
+								<p class="c5">
+									and
+								</p>
+							
+							
+								<p class="c5">
+									<b>p.setValue(new String[]{null})</b> would set <b>p</b> to the empty array, <b>[]</b>.
+								</p>
+							
+							
+								<p class="c5">
+									See also <a href="4.7.3_No_Null_Values.html">4.7.3</a> <i>No Null Values</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

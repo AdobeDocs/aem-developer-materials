@@ -1,0 +1,23 @@
+
+Container
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/container
+
+   A general purpose container component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Container] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * Make the element maximized to fill the available space.
+       */
+      - maximized (Boolean)

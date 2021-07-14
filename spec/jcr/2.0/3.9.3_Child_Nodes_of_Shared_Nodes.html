@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.9.3 Child Nodes of Shared Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.9.3 Child Nodes of Shared Nodes</H3>
+	<P>Each node in a shared
+	set shares the same child nodes. In particular, the addition or
+	removal of a child from a shared node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	automatically adds or removes that child from all the nodes in the
+	shared set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+	<P>For example, suppose
+	the following nodes exist:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">		<I>/x</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/y</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/y/z</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/y/z/n1</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/y/z/n2</I></FONT></P>
+	<P>Suppose a shared node
+	at <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>
+	is created and shares with the shareable node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>.
+	Since the children of <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>
+	are automatically added to <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>,
+	a child named “<FONT FACE="Courier New, monospace"><FONT SIZE=2>z</FONT></FONT>”
+	is automatically added to <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>.
+	Therefore, as a result of creating <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>,
+	the following paths are associated with nodes:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/a</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/a/z</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/a/z/n1</I></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><I>		/x/a/z/n2</I></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>
+	is a new node that shares with <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a/z</FONT></FONT>
+	identifies the same node as <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y/z</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a/z/n1</FONT></FONT>
+	identifies the same node as <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y/z/n1</FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a/z/n2</FONT></FONT>
+	identifies the same node as <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y/z/n2</FONT></FONT>.</P>
+	<P>Subsequently, when a
+	new child named “<FONT FACE="Courier New, monospace"><FONT SIZE=2>w</FONT></FONT>”
+	is added to either <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>,
+	that child is automatically added to both <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>.
+	Conversely, when a child named “<FONT FACE="Courier New, monospace"><FONT SIZE=2>w</FONT></FONT>”
+	is removed from either <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>,
+	the child named “<FONT FACE="Courier New, monospace"><FONT SIZE=2>w</FONT></FONT>”
+	is removed from both <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/y</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>/x/a</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

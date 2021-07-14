@@ -1,0 +1,3000 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6 Query (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>6 Query</H1>
+	<P>A repository may
+	support <I>query</I>.</P>
+	<P>The structure and
+	evaluation semantics of a query are defined by an <I>abstract query
+	model</I> (AQM) for which two concrete language bindings are
+	specified:</P>
+	<UL>
+		<LI><P><I>JCR-SQL2</I>, which expresses
+		a query as a string with syntax similar to SQL, and</P>
+		<LI><P><I>JCR-JQOM</I><B> </B>(JCR Java
+		Query Object Model), which expresses a query as a tree of Java
+		objects.</P>
+	</UL>
+	<P>The languages are both
+	direct mappings of the AQM and are therefore equally expressive; any
+	query expressed in one can be machine-transformed to the other. 
+	</P>
+	<P>Whether an
+	implementation supports query can be determined by querying the
+	repository descriptor table with the key</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.QUERY_LANGUAGES</FONT></FONT>.</P>
+	<P>The returned array
+	contains the constants representing the supported languages (see
+	§24.2 <I>Repository Descriptors</I>). If a repository supports
+	query it must return at least the constants for the two JCR-defined
+	languages,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.query.JCR-JQOM</FONT></FONT>
+	and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.query.JCR-SQL2</FONT></FONT>,</P>
+	<P>indicating support for
+	those languages. In addition, a repository may support other query
+	languages. These can be either additional language bindings to the
+	AQM or completely independent of that model.</P>
+	<P>JCR 1.0 defines a
+	dialect of SQL different from JCR-SQL2, as well as a dialect of
+	XPath. Support for these languages is deprecated.</P>
+<a name="6.1 Optional Joins"></a>	<H2>6.1 Optional Joins</H2>
+	<P>Support for <I>joins</I>
+	is optional beyond support for query itself. The extent of join
+	support can be determined by querying the repository descriptor
+	table with the key</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.QUERY_JOINS</FONT></FONT>.</P>
+	<P>The value returned
+	will be one of 
+	</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QUERY_JOINS_NONE</FONT></FONT>:
+		Joins are not supported and therefore queries are limited to a
+		single selector.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QUERY_JOINS_INNER</FONT></FONT>:
+		Inner joins are supported.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QUERY_JOINS_INNER_OUTER</FONT></FONT>:
+		Inner and outer joins are supported.</P>
+	</UL>
+<a name="6.2 Introduction to the Abstract Query Model"></a>	<H2>6.2 Introduction to the Abstract Query Model</H2>
+	<P>This section
+	introduces how queries are specified and evaluated in the AQM.</P>
+<a name="6.2.1 Selectors"></a>	<H3>6.2.1 Selectors</H3>
+	<P>A query has one or
+	more <I>selectors</I>. When the query is evaluated, each selector
+	independently selects a subset of the nodes in the workspace based
+	on node type.</P>
+	<P>In a repository that
+	<I>does not</I> support <I>joins</I>, a query will have only one
+	selector.</P>
+<a name="6.2.2 Joins"></a>	<H3>6.2.2 Joins</H3>
+	<P>If the query has more
+	than one selector, it also has one or more <I>joins</I> that
+	transform the sets of nodes selected by each selector into a single
+	set of <I>node-tuples</I>.</P>
+	<P>The membership of the
+	set of node-tuples depends on the <I>join type</I> and <I>join
+	condition</I> of each join. The join type can be <I>inner</I>,
+	<I>left-outer</I>, or <I>right-outer</I>. The join condition can
+	test the equality of properties' values or the hierarchical
+	relationship between nodes.</P>
+	<P>If the query has <I>n</I>
+	selectors, it has <I>n - 1</I> joins resulting in a set of <I>n</I>-tuples.
+	For example, if the query has two selectors, it will have one join
+	and produce a set of 2-tuples. If it has three selectors, it will
+	have two joins and produce a set of 3-tuples. If it has only one
+	selector, it will not have any joins and will produce a set of
+	1-tuples, that is, the nodes selected by its only selector.</P>
+	<P>Support for <I>joins</I>
+	is optional. In a repository that <I>does not</I> support <I>joins</I>,
+	the node-tuples produced are necessarily singletons. In other words,
+	each node in the set produced by the (one and only) selector is
+	converted directly into a node-tuple of size one. All further
+	processing within the query evaluation operates on these tuples just
+	as it would on tuples of size greater than one.</P>
+<a name="6.2.3 Constraints"></a>	<H3>6.2.3 Constraints</H3>
+	<P>A query can specify a
+	<I>constraint</I> to filter the set of node-tuples by any
+	combination of:</P>
+	<UL>
+		<LI><P>Absolute or relative path, for
+		example:</P>
+		<UL>
+			<LI><P>The node reached
+			by path <FONT FACE="Courier New, monospace"><FONT SIZE=2>/pictures/sunset.jpg</FONT></FONT></P>
+			<LI><P>Nodes that are
+			children of <FONT FACE="Courier New, monospace"><FONT SIZE=2>/pictures</FONT></FONT></P>
+			<LI><P>Nodes that are
+			descendants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>/pictures</FONT></FONT></P>
+		</UL>
+		<LI><P>Name of the node, for example:</P>
+		<UL>
+			<LI><P>Nodes named
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>sunset.jpg</FONT></FONT></P>
+		</UL>
+		<LI><P>Value of a property, for example:</P>
+		<UL>
+			<LI><P>Nodes whose <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:created</FONT></FONT>
+			property is after <FONT FACE="Courier New, monospace"><FONT SIZE=2>2007-03-14T00:00:00.000Z</FONT></FONT></P>
+		</UL>
+		<LI><P>Length of a property, for
+		example:</P>
+		<UL>
+			<LI><P>Nodes whose
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:data</FONT></FONT>
+			property is longer than 100 KB</P>
+		</UL>
+		<LI><P>Existence of a property, for
+		example:</P>
+		<UL>
+			<LI><P>Nodes with a <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:language</FONT></FONT>
+			property</P>
+		</UL>
+		<LI><P>Full-text search, for example:</P>
+		<UL>
+			<LI><P>Nodes which have a property that
+			contains the phrase “beautiful sunset”</P>
+		</UL>
+	</UL>
+<a name="6.2.4 Orderings"></a>	<H3>6.2.4 Orderings</H3>
+	<P>A query can specify
+	<I>orderings</I> to sort the filtered node-tuples by property value.</P>
+<a name="6.2.5 Query Results"></a>	<H3>6.2.5 Query Results</H3>
+	<P>The filtered and
+	sorted node-tuples form the <I>query results</I>. The query results
+	are available in two formats:</P>
+	<UL>
+		<LI><P>A list of node-tuples. For each
+		node-tuple, you can retrieve the node for each selector. In a
+		repository that does not support <I>joins</I> there will be only
+		one selector and consequently only one node per tuple.</P>
+		<LI><P>A table whose rows are the
+		node-tuples and whose columns are properties of the nodes in the
+		node-tuples. This is referred to as the tabular view of the query
+		results. A query can specify which properties appear as columns in
+		the tabular view.</P>
+	</UL>
+<a name="6.3 Equality and Comparison"></a>	<H2>6.3 Equality and Comparison</H2>
+	<P>When testing for
+	equality or order of two property values of the same type, the query
+	operators conform to the definitions in §3.6.5 <I>Comparison of
+	Values</I>. 
+	</P>
+	<P>When testing for
+	equality or order of two property values of differing type, the
+	query operators perform standard property type conversion (see
+	§3.6.4 <I>Property Type Conversion</I>) and conform to standard
+	value comparison (see §3.6.5 <I>Comparison of Values</I>).</P>
+	<P>Support for equality
+	and order comparison of <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	values is not required.</P>
+<a name="6.4 Query Validity"></a>	<H2>6.4 Query Validity</H2>
+	<P>To be successfully
+	evaluated and produce query results, a query must be <I>valid</I>.</P>
+	<P>A query is <I>invalid</I>
+	if:</P>
+	<UL>
+		<LI><P>it cannot be expressed in the
+		AQM, or</P>
+		<LI><P>it can be
+		expressed in the AQM, but fails a validation constraint defined in
+		§6.7 <I>Abstract Query Model and Language Bindings</I>.</P>
+	</UL>
+	<P>An invalid query
+	causes the repository to throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidQueryException</FONT></FONT>.
+	Which method invocation throws this exception is implementation
+	determined, but for an invalid query, the exception must be thrown
+	no later than completion of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.execute()</FONT></FONT>.</P>
+<a name="6.5 Search Scope"></a>	<H2>6.5 Search Scope</H2>
+	<P>A query <I>must</I>
+	search the persistent workspace associated with the current session.
+	It <I>may</I> take into account pending changes to the persistent
+	workspace; that is, changes which are either unsaved or, within a
+	transaction, saved but uncommitted.</P>
+<a name="6.6 Notations"></a>	<H2>6.6 Notations</H2>
+	<P>Three notations are
+	used in the following sections: the AQM type grammar, the JCR-SQL2
+	EBNF grammar and the JCR-JQOM Java API.</P>
+<a name="6.6.1 AQM Notation"></a>	<H3>6.6.1 AQM Notation</H3>
+	<P>The AQM is defined as
+	a set of abstract types. The type grammar is written like this:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Alpha ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Foo foo,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Bar? bar,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Baz+ bazes,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Quux* quuxes</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Beta extends Alpha ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">String name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">enum Foo ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Snap,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Crackle,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Pop</FONT></P>
+	<P><BR>which means:</P>
+	<P>The type <FONT FACE="Courier New, monospace"><FONT SIZE=2>Alpha</FONT></FONT>
+	has 4 attributes:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>foo</FONT></FONT>:
+	mandatory, of type <FONT FACE="Courier New, monospace">Foo</FONT>,
+	which is an enumeration with possible values <FONT FACE="Courier New, monospace"><FONT SIZE=2>Snap</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Crackle</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Pop</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>bar</FONT></FONT>:
+	optional, of type <FONT FACE="Courier New, monospace">Bar</FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>bazes</FONT></FONT>:
+	a list of one or more <FONT FACE="Courier New, monospace">Baz</FONT>
+	items</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>quuxes</FONT></FONT>:
+	a list of zero or more <FONT FACE="Courier New, monospace">Quux</FONT>
+	items</P>
+	<P>The type <FONT FACE="Courier New, monospace">Beta</FONT>
+	is a subtype of <FONT FACE="Courier New, monospace">Alpha</FONT>.
+	It inherits <FONT FACE="Courier New, monospace">Alpha</FONT>'s
+	attributes, and adds:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>name</FONT></FONT>:
+	mandatory, a string</P>
+<a name="6.6.2 JCR-SQL2 Notation"></a>	<H3>6.6.2 JCR-SQL2 Notation</H3>
+	<P>JCR–SQL2 is a
+	mapping of the AQM to a string serialization based on the SQL
+	language.</P>
+	<P>Each non-terminal in
+	the JCR-SQL2 EBNF grammar corresponds to the type of the same name
+	in the AQM grammar. The semantics of each JCR-SQL2 production is
+	described by reference to the semantics of the corresponding AQM
+	production. The two grammars are, however, entirely distinct and
+	self- contained. Care should be taken not to mix productions from
+	one grammar with those of the other.</P>
+	<P>The JCR-SQL2 grammar
+	is written like this:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Alpha ::= 'FOO' Foo ['BAR' Bar]
+	'BAZ' bazes<BR> ['QUUX' quuxes]</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Foo ::= Snap | Crackle | Pop</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Snap ::= 'SNAP'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Crackle ::= 'CRACKLE'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Pop ::= 'POP'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Bar ::= /* a Bar */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">bazes ::= Baz {Baz}</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Baz ::= /* a Baz */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">quuxes ::= Quux {Quux}</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Quux ::= /* a Quux */</FONT></P>
+<a name="6.6.2.1 String Literals in JCR-SQL2 Grammar"></a>	<H4>6.6.2.1 String Literals in JCR-SQL2 Grammar</H4>
+	<P>Throughout this
+	section string literals that appear in the syntactic grammar
+	defining JCR-SQL2 must be interpreted as specified in §1.3.1 <I>String
+	Literals in Syntactic Grammars</I> except that each character in the
+	string literal must be interpreted as representing both upper and
+	lower case versions. In other words, implementations must be
+	case-insensitive with regard to JCR-SQL2.</P>
+<a name="6.6.3 JCR-JQOM Notation"></a>	<H3>6.6.3 JCR-JQOM Notation</H3>
+	<P>JCR-JQOM is a mapping
+	of the AQM to a Java API.</P>
+	<P>Each method and
+	parameter name of the JCR-JQOM Java API corresponds to the type of
+	the same name in the AQM grammar. The semantics of each JCR-JQOM
+	method is described by reference to the semantics of the
+	corresponding AQM production.</P>
+	<P>A JCR-JQOM query is
+	built by assembling objects created using the factory methods of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>.</P>
+	<P>For each AQM type, the
+	following are listed:</P>
+	<UL>
+		<LI><P>If the AQM type is a <I>non-enum</I>
+		and <I>non-abstract</I> (in the AQM sense, not the Java sense) then
+		the factory method of <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>
+		used to create an instance of that type is listed.</P>
+		<LI><P>If the AQM type is <I>non-enum</I>
+		then the corresponding Java interface is listed.</P>
+		<LI><P>If the AQM type is an <I>enum
+		</I>then the corresponding constants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants</FONT></FONT>
+		are listed.</P>
+	</UL>
+	<P>Unless otherwise
+	indicated, the Java interfaces listed in this section are in the
+	package <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.query.qom</FONT></FONT>.</P>
+<a name="6.7 Abstract Query Model and Language Bindings"></a>	<H2>6.7 Abstract Query Model and Language Bindings</H2>
+	<P>The following section
+	describes the AQM grammar and its mapping to JCR-SQL2 and JCR-JQOM.
+	For each AQM production, a description of its semantics is provided,
+	followed by the corresponding JCR-SQL2 production and the
+	corresponding JCR-JQOM methods.</P>
+	<P>For queries with only
+	one selector the JCR-SQL2 syntax permits the selector name to be
+	omitted. In such cases the implementation must automatically
+	generate a selector name for internal use. If the resulting query is
+	later examined through the JCR-JQOM API, the automatically produced
+	selector name will be seen.</P>
+<a name="6.7.1 Query"></a>	<H3>6.7.1 Query</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Query ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source source,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint? constraint,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Ordering* orderings,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Column* columns</FONT></P>
+	<P><BR>
+	</P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	consists of:</P>
+	<UL>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>.
+		When the query is evaluated, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+		evaluates its selectors and the joins between them to produce a
+		(possibly empty) set of node-tuples. This is a set of 1-tuples if
+		the query has one selector (and therefore no joins), a set of
+		2-tuples if the query has two selectors (and therefore one join), a
+		set of 3-tuples if the query has three selectors (two joins), and
+		so forth.</P>
+		<LI><P>An optional <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>.
+		When the query is evaluated, the constraint filters the set of
+		node-tuples.</P>
+		<LI><P>A list of zero or more <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>s.
+		The orderings specify the order in which the node-tuples appear in
+		the query results. The relative order of two node-tuples is
+		determined by evaluating the specified orderings, in list order,
+		until encountering an ordering for which one node-tuple precedes
+		the other. If no orderings are specified, or if there is no
+		ordering specified in which one node-tuple precedes the other, then
+		the relative order of the node-tuples is implementation determined
+		(and may be arbitrary).</P>
+		<LI><P>A list of zero or more <FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>s
+		to include in the tabular view of the query results. If no columns
+		are specified, the columns available in the tabular view are
+		implementation determined, but minimally include, for each
+		selector, a column for each single-valued non-residual property of
+		the selector's node type.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Query ::= 'SELECT' columns</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'FROM' Source</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">['WHERE' Constraint]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">['ORDER BY' orderings]</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A query is represented
+	by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	object, created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel
+	QueryObjectModelFactory.<BR> createQuery(Source source,<BR> 
+	 Constraint constraint,<BR> Ordering[]
+	orderings,<BR> Column[] columns)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.query.Query</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source
+	QueryObjectModel.getSource()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	QueryObjectModel.getConstraint()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering[]
+	QueryObjectModel.getOrderings()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Column[]
+	QueryObjectModel.getColumns()</FONT></FONT></P>
+<a name="6.7.2 Source"></a>	<H3>6.7.2 Source</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type Source</FONT></P>
+	<P><BR>
+	</P>
+	<P>Evaluates to a set of
+	node-tuples.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source ::= Selector | Join</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Join</FONT></FONT>.</P>
+<a name="6.7.3 Selector"></a>	<H3>6.7.3 Selector</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Selector extends Source ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name nodeType,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName</FONT></P>
+	<P><BR>
+	</P>
+	<P>Selects a subset of
+	the nodes in the workspace based on node type.</P>
+	<P>The query is invalid
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>
+	refers to a node type that has a <I>queryable node type</I>
+	attribute of <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(see §3.7.1.5 <I>Queryable Node Type</I>). Otherwise, if the
+	<I>queryable node type</I> attribute is true, the following holds:</P>
+	<P>A selector selects
+	every node in the workspace, subject to access control constraints,
+	that satisfies at least one of the following conditions:</P>
+	<UL>
+		<LI><P>the node’s primary node type is
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>,
+		or</P>
+		<LI><P>the node’s primary node type is
+		a subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>,
+		or</P>
+		<LI><P>the node has a mixin node type
+		that is <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>,
+		or</P>
+		<LI><P>the node has a mixin node type
+		that is a subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeType</FONT></FONT>.</P>
+	</UL>
+	<P>A selector has a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>selectorName</FONT></FONT>
+	that can be used elsewhere in the query to identify the selector.</P>
+	<P>The query is <I>invalid</I>
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>selectorName</FONT></FONT>
+	is identical to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selectorName</FONT></FONT>
+	of another selector in the query.</P>
+	<P>The query is also
+	<I>invalid</I> if <FONT FACE="Courier New, monospace">nodeType</FONT>
+	is not a valid JCR name or is a valid JCR name but not the name of a
+	node type available in the repository.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Selector ::= nodeTypeName ['AS'
+	selectorName]</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">nodeTypeName ::= Name</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector</FONT></FONT>
+	is created with: 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector
+	QueryObjectModelFactory.<BR> selector(String nodeTypeName, String
+	selectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Selector</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Selector.getNodeTypeName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Selector.getSelectorName()</FONT></FONT></P>
+<a name="6.7.4 Name"></a>	<H3>6.7.4 Name</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Name</FONT></P>
+	<P><BR>
+	</P>
+	<P>A JCR name.</P>
+	<P>The query is <I>invalid</I>
+	if the name does not satisfy either the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ExpandedName</FONT></FONT>
+	production in §3.2.5.1 <I>Expanded Form</I> or the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QualifiedName</FONT></FONT>
+	production in §3.2.5.2 <I>Qualified Form</I>. 
+	</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name ::= '[' quotedName ']' |<BR>
+	 '[' simpleName ']' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">simpleName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">quotedName ::= /* A JCR Name */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">simpleName ::= /* A JCR Name
+	that is also a legal SQL identifier<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote10anc" HREF="#sdfootnote10sym"><SUP>10</SUP></A></SUP>
+	*/</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A JCR name in <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	form (either qualified or expanded).</P>
+<a name="6.7.5 Join"></a>	<H3>6.7.5 Join</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Join extends Source ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source left,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Source right,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinType joinType,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinCondition joinCondition</FONT></P>
+	<P><BR>
+	</P>
+	<P>Performs a join
+	between two node-tuple sources.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>left</FONT></FONT>
+	evaluates to <B>L</B>, a set of <I>m</I>-tuples, and <FONT FACE="Courier New, monospace"><FONT SIZE=2>right</FONT></FONT>
+	evaluates to <B>R</B>, a set of <I>n</I>-tuples, then the join
+	evaluates to <B>J</B>, a set of (<I>m + n</I>)-tuples. The members
+	of <B>J</B><B> </B>depend on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinCondition</FONT></FONT>.</P>
+	<P>Let <B>L</B> x <B>R</B>
+	be the Cartesian product of <B>L</B> and <B>R</B> as a set of (<I>m
+	+ n</I>)-tuples</P>
+	<P><B>L</B>
+	x <B>R</B> = { ℓ <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT>r
+	: ℓ <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><B>L</B>,
+	r <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><B>R</B>
+	}</P>
+	<P>and <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(A)
+	be the selection over <B>A</B> of its members satisfying
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>joinCondition</FONT></FONT>
+	<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB></P>
+	<P><SUB>c</SUB>(<B>A</B>)
+	= { a : a <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><B>A</B>,
+	<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(a)
+	}</P>
+	<P>Then if <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>Inner</FONT></FONT>:</P>
+	<P><B>J</B>
+	= <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)</P>
+	<P>Otherwise, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>LeftOuter</FONT></FONT>:</P>
+	<P><B>J</B> = <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>) <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT>(<B>L</B>
+	– <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>L</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)))</P>
+	<P>where <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>L</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)) is the projection of the <I>m</I>-tuples contributed by
+	<B>L</B> from the <I>(m + n)</I>-tuples of <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>).</P>
+	<P>Otherwise, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>joinType</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>RightOuter</FONT></FONT>:</P>
+	<P><B>J</B> = <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>) <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT>(<B>R</B>
+	– <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>R</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)))</P>
+	<P>where <FONT FACE="Arial, sans-serif"><FONT SIZE=3 >π</FONT></FONT><SUB>R</SUB>(<FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>)) is the projection of the <I>n</I>-tuples contributed by
+	<B>R</B> from the <I>(m + n)</I>-tuples of <FONT FACE="Symbol, serif"><FONT SIZE=3></FONT></FONT><SUB>c</SUB>(<B>L</B>
+	x <B>R</B>).</P>
+	<P>The query is <I>invalid</I>
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>left</FONT></FONT>
+	is the same source as <FONT FACE="Courier New, monospace"><FONT SIZE=2>right</FONT></FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Join ::= left [JoinType] 'JOIN'
+	right 'ON' JoinCondition </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">// If JoinType is
+	omitted INNER is assumed.</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">left ::= Source</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">right ::= Source</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Join</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Join
+	QueryObjectModelFactory.<BR> join(Source left,<BR> Source
+	right,<BR> String joinType,<BR> JoinCondition
+	joinCondition)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Join</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Source</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source
+	Join.getLeft()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Source
+	Join.getRight()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Join.getJoinType()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition
+	Join.getJoinCondition()</FONT></FONT></P>
+<a name="6.7.6 JoinType"></a>	<H3>6.7.6 JoinType</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">enum JoinType ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Inner,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">LeftOuter,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">RightOuter</FONT></P>
+	<P><B><BR>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinType ::= Inner | LeftOuter |
+	RightOuter</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Inner ::= 'INNER'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">LeftOuter ::= 'LEFT OUTER'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">RightOuter ::= 'RIGHT OUTER'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A join type is a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	constant. One of:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_JOIN_TYPE_INNER</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_JOIN_TYPE_LEFT_OUTER</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_JOIN_TYPE_RIGHT_OUTER</FONT></FONT></P>
+<a name="6.7.7 JoinCondition"></a>	<H3>6.7.7 JoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type JoinCondition</FONT></P>
+	<P><BR>
+	</P>
+	<P>Filters the set of
+	node-tuples formed from a join.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinCondition ::=
+	EquiJoinCondition |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">SameNodeJoinCondition
+	|</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">ChildNodeJoinCondition
+	|</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">DescendantNodeJoinCondition</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNodeJoinCondition</FONT></FONT>.</P>
+<a name="6.7.8 EquiJoinCondition"></a>	<H3>6.7.8 EquiJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type EquiJoinCondition extends
+	JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector1Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name property1Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector2Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name property2Name</FONT></P>
+	<P><BR>
+	</P>
+	<P>Tests whether the value of a property
+	in a first selector is equal to the value of a property in a second
+	selector.</P>
+	<P>A node-tuple satisfies the constraint
+	only if:</P>
+	<UL>
+		<LI><P>the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		node has a property named <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>,
+		and</P>
+		<LI><P>the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		node has a property named <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>,
+		and</P>
+		<LI><P>the value of property
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		<I>is equal to</I> the value of property <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>,
+		as defined in §3.6.5 <I>Comparison of Values</I>.</P>
+	</UL>
+	<P>The query is <I>invalid</I> if</P>
+	<UL>
+		<LI><P>either <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		is equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>,
+		or</P>
+		<LI><P>the <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		is not the same property type as <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>,
+		or</P>
+		<LI><P>either <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>
+		is a multi-valued property, or</P>
+		<LI><P>either <FONT FACE="Courier New, monospace"><FONT SIZE=2>property1Name</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>property2Name</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		property and equality test for <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		properties is not supported (see §3.6.6 <I>Value.equals Method</I>).</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">EquiJoinCondition ::=
+	selector1Name'.'property1Name '='</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">selector2Name'.'property2Name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selector1Name ::= selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selector2Name ::= selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">property1Name ::= propertyName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">property2Name ::= propertyName</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition
+	QueryObjectModelFactory.<BR> equiJoinCondition(String
+	selector1Name,<BR> String property1Name,<BR> 
+	 String selector2Name,<BR> 
+	String property2Name)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>EquiJoinCondition
+	</FONT></FONT>extends<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	JoinCondition</FONT></FONT> and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getSelector1Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getProperty1Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getSelector2Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	EquiJoinCondition getProperty2Name()</FONT></FONT></P>
+<a name="6.7.9 SameNodeJoinCondition"></a>	<H3>6.7.9 SameNodeJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type SameNodeJoinCondition
+	extends JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector1Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selector2Name,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path? selector2Path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests whether two nodes are “the
+	same” according to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.isSame</FONT></FONT>
+	method.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+	is omitted:</P>
+	<UL>
+		<LI><P>Tests whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		node is the same as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		node. A node-tuple satisfies the constraint only if:</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node.isSame(selector2Node)</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>.</P>
+	<P>Otherwise, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+	is specified:</P>
+	<UL>
+		<LI><P>Tests whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		node is the same as a node identified by relative path
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+		from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		node. A node-tuple satisfies the constraint only if:</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node.isSame(<BR>
+	 selector2Node.getNode(selector2Path))</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Node</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector1Name</FONT></FONT>
+		is the same as <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Name</FONT></FONT>,
+		or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+		is not a syntactically valid relative path, as defined in §3.4.3.3
+		<I>Lexical Path Grammar</I>. However, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>selector2Path</FONT></FONT>
+		is syntactically valid but does not identify a node in the
+		workspace visible to this session, the query is valid but the
+		constraint is not satisfied.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">SameNodeJoinCondition ::=</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'ISSAMENODE('
+	selector1Name ','</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">selector2Name</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">[','
+	selector2Path] ')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selector2Path ::= Path</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition
+	QueryObjectModelFactory.<BR> sameNodeJoinCondition(String
+	selector1Name,<BR> String selector2Name,<BR> 
+	 String selector2Path)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNodeJoinCondition</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNodeJoinCondition.getSelector1Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNodeJoinCondition.getSelector2Name()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNodeJoinCondition.getSelector2Path()</FONT></FONT></P>
+<a name="6.7.10 ChildNodeJoinCondition"></a>	<H3>6.7.10 ChildNodeJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type ChildNodeJoinCondition
+	extends JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name childSelectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name parentSelectorName</FONT></P>
+	<P><BR>
+	</P>
+	<P>Tests whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+	node is a child of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>
+	node. A node-tuple satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorNode.getParent().isSame(parentSelectorNode)</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorNode</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorNode</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+		is the same as <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">ChildNodeJoinCondition ::=</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'ISCHILDNODE('
+	childSelectorName ','</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">parentSelectorName
+	')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">childSelectorName ::=
+	selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">parentSelectorName ::=
+	selectorName</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition
+	QueryObjectModelFactory.<BR> childNodeJoinCondition(String
+	childSelectorName,<BR> String
+	parentSelectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNodeJoinCondition.getChildSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNodeJoinCondition.getParentSelectorName()</FONT></FONT></P>
+<a name="6.7.11 DescendantNodeJoinCondition"></a>	<H3>6.7.11 DescendantNodeJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type DescendantNodeJoinCondition</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">extends JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name descendantSelectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name ancestorSelectorName</FONT></P>
+	<P><BR>
+	</P>
+	<P>Tests whether the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>descendantSelectorName</FONT></FONT>
+	node is a descendant of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ancestorSelectorName</FONT></FONT>
+	node. A node-tuple satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>descendantSelectorNode.getAncestor(n).<BR>
+	 isSame(ancestorSelectorNode) &amp;&amp;<BR> 
+	descendantSelectorNode.getDepth() &gt; n</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	for some non-negative integer <FONT FACE="Courier New, monospace"><FONT SIZE=2>n</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>descendantSelectorNode</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>descendantSelectorName</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>ancestorSelectorNode</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>ancestorSelectorName</FONT></FONT>.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>descendantSelectorName</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">ancestorSelectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">descendantSelectorName</FONT>
+		is the same as <FONT FACE="Courier New, monospace">ancestorSelectorName</FONT>.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DescendantNodeJoinCondition ::=</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'ISDESCENDANTNODE('
+	descendantSelectorName ','</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">ancestorSelectorName
+	')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">descendantSelectorName ::=
+	selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">ancestorSelectorName ::=
+	selectorName</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNodeJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNodeJoinCondition
+	QueryObjectModelFactory.<BR> descendantNodeJoinCondition(String
+	descendantSelectorName,<BR> String
+	ancestorSelectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNodeJoinCondition</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	DescendantNodeJoinCondition.getDescendantSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	DescendantNodeJoinCondition.getAncestorSelectorName()</FONT></FONT></P>
+<a name="6.7.12 Constraint"></a>	<H3>6.7.12 Constraint</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type Constraint</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Filters the set of node-tuples formed
+	by evaluating the query's selectors and the joins between them.</P>
+	<P>To be included in the query results, a
+	node-tuple must satisfy the constraint.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint ::= And | Or | Not |
+	Comparison |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">PropertyExistence
+	| FullTextSearch |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">SameNode |
+	ChildNode | DescendantNode</FONT></P>
+	<P><BR>In JCR-SQL2, the
+	following precedence classes apply, in order of evaluation:</P>
+	<TABLE WIDTH=649 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=49>
+		<COL WIDTH=158>
+		<COL WIDTH=392>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P><B>Class</B></P>
+			</TD>
+			<TD WIDTH=158>
+				<P><B>Constraint
+				Production</B></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><B>JCR-SQL2 Syntax</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>1</P>
+			</TD>
+			<TD WIDTH=158>
+				<P> 
+				</P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>()
+				</FONT></FONT><I>(grouping with parentheses)</I></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>2</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>=</FONT></FONT>
+				, <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;&gt;</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;=</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&gt;</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>&gt;=</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>LIKE</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IS
+				NOT NULL</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>CONTAINS()</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ISSAMENODE()</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ISCHILDNODE()</FONT></FONT></P>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ISDESCENDANTNODE()</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>3</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Not</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NOT</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>4</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AND</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=49>
+				<P>5</P>
+			</TD>
+			<TD WIDTH=158>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Or</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=392>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>OR</FONT></FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+	<P><BR><BR>
+	</P>
+	<P>
+	<B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Or</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Not</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode</FONT></FONT>.</P>
+<a name="6.7.13 And"></a>	<H3>6.7.13 And</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type And extends Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint1,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint2</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Performs a logical conjunction of two
+	other constraints.</P>
+	<P>To satisfy the <FONT FACE="Courier New, monospace">And</FONT>
+	constraint, a node-tuple must satisfy both <FONT FACE="Courier New, monospace">constraint1</FONT>
+	and <FONT FACE="Courier New, monospace">constraint2</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">And ::= constraint1 'AND'
+	constraint2</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">constraint1 ::= Constraint</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">constraint2 ::= Constraint</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>And
+	QueryObjectModelFactory.<BR> and(Constraint constraint1,
+	Constraint constraint2)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	And.getConstraint1()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	And.getConstraint2()</FONT></FONT></P>
+<a name="6.7.14 Or"></a>	<H3>6.7.14 Or</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Or extends Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint1,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint2</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Performs a logical disjunction of two
+	other constraints.</P>
+	<P>To satisfy the <FONT FACE="Courier New, monospace">Or</FONT>
+	constraint, the node-tuple must either:</P>
+	<UL>
+		<LI><P>satisfy <FONT FACE="Courier New, monospace">constraint1</FONT>
+		but not <FONT FACE="Courier New, monospace">constraint2</FONT>,
+		or</P>
+		<LI><P>satisfy <FONT FACE="Courier New, monospace">constraint2</FONT>
+		but not <FONT FACE="Courier New, monospace">constraint1</FONT>,
+		or</P>
+		<LI><P>satisfy both <FONT FACE="Courier New, monospace">constraint1</FONT>
+		and <FONT FACE="Courier New, monospace">constraint2</FONT>.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Or ::= constraint1 'OR'
+	constraint2</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>Or</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Or
+	QueryObjectModelFactory.<BR> or(Constraint constraint1,
+	Constraint constraint2)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Or</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	Or.getConstraint1()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	Or.getConstraint2()</FONT></FONT></P>
+<a name="6.7.15 Not"></a>	<H3>6.7.15 Not</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Not extends Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Performs a logical negation of another
+	constraint.</P>
+	<P>To satisfy the <FONT FACE="Courier New, monospace">Not</FONT>
+	constraint, the node-tuple must <I>not</I> satisfy <FONT FACE="Courier New, monospace">constraint</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Not ::= 'NOT' Constraint</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Not</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Not
+	QueryObjectModelFactory.<BR> not(Constraint constraint)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Not</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	Not.getConstraint()</FONT></FONT></P>
+<a name="6.7.16 Comparison"></a>	<H3>6.7.16 Comparison</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Comparison extends
+	Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DynamicOperand operand1,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Operator operator,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">StaticOperand operand2</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Filters node-tuples based on the
+	outcome of a binary operation.</P>
+	<P>For any comparison, <FONT FACE="Courier New, monospace">operand2</FONT>
+	always evaluates to a scalar value. In contrast, <FONT FACE="Courier New, monospace">operand1</FONT>
+	may evaluate to an array of values (for example, the values of a
+	multi-valued property), in which case the comparison is separately
+	performed for each element of the array, and the <FONT FACE="Courier New, monospace">Comparison</FONT>
+	constraint is satisfied as a whole if the comparison against <I>any</I>
+	element of the array is satisfied.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand1</FONT>
+	and <FONT FACE="Courier New, monospace">operand2</FONT>
+	evaluate to values of different property types, the value of
+	<FONT FACE="Courier New, monospace">operand2</FONT>
+	is converted to the property type of the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	as described in §3.6.4<I> Property Type Conversion</I>. If the type
+	conversion fails, the query is <I>invalid</I>.</P>
+	<P>Given an operator <FONT FACE="Courier New, monospace"><FONT SIZE=2>O</FONT></FONT>
+	and a property instance <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	of property type <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	can be compared using <FONT FACE="Courier New, monospace"><FONT SIZE=2>O</FONT></FONT>
+	only if: 
+	</P>
+	<UL>
+		<LI><P>The implementation supports
+		comparison of properties of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		using <FONT FACE="Courier New, monospace"><FONT SIZE=2>O</FONT></FONT>.
+		For example, some implementations may permit <FONT FACE="Courier New, monospace"><FONT SIZE=2>EqualTo</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>NotEqualTo</FONT></FONT>
+		as comparison operators for <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		properties while others may not.</P>
+		<LI><P>Assuming that comparison of
+		properties of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		is supported in general, the property definition that applies to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		(found in the node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>'s
+		parent node) must also list <FONT FACE="Courier New, monospace"><FONT SIZE=2>O</FONT></FONT>
+		among its <I>available query operators </I>(see §3.7.3.3 <I>Available
+		Query Operators</I>).</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace">operator</FONT>
+	is not supported for the property type of <FONT FACE="Courier New, monospace">operand1</FONT>,
+	the query is <I>invalid</I>.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand1</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">null</FONT>
+	(for example, if the operand evaluates the value of a property which
+	does not exist), the constraint is not satisfied.</P>
+	<P>The <FONT FACE="Courier New, monospace">EqualTo</FONT>
+	operator is satisfied <I>only if</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>is equal to</I> the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	as described in §3.6.5 <I>Comparison of Values</I>.</P>
+	<P>The <FONT FACE="Courier New, monospace">NotEqualTo</FONT>
+	operator is satisfied <I>unless</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>is equal to </I>the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	as described in §3.6.5 <I>Comparison of Values</I>.</P>
+	<P>The <FONT FACE="Courier New, monospace">LessThan</FONT>
+	operator is satisfied <I>only if</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>is ordered </I><I>before</I> the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	as described in §3.6.5 <I>Comparison of Values</I>.</P>
+	<P>The <FONT FACE="Courier New, monospace">LessThanOrEqualTo</FONT>
+	operator is satisfied <I>unless</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>is ordered</I> <I>after</I> the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	as described in §3.6.5 <I>Comparison of Values</I>.</P>
+	<P>The <FONT FACE="Courier New, monospace">GreaterThan</FONT>
+	operator is satisfied <I>only if</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>is ordered</I> <I>after</I> the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	as described in §3.6.5 <I>Comparison of Values</I>.</P>
+	<P>The <FONT FACE="Courier New, monospace">GreaterThanOrEqualTo</FONT>
+	operator is satisfied <I>unless</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>is ordered</I> <I>before</I> the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	as described in §3.6.5 <I>Comparison of Values</I>.</P>
+	<P>The <FONT FACE="Courier New, monospace">Like</FONT>
+	operator is satisfied <I>only if</I> the value of <FONT FACE="Courier New, monospace">operand1</FONT>
+	<I>matches</I> the pattern specified by the value of <FONT FACE="Courier New, monospace">operand2</FONT>,
+	where in the pattern:</P>
+	<UL>
+		<LI><P>the character “<FONT FACE="Courier New, monospace">%</FONT>”
+		matches zero or more characters, and</P>
+		<LI><P>the character “<FONT FACE="Courier New, monospace">_</FONT>”
+		(underscore) matches exactly one character, and</P>
+		<LI><P>the string “<FONT FACE="Courier New, monospace">\</FONT><FONT FACE="Courier New, monospace"><I>x</I></FONT>”
+		matches the character “<FONT FACE="Courier New, monospace"><I>x</I></FONT>”,
+		and</P>
+		<LI><P>all other characters match
+		themselves.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Comparison ::= DynamicOperand
+	Operator StaticOperand</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 comparison(DynamicOperand operand1,<BR> String
+	operator,<BR> StaticOperand operand2)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand
+	Comparsion.getOperand1()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Comparison.getOperator()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand
+	Comparison.getOperand2()</FONT></FONT></P>
+<a name="6.7.17 Operator"></a>	<H3>6.7.17 Operator</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">enum Operator ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">EqualTo,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">NotEqualTo,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">LessThan,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">LessThanOrEqualTo,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">GreaterThan,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">GreaterThanOrEqualTo,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Like</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Operator ::= EqualTo |
+	NotEqualTo | LessThan |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">LessThanOrEqualTo |
+	GreaterThan |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">GreaterThanOrEqualTo
+	| Like</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">EqualTo ::= '='</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">NotEqualTo ::= '&lt;&gt;'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">LessThan ::= '&lt;'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">LessThanOrEqualTo ::= '&lt;='</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">GreaterThan ::= '&gt;'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">GreaterThanOrEqualTo ::= '&gt;='</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Like ::= 'LIKE'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An operator is a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	constant. One of:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_OPERATOR_EQUAL_TO</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_OPERATOR_GREATER_THAN</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_OPERATOR_GREATER_THAN_OR_EQUAL_TO</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.</FONT></FONT><FONT FACE="Courier New, monospace">JCR_</FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>OPERATOR_LESS_THAN</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_OPERATOR_LESS_THAN_OR_EQUAL_TO</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_OPERATOR_LIKE</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_OPERATOR_NOT_EQUAL_TO</FONT></FONT></P>
+<a name="6.7.18 PropertyExistence"></a>	<H3>6.7.18 PropertyExistence</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type PropertyExistence extends
+	Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name propertyName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests the existence of a property.</P>
+	<P>A node-tuple satisfies the constraint
+	if the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node has a property named <FONT FACE="Courier New, monospace">propertyName</FONT>.</P>
+	<P>The query is <I>invalid</I> if
+	<FONT FACE="Courier New, monospace">selectorName</FONT>
+	is not the name of a selector in the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">PropertyExistence ::=</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">selectorName'.'propertyName
+	'IS NOT NULL' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">propertyName 'IS NOT
+	NULL' /* If only one<BR> 
+	selector exists in<BR> this
+	query*/<BR></FONT><BR>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* Note: The negation,
+	'NOT x IS NOT NULL'<BR> can be written 'x IS NULL' */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 propertyExistence(String selectorName, String propertyName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyExistence</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	PropertyExistence.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	PropertyExistence.getPropertyName()</FONT></FONT></P>
+<a name="6.7.19 FullTextSearch"></a>	<H3>6.7.19 FullTextSearch</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type FullTextSearch extends
+	Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name? propertyName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">StaticOperand
+	fullTextSearchExpression</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Performs a full-text search.</P>
+	<P>The full-text search expression is
+	evaluated against the set of full-text indexed properties within the
+	full-text search scope. If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is specified, the full-text search scope is the property of that
+	name on the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node in the node-tuple; otherwise the full-text search scope is
+	implementation determined.</P>
+	<P>Whether a particular property is
+	full-text indexed can be determined by the <I>full-text searchable</I>
+	attribute of its property definition (see §3.7.3.4 <I>Full-Text
+	Searchable</I>).</P>
+	<P>It is implementation-determined
+	whether <FONT FACE="Courier New, monospace">fullTextSearchExpression</FONT>
+	is independently evaluated against each full-text indexed property
+	in the full-text search scope, or collectively evaluated against the
+	set of such properties using some implementation-determined
+	mechanism.</P>
+	<P>Similarly, for multi-valued
+	properties, it is implementation-determined whether
+	<FONT FACE="Courier New, monospace">fullTextSearchExpression</FONT>
+	is independently evaluated against each element in the array of
+	values, or collectively evaluated against the array of values using
+	some implementation-determined mechanism.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>fullTextSearchExpression</FONT></FONT>
+	is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand</FONT></FONT>,
+	meaning that it may be either a literal JCR value or a bound
+	variable (which evaluates to a JCR value). The value must be a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+	(or convertible to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>)
+	that conforms to the following grammar:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">FullTextSearchLiteral
+	::= Disjunct<BR> {Space 'OR' Space
+	Disjunct}</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">Disjunct
+	::= Term {Space Term}</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">Term
+	::= ['-'] SimpleTerm</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">SimpleTerm
+	::= Word | '&quot;' Word {Space Word} '&quot;'</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">Word
+	::= NonSpaceChar {NonSpaceChar}</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">Space
+	::= SpaceChar {SpaceChar}</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">NonSpaceChar
+	::= Char – SpaceChar<BR> /* Any Char except
+	SpaceChar */</FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">SpaceChar
+	::= ' ' /* Unicode character </FONT>U+0020 */</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">Char
+	::= /* Any character */ </FONT></FONT>
+	</P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">/*
+	See §1.3.1 String Literals in Syntactic Grammars for details</FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">on
+	the interpetation of string literals in this grammar */</FONT></FONT></P>
+	<P>A query satisfies a <FONT FACE="Courier New, monospace">FullTextSearch</FONT>
+	constraint if the value (or values) of the full-text indexed
+	properties within the full-text search scope satisfy the specified
+	<FONT FACE="Courier New, monospace">fullTextSearchExpression</FONT>,
+	evaluated as follows:</P>
+	<UL>
+		<LI><P>A <FONT FACE="Courier New, monospace">term</FONT>
+		<I>not</I> preceded with “<FONT FACE="Courier New, monospace">-</FONT>”
+		(minus sign) is satisfied only if the value <I>contains</I> that
+		term.</P>
+		<LI><P>A term preceded with “<FONT FACE="Courier New, monospace">-</FONT>”
+		(minus sign) is satisfied only if the value <I>does not contain</I>
+		that term.</P>
+		<LI><P>Terms separated by whitespace are
+		implicitly “ANDed”.</P>
+		<LI><P>Terms separated by “OR” are
+		“ORed”.</P>
+		<LI><P>“AND” has higher precedence
+		than “OR”.</P>
+		<LI><P>Within a term, each “<FONT FACE="Courier New, monospace">&quot;</FONT>”
+		(double quote), “<FONT FACE="Courier New, monospace">-</FONT>”
+		(minus sign), and “<FONT FACE="Courier New, monospace">\</FONT>”
+		(backslash) must be escaped by a preceding “<FONT FACE="Courier New, monospace">\</FONT>”.</P>
+	</UL>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">fullTextSearchExpression</FONT>
+		does not conform to the above grammar (as augmented by the
+		implementation).</P>
+	</UL>
+	<P>The grammar and semantics described
+	above defines the <I>minimal</I> requirement, meaning that any
+	search string accepted as valid by an implementation must conform to
+	this grammar. An implementation may, however, restrict acceptable
+	search strings further by augmenting this grammar and expanding the
+	semantics appropriately.</P>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is specified but, for a node-tuple, the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node does not have a property named <FONT FACE="Courier New, monospace">propertyName</FONT>,
+	the query is <I>valid</I> but the constraint is not satisfied.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">FullTextSearch ::=<BR> 
+	'CONTAINS(' ([selectorName'.']propertyName |<BR> 
+	selectorName'.*') ','</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">FullTextSearchExpression
+	')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query,<BR> explicit
+	specification of the selectorName<BR> preceding
+	the propertyName is optional */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">FullTextSearchExpression ::=
+	BindVariable |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'''
+	FullTextSearchLiteral '''</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/*
+	see above */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 fullTextSearch(String selectorName,<BR> String
+	propertyName,<BR> StaticOperand
+	fullTextSearchExpression)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearch</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	FullTextSearch.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	FullTextSearch.getPropertyName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand
+	FullTextSearch.getFullTextSearchExpression()</FONT></FONT></P>
+<a name="6.7.20 SameNode"></a>	<H3>6.7.20 SameNode</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type SameNode extends Constraint
+	::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests whether the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node is reachable by the absolute path specified. A node-tuple
+	satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace">selectorNode.isSame(session.getNode(path))</FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace">selectorNode</FONT>
+	is the node for the specified selector.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">path</FONT>
+		is not a syntactically valid absolute path (see §3.3.4<I> Lexical
+		Path Grammar</I>). Note, however, that if <FONT FACE="Courier New, monospace">path</FONT>
+		is syntactically valid but does not identify a node in the
+		workspace (or the node is not visible to this session, because of
+		access control constraints), the query is <I>valid</I> but the
+		constraint is not satisfied.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">SameNode ::= 'ISSAMENODE('
+	[selectorName ','] Path ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query, explicit<BR> 
+	specification of the selectorName is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode
+	QueryObjectModelFactory.<BR> sameNode(String selectorName, String
+	path)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>SameNode</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNode.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	SameNode.getPath()</FONT></FONT></P>
+<a name="6.7.21 ChildNode"></a>	<H3>6.7.21 ChildNode</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type ChildNode extends
+	Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests whether the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node is a child of a node reachable by the absolute path specified.
+	A node-tuple satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace">selectorNode.getParent().isSame(session.getNode(path))</FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace">selectorNode</FONT>
+	is the node for the specified selector.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">path</FONT>
+		is not a syntactically valid absolute path (see §3.3.4<I> Lexical
+		Path Grammar</I>). Note, however, that if <FONT FACE="Courier New, monospace">path</FONT>
+		is syntactically valid but does not identify a node in the
+		workspace (or the node is not visible to this session, because of
+		access control constraints), the query is <I>valid</I> but the
+		constraint is not satisfied.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">ChildNode ::= 'ISCHILDNODE('
+	[selectorName ','] Path ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query, explicit<BR> 
+	specification of the selectorName is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode
+	QueryObjectModelFactory.<BR> childNode(String selectorName,
+	String path)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNode.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNode.getParentPath()</FONT></FONT></P>
+<a name="6.7.22 DescendantNode"></a>	<H3>6.7.22 DescendantNode</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type DescendantNode extends
+	Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests whether the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node is a descendant of a node reachable by the absolute path
+	specified. A node-tuple satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace">selectorNode.getAncestor(n).isSame(session.getNode(path))<BR>
+	 &amp;&amp; selectorNode.getDepth() &gt; n</FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>
+	for some non-negative integer <FONT FACE="Courier New, monospace">n</FONT>,
+	where <FONT FACE="Courier New, monospace">selectorNode</FONT>
+	is the node for the specified selector.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">path</FONT>
+		is not a syntactically valid absolute path (see §3.3.4<I> Lexical
+		Path Grammar</I>). Note, however, that if <FONT FACE="Courier New, monospace">path</FONT>
+		is syntactically valid but does not identify a node in the
+		workspace (or the node is not visible to this session, because of
+		access control constraints), the query is <I>valid</I> but the
+		constraint is not satisfied.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DescendantNode ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">'ISDESCENDANTNODE('
+	[selectorName ','] Path ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one selector
+	exists in this query, explicit<BR> specification of the
+	selectorName is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode
+	QueryObjectModelFactory.<BR> descendantNode(String selectorName,
+	String path)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DescendantNode</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	DescendantNode.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	DescendantNode.getAncestorPath()</FONT></FONT></P>
+<a name="6.7.23 Path"></a>	<H3>6.7.23 Path</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>A JCR path.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path ::= '[' quotedPath ']' |<BR>
+	 '[' simplePath ']' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">simplePath</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">quotedPath ::= /* A JCR Path
+	that contains non-SQL-legal<BR> characters */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">simplePath ::= /* A JCR Name
+	that contains only SQL-legal<BR> characters<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote11anc" HREF="#sdfootnote11sym"><SUP>11</SUP></A></SUP>
+	*/</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A JCR path in string<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	</FONT></FONT>form (standard, non-standard, normalized
+	or non-normalized, see §3.3.5 <I>Standard and Non-Standard Form</I>
+	and §3.3.6.3 <I>Normalized Paths</I>).</P>
+<a name="6.7.24 Operand"></a>	<H3>6.7.24 Operand</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type Operand</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Operand ::= StaticOperand |
+	DynamicOperand</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* 'Operand' not
+	referenced in JCR-SQL2</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">grammar. For
+	possible future use. */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Operand</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>.</P>
+<a name="6.7.25 StaticOperand"></a>	<H3>6.7.25 StaticOperand</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type StaticOperand
+	extends Operand</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>An operand whose value can be
+	determined from static analysis of the query, prior to its
+	evaluation.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">StaticOperand ::= Literal |
+	BindVariableValue</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>Literal</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue</FONT></FONT>.</P>
+<a name="6.7.26 DynamicOperand"></a>	<H3>6.7.26 DynamicOperand</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract type DynamicOperand
+	extends Operand</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>An operand whose value can only be
+	determined in evaluating the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DynamicOperand ::= PropertyValue
+	| Length | NodeName |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">NodeLocalName
+	| FullTextSearchScore |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">LowerCase |
+	UpperCase</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	is an empty interface with subclasses <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Length</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeName</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeLocalName</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>UpperCase</FONT></FONT>.</P>
+<a name="6.7.27 PropertyValue"></a>	<H3>6.7.27 PropertyValue</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type PropertyValue extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name propertyName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to the value (or values, if
+	multi-valued) of a property.</P>
+	<P>If, for a node-tuple, the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node does not have a property named <FONT FACE="Courier New, monospace">propertyName</FONT>,
+	the operand evaluates to <FONT FACE="Courier New, monospace">null</FONT>.</P>
+	<P>The query is <I>invalid</I> if
+	<FONT FACE="Courier New, monospace">selectorName</FONT>
+	is not the name of a selector in the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">PropertyValue ::=
+	[selectorName'.'] propertyName</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query,<BR> explicit
+	specification of the selectorName is<BR> 
+	optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue
+	QueryObjectModelFactory.<BR> propertyValue(String selectorName,
+	String propertyName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	PropertyValue.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	PropertyValue.getPropertyName()</FONT></FONT></P>
+<a name="6.7.28 Length"></a>	<H3>6.7.28 Length</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Length extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">PropertyValue propertyValue</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to the length (or lengths,
+	if multi-valued) of a property. In evaluating this operand, a
+	repository <I>should</I> use the semantics defined in §3.6.7 <I>Length
+	of a Value</I>.</P>
+	<P>If <FONT FACE="Courier New, monospace">propertyValue</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">null</FONT>,
+	the <FONT FACE="Courier New, monospace">Length</FONT>
+	operand also evaluates to <FONT FACE="Courier New, monospace">null</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Length ::= 'LENGTH('
+	PropertyValue ')'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Length</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Length
+	QueryObjectModelFactory.<BR> length(PropertyValue propertyValue)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Length</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue
+	Length.getPropertyValue()</FONT></FONT></P>
+<a name="6.7.29 NodeName"></a>	<H3>6.7.29 NodeName</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type NodeName extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to a <FONT FACE="Courier New, monospace">NAME</FONT>
+	value equal to the <I>JCR name</I> of a node.</P>
+	<P>The query is <I>invalid</I> if
+	<FONT FACE="Courier New, monospace">selectorName</FONT>
+	is not the name of a selector in the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">NodeName ::= 'NAME('
+	[selectorName] ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query, explicit<BR> 
+	specification of the selectorName is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeName</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeName
+	QueryObjectModelFactory.<BR> nodeName(String selectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeName</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NodeName.getSelectorName()</FONT></FONT></P>
+<a name="6.7.30 NodeLocalName"></a>	<H3>6.7.30 NodeLocalName</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type NodeLocalName extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to a <FONT FACE="Courier New, monospace">STRING</FONT>
+	value equal to the <I>JCR local name</I> of a node.</P>
+	<P>The query is <I>invalid</I> if
+	<FONT FACE="Courier New, monospace">selectorName</FONT>
+	is not the name of a selector in the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">NodeLocalName ::= 'LOCALNAME('
+	[selectorName] ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query,<BR> explicit
+	specification of the selectorName is<BR> 
+	optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeLocalName</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeLocalName</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 nodeLocalName(String selectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeLocalName</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NodeLocalName.getSelector()</FONT></FONT></P>
+<a name="6.7.31 FullTextSearchScore"></a>	<H3>6.7.31 FullTextSearchScore</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type FullTextSearchScore extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to a <FONT FACE="Courier New, monospace">DOUBLE</FONT>
+	value equal to the full-text search score of a node.</P>
+	<P>Full-text search score ranks a
+	selector's nodes by their relevance to the <FONT FACE="Courier New, monospace">fullTextSearchExpression</FONT>
+	specified in a <FONT FACE="Courier New, monospace">FullTextSearch</FONT>.
+	The values to which <FONT FACE="Courier New, monospace">FullTextSearchScore</FONT>
+	evaluates and the interpretation of those values are implementation
+	specific. <FONT FACE="Courier New, monospace">FullTextSearchScore</FONT>
+	may evaluate to a constant value in a repository that does not
+	support full-text search scoring or has no full-text indexed
+	properties.</P>
+	<P>The query is <I>invalid</I> if
+	<FONT FACE="Courier New, monospace">selector</FONT>
+	is not the name of a selector in the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">FullTextSearchScore ::= 'SCORE('
+	[selectorName] ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If
+	only one selector exists in this query,<BR> 
+	 explicit specification of the selectorName<BR> 
+	 is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 fullTextSearchScore(String selectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	FullTextSearchScore.getSelector()</FONT></FONT></P>
+<a name="6.7.32 LowerCase"></a>	<H3>6.7.32 LowerCase</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type LowerCase extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DynamicOperand operand</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to the lower-case string
+	value (or values, if multi-valued) of <FONT FACE="Courier New, monospace">operand</FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand</FONT>
+	does not evaluate to a string value, its value is first converted to
+	a string as described in §3.6.4 <I>Property Type Conversion</I>.
+	The lower-case string value is computed as though the <FONT FACE="Courier New, monospace">toLowerCase()</FONT>
+	method of <FONT FACE="Courier New, monospace">java.lang.String</FONT>
+	were called.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">null</FONT>,
+	the <FONT FACE="Courier New, monospace">LowerCase</FONT>
+	operand also evaluates to <FONT FACE="Courier New, monospace">null</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">LowerCase ::= 'LOWER('
+	DynamicOperand ')'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase
+	QueryObjectModelFactory.<BR> lowerCase(DynamicOperand operand)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand
+	LowerCase.getOperand()</FONT></FONT></P>
+<a name="6.7.33 UpperCase"></a>	<H3>6.7.33 UpperCase</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type UpperCase extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace">DynamicOperand
+	operand</FONT></FONT></P>
+	<P>Evaluates to the upper-case string
+	value (or values, if multi-valued) of <FONT FACE="Courier New, monospace">operand</FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand</FONT>
+	does not evaluate to a string value, its value is first converted to
+	a string as described in §3.6.4 <I>Property Type Conversion</I>.
+	The upper-case string value is computed as though the <FONT FACE="Courier New, monospace">toUpperCase()</FONT>
+	method of <FONT FACE="Courier New, monospace">java.lang.String</FONT>
+	were called.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">null</FONT>,
+	the <FONT FACE="Courier New, monospace">UpperCase</FONT>
+	operand also evaluates to <FONT FACE="Courier New, monospace">null</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">UpperCase ::= 'UPPER('
+	DynamicOperand ')'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>UpperCase</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>UpperCase
+	QueryObjectModelFactory.<BR> upperCase(DynamicOperand operand)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>UpperCase</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand
+	UpperCase.getOperand()</FONT></FONT></P>
+<a name="6.7.34 Literal"></a>	<H3>6.7.34 Literal</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Literal extends
+	StaticOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">javax.jcr.Value Value</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>A JCR value.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Literal ::= CastLiteral |
+	UncastLiteral</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">CastLiteral ::= 'CAST('
+	UncastLiteral ' AS ' PropertyType ')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">PropertyType ::= 'STRING' |
+	'BINARY' | 'DATE' | 'LONG' | 'DOUBLE' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'DECIMAL' |
+	'BOOLEAN' | 'NAME' | 'PATH' | </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'REFERENCE' |
+	'WEAKREFERENCE' | 'URI'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">UncastLiteral ::=
+	UnquotedLiteral | ''' UnquotedLiteral ''' |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'“'
+	UnquotedLiteral '“'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">UnquotedLiteral ::= /* String
+	form of a JCR Value, as defined in</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">§3.5.4
+	Conversion of Values */</FONT></P>
+	<P><BR>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>UncastLiteral</FONT></FONT>
+	may be interpreted as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of property type <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+	or some other type inferred from static analysis. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>CastLiteral</FONT></FONT>,
+	on the other hand, is interpreted as the string form of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType</FONT></FONT>
+	indicated.</P>
+	<P><B>JCR-JQOM</B></P>
+	<P>A JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>.
+	A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object can be created using <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	(see §6.10 <I>Literal Values</I>). Note that unlike in the case of
+	JCR-SQL2, property type information is intrinsic to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object, so no equivalent of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>CAST</FONT></FONT>
+	function is needed in JCR-JQOM.</P>
+<a name="6.7.35 BindVariable"></a>	<H3>6.7.35 BindVariable</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type BindVariableValue extends
+	StaticOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Prefix bindVariableName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to the value of a bind
+	variable.</P>
+	<P>The query is <I>invalid</I> if no
+	value is bound to <FONT FACE="Courier New, monospace">bindVariableName</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">BindVariableValue ::=
+	'$'bindVariableName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">bindVariableName ::= Prefix</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue
+	QueryObjectModelFactory.<BR> bindVariableValue(String
+	bindVariableName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand
+	BindVariableValue.getBindVariableName()</FONT></FONT></P>
+<a name="6.7.36 Prefix"></a>	<H3>6.7.36 Prefix</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Prefix</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>A JCR prefix.</P>
+	<P>The query is <I>invalid</I> if the
+	prefix does not satisfy the <FONT FACE="Courier New, monospace">prefix</FONT>
+	production in §3.2.5.2 <I>Qualified Form</I>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Prefix ::= /* A String that
+	conforms to the JCR Name<BR> prefix syntax. Not
+	required to be an actual<BR> prefix in use in the
+	repository. The prefix<BR> syntax is used simply to
+	characterize the<BR> range of possible variables. */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A string that conforms
+	to the JCR Name prefix syntax. This is not required to be an actual
+	prefix in use in the repository. The prefix syntax is used simply to
+	characterize the range of possible variables.</P>
+<a name="6.7.37 Ordering"></a>	<H3>6.7.37 Ordering</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Ordering ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DynamicOperand operand,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Order order</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Determines the relative order of two
+	node-tuples by evaluating <FONT FACE="Courier New, monospace">operand</FONT>
+	for each.</P>
+	<P>For a first node-tuple, <FONT FACE="Courier New, monospace">nt1</FONT>,
+	for which <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">v1</FONT>,
+	and a second node-tuple, <FONT FACE="Courier New, monospace">nt2</FONT>,
+	for which <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">v2</FONT>:</P>
+	<P>If operand is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue</FONT></FONT>
+	(see §6.7.27 <I>PropertyValue</I>) of a property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	and the <I>query-orderable</I> attribute of the property definition
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(see §3.7.3.5 <I>Query-Orderable</I>) then the relative order of
+	<FONT FACE="Courier New, monospace">nt1</FONT>
+	and <FONT FACE="Courier New, monospace">nt2</FONT>
+	is implementation determined, otherwise, if the <I>query-orderable</I>
+	attribute is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	then:</P>
+	<P>If <FONT FACE="Courier New, monospace">order</FONT>
+	is <FONT FACE="Courier New, monospace">Ascending</FONT>,
+	then:</P>
+	<UL>
+		<LI><P>if either <FONT FACE="Courier New, monospace">v1</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		<FONT FACE="Courier New, monospace">v2</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		or both <FONT FACE="Courier New, monospace">v1</FONT>
+		and <FONT FACE="Courier New, monospace">v2</FONT>
+		are <FONT FACE="Courier New, monospace">null</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		is a different property type than <FONT FACE="Courier New, monospace">v2</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered </I><I>before</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt1</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt2</FONT>,
+		otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered </I><I>after</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt2</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt1</FONT>,
+		otherwise</P>
+		<LI><P>the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined and may be arbitrary.</P>
+	</UL>
+	<P>Otherwise, if
+	<FONT FACE="Courier New, monospace">order</FONT>
+	is <FONT FACE="Courier New, monospace">Descending</FONT>,
+	then:</P>
+	<UL>
+		<LI><P>if either <FONT FACE="Courier New, monospace">v1</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		<FONT FACE="Courier New, monospace">v2</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		or both <FONT FACE="Courier New, monospace">v1</FONT>
+		and <FONT FACE="Courier New, monospace">v2</FONT>
+		are <FONT FACE="Courier New, monospace">null</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		is a different property type than <FONT FACE="Courier New, monospace">v2</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered</I> <I>before</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt2</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt1</FONT>,
+		otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered</I> <I>after</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt1</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt2</FONT>,
+		otherwise</P>
+		<LI><P>the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined and may be arbitrary.</P>
+	</UL>
+	<P>The query is <I>invalid</I> if <FONT FACE="Courier New, monospace">operand</FONT>
+	does not evaluate to a scalar value. 
+	</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">orderings ::= Ordering {','
+	Ordering}</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Ordering ::= DynamicOperand
+	[Order]</FONT></P>
+	<P><BR>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>Order</FONT></FONT>
+	is omitted in the JCR-SQL2 statement the default is <FONT FACE="Courier New, monospace"><FONT SIZE=2>ASC</FONT></FONT>
+	(see §6.7.38 <I>Order</I>).</P>
+	<P><B>JCR-JQOM</B></P>
+	<P>An ascending <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 ascending(DynamicOperand operand)</FONT></FONT></P>
+	<P>A descending <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 descending(DynamicOperand operand)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand
+	Ordering.getOperand()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Ordering.getOrder()</FONT></FONT></P>
+<a name="6.7.38 Order"></a>	<H3>6.7.38 Order</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">enum Order ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Ascending,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Descending</FONT></P>
+	<P><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>Order</FONT></FONT>
+	is either <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ascending</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Descending</FONT></FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Order ::= Ascending | Descending</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Ascending ::= 'ASC'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Descending ::= 'DESC'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An order is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	constant. One of:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_ORDER_ASCENDING</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_ORDER_DESCENDING</FONT></FONT></P>
+<a name="6.7.39 Column"></a>	<H3>6.7.39 Column</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Column ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name? propertyName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name? columnName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Defines a column to include in the
+	tabular view of query results.</P>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is not specified, a column is included for each single-valued
+	non-residual property of the node type specified by the <FONT FACE="Courier New, monospace">nodeType</FONT>
+	attribute of the selector <FONT FACE="Courier New, monospace">selectorName</FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is specified, <FONT FACE="Courier New, monospace">columnName</FONT>
+	is required and used to name the column in the tabular results. If
+	<FONT FACE="Courier New, monospace">propertyName</FONT>
+	is not specified, <FONT FACE="Courier New, monospace">columnName</FONT>
+	must not be specified, and the included columns will be named
+	“<FONT FACE="Courier New, monospace"><I>selectorName.propertyName</I></FONT>”.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">propertyName</FONT>
+		is specified but does not evaluate to a scalar value, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">propertyName</FONT>
+		is specified but <FONT FACE="Courier New, monospace">columnName</FONT>
+		is omitted, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">propertyName</FONT>
+		is omitted but <FONT FACE="Courier New, monospace">columnName</FONT>
+		is specified, or</P>
+		<LI><P>the columns in the tabular view
+		are not uniquely named, whether those column names are specified by
+		<FONT FACE="Courier New, monospace">columnName</FONT>
+		(if <FONT FACE="Courier New, monospace">propertyName</FONT>
+		is specified) or generated as described above (if <FONT FACE="Courier New, monospace">propertyName</FONT>
+		is omitted).</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is specified but, for a node-tuple, the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node does not have a property named <FONT FACE="Courier New, monospace">propertyName</FONT>,
+	the query is <I>valid</I> and the column has <FONT FACE="Courier New, monospace">null</FONT>
+	value.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">columns ::= (Column ','
+	{Column}) | '*'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Column ::=
+	([selectorName'.']propertyName</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">['AS' columnName]) |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">(selectorName'.*')</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query, explicit<BR> 
+	specification of the selectorName preceding the<BR> 
+	propertyName is optional */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selectorName ::= Name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">propertyName ::= Name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">columnName ::= Name</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 column(String selectorName,<BR> String propertyName,<BR>
+	 String columnName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>
+	declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Column.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Column.getPropertyName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Column.getColumnName()</FONT></FONT></P>
+<a name="6.8 QueryManager"></a>	<H2>6.8 QueryManager</H2>
+	<P>The query function is
+	accessed through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager</FONT></FONT>
+	object, acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager
+	Workspace.getQueryManager()</FONT></FONT>.</P>
+<a name="6.8.1 Supported Languages"></a>	<H3>6.8.1 Supported Languages</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	QueryManager.getSupportedQueryLanguages()</FONT></FONT></P>
+	<P>returns an array of
+	strings representing the supported query languages. In all
+	repositories that support query, the array will contain at least the
+	string constants</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.JCR_SQL2</FONT></FONT>
+	and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.JCR_JQOM</FONT></FONT>.</P>
+	<P>Any additional
+	languages also supported will also be listed in the returned array.</P>
+<a name="6.9 Query Object"></a>	<H2>6.9 Query Object</H2>
+	<P>A new <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object can be created with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query
+	QueryManager.<BR> createQuery(String statement, String language)</FONT></FONT>.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>language</FONT></FONT>
+	parameter is a string representing one of the supported languages.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>statement</FONT></FONT>
+	parameter is the query statement itself. This method is used for
+	languages that are string-based (i.e., most languages, such as
+	JCR-SQL2) as well as for the<I> string serializations</I> of
+	non-string-based languages (such as JCR-JQOM). For example, the call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QM.createQuery(S,
+	Query.JCR_SQL2)</FONT></FONT>,</P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>QM</FONT></FONT>
+	is the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	is a JCR-SQL2 statement, returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object encapsulating <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.
+		</P>
+	<P>However, the call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QM.createQuery(S,
+	Query.JCR_JQOM) </FONT></FONT>
+	</P>
+	<P>also works. It returns
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	(a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>)
+	holding the JCR-JQOM object tree equivalent to <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.</P>
+	<P>In either case the
+	returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object encapsulates the resulting query. In some repositories the
+	first method call (with JCR-SQL2 specified) may also result in a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>,
+	though this is not required.</P>
+<a name="6.9.1 QueryObjectModelFactory"></a>	<H3>6.9.1 QueryObjectModelFactory</H3>
+	<P>To
+	programmatically build a query tree using JCR-JQOM the user acquires
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>
+	using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory
+	QueryManager.getQOMFactory()</FONT></FONT>.</P>
+	<P>The user then builds
+	the query tree using the factory methods of <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>,
+	ultimately resulting in a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	object (a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query)</FONT></FONT>
+	representing the query.</P>
+<a name="6.9.1.1 Serialized Query Object Model"></a>	<H4>6.9.1.1 Serialized Query Object Model</H4>
+	<P>The JCR-SQL2 language,
+	in addition to being a query language in its own right is also the
+	standard serialization of a valid JCR-JQOM object tree. Since the
+	two languages are formally equivalent they can always be
+	roundtripped.</P>
+<a name="6.9.2 Getting the Statement"></a>	<H3>6.9.2 Getting the Statement</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Query.getStatement()</FONT></FONT></P>
+	<P>returns the statement
+	set for the query. If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	was created with an explicitly supplied <FONT FACE="Courier New, monospace"><FONT SIZE=2>statement</FONT></FONT>
+	string parameter using <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager.createQuery</FONT></FONT>
+	then this method returns that statement. The statement returned must
+	be semantically identical to the original statement but need not be
+	an identical string (for example, it may be normalized).</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	is actually a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	created with <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.createQuery</FONT></FONT>
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getStatement</FONT></FONT>
+	must return the serialized form of the query, in JCR-SQL2 syntax.</P>
+<a name="6.9.3 Getting the Language"></a>	<H3>6.9.3 Getting the Language</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Query.getLanguage()</FONT></FONT></P>
+	<P>returns the language
+	in which the query is specified. If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	was created with an explicitly supplied <FONT FACE="Courier New, monospace"><FONT SIZE=2>language</FONT></FONT>
+	string parameter using <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager.createQuery</FONT></FONT>
+	then this method returns that string.</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	is actually a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	created with <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.createQuery</FONT></FONT>
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getLanguage</FONT></FONT>
+	will return the string constant <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.JCR_SQL2</FONT></FONT>.</P>
+<a name="6.9.4 Query Limit"></a>	<H3>6.9.4 Query Limit</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.setLimit(long
+	limit)</FONT></FONT></P>
+	<P>Sets the maximum size
+	of the result set, expressed in terms of the number of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>s,
+	as found in the table-view of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult</FONT></FONT>
+	(see §6.11 <I>QueryResult</I>).</P>
+<a name="6.9.5 Query Offset"></a>	<H3>6.9.5 Query Offset</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.setOffset(long
+	offset)</FONT></FONT></P>
+	<P>Sets the offset within
+	the full result set at which the returned result set should start,
+	expressed in terms of the number of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>s
+	to skip, as found in the table-view of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult</FONT></FONT>
+	(see §6.11 <I>QueryResult</I>).</P>
+<a name="6.9.6 Bind Variables"></a>	<H3>6.9.6 Bind Variables</H3>
+	<P>A query
+	may contain variables.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Query.bindValue(String varName, Value value)</FONT></FONT></P>
+	<P>binds
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>value</FONT></FONT>
+	to the variable <FONT FACE="Courier New, monospace"><FONT SIZE=2>varName</FONT></FONT>.</P>
+	<P>In
+	JCR-SQL2 a bind variable is indicated by a leading dollar-sign. In
+	JCR-JQOM it is a QOM object created with the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>
+	(see §6.7.35 <I>BindVariable</I>).</P>
+	<P>The
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getBindVariableNames()</FONT></FONT></P>
+	<P>returns the names of
+	the bind variables in the query. If the query does not contains any
+	bind variables then an empty array is returned.</P>
+<a name="6.9.7 Stored Query"></a>	<H3>6.9.7 Stored Query</H3>
+	<P>When a new <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object is first created it is a <I>transient query</I>. If the
+	repository supports the node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:query</FONT></FONT>,
+	then a transient query can be stored in content by calling</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Query.storeAsNode(String absPath)</FONT></FONT>. 
+	</P>
+	<P>This creates an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:query</FONT></FONT>
+	node at the specified path. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	is required to persist the node.</P>
+<a name="6.9.7.1 nt:query"></a>	<H4>6.9.7.1 nt:query</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:query</FONT></FONT>
+	node type is defined as follows:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:query]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:statement (STRING)</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:language (STRING)</FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:statement</FONT></FONT>
+	holds the string returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getStatement()</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:language</FONT></FONT>
+	holds the string returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getLanguage()</FONT></FONT>.</P>
+	<P>If the language of
+	this query is JCR-JQOM, <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:statement</FONT></FONT>
+	will hold the JCR-SQL2 serialization of the JCR-JQOM object tree and
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getStatement()</FONT></FONT>
+	will return that string. Also, since the original query was
+	constructed using JCR-JQOM, <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:language</FONT></FONT>
+	records the language as “<FONT FACE="Courier New, monospace"><FONT SIZE=2>JCR-JQOM</FONT></FONT>”
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getLanguage()</FONT></FONT>
+	returns “<FONT FACE="Courier New, monospace"><FONT SIZE=2>JCR-JQOM</FONT></FONT>”.</P>
+<a name="6.9.7.2 Stored Query Path"></a>	<H4>6.9.7.2 Stored Query Path</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Query.getStoredQueryPath()</FONT></FONT></P>
+	<P>returns the absolute
+	path of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	that has been stored as a node.</P>
+<a name="6.9.7.3 Retrieving a Stored Query"></a>	<H4>6.9.7.3 Retrieving a Stored Query</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query
+	QueryManager.getQuery(Node node)</FONT></FONT></P>
+	<P>retrieves a previously
+	persisted query and instantiates it as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object.</P>
+<a name="6.9.7.4 Namespace Fragility"></a>	<H4>6.9.7.4 Namespace Fragility</H4>
+	<P>Note that the query
+	statement stored within a stored query (the value of the property
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:statement</FONT></FONT>)
+	is stored as a simple string. Therefore, if it contains qualified
+	JCR names it will be <I>namespace-fragile</I>. If the stored query
+	is run in a context where a prefix used maps to a different
+	namespace than it did upon creation then the query will not
+	reproduce the original result. To mitigate this, users should
+	either, 
+	</P>
+	<UL>
+		<LI><P>always use
+		expanded form names within queries, or</P>
+		<LI><P>always ensure
+		that appropriate namespace mappings are in place when a stored
+		query is executed.</P>
+	</UL>
+<a name="6.10 Literal Values"></a>	<H2>6.10 Literal Values</H2>
+	<P>When
+	creating a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Comparison</FONT></FONT>
+	object (see 6.7.16 <I>Comparison</I>)
+	a user may wish to pass a literal property value (see 6.7.34
+	<I>Literal</I>)
+	in the form of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object. <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	objects are created using the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getValueFactory()</FONT></FONT>.</P>
+	<P>(see
+	§10.4.3 <I>Creating Value Objects</I>).</P>
+<a name="6.11 QueryResult"></a>	<H2>6.11 QueryResult</H2>
+	<P>Once a query has been
+	defined, it can be executed. The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult
+	Query.execute() </FONT></FONT>
+	</P>
+	<P>returns the a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult</FONT></FONT>
+	object. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult</FONT></FONT>
+	is returned in two formats: as a table and as a list of nodes.</P>
+<a name="6.11.1 Table View"></a>	<H3>6.11.1 Table View</H3>
+	<P>The table view of a
+	result is accessed with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>RowIterator</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult.getRows()</FONT></FONT></P>
+	<P>The returned
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RowIterator</FONT></FONT>
+	holds a series of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	objects. A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	object represents a single row of the query result table which
+	corresponds to a node-tuple returned by the query.</P>
+<a name="6.11.1.1 Row"></a>	<H4>6.11.1.1 Row</H4>
+	<P>Upon retrieving an
+	individual <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>,
+	the set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>s
+	making up that row can be retrieved with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]
+	Row.getValues()</FONT></FONT></P>
+	<P>The values are
+	returned in that same order as their corresponding column names are
+	returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult.getColumns</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value
+	Row.getValue(String columnName)</FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of the indicated column of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>.
+	The names of the columns can be retrieved with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	QueryResult.getColumnNames()</FONT></FONT>.</P>
+	<P>In queries with only
+	one selector included among the specified columns, each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	corresponds to a single <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	In such cases</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Row.getNode()</FONT></FONT></P>
+	<P>returns that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.</P>
+	<P>In queries with more
+	than one selector included among the specified columns, a particular
+	selector must be indicated in order to retrieve its corresponding
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	. This is done using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Row.getNode(String selectorName)</FONT></FONT>.</P>
+	<P>The available selector
+	names can be retrieved with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	QueryResult.getSelectorNames()</FONT></FONT>.</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	is from a result involving outer joins, it may have no <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	corresponding to the specified selector, in which case this method
+	returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+	<P>The methods</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Row.getPath() and</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Row.getPath(String selectorName)</FONT></FONT></P>
+	<P>are equivalent to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Row.getNode().getPath()</FONT></FONT>
+	and <BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>Row.getNode(String
+	selectorName).getPath()</FONT></FONT>, respectively.
+	However, some implementations may be able gain efficiency by not
+	resolving the actual <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+		</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>double
+	Row.getScore(String selectorName)</FONT></FONT></P>
+	<P>returns the full text
+	search score for this row that is associated with the specified
+	selector. This is equivalent to the score of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	associated with that this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	and that selector.</P>
+	<P>If no
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	AQM object (see §6.7.31 <I>FullTextSearchScore</I>) is associated
+	with the specified selector this method will still return a value
+	but that value may not be meaningful or may simply reflect the
+	minimum possible relevance level (for example, in some systems this
+	might be a score of 0).</P>
+	<P>If this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	is from a result involving outer joins, it may have no <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	corresponding to the specified selector, in which case this method
+	returns an implementation selected value, as it would if there were
+	no <FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	associated with the selector.</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>double
+	Row.getScore()</FONT></FONT></P>
+	<P>works identically to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Row.getScore(String
+	selectorName)</FONT></FONT>, but only in cases where
+	there is exactly one selector and therefore its name need not be
+	explicitly specified.</P>
+<a name="6.11.2 Node View"></a>	<H3>6.11.2 Node View</H3>
+	<P>For
+	queries with only one selector</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult.getNodes()</FONT></FONT></P>
+	<P>returns
+	an iterator over all matching nodes in the order specified by the
+	query. For queries with more than one selector the order in which
+	nodes are returned is implementation-specific.</P>
+<a name="6.12 Query Scope"></a>	<H2>6.12 Query Scope</H2>
+	<P>Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	is bound to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object via the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager</FONT></FONT>
+	through which it was created and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object through which that <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager</FONT></FONT>
+	was acquired. Through its associated <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	objects a query is therefore bound to a single persistent workspace
+	and a single transient store.</P>
+<a name="6.12.1 Access Restrictions"></a>	<H3>6.12.1 Access Restrictions</H3>
+	<P>A query result always
+	respects the access restrictions of its bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	This includes all restrictions, as reflected in the <I>capabilities</I>
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	which encompasses <I>privileges</I>, <I>permissions</I> and <I>other
+	restrictions</I> (see §9 <I>Permissions and Capabilities</I>).</P>
+	<P>In general, if the
+	bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	does not have read access to a particular item, then that item will
+	not be included in the result set even if it would otherwise
+	constitute a match.</P>
+<a name="6.12.2 Queryable Content"></a>	<H3>6.12.2 Queryable Content</H3>
+	<P>A query runs against
+	<I>either</I></P>
+	<UL>
+		<LI><P>the content of
+		its bound persistent workspace, <I>without regard to any pending
+		changes</I> in its bound transient store, or</P>
+		<LI><P>the content of
+		its bound persistent workspace <I>as modified by the pending
+		changes</I> in its bound transient store.</P>
+	</UL>
+	<P>The choice of which
+	scope to use is an implementation-variant.</P>
+<a name="6.12.3 Query Result Items"></a>	<H3>6.12.3 Query Result Items</H3>
+	<P>Regardless of which
+	scope is used, when an item is accessed from within a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult</FONT></FONT>
+	object, the state of the item returned will obey the same semantics
+	as if it were retrieved using a normal <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNode</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getProperty</FONT></FONT>:
+	the item state will reflect any pending changes in transient store
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	As a result, it is possible that an item returned as a match will
+	not reflect the state that caused it to <I>be</I> a match (i.e., its
+	persistent state). Applications can clear the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	(either through <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>refresh(false)</FONT></FONT>)
+	before running a query in order to avoid such discrepancies.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

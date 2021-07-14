@@ -1,0 +1,50 @@
+
+Page
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/page
+
+   The generic page component to create any HTML page.
+
+   It reads the current request locale and set ``lang`` attribute of ``html`` element. Also the dictionary for i18n is configured.
+
+   It also supports :doc:`resource filtering using FilteringResourceWrapper </jcr_root/libs/granite/ui/docs/server/resourcehiding>` and acts as its container.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Page]
+
+      /**
+       * A general purpose ID to uniquely identify the console.
+       *
+       * The recommended value is hierarchical separated by "-".
+       * e.g. "cq-commerce-report"
+       */
+      - consoleId (String)
+
+      /**
+       * To render the title of the page, resource at ``head/title`` is first inspected. If it doesn't exist, this property is used accordingly; otherwise do nothing—i.e. the title at ``head/title`` is included naturally.</p>
+       */
+      - jcr:title (String)
+
+      /**
+       * To redirect the page, this resource can be specified. It will be included, where the redirect can be performed.
+       */
+      + redirector
+      /**
+       * Indicates the head of the page. The child resources are iterated and included as is.
+       */
+      + head
+      /**
+       * Indicates the body of the page, which typically a :granite:servercomponent:`Body </libs/granite/ui/components/coral/foundation/page/body>`.
+       */
+      + body
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

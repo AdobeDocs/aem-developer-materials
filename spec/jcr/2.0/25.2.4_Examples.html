@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25.2.4 Examples (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>25.2.4 Examples</H3>
+	<P>Here is a “worst-case
+	scenario” example that demonstrates all the features of the
+	notation:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* An example node type
+	definition */</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The namespace declaration</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">&lt;ns =
+	'http://namespace.com/ns'&gt;</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Node type name</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">[ns:NodeType]</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Supertypes</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">&gt; ns:ParentType1,
+	ns:ParentType2</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node type is abstract</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node type supports
+	orderable child nodes</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">orderable</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This is a mixin node type</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">mixin</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node type is not
+	queryable</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">noquery</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// ex:property is the primary
+	item</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">primaryitem ex:property</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// A property called
+	'ex:property' of type STRING</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">- ex:property
+	(STRING)</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The default values for this
+	(multi-value) property are...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">= 'default1', 'default2'</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This
+	property is... </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">mandatory autocreated protected</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// ...and
+	multi-valued.</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">multiple<BR></FONT><BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// It has an on-parent-version
+	setting of...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">VERSION</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The constraint settings
+	are...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">&lt; 'constraint1',
+	'constraint2'</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The supported query operators
+	are...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">queryops '=, &lt;&gt;, &lt;, &lt;=,
+	&gt;, &gt;=, LIKE'</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The property is not full text
+	searchable</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">nofulltext</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// query results are not
+	orderable by this property</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">noqueryorder</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// A child node called ns:node
+	which must be of</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">// at least the node types
+	ns:reqType1 and ns:reqType2</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">+ ns:node (ns:reqType1,
+	ns:reqType2)</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// with default primary node
+	type is...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">= ns:defaultType</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node is...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">mandatory autocreated protected</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// supports same name siblings</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">sns</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// and has an on-parent-version
+	setting of ...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">VERSION</FONT></P>
+</DIV>
+<DIV ID="sdfootnote1">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://unicode.org/charts/PDF/U0000.pdf</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote2">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote2sym" HREF="#sdfootnote2anc">2</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://tools.ietf.org/html/rfc3986#section-3</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote3">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote3sym" HREF="#sdfootnote3anc">3</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</A></FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote4">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote4sym" HREF="#sdfootnote4anc">4</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.ietf.org/rfc/rfc3986.txt</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote5">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote5sym" HREF="#sdfootnote5anc">5</A>
+	see <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.ietf.org/rfc/rfc4646.txt</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote6">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote6sym" HREF="#sdfootnote6anc">6</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.iana.org/assignments/media-types</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote7">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote7sym" HREF="#sdfootnote7anc">7</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.iana.org/assignments/character-sets</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote8">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote8sym" HREF="#sdfootnote8anc">8</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.ietf.org/rfc/rfc2616.txt</FONT></FONT>
+	§3.11.</P>
+</DIV>
+<DIV ID="sdfootnote9">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote9sym" HREF="#sdfootnote9anc">9</A>
+	See
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>http://java.sun.com/j2se/1.4.2/docs/guide/jar/<BR>jar.html#Service%20Provider</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote10">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote10sym" HREF="#sdfootnote10anc">10</A>
+	See the SQL:92 rules for <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;regular
+	identifier&gt;</FONT></FONT> (in ISO/IEC 9075:1992
+	§5.2 <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;token&gt;</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;separator&gt;</FONT></FONT>).</P>
+</DIV>
+<DIV ID="sdfootnote11">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote11sym" HREF="#sdfootnote11anc">11</A>
+	See the SQL:92 rules for <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;regular
+	identifier&gt;</FONT></FONT> (in ISO/IEC 9075:1992
+	§5.2 <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;token&gt;</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;separator&gt;</FONT></FONT>).</P>
+</DIV>
+<DIV ID="sdfootnote12">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote12sym" HREF="#sdfootnote12anc">12</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://tools.ietf.org/html/rfc4648</FONT></FONT>
+	§4.</P>
+</DIV>
+<DIV ID="sdfootnote13">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote13sym" HREF="#sdfootnote13anc">13</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#charsets">http://www.w3.org/TR/REC-xml/#charsets</A></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#NT-CharRef">http://www.w3.org/TR/REC-xml/#NT-CharRef</A></FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#wf-Legalchar">http://www.w3.org/TR/REC-xml/#wf-Legalchar</A></FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote14">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote14sym" HREF="#sdfootnote14anc">14</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.w3.org/TR/xmlschema-0/#ListDt</FONT></FONT>
+	for more information about the XML Schema list type.</P>
+</DIV>
+<DIV ID="sdfootnote15">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote15sym" HREF="#sdfootnote15anc">15</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#charsets">http://www.w3.org/TR/REC-xml/#charsets</A></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#NT-CharRef">http://www.w3.org/TR/REC-xml/#NT-CharRef</A></FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#wf-Legalchar">http://www.w3.org/TR/REC-xml/#wf-Legalchar</A></FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote16">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote16sym" HREF="#sdfootnote16anc">16</A>
+	This escaping scheme is based on the scheme described in ISO/IEC
+	9075-14:2003 for converting arbitrary strings into valid XML element
+	and attribute names.</P>
+</DIV>
+<DIV ID="sdfootnote17">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote17sym" HREF="#sdfootnote17anc">17</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.w3.org/TR/xml/#syntax</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote18">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote18sym" HREF="#sdfootnote18anc">18</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.w3.org/TR/xml/#charsets</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote19">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote19sym" HREF="#sdfootnote19anc">19</A>
+	See
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>http://java.sun.com/j2se/1.4.2/docs/api/org/xml/sax/<BR>ContentHandler.html</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote20">
+	<P><A CLASS="sdfootnotesym" NAME="sdfootnote20sym" HREF="#sdfootnote20anc">20</A>
+	One common case is a policy that affects both its bound node and the
+	subgraph below that node. However, any such <I>deepness</I>
+	attribute is internal to the policy and, like any other internal
+	characteristic of a policy, opaque to the JCR API except insofar as
+	it is part of the human-readable name and description. Note also
+	that, strictly speaking, a policy is not required to affect even its
+	bound node, though such an implementation would be uncommon.</P>
+</DIV>
+<DIV ID="sdfootnote21">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote21sym" HREF="#sdfootnote21anc">21</A>
+	Recall that <I>outside a transaction</I> persistence of transient
+	state occurs immediately upon a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	while, within a transaction, the effect of any <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	calls is deferred until commit of the transaction.</P>
+</DIV>
+<DIV ID="sdfootnote22">
+	<P><A CLASS="sdfootnotesym" NAME="sdfootnote22sym" HREF="#sdfootnote22anc">22</A>
+	In some systems this feature is called “freeze” or “legal
+	hold” (when the hold is applied due to legal requirements).</P>
+</DIV>
+<DIV ID="sdfootnote23">
+	<P><A CLASS="sdfootnotesym" NAME="sdfootnote23sym" HREF="#sdfootnote23anc">23</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://java.sun.com/products/jta/index.html</FONT></FONT>.</P>
+	<P CLASS="sdfootnote-western"><BR><BR>
+	</P>
+</DIV>
+<DIV TYPE=FOOTER>
+	<P><SPAN ID="Frame22" DIR="LTR" >
+		<P><FONT COLOR="#5e7ca4"><SDFIELD TYPE=PAGE SUBTYPE=RANDOM FORMAT=PAGE>1</SDFIELD></FONT></P>
+	<BR><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

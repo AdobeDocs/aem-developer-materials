@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.1.1.1 Repository Descriptors (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.1.1.1." id="section_6.1.1.1."></a>6.1.1.1 Repository Descriptors
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The methods <b>Repository.getDescriptorKeys</b> and <b>Repository.getDescriptor</b> can be used to query information about the particular repository implementation. The required names are defined as string constants of the <b>Repository</b> interface. They are:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Descriptor Key<br>
+										(String Constant)</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>Information Returned</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SPEC_VERSION_DESC</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										For this specification the value of this descriptor is “<b>1.0</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SPEC_NAME_DESC</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										For this specification the value of this descriptor is “<b>Content Repository for Java Technology API</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>REP_VENDOR_DESC</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										The name of the vendor of this repository implementation.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>REP_VENDOR_URL_DESC</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										The URL of the repository vendor.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>REP_NAME_DESC</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										The name of this repository implementation.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>REP_VERSION_DESC</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										The version of this repository implementation.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>LEVEL_1_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports all level 1 features. This descriptor should always be “<b>true</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>LEVEL_2_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports all level 2 features. This descriptor will be either “<b>true</b>” or “<b>false</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>OPTION_TRANSACTIONS_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports transactions. This descriptor will be either “<b>true</b>” or “<b>false</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>OPTION_VERSIONING_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports versioning. This descriptor will be either “<b>true</b>” or “<b>false</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>OPTION_OBSERVATION_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports observation. This descriptor will be either “<b>true</b>” or “<b>false</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>OPTION_LOCKING_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports locking. This descriptor will be either “<b>true</b>” or “<b>false</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>OPTION_QUERY_SQL_SUPPORTED</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports queries using the SQL language. This descriptor will be either “<b>true</b>” or “<b>false</b>”.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>QUERY_XPATH_POS_INDEX</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation supports index position notation for same-name siblings within XPath queries. This descriptor will be either “<b>true</b>” or “<b>false</b>”. See <a href="6.6.4.1_Same-Name_Siblings.html">6.6.4.1</a> <i>Adapting XPath to the Content Repository::Same-Name Siblings</i> for more details.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>QUERY_XPATH_DOC_ORDER</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										Indicates whether this implementation returns the results of XPath queries in document order. This descriptor will be either “<b>true</b>” or “<b>false</b>”. See <a href="6.6.4.2_Document_Order.html">6.6.4.2</a> <i>Adapting XPath to the Content Repository::Document Order</i>.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<br>
+									Implementations may add additional descriptors.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

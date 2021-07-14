@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25.2.2 Variant Node Type Definitions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>25.2.2 Variant Node Type Definitions</H3>
+	<P>In a CND, the presence
+	of a question mark (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>?</FONT></FONT>”)
+	indicates that an attribute in question can vary across repository
+	implementations (see §3.7.10 <I>Base Primary Node Type</I> and
+	3.7.11 <I>Standard Application Node Types</I>).</P>
+	<P>In the case of the
+	queryable node type attribute, the absence of an explicit keyword
+	(either <FONT FACE="Courier New, monospace"><FONT SIZE=2>query</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>noquery</FONT></FONT>)
+	indicates that the attribute is a variant.</P>
+	<P>Such <I>variant node
+	type definitions</I> cannot be instantiated in a repository as-is.
+	If an implementation supports a variant node type its node type
+	registry must contain a definition of that node type in which each
+	variant attribute is resolved to a concrete value.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

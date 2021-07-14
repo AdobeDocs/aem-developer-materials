@@ -1,0 +1,48 @@
+
+Mode
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/mode
+   :layout:
+
+   Mode layout is a layout that understands ``foundation-mode`` vocabulary.
+   It is listening to ``foundation-mode-change`` event and will show the item having the same mode name as the event, while hiding the other items.
+   The item mode name is indicated by its ``mode`` property, with fallback to ``item#getName()``.
+   The group of the event will also be matched against the group set in the layout.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsMode]
+
+      /**
+       * The mode that is active initially.
+       *
+       * Each item is matched against this mode, where it is set to active.
+       * The item ``mode`` property (fallback to ``item#getName()``) is used to match with this mode.
+       * If this property is not specified, the first item is active.
+       */
+      - mode (StringEL)
+
+      /**
+       * The group that this layout will be part of.
+       */
+      - group (String)
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mymode
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/mode"
+          - group = "myapp-mytopic-mygroup"
+        + items
+          + default
+          + selection
+
+   In above example, there are two modes configured: ``default`` and ``selection``.
+   Since there is no ``mode`` specified at ``layout`` node, the first item (the default mode) is active.
+   When ``foundation-mode-change`` is triggered with [mode = selection, group = myapp-mytopic-mygroup], the selection item will be shown and default item will be hidden.

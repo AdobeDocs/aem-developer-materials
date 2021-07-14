@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.6.3 Is-of-Type Relation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.6.3 Is-of-Type Relation</H4>
+	<P>The <I>is-of-type</I> relation which
+	holds between node instances and node types (as in, node <I>N</I> is
+	of type <I>T</I>) is transitive across the <I>subtype</I> relation:
+	If <I>N</I> is of type <I>T</I><SUB><I>2</I></SUB> and <I>T</I><SUB><I>2</I></SUB>
+	is a subtype of <I>T</I><SUB><I>1</I></SUB> then <I>N</I> is (also)
+	of type <I>T</I><SUB><I>1</I></SUB>. This predicate appears in the
+	API as the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.isNodeType()</FONT></FONT>
+	(see §8.6 <I>Node Type Information for Existing Nodes</I>). This
+	relation is also the one that is relevant in the child node
+	definition attribute <I>required primary node types</I> (see
+	§3.7.4.1 <I>Required Primary Node Types</I>).</P>
+	<P>The <I>is of type</I> relation always
+	and only stems from an explicit assignment of a node type to a node:
+	For node <I>N</I> to be of type <I>T</I> it is <I>not sufficient</I>
+	for <I>N</I> to have the child items declared by <I>T</I>. For that
+	to be the case, <I>N</I> must be <I>explicitly assigned</I> the type
+	<I>T</I>, or a subtype of <I>T</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

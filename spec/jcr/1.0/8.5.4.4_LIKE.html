@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.4.4 LIKE (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.4.4." id="section_8.5.4.4."></a>8.5.4.4 LIKE
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Within the <b>WHERE</b> clause, the <b>LIKE</b> operator is used to pattern match the string form of a property's value. Its argument (<b>likepattern</b>) may contain the percent (“<b>%</b>”) and underscore (“<b>_</b>”) characters.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>likepattern</b> must be enclosed in single quotes. Any literal single quote within the pattern must be escaped as two consecutive single quotes.
+								</p>
+							
+							
+								<p class="c5">
+									A <b>likepattern</b> with neither a percent (“<b>%</b>”) nor an underscore (“<b>_</b>”) character makes the <b>LIKE</b> operator equivalent to an equals (“<b>=</b>”) operator.
+								</p>
+							
+							
+								<p class="c5">
+									Within the <b>likepattern</b>, literal instances of percent (“<b>%</b>”) or underscore (“<b>_</b>”) must be escaped using the SQL <b>ESCAPE</b> clause which allows the definition of an arbitrary escape character within the context of a single LIKE statement. For example
+								</p>
+							
+							
+								<p class="c5">
+									<b>SELECT * FROM mytype WHERE a LIKE 'foo\%' ESCAPE '\'<br></b><br>
+									the above statement will select nodes of type '<b>mytype</b>' with property '<b>a</b>' that contain exactly the value '<b>foo%</b>'
+								</p>
+							
+							
+								<p class="c5">
+									See also 8.5.2.2 Pseudo-property jcr:path, 6.6.3.3 Property Constraint, 6.6.3.4 Path Constraint and 6.6.5.1 jcr:like Function.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

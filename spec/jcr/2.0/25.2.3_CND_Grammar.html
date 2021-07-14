@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25.2.3 CND Grammar (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>25.2.3 CND Grammar</H3>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A CND consists of zero or
+	more blocks, each of which is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">either a namespace
+	declaration or a node type definition.</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">Namespace prefixes referenced
+	in a node type definition</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">block must be declared in a
+	preceding namespace declaration</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">block. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Cnd ::=
+	{NamespaceMapping | NodeTypeDef}</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A namespace declaration
+	consists of prefix/URI pair. The</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">prefix must be a valid JCR
+	namespace prefix, which is the</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">same as a valid XML namespace
+	prefix. The URI can in fact be</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">any string. Just as in XML,
+	it need not actually be a URI,</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">though adhering to that
+	convention is recommended. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NamespaceMapping ::= '&lt;'
+	Prefix '=' Uri '&gt;'</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Prefix ::= String</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Uri ::= String</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A node type definition
+	consists of a node type name followed</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">by an optional supertypes
+	block, an optional node type</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">attributes block and zero or
+	more blocks, each of which is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">either a property or child
+	node definition. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeTypeDef
+	::= NodeTypeName [Supertypes]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[NodeTypeAttribute
+	{NodeTypeAttribute}]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>{PropertyDef
+	| ChildNodeDef}</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node type name is
+	delimited by square brackets and must</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">be a valid JCR name. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeTypeName ::= '[' String
+	']'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The list of supertypes is
+	prefixed by a '&gt;'. If the node</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">type is not a mixin then it
+	implicitly has <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	as a</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">supertype even if neither
+	nt:base nor a subtype of nt:base</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">appears in the list or if
+	this element is absent. A question</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mark indicates that the
+	supertypes list is a variant. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Supertypes
+	::= '&gt;' (StringList | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node type attributes are
+	indicated by the presence or</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of keywords. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeTypeAttribute
+	::= Orderable | Mixin | Abstract | Query |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>PrimaryItem</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* In the following, mention of
+	a keyword, like 'orderable',</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">refers to all the forms of
+	that keyword, including short</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">forms ('ord' and 'o', for
+	example) */</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'orderable' is present
+	without a '?' then orderable child</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">nodes is supported. If
+	'orderable' is present with a '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then orderable child nodes is
+	a variant. If 'orderable'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is absent then orderable
+	child nodes is not supported. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Orderable ::= ('orderable' |
+	'ord' | 'o') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'mixin' is present without
+	a '?' then the node type is a</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mixin. If 'mixin' is present
+	with a '?' then the mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">status is a variant. If
+	'mixin' is absent then the node type</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is primary. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Mixin ::= ('mixin' | 'mix' |
+	'm') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'abstract' is present
+	without a '?' then the node type is </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">abstract. If 'abstract' is
+	present with a '?' then the</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">abstract status is a variant.
+	If 'abstract' is absent then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the node type is concrete. */
+	 </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Abstract ::= ('abstract' |
+	'abs' | 'a') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'query' is present then
+	the node type is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">queryable. If 'noquery' is
+	present then the node type is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">not queryable. If neither
+	query nor noquery are present then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the queryable setting of the
+	node type is a variant. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Query ::=
+	('noquery' | 'nq') | ('query' | 'q' )</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'primaryitem' is present
+	without a '?' then the string</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">following it is the name of
+	the primary item of the node</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">type. If 'primaryitem' is
+	present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the primary item is a
+	variant. If 'primaryitem' is absent</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then the node type has no
+	primary item. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PrimaryItem
+	::= ('primaryitem'| '!')(String | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A property definition
+	consists of a property name element</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">followed by optional property
+	type, default values, property</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">attributes and value
+	constraints elements. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyDef
+	::= PropertyName [PropertyType] [DefaultValues]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[PropertyAttribute
+	{PropertyAttribute}]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[ValueConstraints]</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The
+	property name, or '*' to indicate a residual property</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">definition, is prefixed with
+	a '-'. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyName ::= '-' String</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The property type is
+	delimited by parentheses ('*' is a</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">synonym for UNDEFINED). If
+	this element is absent,</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">STRING is assumed. A '?'
+	indicates that this attribute is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">a variant. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyType ::= '('
+	('STRING' | 'BINARY' | 'LONG' | 'DOUBLE' |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'BOOLEAN'
+	| 'DATE' | 'NAME' | 'PATH' | </B></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'REFERENCE'
+	| 'WEAKREFERENCE' |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'DECIMAL'
+	| 'URI' | 'UNDEFINED' | '*' |<BR> '?') ')'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The default values, if any,
+	are listed after a '='. The</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">attribute is a list in order
+	to accommodate multi-</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">value properties. The absence
+	of this element indicates that</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">there is no static default
+	value reportable. A '?' indicates</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">that this attribute is a
+	variant */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>DefaultValues ::= '='
+	(StringList | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The value constraints, if
+	any, are listed after a '&lt;'. The</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of this element
+	indicates that no value constraints</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">reportable within the value
+	constraint syntax. A '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">indicates that this attribute
+	is a variant */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>ValueConstraints ::= '&lt;'
+	(StringList | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A child node definition
+	consists of a node name element</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">followed by optional required
+	node types, default node types</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">and node attributes elements.
+	*/</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>ChildNodeDef ::= NodeName
+	[RequiredTypes] [DefaultType]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[NodeAttribute
+	{NodeAttribute}]</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node
+	name, or '*' to indicate a residual property</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">definition, is prefixed with
+	a '+'. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeName ::= '+' String</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The required primary node
+	type list is delimited by</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">parentheses.
+	If this element is missing then a required</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">primary node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	is assumed. A '?' indicates </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">that the this attribute is a
+	variant. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>RequiredTypes
+	::= '(' (StringList | '?') ')'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The default primary node type
+	is prefixed by a '='. If this</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">element is missing then no
+	default primary node type is set.</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">A '?' indicates that this
+	attribute is a variant */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>DefaultType ::= '=' (String |
+	'?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The property attributes are
+	indicated by the presence or</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of keywords. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyAttribute ::=
+	Autocreated | Mandatory | Protected | </B></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>Opv |
+	Multiple | QueryOps | NoFullText | </B></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>NoQueryOrder</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node attributes are
+	indicated by the presence or</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of keywords. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeAttribute ::= Autocreated
+	| Mandatory | Protected |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>Opv | Sns</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'autocreated' is present
+	without a '?' then the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is autocreated. If
+	'autocreated' is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the autocreated status is a
+	variant. If 'autocreated' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the item is not
+	autocreated. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Autocreated ::=
+	('autocreated' | 'aut' | 'a' )['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'mandatory' is present
+	without a '?' then the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is mandatory. If 'mandatory'
+	is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the mandatory status is a
+	variant. If 'mandatory' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the item is not
+	mandatory. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Mandatory ::= ('mandatory' |
+	'man' | 'm') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'protected' is present
+	without a '?' then the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is protected. If 'protected'
+	is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the protected status is a
+	variant. If 'protected' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the item is not
+	protected. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Protected ::= ('protected' |
+	'pro' | 'p') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The OPV status of an item is
+	indicated by the presence of</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">that corresponding keyword.
+	If no OPV keyword is present</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then an OPV status of COPY is
+	assumed. If the keyword 'OPV'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">followed by a '?' is present
+	then the OPV status of the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is a variant. </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Opv ::= 'COPY' | 'VERSION' |
+	'INITIALIZE' | 'COMPUTE' |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'IGNORE' | 'ABORT' |
+	('OPV' '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'multiple' is present
+	without a '?' then the property </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is multi-valued. If
+	'multiple' is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the multi-value status is a
+	variant. If 'multiple' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the property is
+	single-valued. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Multiple ::= ('multiple' |
+	'mul' | '*') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The available query
+	comparison operators are listed after</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the keyword 'queryops'. If
+	'queryops' is followed by a '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then this attribute is a
+	variant. If this element is absent</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then the full set of
+	operators is available. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>QueryOps ::= ('queryops' |
+	'qop')</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>(('''Operator
+	{','Operator}''') | '?')</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Operator ::= '=' | '&lt;&gt;'
+	| '&lt;' | '&lt;=' | '&gt;' | '&gt;=' | 'LIKE'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'nofulltext' is present
+	without a '?' then the property </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">does not support full text
+	search. If 'nofulltext' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">present with a '?' then this
+	attribute is a variant. If</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'nofulltext' is absent then
+	the property does support full</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">text search. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NoFullText
+	::= ('nofulltext' | 'nof') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'noqueryorder' is present
+	without a '?' then query</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">results cannot be ordered by
+	this property. If</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'noqueryorder' is present
+	with a '?' then this attribute is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">a variant. If 'noqueryorder'
+	is absent then query results</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">can be ordered by this
+	property. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NoQueryOrder ::=
+	('noqueryorder' | 'nqord') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'sns' is present without a
+	'?' then the child node</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">supports same-name siblings.
+	If 'sns' is present with a '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then this attribute is a
+	variant. If 'sns' is absent then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the child node does support
+	same-name siblings. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Sns ::=
+	('sns' | '*') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Strings */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>StringList ::= String {','
+	String}</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>String ::= QuotedString |
+	UnquotedString</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Quotes are used to allow for
+	strings (i.e., names, prefixes,</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">URIs, values or constraint
+	strings) with characters that</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">would otherwise be
+	interpreted as delimiters in CND. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>QuotedString ::=
+	SingleQuotedString | DoubleQuotedString</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Within a SingleQuotedString,
+	single quote literals (') must</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">be escaped. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>SingleQuotedString ::= '''
+	UnquotedString '''</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Within a DoubleQuotedString,
+	double quote literals (&quot;) must</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">be escaped. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>DoubleQuotedString
+	::= '&quot;' UnquotedString '&quot;'</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>UnquotedString ::= XmlChar
+	{XmlChar}</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>XmlChar ::= /* see §3.2.2
+	Local Names */</B></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

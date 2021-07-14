@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.3.6 Item Status (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.3.6." id="section_7.1.3.6."></a>7.1.3.6 Item Status
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This specification provides the following methods on <b>Item</b> for determining whether a particular item has pending changes (<b>isModified</b>) or constitutes part of the pending changes of its parent (<b>isNew</b>).
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Item</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isNew()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this is a new item, meaning that it exists only in transient storage on the <b>Session</b> and has not yet been saved. Within a transaction, <b>isNew</b> on an <b>Item</b> may return <b>false</b> (because the item has been saved) even if that <b>Item</b> is not in persistent storage (because the transaction has not yet been committed).
+									</p>
+									<p class="c5">
+										Note that in level 1 (that is, read-only) implementations, this method will always return <b>false</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isModified()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this <b>Item</b> has been saved but has subsequently been modified through the current session and therefore the state of this item as recorded in the session differs from the state of this item as saved. Within a transaction, <b>isModified</b> on an <b>Item</b> may return <b>false</b> (because the <b>Item</b> has been saved since the modification) even if the modification in question is not in persistent storage (because the transaction has not yet been committed).
+									</p>
+									<p class="c5">
+										Note that in level 1 (that is, read-only) implementations, this method will always return <b>false</b>.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

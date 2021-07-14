@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.22.2 Additions to the Hierarchy (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.22.2." id="section_6.7.22.2."></a>6.7.22.2 Additions to the Hierarchy
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									An implementation may extend the definition of any predefined node type by adding supertypes to those defined in this specification. These additional supertypes may be either predefined mixin node types or implementation-specific mixin or primary node types.
+								</p>
+							
+							
+								<p class="c5">
+									For example, a repository may require that all nodes of type <b>nt:file</b> be, additionally, <b>mix:versionable</b>. In such a repository the definition of <b>nt:file</b>, when introspected, would report an additional supertype of <b>mix:versionable</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The hierarchy above and the definitions below, therefore, reflect the <i>minimal</i> set of supertypes for each predefined node type.
+								</p>
+							
+							
+								<p class="c5">
+									Note that this extension mechanism is distinct from the automatic addition of mixin types that may be done on node creation in level 2 (see <a href="7.4.4_Automatic_Addition_and_Removal_of_Mixins.html">7.4.4</a> <i>Automatic Addition and Removal of Mixins</i>). Though the two features may both be employed in the same repository, they differ in that one affects the actual hierarchy of the supported node types, while the other works on a node-by-node basis.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

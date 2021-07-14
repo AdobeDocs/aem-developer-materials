@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.11.1.1 Relation Between Nodes and Version Histories (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.11.1.1." id="section_4.11.1.1."></a>4.11.1.1 Relation Between Nodes and Version Histories
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The relationship between nodes and version histories is built on the notion of correspondence via UUID. The details are as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Each set of corresponding versionable nodes (nodes with the same UUID) share the same version history.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					In a given workspace, there is at most one versionable node per version history (this follows directly from the fact that there is at most one node from each correspondence set per workspace).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Given a particular workspace, there may be version histories for which that particular workspace does not contain a corresponding versionable node.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A workspace may contain nonversionable nodes, which, of course, never have corresponding version histories.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					When a new versionable node is created (i.e., the first instance in the repository as whole) a version history for that node is automatically created in version storage.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If a versionable node is cloned to another workspace, it maintains the same UUID and the new corresponding versionable node remains associated with the original's version history.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Note that since all versionable nodes are by definition referenceable, there is no need to include the qualification involving relative paths to the nearest versionable node (or root node) as in the discussion of <b>update</b>, above.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

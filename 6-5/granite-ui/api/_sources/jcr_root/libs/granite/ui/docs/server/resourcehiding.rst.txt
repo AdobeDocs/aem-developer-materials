@@ -1,0 +1,29 @@
+***************************
+Hiding Resource Dynamically
+***************************
+
+There is a use case where you need to exclude a component from being rendered.
+Typical example would be to render a submit button based on whether the current user has a privilege to create or modify a resource.
+
+To achieve this, Granite UI offers two mechanics:
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   filteringresourcewrapper
+   rendercondition
+
+
+Usage Recommendation
+====================
+
+Since RenderCondition uses Sling include to check the condition, it is slower compared to FilteringResourceWrapper.
+FilteringResourceWrapper is also more transparent to its client.
+Because of this, FilteringResourceWrapper is recommended compared to RenderCondition when it is usable.
+
+At the flip side, FilteringResourceWrapper depends on :doc:`el` to express the condition.
+So naturally what can be done is depending on the current supported feature of EL.
+
+Contrast this to RenderCondition, where the condition logic is a RT.
+So any condition logic can be implemented accordingly.

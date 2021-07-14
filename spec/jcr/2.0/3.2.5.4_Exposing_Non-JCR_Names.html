@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.2.5.4 Exposing Non-JCR Names (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.2.5.4 Exposing Non-JCR Names</H4>
+	<P>An implementation that
+	exposes a non-JCR data store through the JCR API may wish to expose
+	names containing JCR-illegal characters by using a substitution or
+	escaping scheme. If so, it must do so by substituting private-use
+	Unicode characters for the JCR-illegal characters according to the
+	following mapping.</P>
+	<TABLE WIDTH=638 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=187>
+		<COL WIDTH=416>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=19>
+				<P><B>JCR-Illegal
+				character</B></P>
+			</TD>
+			<TD WIDTH=416>
+				<P><B>Substitution
+				character</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=20>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>*</FONT></FONT>
+				(U+002A)</P>
+			</TD>
+			<TD WIDTH=416>
+				<P>U+F02A</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=20>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>/</FONT></FONT>
+				(U+002F)</P>
+			</TD>
+			<TD WIDTH=416>
+				<P>U+F02F</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=20>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT>
+				(U+003A)</P>
+			</TD>
+			<TD WIDTH=416>
+				<P>U+F03A</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=20>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>[</FONT></FONT>
+				(U+005B)</P>
+			</TD>
+			<TD WIDTH=416>
+				<P>U+F05B</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=20>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>]</FONT></FONT>
+				(U+005D)</P>
+			</TD>
+			<TD WIDTH=416>
+				<P>U+F05D</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=187 HEIGHT=19>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>
+				(U+007C)</P>
+			</TD>
+			<TD WIDTH=416>
+				<P>U+F07C</P>
+			</TD>
+		</TR>
+	</TABLE>
+	<P><BR>The mapping must
+	be used bi-directionally. When the repository wishes to return the
+	name of an entity whose native name contains a JCR-illegal
+	character, that character must be replaced with its corresponding
+	substitution character in the returned string.</P>
+	<P>Conversely, when a
+	name containing one of the substitution characters is passed to the
+	repository through the JCR API, that character must be replaced with
+	its corresponding non-JCR character before further processing is
+	done within the native layer, whether writing the name to storage or
+	using the name to access an entity.</P>
+	<P>In the unlikely event
+	that one of the substitution characters appears literally in a
+	native name, that character will be returned unchanged through the
+	JCR API.</P>
+	<P>In repositories that
+	do not expose non-JCR names and therefore do not need to use the
+	substitution scheme, any private-use substitution character passed
+	to the API is stored and returned unchanged. However, such use of a
+	private-use substitution character within a JCR name is strongly
+	discouraged.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.3.10 Location of Listeners (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.3.10." id="section_8.3.10."></a>8.3.10 Location of Listeners
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The classes implementing the listener interfaces will reside on the same JVM as the repository itself. In implementations where both the application using the API and the repository itself are operating on the same JVM, this poses no particular problems.
+								</p>
+							
+							
+								<p class="c5">
+									In client-server implementations that use RMI to connect the application to a remote repository, the application must ensure that any listeners registered to the repository are serializable, thus allowing them to be passed to the JVM running the repository instance.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

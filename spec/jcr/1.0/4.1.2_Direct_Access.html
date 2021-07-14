@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.2 Direct Access (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.2." id="section_4.1.2."></a>4.1.2 Direct Access
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The most important direct access method is
+								</p>
+							
+							
+								<p class="c5">
+									<b>Item Session.getItem(String abspath)</b>.
+								</p>
+							
+							
+								<p class="c5">
+									This method takes an absolute path and is used to jump directly to the indicated item (node or property):
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Directly get the property with</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// the value of Avogadro's Number</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// (i.e., 6.022 x 10^23)</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property myProperty =<br>
+									(Property)mySession.getItem("/a/e/k");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Directly convert to a double</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>double myDouble = myProperty.getDouble();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// The variable myDouble will contain the</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// value 6.022 x 10^23</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									Another direct access method (though for nodes only, not properties) is,
+								</p>
+							
+							
+								<p class="c5">
+									<b>Node Session.getNodeByUUID(String uuid)</b>.
+								</p>
+							
+							
+								<p class="c5">
+									This method can be used to access those nodes that have Universally Unique Identifiers (see 4.9 Referenceable Nodes):
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Assuming that the node /a/e is referenceable</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// and has UUID 1111 2222 3333 4444, we get it</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node myNode =<br>
+									mySession.getNodeByUUID("</b>1111 2222 3333 4444<b>");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// and then get the property and convert it to a double</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>double myDouble = myNode.getProperty("k").getDouble();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// The variable myDouble will contain the</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// value 6.022 x 10^23</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.1.1 Shared Node Creation on Restore   (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>14.1.1 Shared Node Creation on Restore  </H3>
+	<P>If
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>restoreByLabel</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>
+	is called and this call would create a node with the same identifier
+	as that of an existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node in the same workspace without at the same time removing that
+	existing node (that is, <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>),
+	then the new node is created and is added to the shared set of the
+	existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

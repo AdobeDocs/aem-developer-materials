@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.4 Initializing the Version History (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.4." id="section_8.2.4."></a> 8.2.4 Initializing the Version History
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a new versionable node is created, a new version history is created for it. At first, the version history consists of only the <b>nt:versionHistory</b> node and its single child, the <b>nt:version</b> node representing the <i>root version</i>, which will serve as the starting point, from which the version graph of successors will proceed. The root version does not store any state information; it serves only to make the semantics of subsequent operations consistent. Initially, the root version also serves as the <i>base version</i> for the new versionable node.
+								</p>
+							
+							
+								<p class="c5">
+									In terms of actual nodes and properties being created or changed, here is what happens when a new <b>mix:versionable</b> node <b>N</b> is created in workspace <b>W</b><b><sub>1</sub></b>:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>N</b> is created by the call <b>M.addNode("N")</b> where <b>M</b> is some suitable parent node for <b>N</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Before being saved, <b>N</b> is made versionable by the call <b>N.addMixin("mix:versionable")</b>. In some implementations, dynamic assignments of mixins may be supported, thus allowing a node to be rendered versionable at any time in its lifecycle, not just upon creation. See <a href="7.4.3_Assigning_Mixin_Node_Types.html">7.4.3</a> <i>Assigning Mixin Node Types</i>.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					On <b>save</b> of <b>N</b>, a new version history is automatically created for <b>N</b>. This means that the repository automatically creates a new node of type <b>nt:versionHistory</b> (call it <b>VH</b>). <b>VH</b> automatically gets a child node of type <b>nt:version</b> called <b>jcr:rootVersion</b> (call it <b>V</b><b><sub>0</sub></b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>V</b><b><sub>0</sub></b> is the root version of <b>VH</b>. This root version does not contain any state information about <b>N</b> other than the node type and UUID information in the <b>jcr:frozenPrimaryType</b>, <b>jcr:frozenMixinTypes</b>, and <b>jcr:frozenUuid</b>. It is a dummy version.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>REFERENCE</b> property <b>jcr:versionHistory</b> of <b>N</b> is initialized to the UUID of <b>VH</b>. This constitutes a reference from <b>N</b> to its version history.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>REFERENCE</b> property <b>jcr:baseVersion</b> of <b>N</b> is initialized to the UUID of <b>V</b><b><sub>0</sub></b>. This constitutes a reference from <b>N</b> to its current base version.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The multi-value <b>REFERENCE</b> property <b>jcr:predecessors</b> of <b>N</b> is initialized to contain a single UUID, that of <b>V</b><b><sub>0</sub></b> (the same as <b>jcr:baseVersion</b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>BOOLEAN</b> property <b>jcr:isCheckedOut</b> is set to <b>true</b>.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

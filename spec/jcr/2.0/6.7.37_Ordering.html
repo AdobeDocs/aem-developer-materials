@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.37 Ordering (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.37 Ordering</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Ordering ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DynamicOperand operand,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Order order</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Determines the relative order of two
+	node-tuples by evaluating <FONT FACE="Courier New, monospace">operand</FONT>
+	for each.</P>
+	<P>For a first node-tuple, <FONT FACE="Courier New, monospace">nt1</FONT>,
+	for which <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">v1</FONT>,
+	and a second node-tuple, <FONT FACE="Courier New, monospace">nt2</FONT>,
+	for which <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">v2</FONT>:</P>
+	<P>If operand is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyValue</FONT></FONT>
+	(see §6.7.27 <I>PropertyValue</I>) of a property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	and the <I>query-orderable</I> attribute of the property definition
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(see §3.7.3.5 <I>Query-Orderable</I>) then the relative order of
+	<FONT FACE="Courier New, monospace">nt1</FONT>
+	and <FONT FACE="Courier New, monospace">nt2</FONT>
+	is implementation determined, otherwise, if the <I>query-orderable</I>
+	attribute is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	then:</P>
+	<P>If <FONT FACE="Courier New, monospace">order</FONT>
+	is <FONT FACE="Courier New, monospace">Ascending</FONT>,
+	then:</P>
+	<UL>
+		<LI><P>if either <FONT FACE="Courier New, monospace">v1</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		<FONT FACE="Courier New, monospace">v2</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		or both <FONT FACE="Courier New, monospace">v1</FONT>
+		and <FONT FACE="Courier New, monospace">v2</FONT>
+		are <FONT FACE="Courier New, monospace">null</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		is a different property type than <FONT FACE="Courier New, monospace">v2</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered </I><I>before</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt1</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt2</FONT>,
+		otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered </I><I>after</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt2</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt1</FONT>,
+		otherwise</P>
+		<LI><P>the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined and may be arbitrary.</P>
+	</UL>
+	<P>Otherwise, if
+	<FONT FACE="Courier New, monospace">order</FONT>
+	is <FONT FACE="Courier New, monospace">Descending</FONT>,
+	then:</P>
+	<UL>
+		<LI><P>if either <FONT FACE="Courier New, monospace">v1</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		<FONT FACE="Courier New, monospace">v2</FONT>
+		is <FONT FACE="Courier New, monospace">null</FONT>,
+		or both <FONT FACE="Courier New, monospace">v1</FONT>
+		and <FONT FACE="Courier New, monospace">v2</FONT>
+		are <FONT FACE="Courier New, monospace">null</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		is a different property type than <FONT FACE="Courier New, monospace">v2</FONT>,
+		the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined, otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered</I> <I>before</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt2</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt1</FONT>,
+		otherwise</P>
+		<LI><P>if <FONT FACE="Courier New, monospace">v1</FONT>
+		<I>is ordered</I> <I>after</I> <FONT FACE="Courier New, monospace">v2</FONT>,
+		as described in §3.6.5<I> Comparison of Values</I>, then <FONT FACE="Courier New, monospace">nt1</FONT>
+		precedes <FONT FACE="Courier New, monospace">nt2</FONT>,
+		otherwise</P>
+		<LI><P>the relative order of <FONT FACE="Courier New, monospace">nt1</FONT>
+		and <FONT FACE="Courier New, monospace">nt2</FONT>
+		is implementation determined and may be arbitrary.</P>
+	</UL>
+	<P>The query is <I>invalid</I> if <FONT FACE="Courier New, monospace">operand</FONT>
+	does not evaluate to a scalar value. 
+	</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">orderings ::= Ordering {','
+	Ordering}</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Ordering ::= DynamicOperand
+	[Order]</FONT></P>
+	<P><BR>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>Order</FONT></FONT>
+	is omitted in the JCR-SQL2 statement the default is <FONT FACE="Courier New, monospace"><FONT SIZE=2>ASC</FONT></FONT>
+	(see §6.7.38 <I>Order</I>).</P>
+	<P><B>JCR-JQOM</B></P>
+	<P>An ascending <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 ascending(DynamicOperand operand)</FONT></FONT></P>
+	<P>A descending <FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 descending(DynamicOperand operand)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Ordering</FONT></FONT>
+	declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand
+	Ordering.getOperand()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Ordering.getOrder()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

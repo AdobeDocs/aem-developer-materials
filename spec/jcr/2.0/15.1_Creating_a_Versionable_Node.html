@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.1 Creating a Versionable Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>15.1 Creating a Versionable Node</H2>
+	<P>A new versionable node
+	is created by assigning it the appropriate mixin type: 
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:simpleVersionable</FONT></FONT>
+	under simple versioning or <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	under full versioning. This may be done either to an existing node,
+	through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addMixin</FONT></FONT>
+	or at node creation, through assignment of a primary type that
+	inherits from the mixin. Some repositories may also automatically
+	assign a versionable mixin on creation of certain nodes (see §3.7.6
+	<I>Node Type Inheritance</I> and §10.10 <I>Node Type Assignment</I>).</P>
+	<P>Under both simple and
+	full versioning, on persist of a new versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N
+	</FONT></FONT>that neither corresponds nor shares with
+	an existing node:</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+		and</P>
+		<LI><P>A new
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+		(<FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>)
+		is created for <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+		contains one <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>,
+		the root version (<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>)
+		(see §3.13.5.2 <I>Root Version</I>).</P>
+	</UL>
+	<P>Additionally, under
+	full versioning:</P>
+	<UL>
+		<LI><P>A new
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+		node is created and bound to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+		object <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+		.</P>
+		<UL>
+			<LI><P>The
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionableUuid</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+			is set to the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+			<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+			is the result of a copy operation then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:copiedFrom</FONT></FONT>
+			property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>
+			is set as described in §15.1.4 <I>Copying Versionable Nodes and
+			Version Lineage</I>. Otherwise this property is not added.</P>
+			<LI><P>A new
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>
+			node (<FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>)
+			is created as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionLabels</FONT></FONT>
+			child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.</P>
+			<LI><P>A new <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+			node is created and bound to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+			This node becomes the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:rootVersion</FONT></FONT>
+			child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.</P>
+			<UL>
+				<LI><P>A new
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:frozenNode</FONT></FONT>
+				node (<FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>)
+				is created as the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenNode</FONT></FONT>
+				child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+				does not hold any state information about <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+				except the node type and identifier information found in
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenPrimaryType</FONT></FONT>,
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenMixinTypes</FONT></FONT>,
+				and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenUuid</FONT></FONT>
+				properties (see §3.13.4 <I>Frozen Nodes</I>).</P>
+			</UL>
+		</UL>
+		<LI><P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is initialized to the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.
+		This constitutes a reference from <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		to its version history.</P>
+		<LI><P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is initialized to the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>.
+		This constitutes a reference from <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		to its current base version.</P>
+		<LI><P>The multi-value
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is initialized to contain a single identifier, that of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>
+		(the same as <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>).</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

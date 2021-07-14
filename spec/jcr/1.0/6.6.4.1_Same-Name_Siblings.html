@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.4.1 Same-Name Siblings (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.4.1." id="section_6.6.4.1."></a>6.6.4.1 Same-Name Siblings
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The syntax used to address same-name sibling nodes in a workspace path is purposely similar to the XPath abbreviated syntax for addressing sibling XML elements with the same name, i.e., the "square bracket index notation" where the first sibling is indicated by <b>[1]</b> (not <b>[0]</b>) the second by <b>[2]</b> and so forth.
+								</p>
+							
+							
+								<p class="c5">
+									However, because some implementations (those built on an underlying relational model, for example) may find it difficult to support querying on the basis of node position, this feature is optional. <b>Repository.getDescriptor(</b><b>QUERY_XPATH_POS_INDEX</b><b>)</b> returning “<b>true</b>” indicates that the index position notation for same-name siblings is supported for XPath query.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

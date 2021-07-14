@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 19 Node Type Management (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>19 Node Type Management</H1>
+	<P>A repository may
+	support <I>node type management</I>. Depending on
+	implementation-specific limitations (see §19.3 <I>Node Type
+	Registration Restrictions</I>), this feature may include some or all
+	of the following:</P>
+	<UL>
+		<LI><P>Adding a node type to the
+		registry.</P>
+		<LI><P>Removing a node type from the
+		registry.</P>
+		<LI><P>Updating the definition of a
+		registered node type that <I>is</I> <I>not</I> currently in use as
+		the node type of any node in the repository.</P>
+		<LI><P>Updating the definition of a
+		registered node type that <I>is</I> currently in use as the node
+		type of a node in the repository.</P>
+		<LI><P>Import of node type definitions
+		to the repository.</P>
+		<LI><P>Export of node types from the
+		repository.</P>
+	</UL>
+	<P>Whether a particular
+	implementation supports node type management and the restrictions in
+	place with regard to this feature can be determined by querying the
+	repository descriptor table with the constants listed in §24.2.4
+	<I>Node Type Management</I>.</P>
+<a name="19.1 NodeTypeDefinition"></a>	<H2>19.1 NodeTypeDefinition</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>
+	interface provides methods for discovering the static definition of
+	a node type. These are accessible both before and after the node
+	type is registered. Its subclass <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	adds methods that are relevant only when the node type is “live”;
+	that is, after it has been registered.</P>
+	<P>In implementations
+	that support node type registrations, <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>
+	serves as the superclass of both <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>.
+	In implementations that do not support node type registration, only
+	objects implementing the subclass <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	will be encountered.</P>
+<a name="19.2 NodeTypeManager"></a>	<H2>19.2 NodeTypeManager</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	interface provides the following methods related to registering node
+	types. For methods of this interface that are related to node type
+	discovery, see §8 <I>Node Type Discovery</I>. In implementations
+	that do not support node type management, the methods of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	will throw an <FONT FACE="Courier New, monospace"><FONT SIZE=2>UnsupportedRepositoryOperationException</FONT></FONT>.</P>
+<a name="19.2.1 Creating a NodeTypeTemplate"></a>	<H3>19.2.1 Creating a NodeTypeTemplate</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate
+	NodeTypeManager.createNodeTypeTemplate()</FONT></FONT></P>
+	<P>returns an empty
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	which can then be used to define a node type and passed to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>registerNodeType</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate
+	NodeTypeManager.<BR> createNodeTypeTemplate(NodeTypeDefinition ntd)</FONT></FONT></P>
+	<P>returns a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	holding the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>.
+	This template may then be altered and passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>registerNodeType</FONT></FONT>.</P>
+<a name="19.2.2 Creating a NodeDefinitionTemplate"></a>	<H3>19.2.2 Creating a NodeDefinitionTemplate</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate
+	NodeTypeManager.<BR> createNodeDefinitionTemplate()</FONT></FONT></P>
+	<P>returns an empty
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	which can then be used to create a child node definition and
+	attached to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>.</P>
+<a name="19.2.3 Creating a PropertyDefinitionTemplate"></a>	<H3>19.2.3 Creating a PropertyDefinitionTemplate</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate
+	NodeTypeManager.<BR> createPropertyDefinitionTemplate()</FONT></FONT></P>
+	<P>returns an empty
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	which can then be used to create a property definition and attached
+	to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>.</P>
+<a name="19.2.4 Registering a Node Type"></a>	<H3>19.2.4 Registering a Node Type</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType
+	NodeTypeManager.<BR> registerNodeType(NodeTypeDefinition ntd,
+	boolean allowUpdate)</FONT></FONT></P>
+	<P>registers a new node
+	type or updates an existing node type using the specified definition
+	and returns the resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object. Typically, the object passed to this method will be a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	(a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>)
+	acquired from <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager.createNodeTypeTemplate</FONT></FONT>
+	and then filled-in with definition information. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>allowUpdate</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then an attempt to change the definition of an already registered
+	node type will be made (see §19.2.4.1 <I>Updating Node Types</I>),
+	otherwise an attempt to register a node type with the same name as
+	an already registered one will fail immediately.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.<BR> registerNodeTypes(NodeTypeDefinition[] ntds,<BR>
+	 boolean allowUpdate)</FONT></FONT></P>
+	<P>registers or updates
+	the specified array of <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>
+	objects. This method is used to register or update a set of node
+	types with mutual dependencies. It returns an iterator over the
+	resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	objects. The effect of the method is “all or nothing”; if an
+	error occurs, no changes are made.</P>
+<a name="19.2.4.1 Updating Node Types"></a>	<H4>19.2.4.1 Updating Node Types</H4>
+	<P>A repository that
+	supports node type management may support updates to a node type
+	already in use as the type of an existing node. The extent of any
+	such capability is implementation dependent. For example, some
+	implementations may permit only changes which do not invalidate
+	existing content, while others may allow larger changes. How any
+	resulting incompatibilities are resolved is also implementation
+	dependent. Any changes to the type of an exiting node must take
+	effect in accordance with the <I>node type assignment behavior</I>
+	of the repository (see §10.10.1 <I>Node Type Assignment Behavior</I>).</P>
+<a name="19.2.5 Unregistering a Node Type"></a>	<H3>19.2.5 Unregistering a Node Type</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	NodeTypeManager.unregisterNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P>unregisters the
+	specified node type.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	NodeTypeManager.<BR> unregisterNodeTypes(String[] nodeTypeNames)</FONT></FONT></P>
+	<P>unregisters the
+	specified set of node types. This method is used to unregister a set
+	of node types with mutual dependencies.</P>
+<a name="19.2.6 Testing for Node Types"></a>	<H3>19.2.6 Testing for Node Types</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeManager.hasNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if a node type with the specified name is registered and returns
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+<a name="19.3 Node Type Registration Restrictions"></a>	<H2>19.3 Node Type Registration Restrictions</H2>
+	<P>A repository <I>must</I>
+	prevent the registration of any node type that uses a reserved
+	namespace either in its name or in the name of any of its item
+	definitions (see 3.4 <I>Namespace Mapping</I>).</P>
+	<P>A repository <I>may</I>
+	restrict the range of node types that can be registered according to
+	implementation-specific criteria. This is most relevant in cases
+	where a JCR repository is built on top of an existing content store
+	which has intrinsic limitations that restrict the space of supported
+	node types.</P>
+<a name="19.4 Templates"></a>	<H2>19.4 Templates</H2>
+	<P>Node types are defined
+	programmatically by setting the attributes of template objects and
+	passing these to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	is a container holding the node type's attributes and its property
+	and child node definitions, which are themselves represented by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	objects, respectively.</P>
+	<P>The user registers a
+	node type by first acquiring a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	and the necessary <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	objects through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	(see §19.2 <I>NodeTypeManager</I>). The attributes of these objects
+	are then set, with the appropriate <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	objects added to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	object. The resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	object is then passed to a registration method of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>.</P>
+<a name="19.4.1 NodeTypeTemplate"></a>	<H3>19.4.1 NodeTypeTemplate</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>,
+	like <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>,
+	is a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>,
+	so it shares with <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	those methods that are relevant to a static definition. In addition
+	to the methods inherited from <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	provides methods for setting the attributes of the definition. The
+	setter methods are named appropriately according to the attribute
+	that they set (see 3.6.1 <I>Node Type Definition Attributes</I>).
+	Consult the Javadoc for details on the method signatures.</P>
+<a name="19.4.1.1 Setting Property and Child Node Definitions"></a>	<H4>19.4.1.1 Setting Property and Child Node Definitions</H4>
+	<P>Setting the property
+	definitions within a node type template is done by adding
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	objects to the mutable <FONT FACE="Courier New, monospace"><FONT SIZE=2>List</FONT></FONT>
+	object retrieved from 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>List
+	NodeTypeTemplate.getPropertyDefinitionTemplates()</FONT></FONT>.</P>
+	<P>Similarly, setting the
+	child node definitions is done by adding <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	objects to the mutable <FONT FACE="Courier New, monospace"><FONT SIZE=2>List</FONT></FONT>
+	object retrieved from 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>List
+	NodeTypeTemplate.getNodeDefinitionTemplates()</FONT></FONT>.</P>
+<a name="19.4.1.2 Default Values of Node Type Attributes"></a>	<H4>19.4.1.2 Default Values of Node Type Attributes</H4>
+	<P>See the corresponding
+	get methods for each attribute in <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>
+	(see §19.1 <I>NodeTypeDefinition</I>) for the default values
+	assumed when a new empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	is created.</P>
+<a name="19.4.2 PropertyDefinitionTemplate"></a>	<H3>19.4.2 PropertyDefinitionTemplate</H3>
+	<P>The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	interface extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition</FONT></FONT>
+	(see §8.4 <I>PropertyDefinition Object</I>) with the addition of
+	write methods, enabling the characteristics of a child property
+	definition to be set, after which the <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	is added to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>.
+	The setter methods are named appropriately according to the
+	attribute that they set (see §3.7.2 <I>Item Definition Attributes</I>
+	and §3.7.3 <I>Property Definition Attributes</I>). Consult the
+	Javadoc for details on the method signatures.</P>
+<a name="19.4.2.1 Default Values of Property Definition Attributes"></a>	<H4>19.4.2.1 Default Values of Property Definition Attributes</H4>
+	<P>See the corresponding
+	get methods for each attribute in <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition</FONT></FONT>
+	(see §8.4 <I>PropertyDefinition Object</I>) for the default values
+	assumed when a new empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	is created.</P>
+<a name="19.4.3 NodeDefinitionTemplate"></a>	<H3>19.4.3 NodeDefinitionTemplate</H3>
+	<P>The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	interface extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	(see §8.5 <I>NodeDefinition Object</I>) with the addition of write
+	methods, enabling the characteristics of a child node definition to
+	be set, after which the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	is added to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>.
+	The setter methods are named appropriately according to the
+	attribute that they set (see §3.7.2 <I>Item Definition Attributes</I>
+	and §3.7.4 <I>Child Node Definition Attributes</I>). Consult the
+	Javadoc for details on the method signatures.</P>
+<a name="19.4.3.1 Default Values of Child Node Definition Attributes"></a>	<H4>19.4.3.1 Default Values of Child Node Definition Attributes</H4>
+	<P>See the corresponding
+	get methods for each attribute in <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	(see §8.5 <I>NodeDefinition Object</I>) for the default values
+	assumed when a new empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	is created.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

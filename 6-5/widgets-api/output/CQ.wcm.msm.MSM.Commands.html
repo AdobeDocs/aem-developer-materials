@@ -1,0 +1,295 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.wcm.msm.MSM.Commands-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.wcm.msm.MSM.Commands-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.wcm.msm.MSM.Commands-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.wcm.msm.MSM.Commands"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.wcm.msm.MSM.Commands</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.wcm.msm.MSM</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/MSM.Commands.js" target="_blank">MSM.Commands.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Commands</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    Container for the static methods to operate on a Live Copy.	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.wcm.msm.MSM.Commands-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ.wcm.msm.MSM.Commands-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.addSkippedPage"></a>
+            <b>Commands.addSkippedPage</b>(&nbsp;<code>String parentTargetPath</code>, <code>String[] childNames</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a list of child pages to the skipped page list.</div>
+            <div class="long">
+                &lt;static&gt; Adds a list of child pages to the skipped page list.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>parentTargetPath</code> : String<div class="sub-desc">Target parent path (Live Copy page path)</div></li><li><code>childNames</code> : String[]<div class="sub-desc">List of child page to add to skipped page list</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.attachLiveCopy"></a>
+            <b>Commands.attachLiveCopy</b>(&nbsp;<code>String srcPath</code>, <code>String targetPath</code>, <span class="optional" title="Optional">[<code>Boolean deep</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Attaches a Live Copy page to its Blueprint page, i.e. transform a standalone page into
+a Live Copy.</div>
+            <div class="long">
+                &lt;static&gt; Attaches a Live Copy page to its Blueprint page, i.e. transform a standalone page into
+a Live Copy.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>srcPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>deep</code> : Boolean<div class="sub-desc">(optional) True to attach children to (defaults to false)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.createCatalog"></a>
+            <b>Commands.createCatalog</b>(&nbsp;<code>String parentPath</code>&nbsp;) : void            <div class="mdesc">
+            	        <div><b>Deprecated: since 5.6.1; use CQ.commerce.Edit.createCatalog</b></div>
+                                    <div class="short">&lt;static&gt; Creates a Catalog from a Catalog Blueprint.
+While very similar to creating a LiveCopy, Catalog creatio...</div>
+            <div class="long">
+                &lt;static&gt; Creates a Catalog from a Catalog Blueprint.
+While very similar to creating a LiveCopy, Catalog creation uses special rolloutConfigs which
+create LiveCopy pages from templates rather than from the blueprint pages themselves.  The
+blueprint pages define the templates, the page names, and other properties.
+Catalog creation is always deep, and unlike livecopy creation, the catalog blueprint is always
+in control of the rolloutConfig.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>parentPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.createLiveCopy"></a>
+            <b>Commands.createLiveCopy</b>(&nbsp;<code>String srcPath</code>, <code>String destPath</code>, <span class="optional" title="Optional">[<code>String before</code>]</span>, <span class="optional" title="Optional">[<code>String pageName</code>]</span>, <span class="optional" title="Optional">[<code>Boolean shallow</code>]</span>, <span class="optional" title="Optional">[<code>String[] rolloutConfigs</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Creates a Live Copy.</div>
+            <div class="long">
+                &lt;static&gt; Creates a Live Copy.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>srcPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li><li><code>destPath</code> : String<div class="sub-desc">Destination path (Live Copy parent page path)</div></li><li><code>before</code> : String<div class="sub-desc">(optional) Name of the future next sibling page</div></li><li><code>pageName</code> : String<div class="sub-desc">(optional) Name of the root page (defaults to the name of the Blueprint page)</div></li><li><code>shallow</code> : Boolean<div class="sub-desc">(optional) True to only create a single page Live Copy (defaults to false)</div></li><li><code>rolloutConfigs</code> : String[]<div class="sub-desc">(optional) Rollout config paths (defaults to "default" config)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.detachLiveCopy"></a>
+            <b>Commands.detachLiveCopy</b>(&nbsp;<code>String targetPath</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Detaches a Live Copy, i.e. transform Live Copy into a standalone page.</div>
+            <div class="long">
+                &lt;static&gt; Detaches a Live Copy, i.e. transform Live Copy into a standalone page.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.recreateLiveCopy"></a>
+            <b>Commands.recreateLiveCopy</b>(&nbsp;<code>String srcPath</code>, <code>String targetPath</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+            	        <div><b>Deprecated: Use <a ext:cls="CQ.wcm.msm.MSM.Commands" ext:member="Commands.rollout" href="output/CQ.wcm.msm.MSM.Commands.html#Commands.rollout">rollout</a> with reset option instead</b></div>
+                                    <div class="short">&lt;static&gt; Recreates a Live Copy. Warning: all local modifications will be lost.</div>
+            <div class="long">
+                &lt;static&gt; Recreates a Live Copy. Warning: all local modifications will be lost.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>srcPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.removeSkippedPage"></a>
+            <b>Commands.removeSkippedPage</b>(&nbsp;<code>String parentTargetPath</code>, <code>String[] childNames</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes a list of child pages from the skipped page list.</div>
+            <div class="long">
+                &lt;static&gt; Removes a list of child pages from the skipped page list.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>parentTargetPath</code> : String<div class="sub-desc">Target parent path (Live Copy page path)</div></li><li><code>childNames</code> : String[]<div class="sub-desc">List of child page to remove from skipped page list</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.resetLiveCopy"></a>
+            <b>Commands.resetLiveCopy</b>(&nbsp;<code>String srcPath</code>, <code>String targetPath</code>, <span class="optional" title="Optional">[<code>Boolean deep</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Runs a reset rollout on a Live Copy. Warning !! Some local modifications will be lost:
+deleted paragra...</div>
+            <div class="long">
+                &lt;static&gt; Runs a reset rollout on a Live Copy. Warning !! Some local modifications will be lost:<ul>
+<li>deleted paragraphs/pages will be restored</li>
+<li>cancelled inheritance will be restored</li>
+<li>local modifications will be removed</li>
+</ul>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>srcPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>deep</code> : Boolean<div class="sub-desc">(optional) True to run a deep reset (defaults to false)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.rollout"></a>
+            <b>Commands.rollout</b>(&nbsp;<code>String srcPath</code>, <code>String targetPath</code>, <span class="optional" title="Optional">[<code>Boolean deep</code>]</span>, <span class="optional" title="Optional">[<code>Boolean reset</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Rolls out a Live Copy.</div>
+            <div class="long">
+                &lt;static&gt; Rolls out a Live Copy.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>srcPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>deep</code> : Boolean<div class="sub-desc">(optional) True to run a deep rollout (defaults to false)</div></li><li><code>reset</code> : Boolean<div class="sub-desc">(optional) True to run a reset rollout (defaults to false)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.rolloutLiveCopy"></a>
+            <b>Commands.rolloutLiveCopy</b>(&nbsp;<code>String srcPath</code>, <code>String targetPath</code>, <span class="optional" title="Optional">[<code>Boolean deep</code>]</span>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Rolls out a Live Copy.</div>
+            <div class="long">
+                &lt;static&gt; Rolls out a Live Copy.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>srcPath</code> : String<div class="sub-desc">Source path (Blueprint page path)</div></li><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>deep</code> : Boolean<div class="sub-desc">(optional) True to run a deep rollout (defaults to false)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.skipLiveCopy"></a>
+            <b>Commands.skipLiveCopy</b>(&nbsp;<code>String targetPath</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Adds a page to the skipped page list.</div>
+            <div class="long">
+                &lt;static&gt; Adds a page to the skipped page list.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.msm.MSM.Commands-Commands.unskipLiveCopy"></a>
+            <b>Commands.unskipLiveCopy</b>(&nbsp;<code>String targetPath</code>, <span class="optional" title="Optional">[<code>Function callback</code>]</span>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Removes a page from the skipped page list.</div>
+            <div class="long">
+                &lt;static&gt; Removes a page from the skipped page list.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>targetPath</code> : String<div class="sub-desc">Target path (Live Copy page path)</div></li><li><code>callback</code> : Function<div class="sub-desc">(optional) After command callback, see <a ext:cls="CQ.Ext.Ajax" ext:member="request" href="output/CQ.Ext.Ajax.html#request">CQ.Ext.Ajax.request</a></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) Callback scope</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Commands</td>
+    </tr>
+            </table>
+                <a id="CQ.wcm.msm.MSM.Commands-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

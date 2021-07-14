@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.4 Event Bundling (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>12.4 Event Bundling</H2>
+	<P>A repository that
+	supports observation <I>may</I> support event bundling under
+	asynchronous observation, journaled observation, or both.</P>
+	<P>In such a repository,
+	events are produced in bundles where each corresponds to a single
+	atomic change to a persistent workspace and contains only events
+	caused by that change (see §10.1 <I>Types of Write Methods</I>).</P>
+	<P>For example, given a
+	session with a set of pending node and property additions, on
+	persist, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NODE_ADDED</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PROPERTY_ADDED</FONT></FONT>
+	is produced, as appropriate, for each new item. This set of events
+	is the event bundle associated with that particular persist
+	operation. By grouping events together in this manner, additional
+	contextual information is provided, simplifying the interpretation
+	of the event stream.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

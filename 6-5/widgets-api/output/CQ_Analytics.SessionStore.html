@@ -1,0 +1,465 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ_Analytics.SessionStore-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ_Analytics.SessionStore-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ_Analytics.SessionStore-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ_Analytics.SessionStore"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ_Analytics.Observable" ext:member="" href="output/CQ_Analytics.Observable.html">Observable</a>
+  <img src="resources/docs/elbow-end.gif"/>SessionStore</pre></div>
+                <h1>Class&nbsp;CQ_Analytics.SessionStore</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ_Analytics</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/sessionpersistence.js" target="_blank">sessionpersistence.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">SessionStore</td></tr>
+                        <tr><td class="label">Subclasses:</td><td class="hd-info"><a ext:cls="CQ_Analytics.EventDataMgr" href="output/CQ_Analytics.EventDataMgr.html">EventDataMgr</a>, <a ext:cls="CQ_Analytics.JSONStore" href="output/CQ_Analytics.JSONStore.html">JSONStore</a>, <a ext:cls="CQ_Analytics.MousePositionMgr" href="output/CQ_Analytics.MousePositionMgr.html">MousePositionMgr</a>, <a ext:cls="CQ_Analytics.PageDataMgr" href="output/CQ_Analytics.PageDataMgr.html">PageDataMgr</a>, <a ext:cls="CQ_Analytics.PersistedSessionStore" href="output/CQ_Analytics.PersistedSessionStore.html">PersistedSessionStore</a>, <a ext:cls="CQ_Analytics.SegmentMgr" href="output/CQ_Analytics.SegmentMgr.html">SegmentMgr</a>, <a ext:cls="CQ_Analytics.SurferInfoMgr" href="output/CQ_Analytics.SurferInfoMgr.html">SurferInfoMgr</a></td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ_Analytics.Observable" ext:member="" href="output/CQ_Analytics.Observable.html">CQ_Analytics.Observable</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">personalization.core                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A SessionStore is a container of properties/values.	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ_Analytics.SessionStore-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ_Analytics.SessionStore-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-SessionStore"></a>
+            <b>SessionStore</b>()            <div class="mdesc">
+                                    <div class="short">Creates a new SessionStore.</div>
+            <div class="long">
+                Creates a new SessionStore.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-addInitProperty"></a>
+            <b>addInitProperty</b>(&nbsp;<code>String name</code>, <code>String value</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Adds an initial property to the store.</div>
+            <div class="long">
+                Adds an initial property to the store.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li><li><code>value</code> : String<div class="sub-desc">Property value.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-addListener"></a>
+            <b>addListener</b>(&nbsp;<code>String event</code>, <code>Function fct</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Appends an event handler to the current Observable.</div>
+            <div class="long">
+                Appends an event handler to the current Observable.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>event</code> : String<div class="sub-desc">Event name.</div></li><li><code>fct</code> : Function<div class="sub-desc">The method the event invokes.</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope in which to execute the handler
+function. The handler function's "this" context.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ_Analytics.Observable" ext:member="addListener" href="output/CQ_Analytics.Observable.html#addListener">Observable</a></td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-clear"></a>
+            <b>clear</b>() : void            <div class="mdesc">
+                                    <div class="short">Clears the store.</div>
+            <div class="long">
+                Clears the store.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getData"></a>
+            <b>getData</b>(&nbsp;<code>String[] excluded</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">Returns the store data.</div>
+            <div class="long">
+                Returns the store data.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>excluded</code> : String[]<div class="sub-desc">Property names to exclude from the result.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">Object containing the store data (obj["property"] = value).</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getInitProperty"></a>
+            <b>getInitProperty</b>(&nbsp;<code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns the value of an initial property.</div>
+            <div class="long">
+                Returns the value of an initial property.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The value.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getLabel"></a>
+            <b>getLabel</b>(&nbsp;<code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns a store property friendly label.</div>
+            <div class="long">
+                Returns a store property friendly label.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">the label.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getLink"></a>
+            <b>getLink</b>(&nbsp;<code>String name</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns a store property in a link format.</div>
+            <div class="long">
+                Returns a store property in a link format.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">the link value.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getName"></a>
+            <b>getName</b>() : void            <div class="mdesc">
+                                    <div class="short">Returns the store name.</div>
+            <div class="long">
+                Returns the store name.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getProperty"></a>
+            <b>getProperty</b>(&nbsp;<code>String name</code>, <code>Boolean raw</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns the value of a store property (XSS filtered value).</div>
+            <div class="long">
+                Returns the value of a store property (XSS filtered value).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li><li><code>raw</code> : Boolean<div class="sub-desc">Raw value, no XSS filtering</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">the value.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getPropertyNames"></a>
+            <b>getPropertyNames</b>(&nbsp;<span class="optional" title="Optional">[<code>String[] excluded</code>]</span>&nbsp;) : String[]            <div class="mdesc">
+                                    <div class="short">Returns all store property names.</div>
+            <div class="long">
+                Returns all store property names.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>excluded</code> : String[]<div class="sub-desc">(Optional) Array of excluded properties (not returned).</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String[]</code><div class="sub-desc">Array of the property names.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-getSessionStore"></a>
+            <b>getSessionStore</b>() : CQ_Analytics.SessionStore            <div class="mdesc">
+                                    <div class="short">Returns the session store attached to the current object (returns this).</div>
+            <div class="long">
+                Returns the session store attached to the current object (returns this).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ_Analytics.SessionStore</code><div class="sub-desc">Session store.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-init"></a>
+            <b>init</b>() : void            <div class="mdesc">
+                                    <div class="short">Initializes the store.</div>
+            <div class="long">
+                Initializes the store.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-isInitialized"></a>
+            <b>isInitialized</b>() : void            <div class="mdesc">
+                                    <div class="short">Returns true if the store is initialized. False otherwise.</div>
+            <div class="long">
+                Returns true if the store is initialized. False otherwise.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-loadInitProperties"></a>
+            <b>loadInitProperties</b>(&nbsp;<code>Object obj</code>, <code>Boolean setValues</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Loads initial properties from an object.</div>
+            <div class="long">
+                Loads initial properties from an object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>obj</code> : Object<div class="sub-desc">Object containing the initial store data (obj["property"] = value).</div></li><li><code>setValues</code> : Boolean<div class="sub-desc">True to set the value in the store IF property does is not already present</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-removeListener"></a>
+            <b>removeListener</b>(&nbsp;<code>String event</code>, <code>Function fct</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Removes an event handler from the current Observable.</div>
+            <div class="long">
+                Removes an event handler from the current Observable.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>event</code> : String<div class="sub-desc">Event name.</div></li><li><code>fct</code> : Function<div class="sub-desc">The method the event invokes.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ_Analytics.Observable" ext:member="removeListener" href="output/CQ_Analytics.Observable.html#removeListener">Observable</a></td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-removeProperty"></a>
+            <b>removeProperty</b>(&nbsp;<code>String name</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Removes a property from the store.</div>
+            <div class="long">
+                Removes a property from the store.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-reset"></a>
+            <b>reset</b>() : void            <div class="mdesc">
+                                    <div class="short">Resets the store: restores initial values.</div>
+            <div class="long">
+                Resets the store: restores initial values.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-setProperties"></a>
+            <b>setProperties</b>(&nbsp;<code>Object values</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Sets the value of multiple properties</div>
+            <div class="long">
+                Sets the value of multiple properties    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>values</code> : Object<div class="sub-desc">The key-value store of values to set</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-setProperty"></a>
+            <b>setProperty</b>(&nbsp;<code>String name</code>, <code>String value</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Sets the value of a property.</div>
+            <div class="long">
+                Sets the value of a property.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>name</code> : String<div class="sub-desc">Property name.</div></li><li><code>value</code> : String<div class="sub-desc">Property value.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">SessionStore</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.SessionStore-setSuppressEvents"></a>
+            <b>setSuppressEvents</b>(&nbsp;<code>Boolean suppressEvents</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Sets the value of the <tt>suppressEvents</tt> property</div>
+            <div class="long">
+                Sets the value of the <tt>suppressEvents</tt> property    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>suppressEvents</code> : Boolean<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ_Analytics.Observable" ext:member="setSuppressEvents" href="output/CQ_Analytics.Observable.html#setSuppressEvents">Observable</a></td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.SessionStore-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

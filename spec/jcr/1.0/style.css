@@ -1,0 +1,622 @@
+/* 
+	Author: Oliver Walthard, based on Brian Gardner's Blue Zinfandel
+	Author URI: http://www.day.com
+	Version: 1.1
+		
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+	
+*/
+
+body {
+	background: #EFEFEF url(/microsling/static/blog/img/content.gif) top center repeat-y;
+	color: #333333;
+	font-family: Georgia, Times New Roman, Helvetica, Verdana, Sans-Serif;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+	
+#wrap {
+	background: #EFEFEF url(/microsling/static/blog/img/bg.gif) top center repeat-y;
+	color: #333333;
+	font-family: Georgia, Times New Roman, Helvetica, Verdana, Sans-Serif;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+	
+/************************************************
+*	Hyperlinks									*
+************************************************/
+
+a, a:visited{
+	color: #507AA5;
+	text-decoration: none;
+	border: 0px;
+	}
+	
+a:hover{
+	background-color: #FFFFCC;
+	text-decoration: underline;
+	}
+	
+img {
+	border-style: none;
+	}	
+
+	
+/************************************************
+*	Header  									*
+************************************************/
+
+#header {
+	background: #FFFFFF;
+	width: 960px;
+	margin: 0px auto 0px;
+	padding: 10px 0px 30px 0px;
+	text-align: left;
+	border-top: 10px solid #C0C0C0;
+	}
+	
+#header a {
+	font-family: Helvetica, Verdana, Times New Roman, Sans-Serif;
+	font-size: 32px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: #507AA5;
+	text-decoration: none;
+	padding: 0px 10px 0px 0px;
+	margin: 0px;
+	}
+
+#header a:hover{
+	color: #658DB5;
+	text-decoration: underline;
+	}
+	
+/************************************************
+*	Navbar      								*
+************************************************/
+
+#navbar {
+	background: #FFFFFF;
+	width: 960px;
+	margin: 0px auto 0px;
+	padding: 5px 0px 5px 0px;
+	border-top: 2px solid #C0C0C0;
+	border-bottom: 1px dotted #C0C0C0;
+	}
+	
+#navbar li {
+	display: inline;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	}
+		
+#navbar ul {
+	margin: 0px;
+	padding: 0px;
+	}
+	
+#navbar ul li a {
+	font-family: Helvetica, Verdana, Times New Roman, Sans-Serif;
+	font-weight: bold;
+	font-size: 18px;
+	color: olive;
+	padding: 0px 10px 0px 0px;
+	margin: 0px;
+	text-decoration: none;
+	text-transform: uppercase;
+	}
+
+#navbar ul li a:hover {
+	background-color:white;
+	color: #658DB5;
+	text-decoration: underline;
+	}
+	
+/************************************************
+*	Left Sidebar      							*
+************************************************/
+
+#l_sidebar {
+	float: left;
+	width: 220px;
+	margin: 0px 20px 0px 0px;
+	padding: 20px 0px 20px 0px;
+	display: inline;
+	}
+	
+#l_sidebar ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px 0px 20px 0px;
+	}
+	
+#l_sidebar li {
+	font-family: Georgia, Times New Roman, Sans-Serif;
+	font-size: 12px;
+	line-height: 18px;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	}
+
+
+#l_sidebar li > ul > li {
+	margin-left: 10px;
+	}
+
+#l_sidebar li#Recent > ul > li {
+	border-bottom: 1px dotted olive;
+	}
+
+	
+#l_sidebar ul li h2 {
+	color: olive;
+	font-family: Helvetica, Verdana, Times New Roman, Sans-Serif;
+	margin: 0px 0px 5px 0px;
+	padding: 3px 0px 3px 0px;
+	}
+	
+#l_sidebar ul li a {
+	color: #507AA5;
+	text-decoration: none;
+	}
+
+
+#l_sidebar ul li a:hover {
+	color: #507AA5;
+	text-decoration: underline;
+	}
+	
+#l_sidebar .feed {
+	padding: 0 0 0 25px;
+	text-align: right;
+	background: url(/microsling/static/blog/img/feed-icon-16x16.gif) no-repeat 0 50%;
+}	
+	
+/************************************************
+*	Right Sidebar      							*
+************************************************/
+	
+#r_sidebar {
+	float: right;
+	width: 220px;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	}
+
+#r_sidebar li p{
+	padding:2px 0px 5px;
+	margin: 0px;
+	line-height: 18px;
+	font-size:12px;
+	}
+
+#r_sidebar ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px 0px 20px 0px;
+	}
+	
+#r_sidebar ul li {
+	font-size: 12px;
+	line-height: 18px;
+	margin: 0;
+	padding: 0;
+	}
+	
+#r_sidebar ul li a {
+	font-size: 12px;
+	color: #507AA5;
+	text-decoration: none;
+	}
+
+#r_sidebar ul li a:hover {
+	color: #507AA5;
+	text-decoration: underline;
+	}
+	
+#r_sidebar .feed {
+	padding: 0 0 0 25px;
+	background: url(/microsling/static/blog/img/feed-icon-16x16.gif) no-repeat 0 50%;
+}
+
+#r_sidebar .print {
+	padding: 0 0 0 25px;
+	background: url(/microsling/static/blog/img/printer_icon.gif) no-repeat 0 50%;
+}
+ 
+/************************************************
+*	Content 					     		    * 
+************************************************/
+
+#content {
+	width: 960px;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+
+#content p {
+	padding: 0px 0px 15px 0px;
+	margin: 0px;
+	line-height: 20px;
+	font-size:14px;
+	}
+	
+#content p img {
+	float: left;
+	border: none;
+	margin-right: 15px;
+	margin-bottom: 10px;
+	}
+	
+#content h1 {
+	border-top:2px solid olive;
+	color:#507AA5;
+	font-family:Helvetica,Verdana,Times New Roman,Sans-Serif;
+	font-size:18px;
+	font-weight:bold;
+	line-height:20px;
+	margin:0pt;
+	padding:5px 0pt;
+	}
+	
+#content h1 a  {
+	color: #507AA5;
+	margin-left: -5px;
+	padding: 0px 10px 0px 5px;
+	text-decoration: none;
+	}
+
+#content h1 a:hover {
+	background-color: #FFFFCC;
+	color: #658DB5;
+	}
+	
+#contentmiddle > h4 {
+	color: #507AA5;
+	font-size: 14px;
+	font-family: Helvetica, Verdana, Times New Roman, Sans-Serif;
+	text-decoration: none;
+	padding: 0px 0px 10px 0px;
+	margin: 0px;
+	}
+	
+/********************************************
+* Right Sidebar Setup                       *
+********************************************/ 
+
+#content h2 {
+	color: olive;
+	font-size: 12px;
+	font-family: Helvetica, Verdana, Arial, Sans-Serif;
+	font-weight: bold;
+	margin: 20px 0px 5px 0px;
+	padding: 3px 0px 3px 0px;
+	border-top: 2px solid olive;
+	border-bottom: 1px dotted #C0C0C0;
+	}
+	
+.blockquote{
+    margin: 0px 5px 15px 55px;
+    font-style: italic;
+    font-weight: bold;
+    background: #EFEFEF;
+    border-left: 2px solid olive;
+    border-right: 1px dotted olive;
+    }
+
+#content .blockquote p{
+    font-size: 12px;
+    line-height: 16px;
+    padding: 10px 5px 10px 20px;
+    }
+	
+.codesnippet {
+	margin: 0px 5px 15px 0px;
+	padding: 0px 25px 5px 10px;
+	font-family: Courier;
+	background: #EFEFEF;
+	border-top: 2px solid olive;
+	border-bottom: 1px dotted olive;
+	}
+
+#content .codesnippet p{
+	font-size: 11px;
+	line-height: 16px;
+	margin: 0px 0px 5px 0px;
+	padding: 10px 0px 0px 0px;
+	}
+	
+@media screen {
+ .scrollablecodesnippet pre {
+    	width:420px;
+	overflow: auto;
+	}
+* .scrollablecodesnippet pre {
+ width: 100%;
+ height: 100%;
+ overflow: scroll; overflow-y: visible;
+}
+
+}
+@media print {
+    .scrollablecodesnippet {
+    }
+}	
+
+#contentmiddle {
+	float: left;
+	width: 440px;
+	margin: 0px 0px 0px 0px;
+	padding: 20px 20px 10px 20px;
+	display: inline;
+	}
+	
+
+#contentmiddle p {
+	font-size: 14px;
+	}
+	
+#contentmiddle p img {
+	float: left;
+	border: none;
+	margin-right: 15px;
+	margin-bottom: 10px;
+	}
+	
+#contentmiddle ol {
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 10px 0px;
+	}
+	
+#contentmiddle ol li {
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 5px 0px;
+	}
+	
+#contentmiddle ul {
+	list-style-type: square;
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 10px 0px;
+	}
+	
+#contentmiddle ul li {
+	list-style-type: square;
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 5px 0px;
+	}
+	
+.contentdate {
+	background: url(/microsling/static/blog/img/date_2.png);
+	float: left;
+	width: 45px;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+	}
+	
+.contentdate h3 {
+	color: #FFFFFF;
+	font-size: 9px;
+	font-weight: normal;
+	padding: 11px 0px 0px 8px;
+	margin: 0px;
+	text-transform: uppercase;
+	}
+	
+.contentdate h4 {
+	font-family: Georgia, Times New Roman, Helvetica, Sans-Serif;
+	color: #666666;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 0px 0px 0px 0px;
+	margin: 0px;
+	text-align: center;
+	}
+	
+.contenttitle {
+	float: left;
+	width: 385px;
+	margin: 0px;
+	padding: 0px 0px 0px 10px;
+	}
+	
+.pagetitle {
+	float: left;
+	width: 385px;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	}	
+	
+.contenttitle p {
+	border-top:1px dotted #999999;
+	color:olive;
+	font-family:Helvetica,Verdana,Arial,Sans-Serif;
+	font-size:10px !important;
+	line-height:14px !important;
+    }	
+
+.contenttitle p a {
+	margin-left: 2px;
+	color: #999999;
+	}
+	
+.postspace {
+	border-top: dotted 1px;
+	border-color: #999999;
+	//background: #EFEFEF url(/microsling/static/blog/img/spacer.gif);
+	width: 440px;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
+	}
+	
+/************************************************
+*	Footer      								*
+************************************************/
+
+#footer {
+	font-size: 12px;
+	background: #FFFFFF;
+	width: 960px;
+	margin: 0px auto 0px;
+	padding: 10px 0px 10px 0px;
+	text-align: left;
+	border-top: 1px solid #C0C0C0;
+	}
+
+/************************************************
+*	Search Form									*
+************************************************/
+
+#searchdiv {
+	margin: 0px;
+	padding 0px;
+	}
+	
+#searchform {
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	}
+	
+#s {
+	width: 190px;
+	background: #EFEFEF url(/microsling/static/blog/img/search.gif);
+	color: #333333;
+	font-size: 11px;
+	font-family: Verdana, Helvetica, Sans-Serif;
+	padding: 3px;
+	margin: 8px 0px 0px 0px;
+	border: 1px solid #C0C0C0;
+	}
+
+/************************************************
+*	Comments									*
+************************************************/
+	
+#comment {
+	width: 350px;
+	background: #EFEFEF;
+	color: #666666;
+	float: left;
+	padding: 20px 20px 10px 20px;
+	margin: 10px 0px 0px 0px;
+	border-top: 2px solid #658DB5;
+	border-bottom: 1px dotted #658DB5;
+	}
+	
+#comment ol{
+	list-style-type: square;
+	font-family: Helvetica, Verdana, Arial, Sans-Serif;
+	font-size: 10px;
+	color: #666666;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 10px 0px;
+	}
+	
+.commentdate {
+	font-size: 12px;
+	padding-left: 0px;
+	}
+	
+#commentlist li p{
+	margin-bottom: 8px;
+	line-height: 20px;
+	padding: 0px;
+	}
+
+.commentname {
+	color: #333333;
+	margin: 0px;
+	padding: 5px 5px 5px 0px;
+	}
+
+.commentinfo{
+	clear: both;
+	}
+
+.commenttext {
+	font-family: Georgia, Times New Roman, Helvetica, Sans-Serif;
+	color: #333333;
+	clear: both;
+	margin: 3px 0px 10px 0px;
+	padding: 20px 10px 5px 10px;
+	width: 350px;
+	background: #FFFFFF url(/microsling/static/blog/img/comment.gif) no-repeat top;
+	}
+
+.commenttext-admin {
+	clear: both;
+	margin: 3px 0px 10px 0px;
+	padding: 20px 10px 5px 10px;
+	width: 350px;
+	background: #FFFFFF url(/microsling/static/blog/img/comment.gif) no-repeat top;
+	}
+
+#commentsformheader{
+	padding-left: 0px;
+	}
+
+#commentsform{
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	}
+
+#commentsform form{
+	text-align: left;
+	margin: 0px;
+	}
+
+#commentsform p{
+	margin: 0px;
+	}
+
+#commentsform form textarea{
+	width: 99%;
+	}
+	
+#commentblock {
+       background:#EFEFEF none repeat scroll 0%;
+       border-bottom:1px solid #000000;
+       border-top:2px solid #000000;
+       color:#000000;
+       float:left;
+       margin:10px 0px 0px;
+       padding:20px 20px 10px;
+       width:400px;
+       }	
+	
+p.comments_link  img{
+	margin: 0px;
+	padding: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	}
+	
+/************************************************
+* Footnotes                     
+************************************************/
+
+.footnotelink {
+	vertical-align:super;
+	font-size: 80%;
+}
+
+.footnote a .anchor {
+	font-weight: bold;
+	padding-right: 1em;
+}
+
+.footnotes {
+	font-size: 80%;
+  border-top-color:#999999;
+  border-top-style:dotted;
+  border-top-width:1px;
+}  

@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.5 Query Results (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.5." id="section_8.5.5."></a>8.5.5 Query Results
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p>
+									<a name="_Level_1section_6.1.1."></a>Results are returned in the same structure as with XPath queries. See 6.6.3 Structure of a Query and <a href="6.6.12_Query_Results.html">6.6.12</a> <i>Query Results</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+		<div id="sdfootnote1">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote1sym" href="#sdfootnote1anc" id="sdfootnote1sym">1</a> Unless otherwise noted, all references to “objects” refer to instances of Java classes implementing the indicated Java interface from the <b>javax.jcr</b> package. For example, the term “<b>Repository</b> object” means an instance of a class implementing the interface <b>javax.jcr.Repository</b>.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote2">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote2sym" href="#sdfootnote2anc" id="sdfootnote2sym">2</a> There are other signatures of <b>login</b> as well. See <a href="6.1.1_Repository.html">6.1.1</a> <i>Repository</i> for details.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote3">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote3sym" href="#sdfootnote3anc" id="sdfootnote3sym">3</a> A few <b>Node</b> methods act immediately on the persistent workspace and do not require <b>save</b>. See <u><a href="7.1_Writing_Repository_Content.html">7.1</a></u> Writing Repository Content for details.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote4">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote4sym" href="#sdfootnote4anc" id="sdfootnote4sym">4</a> See http://www.w3.org/TR/xmlschema-0/#ListDt for more information about the XML Schema list type.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote5">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote5sym" href="#sdfootnote5anc" id="sdfootnote5sym">5</a> This escaping scheme is based on the scheme described in ISO/IEC 9075-14:2003 for converting arbitrary strings into valid XML element and attribute names.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote6">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote6sym" href="#sdfootnote6anc" id="sdfootnote6sym">6</a> See http://www.w3.org/TR/2005/WD-xpath20-20050404/#doc-xpath-StringLiteral for details.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote7">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote7sym" href="#sdfootnote7anc" id="sdfootnote7sym">7</a> See http://www.w3.org/TR/xmlschema-0/#ListDt for more information about the XML Schema list type.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote8">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote8sym" href="#sdfootnote8anc" id="sdfootnote8sym">8</a> This is a minimal requirement. The referenced node may have additional mixin node types other than that indicated (and in fact, by definition, it must have at least <b>mix:referenceable</b>, for example). In addition it may be of a node type that is a subtype of the type indicated by the constraint.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote9">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote9sym" href="#sdfootnote9anc" id="sdfootnote9sym">9</a> <b>Workspace.restore</b>, <b>Node.restore</b> (all signatures) and <b>Node.restoreByLabel</b>.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote10">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote10sym" href="#sdfootnote10anc" id="sdfootnote10sym">10</a> There is also a variant, <b>Node.restoreByLabel</b>, which allows the version to be selected by (one of) its <b>jcr:versionLabel</b> value; otherwise, the semantics are the same.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+		<div id="sdfootnote11">
+			
+				
+					
+						
+							
+								
+									<p class="c5">
+										<a class="sdfootnotesym" name="sdfootnote11sym" href="#sdfootnote11anc" id="sdfootnote11sym">11</a> <b>Workspace.restore</b>, <b>Node.restore</b> (all signatures) and <b>Node.restoreByLabel</b>.
+									</p>
+								
+							
+						
+					
+				
+			
+		</div>
+	</body>
+</html>

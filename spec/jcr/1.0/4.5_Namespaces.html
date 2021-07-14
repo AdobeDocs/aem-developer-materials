@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.5 Namespaces (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.5." id="section_4.5."></a>4.5 Namespaces
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The name of a node or property may have a <i>prefix</i>, delimited by a single '<b>:</b>' (colon) character that indicates the <i>namespace</i> of the item.
+								</p>
+							
+							
+								<p class="c5">
+									Namespacing in a content repository is patterned after namespacing in XML. As in XML, the prefix is actually shorthand for the full namespace, which is a URI. URIs are used as namespaces in order to minimize naming collisions. Every compliant (level 1 or 2) repository has a namespace registry. The namespace registry always contains at least the following built-in namespace prefixes:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>jcr</b> Reserved for items defined within built-in node types.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					<b>nt</b> Reserved for the names of built-in primary node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>mix</b> Reserved for the names of built-in mixin node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>xml</b> Reserved for reasons of compatibility with XML.
+				</p>
+			</li>
+			<li>
+				<p>
+					“” (the empty prefix) This indicates the default namespace.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In level 1 repositories the prefix assigned to an existing registered namespace (a URI) may be temporarily over-ridden by another prefix within the scope of a particular <b>Session</b>. Level 2 repositories have, additionally, the capability to add, remove and change the set of namespaces (URIs) stored in the namespace registry (excluding the built-in namespaces). See section <a href="6.3_Namespaces.html">6.3</a>, <i>Namespaces</i>, for more details.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

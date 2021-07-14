@@ -1,0 +1,81 @@
+
+Form
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form
+
+   Form is a component to represent a standard HTML form (<form>).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Form] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The action attribute.
+       */
+      - action (StringEL)
+
+      /**
+       * The enctype attribute.
+       */
+      - enctype (String)
+
+      /**
+       * The method attribute.
+       */
+      - method (String) < 'get', 'post'
+
+      /**
+       * The target attribute.
+       */
+      - target (String)
+
+      /**
+       * Indicates if input elements can by default have their values automatically completed by the browser.
+       *
+       * See also `MDN documentation regarding autocomplete attribute <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form>`_.
+       */
+      - autocomplete (String)
+
+      /**
+       * The ``novalidate`` attribute to indicate that the form is not to be validated when submitted.
+       */
+      - novalidate (Boolean)
+
+      /**
+       * The path to the resource to be used as the values by the contained form fields.
+       *
+       * The ValueMap of the resource is used as the key-value pairs that are matched by ``name`` property of the field.
+       *
+       * Given the following structure::
+       *
+       *    + /apps/example/myformvalues
+       *      - name1 = "value1"
+       *      - name2 = ["value1", "value2"]
+       *
+       *    + /apps/example/myform
+       *      - sling:resourceType = "granite/ui/components/foundation/form"
+       *      - dataPath = "/apps/example/myformvalues"
+       *      + items
+       *        + textfield
+       *          - sling:resourceType = "granite/ui/components/foundation/form/textfield"
+       *          - name = "name1"
+       *
+       * The textfield will be matched with ``name1`` key. The textfield will then use ``value1`` as its value.
+       *
+       * The value of the field ``name`` can be any string that can be passed to `ValueMap#get() <https://sling.apache.org/apidocs/sling8/org/apache/sling/api/resource/ValueMap.html#get-java.lang.String-java.lang.Class->`_.
+       * So relative value works. e.g. ``name1``, ``./name1``, ``./childNode1/prop1``.
+       *
+       * The form is often used in conjunction with `SlingPostServlet <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html>`_
+       * as the submission endpoint, where it defines a certain field name convention.
+       */
+      - dataPath (StringEL)
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

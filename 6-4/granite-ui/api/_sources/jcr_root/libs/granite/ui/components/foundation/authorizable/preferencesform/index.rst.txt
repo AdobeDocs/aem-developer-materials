@@ -1,0 +1,36 @@
+
+PreferencesForm
+===============
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/authorizable/preferencesform
+
+   A form component that set the ``action`` to path of preferences resource (``UserPropertiesService.PREFERENCES_PATH``) of the current user.
+   The value of the ``method`` attribute of this form is always `post`.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:AuthorizablePreferencesForm] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The ``enctype`` attribute.
+       */
+      - enctype (String)
+
+      /**
+       * The ``target`` attribute.
+       */
+      - target (String)
+
+      /**
+       * Indicates if input elements can by default have their values automatically completed by the browser.
+       *
+       * See also `MDN documentation regarding autocomplete attribute <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form>`_.
+       */
+      - autocomplete (String)
+
+      /**
+       * The ``novalidate`` attribute to indicate that the form is not to be validated when submitted.
+       */
+      - novalidate (Boolean)

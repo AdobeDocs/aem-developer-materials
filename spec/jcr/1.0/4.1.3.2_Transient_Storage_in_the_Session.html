@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.3.2 Transient Storage in the Session (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.3.2." id="section_4.1.3.2."></a>4.1.3.2 Transient Storage in the Session
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Notice the use of the method <b>Session.save</b> in the above examples. This method is needed because changes made through most methods of <b>Session</b>, <b>Node</b><sup><b><a class="sdfootnoteanc" name="sdfootnote3anc" href="#sdfootnote3sym" id="sdfootnote3anc"><sup>3</sup></a></b></sup> or <b>Property</b> are not immediately reflected in the persistent workspace. The changes are held in transient storage associated with the <b>Session</b> object until they are either persisted (using <b>Session.save</b> or <b>Item.save</b>) or discarded (using <b>Session.refresh(false)</b> or <b>Item.refresh(false)</b>).
+								</p>
+							
+							
+								<p class="c5">
+									Changes not yet saved or discarded are called <i>pending changes</i>. Pending changes are immediately visible through the session that made them but are not visible through other sessions accessing the same workspace.
+								</p>
+							
+							
+								<p class="c5">
+									<b>Session.save</b> validates and, if validation succeeds, persists all pending changes currently stored in the <b>Session</b> object, making them visible to other sessions (though this only applies if the <b>save</b> is not within the scope of a transaction, see <a href="4.1.3.3_Transactions.html">4.1.3.3</a> <i>Transactions</i>, below). Conversely, <b>Session.refresh(false)</b> discards all pending changes currently stored in the <b>Session</b>.
+								</p>
+							
+							
+								<p class="c5">
+									For more fine-grained control over which changes are persisted or discarded, the methods <b>Item.save</b> and <b>Item.refresh</b> are also provided. <b>Item.save</b> saves all pending changes in the <b>Session</b> that apply to that particular item or its subtree. Analogously, <b>Item.refresh(false)</b> discards all pending changes that apply to that item or its subtree. See <a href="7.1_Writing_Repository_Content.html">7.1</a> <i>Writing Repository Content</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

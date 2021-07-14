@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.10.1 Node Type Assignment Behavior (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.10.1 Node Type Assignment Behavior</H3>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>
+	the primary node type of the new node is assigned. In cases where a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>
+	does not explicitly specify a primary node type, it is determined by
+	the applicable child node definition (see §3.7.7 <I>Applicable Item
+	Definition</I>). Otherwise, it is determined by the node type name
+	passed. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+	property is created immediately and set to the name of the primary
+	node type. This property is defined as <FONT FACE="Courier New, monospace"><FONT SIZE=2>mandatory</FONT></FONT>
+	in the node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	(see §3.7.10 <I>Base Primary Node Type</I>) and will therefore
+	appear on every node. 
+	</P>
+	<P>The constraints
+	enforced by the assigned node type may take effect immediately, or
+	on persist. Whichever is chosen, this <I>node</I> <I>type assignment
+	behavior</I> must be consistent across all methods that assign node
+	types (<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setPrimaryType</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addMixin</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeMixin</FONT></FONT>,
+	see §10.10.2 <I>Updating a Node's Primary Type</I> and §10.10.3
+	<I>Assigning Mixin Node Types</I>).</P>
+	<P>If <I>immediate effect</I>
+	is implemented then conflicts with other mixins or with the primary
+	type are detected immediately and an exception thrown. If <I>on-persist
+	effect</I> is implemented, such conflicts are detected and the
+	appropriate exception thrown on persist. This validation can also be
+	performed pre-emptively with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.canAddMixin(String mixinName)</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	</FONT></FONT>
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

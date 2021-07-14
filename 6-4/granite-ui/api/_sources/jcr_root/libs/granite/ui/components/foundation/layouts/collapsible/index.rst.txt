@@ -1,0 +1,55 @@
+
+Collapsible
+===========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/collapsible
+   :layout:
+
+   The collapsible layout.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsCollapsible]
+
+      /**
+       * The variant of the collapsible.
+       */
+      - variant (String) < 'block'
+
+      /**
+       * The selector to the parent element of the items. The count of the items is displayed as the badge in the header.
+       * If the value is empty string, then the direct children are used.
+       * IF the property is not specified at all, the badge is not shown.
+       */
+      - itemCounter (String)
+
+   It has the following content structure at the main resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsCollapsibleMain]
+
+      /**
+       * The collapsible title.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * The subtitle.
+       */
+      - subtitle (String) i18n
+
+   The body of the collapsible is specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mycollapsible
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        - jcr:title = "My Collapsible"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/collapsible"
+        + items
+          + item1
+          + item2

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.9 Query Object (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>6.9 Query Object</H2>
+	<P>A new <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object can be created with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query
+	QueryManager.<BR> createQuery(String statement, String language)</FONT></FONT>.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>language</FONT></FONT>
+	parameter is a string representing one of the supported languages.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>statement</FONT></FONT>
+	parameter is the query statement itself. This method is used for
+	languages that are string-based (i.e., most languages, such as
+	JCR-SQL2) as well as for the<I> string serializations</I> of
+	non-string-based languages (such as JCR-JQOM). For example, the call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QM.createQuery(S,
+	Query.JCR_SQL2)</FONT></FONT>,</P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>QM</FONT></FONT>
+	is the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	is a JCR-SQL2 statement, returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object encapsulating <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.
+		</P>
+	<P>However, the call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QM.createQuery(S,
+	Query.JCR_JQOM) </FONT></FONT>
+	</P>
+	<P>also works. It returns
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	(a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>)
+	holding the JCR-JQOM object tree equivalent to <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.</P>
+	<P>In either case the
+	returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object encapsulates the resulting query. In some repositories the
+	first method call (with JCR-SQL2 specified) may also result in a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>,
+	though this is not required.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

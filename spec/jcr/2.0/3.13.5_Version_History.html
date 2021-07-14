@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.5 Version History (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.5 Version History</H3>
+	<P>Under simple
+	versioning a version history is represented by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	object (see §15.1.1 <I>VersionHistory Object</I>). Under full
+	versioning a version history is represented by both a <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	object and a node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>.</P>
+	<P>A version history is
+	created upon creation of a new versionable node. Under full
+	versioning this results that an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node being created automatically within the version storage subgraph
+	in an implementation determined location and with an
+	implementation-determined name.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	is a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	However, since under simple versioning a version history is not
+	represented by a node, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	methods inherited by <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	are not required to function. Under full versioning those methods
+	will function as expected on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node representing the history.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

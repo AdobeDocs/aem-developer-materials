@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.3.4 Path Constraint (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.3.4." id="section_6.6.3.4."></a>6.6.3.4 Path Constraint
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The path constraint restricts the result node to a scope specified by a path expression. The following path constraints must be supported:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Exact
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Child nodes
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Descendants
+				</p>
+			</li>
+			<li>
+				<p>
+					Descendants or self<br><br>
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<b>XPath</b>: In XPath the location steps specify the path constraint.
+								</p>
+							
+							
+								<p class="c5">
+									<b>SQL</b>: In SQL the path constraint occurs as an ANDed test within the WHERE clause of the pseudo-property <b>jcr:path</b> using either the = operator or the LIKE operator.
+								</p>
+							
+							
+								<p class="c5">
+									<i>Exact</i> path constraint examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/some[%]/nodes[%]'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some/<br>
+										element(nodes, my:type)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path = '/some/nodes'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some[1]/element(nodes, my:type)[1]
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<i>Child nodes</i> path constraint examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/some[%]/nodes[%]/%' AND NOT jcr:path LIKE '/some[%]/nodes[%]/%/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some/nodes/<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/some/nodes/%'<br>
+										AND NOT jcr:path LIKE '/some/nodes/%/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some[1]/nodes[1]/<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<i>Descendants</i> path constraint examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/some[%]/nodes[%]/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some/nodes//<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/some/nodes/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some[1]/nodes[1]//<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									<i>Descendants or self</i> path constraint examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/some[%]/nodes[%]' OR jcr:path LIKE '/some[%]/nodes[%]/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some/nodes//<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path = '/some/nodes' OR jcr:path LIKE '/some/nodes/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/some[1]/nodes[1]//<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

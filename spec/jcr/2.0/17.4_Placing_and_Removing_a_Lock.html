@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.4 Placing and Removing a Lock (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.4 Placing and Removing a Lock</H2>
+	<P>When <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	is performed on a <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node, the properties defined in that node type are automatically
+	created and set as follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+		is set to the supplied owner info, the user ID associated with the
+		session that set the lock (this is the value returned by
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID</FONT></FONT>)
+		or another implementation-dependent string identifying the user.</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	is set to reflect whether the lock is deep or not.</P>
+	<P>When <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.unlock</FONT></FONT>
+	is performed on a locked <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node, through a session that owns the lock these two properties are
+	removed.</P>
+	<P>Additionally, the content repository
+	may give permission to some sessions to remove locks for which they
+	are not the owner. Typically such “lock-superuser” capability is
+	intended to facilitate administrational clean-up of orphaned
+	open-scoped locks.</P>
+	<P>An attempt to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>
+	for a node that is not <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException</FONT></FONT>,
+	as will an attempt to lock an already locked node or unlock an
+	already unlocked node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7 Node Types (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>3.7 Node Types</H2>
+	<P>Node types are used to
+	enforce structural restrictions on the nodes and properties in a
+	workspace by defining for each node, its required and permitted
+	child nodes and properties.</P>
+	<P>Every node has one
+	declared <I>primary node type</I> and zero or more <I>mixin node
+	types</I>. Primary node types are typically used to defined the core
+	characteristics of a node, while mixin node types are used to add
+	additional characteristics often related to specific repository
+	functions or to metadata. 
+	</P>
+	<P>In a writable
+	repository a node's primary type is first assigned upon node
+	creation, while mixin types may be assigned on creation or during a
+	node's lifetime. Repository implementations may vary as to how
+	flexible they are in allowing changes to the primary or mixin node
+	types assigned to a node.</P>
+	<P>Each repository has a
+	single, system-wide registry of node types. Typically, a repository
+	will come with some implementation-determined set of built-in node
+	types. Some of these types may be vendor-specific while others may
+	be standard node types defined by JCR to support common use-cases
+	(see §3.7.11 <I>Standard Application Node Types</I>) or repository
+	features. Some repositories may further allow users to register new
+	node types programmatically (see §19 <I>Node Type Management</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

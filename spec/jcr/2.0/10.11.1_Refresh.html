@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.11.1 Refresh (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.11.1 Refresh</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.refresh(boolean keepChanges)</FONT></FONT></P>
+	<P>refreshes the state of
+	the transient session store.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>keepChanges</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	all pending changes in the session are discarded and all items bound
+	to that session revert to their current dispatched state. Without
+	transactions, this is the current persisted state. Within a
+	transaction, this state will reflect persistent storage as modified
+	by changes that have been saved but not yet committed.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>keepChanges</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then pending changes are not discarded but items that do not have
+	changes pending have their state refreshed to reflect the current
+	persisted state, thus revealing changes made by other sessions.</P>
+	<P>If an exception occurs
+	on <FONT FACE="Courier New, monospace"><FONT SIZE=2>refresh</FONT></FONT>,
+	the set of all pending changes recorded on the session is left
+	unaffected and the state of all bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>s
+	is also unaffected.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

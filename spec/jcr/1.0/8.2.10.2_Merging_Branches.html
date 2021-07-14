@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.10.2 Merging Branches (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.10.2." id="section_8.2.10.2."></a>8.2.10.2 Merging Branches
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									As mentioned, when a merge test on a node <b>N</b> fails, this indicates that the two base versions <b>V</b> and <b>V'</b> are on separate branches of the version graph. Consequently, determining the result of the merge is not simply a matter of determining which version is the successor of the other in terms of version history. Instead, the <i>content</i> (that is, the subtree) of <b>N'</b> must be merged into the content of <b>N</b> according to some domain specific criteria which must be performed at the application level, for example, through a merge tool provided to the user.
+								</p>
+							
+							
+								<p class="c5">
+									The <b>jcr:mergeFailed</b> property is used to tag nodes that fail the merge test so that an application can find them and deal appropriately with them. The <b>jcr:mergeFailed</b> property is multi-valued so that information about merge failures is not lost if more than one successive merge is attempted before being dealt with by the application.
+								</p>
+							
+							
+								<p class="c5">
+									In the above example, after the <i>content</i> of <b>N'</b> is merged into <b>N</b>, the application will want to also merge the two branches of the version graph. This is done by calling <b>N.doneMerge(V')</b> where <b>V'</b> is retrieved by following the reference stored in the <b>jcr:mergeFailed</b> property of <b>N</b>. This has the effect of moving the reference-to-<b>V'</b> from the <b>jcr:mergeFailed</b> property of <b>N</b> to its <b>jcr:predecessors</b> property.
+								</p>
+							
+							
+								<p class="c5">
+									If, on the other hand, the application chooses not to join the two branches, then <b>cancelMerge(V')</b> is performed. This has the effect of removing the reference to <b>V'</b> from the <b>jcr:mergeFailed</b> property of <b>N</b> without adding it to <b>jcr:predecessors</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Once the last reference in <b>jcr:mergeFailed</b> has been either moved to <b>jcr:predecessors</b> (with <b>doneMerge</b>) or just removed from <b>jcr:mergeFailed</b> (with <b>cancelMerge</b>) the <b>jcr:mergeFailed</b> property is automatically removed, thus enabling this node to be checked-in, creating a new version (note that before the <b>jcr:mergeFailed</b> is removed, its <b>OnParentVersion</b> setting of <b>ABORT</b> prevents check in). This new version will have a predecessor connection to each version for which <b>doneMerge</b> was called, thus joining those branches of the version graph.
+								</p>
+							
+							
+								<p class="c5">
+									See <a href="8.2.14_Versioning_API.html">8.2.14</a> <i>Versioning API</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

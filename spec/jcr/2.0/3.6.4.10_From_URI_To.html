@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.4.10 From URI To (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.6.4.10 From URI To</H4>
+	<P><B>STRING</B>: The <FONT FACE="Courier New, monospace"><FONT SIZE=2>URI</FONT></FONT>
+	is converted directly into a <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING.</FONT></FONT></P>
+	<P><B>BINARY</B>: Since a
+	URI is guaranteed to already contain only ASCII characters it is
+	converted directly to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	resulting in series of octets that is a UTF-8 encoding of the
+	character sequence comprising the URI.</P>
+	<P><B>NAME</B>: If the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>URI</FONT></FONT>
+	consists of a single path segment without a colon (for example,
+	simply <FONT FACE="Courier New, monospace"><FONT SIZE=2>bar</FONT></FONT>)
+	it is converted to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+	by decoding any percent-escaped sequences into octet sequences and
+	then decoding those into character sequences using UTF-8. If it has
+	a redundant leading “<FONT FACE="Courier New, monospace"><FONT SIZE=2>./</FONT></FONT>”
+	followed by a single segment (with or without a colon, like <FONT FACE="Courier New, monospace"><FONT SIZE=2>./bar</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>./foo:bar</FONT></FONT>
+	) the redundant “<FONT FACE="Courier New, monospace"><FONT SIZE=2>./</FONT></FONT>”
+	is removed and the remainder is converted to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME
+	</FONT></FONT>in the same way. Otherwise a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>PATH</B>: If the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>URI</FONT></FONT>
+	begins with a “<FONT FACE="Courier New, monospace"><FONT SIZE=2>/</FONT></FONT>”
+	it is converted a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH
+	</FONT></FONT>by decoding any percent-escaped
+	sequences into octet sequences and then decoding those into
+	character sequences using UTF-8. If it consists of a path whose
+	first segment is without a colon (for example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>bar</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>bar/baz</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>bar/foo:baz</FONT></FONT>)
+	it is converted in the same way. If it consists of a path with a
+	redundant leading “<FONT FACE="Courier New, monospace"><FONT SIZE=2>./</FONT></FONT>”
+	(for example <FONT FACE="Courier New, monospace"><FONT SIZE=2>./bar/baz</FONT></FONT>,
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>./foo:bar/foo:baz</FONT></FONT>
+	) the redundant “<FONT FACE="Courier New, monospace"><FONT SIZE=2>./</FONT></FONT>”
+	is removed and the remainder is converted to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	as described in §3.6.4.1 <I>From STRING To</I>. Otherwise a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>All Others</B>: A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,16 @@
+***************************
+Granite UI Betty Components
+***************************
+
+The objective of Betty components is to provide a standardized set of components for the purpose of AEM UI.
+
+Whenever there is a use case matching the intended target of Betty component, Betty design should be considered and used first.
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   actionbar
+   simplebar
+   titlebar
+   breadcrumbs

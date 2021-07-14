@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.2.1.4 Predecessors (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.2.1.4 Predecessors</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version[]
+	Version.getPredecessors()</FONT></FONT></P>
+	<P>returns the direct
+	predecessors of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>.
+	Under simple versioning this set will be at most of size 1. Under
+	full versioning, this set maybe of size greater than 1, indicating a
+	merge within the version graph.</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Version
+	Version.getLinearPredecessor()</FONT></FONT></P>
+	<P>returns the direct
+	predecessor of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	along the same line of descent returned by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.getAllLinearVersions</FONT></FONT>
+	in the current workspace (see §3.1.8.2 <I>Current Session and
+	Workspace</I>), or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if no such direct predecessor exists. Note that under simple
+	versioning the behavior of this method is equivalent to getting the
+	unique direct predecessor (if any) of this version.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

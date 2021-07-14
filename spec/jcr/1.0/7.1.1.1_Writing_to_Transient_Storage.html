@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.1.1 Writing to Transient Storage (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.1.1." id="section_7.1.1.1."></a>7.1.1.1 Writing to Transient Storage
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The purpose behind the transient storage in the session is to provide a space in which complex changes can be made to content without having these changes validated at every step. When a node/property structure is fully assembled it can be saved and validated against node type and other constraints. This allows structures of nodes and properties to be temporarily invalid while they are being built.
+								</p>
+							
+							
+								<p class="c5">
+									The methods that write to the transient layer are:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>Node.addNode</b>, <b>setProperty</b>, <b>orderBefore</b>, <b>addMixin</b> and<br>
+					<b>removeMixin</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Property</b>.<b>setValue</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Item</b>.<b>remove</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Session.move</b> and <b>importXML</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Query.storeAsNode</b>.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Changes made though these methods will only be pushed to the workspace when a <b>save</b> is called that includes the change within its scope.
+								</p>
+							
+							
+								<p class="c5">
+									<b>Session.save</b> persists all pending changes currently stored in the <b>Session</b> object. Conversely, <b>Session.refresh(false)</b> discards all pending changes currently stored in the <b>Session</b>.
+								</p>
+							
+							
+								<p class="c5">
+									For more fine-grained control over which changes are persisted or discarded, the methods <b>Item.save</b> and <b>Item.refresh(false)</b> are also provided. <b>Item.save</b> saves all pending changes that apply to that particular item and its subtree. Analogously, <b>Item.refresh</b> discards all pending changes that apply to that item and its subtree.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

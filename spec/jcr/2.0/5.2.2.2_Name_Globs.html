@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.2.2.2 Name Globs (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>5.2.2.2 Name Globs</H4>
+	<P>The alternate
+	signatures</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	Node.getNodes(String[] nameGlobs)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyIterator
+	Node.getProperties(String[] nameGlobs)</FONT></FONT></P>
+	<P>Behave identically to
+	those that take <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	except that the parameter passed is an array of globs, as defined
+	above, which are “ORed” together, removing the need for the “<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>”
+	metacharacter to indicate disjunction. The items returned,
+	therefore, are those that match <I>at least one</I> of the globs in
+	the array. Unlike the <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	case, leading and trailing whitespace in globs <I>is not</I> ignored
+	by these methods.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

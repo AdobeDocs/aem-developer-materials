@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.5 Check In (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.5." id="section_8.2.5."></a>8.2.5 Check In
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									To create a new version of a versionable node <b>N</b>, the application calls <b>N.checkin</b>. If <b>N</b> is already checked-in, this method has no effect but simply returns the current base version of this node. If <b>N</b> is not versionable then a <b>UnsupportedRepositoryOperationException</b> is thrown. Otherwise, the following preconditions must hold:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>N</b> must not have any unsaved changes pending, otherwise an <b>InvalidItemStateException</b> is thrown.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b>'s <b>jcr:mergeFailed</b> (multi-value) property must not be present, otherwise a <b>VersionException</b> is thrown (notice that this is enforced in any case due to the <b>ABORT</b> setting of the <b>jcr:mergeFailed</b> property's <b>OnParentVersion</b> attribute).
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Given these preconditions, <b>N.checkin</b> will cause the following series of events:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					A new <b>nt:version</b> node <b>V</b> is created and added as a child node to <b>VH</b>, the <b>nt:versionHistory</b> pointed to by <b>N</b>’s <b>jcr:versionHistory</b> property.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b>’s current <b>jcr:predecessors</b> property is copied to <b>V</b>, and <b>N</b>'s <b>jcr:predecessors</b> property is then set to the empty array (it is a multi-value property, therefore it can be set to empty). Note that <b>N</b>'s <b>jcr:predecessors</b> property also forms part of the frozen state of <b>N</b> (because it has an <b>OnParentVersion</b> attribute of <b>COPY</b>) and therefore will also be copied to <b>V/jcr:frozenNode</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A reference to <b>V</b> is added to the <b>jcr:successors</b> property of each of the versions identified in <b>V</b>’s <b>jcr:predecessors</b> property.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b>’s <b>jcr:baseVersion</b> property is set to refer to <b>V</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b>’s <b>jcr:isCheckedOut</b> property is set to <b>false</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The state of <b>N</b> is recorded in the form of the <b>jcr:frozenNode</b> child of <b>V</b>. The extent of the state stored (i.e. exactly which child items are included and which ignored, etc.) will typically be partial, as prescribed by the <b>OnParentVersion</b> attribute of each of <b>N</b>’s child items. See <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>, for the details. The <b>jcr:primaryType</b>, <b>jcr:mixinTypes</b> and <b>jcr:uuid</b> properties of <b>N</b> are copied over to the child <b>jcr:frozenNode</b> of <b>V</b> but renamed to <b>jcr:frozenPrimaryType</b>, <b>jcr:frozenMixinTypes</b> and <b>jcr:frozenUuid</b> to avoid conflict with <b>jcr:frozenNode</b>'s own properties with these names.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>V</b> is given a automatically generated name. How this is done is implementation specific.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The node <b>N</b> and its <i>connected non-versionable subtree</i> become read-only. <b>N</b>'s connected non-versionable subtree is the set of non-versionable descendant nodes reachable from <b>N</b> through child links without encountering any versionable nodes. In other words, the read-only status flows down from the checked-in node along every child link until either a versionable node is encountered or an item with no children is encountered.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Read-only status means that an item cannot be altered by the client using standard API methods (<b>addNode</b>, <b>setProperty</b>, etc.). The only exceptions to this rule are the <b>restore</b><sup><b><a class="sdfootnoteanc" name="sdfootnote9anc" href="#sdfootnote9sym" id="sdfootnote9anc"><sup>9</sup></a></b></sup>, <b>Node.merge</b> and <b>Node.update</b> operations; these do not respect read-only status due to check-in. Note that <b>remove</b> of a read-only node is possible, as long as its parent is not read-only (since removal is an alteration of the parent node).
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This method acts directly on the workspace and the version storage. All changes are persisted immediately. There is no need to call <b>save</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

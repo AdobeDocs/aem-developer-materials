@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 5.5 Namespace Prefixes in the Examples (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_5.5." id="section_5.5."></a> 5.5 Namespace Prefixes in the Examples
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In the above examples, we use colon-delimited <i>prefixes</i> for naming certain nodes and properties. The nodes and properties fall into three categories:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>Nodes and properties common to all applications:</b> In the example these include <b>jcr:content</b> and <b>jcr:created</b>. This naming convention is enforced by the node types built into the repository. For example, in <a href="5.1_A_File_System-backed_Content_Repository.html">5.1</a>, the node <b>bigstripe.gif</b> is mapped to a node of type <b>nt:file</b>, and that node type requires the node to have a property named <b>jcr:created</b> and a child node named <b>jcr:content</b> (see <a href="6.7_Node_Types.html">6.7</a> <i>Node Types</i>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Nodes and properties specific to the application:</b> In the examples we use <b>myapp</b>. These names could be enforced by application-specific node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Nodes and properties with names taken from existing resources:</b> These include the file and directory names <b>products</b> and <b>rhombus</b> in example <a href="5.4_XML-backed_Content_Repository.html">5.4</a>. Since in these examples these names are taken directly from the underlying resources, they happen not to be namespaced. In general however, a mapping to namespaced names could just as well be used.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									For more details see <a href="6.3_Namespaces.html">6.3</a> <i>Namespaces</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.9 Versionable State (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.9 Versionable State</H3>
+	<P>The <I>versionable
+	state</I> of a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is typically a <I>subset</I> of its subgraph. The extent of this
+	subset is defined in the node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT><I>
+	</I>through the <I>on-parent-version attribute</I> (<I>OPV</I>) of
+	each of its child items (see §3.7.2.5 <I>On-Parent-Version</I>).</P>
+	<P>A frozen node <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	storing the versionable state of the node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is constructed as follows:</P>
+	<OL>
+		<LI><P>The primary type
+		of <I>N</I> is copied from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+		property of <I>N</I> to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenPrimaryType</FONT></FONT>
+		property of <I>F</I>.</P>
+		<LI><P>The mixin types
+		of <I>N </I>(if any) are copied from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property of <I>N</I> to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenMixinTypes</FONT></FONT>
+		property of <I>F</I>.</P>
+		<LI><P>The referenceable
+		identifier of <I>N</I> is copied from the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		property of <I>N </I>to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenUuid</FONT></FONT>
+		property of <I>F</I>.</P>
+		<LI><P>For each property
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		other than <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		where</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+			has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>
+			<I>or</I></P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+			has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>,</P>
+		</UL>
+	</OL>
+	<P>a
+	copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is added to the frozen node, preserving its name and value (or
+	values).</P>
+	<OL START=5>
+		<LI><P>For each child
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		where</P>
+	</OL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>,</P>
+	</UL>
+	<P>a
+	copy of the entire subgraph rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	(regardless of the OPV values of the sub-items) is added to the
+	frozen node, preserving the name of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	and the names and values of all its sub-items.</P>
+	<P>In
+	a repository that supports orderable child nodes, the relative
+	ordering of the set of child nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	that are copied to the frozen node is preserved. As is the ordering
+	within the subgraph of each of these child nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.</P>
+	<OL START=6>
+		<LI><P>For each child
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		where:</P>
+	</OL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+				</P>
+	</UL>
+	<P>Under
+	simple versioning, the same behavior as <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>.</P>
+	<P>Under
+	full versioning, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is not <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	the same behavior as <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>.
+		</P>
+	<P>Under
+	full versioning, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	then a special <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionedChild</FONT></FONT>
+	node with a reference to the version history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is substituted in place of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	as a child of the frozen node. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionedChild</FONT></FONT>
+	node has the same name as <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	and, in a repository that supports orderable child nodes, the
+	relative ordering of any such child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is preserved. The definition of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionedChild</FONT></FONT>
+	is:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:versionedChild]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:childVersionHistory (REFERENCE) mandatory</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">autocreated
+	protected ABORT</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">&lt; 'nt:versionHistory'</FONT></P>
+	<P>The
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:childVersionedHistory</FONT></FONT>
+	points to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.</P>
+	<P><BR><BR>
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

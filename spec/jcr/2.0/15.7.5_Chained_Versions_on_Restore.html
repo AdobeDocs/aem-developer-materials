@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.7.5 Chained Versions on Restore (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.7.5 Chained Versions on Restore</H3>
+	<P>Each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	is represented in <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	not as a copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+	but as special node containing a reference to the version history of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.
+	On restore, the following occurs.</P>
+	<UL>
+		<LI><P>If the workspace
+		currently has an already existing node corresponding to <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>’s
+		version history and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+		flag of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+		then that instance of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		becomes the child of the restored <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If the workspace
+		currently has an already existing node corresponding to <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>’s
+		version history and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+		flag of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+		then an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+		is thrown.</P>
+		<LI><P>If the workspace
+		does not have an instance of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		then one is restored from <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>’s
+		version history:</P>
+		<UL>
+			<LI><P>If the restore
+			was initiated through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>restoreByLabel</FONT></FONT>
+			where <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+			is the specified label and there is a version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			with the label <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+			then that version is restored.</P>
+			<LI><P>If the version
+			history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			does not contain a version with the label <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+			or the restore was initiated by a method call that does not
+			specify a label then the workspace in which the restore is being
+			performed will determine which particular version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			will be restored. This determination depends on the configuration
+			of the workspace and is outside the scope of this specification.</P>
+		</UL>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

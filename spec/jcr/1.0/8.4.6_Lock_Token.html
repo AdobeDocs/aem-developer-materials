@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.6 Lock Token (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.6." id="section_8.4.6."></a>8.4.6 Lock Token
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The method <b>Node.lock</b> returns a <b>Lock</b> object, which in turn contains a lock token. A lock token is a string that uniquely identifies a particular lock and acts as a “key” allowing a user to alter a locked node.
+								</p>
+							
+							
+								<p class="c5">
+									In order to use the lock token as a key, it must be added to the <b>Session</b> of the user, thus empowering that session to alter the nodes to which the lock applies. When a lock token is attached to a <b>Session</b>, the user of that session becomes a <i>token holder</i> of that lock token.
+								</p>
+							
+							
+								<p class="c5">
+									The method <b>Node.lock</b> automatically adds the lock token for a newly placed lock to the current <b>Session</b>. If a user requires more control over which lock tokens are attached to the session, the <b>Session</b> interface provides the methods <b>addLockToken</b>, <b>removeLockToken</b> and <b>getLockTokens</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that, as mentioned above, any user with the correct lock token assumes the power to remove a lock and alter nodes under that lock. It does not have to be the lock owner.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

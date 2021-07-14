@@ -1,0 +1,677 @@
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.authentication.credentials.AbstractCredentials Class
+MISSING @SINCE TAG: com.adobe.granite.haf.annotations.ApiHeader Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.annotations.ApiOrderBy Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.annotations.ApiPaginationLimit Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.annotations.ApiPaginationStart Interface
+MISSING @SINCE TAG: com.day.cq.dam.api.timeline.types.AssetCommentTimelineEventType Class
+MISSING @SINCE TAG: com.day.cq.personalization.ui.items.Audience Interface
+MISSING @SINCE TAG: com.day.cq.personalization.ui.items.AudiencePageMeta Interface
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.AuthenticationException Class
+MISSING @SINCE TAG: com.adobe.granite.security.user.AuthorizableTypes Class
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.AuthorizationException Class
+MISSING @SINCE TAG: com.scene7.ipsapi.AutoSmartCropOptions Class
+MISSING @SINCE TAG: com.scene7.ipsapi.AutoSmartCropOptionsArray Class
+MISSING @SINCE TAG: com.scene7.ipsapi.AvsEncoding Class
+MISSING @SINCE TAG: com.scene7.ipsapi.AvsEncodingArray Class
+OK: com.adobe.cq.dam.cfm.BasicDataType Class
+OK: org.apache.sling.commons.classloader.ClassLoaderWriterListener Interface
+MISSING @SINCE TAG: com.scene7.ipsapi.ClusterUploadTaskStatus Class
+MISSING @SINCE TAG: com.scene7.ipsapi.ClusterUploadTaskStatusArray Class
+MISSING @SINCE TAG: com.day.cq.compat.codeupgrade.CodeUpgradeTask.MigrationType Class
+MISSING @SINCE TAG: com.day.cq.dam.api.metadata.ComponentHandler Interface
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.security.authentication.credentials.CompositeCredentialsSupport Class
+MISSING @SINCE TAG: org.apache.sling.caconfig.management.ConfigurationManagementSettings Interface
+MISSING @SINCE TAG: org.apache.sling.caconfig.spi.ConfigurationPersistenceAccessDeniedException Class
+MISSING @SINCE TAG: org.apache.sling.caconfig.spi.ConfigurationPersistenceStrategy2 Interface
+MISSING @SINCE TAG: org.apache.sling.caconfig.management.ConfigurationResourceResolverConfig Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.commit.ConflictHandlers Class
+OK: org.apache.sling.jcr.contentloader.ContentCreator Interface
+MISSING @SINCE TAG: org.apache.sling.jcr.contentloader.ContentReader Interface
+NO DOC BLOCK: org.apache.sling.jcr.contentloader.ContentTypeUtil Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.CopyOnWriteStoreMBean Interface
+MISSING @SINCE TAG: com.adobe.granite.auth.oauth.CredentialsValidator Interface
+MISSING @SINCE TAG: com.scene7.ipsapi.CssOptions Class
+OK: com.adobe.cq.dam.cfm.DataType Interface
+MISSING @SINCE TAG: com.scene7.ipsapi.DeleteSubAssetsParam Class
+MISSING @SINCE TAG: com.scene7.ipsapi.DeleteSubAssetsReturn Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.Description Interface
+MISSING @SINCE TAG: com.adobe.cq.screens.device.DeviceCommand Interface
+MISSING @SINCE TAG: com.adobe.cq.screens.device.DeviceService Interface
+OK: com.day.cq.dam.api.renditions.DynamicMediaRenditionProvider Interface
+NO DOC BLOCK: com.adobe.cq.social.filelibrary.client.api.FileLibraryBreadcrumb Class
+MISSING @SINCE TAG: com.adobe.granite.ui.components.FormData Class
+MISSING @SINCE TAG: com.adobe.granite.ui.components.FormData.NameNotFoundMode Class
+OK: com.adobe.cq.dam.cfm.FragmentData Interface
+MISSING @SINCE TAG: com.scene7.ipsapi.GetUploadTaskStatusParam Class
+MISSING @SINCE TAG: com.scene7.ipsapi.GetUploadTaskStatusReturn Class
+NO DOC BLOCK: com.adobe.cq.social.group.api.GroupConfigurator Interface
+NO DOC BLOCK: com.adobe.cq.social.group.api.GroupConfigurator.CustomGroupConfigurator Interface
+NO DOC BLOCK: com.adobe.cq.social.group.api.GroupConfigurator.GroupConfigurationException Class
+NO DOC BLOCK: org.apache.sling.hapi.HApiTypesCollection Interface
+MISSING @SINCE TAG: org.apache.sling.hc.api.execution.HealthCheckSelector Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.Impact Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.api.jmx.ImpactOption Class
+NO DOC BLOCK: org.apache.jackrabbit.oak.api.jmx.IndexerMBean Interface
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.IpsApiException Class
+MISSING @SINCE TAG: org.apache.sling.scripting.sightly.java.compiler.JavaImportsAnalyzer Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.namepath.JcrPathParser.Listener Interface
+MISSING @SINCE TAG: org.apache.sling.xss.JSONUtil Class
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.io.MappedArchive Class
+MISSING @SINCE TAG: org.apache.sling.commons.metrics.MetricsServiceFactory Class
+MISSING @SINCE TAG: com.day.cq.compat.codeupgrade.MigrationModeCheck Interface
+MISSING @SINCE TAG: com.day.cq.compat.codeupgrade.annotations.MigrationType Interface
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.Name Interface
+MISSING @SINCE TAG: com.scene7.ipsapi.NormalizedCropRect Class
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.NoSuchPackageException Class
+MISSING @SINCE TAG: org.apache.sling.scripting.sightly.compiler.util.ObjectModel Class
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.commit.ObserverTracker Class
+MISSING @SINCE TAG: com.adobe.granite.haf.api.OrderByDetails Interface
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.PackageExistsException Class
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.PackageType Class
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.Page Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.api.PaginatableResourceList Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.api.PaginatableResourceListBuilder Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.api.PaginatableResourceListBuilderFactory Interface
+MISSING @SINCE TAG: com.adobe.granite.ui.clientlibs.ProcessorProvider Interface
+MISSING @SINCE TAG: org.apache.sling.xss.ProtectionContext Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.plugins.tree.ReadOnly Interface
+OK: org.apache.jackrabbit.vault.fs.api.RegexpPathMapping Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.security.RegistrationConstants Class
+MISSING @SINCE TAG: com.adobe.granite.ui.components.rendercondition.RenderConditionHelper Class
+MISSING @SINCE TAG: com.day.cq.replication.ReplicationStatusProvider Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.commit.ResetCommitAttributeHook Class
+NO DOC BLOCK: com.day.cq.wcm.workflow.process.ResourceCollectionHelper Class
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveConfiguration Class
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveConstants Class
+NO DOC BLOCK: org.apache.jackrabbit.oak.plugins.tree.RootProvider Interface
+NO DOC BLOCK: com.day.cq.dam.api.s7dam.config.S7damEncodingPresetConfiguration Interface
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.utils.SampleUtils Interface
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7AssetOperationFault Interface
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetSet Class
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetSetMember Class
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetSetMember.Type Class
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7BatchMetadataResult Interface
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7ImageFieldUpdate Class
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7MetadataUpdate Class
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7MetadataValue Class
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7NormalizedCropRect Interface
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7SmartCrop Interface
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7UserData Interface
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensAssignmentModel Class
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensScheduleModel Class
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensSchedulesFolderModel Class
+MISSING @SINCE TAG: org.apache.sling.serviceusermapping.ServicePrincipalsValidator Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.commit.SimpleCommitContext Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SmartCrop Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SmartCropUpdate Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SmartCropUpdateArray Class
+MISSING @SINCE TAG: com.adobe.cq.socialmedia.SocialSpace Interface
+MISSING @SINCE TAG: com.adobe.granite.haf.api.SortOrder Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SubAsset Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SubAssetArray Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SubAssetOperationFault Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SubAssetOperationFaultArray Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SubAssetReference Class
+MISSING @SINCE TAG: com.scene7.ipsapi.SubAssetReferenceArray Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.commit.ThreeWayConflictHandler Interface
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.commit.ThreeWayConflictHandler.Resolution Class
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.authentication.token.TokenConstants Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.plugins.tree.TreeConstants Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.plugins.tree.TreeProvider Interface
+NO DOC BLOCK: org.apache.jackrabbit.oak.plugins.tree.TreeTypeAware Interface
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.plugins.tree.TreeUtil Class
+NO DOC BLOCK: org.apache.sling.hapi.sightly.TypesCollectionView Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UpdateSmartCropsParam Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UpdateSmartCropsReturn Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadRenditionTask Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadRenditionTaskArray Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadTask Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadTaskArray Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadTaskStatus Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadTaskStatusArray Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UserData Class
+MISSING @SINCE TAG: com.scene7.ipsapi.UserDataArray Class
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserPropertiesQueryParams Interface
+MISSING @SINCE TAG: org.apache.sling.models.spi.ValuePreparer Interface
+MISSING @SINCE TAG: org.apache.sling.models.spi.ViaProvider Interface
+MISSING @SINCE TAG: org.apache.sling.models.annotations.ViaProviderType Interface
+MISSING @SINCE TAG: com.scene7.ipsapi.VideoEncoding Class
+MISSING @SINCE TAG: com.scene7.ipsapi.VideoEncodingArray Class
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.commit.WhiteboardEditorProvider Class
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.whiteboard.WhiteboardUtils.ScheduleExecutionInstanceTypes Class
+MISSING @SINCE TAG: org.apache.sling.xss.XSSAPI Interface
+MISSING @SINCE TAG: org.apache.sling.xss.XSSFilter Interface
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.config.YouTubeConfiguration Interface
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.io.ZipStreamArchive Class
+MISSING @SINCE TAG: com.day.cq.mailer.commons.AuthorizableGroupMailingList Constructor (org.apache.jackrabbit.api.security.user.Group, org.apache.commons.collections.Predicate)
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.Breakpoint Constructor (java.lang.String, int, int, com.day.cq.wcm.foundation.model.responsivegrid.Breakpoint.ResponsiveBehavior)
+MISSING @SINCE TAG: org.apache.sling.caconfig.resource.spi.ContextResource Constructor (org.apache.sling.api.resource.Resource, java.lang.String, int)
+MISSING @SINCE TAG: org.apache.sling.discovery.commons.InitDelayingTopologyEventListener Constructor (long, org.apache.sling.discovery.TopologyEventListener)
+MISSING @SINCE TAG: org.apache.sling.discovery.commons.InitDelayingTopologyEventListener Constructor (long, org.apache.sling.discovery.TopologyEventListener, org.apache.sling.commons.scheduler.Scheduler, org.slf4j.Logger)
+MISSING @SINCE TAG: org.apache.sling.discovery.commons.InitDelayingTopologyEventListener Constructor (long, org.apache.sling.discovery.TopologyEventListener, org.slf4j.Logger)
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.io.JarExporter Constructor (java.io.File, int)
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.io.JarExporter Constructor (java.io.OutputStream, int)
+NO DOC BLOCK: org.apache.sling.scripting.sightly.java.compiler.JavaClassBackendCompiler Constructor (org.apache.sling.scripting.sightly.java.compiler.JavaImportsAnalyzer)
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.List Constructor (org.apache.sling.api.SlingHttpServletRequest, PageFilter)
+NO DOC BLOCK: com.day.cq.wcm.commons.ReferenceSearch.Info Constructor (Page)
+NO DOC BLOCK: com.day.cq.wcm.commons.ReferenceSearch.Info Constructor (Page, boolean)
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveColumn Constructor (org.apache.sling.api.resource.Resource, java.util.Map, java.lang.String, org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.models.factory.ModelFactory)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Endpoint Constructor (java.net.URL, java.net.URL, java.net.URL, java.lang.String, java.lang.String, java.lang.String, java.net.URL)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Endpoint Constructor (java.net.URL, java.net.URL, java.net.URL, java.net.URL, java.lang.String, java.lang.String, java.lang.String, java.net.URL)
+MISSING @SINCE TAG: com.adobe.cq.screens.device.DeviceManager Method acknowledgeCommand(com.adobe.cq.screens.device.Device, java.lang.String)
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.config.DefaultWorkspaceFilter Method add(org.apache.jackrabbit.vault.fs.api.PathFilterSet, org.apache.jackrabbit.vault.fs.api.PathFilterSet)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method batchSetAssetMetadata(com.day.cq.dam.scene7.api.S7Config, java.util.List)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method batchSetAssetMetadata(com.day.cq.dam.scene7.api.S7Config, java.util.List)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method batchSetImageFields(com.day.cq.dam.scene7.api.S7Config, java.util.List)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method batchSetImageFields(com.day.cq.dam.scene7.api.S7Config, java.util.List)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method batchSetThumbAsset(com.day.cq.dam.scene7.api.S7Config, java.util.List)
+NO DOC BLOCK: com.adobe.cq.dam.index.bootstrap.DamIndexBootstrap Method bindJcrResolverFactory(org.apache.sling.api.resource.ResourceResolverFactory)
+MISSING @SINCE TAG: org.apache.sling.models.annotations.Model Method cache()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.RepositoryManagementMBean Method cancelRevisionGCForRole(java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.api.checkout.AssetCheckoutService Method canCheckIn(com.day.cq.dam.api.Asset, Privilege[])
+MISSING @SINCE TAG: com.day.cq.dam.api.checkout.AssetCheckoutService Method canCheckOut(com.day.cq.dam.api.Asset, Privilege[])
+MISSING @SINCE TAG: org.apache.sling.hapi.HApiUtil Method collectionFromPath(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: org.apache.sling.hapi.HApiUtil Method collectionFromResource(org.apache.sling.api.resource.ResourceResolver, org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createAsset(com.scene7.ipsapi.Asset)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method createAssetSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method createAssetSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, java.lang.String, org.apache.sling.api.resource.Resource, com.day.cq.dam.scene7.api.model.Scene7AssetSet, java.lang.String)
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createAutoSmartCropOptions()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createAutoSmartCropOptionsArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createAvsEncoding()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createAvsEncodingArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createClusterUploadTaskStatus()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createClusterUploadTaskStatusArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createCssOptions()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createDeleteSubAssetsParam()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createDeleteSubAssetsReturn()
+OK: com.adobe.cq.dam.cfm.FragmentTemplate Method createFragment(org.apache.sling.api.resource.Resource, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createGetUploadTaskStatusParam()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createGetUploadTaskStatusReturn()
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.site.api.EnablementSiteService Method createGroupFolders(org.apache.sling.api.resource.Resource, Session, org.apache.sling.api.resource.ResourceResolver, java.util.Map)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method createImageSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, java.lang.String, org.apache.sling.api.resource.Resource, java.lang.String)
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createNormalizedCropRect()
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserPropertiesManager Method createQueryParams()
+MISSING @SINCE TAG: org.apache.jackrabbit.webdav.AbstractLocatorFactory Method createResourceLocator(java.lang.String, java.lang.String, boolean)
+MISSING @SINCE TAG: org.apache.sling.jcr.base.AbstractSlingRepository2 Method createServiceSession(java.lang.Iterable, java.lang.String)
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSmartCrop()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSmartCropUpdate()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSmartCropUpdateArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSubAsset()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSubAssetArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSubAssetOperationFault()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSubAssetOperationFaultArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSubAssetReference()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createSubAssetReferenceArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUpdateSmartCropsParam()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUpdateSmartCropsReturn()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUploadRenditionTask()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUploadRenditionTaskArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUploadTask()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUploadTaskArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUploadTaskStatus()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUploadTaskStatusArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUserData()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createUserDataArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createVideoEncoding()
+MISSING @SINCE TAG: com.scene7.ipsapi.ObjectFactory Method createVideoEncodingArray()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method createViewerPreset(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, java.lang.String, org.apache.sling.api.resource.Resource, java.util.List)
+MISSING @SINCE TAG: com.adobe.granite.haf.annotations.ApiModel Method defaultConverterMediaType()
+MISSING @SINCE TAG: com.adobe.cq.social.commons.comments.endpoints.AbstractCommentOperationService Method delete(org.apache.sling.api.SlingHttpServletRequest, Session, java.util.Map)
+MISSING @SINCE TAG: com.adobe.cq.social.commons.comments.endpoints.AbstractCommentOperationService Method delete(org.apache.sling.api.resource.Resource, CommentSystem, Session, java.util.Map)
+NO DOC BLOCK: com.adobe.cq.social.commons.comments.endpoints.AbstractCommentOperationService Method delete(org.apache.sling.api.resource.Resource, Session, java.util.Map)
+MISSING @SINCE TAG: com.adobe.cq.social.commons.comments.endpoints.CommentOperations Method delete(org.apache.sling.api.SlingHttpServletRequest, Session, java.util.Map)
+MISSING @SINCE TAG: com.adobe.cq.social.commons.comments.endpoints.CommentOperations Method delete(org.apache.sling.api.resource.Resource, Session, java.util.Map)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method deleteAssets(java.lang.String[], com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method deleteAssets(java.lang.String[], com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue Method dequeueDeliverableEntry(java.lang.String)
+MISSING @SINCE TAG: org.apache.sling.hc.api.execution.HealthCheckExecutor Method execute(org.apache.sling.hc.api.execution.HealthCheckSelector)
+MISSING @SINCE TAG: org.apache.sling.hc.api.execution.HealthCheckExecutor Method execute(org.apache.sling.hc.api.execution.HealthCheckSelector, org.apache.sling.hc.api.execution.HealthCheckExecutionOptions)
+MISSING @SINCE TAG: com.adobe.cq.screens.device.DeviceManager Method executeCommand(com.adobe.cq.screens.device.Device, java.lang.String, org.apache.sling.commons.json.JSONObject, boolean)
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensChannelModel Method executeCommand(java.lang.String)
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensChannelModel Method executeCommand(java.lang.String, java.lang.String, java.lang.Boolean)
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensDeviceModel Method executeCommand(java.lang.String, java.lang.String, java.lang.Boolean)
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensDisplayModel Method executeCommand(java.lang.String, java.lang.String, java.lang.Boolean)
+MISSING @SINCE TAG: com.day.cq.wcm.contentsync.PageExporter Method export(Page, org.apache.sling.api.SlingHttpServletRequest, HttpServletResponse)
+MISSING @SINCE TAG: com.day.cq.wcm.contentsync.PageExporter Method export(Page, org.apache.sling.api.resource.ResourceResolver, HttpServletResponse)
+MISSING @SINCE TAG: com.day.cq.wcm.contentsync.PageExporter Method export(Page, org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.JcrPackageManager Method extract(org.apache.jackrabbit.vault.fs.io.Archive, org.apache.jackrabbit.vault.fs.io.ImportOptions, boolean)
+MISSING @SINCE TAG: com.adobe.cq.commerce.common.CommerceHelper Method findProductResource(Page)
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsService Method findReferences(java.lang.String, java.lang.String[])
+MISSING @SINCE TAG: org.apache.sling.hapi.HApiUtil Method fromResource(org.apache.sling.api.resource.ResourceResolver, org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.video.VideoProfile Method get(org.apache.sling.api.resource.ResourceResolver, org.apache.sling.caconfig.resource.ConfigurationResourceResolver, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.video.VideoProfile Method get(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7UploadService Method getActiveJobTimeOut()
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserManagementService Method getAdminId()
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserProperties Method getAggregatedUserProperties()
+MISSING @SINCE TAG: com.day.cq.dam.commons.util.UIHelper Method getAltText(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getAsset(java.lang.String, java.lang.String[], java.lang.String[], com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7Asset Method getAssetSubTypeStr()
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetImpl Method getAssetSubTypeStr()
+MISSING @SINCE TAG: com.scene7.ipsapi.ReprocessAssetsJob Method getAutoSmartCropOptionsArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.RipPdfsJob Method getAutoSmartCropOptionsArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadDirectoryJob Method getAutoSmartCropOptionsArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadPostJob Method getAutoSmartCropOptionsArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadUrlsJob Method getAutoSmartCropOptionsArray()
+MISSING @SINCE TAG: com.scene7.ipsapi.MediaOptions Method getAvsEncodingArray()
+MISSING @SINCE TAG: com.adobe.granite.haf.api.ApiResponse Method getBody()
+NO DOC BLOCK: com.adobe.cq.social.filelibrary.client.api.AbstractAsset Method getBreadcrumbs()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveColumn Method getBreakpoints()
+MISSING @SINCE TAG: com.adobe.cq.screens.channel.ChannelService Method getChannelAssignments(org.apache.sling.api.resource.ResourceResolver, org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.adobe.granite.translation.core.TranslationCloudConfigUtil Method getCloudConfigObjectFromPath(org.apache.sling.api.resource.Resource, java.lang.Class, java.lang.String)
+MISSING @SINCE TAG: com.adobe.granite.translation.core.TranslationCloudConfigUtil Method getCloudConfigObjectFromPath(java.lang.Class, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragment Method getCloudserviceConfigurationsPaths()
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentVariation Method getCloudserviceConfigurationsPaths()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveColumn Method getColumnClassNames()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Method getColumnCount()
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Method getColumns()
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.site.api.EnablementSite Method getCommunityGroupMembersId()
+MISSING @SINCE TAG: com.adobe.cq.social.community.api.CommunityContext Method getCommunityGroupResourcesPath()
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.ExportOptions Method getCompressionLevel()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.CompositeConfiguration Method getConflictHandlers()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.security.SecurityConfiguration Method getConflictHandlers()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.SecurityConfiguration.Default Method getConflictHandlers()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7UploadService Method getConnectionMaxPerRoute()
+NO DOC BLOCK: com.day.cq.dam.scene7.api.Scene7Service Method getContainerAssets(com.day.cq.dam.scene7.api.model.Scene7Asset, com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.adobe.granite.haf.api.ApiResponse Method getContentType()
+MISSING @SINCE TAG: com.scene7.ipsapi.ReprocessAssetsJob Method getCssOptions()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadDirectoryJob Method getCssOptions()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadPostJob Method getCssOptions()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadUrlsJob Method getCssOptions()
+OK: com.adobe.cq.dam.cfm.ElementTemplate Method getDataType()
+NO DOC BLOCK: com.adobe.cq.sightly.WCMResourceOptions Method getDecoration()
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.Placeholder Method getDefaultPlaceholder(ServletRequest, Component, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.Placeholder Method getDefaultPlaceholder(ServletRequest, Component, java.lang.String, java.lang.String[])
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method getDefaultS7Config()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method getDefaultS7Config(org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method getDefaultS7Config(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+NO DOC BLOCK: com.day.cq.dam.scene7.api.Scene7Endpoint Method getDefaultSecurePreviewURL()
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensChannelAssignmentModel Method getEndDate()
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue Method getEntriesRequiringAck(java.lang.String)
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveColumn Method getExportedComponent()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Method getExportedItems()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Method getExportedItemsOrder()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveColumn Method getExportedType()
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Method getExportedType()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getGeneratedAssets(com.day.cq.dam.scene7.api.model.Scene7Asset, com.day.cq.dam.scene7.api.S7Config)
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Method getGridClassNames()
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.site.api.EnablementSiteService Method getGroupAssetsPath(com.adobe.cq.social.community.api.CommunityContext, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModelList Method getGroupsName()
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModelList Method getGroupsPath()
+MISSING @SINCE TAG: com.adobe.granite.ui.components.ds.DataSource Method getGuessTotal()
+NO DOC BLOCK: com.adobe.granite.ui.components.ds.EmptyDataSource Method getGuessTotal()
+NO DOC BLOCK: org.apache.sling.hc.util.HealthCheckFilter Method getHealthChecks(org.apache.sling.hc.api.execution.HealthCheckSelector)
+NO DOC BLOCK: org.apache.sling.hc.util.HealthCheckFilter Method getHealthCheckServiceReferences(org.apache.sling.hc.api.execution.HealthCheckSelector)
+NO DOC BLOCK: org.apache.sling.hc.util.HealthCheckFilter Method getHealthCheckServiceReferences(org.apache.sling.hc.api.execution.HealthCheckSelector, boolean)
+MISSING @SINCE TAG: com.day.cq.personalization.TeaserUtils Method getImage(Page)
+MISSING @SINCE TAG: com.day.cq.personalization.TeaserUtils Method getImage(org.apache.sling.api.SlingHttpServletRequest, Page)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.scene7.ImageUrlApi Method getImageRootPath(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.scene7.ImageUrlApi Method getImageRootPath(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.scene7.ImageUrlApi Method getImageServerDeliveryURL(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.scene7.ImageUrlApi Method getImageServerDeliveryURL(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.scene7.ImageUrlApi Method getImageServerPreviewURL(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.scene7.ImageUrlApi Method getImageServerPreviewURL(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.utils.PublishUtils Method getISProperty(java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModelList Method getIsRequestNotFromLearningPathCreation()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method getItemType()
+MISSING @SINCE TAG: com.day.cq.wcm.commons.WCMUtils Method getKeywords(Page)
+OK: com.day.cq.wcm.commons.WCMUtils Method getKeywords(Page, boolean)
+MISSING @SINCE TAG: com.adobe.granite.ui.components.ds.DataSource Method getLimit()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getLinkedScene7ConfigPath(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.wcm.msm.api.LiveRelationshipManager Method getLiveRelationships(Page, com.day.cq.wcm.msm.api.RolloutManager.Trigger, java.lang.String[], boolean)
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method getMasterVariationPath()
+NO DOC BLOCK: com.adobe.cq.social.group.api.GroupUtil Method getMemberGroupName(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7Config Method getMimeTypeEnabled(java.lang.String)
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveColumn Method getMissingBreakpointNames()
+MISSING @SINCE TAG: org.apache.sling.models.factory.ModelFactory Method getModelFromWrappedRequest(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.resource.Resource, java.lang.Class)
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.Breakpoint Method getName()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.IndexStatsMBean Method getName()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.IndexStatsMBean Method getNodesReadCount()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentStats Method getNumberOfNonWebVariants()
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.OfferHelper Method getOfferId(Page)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.OfferHelper Method getOfferId(Page, WCMMode)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.OfferHelper Method getOfferLocation(Page, WCMMode)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.OfferHelper Method getOfferLocation(Page, WCMMode, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.OfferHelper Method getOfferName(Page, WCMMode)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.OfferHelper Method getOfferName(Page, WCMMode, java.lang.String)
+MISSING @SINCE TAG: com.adobe.granite.ui.components.ds.DataSource Method getOffset()
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.Breakpoint Method getOffset()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.CheckpointMBean Method getOldestCheckpointCreationDate()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.CheckpointMBean Method getOldestCheckpointCreationTimestamp()
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.PackageProperties Method getPackageType()
+MISSING @SINCE TAG: com.adobe.cq.screens.device.DeviceStatus Method getPendingCommands()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7Config Method getPreviewableServer()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getPreviewServerUrl(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getPreviewVideoServerUrl(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserProperties Method getPrincipalName()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.authentication.AbstractLoginModule Method getPrincipals(java.security.Principal)
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensChannelAssignmentModel Method getPriority()
+NO DOC BLOCK: com.adobe.granite.security.user.util.AuthorizableUtil Method getProfile(com.adobe.granite.security.user.UserPropertiesManager, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentVariation Method getPropertiesTree()
+MISSING @SINCE TAG: com.adobe.cq.socialmedia.SocialApplication Method getPublisher()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getPublishServerUrl(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getPublishVideoServerUrl(org.apache.sling.api.resource.Resource, org.apache.sling.api.resource.ResourceResolver)
+NO DOC BLOCK: com.day.cq.dam.commons.util.DamUtil Method getReferencedCollections(org.apache.sling.api.resource.Resource)
+NO DOC BLOCK: com.day.cq.dam.handler.ffmpeg.FFMpegWrapper Method getRenditionSelector()
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModel Method getResourceAssetsPath()
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.site.api.EnablementSite Method getResourceAssetsPath()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentPageMeta Method getResourceType()
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.Breakpoint Method getResponsiveBehavior()
+MISSING @SINCE TAG: org.apache.sling.hc.util.HealthCheckMetadata Method getResultCacheTtlInMs()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.RepositoryManagementMBean Method getRevisionGCStatusForRole(java.lang.String)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.CompositeConfiguration Method getRootProvider()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.ConfigurationBase Method getRootProvider()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getS7AssetMetadata(com.day.cq.dam.scene7.api.S7Config, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7AEMBridge Method getS7AssetPreviewUrl(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7AEMBridge Method getS7AssetPublishUrl(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method getS7ConfigForResource(org.apache.sling.api.resource.ResourceResolver, org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method getS7ConfigForRootId(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method getS7Configurations(org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getS7VideoRenditions(com.day.cq.dam.scene7.api.S7Config, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method getScene7ID(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: org.apache.sling.serviceusermapping.ServiceUserMapper Method getServicePrincipalNames(Bundle, java.lang.String)
+MISSING @SINCE TAG: org.apache.sling.caconfig.resource.spi.ContextResource Method getServiceRanking()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.model.Scene7Asset Method getSmartCrop()
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetImpl Method getSmartCrop()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method getSocialActionDate()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method getSocialActionStatus()
+MISSING @SINCE TAG: com.adobe.cq.socialmedia.SocialPublisher Method getSocialSpaces()
+NO DOC BLOCK: com.adobe.cq.screens.impl.aemio.ScreensChannelAssignmentModel Method getStartDate()
+MISSING @SINCE TAG: com.scene7.ipsapi.GetAssociatedAssetsReturn Method getSubAssetArray()
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserManagementService Method getSystemUserRootPath()
+MISSING @SINCE TAG: com.day.cq.personalization.TargetedContentManager Method getTeaserInfo(org.apache.sling.api.SlingHttpServletRequest, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.personalization.TargetedContentManager Method getTeasers(org.apache.sling.api.SlingHttpServletRequest, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.personalization.TargetedContentManager Method getTeasers(org.apache.sling.api.resource.ResourceResolver, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.resource.model.api.EnablementAssetModel Method getTempCoverImagePath(Session)
+OK: com.adobe.cq.dam.cfm.FragmentTemplate Method getThumbnailPath()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.IndexStatsMBean Method getTotalExecutionCount()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.CompositeConfiguration Method getTreeProvider()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.ConfigurationBase Method getTreeProvider()
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.api.PathFilterSet Method getType()
+MISSING @SINCE TAG: org.apache.sling.hapi.HApiUtil Method getTypeCollectionResource(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: org.apache.sling.hapi.HApiUtil Method getTypeResource(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.social.commons.ugclimiter.api.UGCLimiterService Method getUgcLimitedToList()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method getUploadTaskStatus(java.lang.String, com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.day.cq.dam.commons.util.DamUtil Method getUserCollectionsPath(org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.security.authentication.Authentication Method getUserId()
+NO DOC BLOCK: com.day.cq.personalization.UserPropertiesUtil Method getUserManagementService()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.security.authentication.Authentication Method getUserPrincipal()
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserPropertiesManager Method getUserProperties(java.lang.String, java.lang.String, java.util.Comparator)
+OK: com.adobe.cq.dam.cfm.ContentElement Method getValue()
+OK: com.adobe.cq.dam.cfm.ContentVariation Method getValue()
+MISSING @SINCE TAG: com.scene7.ipsapi.MediaOptions Method getVideoEncodingArray()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method getViewPreviewHref()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.state.Clusterable Method getVisibilityToken()
+MISSING @SINCE TAG: org.apache.sling.hc.util.HealthCheckMetadata Method getWarningsStickForMinutes()
+MISSING @SINCE TAG: com.day.cq.wcm.foundation.model.responsivegrid.Breakpoint Method getWidth()
+NO DOC BLOCK: org.apache.jackrabbit.webdav.lock.Scope Method hashCode()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method hasReplicateAccess()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method hasWriteAccess()
+MISSING @SINCE TAG: org.apache.sling.jcr.contentloader.ContentImporter Method importContent(Node, java.lang.String, java.lang.String, java.io.InputStream, org.apache.sling.jcr.contentloader.ImportOptions, org.apache.sling.jcr.contentloader.ContentImportListener)
+OK: com.adobe.granite.ui.clientlibs.HtmlLibraryManager Method invalidateOutputCache()
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue.Entry Method isAcknowledged()
+MISSING @SINCE TAG: com.day.cq.dam.commons.util.DamUtil Method isCollection(org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7Config Method isDelayedPublishEnabled()
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue.Entry Method isDelivered()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.S7ConfigResolver Method isDMS7Enabled()
+OK: org.apache.jackrabbit.vault.packaging.JcrPackage Method isEmpty()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method isExportedToAdobeTarget()
+NO DOC BLOCK: com.adobe.cq.screens.device.DeviceStatus Method isFromRemote()
+MISSING @SINCE TAG: com.day.cq.dam.commons.util.DamUtil Method isImage(java.lang.String)
+MISSING @SINCE TAG: org.apache.sling.caconfig.management.ConfigurationData Method isInherited()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method isMaster()
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7AssetMimetypeService Method isMimetypePreviewable(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: org.apache.jackrabbit.api.security.JackrabbitAccessControlList Method isMultiValueRestriction(java.lang.String)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.authorization.accesscontrol.AbstractAccessControlList Method isMultiValueRestriction(java.lang.String)
+NO DOC BLOCK: com.adobe.cq.social.group.api.GroupUtil Method isPublicGroup(org.apache.sling.api.resource.ResourceResolver, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method isResourceLinkedToScene7(org.apache.sling.api.resource.Resource)
+NO DOC BLOCK: com.adobe.granite.auth.saml.model.Response Method isSignatureValid()
+MISSING @SINCE TAG: com.adobe.cq.xf.ui.ExperienceFragmentConsoleItem Method isSocial()
+MISSING @SINCE TAG: com.scene7.ipsapi.AutomatedSetGenerationJob Method isSynchronizationComplete()
+MISSING @SINCE TAG: com.scene7.ipsapi.ReprocessAssetsJob Method isSynchronizationComplete()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadDirectoryJob Method isSynchronizationComplete()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadPostJob Method isSynchronizationComplete()
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadUrlsJob Method isSynchronizationComplete()
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.xml.PropInfo Method isUnknownMultiple()
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.state.Clusterable Method isVisible(java.lang.String, long)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue Method markAcknowledged(java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue Method markDeliveredOrRemove(java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method moveAsset(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method moveAsset(com.day.cq.dam.scene7.api.S7Config, org.apache.sling.api.resource.Resource, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method moveAssets(com.day.cq.dam.scene7.api.S7Config, java.util.Map)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method moveAssets(com.day.cq.dam.scene7.api.S7Config, java.util.Map)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method moveAssociatedAsset(com.day.cq.dam.scene7.api.S7Config, org.apache.sling.api.resource.Resource, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method moveFolder(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method moveFolder(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String)
+NO DOC BLOCK: com.day.cq.dam.commons.util.DamLanguageUtil Method moveUpdatedAsset(java.lang.String, java.lang.String, Session, PageManagerFactory, org.apache.sling.api.resource.ResourceResolver)
+MISSING @SINCE TAG: com.day.cq.dam.commons.util.DamLanguageUtil Method moveUpdatedAsset(java.lang.String, java.lang.String, Session, PageManagerFactory, org.apache.sling.api.resource.ResourceResolverFactory)
+MISSING @SINCE TAG: com.adobe.granite.auth.saml.util.SamlReader Method parse(org.w3c.dom.Document, java.security.Key, java.security.Key)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.MboxHelper Method qualifyMboxNameOrId(java.lang.String, WCMMode)
+MISSING @SINCE TAG: com.day.cq.analytics.testandtarget.util.MboxHelper Method qualifyMboxNameOrId(java.lang.String, WCMMode, java.lang.String)
+MISSING @SINCE TAG: com.adobe.granite.security.user.UserPropertiesManager Method query(com.adobe.granite.security.user.UserPropertiesQueryParams, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue Method queue(java.lang.String, java.lang.String, boolean)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue Method remove(java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.dam.cfm.ContentFragment Method removeVariation(java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method renameAsset(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, boolean)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method renameAsset(com.day.cq.dam.scene7.api.S7Config, org.apache.sling.api.resource.Resource, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method renameFolder(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method renameFolder(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue.Entry Method requiresAck()
+MISSING @SINCE TAG: com.adobe.granite.haf.annotations.ApiAction Method resourcePath()
+OK: org.apache.jackrabbit.vault.fs.io.Importer Method run(org.apache.jackrabbit.vault.fs.io.Archive, Session, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method saveImageFormat(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, java.lang.String, org.apache.sling.api.resource.Resource)
+MISSING @SINCE TAG: com.adobe.cq.screens.device.DeviceManager Method saveScreenshot(com.adobe.cq.screens.device.Device, java.io.InputStream)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.whiteboard.WhiteboardUtils Method scheduleWithFixedDelay(org.apache.jackrabbit.oak.spi.whiteboard.Whiteboard, java.lang.Runnable, java.util.Map, long, org.apache.jackrabbit.oak.spi.whiteboard.WhiteboardUtils.ScheduleExecutionInstanceTypes, boolean)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method searchAssets(java.lang.String, java.lang.Boolean, java.lang.Boolean, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.String[], int, int, java.lang.String, java.lang.String, java.lang.String, com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method searchAssetsByPartialName(java.lang.String, java.lang.Boolean, java.lang.Boolean, java.lang.String, java.lang.String, com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue.EntryBuilder Method setAcknowledged(boolean)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7FileMetadataService Method setAssetJcrContentProperty(com.day.cq.dam.api.Asset, java.lang.String, java.lang.Object)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method setAssetsPublishState(java.util.Set, com.day.cq.dam.scene7.api.S7Config, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method setAssetsPublishState(java.util.Set, boolean, com.day.cq.dam.scene7.api.S7Config)
+MISSING @SINCE TAG: com.scene7.ipsapi.ReprocessAssetsJob Method setAutoSmartCropOptionsArray(com.scene7.ipsapi.AutoSmartCropOptionsArray)
+MISSING @SINCE TAG: com.scene7.ipsapi.RipPdfsJob Method setAutoSmartCropOptionsArray(com.scene7.ipsapi.AutoSmartCropOptionsArray)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadDirectoryJob Method setAutoSmartCropOptionsArray(com.scene7.ipsapi.AutoSmartCropOptionsArray)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadPostJob Method setAutoSmartCropOptionsArray(com.scene7.ipsapi.AutoSmartCropOptionsArray)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadUrlsJob Method setAutoSmartCropOptionsArray(com.scene7.ipsapi.AutoSmartCropOptionsArray)
+MISSING @SINCE TAG: com.scene7.ipsapi.MediaOptions Method setAvsEncodingArray(com.scene7.ipsapi.AvsEncodingArray)
+MISSING @SINCE TAG: com.adobe.granite.haf.api.ApiResponseBuilder Method setBody(java.lang.Object)
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.ExportOptions Method setCompressionLevel(int)
+MISSING @SINCE TAG: com.adobe.granite.haf.api.ApiResponseBuilder Method setContentType(java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModel Method setCoverImagePath(java.lang.String)
+MISSING @SINCE TAG: com.scene7.ipsapi.ReprocessAssetsJob Method setCssOptions(com.scene7.ipsapi.CssOptions)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadDirectoryJob Method setCssOptions(com.scene7.ipsapi.CssOptions)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadPostJob Method setCssOptions(com.scene7.ipsapi.CssOptions)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadUrlsJob Method setCssOptions(com.scene7.ipsapi.CssOptions)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue.EntryBuilder Method setDelivered(boolean)
+MISSING @SINCE TAG: com.adobe.cq.dam.cfm.ContentVariation Method setDescription(java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.dam.cfm.VariationTemplate Method setDescription(java.lang.String)
+NO DOC BLOCK: com.adobe.cq.sightly.WCMResourceOptions Method setOptionDecoration(boolean)
+NO DOC BLOCK: com.day.cq.dam.handler.ffmpeg.FFMpegWrapper Method setRenditionSelector(java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.screens.DeviceMessageQueue.EntryBuilder Method setRequiresAck(boolean)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7DAMService Method setResourceMetadataOnSync(org.apache.sling.api.resource.Resource, java.lang.String, com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.Boolean)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.CompositeConfiguration Method setRootProvider(org.apache.jackrabbit.oak.plugins.tree.RootProvider)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.ConfigurationBase Method setRootProvider(org.apache.jackrabbit.oak.plugins.tree.RootProvider)
+NO DOC BLOCK: com.adobe.granite.auth.saml.model.Response Method setSignatureValid(boolean)
+MISSING @SINCE TAG: com.scene7.ipsapi.GetAssociatedAssetsReturn Method setSubAssetArray(com.scene7.ipsapi.SubAssetArray)
+MISSING @SINCE TAG: com.scene7.ipsapi.AutomatedSetGenerationJob Method setSynchronizationComplete(java.lang.Boolean)
+MISSING @SINCE TAG: com.scene7.ipsapi.ReprocessAssetsJob Method setSynchronizationComplete(java.lang.Boolean)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadDirectoryJob Method setSynchronizationComplete(java.lang.Boolean)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadPostJob Method setSynchronizationComplete(java.lang.Boolean)
+MISSING @SINCE TAG: com.scene7.ipsapi.UploadUrlsJob Method setSynchronizationComplete(java.lang.Boolean)
+MISSING @SINCE TAG: com.adobe.cq.dam.cfm.ContentVariation Method setTitle(java.lang.String)
+MISSING @SINCE TAG: com.adobe.cq.dam.cfm.VariationTemplate Method setTitle(java.lang.String)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.CompositeConfiguration Method setTreeProvider(org.apache.jackrabbit.oak.plugins.tree.TreeProvider)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.security.ConfigurationBase Method setTreeProvider(org.apache.jackrabbit.oak.plugins.tree.TreeProvider)
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.fs.api.PathFilterSet Method setType(java.lang.String)
+NO DOC BLOCK: com.day.cq.personalization.UserPropertiesUtil Method setUserManagementService(com.adobe.granite.security.user.UserManagementService)
+OK: com.adobe.cq.dam.cfm.ContentElement Method setValue(com.adobe.cq.dam.cfm.FragmentData)
+OK: com.adobe.cq.dam.cfm.ContentVariation Method setValue(com.adobe.cq.dam.cfm.FragmentData)
+MISSING @SINCE TAG: com.scene7.ipsapi.MediaOptions Method setVideoEncodingArray(com.scene7.ipsapi.VideoEncodingArray)
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.api.jmx.RepositoryManagementMBean Method startRevisionGCForRole(java.lang.String)
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.whiteboard.DefaultWhiteboard Method track(java.lang.Class, java.util.Map)
+MISSING @SINCE TAG: org.apache.jackrabbit.oak.spi.whiteboard.Whiteboard Method track(java.lang.Class, java.util.Map)
+MISSING @SINCE TAG: org.apache.sling.models.annotations.Via Method type()
+MISSING @SINCE TAG: com.adobe.cq.screens.channel.ChannelService Method unassignFromDisplays(org.apache.sling.api.resource.ResourceResolver, org.apache.sling.api.resource.Resource, java.util.List)
+NO DOC BLOCK: com.adobe.cq.dam.index.bootstrap.DamIndexBootstrap Method unbindJcrResolverFactory(org.apache.sling.api.resource.ResourceResolverFactory)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method updateAssetSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.lang.String, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method updateAssetSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, com.day.cq.dam.scene7.api.model.Scene7AssetSet, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method updateImageSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, com.scene7.ipsapi.ImageSetMemberUpdateArray, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method updateImageSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, java.util.List, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method updateImageSet(com.day.cq.dam.scene7.api.S7Config, java.lang.String, com.scene7.ipsapi.ImageSetMemberUpdateArray, java.lang.String)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7APIClient Method updateSmartCrops(com.day.cq.dam.scene7.api.S7Config, com.scene7.ipsapi.SmartCropUpdateArray)
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.Scene7Service Method updateSmartCrops(com.day.cq.dam.scene7.api.S7Config, java.util.Map)
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field ACT_LINK_SCHEDULE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field ACT_VIEW_DASHBOARD_SCHEDULE
+NO DOC BLOCK: com.adobe.cq.social.commons.events.CommentEvent.CommentActions Field ALLOW
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field ANIMATED_GIF
+MISSING @SINCE TAG: com.adobe.cq.social.community.api.CommunityConstants Field APPS_THEMES_ROOT
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field ASSET_SET
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetImpl.Scene7AssetProperty Field ASSET_SUBTYPE_STRING
+NO DOC BLOCK: com.day.cq.dam.entitlement.api.EntitlementConstants Field ASSETS_SCENE7_FEATURE_FLAG_PID
+OK: org.apache.sling.auth.core.AuthConstants Field ATTR_REQUEST_AUTH_URI_SUFFIX
+NO DOC BLOCK: com.scene7.ipsapi.ReprocessAssetsJob Field autoSmartCropOptionsArray
+NO DOC BLOCK: com.scene7.ipsapi.RipPdfsJob Field autoSmartCropOptionsArray
+NO DOC BLOCK: com.scene7.ipsapi.UploadDirectoryJob Field autoSmartCropOptionsArray
+NO DOC BLOCK: com.scene7.ipsapi.UploadPostJob Field autoSmartCropOptionsArray
+NO DOC BLOCK: com.scene7.ipsapi.UploadUrlsJob Field autoSmartCropOptionsArray
+NO DOC BLOCK: com.scene7.ipsapi.MediaOptions Field avsEncodingArray
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.state.ConflictAnnotatingRebaseDiff Field BASE
+NO DOC BLOCK: com.adobe.cq.social.commons.events.CommentEvent.CommentActions Field CLOSE
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field COLLECTION_RESOURCE_TYPE
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field COLLECTION_RESOURCE_TYPE_DESC
+NO DOC BLOCK: com.adobe.cq.screens.binding.DeviceConstants Field COMMANDS_PATH_SUFFIX
+NO DOC BLOCK: com.adobe.cq.social.community.api.CommunityConstants Field CONF_TEMPLATES_PATH
+NO DOC BLOCK: com.day.cq.dam.video.FFMpegTranscodeProcess Field configResolver
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field CONTENT_PATH
+NO DOC BLOCK: com.scene7.ipsapi.ReprocessAssetsJob Field cssOptions
+NO DOC BLOCK: com.scene7.ipsapi.UploadDirectoryJob Field cssOptions
+NO DOC BLOCK: com.scene7.ipsapi.UploadPostJob Field cssOptions
+NO DOC BLOCK: com.scene7.ipsapi.UploadUrlsJob Field cssOptions
+MISSING @SINCE TAG: com.day.cq.dam.api.DamConstants Field DAM_INDESIGN_IS_SNIPPET_TEMPLATE
+MISSING @SINCE TAG: com.day.cq.dam.api.DamConstants Field DAM_SOLUTION_CONTEXT
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field DEFAULT_COLLECTION_RESOURCE_TYPE
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field DEFAULT_ENABLED
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field DEFAULT_IMAGE_CONTENT_TYPE
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field DEFAULT_IMAGE_NAME
+NO DOC BLOCK: com.day.cq.dam.commons.util.DamConfigurationConstants Field DEFAULT_METADATA_SCHEMA_NAME
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field DEFAULT_SEARCH_PATH
+NO DOC BLOCK: com.day.cq.dam.scene7.api.Scene7EndpointsManager Field DEFAULT_SECURE_PREVIEW_URL_PROP
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field DEFAULT_SERVER_URL
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field DEFAULT_STREAMABLE_IMAGE_PATH
+MISSING @SINCE TAG: com.adobe.granite.auth.oauth.ProviderConfigProperties Field DEFAULT_USER_ID_PROPERTY
+NO DOC BLOCK: com.adobe.cq.screens.binding.DeviceConstants Field DEVICE_PING_COMMAND_REQ_ACK
+NO DOC BLOCK: com.adobe.cq.screens.binding.DeviceConstants Field DEVICE_PING_FREQUENCY
+NO DOC BLOCK: com.adobe.cq.screens.binding.DeviceConstants Field DEVICE_STATUS
+MISSING @SINCE TAG: org.apache.jackrabbit.core.data.AbstractDataStore Field DIGEST
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field DMS7_CLOUD_CONFIG_ROOT
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field ENABLED
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field ENABLED_DESC
+NO DOC BLOCK: com.adobe.cq.social.enablement.learningpath.model.api.EnablementLearningPathModel Field ENABLEMENT_TYPE_DISPLAY_NAME
+NO DOC BLOCK: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModel Field ENABLEMENT_TYPE_DISPLAY_NAME
+NO DOC BLOCK: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModel Field ENROLLED_USERS
+MISSING @SINCE TAG: com.adobe.cq.social.community.api.CommunityConstants Field ETC_PROXY
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field EXTERNAL_URL
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field EXTERNAL_URL_DESC
+NO DOC BLOCK: com.day.cq.dam.core.process.DownloadAssetProcess Field externalizer
+NO DOC BLOCK: com.adobe.cq.social.scf.ClientUtilities Field GROUP_ROOTPATH
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field IMAGE
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field IMAGE_SET
+MISSING @SINCE TAG: com.adobe.cq.social.community.api.CommunityConstants Field LIBS_THEMES_ROOT
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field LOCAL
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field MIXED_MEDIA_SET
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field NAME
+MISSING @SINCE TAG: org.apache.jackrabbit.vault.packaging.PackageProperties Field NAME_PACKAGE_TYPE
+NO DOC BLOCK: com.adobe.cq.sightly.WCMResourceOptions Field OPTION_DECORATION
+NO DOC BLOCK: org.apache.jackrabbit.oak.spi.state.ConflictAnnotatingRebaseDiff Field OURS
+NO DOC BLOCK: com.adobe.cq.social.filelibrary.client.api.AbstractAsset Field pageInfo
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field PDF
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_CONFIG_OFFLINE_CHANNEL_PATH
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_CONFIG_OFFLINE_CHANNEL_ROLE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_NAME
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_PRIORITY
+NO DOC BLOCK: com.day.cq.dam.video.VideoConstants Field PN_RENDITION_SELECTOR
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field PN_S7_FILE_AVS
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field PN_S7_ROOT_ID
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field PN_SCENE7_FILE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_SCHEDULE_END_DATE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_SCHEDULE_START_DATE
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field PN_TARGET_OFFER_ID
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field PN_UNPACKING_STRATEGY
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field PN_XF_POST_ID
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field PN_XF_SOCIAL_ACTION
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field PN_XF_SOCIAL_ACTION_STATUS
+NO DOC BLOCK: com.day.cq.dam.video.VideoProfile Field PROFILES_CACONFIG_BUCKET
+NO DOC BLOCK: com.day.cq.dam.video.VideoProfile Field PROFILES_LEGACY_BUCKET
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field PROP_COMMUNITY_COMPLETE_TABLE_DATA
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field PROP_COMMUNITY_GROUP_ASSETS_PATH
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field PROP_COMMUNITY_GROUP_RESOURCES_PATH
+MISSING @SINCE TAG: com.adobe.cq.social.group.client.api.CommunityGroupConstants Field PROP_COMMUNITY_INITIALLANGUAGES
+MISSING @SINCE TAG: com.adobe.granite.maintenance.MaintenanceConstants Field PROPERTY_TASK_RANKING
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field PV_S7_NEEDS_REUPLOAD
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field PV_S7_PUBLISH_NOT_ENABLED
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field PV_S7_RENAME_COMPLETE
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field REMOTE
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field RENDER_SET
+NO DOC BLOCK: com.adobe.cq.social.commons.events.CommentEvent.CommentActions Field REOPEN
+NO DOC BLOCK: com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid Field RESOURCE_TYPE
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field RESOURCE_TYPE
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field RESOURCE_TYPE_DESC
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_ACKNOWLEDGEMENTS
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_ACT_BROADCAST_COMMAND_WITH_ACK
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_ACT_DELETE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_ACT_SEND_COMMAND_WITH_ACK
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_ACT_UNASSIGN_COMMAND
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_ACT_UPDATE_CACHE_COMMAND
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_DEVICE_ACK
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_DEVICE_COMMAND_ACK
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field REST_PARAM_DISPLAYS
+MISSING @SINCE TAG: org.apache.sling.hc.api.HealthCheck Field RESULT_CACHE_TTL_IN_MS
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_CHANNEL_ASSIGNMENT_ABSOLUTE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_CHANNEL_ASSIGNMENT_DYNAMIC
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_DEVICE_STATUS
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_DEVICES
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_DEVICES_STATI
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_REGISTRATION
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_REGISTRATIONS
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_SCHEDULE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_SCHEDULE_ASSIGNMENT_ABSOLUTE
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_SCHEDULE_FOLDER
+NO DOC BLOCK: com.adobe.cq.screens.binding.ScreensConstants Field RT_SCREENS
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field S7_ASSET_READER_SERVICE
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field S7_ASSET_WRITER_SERVICE
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7Constants Field S7_CONFIG_WRITER_SERVICE
+MISSING @SINCE TAG: com.day.cq.dam.scene7.api.constants.Scene7Constants Field S7_MIME_TYPE_ENABLED
+NO DOC BLOCK: com.day.cq.dam.scene7.api.Scene7UploadService Field SCR_PROP_NAME_CONN_MAX_PER_ROUTE_DEFAULT_VALUE
+NO DOC BLOCK: com.day.cq.dam.scene7.api.Scene7UploadService Field SCR_PROP_NAME_CONN_MAX_PER_ROUTE_NAME
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field SEARCH_PATHS
+NO DOC BLOCK: org.apache.sling.hapi.HApiUtil Field SEARCH_PATHS_DESC
+NO DOC BLOCK: com.adobe.cq.social.enablement.resource.model.api.EnablementResourceModel Field SEND_ENROLLMENT_EMAIL
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field SETTINGS
+NO DOC BLOCK: com.day.cq.dam.core.process.DownloadAssetProcess Field slingRepository
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field SMART_CROP
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field SMART_CROP
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetImpl.Scene7AssetProperty Field SMART_CROP
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field SPIN_SET
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field SPIN_SET_2D
+MISSING @SINCE TAG: com.adobe.cq.social.srp.internal.SocialResourceUtils Field SRP_CONFIGURATION_CONF_ROOT
+NO DOC BLOCK: com.adobe.cq.social.srp.internal.SocialResourceUtils Field SRP_DEFAULT_CONFIG_CONF_PATH
+NO DOC BLOCK: com.scene7.ipsapi.GetAssociatedAssetsReturn Field subAssetArray
+NO DOC BLOCK: com.scene7.ipsapi.AutomatedSetGenerationJob Field synchronizationComplete
+NO DOC BLOCK: com.scene7.ipsapi.ReprocessAssetsJob Field synchronizationComplete
+NO DOC BLOCK: com.scene7.ipsapi.UploadDirectoryJob Field synchronizationComplete
+NO DOC BLOCK: com.scene7.ipsapi.UploadPostJob Field synchronizationComplete
+NO DOC BLOCK: com.scene7.ipsapi.UploadUrlsJob Field synchronizationComplete
+NO DOC BLOCK: com.adobe.dam.print.ids.StringConstants Field TEMPLATE_TYPE_CATALOG
+NO DOC BLOCK: com.adobe.dam.print.ids.StringConstants Field TEMPLATE_TYPE_CATALOG_PAGE
+NO DOC BLOCK: com.adobe.cq.social.community.api.CommunityConstants Field TEMPLATES_PATH
+MISSING @SINCE TAG: com.adobe.cq.social.community.api.CommunityConstants Field THEMES_PATH
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field TYPE_XF_VARIANT_FACEBOOK
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field TYPE_XF_VARIANT_PINTEREST
+MISSING @SINCE TAG: com.adobe.cq.xf.ExperienceFragmentsConstants Field TYPE_XF_VARIANT_WEB
+NO DOC BLOCK: com.day.cq.dam.scene7.api.constants.Scene7AssetType Field USER_DATA
+NO DOC BLOCK: com.day.cq.dam.scene7.api.model.Scene7AssetImpl.Scene7AssetProperty Field USER_DATA
+MISSING @SINCE TAG: com.adobe.granite.auth.oauth.ProviderConfigProperties Field USER_ID_PROPERTY
+NO DOC BLOCK: com.adobe.cq.social.commons.events.CommentEvent Field VERBS_ALLOW
+NO DOC BLOCK: com.adobe.cq.social.commons.events.CommentEvent Field VERBS_REOPEN
+MISSING @SINCE TAG: com.day.cq.dam.api.s7dam.constants.S7damConstants Field VIDEO
+NO DOC BLOCK: com.scene7.ipsapi.MediaOptions Field videoEncodingArray
+MISSING @SINCE TAG: org.apache.sling.hc.api.HealthCheck Field WARNINGS_STICK_FOR_MINUTES

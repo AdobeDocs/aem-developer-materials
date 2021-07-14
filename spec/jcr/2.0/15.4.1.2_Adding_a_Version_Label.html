@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.4.1.2 Adding a Version Label (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.4.1.2 Adding a Version Label</H4>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	VersionHistory.<BR> addVersionLabel(String versionName,<BR> 
+	 String label,<BR> boolean
+	moveLabel)</FONT></FONT>.</P>
+	<P>adds the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>
+	to the version with the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>versionName</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>label</FONT></FONT>
+	must be a JCR name in either qualified or expanded form and
+	therefore must conform to the syntax restrictions that apply to such
+	names. In particular a colon (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT>”)
+	should not be used unless it is intended as a prefix delimiter in a
+	qualified name (see §3.2.5 <I>Lexical Form of JCR Names</I>).</P>
+	<P>In a full versioning
+	system, <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.addVersionLabel
+	</FONT></FONT>adds the appropriate <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionLabels</FONT></FONT>
+	node. The addition of a label is a workspace-write and therefore
+	does not require a <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+		</P>
+	<P>If the specified label
+	is already assigned to a version in this history and <FONT FACE="Courier New, monospace"><FONT SIZE=2>moveLabel</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then the label is removed from its current location and added to the
+	version with the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>versionName</FONT></FONT>.
+	If <FONT FACE="Courier New, monospace"><FONT SIZE=2>moveLabel</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then an attempt to add a label that already exists in this version
+	history will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LabelExistsVersionException</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

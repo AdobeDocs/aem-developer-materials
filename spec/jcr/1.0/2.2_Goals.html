@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 2.2 Goals (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_2.2." id="section_2.2."></a>2.2 Goals
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The guiding principles governing the design of the API are:
+								</p>
+							
+							
+								<p class="c5">
+									<b>It should not be tied to any particular underlying architecture, data source or protocol.<br>
+									<br></b> The API is, of course, essentially a set of Java interfaces, which can be implemented in a wide variety of ways. Hence, achieving this goal is not difficult in itself. The main challenge here is to allow enough flexibility in the API so that it can be used for both hierarchical and non-hierarchical repository models. This is done by providing for both <i>hierarchical, path-based addressing</i> of content items and <i>direct, UUID-based addressing</i>.
+								</p>
+							
+							
+								<p class="c5">
+									<b>It should be easy to use from the programmer’s point of view.<br>
+									<br></b> To this end, the API is designed to be as simple and straightforward as possible. In particular, it has a simple object model and concentrates on representing the core functionality of a content repository without venturing into areas that might be regarded as “content applications”.
+								</p>
+							
+							
+								<p class="c5">
+									<b>It should allow for relatively easy implementation on top of as wide a variety of existing content repositories as possible.<br>
+									<br></b> A concerted effort was made to ensure that it would be relatively easy to implement the API (especially at level 1, see below) on top of the repositories of most major vendors.
+								</p>
+							
+							
+								<p class="c5">
+									<b>However, it should also standardize some more complex functionality needed by advanced content-related applications.<br>
+									<br></b> Recognizing that a tension exists between this aim and the previous one, this specification has been split into two compliance levels as well as a set of optional features.<br>
+									<br>
+									Level 1 defines a read-only repository. This includes functionality for the reading of repository content, introspection of content-type definitions, basic support for namespaces, export of content to XML and searching. This functionality should meet the needs of presentation templates and basic portal applications comprising a large portion of the existing code-base of content-related applications. Level 1 is also designed to be easy to implement on top of any existing content repository.<br>
+									<br>
+									Level 2 additionally defines methods for writing content, assignment of types to content, further support for namespaces, and importing content from XML.
+								</p>
+							
+							
+								<p class="c5">
+									Finally, a number of independently optional features are defined that a compliant repository may support. These are transactions, versioning, observation, access control, locking and additional support for searching.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

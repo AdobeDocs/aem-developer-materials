@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 22.5 Effect of Access Denial on Read of Same-Name Siblings (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>22.5 Effect of Access Denial on Read of Same-Name Siblings</H2>
+	<P>In most cases, the
+	nodes and properties to which a user does not have read access will
+	simply appear not to exist on a read attempt (see §5.5 <I>Effect of
+	Access Denial on Read</I>).</P>
+	<P>However, a repository
+	that supports same-name siblings <I>may</I> violate this general
+	rule in the case where a user is denied access to a subset of
+	same-name sibling nodes. In such a case, a repository may choose not
+	to compact the indices of the same-name-sibling set (thus “hiding”
+	the any inaccessible nodes), but instead allow “holes” to appear
+	in the index count.</P>
+	<P>For example, consider
+	the nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M/N</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>M/N[2]</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>M/N[3]</FONT></FONT>
+	with identifiers <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>y</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>z</FONT></FONT>,
+	respectively:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>M/N
+	 (x)<BR>M/N[2] (y)<BR>M/N[3] (z)</FONT></FONT></P>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getNodes()</FONT></FONT>,
+	a user with no read access to the node with identifier <FONT FACE="Courier New, monospace"><FONT SIZE=2>y</FONT></FONT>
+	will observe one of two behaviors, depending on the implementation.
+	A repository that compacts indices on read denial will return 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>M/N
+	 (x)<BR>M/N[2] (z)</FONT></FONT></P>
+	<P>while a repository
+	that does not compact indices will return 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>M/N
+	 (x)<BR>M/N[3] (z)</FONT></FONT></P>
+	<P>Which behavior is
+	followed is implementation-determined. Note however, that in the
+	case where a subset of same-name siblings is actually removed (as
+	opposed to hidden from certain users), index compaction is required
+	(see §22.2.5 <I>Removing a Same-Name Sibling Node</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

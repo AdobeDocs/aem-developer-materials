@@ -1,0 +1,47 @@
+
+Fragment
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/page/fragment
+
+   The component to wrap the page fragment.
+   A fragment is a piece of content that is not part of the page and loaded separately.
+
+   For example a page may contain a dialog that is only loaded when a certain button is activated.
+   This dialog content is a fragment.
+
+   This component is only used so that there is a root component for the fragment so that generic features can be implemented here.
+
+   The features that it enables:
+
+      * :doc:`Resource filtering using FilteringResourceWrapper </jcr_root/libs/granite/ui/docs/server/resourcehiding>` and acts as its container.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:PageFragment]
+
+      /**
+       * Indicates the actual content of the fragment.
+       */
+      + content mandatory
+
+   **Example**
+
+   Hide ``item2`` of the dialog using ``granite:hide`` property::
+
+      + /mypage
+        - sling:resourceType = "my/page"
+        - dialogURL = "/mypage/dialog.html"
+        + dialog
+          - sling:resourceType = "granite/ui/components/coral/foundation/page/fragment"
+          + content
+            - sling:resourceType = "granite/ui/components/coral/foundation/dialog"
+            - jcr:title = "My Dialog"
+            + items
+              + item1
+                - sling:resourceType = "my/item"
+              + item2
+                - sling:resourceType = "my/item"
+                - granite:hide = true

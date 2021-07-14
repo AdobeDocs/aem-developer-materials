@@ -1,0 +1,1493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.6.2 Non-Terminals (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.6.2." id="section_6.6.6.2."></a>6.6.6.2 Non-Terminals
+		</h4>
+		<table border="0" cellpadding="1" cellspacing="0">
+			
+			
+			
+			
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-XPath" id="prod-xpath-XPath"></a>[15]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						XPath
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Expr?
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-Expr" id="prod-xpath-Expr"></a>[16]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Expr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						ExprSingle <strike>("," ExprSingle)*</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ExprSingle" id="prod-xpath-ExprSingle"></a>[17]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ExprSingle
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<strike>ForExpr<br>
+						| QuantifiedExpr<br>
+						| IfExpr<br></strike>| OrExpr
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ForExpr" id="prod-xpath-ForExpr"></a>[18]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>ForExpr</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SimpleForClause "return" ExprSingle</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SimpleForClause" id="prod-xpath-SimpleForClause"></a>[19]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SimpleForClause</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"for" "$"&gt; VarName "in" ExprSingle ("," "$" VarName "in" ExprSingle)*</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-QuantifiedExpr" id="prod-xpath-QuantifiedExpr"></a>[20]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>QuantifiedExpr</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<strike>(&lt;"some" "$"&gt; | &lt;"every" "$"&gt;) VarName "in" ExprSingle ("," "$" <a href="http://www.w3.org/TR/xpath20/#prod-xpath-VarName">VarName</a> "in" ExprSingle)* "satisfies" ExprSingle</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-IfExpr" id="prod-xpath-IfExpr"></a>[21]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>IfExpr</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"if" "("&gt; Expr ")" "then" ExprSingle "else" ExprSingle</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-OrExpr" id="prod-xpath-OrExpr"></a>[22]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						OrExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AndExpr ( "or" AndExpr )*
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AndExpr" id="prod-xpath-AndExpr"></a>[23]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AndExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						InstanceofExpr ( "and" InstanceofExpr )*
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-InstanceofExpr" id="prod-xpath-InstanceofExpr"></a>[24]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						InstanceofExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						TreatExpr <strike>( &lt;"instance" "of"&gt; SequenceType )?</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-TreatExpr" id="prod-xpath-TreatExpr"></a>[25]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						TreatExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						CastableExpr <strike>( &lt;"treat" "as"&gt; SequenceType )?</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-CastableExpr" id="prod-xpath-CastableExpr"></a>[26]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						CastableExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						CastExpr <strike>( &lt;"castable" "as"&gt; SingleType )?</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-CastExpr" id="prod-xpath-CastExpr"></a>[27]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						CastExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						ComparisonExpr <strike>( &lt;"cast" "as"&gt; SingleType )?</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ComparisonExpr" id="prod-xpath-ComparisonExpr"></a>[28]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ComparisonExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						RangeExpr ( (<strike>ValueComp</strike><br>
+						| GeneralComp<br>
+						| <strike>NodeComp</strike>) RangeExpr )?
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-RangeExpr" id="prod-xpath-RangeExpr"></a>[29]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						RangeExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						AdditiveExpr <strike>( "to" AdditiveExpr )?</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AdditiveExpr" id="prod-xpath-AdditiveExpr"></a>[30]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AdditiveExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						MultiplicativeExpr ( ("+" | "-") MultiplicativeExpr )*
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-MultiplicativeExpr" id="prod-xpath-MultiplicativeExpr"></a>[31]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						MultiplicativeExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						UnaryExpr <strike>( ("*" | "div" | "idiv" | "mod") UnaryExpr )*</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-UnaryExpr" id="prod-xpath-UnaryExpr"></a>[32]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						UnaryExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						("-" | "+")* UnionExpr
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-UnionExpr" id="prod-xpath-UnionExpr"></a>[33]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						UnionExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						IntersectExceptExpr ( ("union" | "|") IntersectExceptExpr )*<br>
+						<br> <i>/* Note that support for a UnionExpr of attributes in the last location step is optional*/</i>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-IntersectExceptExpr" id="prod-xpath-IntersectExceptExpr"></a>[34]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						IntersectExceptExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						ValueExpr <strike>( ("intersect" | "except") ValueExpr )*</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ValueExpr" id="prod-xpath-ValueExpr"></a>[35]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ValueExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						PathExpr
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-PathExpr" id="prod-xpath-PathExpr"></a>[36]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						PathExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						("/" RelativePathExpr?)<br>
+						| ("//" RelativePathExpr)<br>
+						| RelativePathExpr
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-RelativePathExpr" id="prod-xpath-RelativePathExpr"></a>[37]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						RelativePathExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						StepExpr (("/" | "//") StepExpr)*
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-StepExpr" id="prod-xpath-StepExpr"></a>[38]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						StepExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AxisStep | FilterStep
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AxisStep" id="prod-xpath-AxisStep"></a>[39]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AxisStep
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						(ForwardStep | <a href="http://www.w3.org/TR/xpath20/#prod-xpath-ReverseStep"><strike>ReverseStep</strike></a>) Predicates
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-FilterStep" id="prod-xpath-FilterStep"></a>[40]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						FilterStep
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						PrimaryExpr Predicates
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ContextItemExpr" id="prod-xpath-ContextItemExpr"></a>[41]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ContextItemExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						"."
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-PrimaryExpr" id="prod-xpath-PrimaryExpr"></a>[42]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						PrimaryExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						Literal | <strike>VarRef |</strike> ParenthesizedExpr | ContextItemExpr | FunctionCall
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-VarRef" id="prod-xpath-VarRef"></a>[43]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>VarRef</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>"$" VarName</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-Predicates" id="prod-xpath-Predicates"></a>[44]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Predicates
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						("[" Expr "]")*
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-GeneralComp" id="prod-xpath-GeneralComp"></a>[45]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						GeneralComp
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						"=" | "!=" | "&lt;" | "&lt;=" |<br>
+						"&gt;" | "&gt;="
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ValueComp" id="prod-xpath-ValueComp"></a>[46]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>ValueComp</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>"eq" | "ne" | "lt" | "le" | "gt" | "ge"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-NodeComp" id="prod-xpath-NodeComp"></a>[47]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>NodeComp</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>"is" | "&lt;&lt;" | "&gt;&gt;"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ForwardStep" id="prod-xpath-ForwardStep"></a>[48]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ForwardStep
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<strike>(ForwardAxis NodeTest) |</strike> AbbrevForwardStep
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ReverseStep" id="prod-xpath-ReverseStep"></a>[49]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>ReverseStep</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>(ReverseAxis NodeTest) | AbbrevReverseStep</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AbbrevForwardStep" id="prod-xpath-AbbrevForwardStep"></a>[50]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AbbrevForwardStep
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						"@"? NodeTest
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AbbrevReverseStep" id="prod-xpath-AbbrevReverseStep"></a>[51]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AbbrevReverseStep</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>".."</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ForwardAxis" id="prod-xpath-ForwardAxis"></a>[52]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>ForwardAxis</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"child" "::"&gt;<br>
+						| &lt;"descendant" "::"&gt;<br>
+						| &lt;"attribute" "::"&gt;<br>
+						| &lt;"self" "::"&gt;<br>
+						| &lt;"descendant-or-self" "::"&gt;<br>
+						| &lt;"following-sibling" "::"&gt;<br>
+						| &lt;"following" "::"&gt;<br>
+						| &lt;"namespace" "::"&gt;</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ReverseAxis" id="prod-xpath-ReverseAxis"></a>[53]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>ReverseAxis</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"parent" "::"&gt;<br>
+						| &lt;"ancestor" "::"&gt;<br>
+						| &lt;"preceding-sibling" "::"&gt;<br>
+						| &lt;"preceding" "::"&gt;<br>
+						| &lt;"ancestor-or-self" "::"&gt;</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-NodeTest" id="prod-xpath-NodeTest"></a>[54]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						NodeTest
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						KindTest | NameTest
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-NameTest" id="prod-xpath-NameTest"></a>[55]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						NameTest
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						QName <strike>| Wildcard</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-Wildcard" id="prod-xpath-Wildcard"></a>[56]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>Wildcard</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>"*"<br>
+						| &lt;NCName ":" "*"&gt;<br>
+						| &lt;"*" ":" NCName&gt;</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-Literal" id="prod-xpath-Literal"></a>[57]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						Literal
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						NumericLiteral | StringLiteral
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-NumericLiteral" id="prod-xpath-NumericLiteral"></a>[58]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						NumericLiteral
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						IntegerLiteral | DecimalLiteral | DoubleLiteral
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ParenthesizedExpr" id="prod-xpath-ParenthesizedExpr"></a>[59]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ParenthesizedExpr
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						"(" Expr? ")"
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-FunctionCall" id="prod-xpath-FunctionCall"></a>[60]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						FunctionCall
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						&lt;QName "("&gt; (ExprSingle ("," ExprSingle)*)? ")"
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SingleType" id="prod-xpath-SingleType"></a>[61]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SingleType</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AtomicType "?"?</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SequenceType" id="prod-xpath-SequenceType"></a>[62]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SequenceType</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>(ItemType OccurrenceIndicator?)<br>
+						| &lt;"empty" "(" ")"&gt;</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AtomicType" id="prod-xpath-AtomicType"></a>[63]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AtomicType</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>QName</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ItemType" id="prod-xpath-ItemType"></a>[64]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>ItemType</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AtomicType | KindTest | &lt;"item" "(" ")"&gt;</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-KindTest" id="prod-xpath-KindTest"></a>[65]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						KindTest
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						<strike>DocumentTest<br></strike>| ElementTest<br>
+						| <strike>AttributeTest<br>
+						| PITest<br>
+						| CommentTest<br>
+						| TextTest<br>
+						| AnyKindTest</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ElementTest" id="prod-xpath-ElementTest"></a>[66]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ElementTest
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c5">
+						&lt;"element" "("&gt; <strike>((SchemaContextPath ElementName)</strike><br>
+						| (ElementNameOrWildcard ("," TypeNameOrWildcard <strike>"nillable"?</strike>)?))? ")"
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AttributeTest" id="prod-xpath-AttributeTest"></a>[67]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AttributeTest</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"attribute" "("&gt; ((SchemaContextPath AttributeName)<br>
+						| (AttribNameOrWildcard ("," TypeNameOrWildcard)?))? ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ElementName" id="prod-xpath-ElementName"></a>[68]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ElementName
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						QName
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AttributeName" id="prod-xpath-AttributeName"></a>[69]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						AttributeName
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						QName
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-TypeName" id="prod-xpath-TypeName"></a>[70]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						TypeName
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						QName
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-ElementNameOrWildcard" id="prod-xpath-ElementNameOrWildcard"></a>[71]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ElementNameOrWildcard
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						ElementName | "*"
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AttribNameOrWildcard" id="prod-xpath-AttribNameOrWildcard"></a>[72]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AttribNameOrWildcard</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AttributeName | "*"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-TypeNameOrWildcard" id="prod-xpath-TypeNameOrWildcard"></a>[73]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						TypeNameOrWildcard
+					</p>
+				</td>
+				<td>
+					<p>
+						&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						TypeName | "*"
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-PITest" id="prod-xpath-PITest"></a>[74]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>PITest</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"processing-instruction" "("&gt; (NCName | StringLiteral)? ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-DocumentTest" id="prod-xpath-DocumentTest"></a>[75]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>DocumentTest</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"document-node" "("&gt; ElementTest? ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-CommentTest" id="prod-xpath-CommentTest"></a>[76]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>CommentTest</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"comment" "("&gt; ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-TextTest" id="prod-xpath-TextTest"></a>[77]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>TextTest</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"text" "("&gt; ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-AnyKindTest" id="prod-xpath-AnyKindTest"></a>[78]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>AnyKindTest</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;"node" "("&gt; ")"</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-SchemaContextPath" id="prod-xpath-SchemaContextPath"></a>[79]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>SchemaContextPath</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&lt;SchemaGlobalContext "/"&gt; &lt;SchemaContextStep "/"&gt;*</strike>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p>
+						<a name="prod-xpath-OccurrenceIndicator" id="prod-xpath-OccurrenceIndicator"></a>[80]&nbsp;&nbsp;&nbsp;
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>OccurrenceIndicator</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>&nbsp;&nbsp;&nbsp;::=&nbsp;&nbsp;&nbsp;</strike>
+					</p>
+				</td>
+				<td>
+					<p>
+						<strike>"?" | "*" | "+"</strike>
+					</p>
+				</td>
+			</tr>
+		</table>
+<script type="text/javascript" src="footer.js"></script></body></html>

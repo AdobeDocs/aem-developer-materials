@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.4.6 References in a Frozen Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.4.6 References in a Frozen Node</H4>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property stored in the frozen node of a version does not enforce
+	referential integrity. Under simple versioning this follows from the
+	fact that a <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	within a frozen node does not appear within the workspace in any
+	case, it only appears when the frozen node is explicitly retrieved
+	through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object (see §15.2.1 <I>Version Object</I>). Under full versioning a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	within a frozen node will appear in the workspace within the
+	read-only version storage (see §3.13.8 <I>Version Storage</I>) so
+	the referential integrity requirement must be lifted as a special
+	case.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,174 @@
+***************
+foundation-form
+***************
+
+``foundation-form`` is an enhancement of <form>.
+
+
+.foundation-form
+================
+
+A marker class to host enhancement related to form.
+
+Selector Rule::
+
+   form.foundation-form
+
+
+[data-foundation-form-ajax]
+===========================
+
+``true`` if the form is to be submitted using ajax asynchronously, instead of standard synchronous behavior.
+
+Selector Rule::
+
+   .foundation-form[data-foundation-form-ajax]
+
+
+[data-foundation-form-output-replace]
+=====================================
+
+The selector to an element where the form submit output will be displayed. If the element is ``.foundation-content``, ``FoundationContent.replace(html, historyConfig)`` will be used; otherwise the output will replace the element content by mean of ``element.innerHTML``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-output-replace]
+
+
+[data-foundation-form-output-push]
+==================================
+
+The selector to an element where the form submit output will be displayed. If the element is ``.foundation-content``, ``FoundationContent.push(html, historyConfig)`` will be used; otherwise the output will replace the element content by mean of ``element.innerHTML``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-output-push]
+
+
+[data-foundation-form-history]
+==============================
+
+The JSON config to configure the browser history when calling ``FoundationContent.replace(html, historyConfig)`` or ``FoundationContent.push(html, historyConfig)`` by mean of ``[data-foundation-form-output-replace]`` or ``[data-foundation-form-output-push]`` respectively.
+
+.. code-block:: ts
+
+   interface FoundationFormHistoryConfig {
+     /**
+      * The URL to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      * This is optional and take precedence over <code>useFormUrl</code> property.
+      */
+     url?: string;
+
+     /**
+      * Indicates that the form's action attribute is used as the URL to be passed to historyConfig param
+      * of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     useFormUrl?: boolean;
+
+     /**
+      * The title to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     title?: string;
+
+     /**
+      * The data to be passed to historyConfig param of <code>FoundationContent.replace(html, historyConfig)</code> or <code>FoundationContent.push(html, historyConfig)</code>.
+      */
+     data?: any;
+
+     /**
+      * The behavior when History API is not available.
+      *
+      * WARNING: This config is no longer supported, as IE9 is no longer supported, hence History API is always supported.
+      *
+      * ignore (default): Ignores history manipulation.
+      * disableAjax: Equivalent to setting <code>[data-foundation-form-ajax]</code> to <code>false</code>.
+      */
+     noSupportBehaviour?: string;
+   }
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-history]
+
+
+[data-foundation-form-redirect]
+===============================
+
+The URL to redirect the form to.
+
+If this attribute is specified, instead of processing the content from the submission response, the URL will be used to fetch a new content if it is a success response. The new content is processed according to output processing attributes, namely ``[data-foundation-form-output-replace]`` or ``[data-foundation-form-output-push]`` accordingly.
+
+
+[data-foundation-form-ui]
+=========================
+
+``none`` to suppress certain UI behavior. Otherwise ``foundation-form`` will show an error dialog during error response. This attribute is applicable only when ``data-foundation-form-ajax`` is ``true``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-ui]
+
+
+[data-foundation-form-loadingmask]
+==================================
+
+``true`` to show a mask during form submission. Otherwise no mask is shown at all.
+
+The mask is used to cover the element specified at ``[data-foundation-form-output-replace]``, or ``[data-foundation-form-output-push]``, or the whole screen.
+
+This attribute is applicable only when ``data-foundation-form-ajax`` is ``true``.
+
+Selector Rule::
+
+   [data-foundation-form-ajax][data-foundation-form-loadingmask]
+
+
+foundation-form-submitted event
+===============================
+
+This event is triggered after the submission of the form is completely finished—i.e. when no further action is performed by ``foundation-form``. The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationFormSubmittedEvent {
+     /**
+      * @param status <code>true</code> when the form is successfully submitted; <code>false</code> otherwise
+      * @param xhr The normalized jQuery XHR object
+      */
+     (status: boolean, xhr: JQueryXHR): void;
+   }
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-form``
+
+condition
+   ``form.foundation-form``
+
+returned type
+   ``FoundationForm``
+
+.. code-block:: ts
+
+   interface FoundationForm {
+     /**
+      * Submits the form asynchronously.
+      *
+      * Note that this is merely a convenience method to submit a form using Ajax.
+      * The behaviour of foundation-form is not performed by this method.
+      * Please submit the form by triggering the submit event normally to achieve that.
+      *
+      * @returns The promise of the response
+      */
+     submitAsync(): Promise;
+
+     /**
+      * Resets the form. This method is intended to also reset <code>foundation-field</code> in addition to standard form controls.
+      *
+      * @param skipNative Skips the native form reset method (HTMLFormElement#reset)
+      */
+     reset(skipNative?: boolean): void;
+   }

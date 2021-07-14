@@ -1,0 +1,35 @@
+**************************
+foundation-validation-bind
+**************************
+
+
+Markup
+======
+
+
+.foundation-validation-bind
+---------------------------
+
+Indicates the element is participating in form validation.
+When the ``<form>`` is invalid—when any of its fields is invalid—the ``disabled`` property of the element will be set to ``true``; ``false`` otherwise.
+It is implied that only elements supporting ``disabled`` property can be used for this feature.
+Typically they are ``<input type="submit">``, ``<button type="submit">``.
+
+Selector Rule::
+
+   form .foundation-validation-bind,
+   .foundation-validation-bind[form]
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <form>
+     <label>Field 1 <input name="field1" required></label>
+     <label>Field 2 <input name="field2" required></label>
+     <button class="foundation-validation-bind" type="submit">Submit</button>
+   </form>
+
+In this case, the submit button will be enabled/disabled when the form is valid/invalid.
