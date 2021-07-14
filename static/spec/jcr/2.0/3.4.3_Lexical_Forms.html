@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.3 Lexical Forms (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.4.3 Lexical Forms</H3>
+	<P>Given a JCR path <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	= <FONT FACE="Courier New, monospace"><FONT SIZE=2>(S0,
+	S1, ..., Sn)</FONT></FONT>, its lexical form <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+	can be constructed according to the following algorithm, where <FONT FACE="Courier New, monospace"><FONT SIZE=2>=</FONT></FONT>
+	is the assignment operator, <FONT FACE="Courier New, monospace"><FONT SIZE=2>+=</FONT></FONT>
+	is the string append operator, <FONT FACE="Courier New, monospace"><FONT SIZE=2>or</FONT></FONT>
+	indicates an arbitrary choice between alternative operations and
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nothing</FONT></FONT>
+	is the null operation.</P>
+	<P>
+	<FONT FACE="Courier New, monospace">L = &quot;&quot;</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">for each S in P </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">if S is the root segment<I> </I></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += &quot;/&quot;</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">else</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">if S is an identifier
+	segment U </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += &quot;[&quot; + U +
+	&quot;]&quot;</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">else if S is a self segment </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += &quot;.&quot;</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">else if S is a parent
+	segment</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += &quot;..&quot;</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">else if S is a name segment
+	(J, I)</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += the qualified form of
+	J</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">or L += the expanded form
+	of J <I>//optional syntax</I></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">if I &gt; 1</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += &quot;[&quot; + I +
+	&quot;]&quot;</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">else </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">nothing</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">or L += &quot;[1]&quot;
+	<I>//optional syntax</I></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">end if</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">end if</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">if S is not the last segment
+	of P</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">L += &quot;/&quot;</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">else </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">nothing </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">or L += &quot;/&quot;
+	<I>//optional syntax</I></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">end if</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">end if </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">end for</FONT></P>
+	<P>The resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>L</FONT></FONT>
+	is a lexical form of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.
+	As indicated by the steps marked <I>optional syntax</I>, a JCR path
+	may have multiple equivalent lexical forms depending on the use of
+	qualified vs. expanded names, the optional <FONT FACE="Courier New, monospace"><FONT SIZE=2>[1]</FONT></FONT>
+	index indicator and the optional trailing forward slash (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>/</FONT></FONT>”).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.5.4 Reference (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.5.4." id="section_6.2.5.4."></a>6.2.5.4 Reference
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A <b>REFERENCE</b> property stores the UUID of a referenceable node (one having type <b>mix:referenceable</b>). The referential integrity of <b>REFERENCE</b> properties must be guaranteed.
+								</p>
+							
+							
+								<p class="c5">
+									In level 2 implementations, enforcement of referential integrity means that when a node is <b>remove</b>d, a check must be done to ensure that no <b>REFERENCE</b> properties in the workspace still refer to nodes in the subtree to be removed. This check is done when an attempt is made to persist the removal of a node (that is, either on <b>save</b>, or, if the change was made within a transaction, on <i>commit</i>; in any case, the check is not done immediately on <b>remove</b>). If any references to a node in the subtree to be removed exist, a <b>ReferentialIntegrityException</b> is thrown.
+								</p>
+							
+							
+								<p class="c5">
+									An exception is made to the referential integrity rule when the <b>REFERENCE</b> property in question is part of the frozen state of a version stored in version storage. In that case the frozen <b>REFERENCE</b> property may hold the UUID of a node that is no longer in the workspace (see <a href="8.2.2.9_Reference_Properties_within_a_Version.html">8.2.2.9</a> <i>Reference Properties within a Version</i>).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

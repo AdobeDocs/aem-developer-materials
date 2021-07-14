@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.3 Respecting Property Semantics (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.3." id="section_7.3.3."></a> 7.3.3 Respecting Property Semantics
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									During either system or document view import, elements (in system view) or attributes (in document view) may be encountered that correspond to properties with repository-level semantics. This includes, in particular, the properties that are defined in <b>nt:base</b>, <b>mix:lockable</b>, <b>mix:referenceable</b> or <b>mix:versionable</b> (that is properties such as <b>jcr:primaryType</b>, <b>jcr:mixinTypes</b>, <b>jcr:uuid</b>, <b>jcr:lockIsDeep</b>, and so forth).
+								</p>
+							
+							
+								<p class="c5">
+									When an element or attribute representing such a property is encountered, an implementation may either <i>skip</i> it or <i>respect</i> it.
+								</p>
+							
+							
+								<p class="c5">
+									To respect it means to import it and alter the internal state of the repository in accordance with the semantics of the property in the given implementation. For example, to respect <b>jcr:primaryType</b> means to attempt to create a node of the indicated primary node type. If the node type in question is not supported by the implementation, an exception is thrown (see 7.3.6 Workspace Import Methods for details).
+								</p>
+							
+							
+								<p class="c5">
+									To skip the element or attribute means not to import it all. <i>It does not mean to import it but then ignore its semantic implications</i>.
+								</p>
+							
+							
+								<p class="c5">
+									The implementation-specific policy regarding what to skip and what to respect must be internally consistent. For example, it makes no sense to skip <b>jcr:mixinTypes</b> (thus missing the presence of <b>mix:lockable</b>, for example) and yet respect <b>jcr:lockOwner</b> and <b>jcr:lockIsDeep</b>.
+								</p>
+							
+							
+								<p class="c5">
+									If an implementation chooses to skip <b>jcr:primaryType</b>, the node type of the imported node is determined by the implementation (see <a href="7.3.4_Determining_Node_Types.html">7.3.4</a> <i>Determining Node Types</i>, immediately below).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

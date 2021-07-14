@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.10.3.1 jcr:mixinTypes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>10.10.3.1 jcr:mixinTypes</H4>
+	<P>When a new mixin type
+	is assigned using <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addMixin</FONT></FONT>,
+	the name of the mixin is added immediately to the multi-valued
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+	property. If the property does not exist, it is created. This
+	property is defined as non-mandatory in the node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	and therefore may appear on any node. When a mixin is removed with
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeMixin</FONT></FONT>
+	the name of the mixin type is immediately removed from the property.</P>
+	<P>Semantically, any
+	changes to mixin node types take effect in accordance with the <I>node
+	type assignment behavior</I> of the repository (see §10.10.1 <I>Node
+	Type Assignment Behavior</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

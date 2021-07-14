@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.6 JoinType (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.6 JoinType</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">enum JoinType ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Inner,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">LeftOuter,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">RightOuter</FONT></P>
+	<P><B><BR>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">JoinType ::= Inner | LeftOuter |
+	RightOuter</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Inner ::= 'INNER'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">LeftOuter ::= 'LEFT OUTER'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">RightOuter ::= 'RIGHT OUTER'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A join type is a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	constant. One of:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_JOIN_TYPE_INNER</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_JOIN_TYPE_LEFT_OUTER</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants.JCR_JOIN_TYPE_RIGHT_OUTER</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

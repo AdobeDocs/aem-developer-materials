@@ -1,0 +1,213 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#Granite.Sling-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#Granite.Sling-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#Granite.Sling-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=Granite.Sling"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;Granite.Sling</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">Granite</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Sling.js" target="_blank">Sling.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Sling</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">&lt;unknown&gt;                            , *                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing a set of Sling-related utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="Granite.Sling-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-CHARSET"></a>
+            <b>CHARSET</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the used character set.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-COPY_SUFFIX"></a>
+            <b>COPY_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for copying.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-DELETE_SUFFIX"></a>
+            <b>DELETE_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for deleting.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-DESTINATION"></a>
+            <b>DESTINATION</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the destination flag.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-IGNORE_PARAM"></a>
+            <b>IGNORE_PARAM</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for input fields that should
+be ignored by Sling.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-LOGIN_URL"></a>
+            <b>LOGIN_URL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Login URL                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-LOGOUT_URL"></a>
+            <b>LOGOUT_URL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Logout URL                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-MOVE_SUFFIX"></a>
+            <b>MOVE_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for moving.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-OPERATION"></a>
+            <b>OPERATION</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the operation.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-OPERATION_DELETE"></a>
+            <b>OPERATION_DELETE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter value for the delete operation.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-OPERATION_MOVE"></a>
+            <b>OPERATION_MOVE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter value for the move operation.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-ORDER"></a>
+            <b>ORDER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the ordering.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-REPLACE"></a>
+            <b>REPLACE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the replace flag.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-REQUEST_LOGIN_PARAM"></a>
+            <b>REQUEST_LOGIN_PARAM</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for login requests.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-SAVE_PARAM_PREFIX"></a>
+            <b>SAVE_PARAM_PREFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the save parameter prefix.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-SELECTOR_INFINITY"></a>
+            <b>SELECTOR_INFINITY</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The selector for infinite hierarchy depth when retrieving
+repository content.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-STATUS"></a>
+            <b>STATUS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the status.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-STATUS_BROWSER"></a>
+            <b>STATUS_BROWSER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter value for the status type "browser".                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="Granite.Sling-TYPEHINT_SUFFIX"></a>
+            <b>TYPEHINT_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for setting a type hint.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+            </table>
+                <a id="Granite.Sling-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="Granite.Sling-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

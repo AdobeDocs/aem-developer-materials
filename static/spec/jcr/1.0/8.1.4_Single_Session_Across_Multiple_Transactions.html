@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.1.4 Single Session Across Multiple Transactions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.1.4." id="section_8.1.4."></a> 8.1.4 Single Session Across Multiple Transactions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Because modifications in the transient layer are not transactionalized, the possibility exists for some implementations to allow a <b>Session</b> to be shared across transactions. This possibility arises because in JTA, an <b>XAResource</b> may be successively associated with different global transactions and in many implementations the natural mapping will be to make the <b>Session</b> implement the <b>XAResource</b>. The following code snippet illustrates how an <b>XAResource</b> may be shared across two global transactions:
+								</p>
+							
+							
+								<p class="c12">
+									// Associate the resource (our Session) with a global<br>
+									// transaction xid1<br>
+									res.start(xid1, TMNOFLAGS);<br>
+									<br>
+									// Do something with res, on behalf of xid1<br>
+									// ...
+								</p>
+							
+							
+								<p>
+									<br>
+									// Suspend work on this transaction<br>
+									res.end(xid1, TMSUSPEND);<br>
+									<br>
+									// Associate (the same!) resource with another<br>
+									// global transaction xid2<br>
+									res.start(xid2, TMNOFLAGS);<br>
+									<br>
+									// Do something with res, on behalf of xid2<br>
+									// ...<br>
+									<br>
+									// End work<br>
+									res.end(xid2, TMSUCCESS);<br>
+									<br>
+									// Resume work with former transaction<br>
+									res.start(xid1, TMRESUME);<br>
+									<br>
+									// Commit work recorded when associated with xid2<br>
+									res.commit(xid2, true);<br><br>
+								</p>
+							
+							
+								<p class="c5">
+									<br>In cases where the <b>XAResource</b> corresponds to a <b>Session</b> (that is, probably most implementations), items that have been obtained in the context of <b>xid1</b> would still be valid when the <b>Session</b> is effectively associated with <b>xid2</b>. In other words, all transactions working on the same <b>Session</b> would share the transient items obtained through that <b>Session</b>.
+								</p>
+							
+							
+								<p class="c5">
+									In those implementations that adopt a copy-on-read approach to transient storage (see <a href="7.1.3.4_Seeing_Changes_Made_by_Other_Sessions.html">7.1.3.4</a> <i>Seeing Changes Made by Other Sessions</i>) this will mean that the transient layer reflects an unchanged item's state <i>in the transaction<br>
+									context in which the item was acquired</i>. As soon as an item is refreshed or changed, the session will then reflect the state of that item in the transaction context within which that refresh or change took place.
+								</p>
+							
+							
+								<p class="c5">
+									Some implementers may choose to circumvent any problems with shared transient items by undoing changes inside the transient layer when a session is disassociated from a global transaction. This is however, outside the scope of this specification.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

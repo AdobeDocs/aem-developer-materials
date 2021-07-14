@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.1.4 Copying Versionable Nodes and Version Lineage (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.1.4 Copying Versionable Nodes and Version Lineage</H3>
+	<P>Under both simple and
+	full versioning, when an existing versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is copied to a new location either in the same workspace or another,
+	and the repository preserves the versionable mixin (see §10.7.4
+	<I>Dropping Mixins on Copy</I>):</P>
+	<UL>
+		<LI><P>A copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>,
+		is created, as usual.</P>
+		<LI><P>A new, empty,
+		version history for <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>,
+		call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>M</SUB></FONT></FONT>,
+		is also created.</P>
+	</UL>
+	<P>Under full versioning:</P>
+	<UL>
+		<LI><P>The properties
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		are not copied from <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		but are initialized as usual.</P>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:copiedFrom</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>M</SUB></FONT></FONT>
+		is set to point to the base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+				</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

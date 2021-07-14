@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 24.2.5 Query (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>24.2.5 Query</H3>
+	<TABLE WIDTH=642 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=1 CELLSPACING=0>
+		<COL WIDTH=257>
+		<COL WIDTH=379>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=36>
+				<P><FONT SIZE=1 ><B>Key</B></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 ><B>Descriptor</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=37>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_LANGUAGES</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >STRING[]</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns an array holding the constants representing the supported
+				query languages, or a zero-sized array if query is not supported
+				(see §6 </FONT><FONT SIZE=1 ><I>Query</I></FONT>).</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >STORED_QUERIES_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>stored
+				queries </I></FONT><FONT SIZE=1 >are
+				supported (see §6.9.7 </FONT><FONT SIZE=1 ><I>Stored
+				Query</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_FULL_TEXT_SEARCH_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>full-text
+				search </I></FONT><FONT SIZE=1 >is
+				supported (see §6.7.19 </FONT><FONT SIZE=1 ><I>FullTextSearch</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=74>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_JOINS</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >STRING</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns one of the following </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >javax.jcr.Repository</FONT></FONT></FONT><FONT SIZE=1 >
+				constants indicating </FONT><FONT SIZE=1 ><I>the
+				level of support for joins in queries</I></FONT><FONT SIZE=1 >:</FONT></P>
+				<UL>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_JOINS_NONE</FONT></FONT></FONT><FONT SIZE=1 >:
+					Joins are not supported. Queries are limited to a single
+					selector.</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_JOINS_INNER</FONT></FONT></FONT><FONT SIZE=1 >:
+					Inner joins are supported.</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >QUERY_JOINS_INNER_OUTER</FONT></FONT></FONT><FONT SIZE=1 >:
+					Inner and outer joins are supported.</FONT></P>
+				</UL>
+				<P><FONT SIZE=1 >See
+				§6.7.5 </FONT><FONT SIZE=1 ><I>Join</I></FONT><FONT SIZE=1 >.</FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

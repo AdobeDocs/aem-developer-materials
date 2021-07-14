@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.3.3 Available Query Operators (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.3.3 Available Query Operators</H4>
+	<P>A property definition
+	declares the set of query comparison operators that can be validly
+	applied to a property. The set of operators that can appear in this
+	attribute may be limited by implementation-specific constraints that
+	differ across property types. For example, some implementations may
+	permit property definitions to provide <FONT FACE="Courier New, monospace"><FONT SIZE=2>EqualTo</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>NotEqualTo</FONT></FONT>
+	(see §6.7.16 <I>Comparison</I>) as available operators for <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	properties while others may not. However, in all cases where a
+	JCR-defined operator <I>is</I> potentially available for a given
+	property type, its behavior must conform to the comparison semantics
+	defined in §3.6.5 <I>Comparison of Values</I>.</P>
+	<H5>3.7.3.3.1 Interaction with Node Type Definition  </H5>
+	<P>This attribute only
+	takes effect if the node type holding the property definition has a
+	queryable setting of <I>true</I> (see §3.7.1.5 <I>Queryable Node
+	Type</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

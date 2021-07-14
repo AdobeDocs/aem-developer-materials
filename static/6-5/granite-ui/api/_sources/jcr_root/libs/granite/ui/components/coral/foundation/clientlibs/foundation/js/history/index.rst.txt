@@ -1,0 +1,35 @@
+******************
+foundation-history
+******************
+
+``foundation-history`` is component related to browser history.
+
+
+Markup
+======
+
+
+.foundation-history-control
+---------------------------
+
+Indicates the control (likely <button>) to manipulate browser history.
+
+Selector Rule::
+
+   .foundation-history-control
+
+
+[data-foundation-history-control-action]
+----------------------------------------
+
+Indicates the action to be taken when the control is activated. It support the following value:
+
+back
+   Will call ``window.history.back``
+
+forward
+   Will call ``window.history.forward``
+
+Selector Rule::
+
+   .foundation-history-control[data-foundation-history-control-action]

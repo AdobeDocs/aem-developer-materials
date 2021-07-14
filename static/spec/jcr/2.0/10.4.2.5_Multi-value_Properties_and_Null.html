@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.4.2.5 Multi-value Properties and Null (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>10.4.2.5 Multi-value Properties and Null</H4>
+	<P>As with single-value
+	properties, there is no such thing as a null value. If a value
+	within a multi-value property is set to null, this is equivalent to
+	removing that value from the value array. In such a case the array
+	is automatically compacted, shifting the indices of those values
+	with an index greater than that of the removed value by -1. However,
+	while no value within a multi-value property can be null, a
+	multi-value property can exist with no values (i.e., it can be an
+	empty array).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.6.8 Item Definitions in Subtypes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.6.8 Item Definitions in Subtypes</H4>
+	<P>If <I>T</I> is a
+	registered node type and <I>T'</I> is the definition of a subtype of
+	<I>T</I> that meets the criteria in the preceding sections, then an
+	item definition <I>D'</I> in <I>T'</I> is either <I>additive</I>,
+	<I>overriding</I> or <I>invalid</I>, as determined by the following
+	algorithm:</P>
+	<UL>
+		<LI><P>If <I>D'</I> is
+		not statically valid then <I>D'</I> is invalid.</P>
+		<LI><P>If <I>D'</I> is a
+		residual definition then <I>D'</I> is additive.</P>
+		<LI><P>If there <I>does
+		not</I> exists a definition <I>D</I> in <I>T</I> with a name and
+		class (i.e., either <I>node</I> or <I>property</I>) identical to
+		that of <I>D'</I> then <I>D'</I> is additive.</P>
+		<LI><P>If there <I>does</I>
+		exist a definition <I>D</I> in <I>T</I> with name and class
+		identical to that of <I>D'</I> then <I>D'</I> is overriding if: 
+		</P>
+		<UL>
+			<LI><P>The
+			implementation supports item definition overrides in this instance
+			(implementations are free allow or disallow overrides globally or
+			on an instance-by-instance basis) 
+			</P>
+			<LI><P>If <I>D</I> is a
+			property definition then <I>D</I> and <I>D'</I> have identical
+			multiple settings and any property values valid against <I>D'</I>
+			would also be valid against <I>D</I>.</P>
+			<LI><P>If <I>D</I> is a
+			child node definition then <I>D</I> and <I>D'</I> have identical
+			same-name sibling settings.</P>
+		</UL>
+	</UL>
+	<UL>
+		<UL>
+			<LI><P>If <I>D</I> is
+			autocreated, mandatory or protected then <I>D'</I> must be,
+			respectively, that as well.</P>
+		</UL>
+	</UL>
+	<UL>
+		<LI><P>Otherwise, <I>D'</I>
+		is invalid.</P>
+	</UL>
+	<P>If <I>D'</I> is
+	<I>additive</I> then when <I>T'</I> is registered <I>D'</I> becomes
+	part of <I>T'</I> alongside all item definitions inherited from <I>T</I>.</P>
+	<P>If <I>D'</I> <I>overrides</I>
+	<I>D</I> then when <I>T'</I> is registered <I>D'</I> replaces the
+	definition <I>D</I> that would otherwise have been inherited from <I>T</I>.</P>
+	<P>If <I>D'</I> is
+	<I>invalid</I> then <I>T'</I> cannot be registered.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7.7 Export Scope (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>7.7 Export Scope</H2>
+	<P>Export obeys the
+	access restrictions of the bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	lacks read access to some subsection of the specified content, that
+	section is not exported.</P>
+	<P>The exported output
+	reflects the state of the bound persistent workspace as modified by
+	the transient store of the bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	This means that pending changes and all namespace mappings in the
+	namespace registry, as modified by the current session-mappings, are
+	reflected in the output. 
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

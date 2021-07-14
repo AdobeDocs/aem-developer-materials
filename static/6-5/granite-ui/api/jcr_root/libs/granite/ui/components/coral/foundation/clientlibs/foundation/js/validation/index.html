@@ -1,0 +1,592 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-validation &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-validation-bind" href="bind.html" />
+    <link rel="prev" title="foundation-util-paginator" href="../util/paginator.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="bind.html" title="foundation-validation-bind"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../util/paginator.html" title="foundation-util-paginator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-validation">
+<h1>foundation-validation<a class="headerlink" href="#foundation-validation" title="Permalink to this headline">¶</a></h1>
+<p>Field validation in Granite UI is designed to replicate <a class="reference external" href="http://www.w3.org/TR/html5/forms.html#constraints">HTML Forms Constraint Validation API</a>.</p>
+<p>See also <a class="reference internal" href="../../vocabulary/field.html"><span class="doc">foundation-field</span></a> for standardized field vocabulary.</p>
+<div class="section" id="selector">
+<h2>Selector<a class="headerlink" href="#selector" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="foundation-submittable">
+<h3>:-foundation-submittable<a class="headerlink" href="#foundation-submittable" title="Permalink to this headline">¶</a></h3>
+<p>Selects elements indicating the <em>logical</em> field. Only elements selectable by this selector are validated.</p>
+<p>This pseudo selector is extensible by registering <code class="docutils literal notranslate"><span class="pre">foundation.validation.selector</span></code>.</p>
+<p>Note that since this selector is a custom jQuery selector, it can only be used using jQuery.</p>
+</div>
+</div>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-foundation-validation-ui">
+<h3>[data-foundation-validation-ui]<a class="headerlink" href="#data-foundation-validation-ui" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the configuration related to the UI of the validation. The supported value is <code class="docutils literal notranslate"><span class="pre">none</span></code>, which means the UI is not shown.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">validation</span><span class="o">-</span><span class="n">ui</span><span class="p">]:</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">submittable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adaptto-interface">
+<h2>AdaptTo Interface<a class="headerlink" href="#adaptto-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">foundation-validation</span></code></dd>
+<dt>condition</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">:-foundation-submittable</span></code></dd>
+<dt>returned type</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">FoundationValidation</span></code></dd>
+</dl>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationValidation</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the element will be validated when the form is submitted</span>
+<span class="cm">   * (i.e. The element that is satisfying &lt;code&gt;FoundationValidationSelector#candidate&lt;/code&gt; selector); &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-willvalidate}</span>
+<span class="cm">   */</span>
+  <span class="nx">willValidate</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the error message that would be shown to the user if the element was to be checked for validity.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return The error message or an empty string</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-validationmessage}</span>
+<span class="cm">   */</span>
+  <span class="nx">validationMessage</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the validity state of the element.</span>
+<span class="cm">   */</span>
+  <span class="nx">getValidity</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">FoundationValidationValidity</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the element&#39;s value has no validity problems; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * Fires &lt;code&gt;foundation-validation-invalid&lt;/code&gt; or &lt;code&gt;foundation-validation-valid&lt;/code&gt; event at the element when it is invalid or valid respectively.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return The validity</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-checkvalidity}</span>
+<span class="cm">   */</span>
+  <span class="nx">checkValidity</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Sets a custom error, so that the element would fail to validate.</span>
+<span class="cm">   * The given message is the message to be shown to the user when reporting the problem to the user.</span>
+<span class="cm">   * If the argument is the empty string, clears the custom error.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param message The error message or empty string</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-setcustomvalidity}</span>
+<span class="cm">   */</span>
+  <span class="nx">setCustomValidity</span><span class="o">:</span> <span class="p">(</span><span class="nx">message</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Shows error UI if the element is invalid; hide the UI otherwise.</span>
+<span class="cm">   */</span>
+  <span class="nx">updateUI</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationValidationValidity</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the custom error message.</span>
+<span class="cm">   */</span>
+  <span class="nx">getCustomError</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the element&#39;s value has no validity problems; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * The value is only accurate when &lt;code&gt;#isValidated()&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">isValid</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the element has been validated; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * For performance, to check if an element is valid is better done by checking this method first and then call &lt;code&gt;#isValid()&lt;/code&gt; or &lt;code&gt;FoundationValidation#checkValidity&lt;/code&gt;.</span>
+<span class="cm">   *</span>
+<span class="cm">   * Example</span>
+<span class="cm">   * &lt;pre&gt;&lt;code&gt;</span>
+<span class="cm">   * // Returns true if the container is valid; false otherwise.</span>
+<span class="cm">   * function isValid(container) {</span>
+<span class="cm">   *   return Array.prototype.every.call(container.find(&quot;:-foundation-submittable&quot;), function(v) {</span>
+<span class="cm">   *     var api = $(v).adaptTo(&quot;foundation-validation&quot;);</span>
+<span class="cm">   *     var state = api.getValidity();</span>
+<span class="cm">   *</span>
+<span class="cm">   *     if (state.isValidated()) {</span>
+<span class="cm">   *       return state.isValid(); // Calling this is much faster than `api.checkValidity()`.</span>
+<span class="cm">   *     } else {</span>
+<span class="cm">   *       return api.checkValidity();</span>
+<span class="cm">   *     }</span>
+<span class="cm">   *   });</span>
+<span class="cm">   * }</span>
+<span class="cm">   * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">   */</span>
+  <span class="nx">isValidated</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="form-submission">
+<h2>Form Submission<a class="headerlink" href="#form-submission" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-validation</span></code> will <a class="reference external" href="http://www.w3.org/TR/DOM-Level-3-Events/#capture-phase">capture</a> the form <code class="docutils literal notranslate"><span class="pre">submit</span></code> event to cancel and stop propagating the event when the form is invalid.
+If there is <a class="reference external" href="http://www.w3.org/TR/html5/forms.html#attr-fs-novalidate">novalidate</a> attribute, the validation process is skipped.</p>
+<p>During that event, it will perform the validation described by the following pseudo-code:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">validateForm</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">submitEvent</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">form</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;:-foundation-submittable&quot;</span><span class="p">).</span><span class="nx">toArray</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">invalids</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">var</span> <span class="nx">unhandleds</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="nx">fields</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateField</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">invalids</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">invalids</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// The form is valid</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">invalids</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="nx">createEvent</span><span class="p">(</span><span class="s2">&quot;foundation-validation-invalid&quot;</span><span class="p">);</span>
+    <span class="nx">field</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">isDefaultPrevented</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">unhandleds</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">unhandleds</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">unhandleds</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">showErrorUI</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">submitEvent</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+  <span class="nx">submitEvent</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validator">
+<h2>Validator<a class="headerlink" href="#validator" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">foundation-validation</span></code> itself is not performing the actual validation.
+Rather a validator can be registered to the <a class="reference internal" href="../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.validation.validator</span></code> as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationValidationValidator</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Only the element satisfying the selector will be validated using this validator. It will be passed to &lt;code&gt;jQuery.fn.is&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">selector</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Only the element satisfying the selector will be validated using this validator. It will be passed to &lt;code&gt;jQuery.fn.is&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="p">(</span><span class="nx">index</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">element</span>: <span class="kt">Element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The actual validation function. It must return a string of error message if the element fails.</span>
+<span class="cm">   */</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="p">(</span><span class="nx">element</span>: <span class="kt">Element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The function to show the error.</span>
+<span class="cm">   */</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="p">(</span><span class="nx">element</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">message</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">ctx</span>: <span class="kt">FoundationValidationValidatorContext</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The function to clear the error.</span>
+<span class="cm">   */</span>
+  <span class="nx">clear</span><span class="o">:</span> <span class="p">(</span><span class="nx">element</span>: <span class="kt">Element</span><span class="p">,</span> <span class="nx">ctx</span>: <span class="kt">FoundationValidationValidatorContext</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">FoundationValidationValidatorContext</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Indicates that the validation process should continue to the next validator.</span>
+<span class="cm">   * If this method is not called, then the process stops.</span>
+<span class="cm">   */</span>
+  <span class="nx">next</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The validators are evaluated based on LIFO (last in, first out) algorithm.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>We need a validator to check the max length of a textfield (e.g. <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;type&quot;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;textarea&gt;</span></code>), and we are using <code class="docutils literal notranslate"><span class="pre">data-myapp-maxlength</span></code> attribute to indicate this. Like so:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">data-myapp-maxlength</span><span class="o">=</span><span class="s">&quot;10&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Then we need to register the validator like so:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.validation.validator&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="s2">&quot;[data-myapp-maxlength]&quot;</span><span class="p">,</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">maxlength</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">&quot;data-myapp-maxlength&quot;</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">maxlength</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">maxlength</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s2">&quot;The field needs to be maximum &quot;</span> <span class="o">+</span> <span class="nx">maxlength</span> <span class="o">+</span> <span class="s2">&quot; characters. It currently has a length of &quot;</span> <span class="o">+</span> <span class="nx">length</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Since we want to leverage the default error UI, we don’t register handlers for show() and clear().</p>
+</div>
+</div>
+<div class="section" id="error-ui">
+<h2>Error UI<a class="headerlink" href="#error-ui" title="Permalink to this headline">¶</a></h2>
+<p>Like the validator, the actual logic of error UI is delegated to other code.</p>
+<div class="section" id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We need to show a custom tooltip when the field is contained in vertical form. Like so:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;myapp-form-vertical&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Then we need to register the validator like so:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.validation.validator&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="s2">&quot;.myapp-form-vertical input&quot;</span><span class="p">,</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">customTooltip</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">customTooltip</span><span class="p">(</span><span class="s2">&quot;destroy&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Since we only want to show the error UI, we don’t register a handler for <code class="docutils literal notranslate"><span class="pre">validate()</span></code>. The validity is checked by <code class="docutils literal notranslate"><span class="pre">validate()</span></code> of other registered validators instead.</p>
+</div>
+</div>
+<div class="section" id="selector-best-practice">
+<h2>Selector Best Practice<a class="headerlink" href="#selector-best-practice" title="Permalink to this headline">¶</a></h2>
+<p>When registering a validator for the field, it is important to have a fast selector. This is especially important when you have a lot of fields in the form.</p>
+<div class="section" id="what-is-fast-selector">
+<h3>What is fast selector?<a class="headerlink" href="#what-is-fast-selector" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.w3.org/TR/selectors/">W3C Selectors Specification</a> defines a few categories of selectors: simple, pseudo-elements, combinators.
+The fast selector is basically the selector that is flat. i.e. a selector that doesn’t require the selector engine to look for another element (e.g. parent, sibling, ancestor) beside the element at hand.
+So, using simple selector should be your primary objective, while you have to be careful with combinators.</p>
+</div>
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Simple selectors: <code class="docutils literal notranslate"><span class="pre">.example-mycomponent</span></code>, <code class="docutils literal notranslate"><span class="pre">#example-mycomponent</span></code>, <code class="docutils literal notranslate"><span class="pre">[data-foundation-validation~=’example.myvalidation’]</span></code>
+Combinator selectors: <code class="docutils literal notranslate"><span class="pre">.example-myparent</span> <span class="pre">.example-mycomponent</span></code></p>
+</div>
+</div>
+<div class="section" id="extending-foundation-submittable">
+<h2>Extending :-foundation-submittable<a class="headerlink" href="#extending-foundation-submittable" title="Permalink to this headline">¶</a></h2>
+<p>The selector is used to represent the logical field.</p>
+<p>To indicate the logical field, a config can be registered to the <a class="reference internal" href="../registry/index.html"><span class="doc">registry</span></a> using <code class="docutils literal notranslate"><span class="pre">foundation.validation.selector</span></code> as the name and the config satisfying the following interface:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationValidationSelector</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The selector of the root element of the logical field.</span>
+<span class="cm">   * Usually it can be used for constructing the form data set when a form element is submitted.</span>
+<span class="cm">   */</span>
+  <span class="nx">submittable</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The selector that is stricter than &lt;code&gt;submittable&lt;/code&gt; selector to indicate that only element matching the selector is going to be validated.</span>
+<span class="cm">   * A submittable element is a candidate for validation except when a condition has barred the element from the validation.</span>
+<span class="cm">   * For example, an element is barred from validation if it is disabled or readonly.</span>
+<span class="cm">   */</span>
+  <span class="nx">candidate</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The selector to exclude elements that are part of the internal implementation details of composite component.</span>
+<span class="cm">   */</span>
+  <span class="nx">exclusion</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Imagine an autocomplete component that is a complex composite component consists of native <code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code> field.
+It has the following markup:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;example-Autocomplete&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;name1&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span><span class="p">&gt;</span>Toggle<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>where the disabled and readonly are indicated by <code class="docutils literal notranslate"><span class="pre">[disabled]</span></code> and <code class="docutils literal notranslate"><span class="pre">[readonly]</span></code> at <code class="docutils literal notranslate"><span class="pre">.example-Autocomplete</span></code> element respectively.</p>
+<p>The root element of the autocomplete is the logical field, where the <code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code> is an implementation detail that is not supposed to be validated independently.
+However <code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code> is also a native field that can be used independently outside autocomplete, hence it is also a logical field.</p>
+<p>To indicate the selector for autocomplete, the following needs to be registered:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-registry&quot;</span><span class="p">).</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;foundation.validation.selector&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">submittable</span><span class="o">:</span> <span class="s2">&quot;.example-Autocomplete&quot;</span><span class="p">,</span>
+  <span class="nx">candidate</span><span class="o">:</span> <span class="s2">&quot;.example-Autocomplete:not([disabled]):not([readonly])&quot;</span><span class="p">,</span>
+  <span class="nx">exclusion</span><span class="o">:</span> <span class="s2">&quot;.example-Autocomplete *&quot;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>That way, when one is performing a query using <code class="docutils literal notranslate"><span class="pre">:-foundation-submittable</span></code>, it will select <code class="docutils literal notranslate"><span class="pre">.example-Autocomplete</span></code> element but not <code class="docutils literal notranslate"><span class="pre">.example-Autocomplete</span> <span class="pre">input</span></code> element.
+Also when the autocomplete is disabled or readonly, it will not be validated.</p>
+</div>
+</div>
+<div class="section" id="jquery-validator">
+<h2>jQuery Validator<a class="headerlink" href="#jquery-validator" title="Permalink to this headline">¶</a></h2>
+<p>jQuery.validator is a jQuery plugin that provides form validation, which is designed to replicate <a class="reference external" href="http://www.w3.org/TR/html5/forms.html#constraints">HTML Forms Constraint Validation API</a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Deprecation</p>
+<p class="last">Previously validation in Granite UI is achieved by using this plugin.
+It is now deprecated and maintained for backward compatibility, where its implementation is delegating to the <code class="docutils literal notranslate"><span class="pre">foundation-validation</span></code>.</p>
+</div>
+<div class="section" id="api">
+<h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<p>The plugin is exposed as <code class="docutils literal notranslate"><span class="pre">jQuery.validator</span></code> variable, exposing Validators interface (described as TypeScript):</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">Validators</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * A flag to indicate that the validation process should continue to the next validator.</span>
+<span class="cm">   */</span>
+  <span class="nx">CONTINUE</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * A flag to indicate that the validation process should stop. This is default behavior.</span>
+<span class="cm">   */</span>
+  <span class="nx">STOP</span>: <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Registers the given validator(s).</span>
+<span class="cm">   *</span>
+<span class="cm">   * Each validator will be iterated to check the validity of submittable elements, where the iteration stopped when the first matching validator says invalid.</span>
+<span class="cm">   * The order of the registration is important, where the last one registered will be used first.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param validator One or more validator objects.</span>
+<span class="cm">   */</span>
+  <span class="nx">register</span><span class="p">(...</span><span class="nx">validator</span>: <span class="kt">Validator</span><span class="p">[])</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if all submittable elements under the given root element have no validity problems; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * Fires &lt;code&gt;invalid&lt;/code&gt; or &lt;code&gt;valid&lt;/code&gt; event at submittable element when it is invalid or valid respectively.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param root The root element</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return The validity</span>
+<span class="cm">   */</span>
+  <span class="nx">isValid</span><span class="p">(</span><span class="nx">root</span>: <span class="kt">JQuery</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">Validator</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Only the element satisfying the selector will be validated using this validator. It will be passed to &lt;code&gt;jQuery.fn.is&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">selector</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Only the element satisfying the selector will be validated using this validator. It will be passed to &lt;code&gt;jQuery.fn.is&lt;/code&gt;.</span>
+<span class="cm">   */</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="p">(</span><span class="nx">index</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">element</span>: <span class="kt">Element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The actual validation function. It must return a string of error message if the element fails.</span>
+<span class="cm">   */</span>
+  <span class="nx">validate</span><span class="o">:</span> <span class="p">(</span><span class="nx">element</span>: <span class="kt">JQuery</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The function to show the error. The function can return {@link Validators.CONTINUE} or {@link Validators.STOP}.</span>
+<span class="cm">   */</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="p">(</span><span class="nx">element</span>: <span class="kt">JQuery</span><span class="p">,</span> <span class="nx">message</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kt">number</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The function to clear the error. The function can return {@link Validators.CONTINUE} or {@link Validators.STOP}.</span>
+<span class="cm">   */</span>
+  <span class="nx">clear</span><span class="o">:</span> <span class="p">(</span><span class="nx">element</span>: <span class="kt">JQuery</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It also exposes the following plugin methods to jQuery object (<code class="docutils literal notranslate"><span class="pre">jQuery.fn</span></code>):</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">ValidatorMethods</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the element will be validated when the form is submitted; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-willvalidate}</span>
+<span class="cm">   */</span>
+  <span class="nx">willValidate</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns the error message that would be shown to the user if the element was to be checked for validity.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return The error message or an empty string</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-validationmessage}</span>
+<span class="cm">   */</span>
+  <span class="nx">validationMessage</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Returns &lt;code&gt;true&lt;/code&gt; if the element&#39;s value has no validity problems; &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">   * Fires &lt;code&gt;invalid&lt;/code&gt; or &lt;code&gt;valid&lt;/code&gt; event at the element when it is invalid or valid respectively.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @return The validity</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-checkvalidity}</span>
+<span class="cm">   */</span>
+  <span class="nx">checkValidity</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">boolean</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Sets a custom error, so that the element would fail to validate.</span>
+<span class="cm">   * The given message is the message to be shown to the user when reporting the problem to the user.</span>
+<span class="cm">   * If the argument is the empty string, clears the custom error.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param message The error message or empty string</span>
+<span class="cm">   * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-setcustomvalidity}</span>
+<span class="cm">   */</span>
+  <span class="nx">setCustomValidity</span><span class="o">:</span> <span class="p">(</span><span class="nx">message</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Shows error UI if the element is invalid; hide the UI otherwise.</span>
+<span class="cm">   */</span>
+  <span class="nx">updateErrorUI</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-validation</a><ul>
+<li><a class="reference internal" href="#selector">Selector</a><ul>
+<li><a class="reference internal" href="#foundation-submittable">:-foundation-submittable</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#data-foundation-validation-ui">[data-foundation-validation-ui]</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adaptto-interface">AdaptTo Interface</a></li>
+<li><a class="reference internal" href="#form-submission">Form Submission</a></li>
+<li><a class="reference internal" href="#validator">Validator</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-ui">Error UI</a><ul>
+<li><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#selector-best-practice">Selector Best Practice</a><ul>
+<li><a class="reference internal" href="#what-is-fast-selector">What is fast selector?</a></li>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extending-foundation-submittable">Extending :-foundation-submittable</a><ul>
+<li><a class="reference internal" href="#id3">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jquery-validator">jQuery Validator</a><ul>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../util/paginator.html"
+                        title="previous chapter">foundation-util-paginator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bind.html"
+                        title="next chapter">foundation-validation-bind</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/validation/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="bind.html" title="foundation-validation-bind"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../util/paginator.html" title="foundation-util-paginator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

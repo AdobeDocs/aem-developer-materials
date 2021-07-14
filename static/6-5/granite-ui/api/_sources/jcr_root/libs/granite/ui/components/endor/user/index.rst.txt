@@ -1,0 +1,46 @@
+
+User
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/endor/user
+   :deprecated:
+
+   An avatar of the current user.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:EndorUser]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The href pointing to a toggleable that will be shown upon click.
+       * Either user this property or ``src`` property to refer to the toggleable.
+       */
+      - href (String)
+
+      /**
+       * The URL pointing to a toggleable content that will be loaded and shown upon click.
+       * Either user this property or ``href`` property to refer to the toggleable.
+       */
+      - src (StringEL)

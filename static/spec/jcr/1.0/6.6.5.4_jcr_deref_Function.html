@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.5.4 jcr:deref Function (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.5.4." id="section_6.6.5.4."></a>6.6.5.4 jcr:deref Function
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This function is used follow a <b>REFERENCE</b> property into the target reference. Support for this function is optional.
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:deref(</b><i>$source as attribute()</i>,<br> <i>$node-test as xs:string</i><b>)</b> <i>as element()*</i>
+								</p>
+							
+							
+								<p class="c5">
+									The first argument is an XML attribute that represents a <b>REFERENCE</b> property.
+								</p>
+							
+							
+								<p class="c5">
+									The second argument is a node test which is a string to match the target node name. The function returns a node sequence of all target nodes matching the node-test. An error is raised if the reference cannot be resolved.
+								</p>
+							
+							
+								<p class="c5">
+									For example, suppose there is a property of type <b>REFERENCE</b> called <b>myapp:author</b> which refers to a node representing the author of this document. A query expression to find the person’s last name property would be:
+								</p>
+							
+							
+								<p class="c5">
+									<b>/jcr:root/myapp:myDoc/<br>
+									jcr:deref(@myapp:author, 'myapp:person')/address</b>
+								</p>
+							
+							
+								<p class="c5">
+									The dereference expression above evaluates to one or more nodes which has the name <b>myapp:person</b>. Subsequently a child node of each, representing the person’s address, is selected.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

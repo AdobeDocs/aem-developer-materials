@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.16 Value Constraints (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.16." id="section_6.7.16."></a>6.7.16 Value Constraints
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Each string in the array returned by <b>PropertyDefinition.getValueConstraints()</b> specifies a constraint on the value(s) of the property. The constraints are OR-ed together, meaning that in order to be valid, the value (each of the values, in the case of multi-value properties) must meet <i>at least one</i> of the constraints. For example, a constraint array of <b>["constraint1", "constraint2", "constraint3"]</b> has the interpretation: "the value of this property must meet either constraint1, constraint2 or constraint3".
+								</p>
+							
+							
+								<p class="c5">
+									Reporting constraint information is optional. Therefore, the return of an empty array indicates that there are no <i>discoverable</i> constraints, meaning that either there are constraints but they are inexpressible in the constraint-string syntax, or constraint discovery is simply not supported.
+								</p>
+							
+							
+								<p class="c5">
+									In the case of multi-value properties, the constraint array returned applies independently to each of the values of the property. For example, if one value meets one constraint in the constraint array while the other meets another, the constraint set is considered met for the property as a whole.
+								</p>
+							
+							
+								<p class="c5">
+									If a property does not exist or (in the case of multi-value properties) contains an empty array, the constraint set is considered to have been met by default since, by definition, no values have failed to meet the constraints.
+								</p>
+							
+							
+								<p class="c5">
+									The constraint strings themselves have different formats and interpretations depending on the type of the property in question. The following describes the value constraint syntax for each property type:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>STRING</b>: The constraint string is a regular expression pattern. For example the regular expression “<b>.*</b>” means “any string, including the empty string”. Whereas a simple literal string (without any regular expression-specific meta-characters) like “<b>banana</b>” matches only the string “<b>banana</b>” (see <a href="6.7.16.1_Choice_Lists.html">6.7.16.1</a> <i>Choice Lists</i>, below).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>PATH</b>: The constraint string is a path terminating with either no final “<b>/</b>”, a single “<b>/</b>” or the substring “<b>/*</b>”. For example, possible constraint strings for a property of type <b>PATH</b> include:
+				</p>
+			</li>
+		</ul>
+		<div class="c22">
+			<ol>
+				<li>
+					<p>
+						“<b>/myapp:products/myapp:televisions</b>”
+					</p>
+				</li>
+				<li>
+					<p>
+						“<b>/myapp:products/myapp:televisions/</b>”
+					</p>
+				</li>
+				<li>
+					<p>
+						“<b>/myapp:products/*</b>”
+					</p>
+				</li>
+				<li>
+					<p>
+						“<b>myapp:products/myapp:televisions</b>”
+					</p>
+				</li>
+				<li>
+					<p>
+						“<b>../myapp:televisions</b>”
+					</p>
+				</li>
+				<li>
+					<p>
+						“<b>../myapp:televisions/*</b>”
+					</p>
+				</li>
+			</ol>
+		</div>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following principles apply:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The constraint must match the <i>normalized</i> path. For example, the “<b>*</b>” means “matches descendants” not “matches any subsequent path”, so that <b>/a/*</b> does not match <b>/a/../c</b>. Similarly, a trailing “<b>/</b>” has no effect (hence, <b>1</b> and <b>2</b>, above, are equivalent).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Relative path constraints only match relative path values and absolute path constraints only match absolute path values.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The trailing “<b>*</b>” character means that the value of the <b>PATH</b> property is restricted to the indicated subtree (in other words any additional relative path can replace the “<b>*</b>”). For example, 3, above would allow <b>/myapp:products/myapp:radios</b>, <b>/myapp:products/myapp:microwaves/X900</b>, and so forth.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A constraint without a “<b>*</b>” means that the <b>PATH</b> property is restricted to that precise path. For example, <b>1</b>, above would allow only the value <b>/myapp:products/myapp:televisions</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The constraint can indicate either a relative path or an absolute path depending on whether it includes a leading “<b>/</b>” character. <b>1</b> and <b>4</b> above, for example, are distinct.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The constraint string returned must reflect the namespace mapping in the current <b>Session</b> (i.e., the current state of the namespace registry overlaid with any session-specific mappings). Constraint strings for <b>PATH</b> properties should be stored in fully-qualified form (using the actual URI instead of the prefix) and then be converted to prefix form according to the current mapping. Note however that these constraint strings are not themselves valid <b>PATH</b> values, since they may contain a “<b>*</b>” character, which is not allowed in the value of an actual <b>PATH</b> property.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					<b>NAME</b>: The constraint string is a <i>name</i> in prefix form. For example, “<b>myapp:products</b>”. No wildcards or other pattern matching are supported. As with <b>PATH</b> properties, the string returned must reflect the namespace mapping in the current <b>Session</b>. Constraint strings for <b>NAME</b> properties should be stored in fully-qualified form (using the actual URI instead of the prefix) and then be converted to prefix form according to the current mapping.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>REFERENCE</b>: The constraint string is a <i>name</i> in prefix form. This name is interpreted as a node type name and the <b>REFERENCE</b> property is restricted to referring only to nodes that have at least the indicated node type<sup><a class="sdfootnoteanc" name="sdfootnote8anc" href="#sdfootnote8sym" id="sdfootnote8anc"><sup>8</sup></a></sup>. For example, a constraint of “<b>mytype:document</b>” would indicate that the <b>REFERENCE</b> property in question can only refer to nodes that have at least the node type <b>mytype:document</b> (assuming this was the only constraint returned in the array, recall that the array of constraints are to be "OR-ed" together). No wildcards or other pattern matching are supported. As with <b>PATH</b> properties, the string returned must reflect the namespace mapping in the current <b>Session</b>. Constraint strings for <b>REFERENCE</b> properties should be stored in fully-qualified form (using the actual URI instead of the prefix) and then be converted to prefix form according to the current mapping.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The remaining types all have value constraints in the form of inclusive or exclusive ranges: i.e., "<b>[</b><b><i>min</i></b><b>,</b> <b><i>max</i></b><b>]</b>", "<b>(</b><b><i>min</i></b><b>,</b> <b><i>max</i></b><b>)</b>", "<b>(</b><b><i>min</i></b><b>,</b> <b><i>max</i></b><b>]</b>" or "<b>[</b><b><i>min</i></b><b>,</b> <b><i>max</i></b><b>)</b>". Where "<b>[</b>" and "<b>]</b>" indicate "inclusive", while "<b>(</b>" and "<b>)</b>" indicate "exclusive". A missing <b>min</b> or <b>max</b> value indicates no bound in that direction. For example <b>[,5]</b> means no minimum but a maximum of <b>5</b> (inclusive) while <b>[,]</b> means simply that any value will suffice. The meaning of the <b><i>min</i></b> and <b><i>max</i></b> values themselves differ between types as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>BINARY</b>: <b><i>min</i></b> and <b><i>max</i></b> specify the allowed size range of the binary value in bytes.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>DATE</b>: <b><i>min</i></b> and <b>max</b> are dates specifying the allowed date range. The date strings must be in the ISO 8601:2000-compliant format: <b><i>sYYYY</i></b><b>-</b><b><i>MM</i></b><b>-</b><b><i>DD</i></b><b>T</b><b><i>hh</i></b><b>:</b><b><i>mm</i></b><b>:</b><b><i>ss</i></b><b>.</b><b><i>sssTZD</i></b>. See <a href="6.2.5.1_Date.html">6.2.5.1</a> <i>Date</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>LONG, DOUBLE</b>: <b><i>min</i></b> and <b><i>max</i></b> are numbers.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

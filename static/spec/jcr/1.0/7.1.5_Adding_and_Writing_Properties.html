@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.5 Adding and Writing Properties (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.5." id="section_7.1.5."></a> 7.1.5 Adding and Writing Properties
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									To add new properties or change the values of existing properties of a node we use the <b>setProperty</b> methods of <b>Node</b>:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										Value value)</b>
+									</p>
+									<p class="c5">
+										Sets the specified (single value) property of this node to the specified <b>value</b>. If the property does not yet exist, it is created. The property type of the property will be that specified by the node type of this node.
+									</p>
+									<p class="c5">
+										If the property type of the supplied <b>Value</b> object is different from that required, then a best-effort conversion is attempted. If the conversion fails, a <b>ValueFormatException</b> is thrown. If another error occurs, a <b>RepositoryException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the node type of this node does not indicate a specific property type, then the property type of the supplied <b>Value</b> object is used and if the property already exists (has previously been set) it assumes both the new value and new property type.
+									</p>
+									<p class="c5">
+										If the property is multi-valued, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										Passing a <b>null</b> as the second parameter removes the property. It is equivalent to calling <b>remove</b> on the <b>Property</b> object itself. For example, <b>N.setProperty("P", (Value)null)</b> would remove property called <b>"P"</b> of the node in <b>N</b>.
+									</p>
+									<p>
+										<a name="OLE_LINK2" id="OLE_LINK2"></a>To save the addition or removal of a property, a <b>save</b> call must be performed that includes the parent of the property in its scope: that is, a <b>save</b> on either the session, this node, or an ancestor of this node. To save a change to an existing property, a <b>save</b> call that includes that property in its scope is required. This means that in addition to the above-mentioned <b>save</b> options, a <b>save</b> on the changed property itself will also work.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the change would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if <b>this</b> node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the setting of the property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name, Value[] values)</b>
+									</p>
+									<p class="c5">
+										Sets the specified (multi-value) property to the specified array of values. If the property does not yet exist, it is created. Same as
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, Value value)</b>
+									</p>
+									<p class="c5">
+										except that an array of <b>Value</b> objects is assigned instead of a single <b>Value</b>.
+									</p>
+									<p class="c5">
+										The property type of the property will be that specified by the node type of this node. If the property type of the supplied <b>Value</b> objects is different from that required, then a best-effort conversion is attempted. If the conversion fails, a <b>ValueFormatException</b> is thrown. All <b>Value</b> objects in the array must be of the same type, otherwise a <b>ValueFormatException</b> is thrown. If the property is not multi-valued then a <b>ValueFormatException</b> is also thrown. If another error occurs, a <b>RepositoryException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the node type of this node does not indicate a specific property type, then the property type of the supplied <b>Value</b> objects is used and if the property already exists it assumes both the new values and the new property type.
+									</p>
+									<p class="c5">
+										Passing a <b>null</b> as the second parameter removes the property. It is equivalent to calling remove on the <b>Property</b> object itself. For example, <b>N.setProperty("P", (Value[])null)</b> would remove property called <b>"P"</b> of the node in <b>N</b>.
+									</p>
+									<p class="c5">
+										Note that this is different from passing an array that contains <b>null</b> elements. In such a case, the array is compacted by removing the <b>null</b>s. The resulting set of values of the property never contains <b>null</b>s. However, the set may be empty: <b>N.setProperty("P", new Value[]{null})</b> would set the property to the empty set of values.
+									</p>
+									<p class="c5">
+										To save the addition or removal of a property, a <b>save</b> call must be performed that includes the parent of the property in its scope: that is, a <b>save</b> on either the session, this node, or an ancestor of this node. To save a change to an existing property, a <b>save</b> call that includes that property in its scope is required. This means that in addition to the above-mentioned <b>save</b> options, a <b>save</b> on the changed property itself will also work.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the change would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if <b>this</b> node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the setting of the property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										Value[] values,<br>
+										int type)</b>
+									</p>
+									<p class="c5">
+										Sets the specified (multi-value) property to the specified array of values. If the property does not yet exist, it is created. The type of the property is determined by the <b>type</b> parameter specified.
+									</p>
+									<p class="c5">
+										If the property type of the supplied <b>Value</b> objects is different from that specified, then a best-effort conversion is attempted. If the conversion fails, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the property already exists it assumes both the new values and the new property type.
+									</p>
+									<p class="c5">
+										All <b>Value</b> objects in the array must be of the same type, otherwise a <b>ValueFormatException</b> is thrown. If the property is not multi-valued then a <b>ValueFormatException</b> is also thrown. If another error occurs, a <b>RepositoryException</b> is thrown.
+									</p>
+									<p class="c5">
+										Passing a <b>null</b> as the second parameter removes the property. It is equivalent to calling remove on the <b>Property</b> object itself. For example, <b>N.setProperty("P", (Value[])null, type)</b> would remove property called <b>"P"</b> of the node in <b>N</b>.
+									</p>
+									<p class="c5">
+										Note that this is different from passing an array that contains <b>null</b> elements. In such a case, the array is compacted by removing the <b>null</b>s. The resulting set of values of the property never contains <b>null</b>s. However, the set may be empty: <b>N.setProperty("P", new Value[]{null}, type)</b> would set the property to the empty set of values.
+									</p>
+									<p class="c5">
+										To save the addition or removal of a property, a <b>save</b> call must be performed that includes the parent of the property in its scope: that is, a <b>save</b> on either the session, this node, or an ancestor of this node. To save a change to an existing property, a <b>save</b> call that includes that property in its scope is required. This means that in addition to the above-mentioned <b>save</b> options, a <b>save</b> on the changed property itself will also work.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the change would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if <b>this</b> node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the setting of the property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name, String[] values)</b>
+									</p>
+									<p class="c5">
+										Sets the specified property to the specified array of values. Same as
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, Value[] values)</b>
+									</p>
+									<p class="c5">
+										except that the values are specified as <b>String</b> objects instead of <b>Value</b> objects.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										String[] values,<br>
+										int type)</b>
+									</p>
+									<p class="c5">
+										Sets the specified property to the specified array of values and to the specified type. Same as
+									</p>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										Value[] values,<br>
+										int type)</b>
+									</p>
+									<p class="c5">
+										except that the values are specified as <b>String</b> objects instead of <b>Value</b> objects.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										Value value,<br>
+										int type)</b>
+									</p>
+									<p class="c5">
+										Sets the specified (single-value) property to the specified value. If the property does not yet exist, it is created. The type of the property is determined by the <b>type</b> parameter specified.
+									</p>
+									<p class="c5">
+										If the property type of the supplied <b>Value</b> object is different from that required, then a best-effort conversion is attempted. If the conversion fails, a <b>ValueFormatException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the property is not single-valued then a <b>ValueFormatException</b> is also thrown.
+									</p>
+									<p class="c5">
+										If the property already exists it assumes both the new value and the new property type.
+									</p>
+									<p class="c5">
+										Passing a <b>null</b> as the second parameter removes the property. It is equivalent to calling <b>remove</b> on the <b>Property</b> object itself. For example, <b>N.setProperty("P", (Value)null, type)</b> would remove property called <b>"P"</b> of the node in <b>N</b>.
+									</p>
+									<p class="c5">
+										To save the addition or removal of a property, a <b>save</b> call must be performed that includes the parent of the property in its scope: that is, a <b>save</b> on either the session, this node, or an ancestor of this node. To save a change to an existing property, a <b>save</b> call that includes that property in its scope is required. This means that in addition to the above-mentioned <b>save</b> options, a <b>save</b> on the changed property itself will also work.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the change would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if <b>this</b> node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the setting of the property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										If another error occurs, a <b>RepositoryException</b> is thrown.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										String value,<br>
+										int type)</b>
+									</p>
+									<p class="c5">
+										Sets the specified property to the specified value. Same as
+									</p>
+									<p class="c5">
+										<b>setProperty(String name,<br>
+										Value value,<br>
+										int type)</b>
+									</p>
+									<p class="c5">
+										except that the value is specified as a <b>String</b> object instead of a <b>Value</b> object.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setProperty(String name, String value)</b>
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, InputStream value)</b>
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, boolean value)</b>
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, Calendar value)</b>
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, double value)</b>
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, long value)</b>
+									</p>
+									<p class="c5">
+										<b>setProperty(String name, Node value)</b>
+									</p>
+									<p class="c5">
+										Sets the specified property to the specified value. In the context of these methods, each Java type <i>implies</i> a particular property type. The correspondence is:
+									</p>
+									<p class="c5">
+										<b>String: PropertyType.STRING</b>
+									</p>
+									<p class="c17">
+										<b>InputStream: PropertyType.BINARY</b>
+									</p>
+									<p class="c5">
+										<b>boolean: PropertyType.BOOLEAN</b>
+									</p>
+									<p class="c5">
+										<b>Calendar: PropertyType.DATE</b>
+									</p>
+									<p class="c5">
+										<b>double: PropertyType.DOUBLE</b>
+									</p>
+									<p class="c5">
+										<b>long: PropertyType.LONG</b>
+									</p>
+									<p class="c5">
+										<b>Node: PropertyType.REFERENCE</b>
+									</p>
+									<p class="c5">
+										In the case of the signature that takes a <b>Node</b>, the <b>REFERENCE</b> property in question is set to <i>refer</i> to the supplied node (see <a href="6.2.5.4_Reference.html">6.2.5.4</a> <i>Reference</i>).
+									</p>
+									<p class="c5">
+										The property type of the property being set is determined by the node type of this node. If this property type is something other than that implied by the (Java) type of the passed value, a best-effort conversion is attempted. If the conversion fails, a <b>ValueFormatException</b> is thrown. If the property is multi-valued, a <b>ValueFormatException</b> is also thrown. If another error occurs, a <b>RepositoryException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the node type of <b>this</b> node does not specify a particular property type for the property being set then the property type implied by the (Java) type of the passed value is used and if the property already exists (has previously been set) it assumes both the new value and new type.
+									</p>
+									<p class="c5">
+										Passing a <b>null</b> as the second parameter removes the property. It is equivalent to calling <b>remove</b> on the <b>Property</b> object itself. For example, <b>N.setProperty("P", (Calendar)null)</b> would remove property called <b>"P"</b> of the node in <b>N</b>. Obviously, a <b>null</b> cannot be passed to the signatures that take the primitive types <b>boolean</b>, <b>long</b> or <b>double</b>.
+									</p>
+									<p class="c5">
+										To save the addition or removal of a property, a <b>save</b> call must be performed that includes the parent of the property in its scope: that is, a <b>save</b> on either the session, this node, or an ancestor of this node. To save a change to an existing property, a <b>save</b> call that includes that property in its scope is required. This means that in addition to the above-mentioned <b>save</b> options, a <b>save</b> on the changed property itself will also work.
+									</p>
+									<p class="c5">
+										To create a property of <b>PropertyType.NAME</b> or <b>PropertyType.PATH</b> an explicit type must be specified using a three-argument signature.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the change would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if <b>this</b> node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the setting of the property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<br>
+									To change the value of a property that has already been retrieved you can also use the <b>setValue</b> methods in the <b>Property</b> Interface itself:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Property</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>setValue(Value value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(Value[] values)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(String value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(String[] values)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(InputStream value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(double value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(long value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(Calendar value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(boolean value)</b>
+									</p>
+									<p class="c5">
+										<b>setValue(Node node)</b>
+									</p>
+									<p class="c5">
+										Sets the value of this <b>Property</b> to the specified value. The behavior of these methods is identical with their corresponding <b>Node.setProperty</b> signature.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

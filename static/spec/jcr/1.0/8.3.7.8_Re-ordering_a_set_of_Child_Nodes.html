@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.3.7.8 Re-ordering a set of Child Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.3.7.8." id="section_8.3.7.8."></a>8.3.7.8 Re-ordering a set of Child Nodes
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When an <b>orderBefore(A, B)</b> is performed, an implementation <i>must</i> generate a <b>NODE_REMOVED</b> for node <b>A</b> and a <b>NODE_ADDED</b> for node <b>A</b>. Note that the paths associated with these two events will either differ by the last index number (if the movement of A causes it to be re-ordered with respect to its same-name siblings) or be identical (if <b>A</b> does not have same-name siblings or if the movement of <b>A</b> does not change its order relative to its same-name siblings). Additionally, an implementation <i>should</i> generate appropriate events reflecting the “shifting over” of the node <b>B</b> and any nodes that come after it in the child node ordering. Each such shifted node would also produce a <b>NODE_REMOVED</b> and <b>NODE_ADDED</b> event pair with paths differing at most by a final index.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

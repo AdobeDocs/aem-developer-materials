@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Editor Core Namespace: SidePanel</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Editor Core</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.html">Granite</a></li><li><a href="Granite.author.html">Granite.author</a></li><li><a href="Granite.author.components.html">Granite.author.components</a></li><li><a href="Granite.author.ContentFrame.html">Granite.author.ContentFrame</a></li><li><a href="Granite.author.design.html">Granite.author.design</a></li><li><a href="Granite.author.developer.html">Granite.author.developer</a></li><li><a href="Granite.author.DialogFrame.html">Granite.author.DialogFrame</a></li><li><a href="Granite.author.edit.html">Granite.author.edit</a></li><li><a href="Granite.author.edit.EditableActions.html">Granite.author.edit.EditableActions</a></li><li><a href="Granite.author.edit.ToolbarActions.html">Granite.author.edit.ToolbarActions</a></li><li><a href="Granite.author.editableHelper.html">Granite.author.editableHelper</a></li><li><a href="Granite.author.editables.html">Granite.author.editables</a></li><li><a href="Granite.author.EditorFrame.html">Granite.author.EditorFrame</a></li><li><a href="Granite.author.overlayManager.html">Granite.author.overlayManager</a></li><li><a href="Granite.author.OverlayWrapper.html">Granite.author.OverlayWrapper</a></li><li><a href="Granite.author.pageDesign.html">Granite.author.pageDesign</a></li><li><a href="Granite.author.pageInfo.html">Granite.author.pageInfo</a></li><li><a href="Granite.author.responsive.html">Granite.author.responsive</a></li><li><a href="Granite.author.responsive.EditableActions.html">Granite.author.responsive.EditableActions</a></li><li><a href="Granite.author.selection.html">Granite.author.selection</a></li><li><a href="Granite.author.ui.html">Granite.author.ui</a></li><li><a href="Granite.author.ui.assetFinder.html">Granite.author.ui.assetFinder</a></li><li><a href="Granite.author.ui.componentBrowser.html">Granite.author.ui.componentBrowser</a></li><li><a href="Granite.author.ui.coralCompatibility.html">Granite.author.ui.coralCompatibility</a></li><li><a href="Granite.author.ui.dropController.html">Granite.author.ui.dropController</a></li><li><a href="Granite.author.ui.emulator.html">Granite.author.ui.emulator</a></li><li><a href="Granite.author.ui.globalBar.html">Granite.author.ui.globalBar</a></li><li><a href="Granite.author.ui.helpers.html">Granite.author.ui.helpers</a></li><li><a href="Granite.author.ui.SidePanel.html">Granite.author.ui.SidePanel</a></li><li><a href="Granite.author.ui.statusBarManager.html">Granite.author.ui.statusBarManager</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.author.Component.html">Granite.author.Component</a></li><li><a href="Granite.author.design.Dialog.html">Granite.author.design.Dialog</a></li><li><a href="Granite.author.design.Layer.html">Granite.author.design.Layer</a></li><li><a href="Granite.author.design.Overlay.html">Granite.author.design.Overlay</a></li><li><a href="Granite.author.developer.Layer.html">Granite.author.developer.Layer</a></li><li><a href="Granite.author.edit.Dialog.html">Granite.author.edit.Dialog</a></li><li><a href="Granite.author.edit.Layer.html">Granite.author.edit.Layer</a></li><li><a href="Granite.author.edit.LayoutToolbar.html">Granite.author.edit.LayoutToolbar</a></li><li><a href="Granite.author.edit.Overlay.html">Granite.author.edit.Overlay</a></li><li><a href="Granite.author.edit.Toolbar.html">Granite.author.edit.Toolbar</a></li><li><a href="Granite.author.Editable.html">Granite.author.Editable</a></li><li><a href="Granite.author.Inspectable.html">Granite.author.Inspectable</a></li><li><a href="Granite.author.Layer.html">Granite.author.Layer</a></li><li><a href="Granite.author.LayerManager.html">Granite.author.LayerManager</a></li><li><a href="Granite.author.PageInfoHelper.html">Granite.author.PageInfoHelper</a></li><li><a href="Granite.author.PreviewLayer.html">Granite.author.PreviewLayer</a></li><li><a href="Granite.author.responsive.Layer.html">Granite.author.responsive.Layer</a></li><li><a href="Granite.author.responsive.Overlay.html">Granite.author.responsive.Overlay</a></li><li><a href="Granite.author.responsive.Toolbar.html">Granite.author.responsive.Toolbar</a></li><li><a href="Granite.author.ScaffoldingLayer.html">Granite.author.ScaffoldingLayer</a></li><li><a href="Granite.author.ui.assetFinder.AssetDragAndDrop.html">Granite.author.ui.assetFinder.AssetDragAndDrop</a></li><li><a href="Granite.author.ui.ComponentDragAndDrop.html">Granite.author.ui.ComponentDragAndDrop</a></li><li><a href="Granite.author.ui.ContentTree.html">Granite.author.ui.ContentTree</a></li><li><a href="Granite.author.ui.Dialog.html">Granite.author.ui.Dialog</a></li><li><a href="Granite.author.ui.EditableAction.html">Granite.author.ui.EditableAction</a></li><li><a href="Granite.author.ui.EditableDragAndDrop.html">Granite.author.ui.EditableDragAndDrop</a></li><li><a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></li><li><a href="Granite.author.ui.StatusBar.html">Granite.author.ui.StatusBar</a></li><li><a href="Granite.author.ui.Toolbar.html">Granite.author.ui.Toolbar</a></li><li><a href="Granite.author.ui.ToolbarAction.html">Granite.author.ui.ToolbarAction</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html#event:cq-asset-dragend">Document#event:cq-asset-dragend</a></li><li><a href="Document.html#event:cq-asset-dragstart">Document#event:cq-asset-dragstart</a></li><li><a href="Document.html#event:cq-asset-dropped">Document#event:cq-asset-dropped</a></li><li><a href="Document.html#event:cq-components-filtered">Document#event:cq-components-filtered</a></li><li><a href="Document.html#event:cq-components-loaded">Document#event:cq-components-loaded</a></li><li><a href="Document.html#event:cq-components-store-cleaned">Document#event:cq-components-store-cleaned</a></li><li><a href="Document.html#event:cq-components-store-set">Document#event:cq-components-store-set</a></li><li><a href="Document.html#event:cq-content-frame-loaded">Document#event:cq-content-frame-loaded</a></li><li><a href="Document.html#event:cq-content-frame-unload">Document#event:cq-content-frame-unload</a></li><li><a href="Document.html#event:cq-contexthub-toggle">Document#event:cq-contexthub-toggle</a></li><li><a href="Document.html#event:cq-editable-added">Document#event:cq-editable-added</a></li><li><a href="Document.html#event:cq-editables-loaded">Document#event:cq-editables-loaded</a></li><li><a href="Document.html#event:cq-editables-updated">Document#event:cq-editables-updated</a></li><li><a href="Document.html#event:cq-editor-content-location-changed">Document#event:cq-editor-content-location-changed</a></li><li><a href="Document.html#event:cq-editor-loaded">Document#event:cq-editor-loaded</a></li><li><a href="Document.html#event:cq-editor-statusbar-loaded">Document#event:cq-editor-statusbar-loaded</a></li><li><a href="Document.html#event:cq-emulatorbar-toggle">Document#event:cq-emulatorbar-toggle</a></li><li><a href="Document.html#event:cq-hide-overlays">Document#event:cq-hide-overlays</a></li><li><a href="Document.html#event:cq-history-paragraph-id-changed">Document#event:cq-history-paragraph-id-changed</a></li><li><a href="Document.html#event:cq-history-step-committed">Document#event:cq-history-step-committed</a></li><li><a href="Document.html#event:cq-history-step-completed">Document#event:cq-history-step-completed</a></li><li><a href="Document.html#event:cq-history-step-error">Document#event:cq-history-step-error</a></li><li><a href="Document.html#event:cq-inspectable-added">Document#event:cq-inspectable-added</a></li><li><a href="Document.html#event:cq-interaction-blur">Document#event:cq-interaction-blur</a></li><li><a href="Document.html#event:cq-interaction-fastdblclick">Document#event:cq-interaction-fastdblclick</a></li><li><a href="Document.html#event:cq-interaction-focus">Document#event:cq-interaction-focus</a></li><li><a href="Document.html#event:cq-interaction-hover">Document#event:cq-interaction-hover</a></li><li><a href="Document.html#event:cq-interaction-slowdblclick">Document#event:cq-interaction-slowdblclick</a></li><li><a href="Document.html#event:cq-layer-activated">Document#event:cq-layer-activated</a></li><li><a href="Document.html#event:cq-overlay-click">Document#event:cq-overlay-click</a></li><li><a href="Document.html#event:cq-overlay-fast-dblclick">Document#event:cq-overlay-fast-dblclick</a></li><li><a href="Document.html#event:cq-overlay-hold">Document#event:cq-overlay-hold</a></li><li><a href="Document.html#event:cq-overlay-hover">Document#event:cq-overlay-hover</a></li><li><a href="Document.html#event:cq-overlay-outside-click">Document#event:cq-overlay-outside-click</a></li><li><a href="Document.html#event:cq-overlay-slow-dblclick">Document#event:cq-overlay-slow-dblclick</a></li><li><a href="Document.html#event:cq-overlays-repositioned">Document#event:cq-overlays-repositioned</a></li><li><a href="Document.html#event:cq-page-design-loaded">Document#event:cq-page-design-loaded</a></li><li><a href="Document.html#event:cq-page-info-loaded">Document#event:cq-page-info-loaded</a></li><li><a href="Document.html#event:cq-persistence-after-copy">Document#event:cq-persistence-after-copy</a></li><li><a href="Document.html#event:cq-persistence-after-create">Document#event:cq-persistence-after-create</a></li><li><a href="Document.html#event:cq-persistence-after-delete">Document#event:cq-persistence-after-delete</a></li><li><a href="Document.html#event:cq-persistence-after-move">Document#event:cq-persistence-after-move</a></li><li><a href="Document.html#event:cq-persistence-after-update">Document#event:cq-persistence-after-update</a></li><li><a href="Document.html#event:cq-persistence-before-copy">Document#event:cq-persistence-before-copy</a></li><li><a href="Document.html#event:cq-persistence-before-create">Document#event:cq-persistence-before-create</a></li><li><a href="Document.html#event:cq-persistence-before-delete">Document#event:cq-persistence-before-delete</a></li><li><a href="Document.html#event:cq-persistence-before-move">Document#event:cq-persistence-before-move</a></li><li><a href="Document.html#event:cq-persistence-before-update">Document#event:cq-persistence-before-update</a></li><li><a href="Document.html#event:cq-show-overlays">Document#event:cq-show-overlays</a></li><li><a href="Document.html#event:cq-sidepanel-aftertoggle">Document#event:cq-sidepanel-aftertoggle</a></li><li><a href="Document.html#event:cq-sidepanel-beforetoggle">Document#event:cq-sidepanel-beforetoggle</a></li><li><a href="Document.html#event:cq-sidepanel-resized">Document#event:cq-sidepanel-resized</a></li><li><a href="Document.html#event:cq-sidepanel-tab-switched">Document#event:cq-sidepanel-tab-switched</a></li><li><a href="Document.html#event:editor-frame-mode-changed">Document#event:editor-frame-mode-changed</a></li><li><a href="Document.html#event:inline-edit-start">Document#event:inline-edit-start</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="interfaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Interfaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html">Document</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Namespace: SidePanel</h1>
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="Granite.html">Granite</a><a href="Granite.author.html">.author</a><a href="Granite.author.ui.html">.ui</a>.</span>
+        
+        SidePanel
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>The SidePanel usually contains the <a href="Granite.author.ui.assetFinder.html">Granite.author.ui.assetFinder</a> and <a href="Granite.author.ui.componentBrowser.html">Granite.author.ui.componentBrowser</a>, and is positioned on the left of the screen, as an aside of the main &quot;Content Panel&quot;.<br>It could have different variants/contents (js-sidePanel-empty, js-sidePanel-edit), and the current content is usually set by the current layer.</p>
+<p>Initialized on <a href="Document.html#event:cq-editor-loaded">Document#event:cq-editor-loaded</a></p></div>
+        
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".$anchor">
+    <h4 id=".$anchor"><span class="type-signature">&lt;static> </span>$anchor<span class="type-signature"> :jQuery</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Content panel to which the SidePanel is anchored</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">jQuery</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".$el">
+    <h4 id=".$el"><span class="type-signature">&lt;static> </span>$el<span class="type-signature"> :jQuery</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Corresponding jQuery element</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">jQuery</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".TAB_CLASSES">
+    <h4 id=".TAB_CLASSES"><span class="type-signature">&lt;static> </span>TAB_CLASSES<span class="type-signature"> :Object</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>CSS Classes corresponding to the different tabs of the SidePanel</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="._getTab"><span class="type-signature">&lt;private, static> </span>_getTab(tabClass)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the Coral.Tab corresponding to the passed <a href="Granite.author.ui.SidePanel.html#.TAB_CLASSES">tabClass</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tabClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.ui.SidePanel.html#.TAB_CLASSES">CSS class</a> of the SidePanel tab to toggle</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The corresponding Coral.Tab element</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Coral.Tab</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="._hideContentBackdrop"><span class="type-signature">&lt;private, static> </span>_hideContentBackdrop()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Hides the dialog backdrop over the content</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="._showContentBackdrop"><span class="type-signature">&lt;private, static> </span>_showContentBackdrop()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Displays the dialog backdrop over the content</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".close"><span class="type-signature">&lt;static> </span>close(keepRestorable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Close the SidePanel</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>keepRestorable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> to keep allow to restore the SidePanel e.g. after a mode switch.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getSelectedTabClass"><span class="type-signature">&lt;static> </span>getSelectedTabClass()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the <a href="Granite.author.ui.SidePanel.html#.TAB_CLASSES">tabClass</a> of the selected tab</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getWidth"><span class="type-signature">&lt;static> </span>getWidth()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the current width of the SidePanel</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The width of the SidePanel (0 if closed)</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".init"><span class="type-signature">&lt;static> </span>init()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Initialize the SidePanel: open it if needed and bind events</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".isOpened"><span class="type-signature">&lt;static> </span>isOpened()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>State whether the SidePanel is opened or not</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p><code>true</code> if the SidePanel is opened; <code>false</code> otherwise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".loadContent"><span class="type-signature">&lt;static> </span>loadContent(options)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Load and add new content to the SidePanel (nothing is done if the content is already present)</p>
+<p>See <code>/libs/wcm/core/content/editor/jcr:content/sidepanels/</code> for examples of content node structures of SidePanel's content</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The configuration object parameter</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>selector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The CSS selector of the content node to find in the SidePanel DOM</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The JCR path of the content node to load from server</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+    <h5>Fires:</h5>
+    <ul>
+        <li>Document#event:foundation-contentloaded</li>
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The HTML of the content retrieved</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".open"><span class="type-signature">&lt;static> </span>open(keepRestorable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Open the SidePanel</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>keepRestorable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> to keep allow to restore the SidePanel e.g. after a mode switch.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".restore"><span class="type-signature">&lt;static> </span>restore()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Open or close the SidePanel depending on the keepRestorable parameter previously set during the call of the open/close method</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".showContent"><span class="type-signature">&lt;static> </span>showContent(contentClassName)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Switch between the different SidePanel contents / variants<br>This function will only toggle the current SidePanel variant shown by another one that is already loaded (but hidden). See Granite.author.ui.SidePanel#loadContent if you want to load a custom variant.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>contentClassName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The CSS class of the content to show. By default the following two variants are available: js-sidePanel-edit (default one) and js-sidePanel-empty (when no SidePanel is needed).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".showEmptyContent"><span class="type-signature">&lt;static> </span>showEmptyContent()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Show a &quot;blank&quot; SidePanel</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".toggleTab"><span class="type-signature">&lt;static> </span>toggleTab(tabClass, enable)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle a tab from the SidePanel (enable or disable it)<br>If the tab is already opened, it will also switch to the nearest available tab</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tabClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="String.html">String</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The <a href="Granite.author.ui.SidePanel.html#.TAB_CLASSES">CSS class</a> of the SidePanel tab to toggle</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Indicates if the tab should be enabled or disabled</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<b class="aem-version">AEM 6.4</b> - © Copyright 2018 Adobe Systems Incorporated All Rights Reserved.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Tue Apr 24th 2018
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.3 Lock Owner (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.3 Lock Owner</H2>
+	<P>Initially, the session through which a
+	lock is placed is the <I>owner</I> of that lock. This means the
+	session has the power to alter the locked node and to remove the
+	lock. In the case of open-scoped locks (as opposed to
+	session-scoped, see §17.7 <I>Session-Scoped and Open-Scoped Locks</I>)
+	control of the lock may be given to another session during the
+	lifetime of that lock. In some implementations giving control of a
+	lock to another session will remove control from the previous
+	session, in others, more than one session may simultaneously own the
+	same open-scoped lock. 
+	</P>
+	<P>Repositories may support
+	client-specified lock owner information. If this is the case, the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property will be set to the value supplied upon lock creation, and
+	will not change during the lifetime of the lock. Otherwise, when a
+	lock is created, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property is set to the user ID bound to the locking <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	(that is, the string returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID</FONT></FONT>)
+	or another implementation-dependent string identifying the user.</P>
+	<P>In implementations that do not support
+	client-specified lock owner information, when an open-scoped lock is
+	moved to a new owner, or assigned an additional one (if supported),
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property may be automatically altered to reflect the change.</P>
+	<P>Strictly speaking it is the session,
+	not the user, that owns a particular lock at a particular time. The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property is used for informational purposes, so that a client
+	application can, for example, display this information to other
+	users. For this reason the user is sometimes informally referred to
+	as the lock owner.</P>
+	<P>In implementations that record the
+	user ID in <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>,
+	that user will not automatically have the ability to alter the
+	locked node if accessing it through another session. Transfer (or,
+	if supported, addition) of ownership must be done explicitly from
+	one session to another and is not governed by the user ID associated
+	with a session.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,9 @@
+********************************
+Granite UI Foundation Vocabulary
+********************************
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   **

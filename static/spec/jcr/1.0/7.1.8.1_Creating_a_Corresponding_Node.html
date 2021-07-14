@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.8.1 Creating a Corresponding Node (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.8.1." id="section_7.1.8.1."></a>7.1.8.1 Creating a Corresponding Node
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Corresponding nodes can be created by “cloning” a node (or subtree of nodes) from one workspace to another using the <b>Workspace.clone</b> method:
+								</p>
+							
+							
+								<p class="c12">
+									Workspace.clone(String srcWorkspace,<br>
+									String srcAbsPath,<br>
+									String destAbsPath,<br>
+									boolean removeExisting)
+								</p>
+							
+							
+								<p class="c5">
+									This method clones the subtree at <b>srcAbsPath</b> in <b>srcWorkspace</b> to <b>destAbsPath</b> in <b>this</b> workspace. The <b>clone</b> method clones both referenceable and nonreferenceable nodes. In the case of referenceable nodes <b>clone</b> preserves the node's UUID so that the new node in the destination workspace has the same UUID as the node in the source workspace.
+								</p>
+							
+							
+								<p class="c5">
+									For a non-referenceable node, a corresponding node in another workspace can be created either through <b>clone</b>, or simply by creating a node in the destination workspace (using <b>Node.addNode</b>) with the same relative path to the nearest referenceable node.
+								</p>
+							
+							
+								<p class="c5">
+									However, the use of <b>clone</b> is <i>required</i> for the creation corresponding referenceable nodes because simply creating a new referenceable node at the same path in the other workspace will not work, since the new node will automatically be assigned a new UUID and not the same UUID as its correspondee.
+								</p>
+							
+							
+								<p class="c5">
+									If there already exists anywhere in this workspace a node with the same UUID as an incoming node from <b>srcWorkspace</b>, and <b>removeExisting</b> is <b>false</b>, then <b>clone</b> will throw an <b>ItemExistsException</b>.
+								</p>
+							
+							
+								<p class="c5">
+									If <b>removeExisting</b> is <b>true</b> then the existing node is removed from its current location and the cloned node with the same UUID from <b>srcWorkspace</b> is copied to this workspace as part of the copied subtree (that is, not into the former location of the old node). The subtree of the cloned node will reflect the clones state in <b>srcWorkspace</b>, in other words the existing node will be moved <i>and</i> changed. If the existing node cannot be moved and changed because of node type constraints, access control constraints or because its parent is checked-in (or its parent is non-versionable but its nearest versionable ancestor is checked-in), then the appropriate exception is thrown (<b>ConstraintViolationException</b>, <b>AccessControlException</b> or <b>VersionException</b>, respectively).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

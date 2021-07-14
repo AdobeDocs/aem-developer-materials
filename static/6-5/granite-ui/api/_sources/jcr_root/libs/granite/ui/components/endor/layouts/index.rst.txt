@@ -1,0 +1,11 @@
+Layouts
+=======
+
+The layouts that are available in Granite UI Endor.
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

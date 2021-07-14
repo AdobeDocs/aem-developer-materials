@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.3 Node Read Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.3." id="section_6.2.3."></a>6.2.3 Node Read Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following are the level 1 methods of <b>Node</b>. They are used for getting the child nodes and properties of a node. The <b>Node</b> interface has other methods as well, though in a level 1-only implementation they will either do nothing or throw an exception.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNode(String&nbsp;relPath)</b>
+									</p>
+									<p class="c5">
+										Returns the node at <b>relPath</b> relative to this node.
+									</p>
+									<p class="c5">
+										If <b>relPath</b> contains a path element that refers to a node with same-name sibling nodes without explicitly including an index using the array-style notation (<b>[x]</b>), then the index <b>[1]</b> is assumed (See <a href="4.3_Same–Name_Siblings.html">4.3</a> <i>Same-Name Siblings</i> ).
+									</p>
+									<p class="c5">
+										Within the scope of a single <b>Session</b> object, if a node has been acquired with <b>getNode</b>, any subsequent call of <b>getNode</b> reacquiring the same node must return a <b>Node</b> object reflecting the same state as the earlier <b>Node</b> object. Whether this object is actually the same <b>Node</b> instance, or simply one wrapping the same state, is up to the implementation. See <a href="7.1.3.1_Re-using_Item_Objects.html">7.1.3.1</a> <i>Re-using Item Objects</i>.
+									</p>
+									<p class="c5">
+										If no node exists at <b>relPath</b> a <b>PathNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNodes()</b>
+									</p>
+									<p class="c5">
+										Returns all child nodes of this node. Does <i>not</i> include properties of this node. The same reacquisition semantics apply as with <b>getNode</b>. If this node has no child nodes, then an empty iterator is returned.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNodes(String namePattern)</b>
+									</p>
+									<p class="c5">
+										Gets all child nodes of this node that match <b>namePattern</b>. The pattern may be a full name or a partial name with one or more wildcard characters ("<b>*</b>"), or a disjunction (using the “<b>|</b>” character to represent logical OR) of these. For example,
+									</p>
+									<p class="c5">
+										<b>N.getNodes("jcr:* | myapp:report | my doc")</b>
+									</p>
+									<p class="c5">
+										would return a <b>NodeIterator</b> holding all child nodes of <b>N</b> that are either called '<b>myapp:report</b>', begin with the prefix '<b>jcr:</b>' or are called '<b>my doc</b>'.
+									</p>
+									<p class="c5">
+										Note that leading and trailing whitespace <i>around</i> a | character is ignored, but whitespace <i>within</i> a disjunct forms part of the pattern to be matched.
+									</p>
+									<p class="c5">
+										The EBNF for <b>namePattern</b> is:
+									</p>
+									<p class="c5">
+										namePattern ::= disjunct {'|' disjunct}<br>
+										disjunct ::= name [':' name]<br>
+										name ::= '*' |<br>
+										['*'] fragment {'*' fragment}['*']<br>
+										fragment ::= char {char}<br>
+										char ::= nonspace | ' '<br>
+										nonspace ::= (* Any Unicode character except:<br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'/', ':', '[', ']', '*',<br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;''', '"', '|' or any whitespace<br>
+										character *)
+									</p>
+									<p class="c5">
+										The pattern is matched against the names (not the paths) of the immediate child nodes of this node.
+									</p>
+									<p class="c5">
+										If this node has no matching child nodes, then an empty iterator is returned.
+									</p>
+									<p class="c5">
+										The same reacquisition semantics apply as with <b>getNode</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Property</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getProperty(String&nbsp;relPath)</b>
+									</p>
+									<p class="c5">
+										Get the property at <b>relPath</b> relative to this node. The same reacquisition semantics apply as with <b>getNode</b>.
+									</p>
+									<p class="c5">
+										If no property exists at <b>relPath</b> a <b>PathNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>PropertyIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getProperties()</b>
+									</p>
+									<p class="c5">
+										Gets all properties of this node. Does <i>not</i> include child <i>nodes</i> of this node. The same reacquisition semantics apply as with <b>getNode</b>. If this node has no properties, then an empty iterator is returned.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>PropertyIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getProperties(String namePattern)</b>
+									</p>
+									<p class="c5">
+										Gets all properties of this node that match <b>namePattern</b>. The pattern may be a full name or a partial name with one or more wildcard characters ("<b>*</b>"), or a disjunction (using the “<b>|</b>” character to represent logical OR) of these. For example,
+									</p>
+									<p class="c5">
+										<b>N.getProperties("jcr:* | myapp:name | my doc")</b>
+									</p>
+									<p class="c5">
+										would return a <b>PropertyIterator</b> holding all properties of <b>N</b> that are either called '<b>myapp:name</b>', begin with the prefix '<b>jcr:</b>' or are called '<b>my doc</b>'.
+									</p>
+									<p class="c5">
+										Note that leading and trailing whitespace <i>around</i> a disjunct is ignored, but whitespace <i>within</i> a disjunct forms part of the pattern to be matched.
+									</p>
+									<p class="c5">
+										The EBNF for <b>namePattern</b> is:
+									</p>
+									<p class="c5">
+										namePattern ::= disjunct {'|' disjunct}<br>
+										disjunct ::= name [':' name]<br>
+										name ::= '*' |<br>
+										['*'] fragment {'*' fragment}['*']<br>
+										fragment ::= char {char}<br>
+										char ::= nonspace | ' '<br>
+										nonspace ::= (* Any Unicode character except:<br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'/', ':', '[', ']', '*',<br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;''', '"', '|' or any whitespace<br>
+										character *)
+									</p>
+									<p class="c5">
+										The pattern is matched against the names (not the paths) of the immediate child properties of this node.
+									</p>
+									<p class="c5">
+										If this node has no matching properties, then an empty iterator is returned.
+									</p>
+									<p class="c5">
+										The same reacquisition semantics apply as with <b>getNode</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Item</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPrimaryItem()</b>
+									</p>
+									<p class="c5">
+										The primary node type (see <a href="6.7_Node_Types.html">6.7</a> <i>Node Types</i>) of this node may specify one child item (child node or property) of this node as the <i>primary child item</i>. This method returns that item.
+									</p>
+									<p class="c5">
+										The same reacquisition semantics apply as with <b>getNode</b>.
+									</p>
+									<p class="c5">
+										If this node has no primary child item, either because none is declared in the node type or because a declared primary item is not present on this node instance, then this method throws an <b>ItemNotFoundException</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>getUUID()</b>
+									</p>
+									<p class="c5">
+										Returns the UUID of this node as recorded in the node's <b>jcr:uuid</b> property. This method only works on nodes of mixin node type <b>mix:referenceable</b>.
+									</p>
+									<p class="c5">
+										On nonreferenceable nodes, this method throws an <b>UnsupportedRepositoryOperationException</b>. To avoid throwing an exception to determine whether a node has a UUID, a call to <b>isNodeType("mix:referenceable")</b> can be made.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>int</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>getIndex()</b>
+									</p>
+									<p class="c5">
+										This method returns the index of this node within the ordered set of its same-name sibling nodes. This index is the one used to address same-name siblings using the square-bracket notation, e.g., <b>/a[3]/b[4]</b>. Note that the index always starts at <b>1</b> (not <b>0</b>), for compatibility with XPath. As a result, for nodes that do not have same-name-siblings, this method will always return <b>1</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>PropertyIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										<b>getReferences()</b>
+									</p>
+									<p class="c5">
+										Returns all <b>REFERENCE</b> properties that refer to this node.
+									</p>
+									<p class="c5">
+										Some level 2 implementations may only return properties that have been saved (in a transactional setting this includes both those properties that have been saved but not yet committed, as well as properties that have been committed). Other level 2 implementations may additionally return properties that have been added within the current <b>Session</b> but are not yet saved.
+									</p>
+									<p class="c5">
+										In implementations that support versioning, this method does not return <b>REFERENCE</b> properties that are part of the frozen state of a version in version storage.
+									</p>
+									<p class="c5">
+										If this node has no references, an empty iterator is returned.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasNode(String relPath)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if a node exists at <b>relPath</b> and <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasNodes()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node has one or more child nodes. Returns <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasProperty(String relPath)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if a property exists at <b>relPath</b> and <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasProperties()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node has one or more properties. Returns <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

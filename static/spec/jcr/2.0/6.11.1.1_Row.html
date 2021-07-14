@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.11.1.1 Row (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>6.11.1.1 Row</H4>
+	<P>Upon retrieving an
+	individual <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>,
+	the set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>s
+	making up that row can be retrieved with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]
+	Row.getValues()</FONT></FONT></P>
+	<P>The values are
+	returned in that same order as their corresponding column names are
+	returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult.getColumns</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value
+	Row.getValue(String columnName)</FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of the indicated column of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>.
+	The names of the columns can be retrieved with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	QueryResult.getColumnNames()</FONT></FONT>.</P>
+	<P>In queries with only
+	one selector included among the specified columns, each <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	corresponds to a single <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	In such cases</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Row.getNode()</FONT></FONT></P>
+	<P>returns that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.</P>
+	<P>In queries with more
+	than one selector included among the specified columns, a particular
+	selector must be indicated in order to retrieve its corresponding
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	. This is done using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Row.getNode(String selectorName)</FONT></FONT>.</P>
+	<P>The available selector
+	names can be retrieved with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	QueryResult.getSelectorNames()</FONT></FONT>.</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	is from a result involving outer joins, it may have no <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	corresponding to the specified selector, in which case this method
+	returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+	<P>The methods</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Row.getPath() and</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Row.getPath(String selectorName)</FONT></FONT></P>
+	<P>are equivalent to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Row.getNode().getPath()</FONT></FONT>
+	and <BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>Row.getNode(String
+	selectorName).getPath()</FONT></FONT>, respectively.
+	However, some implementations may be able gain efficiency by not
+	resolving the actual <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+		</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>double
+	Row.getScore(String selectorName)</FONT></FONT></P>
+	<P>returns the full text
+	search score for this row that is associated with the specified
+	selector. This is equivalent to the score of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	associated with that this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	and that selector.</P>
+	<P>If no
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	AQM object (see §6.7.31 <I>FullTextSearchScore</I>) is associated
+	with the specified selector this method will still return a value
+	but that value may not be meaningful or may simply reflect the
+	minimum possible relevance level (for example, in some systems this
+	might be a score of 0).</P>
+	<P>If this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Row</FONT></FONT>
+	is from a result involving outer joins, it may have no <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	corresponding to the specified selector, in which case this method
+	returns an implementation selected value, as it would if there were
+	no <FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	associated with the selector.</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>double
+	Row.getScore()</FONT></FONT></P>
+	<P>works identically to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Row.getScore(String
+	selectorName)</FONT></FONT>, but only in cases where
+	there is exactly one selector and therefore its name need not be
+	explicitly specified.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

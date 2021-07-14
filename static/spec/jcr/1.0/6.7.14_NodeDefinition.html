@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.14 NodeDefinition (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.14." id="section_6.7.14."></a>6.7.14 NodeDefinition
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>NodeDefinition</b> represents a child node definition. It inherits all the methods of <b>ItemDefinition</b> and adds the following:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.nodetype.<br>
+										<b>NodeDefinition</b> extends ItemDefinition
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getRequiredPrimaryTypes()</b>
+									</p>
+									<p class="c5">
+										Gets the minimum set of primary node types that the child node must have. Returns an array to support those implementations with multiple inheritance. This method never returns an empty array. If this node definition places no requirements on the primary node type, then this method will return an array containing only the <b>NodeType</b> object representing <b>nt:base</b>, which is the base of all primary node types and therefore constitutes the least restrictive node type requirement. Note that any particular node instance still has only one assigned primary node type, but in multiple-inheritance-supporting implementations the <b>RequiredPrimaryTypes</b> attribute can be used to restrict that assigned node type to be a subtype of <i>all</i> of a specified set of node types.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDefaultPrimaryType()</b>
+									</p>
+									<p class="c5">
+										Gets the default node type that will be assigned to the child node if it is created without an explicitly specified node type. This node type must be a subclass of (or the same class as) the node type(s) returned by <b>getRequiredPrimaryTypes</b>.
+									</p>
+									<p class="c5">
+										If <b>null</b> is returned this indicates that no default primary type is specified and that therefore an attempt to create this node without specifying a node type will throw a <b>ConstraintViolationException</b>. Note that to indicate a <b>null</b> value for this attribute in a node type definition that is stored in content, the <b>jcr:defaultPrimaryType</b> property is simply removed (since null values for properties are not allowed, see <a href="6.7.20_Node_Type_Definitions_in_Content.html">6.7.20</a> <i>Node Type Definitions in Content</i>).
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>allowsSameNameSiblings()</b>
+									</p>
+									<p class="c5">
+										Reports whether this child node can have same-name siblings. In other words, whether the parent node can have more than one child node of this name.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

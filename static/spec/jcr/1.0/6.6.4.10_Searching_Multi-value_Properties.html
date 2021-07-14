@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.4.10 Searching Multi-value Properties (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.4.10." id="section_6.6.4.10."></a>6.6.4.10 Searching Multi-value Properties
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Searching of multi-value properties with XPath is supported by mapping multi-value properties to XML attributes of the <i>list type</i> and employing the XPath feature of <i>general comparisons</i>.
+								</p>
+							
+							
+								<p class="c5">
+									XML Schema supports attributes having types. Among those is one called the list type<sup><a class="sdfootnoteanc" name="sdfootnote7anc" href="#sdfootnote7sym" id="sdfootnote7anc"><sup>7</sup></a></sup>. This type specifies that white space within an attribute value serves as the delimiter between individual list items.
+								</p>
+							
+							
+								<p class="c5">
+									Additionally, XPath distinguishes between two types of comparison operators: general comparisons (<b>=</b>, <b>!=</b>, <b>&lt;</b>, <b>&gt;</b>, <b>&lt;=</b> and <b>&gt;=</b>) and value comparisons (<b>eq</b>, <b>ne</b>, <b>lt</b>, <b>le</b>, <b>gt</b>, and <b>ge</b>). General comparisons, when applied to a list type attribute value, will return <b>true</b> if the specified relation (equal, not equal, greater-than, etc.) evaluates to <b>true</b> for <i>at least one</i> of the values of in the list. Value comparisons test the entire attribute value as a single unit. In cases where an attribute only has one value, the general and value comparisons are identical.
+								</p>
+							
+							
+								<p class="c5">
+									In the virtual XML document against which XPath queries are run, multi-value properties will be mapped to XML attributes with values in a form <i>similar</i> to the XML list type.
+								</p>
+							
+							
+								<p class="c5">
+									However, since the XML document is virtual, it need never be actually serialized. As a result, we do not need to specify white space as the delimiter. Doing so would require that white space that occurs within a value of a multi-value property be escaped when converted to document view, which would in turn require use of awkward escaping characters within XPath queries that tested for such values.
+								</p>
+							
+							
+								<p class="c5">
+									Instead, we simply specify that tests against multi-value properties <i>using general comparison</i> operators act as they would if the multi-value property <i>were</i> a list type attribute, except that spaces within individual values used within the test are not escaped. For example:<br>
+									<br>
+									<b>/x/y[@p = 'hello']<br>
+									<br></b> would return all nodes with path <b>/x/y</b> that have a property <b>p</b> which has <i>at least one</i> value <b>"hello"</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that multi-value properties in document view will be handled differently for purposes of export (see <a href="6.4.2_Document_View_XML_Mapping.html">6.4.2</a> <i>Document View XML Mapping)</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

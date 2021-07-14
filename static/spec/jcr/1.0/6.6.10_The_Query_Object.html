@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.10 The Query Object (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.10." id="section_6.6.10."></a>6.6.10 The Query Object
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A new query is created by calling <b>QueryManager.createQuery</b>. The returned <b>Query</b> object has the following methods:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.query.<br>
+										<b>Query</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>QueryResult</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>execute()</b>
+									</p>
+									<p class="c5">
+										Executes this query and returns a <b>QueryResult</b> object.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getStatement()</b>
+									</p>
+									<p class="c5">
+										Returns the statement defined for this query.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLanguage()</b>
+									</p>
+									<p class="c5">
+										Returns the language set for this query. This will be one of the strings returned by <b>QueryManager.getSupportedQueryLanguages()</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getStoredQueryPath()</b>
+									</p>
+									<p class="c5">
+										If this is a <b>Query</b> that has been stored using <b>Query.storeAsNode</b> (regardless of whether it has been <b>save</b>d yet) or retrieved using <b>QueryManager.getQuery</b>, then this method returns the path of the <b>nt:query</b> node that stores the query.
+									</p>
+									<p class="c5">
+										If this is a transient query (that is, a <b>Query</b> object created with <b>QueryManager.createQuery</b> and not yet stored), then this method throws an <b>ItemNotFoundException</b>.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>storeAsNode(String absPath)</b>
+									</p>
+									<p class="c5">
+										Creates a node representing this <b>Query</b> in content.
+									</p>
+									<p class="c5">
+										In a level 1 repository this method throws an <b>UnsupportedRepositoryOperationException</b>.
+									</p>
+									<p class="c5">
+										In a level 2 repository it creates a node of type <b>nt:query</b> at <b>absPath</b> and returns that node.
+									</p>
+									<p class="c5">
+										In order to persist the newly created node, a <b>save</b> must be performed that includes <i>the parent</i> of this new node within its scope. In other words, either a <b>Session.save</b> or an <b>Item.save</b> on the parent or higher-degree ancestor of <b>absPath</b> must be performed.
+									</p>
+									<p class="c5">
+										In the context of this method the <b>absPath</b> provided must not have an index on its final element. If it does then a <b>RepositoryException</b> is thrown.
+									</p>
+									<p class="c5">
+										Strictly speaking, the parameter is actually a absolute path to the parent node of the node to be added, appended with the name desired for the new node. It does not specify a position within the child node ordering (if such ordering is supported). If ordering is supported by the node type of the parent node then the new node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> will be thrown either immediately (by this method), or on <b>save</b>, if an item at the specified path already exists and same-name siblings are not allowed. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the specified path implies intermediary nodes that do not exist. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if adding the node would violate a node type or implementation-specific constraint or if an attempt is made to add a node as the child of a property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the addition of the node. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										String
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPATH</b>
+									</p>
+									<p class="c5">
+										A string constant representing the XPath query language applied to the <i>document</i> view XML mapping of the workspace.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										String
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+									<p class="c5">
+										A string constant representing the SQL query language applied to the <i>database view</i> of the workspace. Support for this language is optional. See <a href="8.5_Searching_Repository_Content_with_SQL.html">8.5</a> <i>Searching Repository Content with SQL</i>.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

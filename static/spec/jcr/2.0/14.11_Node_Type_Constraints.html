@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.11 Node Type Constraints (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>14.11 Node Type Constraints</H2>
+	<P>All the nodes in a
+	shared set always have the same declared primary node type and the
+	same set of assigned mixin node types. Since different nodes in the
+	shared set may have different parents, those parents must be of an
+	appropriate node type to have a child of with these types.</P>
+	<P>If the members of a
+	shared set correspond to child node definitions (in their respective
+	parents) with conflicting <I>protected</I> settings, the effective
+	protected value of all the members of the shared set will be the
+	logical <FONT FACE="Courier New, monospace"><FONT SIZE=2>OR</FONT></FONT>
+	of the protected settings of the set of child node definitions.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

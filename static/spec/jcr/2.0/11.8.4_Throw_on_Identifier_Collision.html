@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.8.4 Throw on Identifier Collision (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>11.8.4 Throw on Identifier Collision</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_THROW</FONT></FONT>:
+	If an incoming non-shareable node has the same identifier as a node
+	already existing in the workspace, then either a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	is thrown by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	(in the case of event-based import) or an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	is thrown by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	method (in the case of stream-based import). In the case of
+	shareable nodes, the behavior differs (see §14.1.2 <I>Shared Node
+	Creation on Import</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

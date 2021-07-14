@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.12.5 Testing Lock Aliveness (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.12.5 Testing Lock Aliveness</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Lock.isLive()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true
+	</FONT></FONT>if this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object represents a lock that is currently in effect. If this lock
+	has been unlocked either explicitly or due to an
+	implementation-specific limitation (like a timeout) then it returns
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.
+	Note that this method is intended for those cases where one is
+	holding a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	Java object and wants to find out whether the lock (the
+	repository-level entity that is attached to the lockable node) that
+	this object originally represented still exists. For example, a
+	timeout or explicit <FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>
+	will remove a lock from a node but the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	Java object corresponding to that lock may still exist, and in that
+	case its <FONT FACE="Courier New, monospace"><FONT SIZE=2>isLive</FONT></FONT>
+	method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

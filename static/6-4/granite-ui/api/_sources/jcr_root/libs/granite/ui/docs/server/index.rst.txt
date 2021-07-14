@@ -1,0 +1,132 @@
+**********************
+Granite UI Server-side
+**********************
+
+The server has a role to give the Hypermedia affordance to the client. The author task is then to assemble the content structure to represent this affordance.
+
+
+General Composition
+===================
+
+Granite UI makes use of standard Sling component model—the Sling Resource Type—to "render" the content.
+The page is composed by assembling the components appropriately::
+
+   + /apps/example/mypage
+     - sling:resourceType = "example/components/page"
+     - title = "My Page"
+     + content
+       + header
+         - sling:resourceType = "example/components/header"
+       + carousel
+         - sling:resourceType = "example/components/carousel"
+       + footer
+         - sling:resourceType = "example/components/footer"
+
+See also `Introduction to Sling <http://www.adobe.com/go/aem6_4_docs_introsling_en>`_
+
+
+Component Properties
+====================
+
+A component usually accepts properties to change its behaviour. There are two ways to specify a property value.
+
+Static Value
+------------
+
+The component may accept any JCR property type, most likely ``string``, ``long``, ``double``, ``boolean``, ``date``.
+It is specified literally::
+
+   + mycomponent
+     - stringProp = "string"
+     - booleanProp = true
+     - longProp = 123
+
+Dynamic Value
+-------------
+
+In declarative language, specifying a static value can only go so far. Often you need a dynamic value based on a predefined variable or function.
+A good example of this is CSS, where you can specify both static and dynamic value:
+
+.. code-block:: css
+
+   .myclass {
+       display: block;
+       background-image: url("images/bg.png");
+       width: calc(100% - 20px);
+   }
+
+In Granite UI, this dynamic value is supported by mean of :doc:`el`::
+
+   + mycomponent
+     - stringELProp = "${requestPathInfo.suffix}"
+     - booleanELProp = "${empty requestPathInfo.suffix ? true : false}"
+     - longELProp = "${123 + 456}"
+
+
+Component SubResources
+======================
+
+Often we have a component that acts as a container, where it contains subresources acting as its items.
+For example a list component may contain a collection of subresources of the list items.
+There are two ways to specify the subresources.
+
+Static Resources
+----------------
+
+The subresources are simply specified literally::
+
+   + mylist
+     - sling:resourceType = "example/components/list"
+     + items
+       + item1
+         - sling:resourceType = "example/components/button"
+         - text = "Button1"
+       + item2
+         - sling:resourceType = "example/components/button"
+         - text = "Button2"
+       + item3
+         - sling:resourceType = "example/components/button"
+         - text = "Button3"
+
+Dynamic Resources
+-----------------
+
+Not all subresources can be specified literally. Sometimes you have to programmatically prepare the subresources based on a complex logic.
+Granite UI solves this problem by means of :doc:`datasource`::
+
+   + mylist
+     - sling:resourceType = "example/components/list"
+     + itemdatasource
+       - sling:resourceType = "example/components/listitems"
+       - prop1 = "abc"
+
+
+Summary
+=======
+
+The above concepts can be summarized by the following tables.
+
+Dynamicity
+----------
+
+=========== ========== =================
+Type        Static     Dynamic
+=========== ========== =================
+Property    Literal    :doc:`el`
+Node        Literal    :doc:`datasource`
+=========== ========== =================
+
+
+Concepts
+========
+
+.. toctree::
+   :titlesonly:
+   :glob:
+
+   el
+   datasource
+   layout
+   container
+   commonattrs
+   resourcehiding

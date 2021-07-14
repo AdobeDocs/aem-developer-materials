@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.39 Column (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.39 Column</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type Column ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name? propertyName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name? columnName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Defines a column to include in the
+	tabular view of query results.</P>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is not specified, a column is included for each single-valued
+	non-residual property of the node type specified by the <FONT FACE="Courier New, monospace">nodeType</FONT>
+	attribute of the selector <FONT FACE="Courier New, monospace">selectorName</FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is specified, <FONT FACE="Courier New, monospace">columnName</FONT>
+	is required and used to name the column in the tabular results. If
+	<FONT FACE="Courier New, monospace">propertyName</FONT>
+	is not specified, <FONT FACE="Courier New, monospace">columnName</FONT>
+	must not be specified, and the included columns will be named
+	“<FONT FACE="Courier New, monospace"><I>selectorName.propertyName</I></FONT>”.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">propertyName</FONT>
+		is specified but does not evaluate to a scalar value, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">propertyName</FONT>
+		is specified but <FONT FACE="Courier New, monospace">columnName</FONT>
+		is omitted, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">propertyName</FONT>
+		is omitted but <FONT FACE="Courier New, monospace">columnName</FONT>
+		is specified, or</P>
+		<LI><P>the columns in the tabular view
+		are not uniquely named, whether those column names are specified by
+		<FONT FACE="Courier New, monospace">columnName</FONT>
+		(if <FONT FACE="Courier New, monospace">propertyName</FONT>
+		is specified) or generated as described above (if <FONT FACE="Courier New, monospace">propertyName</FONT>
+		is omitted).</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace">propertyName</FONT>
+	is specified but, for a node-tuple, the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node does not have a property named <FONT FACE="Courier New, monospace">propertyName</FONT>,
+	the query is <I>valid</I> and the column has <FONT FACE="Courier New, monospace">null</FONT>
+	value.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">columns ::= (Column ','
+	{Column}) | '*'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">Column ::=
+	([selectorName'.']propertyName</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">['AS' columnName]) |</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">(selectorName'.*')</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query, explicit<BR> 
+	specification of the selectorName preceding the<BR> 
+	propertyName is optional */</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">selectorName ::= Name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">propertyName ::= Name</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">columnName ::= Name</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 column(String selectorName,<BR> String propertyName,<BR>
+	 String columnName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Column</FONT></FONT>
+	declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Column.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Column.getPropertyName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Column.getColumnName()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

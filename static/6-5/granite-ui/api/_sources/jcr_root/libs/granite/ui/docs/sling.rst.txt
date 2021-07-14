@@ -1,0 +1,114 @@
+*********************
+Sling Developer Guide
+*********************
+
+Granite UI (Client Side) is an extension of HTML/DOM. As such it is following the HTML/DOM characteristic.
+HTML/DOM, like Sling, is a tree structure, therefore the approach to solve problem or "how to think" in Sling can be similar to HTML/DOM/Granite UI.
+
+This document is trying to highlight some of the similarities.
+
+Below is the summary.
+
+================  ========================
+Sling             Granite UI (Client Side)
+================  ========================
+Resource tree     DOM element tree
+Resource          DOM element
+ResourceResolver  DOM Query Selector All
+Adaptable         :doc:`../components/coral/foundation/clientlibs/foundation/js/adapter/index`
+JCR Observation   DOM Mutation Observer
+OSGi Registry     :doc:`../components/coral/foundation/clientlibs/foundation/js/registry/index`
+================  ========================
+
+
+Element Tree
+============
+
+In Sling we have a resource tree, where we can traverse the tree using the Resource methods, such as ``Resource#getParent()`` and ``Resource#getChild(String)``.
+
+Similarly DOM is also a tree structure, where we can traverse using its API, such as ``Node.parentNode`` and ``Node.childNodes``.
+
+The key idea about tree structure is the thinking in the form of hierarchy. The following example is showing the relationship between the fields and their containing form.
+
+Sling::
+
+   + form
+     + username
+       - label = "Username"
+     + password
+       - label = "Password"
+     + submit
+       - text = "Login"
+
+Granite UI:
+
+.. code-block:: html
+
+   <form>
+     <label>Username <input></label>
+     <label>Password <input type="password"></label>
+     <input type="submit" value="Login">
+   </form>
+
+
+Element
+=======
+
+In Sling, the unit of abstraction is a Resource. A Resource exposes its properties as a ValueMap. Resource is also a first class citizen in Sling (instead of Java object).
+
+Likewise, in Granite UI, the Element is the first class citizen (instead of JavaScript object). A HTML element exposes its properties as HTML attributes.
+
+When we say "Everything is a resource" in Sling, we can also say "Everything is an element" in Granite UI.
+
+
+Getting Element
+===============
+
+In Sling, we use ResourceResolver to get or search for the resource, using path or query language (e.g. XPath, SQL) respectively.
+
+In Granite UI, we use querySelector/querySelectorAll/jQuery to get or search for the element, using `selector <http://www.w3.org/TR/selectors/>`_.
+
+
+Adapter
+=======
+
+The `adapter pattern <http://en.wikipedia.org/wiki/Adapter_pattern>`_ allows the interface of an existing class to be used from another interface. It is often used to make existing classes work with others without modifying their source code.
+
+In Sling, the pattern is exposed by object implementing `Adaptable <https://sling.apache.org/apidocs/sling7/org/apache/sling/api/adapter/Adaptable.html>`_ interface.
+
+.. code-block:: java
+
+   Page page = resource.adaptTo(Page.class);
+   PageManager mgr = resourceResolver.adaptTo(PageManager.class);
+
+In Granite UI, the pattern is exposed by :doc:`../components/coral/foundation/clientlibs/foundation/js/adapter/index` in the form of jQuery plugin named ``adaptTo``.
+
+.. code-block:: js
+
+   var collectionAPI = $(element).adaptTo("foundation-collection");
+   var uiAPI = $(window).adaptTo("foundation-ui");
+
+The adapter is one half of the infrastructure to make Granite UI extensible. (The other one is the registry)
+
+
+Observations
+============
+
+`JCR Observation <http://www.day.com/specs/jcr/2.0/12_Observation.html>`_ is a mechanism to enables an application to receive notification of persistent changes to a workspace.
+DOM also provides similar feature in the form of `MutationObserver <https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver>`_ to get notification of changes in DOM.
+
+Although currently we don't use MutationObserver due to browser support (not available in IE10-), just like in Sling, it has a potential to change the paradigm on how we develop our component.
+
+The most likely use case would be about cache invalidation. For example when selecting elements, which can be expensive, we simply cache the result and use MutationObserver to invalidate the cache.
+
+
+Registry
+========
+
+OSGi Service is one of the key concept in OSGi. The service is registered and consumed through the service registry.
+
+Granite UI also provides a registry: :doc:`../components/coral/foundation/clientlibs/foundation/js/registry/index`. It is mainly used as way for other codes to register extension for components.
+
+For example :doc:`../components/coral/foundation/clientlibs/foundation/js/collection/action/index` allows the action to be pluggable. So other code registers the action handler to the registry with a certain key, then the component can simply query the registry of that key to pick the matching handler.
+
+The registry is one half of the infrastructure to make Granite UI extensible. (The other one is the adapter)

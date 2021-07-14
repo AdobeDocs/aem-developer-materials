@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.4.2 FROM (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.4.2." id="section_8.5.4.2."></a>8.5.4.2 FROM
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>FROM</b> clause narrows the search to include only the specified tables (node types). For example, the query
+								</p>
+							
+							
+								<p class="c5">
+									<b>SELECT myapp:productName FROM mynt:shippable</b>
+								</p>
+							
+							
+								<p class="c5">
+									would return all properties in the workspace called <b>myapp:product</b> that belong to nodes of node type <b>mynt:shippable</b>. Note that when a node type is specified in <b>FROM</b> clause the table (in the database view) searched will contain all nodes of the named type plus all node of subtypes of the named type. However the columns available in that table will reflect only those declared or inherited by the named type. To search all node types (tables) one would specify <b>FROM nt:base</b> (though an implementation can always prevent searches whose scope is unfeasibly large). See also 6.6.3.2 Type Constraint.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

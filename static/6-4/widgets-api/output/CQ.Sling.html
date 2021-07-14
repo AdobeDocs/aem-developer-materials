@@ -1,0 +1,263 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Sling-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Sling-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Sling-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Sling"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.Sling</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Sling.js" target="_blank">Sling.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Sling</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.shared                        </td></tr>
+                    </table>
+        <div class="description">
+	        	        <b>Deprecated: use Granite.Sling instead</b><br><br>
+	                    A helper class providing a set of Sling-related utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Sling-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-CHARSET"></a>
+            <b>CHARSET</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the used character set.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-COPY_SUFFIX"></a>
+            <b>COPY_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for copying.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-DELETE_SUFFIX"></a>
+            <b>DELETE_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for deleting.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-DESTINATION"></a>
+            <b>DESTINATION</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the destination flag.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-IGNORE_PARAM"></a>
+            <b>IGNORE_PARAM</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for input fields that should
+be ignored by Sling.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-LOGIN_URL"></a>
+            <b>LOGIN_URL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Login URL                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-LOGOUT_URL"></a>
+            <b>LOGOUT_URL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Logout URL                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-MOVE_SUFFIX"></a>
+            <b>MOVE_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for moving.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-OPERATION"></a>
+            <b>OPERATION</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the operation.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-OPERATION_DELETE"></a>
+            <b>OPERATION_DELETE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter value for the delete operation.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-OPERATION_MOVE"></a>
+            <b>OPERATION_MOVE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter value for the move operation.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-ORDER"></a>
+            <b>ORDER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the ordering.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-REPLACE"></a>
+            <b>REPLACE</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the replace flag.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-REQUEST_LOGIN_PARAM"></a>
+            <b>REQUEST_LOGIN_PARAM</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for login requests.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-SAVE_PARAM_PREFIX"></a>
+            <b>SAVE_PARAM_PREFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the save parameter prefix.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-SELECTOR_INFINITY"></a>
+            <b>SELECTOR_INFINITY</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The selector for infinite hierarchy depth when retrieving
+repository content.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-STATUS"></a>
+            <b>STATUS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name for the status.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-STATUS_BROWSER"></a>
+            <b>STATUS_BROWSER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter value for the status type "browser".                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-TYPEHINT_SUFFIX"></a>
+            <b>TYPEHINT_SUFFIX</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The parameter name suffix for setting a type hint.                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+            </table>
+                <a id="CQ.Sling-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-getContentPath"></a>
+            <b>getContentPath</b>(&nbsp;<code>String relPath</code>, <code>String absPath</code>, <code>Boolean allowParentPaths</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Returns the content path for the data.</div>
+            <div class="long">
+                &lt;static&gt; Returns the content path for the data.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>relPath</code> : String<div class="sub-desc">The relative path to resolve</div></li><li><code>absPath</code> : String<div class="sub-desc">The absolute path to resovle against</div></li><li><code>allowParentPaths</code> : Boolean<div class="sub-desc">Indicates parent paths (../) should be processed at the start of the
+relative path</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The absolute path path</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Sling-processBinaryData"></a>
+            <b>processBinaryData</b>(&nbsp;<code>Object value</code>&nbsp;) : Object            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; Detects and processes binary repository data returned by Sling
+and does some preparsing on it for more...</div>
+            <div class="long">
+                &lt;static&gt; Detects and processes binary repository data returned by Sling
+and does some preparsing on it for more easy data handling.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>value</code> : Object<div class="sub-desc">The repository data to check</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">The processed repository data</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Sling</td>
+    </tr>
+            </table>
+                <a id="CQ.Sling-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

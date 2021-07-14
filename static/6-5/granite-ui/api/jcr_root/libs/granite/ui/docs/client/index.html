@@ -1,0 +1,295 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Granite UI Client-side &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Granite UI Vocabulary" href="vocabulary.html" />
+    <link rel="prev" title="Granite UI: The Hypermedia-driven UI" href="../index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vocabulary.html" title="Granite UI Vocabulary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Granite UI: The Hypermedia-driven UI"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="granite-ui-client-side">
+<h1>Granite UI Client-side<a class="headerlink" href="#granite-ui-client-side" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="html-and-dom-programming-refresh">
+<h2>HTML and DOM Programming Refresh<a class="headerlink" href="#html-and-dom-programming-refresh" title="Permalink to this headline">¶</a></h2>
+<p>Let’s refresh what we already understood about HTML programming.</p>
+<p>Say we have the following markup:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mylink&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mylink.html&quot;</span><span class="p">&gt;</span>My link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>We know the meaning of <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code>, where it creates an anchor for hyperlinking. We also know that <code class="docutils literal notranslate"><span class="pre">href</span></code> attribute indicates the URI of the hyperlinked resource. We also know the behavior. When the user clicks the anchor, the user agent will navigate to the resource. We understood all these as described by the <a class="reference external" href="http://www.w3.org/TR/html5/">HTML specification</a>.</p>
+<p>Now let’s look how to do some programming around that existing markup:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// select the element</span>
+<span class="kd">var</span> <span class="nx">mylink</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mylink&quot;</span><span class="p">);</span>
+
+<span class="c1">// activate the element</span>
+<span class="nx">mylink</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">);</span>
+
+<span class="c1">// inspect the property</span>
+<span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">mylink</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We can also create the element from scratch and inject it to the current document:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// create the element</span>
+<span class="kd">var</span> <span class="nx">mylink</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;a /&gt;&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;mylink&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">,</span> <span class="s2">&quot;mylink.html&quot;</span><span class="p">);</span>
+
+<span class="c1">// inject it to current document</span>
+<span class="nx">mylink</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Let’s move to more complex example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;myform&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;myform.html&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;textarea&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>As before, we know the semantic and behaviour of the above markup. We know that the form will be submitted when the user click the submit button. We can also manipulate the form programmatically:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// submitting the form</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myform&quot;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;submit&quot;</span><span class="p">);</span>
+
+<span class="c1">// listening to submit event</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myform&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{});</span>
+
+<span class="c1">// listening to submit event leveraging event bubbling</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="s2">&quot;#myform&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{});</span>
+</pre></div>
+</div>
+<p>The key take away here is that we can do everything above because everybody already agreed on it. There is a shared understanding among many parties involved, namely the markup author, the javascript programmer and the user agent. This shared understanding is the vocabulary and standarized in the form of HTML specification.</p>
+<p>Another key point about HTML is that the mechanism to do thing doesn’t change much. We still have markup, DOM, event, scripting. The things that change are the vocabulary itself. For example we have <code class="docutils literal notranslate"><span class="pre">&lt;font&gt;</span></code>, that is deprecated; <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;number&quot;&gt;</span></code> that is relatively new. And maybe someday we will have the ability to input geolocation (<code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">type=&quot;geo&quot;&gt;</span></code>), that allows us to pick a location from geolocation service (e.g. Google Maps), or a brand new element to express a new thing.</p>
+<p>Since we have requirement that is more complex than HTML can provide currently, why don’t we jump the curve and invent “HTML6”?</p>
+</div>
+<div class="section" id="introducing-granite-ui">
+<h2>Introducing Granite UI<a class="headerlink" href="#introducing-granite-ui" title="Permalink to this headline">¶</a></h2>
+<p>The role of Granite UI in the client-side is to expand the vocabulary of HTML with the vocabulary related to RIA.</p>
+<p>For example, we have a scenario where we need to navigate the browser history—the back and forward buttons. HTML doesn’t provide any markup to do this. Fortunately it provides <code class="docutils literal notranslate"><span class="pre">&lt;button&gt;</span></code>, which we can extend.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mybackbutton&quot;</span>
+  <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-history-control&quot;</span> <span class="na">data-foundation-history-control-action</span><span class="o">=</span><span class="s">&quot;back&quot;</span>
+<span class="p">&gt;</span>Back<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>In this case Granite UI provides <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/js/history/index.html"><span class="doc">foundation-history</span></a>. We are extending button by assigning a class name <code class="docutils literal notranslate"><span class="pre">foundation-history-control</span></code>. This class is a marker to indicate that the button is used to control the browser history. <code class="docutils literal notranslate"><span class="pre">data-foundation-history-control-action</span></code> attribute is used to indicate the attribute of <code class="docutils literal notranslate"><span class="pre">foundation-history-control</span></code>, which has the valid values of either <code class="docutils literal notranslate"><span class="pre">back</span></code> or <code class="docutils literal notranslate"><span class="pre">forward</span></code>. When the user clicks the button, the browser will navigate backward/forward in the history stack.</p>
+<p>We can also manipulate the element programmatically, just like the anchor element shown before:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// select the element</span>
+<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mybackbutton&quot;</span><span class="p">);</span>
+
+<span class="c1">// activate the element</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">);</span>
+
+<span class="c1">// inspect the property</span>
+<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">button</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;data-foundation-history-control-action&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decoupling-semantic-intention-from-implementation">
+<h2>Decoupling Semantic Intention from Implementation<a class="headerlink" href="#decoupling-semantic-intention-from-implementation" title="Permalink to this headline">¶</a></h2>
+<p>By defining the semantic markup—which is representing the semantic intention—the component developer can implement that semantic independently using any JS framework/library. The author then simply needs to prepare the markup accordingly, without knowing too much how things are implemented, possibly using an authoring tool or a markup templating library.</p>
+<p>This is how Granite UI achieves independent evolution.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Remember that semantic intention doesn’t change much, but implementation usually changes dramatically.</p>
+</div>
+<p>The following code is the simplest implementation of <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/js/history/index.html"><span class="doc">foundation-history</span></a>:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;.foundation-history-control&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">control</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">control</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;foundationHistoryControlAction&quot;</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">action</span> <span class="o">===</span> <span class="s2">&quot;back&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">back</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">action</span> <span class="o">===</span> <span class="s2">&quot;forward&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">forward</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">})(</span><span class="nb">window</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">Granite</span><span class="p">.</span><span class="nx">$</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="eventing">
+<h2>Eventing<a class="headerlink" href="#eventing" title="Permalink to this headline">¶</a></h2>
+<p>DOM has event mechanic such that other code can do something related to the event.</p>
+<p>For example to use <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> example above, in HTML you can access its DOM API:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// select the element</span>
+<span class="kd">var</span> <span class="nx">mylink</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mylink&quot;</span><span class="p">);</span>
+
+<span class="c1">// listen to click event</span>
+<span class="nx">mylink</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;mylink is clicked&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Granite UI also exposes jQuery-based event for its vocabulary and components.</p>
+<p>For example given <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/js/form/index.html"><span class="doc">foundation-form</span></a> markup:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;myform&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-form&quot;</span> <span class="na">data-foundation-form-ajax</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>the following code can be used to listen to <code class="docutils literal notranslate"><span class="pre">foundation-form-submitted</span></code> event:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// select the element</span>
+<span class="kd">var</span> <span class="nx">myform</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myform&quot;</span><span class="p">);</span>
+
+<span class="c1">// listen to the event</span>
+<span class="nx">myform</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;foundation-form-submitted&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;myform submission is complete&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exposing-js-api-via-adaptto">
+<h2>Exposing JS API via AdaptTo<a class="headerlink" href="#exposing-js-api-via-adaptto" title="Permalink to this headline">¶</a></h2>
+<p>HTML as a markup language is represented as DOM at the runtime. As Granite UI expands the vocabulary of HTML (the markup), it also needs a mechanism to expose JS API (the equivalence of DOM) for its vocabulary and components.</p>
+<p>For example to use <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> example above, in HTML you can access its DOM API:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// select the element</span>
+<span class="kd">var</span> <span class="nx">mylink</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mylink&quot;</span><span class="p">);</span>
+
+<span class="c1">// access its href API</span>
+<span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">mylink</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Granite UI exposes its JS API via <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/js/adapter/index.html"><span class="doc">foundation-adapter</span></a>.</p>
+<p>For example given <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/vocabulary/collection.html"><span class="doc">foundation-collection</span></a> and <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/vocabulary/selections.html"><span class="doc">foundation-selections</span></a> markup:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mycollection&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item foundation-selections-item&quot;</span><span class="p">&gt;</span>Item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span><span class="p">&gt;</span>Item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item&quot;</span><span class="p">&gt;</span>Item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>where it is a collection where “Item 1” is selected, the following code can be used to access <a class="reference internal" href="../../components/coral/foundation/clientlibs/foundation/vocabulary/selections.html"><span class="doc">foundation-selections</span></a> AdaptTo API to get the total selection count:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// select the element</span>
+<span class="kd">var</span> <span class="nx">mycollection</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mycollection&quot;</span><span class="p">);</span>
+
+<span class="c1">// get the total selection count</span>
+<span class="kd">var</span> <span class="nx">selectionAPI</span> <span class="o">=</span> <span class="nx">mycollection</span><span class="p">.</span><span class="nx">adaptTo</span><span class="p">(</span><span class="s2">&quot;foundation-selection&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">selectionAPI</span><span class="p">.</span><span class="nx">getCount</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vocabulary.html">Granite UI Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component.html">Granite UI Component</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Granite UI Client-side</a><ul>
+<li><a class="reference internal" href="#html-and-dom-programming-refresh">HTML and DOM Programming Refresh</a></li>
+<li><a class="reference internal" href="#introducing-granite-ui">Introducing Granite UI</a></li>
+<li><a class="reference internal" href="#decoupling-semantic-intention-from-implementation">Decoupling Semantic Intention from Implementation</a></li>
+<li><a class="reference internal" href="#eventing">Eventing</a></li>
+<li><a class="reference internal" href="#exposing-js-api-via-adaptto">Exposing JS API via AdaptTo</a></li>
+<li><a class="reference internal" href="#concepts">Concepts</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Granite UI: The Hypermedia-driven UI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="vocabulary.html"
+                        title="next chapter">Granite UI Vocabulary</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../_sources/jcr_root/libs/granite/ui/docs/client/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="vocabulary.html" title="Granite UI Vocabulary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Granite UI: The Hypermedia-driven UI"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Granite UI 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 4.1 Repository Object (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>4.1 Repository Object</H2>
+	<P>To begin using a
+	repository, an application must acquire a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object.</P>
+	<P>Access to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object may be provided through a number of standard Java naming and
+	discovery mechanisms, but <I>must</I> at the minimum be provided
+	through an implementation of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	interface.</P>
+	<P>Any implementation of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	must have a zero-argument public constructor. Repository factories
+	may be installed in an instance of the Java platform as extensions,
+	that is, jar files placed into any of the usual extension
+	directories. Factories may also be made available by adding them to
+	the applet or application class path or by some other
+	platform-specific means.</P>
+	<P>A repository factory
+	implementation should support the Java Standard Edition Service
+	Provider mechanism<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote9anc" HREF="#sdfootnote9sym"><SUP>9</SUP></A></SUP>,
+	that is, an implementation should include the file
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>META-INF/services/javax.jcr.RepositoryFactory</FONT></FONT>.
+	This file contains the fully qualified name of the class that
+	implements <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>.</P>
+	<P>Once the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	is acquired, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object itself is acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository&nbsp;RepositoryFactory.getRepository(Map&nbsp;parameters)</FONT></FONT></P>
+	<P>which attempts to
+	retrieve a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository</FONT></FONT>
+	object using the given parameters.</P>
+	<P>Parameters are passed
+	in a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Map</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	key/value pairs. The keys are not specified by JCR and are
+	implementation specific. However, vendors should use keys that are
+	namespace qualified in the Java package style to distinguish their
+	key names. Alternatively, a client may request a default repository
+	instance by passing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+	<P>The implementation
+	must return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if a default repository instance is requested and the factory is
+	not able to identify such a repository or if parameters are passed
+	and the factory does not understand them. See the associated Javadoc
+	for example connection code.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.9.6 Bind Variables (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.9.6 Bind Variables</H3>
+	<P>A query
+	may contain variables.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Query.bindValue(String varName, Value value)</FONT></FONT></P>
+	<P>binds
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>value</FONT></FONT>
+	to the variable <FONT FACE="Courier New, monospace"><FONT SIZE=2>varName</FONT></FONT>.</P>
+	<P>In
+	JCR-SQL2 a bind variable is indicated by a leading dollar-sign. In
+	JCR-JQOM it is a QOM object created with the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>
+	(see §6.7.35 <I>BindVariable</I>).</P>
+	<P>The
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getBindVariableNames()</FONT></FONT></P>
+	<P>returns the names of
+	the bind variables in the query. If the query does not contains any
+	bind variables then an empty array is returned.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

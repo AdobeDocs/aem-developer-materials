@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.2.9 Reference Properties within a Version (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.2.9." id="section_8.2.2.9."></a>8.2.2.9 Reference Properties within a Version
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a <b>REFERENCE</b> property is stored as part of the frozen state of a version, the referential integrity requirement is lifted. For example, given the following situation:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Nodes <b>A</b> and <b>B</b> in a workspace <b>WS</b> (i.e., in the workspace proper, not in the protected version storage subtree)
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>A</b> is (at least) versionable.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>B</b> is (at least) referenceable.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>A</b> has <b>REFERENCE</b> property <b>P</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>P</b> has an <i>OnParentVersion</i> setting of <b>COPY</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>P</b> holds a reference to <b>B</b>. <b>B</b> has no other references pointing to it.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Assuming that <b>A</b> is checked in.
+								</p>
+							
+							
+								<p class="c5">
+									When <b>A</b> is checked in, <b>P</b> will be recorded as part of the frozen state of the newly created version <b>A'</b> by being copied to version storage as a property <b>P'</b> of <b>A'</b>.
+								</p>
+							
+							
+								<p class="c5">
+									At this point <b>B</b> cannot be removed from the workspace because it has a reference (<b>P</b>) pointing to it. However, if <b>P</b> is removed from <b>A</b>, then <b>B</b> can be removed. Because referential integrity is not enforced for frozen reference properties in version storage, the reference from <b>P'</b> will not prevent the removal of <b>B</b>. This is despite the fact that <b>P'</b> does appear in the same workspace as <b>B</b> (though only in the special version storage subtree at <b>/jcr:system/jcr:versionStorage</b>). Note that this also means that a call to <b>getReferences</b> on <b>B</b> will <i>not</i> return <b>P'</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

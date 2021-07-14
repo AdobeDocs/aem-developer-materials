@@ -1,0 +1,170 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Footer &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../" src="../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Layouts" href="../layouts/index.html" />
+    <link rel="prev" title="Hyperlink" href="../actionbar/hyperlink/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../layouts/index.html" title="Layouts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../actionbar/hyperlink/index.html" title="Hyperlink"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Granite UI Endor</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="footer">
+<h1>Footer<a class="headerlink" href="#footer" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/endor/footer">
+<dt>
+<code class="descname">/libs/granite/ui/components/endor/footer</code></dt>
+<dd><p>Footer is the component to render the Endor’s footer.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:EndorFooter</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">class</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The class attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">srcPath</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The path to the resource that defines the copyright and the items.
+If this property is specified, the copyright and the items are taken from this resource instead.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">copyright</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">\u00A9 2014 Adobe. All Rights Reserved</li></ol></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">i18n</dt><dd class="gnd-attributes-value"></dd></dl><p>The copyright notice.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">items</span></dt>
+<dd><p>The items of the footer. Typically a row of hyperlinks.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">footer</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/endor/footer&quot;</span>
+  <span class="o">-</span> <span class="n">srcPath</span><span class="o">=</span><span class="s2">&quot;cq/core/content/footer&quot;</span>
+
+<span class="o">+</span> <span class="n">footer</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/endor/footer&quot;</span>
+  <span class="o">-</span> <span class="n">copyright</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\u00A9</span><span class="s2"> 2014 Adobe. All Rights Reserved&quot;</span>
+  <span class="o">+</span> <span class="n">items</span>
+    <span class="o">+</span> <span class="n">help</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/hyperlink&quot;</span>
+      <span class="o">-</span> <span class="n">href</span> <span class="o">=</span> <span class="s2">&quot;http://www.adobe.com/go/experiencecloud_help&quot;</span>
+      <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Help&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../actionbar/hyperlink/index.html"
+                        title="previous chapter">Hyperlink</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../layouts/index.html"
+                        title="next chapter">Layouts</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../_sources/jcr_root/libs/granite/ui/components/endor/footer/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../layouts/index.html" title="Layouts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../actionbar/hyperlink/index.html" title="Hyperlink"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Endor</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

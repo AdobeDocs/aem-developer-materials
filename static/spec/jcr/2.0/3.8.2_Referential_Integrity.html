@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.8.2 Referential Integrity (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.8.2 Referential Integrity</H3>
+	<P>Given a property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	with value <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	in workspace <FONT FACE="Courier New, monospace"><FONT SIZE=2>W:</FONT></FONT></P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	then there must exist a node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>W</FONT></FONT>
+	with identifier <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>,
+	no such restriction exists.</P>
+	<P>In a read-only context
+	the only difference between the types is that a workspace cannot
+	contain a dangling <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	while it may contain a dangling <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.12.1 Registering a Namespace (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.12.1 Registering a Namespace</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	NamespaceRegistry.<BR> registerNamespace(String prefix, String
+	uri)</FONT></FONT></P>
+	<P>sets a one-to-one
+	mapping between <FONT FACE="Courier New, monospace"><FONT SIZE=2>prefix</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>uri</FONT></FONT>
+	in the global namespace registry of this repository.</P>
+	<P>Assigning a new prefix
+	to a URI that already exists in the namespace registry erases the
+	old prefix. Apart from the XML restriction (see §10.9.3 <I>Namespace
+	Restrictions</I>) this can almost always be done, though an
+	implementation is free to prevent particular remappings by throwing
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceException</FONT></FONT>.
+	Re-assigning an already registered prefix to a new URI in effect
+	unregisters its former URI.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

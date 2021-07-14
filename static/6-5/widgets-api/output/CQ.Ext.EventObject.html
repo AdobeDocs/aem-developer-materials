@@ -1,0 +1,311 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.EventObject-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.EventObject-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.EventObject-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Ext.EventObject"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.Ext.EventObject</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/EventManager.js" target="_blank">EventManager.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">EventObject</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    Just as <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a> wraps around a native DOM node, CQ.Ext.EventObject
+wraps the browser's native event-object normalizing cross-browser differences,
+such as which mouse button is clicked, keys pressed, mechanisms to stop
+event-propagation along with a method to prevent default actions from taking place.
+<p>For example:</p>
+<pre><code>function handleClick(e, t){ <i>// e is not a standard event object, it is a CQ.Ext.EventObject</i>
+    e.preventDefault();
+    <b>var</b> target = e.getTarget(); <i>// same as t (the target HTMLElement)</i>
+    ...
+}
+<b>var</b> myDiv = <a ext:cls="CQ.Ext" ext:member="get" href="output/CQ.Ext.html#get">CQ.Ext.get</a>(<em>"myDiv"</em>);  <i>// get reference to an <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a></i>
+myDiv.on(         <i>// <em>'on'</em> is shorthand <b>for</b> addListener</i>
+    <em>"click"</em>,      <i>// perform an action on click of myDiv</i>
+    handleClick   <i>// reference to the action handler</i>
+);
+<i>// other methods to <b>do</b> the same:</i>
+CQ.Ext.EventManager.on(<em>"myDiv"</em>, <em>'click'</em>, handleClick);
+CQ.Ext.EventManager.addListener(<em>"myDiv"</em>, <em>'click'</em>, handleClick);</code></pre><br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.EventObject-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ.Ext.EventObject-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getCharCode"></a>
+            <b>getCharCode</b>() : Number            <div class="mdesc">
+                                    <div class="short">Gets the character code for the event.</div>
+            <div class="long">
+                Gets the character code for the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getKey"></a>
+            <b>getKey</b>() : Number            <div class="mdesc">
+                                    <div class="short">Returns a normalized keyCode for the event.</div>
+            <div class="long">
+                Returns a normalized keyCode for the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The key code</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getPageX"></a>
+            <b>getPageX</b>() : Number            <div class="mdesc">
+                                    <div class="short">Gets the x coordinate of the event.</div>
+            <div class="long">
+                Gets the x coordinate of the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getPageY"></a>
+            <b>getPageY</b>() : Number            <div class="mdesc">
+                                    <div class="short">Gets the y coordinate of the event.</div>
+            <div class="long">
+                Gets the y coordinate of the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getRelatedTarget"></a>
+            <b>getRelatedTarget</b>() : HTMLElement            <div class="mdesc">
+                                    <div class="short">Gets the related target.</div>
+            <div class="long">
+                Gets the related target.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getTarget"></a>
+            <b>getTarget</b>(&nbsp;<span class="optional" title="Optional">[<code>String selector</code>]</span>, <span class="optional" title="Optional">[<code>Number/Mixed maxDepth</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnEl</code>]</span>&nbsp;) : HTMLelement            <div class="mdesc">
+                                    <div class="short">Gets the target for the event.</div>
+            <div class="long">
+                Gets the target for the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">(optional) A simple selector to filter the target or look for an ancestor of the target</div></li><li><code>maxDepth</code> : Number/Mixed<div class="sub-desc">(optional) The max depth to
+ search as a number or element (defaults to 10 || document.body)</div></li><li><code>returnEl</code> : Boolean<div class="sub-desc">(optional) True to return a CQ.Ext.Element object instead of DOM node</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLelement</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getWheelDelta"></a>
+            <b>getWheelDelta</b>() : Number            <div class="mdesc">
+                                    <div class="short">Normalizes mouse wheel delta across browsers</div>
+            <div class="long">
+                Normalizes mouse wheel delta across browsers    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The delta</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-getXY"></a>
+            <b>getXY</b>() : Array            <div class="mdesc">
+                                    <div class="short">Gets the page coordinates of the event.</div>
+            <div class="long">
+                Gets the page coordinates of the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">The xy values like [x, y]</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-preventDefault"></a>
+            <b>preventDefault</b>() : void            <div class="mdesc">
+                                    <div class="short">Prevents the browsers default handling of the event.</div>
+            <div class="long">
+                Prevents the browsers default handling of the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-stopEvent"></a>
+            <b>stopEvent</b>() : void            <div class="mdesc">
+                                    <div class="short">Stop the event (preventDefault and stopPropagation)</div>
+            <div class="long">
+                Stop the event (preventDefault and stopPropagation)    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-stopPropagation"></a>
+            <b>stopPropagation</b>() : void            <div class="mdesc">
+                                    <div class="short">Cancels bubbling of the event.</div>
+            <div class="long">
+                Cancels bubbling of the event.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.EventObject-within"></a>
+            <b>within</b>(&nbsp;<code>Mixed el</code>, <span class="optional" title="Optional">[<code>Boolean related</code>]</span>, <code>Boolean allowEl</code>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">Returns true if the target of this event is a child of el.  Unless the allowEl parameter is set, it will return false...</div>
+            <div class="long">
+                Returns true if the target of this event is a child of el.  Unless the allowEl parameter is set, it will return false if if the target is el.
+Example usage:<pre><code><i>// Handle click on any child of an element</i>
+        CQ.Ext.getBody().on(<em>'click'</em>, <b>function</b>(e){
+            <b>if</b>(e.within(<em>'some-el'</em>)){
+                alert(<em>'Clicked on a child of some-el!'</em>);
+            }
+        });
+
+        <i>// Handle click directly on an element, ignoring clicks on child nodes</i>
+        CQ.Ext.getBody().on(<em>'click'</em>, <b>function</b>(e,t){
+            <b>if</b>((t.id == <em>'some-el'</em>) && !e.within(t, true)){
+                alert(<em>'Clicked directly on some-el!'</em>);
+            }
+        });</code></pre>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : Mixed<div class="sub-desc">The id, DOM element or CQ.Ext.Element to check</div></li><li><code>related</code> : Boolean<div class="sub-desc">(optional) true to test if the related target is within el instead of the target</div></li><li><code>allowEl</code> : Boolean<div class="sub-desc">{optional} true to also check if the passed element is the target or related target</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">EventObject</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.EventObject-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

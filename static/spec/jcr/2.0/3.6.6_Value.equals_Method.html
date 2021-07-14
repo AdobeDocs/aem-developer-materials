@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.6 Value.equals Method (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.6.6 Value.equals Method</H3>
+	<P>An implementation of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	interface must override the inherited method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Object.equals(Object)</FONT></FONT>
+	so that, given <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	instances <FONT FACE="Courier New, monospace"><FONT SIZE=2>V1</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V2</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V1.equals(V2)</FONT></FONT>
+	will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V1</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V2</FONT></FONT>
+		were acquired from the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+		and</P>
+		<LI><P>the contents of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V1</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V2</FONT></FONT>
+		have not yet been accessed, and</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V1</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V2</FONT></FONT>
+		are of the same type, and</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V1</FONT></FONT>
+		<I>is equal to</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>V2</FONT></FONT>
+		as defined in §3.6.5 <I>Comparison of Values</I>.</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V1.equals(V2)</FONT></FONT>
+	will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+	<P>In addition:</P>
+	<UL>
+		<LI><P>The equality
+		comparison must not change the state of either <FONT FACE="Courier New, monospace"><FONT SIZE=2>V1</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>V2</FONT></FONT>
+		and</P>
+		<LI><P>support for
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Value.equals</FONT></FONT>
+		in the case of <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		values is optional.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

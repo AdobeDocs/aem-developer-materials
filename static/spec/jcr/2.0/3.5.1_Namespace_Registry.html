@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.5.1 Namespace Registry (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.5.1 Namespace Registry</H3>
+	<P>The local namespace
+	mapping of a session is determined by the initial set of mappings
+	copied from the <I>namespace registry</I> and any session-local
+	changes made to that set.</P>
+	<P>The namespace registry
+	is a single, persistent, repository-wide table that contains the
+	default namespace mappings. It may contain namespaces that are not
+	used in repository content, and there may be repository content with
+	namespaces that are not included in the registry. The namespace
+	registry always contains at least the following built-in mappings
+	between prefix (on the left) and namespace (on the right):</P>
+	<OL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr
+		= http://www.jcp.org/jcr/1.0</FONT></FONT><BR>Reserved
+		for items defined within built-in node types (see §3.7 <I>Node
+		Types</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>nt
+		= http://www.jcp.org/jcr/nt/1.0<BR></FONT></FONT>Reserved
+		for the names of built-in primary node types.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>mix
+		= http://www.jcp.org/jcr/mix/1.0<BR></FONT></FONT>Reserved
+		for the names of built-in mixin node types.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>xml
+		= http://www.w3.org/XML/1998/namespace</FONT></FONT><BR>Reserved
+		for reasons of compatibility with XML.</P>
+		<LI><P><I>(the empty
+		string)</I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		= </FONT></FONT><I>(the empty string)<BR></I>The
+		default namespace is the <I>empty namespace</I>.</P>
+	</OL>
+<script type="text/javascript" src="footer.js"></script></body></html>

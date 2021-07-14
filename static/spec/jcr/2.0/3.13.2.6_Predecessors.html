@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.2.6 Predecessors (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.2.6 Predecessors</H4>
+	<P>Under full versioning,
+	a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	has one or more versions in its version history that will become
+	direct predecessors of the new version <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	created on the next check-in of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	For convenience these versions can also be referred to as the direct
+	predecessors of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	(i.e., not just the direct predecessor of the hypothetical <FONT FACE="Courier New, monospace"><FONT SIZE=2>V)</FONT></FONT>.</P>
+	<P>The base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is always <I>one</I> of these direct predecessors, but <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	may have additional direct predecessors as well. If so, on check-in
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	all of these become direct predecessors of the newly created version
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>,
+	thus forming a merge within the version graph (see §15.9 <I>Merge</I>).</P>
+	<P>A node’s direct
+	predecessors are exposed by the multi-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+	(see §3.13.2.3 <I>mix:versionable</I>) which points to one or more
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	nodes (see §3.13.3.1 <I>nt:version</I>). 
+	</P>
+	<P>There is no dedicated
+	API for accessing the direct predecessors of a <I>versionable</I>
+	<I>node</I>; access is provided through the property only (this
+	should not be confused with access to the direct predecessors of a
+	<I>version</I>, which is exposed through the API, see §3.13.2.6
+	<I>Predecessors</I>).</P>
+	<P>Under simple
+	versioning, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+	attribute is not needed (and hence not present on
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:simpleVersionable</FONT></FONT>)
+	since a versionable node will only ever have one direct predecessor,
+	which is its base version.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

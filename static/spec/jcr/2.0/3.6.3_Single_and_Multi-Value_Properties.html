@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.3 Single and Multi-Value Properties (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.6.3 Single and Multi-Value Properties</H3>
+	<P>A property may be a
+	single-value or a multi-value property.</P>
+	<P>A single-value
+	property, if it exists, must have a value. There is no such thing as
+	a null value. A multi-value property can have zero or more values.
+	Again there is no such thing as a null value, however a multi-value
+	property can be empty, just as an array can be empty.</P>
+	<P>The values stored
+	within a multi-valued property are all of the same type and are
+	ordered.</P>
+	<P>Whether a particular
+	property is a multi-valued property is governed by the property
+	definition applicable to it, which is determined by the node type of
+	the property's parent node (see §3.7 <I>Node Types</I>).</P>
+	<P>Accessing the value of
+	a property is done with <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValue</FONT></FONT>
+	which returns a single <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object. Accessing the set of values of a multi-value property is
+	done through <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues</FONT></FONT>
+	which returns a (possibly empty) array of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	objects (see §5.10 <I>Reading Properties</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

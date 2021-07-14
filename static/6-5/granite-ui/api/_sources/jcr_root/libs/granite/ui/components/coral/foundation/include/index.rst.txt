@@ -1,0 +1,23 @@
+
+Include
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/include
+
+   A component to include other resource.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Include]
+
+      /**
+       * The path of the included resource. It accepts any value that Sling ResourceResolver can accept.
+       */
+      - path (String)
+
+      /**
+       * The resource type of the included resource.
+       */
+      - resourceType (String)

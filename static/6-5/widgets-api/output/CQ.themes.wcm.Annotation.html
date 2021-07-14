@@ -1,0 +1,145 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.themes.wcm.Annotation-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.themes.wcm.Annotation-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.themes.wcm.Annotation-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.themes.wcm.Annotation"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.themes.wcm.Annotation</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.themes.wcm</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Annotation.js" target="_blank">Annotation.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Annotation</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    The theme-specific constants for <a ext:cls="CQ.wcm.Annotation" href="output/CQ.wcm.Annotation.html">CQ.wcm.Annotation</a>.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.themes.wcm.Annotation-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-COLOR"></a>
+            <b>COLOR</b> : String            <div class="mdesc">
+                                        &lt;static&gt; The default color.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-COLORS"></a>
+            <b>COLORS</b> : String[]            <div class="mdesc">
+                                        &lt;static&gt; The available color schemes                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-EXIT_SKETCH_DELAY"></a>
+            <b>EXIT_SKETCH_DELAY</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The delay in milliseconds to exit the sketch tool after a sketch has
+been finished.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-HEIGHT"></a>
+            <b>HEIGHT</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The height of the annotation.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-LINE_WIDTH"></a>
+            <b>LINE_WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The line width in sketches.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-MINHEIGHT"></a>
+            <b>MINHEIGHT</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The min height of the annotation.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-MINWIDTH"></a>
+            <b>MINWIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The min width of the annotation.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-SAVE_DELAY"></a>
+            <b>SAVE_DELAY</b> : Number            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; The delay in milliseconds for save calls after resize, changing the color, 
+minimize/maximize and drag...</div>
+            <div class="long">
+                &lt;static&gt; The delay in milliseconds for save calls after resize, changing the color, 
+minimize/maximize and drag and drop.            </div>
+                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-SKETCHABLE"></a>
+            <b>SKETCHABLE</b> : Boolean            <div class="mdesc">
+                                        &lt;static&gt; True to enable the sketch tool.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-STROKE_STYLES"></a>
+            <b>STROKE_STYLES</b> : Object            <div class="mdesc">
+                                        &lt;static&gt; The stroke colors of the available color schemes.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.themes.wcm.Annotation-WIDTH"></a>
+            <b>WIDTH</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The width of the annotation.                                    </div>
+        </td>
+        <td class="msource">Annotation</td>
+    </tr>
+            </table>
+                <a id="CQ.themes.wcm.Annotation-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="CQ.themes.wcm.Annotation-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

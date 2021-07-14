@@ -1,0 +1,774 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5 Reading (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>5 Reading</H1>
+	<P>There are three types
+	of read access which a session may have with respect to a particular
+	item, depending on that session's permissions: direct access,
+	traversal access and query access.</P>
+<a name="5.1 Direct Access"></a>	<H2>5.1 Direct Access</H2>
+	<P><I>Direct access</I>
+	to an item means being able to retrieve it by absolute and relative
+	path and, in the case of nodes, by identifier.</P>
+	<P>Let <FONT FACE="Courier New, monospace"><FONT SIZE=2>p(x)</FONT></FONT>
+	return the normalized absolute path of item <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>p(x,
+	y)</FONT></FONT> return the normalized relative path
+	from item <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>
+	to item <FONT FACE="Courier New, monospace"><FONT SIZE=2>y</FONT></FONT>
+	and, <FONT FACE="Courier New, monospace"><FONT SIZE=2>id(x)</FONT></FONT>
+	return the identifier of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>.</P>
+	<P>For any session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	the statements below must be either all true or all false. If they
+	are all true then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	if they are all false then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	does not have direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getItem(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.itemExists(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	</UL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getNode(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.nodeExists(p(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getNodeByIdentifier(id(N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the primary item of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getPrimaryItem()</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the root node of the workspace then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getRootNode()</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getNode(p(M,N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.hasNode(p(M,N))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	</UL>
+	<P>For any session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>,
+	the statements below must be either all true or all false. If they
+	are all true then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>,
+	if they are all false then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	does not have direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If there is no
+		node at the path <FONT FACE="Courier New, monospace"><FONT SIZE=2>p(P)</FONT></FONT>
+		to which S has read access then</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getItem(p(P))</FONT></FONT>
+			returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+			and</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.itemExists(p(P))</FONT></FONT>
+			returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		</UL>
+	</UL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getProperty(p(P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.propertyExists(p(P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has read access to the value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		(see §9.1 <I>Permissions</I>).</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		is the primary item of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getPrimaryItem()</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.getProperty(p(M,P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.
+				</P>
+		<LI><P>For all nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		to which <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has direct access, <FONT FACE="Courier New, monospace"><FONT SIZE=2>M.hasProperty(p(M,P))</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>.</P>
+	</UL>
+<a name="5.1.1 Getting the Root Node"></a>	<H3>5.1.1 Getting the Root Node</H3>
+	<P>The root node of the
+	workspace can be acquired with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Session.getRootNode()</FONT></FONT>.</P>
+<a name="5.1.2 Testing for Existence by Absolute Path"></a>	<H3>5.1.2 Testing for Existence by Absolute Path</H3>
+	<P>The existence of a
+	node or property at a particular absolute path can be tested for
+	with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Session.itemExists(String absPath)</FONT></FONT>,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Session.nodeExists(String absPath)</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Session.propertyExists(String absPath)</FONT></FONT>.</P>
+<a name="5.1.3 Access by Absolute Path"></a>	<H3>5.1.3 Access by Absolute Path</H3>
+	<P>Nodes and properties
+	can be acquired by absolute path with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Item
+	Session.getItem(String absPath)</FONT></FONT>,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Session.getNode(String absPath)</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property
+	Session.getProperty(String absPath)</FONT></FONT>.</P>
+<a name="5.1.4 Getting a Node by Identifier"></a>	<H3>5.1.4 Getting a Node by Identifier</H3>
+	<P>A node can be
+	retrieved by its identifier with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Session.getNodeByIdentifier(String identifier)</FONT></FONT>.</P>
+	<P>Using an
+	identifier-based absolute path a node can also be retrieved by
+	identifier with a path-base <FONT FACE="Courier New, monospace"><FONT SIZE=2>get</FONT></FONT>
+	method. For example,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S.getNode(“[“
+	+ id + “]”)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	is the session and <FONT FACE="Courier New, monospace"><FONT SIZE=2>id</FONT></FONT>
+	is the identifier.</P>
+<a name="5.1.5 Testing for Existence by Relative Path"></a>	<H3>5.1.5 Testing for Existence by Relative Path</H3>
+	<P>Existence of nodes and
+	properties can be tested by path relative to a given node with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.hasNode(String relPath)</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.hasProperty(String relPath)</FONT></FONT>.</P>
+<a name="5.1.6 Access by Relative Path"></a>	<H3>5.1.6 Access by Relative Path</H3>
+	<P>Nodes and properties
+	can be acquired via relative path with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Node.getNode(String relPath)</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property
+	Node.getProperty(String relPath)</FONT></FONT></P>
+<a name="5.1.7 Primary Item Access"></a>	<H3>5.1.7 Primary Item Access</H3>
+	<P>If a primary child
+	item is specified by the node type of a node, this item can be
+	retrieved directly from the node with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Item
+	Node.getPrimaryItem()</FONT></FONT>.</P>
+	<P>See §3.7.1.7 <I>Primary
+	Item</I>.</P>
+<a name="5.1.8 Node and Property with Same Name"></a>	<H3>5.1.8 Node and Property with Same Name</H3>
+	<P>In some repositories a
+	node and property with the same parent may have the same name. The
+	methods<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	Node.getNode, Session.getNode,</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getProperty</FONT></FONT>
+	and<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	Session.getProperty</FONT></FONT> specify whether the
+	desired item is a node or a property. The method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getItem</FONT></FONT>
+	will return the item at the specified path if there is only one such
+	item, if there is both a node and a property at the specified path,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getItem</FONT></FONT>
+	will return the node.</P>
+	<P>Whether an
+	implementation supports this feature can be determined by querying
+	the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="5.2 Traversal Access"></a>	<H2>5.2 Traversal Access</H2>
+	<P>Traversal access to an
+	item <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+	means that it is returned when iterating over the children of a
+	node. 
+	</P>
+	<P>For any given session
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and item <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>,
+	the statements below must be either both true or both false. If they
+	are both true then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has traversal access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>,
+	if they are both false then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	does not have traversal access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is the parent of <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+		appears among the items in the iterator returned by either
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getNodes</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getProperties</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N,
+		I</FONT></FONT> is a descendant of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and I appears in the serialized output of an export of the subgraph
+		rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+	</UL>
+<a name="5.2.1 Testing Existence"></a>	<H3>5.2.1 Testing Existence</H3>
+	<P>A client can test
+	whether a retrieved iterator will be empty using the following:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.hasNodes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.hasProperties()</FONT></FONT></P>
+<a name="5.2.2 Iterating Over Child Items"></a>	<H3>5.2.2 Iterating Over Child Items</H3>
+	<P>Iterators over child
+	nodes and properties can be acquired using the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	Node.getNodes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyIterator
+	Node.getProperties()</FONT></FONT></P>
+	<P>These methods return
+	all the child nodes or properties (as the case may be) of the node
+	that are visible to the current session.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	Node.getNodes(String namePattern)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	Node.getNodes(String[] nameGlobs)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyIterator
+	Node.getProperties(String namePattern)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyIterator
+	Node.getProperties(String[] nameGlobs)</FONT></FONT></P>
+	<P>These methods return
+	all the child nodes or properties (as the case may be) of the node
+	that are both visible to the current session and that match the
+	passed <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>nameGlobs</FONT></FONT>
+	array.</P>
+<a name="5.2.2.1 Name Patterns"></a>	<H4>5.2.2.1 Name Patterns</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	passed in <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getProperties</FONT></FONT>
+	is a string matched against the qualified names (not the paths) of
+	the immediate child items of this node. We call the <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	parameter the <I>pattern</I> and the qualified names against which
+	it is tested the <I>target strings</I>.</P>
+	<UL>
+		<LI><P>A <I>pattern</I>
+		consists of one or more <I>globs</I>. In cases of two or more
+		globs, they are delimited by the pipe character (<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>,
+		U+0076).</P>
+		<LI><P>A pattern matches
+		a target string if and only if at least one of its globs matches
+		that target string.</P>
+		<LI><P>A <I>glob</I>
+		matches a target string if and only if it matches character for
+		character, except for any asterisk characters (*, U+002A) in the
+		glob, which match any substring (including the empty string) in the
+		target string.</P>
+	</UL>
+	<P>The characters “<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>”
+	and “<FONT FACE="Courier New, monospace"><FONT SIZE=2>*</FONT></FONT>”
+	are excluded from qualified JCR names (see §3.2.5.2 <I>Qualified
+	Form</I>), so their use as metacharacters in the pattern will not
+	lead to a conflict.</P>
+	<P>For backwards
+	compatibility with JCR 1.0, leading and trailing whitespace around a
+	glob is ignored but whitespace within a glob forms part of the
+	pattern to be matched. 
+	</P>
+<a name="5.2.2.2 Name Globs"></a>	<H4>5.2.2.2 Name Globs</H4>
+	<P>The alternate
+	signatures</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	Node.getNodes(String[] nameGlobs)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyIterator
+	Node.getProperties(String[] nameGlobs)</FONT></FONT></P>
+	<P>Behave identically to
+	those that take <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	except that the parameter passed is an array of globs, as defined
+	above, which are “ORed” together, removing the need for the “<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>”
+	metacharacter to indicate disjunction. The items returned,
+	therefore, are those that match <I>at least one</I> of the globs in
+	the array. Unlike the <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	case, leading and trailing whitespace in globs <I>is not</I> ignored
+	by these methods.</P>
+<a name="5.2.2.3 Child Node Order Preservation"></a>	<H4>5.2.2.3 Child Node Order Preservation</H4>
+	<P>Depending
+	on the implementation, the order of child nodes within the returned
+	iterator may be more or less stable across different retrievals. A
+	repository that supports <I>preservation
+	of child node ordering</I> will maintain a
+	constant total order across separate retrievals. A repository that
+	supports orderable child nodes necessarily also supports order
+	preservation (§23 <I>Orderable Child
+	Nodes</I>).</P>
+<a name="5.2.3 Export  "></a>	<H3>5.2.3 Export  </H3>
+	<P>Exporting a subgraph
+	within a workspace can be done with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.exportSystemView</FONT></FONT>
+	or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.exportDocumentView</FONT></FONT>.</P>
+	<P>See §7 <I>Export</I>.</P>
+<a name="5.3 Query Access"></a>	<H2>5.3 Query Access</H2>
+	<P>A session <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has query access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+	if and only if for at least one <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	object <FONT FACE="Courier New, monospace"><FONT SIZE=2>Q</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>Q</FONT></FONT>
+	is created through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager</FONT></FONT>
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object bound to <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+	is returned in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryResult</FONT></FONT>
+	for <FONT FACE="Courier New, monospace"><FONT SIZE=2>Q</FONT></FONT>
+	(see §6 <I>Query</I>).</P>
+<a name="5.4 Relationship among Access Modes"></a>	<H2>5.4 Relationship among Access Modes</H2>
+	<P>For any given session
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and item <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		has traversal access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		must have direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>.</P>
+	</UL>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has query access <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>.</P>
+	<P>However, note that, 
+	</P>
+	<UL>
+		<LI><P>If S has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		may or may not have traversal access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>.</P>
+		<LI><P>If S has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		may or may not have query access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>.</P>
+		<LI><P>If S has direct access to <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		may or may not have direct access to any parent of <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>.</P>
+	</UL>
+<a name="5.5 Effect of Access Denial on Read"></a>	<H2>5.5 Effect of Access Denial on Read</H2>
+	<P>If a repository
+	restricts the read access of a session, then the nodes and
+	properties to which that session does not have read access must
+	appear not to exist. For example, the iterator returned on
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getNodes</FONT></FONT>
+	will not include subnodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	to which the session in question does not have read access. In other
+	words, lack of read access to an item blocks access to both
+	information about the content of that item and information about the
+	existence of that item.</P>
+	<P>In repositories that
+	support <I>same-name siblings</I>, denial of access to a subset of
+	nodes within a same-name sibling series <I>may</I> result in gaps in
+	the index numbering of that series, thus revealing information about
+	the existence of the inaccessible nodes.</P>
+<a name="5.6 Item Information"></a>	<H2>5.6 Item Information</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	interface includes a number of methods that provide information
+	about an item.</P>
+<a name="5.6.1 Item to Session"></a>	<H3>5.6.1 Item to Session</H3>
+	<P>This method provides
+	access to the current <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session
+	Item.getSession()</FONT></FONT></P>
+<a name="5.6.2 Item in Hierarchy"></a>	<H3>5.6.2 Item in Hierarchy</H3>
+	<P>These methods provide
+	information about the location of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	within the workspace hierarchy:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Item.getName()</FONT></FONT></P>
+	<P>returns the name of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Item.getPath()</FONT></FONT></P>
+	<P>returns the absolute
+	path of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Item.getAncestor(int depth)</FONT></FONT></P>
+	<P>returns the ancestor
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	that is at the specified depth below the root node<FONT FACE="Courier New, monospace"><FONT SIZE=2>.</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Item.getParent()</FONT></FONT></P>
+	<P>returns the parent of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	Item.getDepth()</FONT></FONT></P>
+	<P>returns the depth
+	below the root node of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>.</P>
+<a name="5.6.3 Item Subclass"></a>	<H3>5.6.3 Item Subclass</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Item.isNode()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	if it is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>.</P>
+<a name="5.6.4 Item Comparison"></a>	<H3>5.6.4 Item Comparison</H3>
+	<P>This method is used to
+	determine the repository-level semantic identity of two <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	objects.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Item.isSame(Item otherItem)</FONT></FONT></P>
+	<P>returns true if this
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object represents the same actual repository item as the object
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>otherItem</FONT></FONT>.
+	This method does not compare the states of the two items. For
+	example, if two <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	objects representing the same actual repository item have been
+	retrieved through two different sessions and one has been modified,
+	then this method will still return <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	for these two objects. Note that if two <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	objects representing the same repository item are retrieved through
+	the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	they will always reflect the same state so comparing state is not an
+	issue (see section §10.11.7 <I>Reflecting Item State</I>).</P>
+<a name="5.6.5 Item Visitor"></a>	<H3>5.6.5 Item Visitor</H3>
+	<P>This method implements
+	the <I>visitor design pattern</I>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Item.accept(ItemVisitor visitor)</FONT></FONT></P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemVisitor</FONT></FONT>
+	interface defines the methods</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ItemVisitor.visit(Node node)</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	ItemVisitor.visit(Property property)</FONT></FONT></P>
+	<P>which the user can
+	implement.</P>
+<a name="5.7 Node Identifier"></a>	<H2>5.7 Node Identifier</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Node.getIdentifier()</FONT></FONT></P>
+	<P>returns the identifier
+	of a node.</P>
+<a name="5.8 Node Index"></a>	<H2>5.8 Node Index</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	Node.getIndex()</FONT></FONT></P>
+	<P>returns the index of a
+	node among its same-name siblings (see §22 <I>Same-Name Siblings</I>).
+	Same-name sibling indexes begin with <FONT FACE="Courier New, monospace"><FONT SIZE=2>[1]</FONT></FONT>,
+	so this method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>1</FONT></FONT>
+	for a node without any same-name siblings.</P>
+<a name="5.9 Iterators"></a>	<H2>5.9 Iterators</H2>
+	<P>Methods that return a
+	set of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>
+	objects do so using a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyIterator</FONT></FONT>,
+	subclasses of <FONT FACE="Courier New, monospace"><FONT SIZE=2>RangeIterator</FONT></FONT>.</P>
+	<P>JCR also specifies the
+	following subclasses of <FONT FACE="Courier New, monospace"><FONT SIZE=2>RangeIterator</FONT></FONT>:
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>RowIterator</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionIterator</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListenerIterator</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlPolicyIterator</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>EventIterator</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventJournal</FONT></FONT>.</P>
+<a name="5.9.1 Iterator Lifespan"></a>	<H3>5.9.1 Iterator Lifespan</H3>
+	<P>The lifespan of an
+	instance of <FONT FACE="Courier New, monospace"><FONT SIZE=2>RangeIterator</FONT></FONT>
+	or any of its subclasses is implementation-specific. For example, in
+	some implementations a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh</FONT></FONT>
+	(see §10.11.1 <I>Refresh</I>) might invalidate a previously
+	acquired <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator</FONT></FONT>
+	while in others it might not.</P>
+<a name="5.10 Reading Properties"></a>	<H2>5.10 Reading Properties</H2>
+	<P>If a session has read
+	access to a single–value property then it can read the value of
+	that property. If a session has read access to a multi-value
+	property then it can read <I>all</I> the values of that property.</P>
+<a name="5.10.1 Getting a Value"></a>	<H3>5.10.1 Getting a Value</H3>
+	<P>The generic value
+	getter for single value properties is 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value
+	Property.getValue()</FONT></FONT>.</P>
+	<P>For multi-value
+	properties it is</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]
+	Property.getValues()</FONT></FONT>.</P>
+	<P>Single and multi-value
+	properties can be distinguished by calling</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Property.isMultiple()</FONT></FONT>.</P>
+<a name="5.10.2 Value Type"></a>	<H3>5.10.2 Value Type</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	Value.getType()</FONT></FONT></P>
+	<P>returns one of the
+	constants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType</FONT></FONT>
+	(see §3.6.1 <I>Property Types</I>) indicating the property type of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>.</P>
+<a name="5.10.3 Value Length"></a>	<H3>5.10.3 Value Length</H3>
+	<P>The length of a value
+	in a single-value property, as defined in §3.6.7 <I>Length of a
+	Value</I>, is returned by 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long
+	Property.getLength()</FONT></FONT></P>
+	<P>Similarly, the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long[]
+	Property.getLengths()</FONT></FONT></P>
+	<P>is used to get an
+	array of the lengths of all the values of a multi-value property. 
+	</P>
+<a name="5.10.4 Standard Value Read Methods"></a>	<H3>5.10.4 Standard Value Read Methods</H3>
+	<P>Each property type has
+	a standard <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	read method. This is the method that returns the Java object or
+	primitive type that corresponds naturally to the JCR property type.
+	A <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	may also be readable by a non-standard read method, depending on
+	whether it is convertible to that method's return type according to
+	the rules described in §3.6.4 <I>Property Type Conversion</I>. The
+	following sections set out the standard read method for each type.</P>
+<a name="5.10.4.1 STRING"></a>	<H4>5.10.4.1 STRING</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Value.getString()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.lang.String</FONT></FONT>.</P>
+<a name="5.10.4.2 BINARY"></a>	<H4>5.10.4.2 BINARY</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary
+	Value.getBinary()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.Binary</FONT></FONT>
+	(see §5.10.5 <I>Binary Object</I>).</P>
+<a name="5.10.4.3 LONG"></a>	<H4>5.10.4.3 LONG</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long
+	Value.getLong()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>LONG</FONT></FONT>
+	as a Java <FONT FACE="Courier New, monospace"><FONT SIZE=2>long</FONT></FONT>.</P>
+<a name="5.10.4.4 DOUBLE"></a>	<H4>5.10.4.4 DOUBLE</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>double
+	Value.getDouble()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>DOUBLE</FONT></FONT>
+	as a Java <FONT FACE="Courier New, monospace"><FONT SIZE=2>double</FONT></FONT>.</P>
+<a name="5.10.4.5 DECIMAL"></a>	<H4>5.10.4.5 DECIMAL</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>BigDecimal
+	Value.getDecimal()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>DECIMAL</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.math.BigDecimal</FONT></FONT>.</P>
+<a name="5.10.4.6 DATE"></a>	<H4>5.10.4.6 DATE</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Calendar
+	Value.getDate()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>DATE</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.util.Calendar</FONT></FONT>.</P>
+<a name="5.10.4.7 BOOLEAN"></a>	<H4>5.10.4.7 BOOLEAN</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Value.getBoolean()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>BOOLEAN</FONT></FONT>
+	as a Java <FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean</FONT></FONT>.</P>
+<a name="5.10.4.8 NAME"></a>	<H4>5.10.4.8 NAME</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Value.getString()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	returned must be the JCR name in <I>qualified form</I> (see §3.2.5.2
+	<I>Qualified Form</I>).</P>
+<a name="5.10.4.9 PATH"></a>	<H4>5.10.4.9 PATH</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Value.getString()</FONT></FONT></P>
+	<P>returns a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	returned must be the JCR path in <I>standard form</I> (see §3.4.3.1
+	<I>Standard Form</I>). However, if the original value was
+	<I>non-normalized</I> it must be returned non-normalized, preserving
+	the path structure as it was originally set, including any redundant
+	path segments that may exist (see §3.4.5 <I>Normalized Paths</I>).</P>
+<a name="5.10.4.10 REFERENCE and WEAKREFERENCE"></a>	<H4>5.10.4.10 REFERENCE and WEAKREFERENCE</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Value.getString()</FONT></FONT></P>
+	<P>returns a JCR
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	as a <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>.
+	The value of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	is a node referenceable identifier (see §3.8.3 <I>Referenceable
+	Identifiers</I>). Since an identifier is simply a <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>,
+	the returned value can be used directly to find the referenced node
+	(see §5.1.4 <I>Getting a Node by Identifier</I>).</P>
+<a name="5.10.5 Binary Object"></a>	<H3>5.10.5 Binary Object</H3>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary</FONT></FONT>
+	object returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value.getBinary()</FONT></FONT>
+	provides the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>InputStream
+	Binary.getStream()</FONT></FONT>,</P>
+	<P>which returns an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>InputStream</FONT></FONT>
+	representation of the value. Each call to this method returns a new
+	stream and the API consumer is responsible for calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>close()</FONT></FONT>
+	on the returned stream.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	Binary.read(byte[] b, long position)</FONT></FONT>,</P>
+	<P>which reads successive
+	bytes starting from the specified position in the value into the
+	passed byte array until either the byte array is full or the end of
+	the value is encountered.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long
+	Binary.getSize()</FONT></FONT>,</P>
+	<P>which returns the size
+	of the value in bytes.</P>
+<a name="5.10.5.1 Disposing of a Binary Object"></a>	<H4>5.10.5.1 Disposing of a Binary Object</H4>
+	<P>When an application is
+	finished with a Binary object it should call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Binary.dispose()</FONT></FONT></P>
+	<P>on that object. This
+	will releases all resources associated with the object and inform
+	the repository that these resources may now be reclaimed.</P>
+<a name="5.10.5.2 Deprecated Binary Behavior"></a>	<H4>5.10.5.2 Deprecated Binary Behavior</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary</FONT></FONT>
+	interface and its related methods in <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	replace the deprecated <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value.getStream()</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getStream()</FONT></FONT>
+	methods from JCR 1.0. Though these methods have been deprecated, for
+	reasons of backward compatibility their behavior must conform to the
+	following rules:</P>
+	<UL>
+		<LI><P>Once a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		object has been read once using <FONT FACE="Courier New, monospace"><FONT SIZE=2>getStream()</FONT></FONT>,
+		all subsequent calls to <FONT FACE="Courier New, monospace"><FONT SIZE=2>getStream()</FONT></FONT>
+		will return the same stream object. This may mean, for example,
+		that the stream returned is fully or partially consumed. In order
+		to get a fresh stream the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		object must be reacquired via <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValue()</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues()</FONT></FONT>.</P>
+		<LI><P>Unlike in JCR
+		1.0, calling a <FONT FACE="Courier New, monospace"><FONT SIZE=2>get</FONT></FONT>
+		method other than getStream before calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>getStream</FONT></FONT>
+		on the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		object will never cause an <FONT FACE="Courier New, monospace"><FONT SIZE=2>IllegalStateException</FONT></FONT>.</P>
+	</UL>
+<a name="5.10.6 Dereferencing  "></a>	<H3>5.10.6 Dereferencing  </H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties function as pointers to other items in the workspace. A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	can point to a node or a property while a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	can point only to a referenceable node. <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE
+	</FONT></FONT>properties enforce
+	referential integrity while <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	properties and <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	properties do not. These properties can be dereferenced either
+	manually or though convenience methods.</P>
+<a name="5.10.6.1 Manual Dereference  "></a>	<H4>5.10.6.1 Manual Dereference  </H4>
+	<P>To
+	manually dereference a pointer property it is first read as a
+	string, for example with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value.getString()</FONT></FONT>.</P>
+	<P>In the case of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE
+	</FONT></FONT>and <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties the resulting string is passed to</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getNodeByIdentifier(String
+	id)</FONT></FONT>. 
+	</P>
+	<P>In the case of <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	properties the string is passed to 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getNode(String
+	absPath)</FONT></FONT> or 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getProperty(String
+	absPath)</FONT></FONT> 
+	</P>
+	<P>as appropriate to the
+	target item. Whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>
+	can be determined with <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.nodeExists</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.propertyExists</FONT></FONT>
+	(see §5.1.2 <I>Testing for Existence by Absolute Path</I>).</P>
+<a name="5.10.6.2 Dereferencing Convenience Methods"></a>	<H4>5.10.6.2 Dereferencing Convenience Methods</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>
+	interface provides convenience methods for dereferencing pointer
+	properties:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Property.getNode()</FONT></FONT></P>
+	<P>returns the node
+	pointed to by a single-value property. This method works with
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties and with <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	properties that point to nodes. 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property
+	Property.getProperty()</FONT></FONT></P>
+	<P>returns the property
+	pointed to by a single-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	property. 
+	</P>
+	<P>For multi-value
+	pointer properties the array of values must be retrieved with
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues</FONT></FONT>
+	and each individually manually dereferenced.</P>
+<a name="5.10.7 Backtracking References"></a>	<H3>5.10.7 Backtracking References</H3>
+	<P>Given a referenceable
+	node, 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getReferences()</FONT></FONT>
+		</P>
+	<P>returns all accessible
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties in the workspace that point to the node.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getWeakReferences()</FONT></FONT></P>
+	<P>returns all accessible
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKREFERENCE
+	</FONT></FONT>properties in the workspace that point
+	to the node.</P>
+	<P>Note that access
+	control and other implementation-specific limitations my mean that
+	some references within the workspace are not accessible. 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PATH</FONT></FONT>
+	properties are not automatically backtrackable.</P>
+<a name="5.10.8 Single-Value Property Read Methods"></a>	<H3>5.10.8 Single-Value Property Read Methods</H3>
+	<P>The
+	property interface provides convenience methods for reading
+	single-value properties which function identically to their
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	counterparts.</P>
+<a name="5.10.9 Reading Multi-Value Properties"></a>	<H3>5.10.9 Reading Multi-Value Properties</H3>
+	<P>A
+	multi-value property can be accessed with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]
+	Property.getValues()</FONT></FONT>.</P>
+<a name="5.10.10 PropertyType Class"></a>	<H3>5.10.10 PropertyType Class</H3>
+	<P>The class <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType</FONT></FONT>
+	defines integer constants for the property types as well as string
+	constants for their standardized type names (which are used in
+	serialization) and two methods for converting back and forth between
+	name and integer value (see Javadoc).</P>
+<a name="5.11 Namespace Mapping"></a>	<H2>5.11 Namespace Mapping</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.setNamespacePrefix(String prefix,<BR> 
+	 String uri)</FONT></FONT></P>
+	<P>is used to change the
+	local namespace mappings of the current <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	When called, all local mappings that include either the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>prefix</FONT></FONT>
+	or the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>uri</FONT></FONT>
+	are removed and the new mapping is added. However, the method will
+	throw an exception if</P>
+	<UL>
+		<LI><P>the specified
+		prefix begins with the characters “<FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>”
+		(in any combination of case) or,</P>
+		<LI><P>the specified
+		prefix is the empty string or,</P>
+		<LI><P>the specified
+		namespace URI is the empty string.</P>
+	</UL>
+	<P>The following methods
+	are also related to the local namespace mapping:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	Session.getNamespacePrefixes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Session.getNamespaceURI(String prefix)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Session.getNamespacePrefix(String uri)</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

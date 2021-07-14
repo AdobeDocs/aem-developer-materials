@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.4 Query Validity (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>6.4 Query Validity</H2>
+	<P>To be successfully
+	evaluated and produce query results, a query must be <I>valid</I>.</P>
+	<P>A query is <I>invalid</I>
+	if:</P>
+	<UL>
+		<LI><P>it cannot be expressed in the
+		AQM, or</P>
+		<LI><P>it can be
+		expressed in the AQM, but fails a validation constraint defined in
+		§6.7 <I>Abstract Query Model and Language Bindings</I>.</P>
+	</UL>
+	<P>An invalid query
+	causes the repository to throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidQueryException</FONT></FONT>.
+	Which method invocation throws this exception is implementation
+	determined, but for an invalid query, the exception must be thrown
+	no later than completion of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.execute()</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,343 @@
+*********************
+foundation-collection
+*********************
+
+``foundation-collection`` is a vocabulary about the concept of collection.
+To understand it in more detail, please check :doc:`its explainer <../../../docs/collection>`.
+
+
+Markup
+======
+
+
+.foundation-collection
+----------------------
+
+Indicates the element is a collection. A collection represents a group of elements, knowns as its items.
+A collection MUST NOT be nested inside another collection.
+
+To store metadata for the collection, this element (or its descendant) can be annotated accordingly.
+Or ``.foundation-collection-meta`` can be used as a standardized way to do this.
+
+Selector Rule::
+
+   .foundation-collection
+
+
+[data-foundation-collection-id]
+-------------------------------
+
+The ID of the collection. This is optional.
+The ID is an opaque string where the author can use whatever value suitable for the application.
+For Granite application, it is usually a path.
+
+Usually collection is used to represent hierarchical system similar to file system.
+This attribute is then used to indicate the path of the directory.
+The collection items then become the files or subdirectory.
+
+Selector Rule::
+
+   .foundation-collection[data-foundation-collection-id]
+
+
+.foundation-collection-item
+---------------------------
+
+Indicates the element is an item of a collection. It MUST be a descendant of ``.foundation-collection`` element.
+
+To store metadata for the item, this element (or its descendant) can be annotated accordingly.
+
+Selector Rule::
+
+   .foundation-collection .foundation-collection-item
+
+
+[data-foundation-collection-item-id]
+------------------------------------
+
+The ID of the collection item. This is optional.
+The ID is an opaque string where the author can use whatever value suitable for the application.
+It MUST be unique within a collection. i.e. Within a collection, there cannot be two items having the same ID.
+For Granite application, it is usually a path.
+
+Selector Rule::
+
+   .foundation-collection-item[data-foundation-collection-item-id]
+
+
+.foundation-collection-item-title
+---------------------------------
+
+The element of the title of the collection item. This is optional.
+The title is usually used to display human-friendly string that can be read by the component dealing with the item.
+
+Selector Rule::
+
+   .foundation-collection-item .foundation-collection-item-title
+
+
+.foundation-collection-item-thumbnail
+-------------------------------------
+
+The element of the thumbnail of the collection item. This is optional.
+
+Selector Rule::
+
+   .foundation-collection-item .foundation-collection-item-thumbnail
+
+
+.foundation-collection-navigator
+--------------------------------
+
+Indicates the element to navigate into the item. This is optional.
+The implementor may use this as a standardized way to allow the markup author to indicate the element to be used as an activator to navigate.
+
+Selector Rule::
+
+   .foundation-collection-item .foundation-collection-navigator,
+   .foundation-collection-item.foundation-collection-navigator
+
+
+[data-foundation-collection-navigator-href]
+-------------------------------------------
+
+The URI to navigate into. It is done by mean of ``window.location``. i.e. it will use a new window context.
+
+If this attribute is not specified, the collection is navigated into the associated item,
+by loading the new collection based on the value of the item's ``[data-foundation-collection-item-id]``. The semantic behaviour is the same as calling ``FoundationCollection#load`` with id equals to the item ID.
+
+Selector Rule::
+
+   .foundation-collection-navigator[data-foundation-collection-navigator-href]
+
+
+.foundation-collection-meta
+---------------------------
+
+The element to hold the metadata of the collection. This is optional.
+
+The markup structure can be in any level of complexity.
+To provide standardization, the following attributes are supported.
+
+Selector Rule::
+
+   .foundation-collection .foundation-collection-meta
+
+
+[data-foundation-collection-meta-title]
+---------------------------------------
+
+The title of the collection. The title is usually used to display human-friendly string.
+
+This is the collection counterpart of ``.foundation-collection-item-title``.
+
+Selector Rule::
+
+   .foundation-collection-meta[data-foundation-collection-meta-title]
+
+
+[data-foundation-collection-meta-folder]
+----------------------------------------
+
+``true`` to indicate if the collection is a folder; ``false`` otherwise.
+
+Selector Rule::
+
+   .foundation-collection-meta[data-foundation-collection-meta-folder]
+
+
+.foundation-collection-meta-thumbnail
+-------------------------------------
+
+The element of the thumbnail of the collection.
+
+Selector Rule::
+
+   .foundation-collection-meta > .foundation-collection-meta-thumbnail
+
+
+Event
+=====
+
+foundation-collection-navigate
+------------------------------
+
+This event is triggered after the collection navigation occur during ``FoundationCollection#load``.
+The ``[data-foundation-collection-id]`` is already changed when this event is triggered.
+
+The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationCollectionNavigateEvent {
+     (): void;
+   }
+
+foundation-collection-reload
+------------------------------
+
+This event is triggered during ``FoundationCollection#reload``.
+
+The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationCollectionReloadEvent {
+     (): void;
+   }
+
+foundation-collection-newpage
+-----------------------------
+
+This event is triggered after the new page of the pagination is loaded.
+The pagination states are already changed when this event is triggered.
+This event is also triggered during the initialization of the collection that reflects the initial states of the pagination.
+
+The event has the following parameters:
+
+.. code-block:: ts
+
+   interface FoundationCollectionNewpageEvent {
+     (): void;
+   }
+
+
+AdaptTo Interface
+=================
+
+foundation-collection
+---------------------
+
+type
+   ``foundation-collection``
+
+condition
+   ``.foundation-collection``
+
+returned type
+   ``FoundationCollection``
+
+.. code-block:: ts
+
+   interface FoundationCollection {
+     /**
+      * Appends new items to the collection.
+      * This method will trigger <code>foundation-contentloaded</code> event.
+      */
+     append(items: Element[]): void;
+
+     /**
+      * Removes all the item of collection.
+      */
+     clear(): void;
+
+     /**
+      * Returns the pagination state of the collection.
+      */
+     getPagination(): FoundationCollectionPagination;
+
+     /**
+      * Loads (or refreshes) the collection to show the collection having a given id.
+      * The collection will then have <code>[data-foundation-collection-id]</code> equals to the given id.
+      * It triggers <code>foundation-collection-navigate</code>.
+      *
+      * Implementor MAY return a new collection element, instead reusing the existing element.
+      */
+     load(id: string): Promise<Element>;
+
+     /**
+      * Reloads the current collection.
+      * As this is just a reload, the <code>[data-foundation-collection-id]</code> is not changed.
+      *
+      * Implementor MAY return a new collection element, instead reusing the existing element.
+      */
+     reload(): Promise<Element>;
+   }
+
+   /**
+    * The pagination state of the collection.
+    */
+   interface FoundationCollectionPagination {
+     /**
+      * The current offset.
+      */
+     offset: number;
+
+     /**
+      * The page size.
+      */
+     limit: number;
+
+     /**
+      * Returns the total count or the total as far as it is known.
+      */
+     guessTotal: number;
+
+     /**
+      * <code>true</code> if the pagination has more item;
+      * <code>false</code> if the pagination has no more item;
+      * <code>null</code> if it is unknown if the pagination has more item or not.
+      */
+     hasNext: boolean | null;
+   }
+
+foundation-collection-meta
+--------------------------
+
+type
+   ``foundation-collection-meta``
+
+condition
+   ``.foundation-collection``
+
+returned type
+   ``FoundationCollectionMeta``
+
+.. code-block:: ts
+
+   /**
+    * The meta interface of the collection.
+    */
+   interface FoundationCollectionMeta {
+     /**
+      * Returns the <code>.foundation-collection-meta</code> element.
+      */
+     getElement(): Element;
+
+     /**
+      * Returns the title of the collection.
+      * This is the value of <code>[data-foundation-collection-meta-title]</code>.
+      */
+     getTitle(): string;
+
+     /**
+      * Returns the thumbnail element of the collection (<code>.foundation-collection-meta-thumbnail</code>).
+      */
+     getThumbnail(): Element;
+
+     /**
+      * Returns <code>true</code> if the collection is a folder; <code>false</code> otherwise.
+      * This is the value of <code>[data-foundation-collection-meta-folder]</code>.
+      */
+     isFolder(): boolean;
+
+     /**
+      * Returns the applicable relationships of this collection.
+      */
+     getRelationship(): string;
+   }
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.dialog" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

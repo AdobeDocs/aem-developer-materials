@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.12 ItemDefinition (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.12." id="section_6.7.12."></a>6.7.12 ItemDefinition
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>ItemDefinition</b> is the super-interface of <b>PropertyDefinition</b> and <b>NodeDefinition</b>. It encapsulates the methods common to both.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.nodetype.<br>
+										<b>ItemDefinition</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDeclaringNodeType()</b>
+									</p>
+									<p class="c5">
+										Gets the node type that contains the declaration of this <b>ItemDefinition</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getName()</b>
+									</p>
+									<p class="c5">
+										Gets the name of the item to which this definition applies. If “<b>*</b>”, then this <b>ItemDefinition</b> defines a <i>residual set</i> of child items. That is, it defines the characteristics of all those child items with names <i>apart from the names explicitly used in other item definitions</i>. See <a href="6.7.15_Residual_Definitions.html">6.7.15</a> <i>Residual Definitions</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isAutoCreated()</b>
+									</p>
+									<p class="c5">
+										Reports whether the item is to be automatically created when its parent node is created. If <b>true</b> then this <b>ItemDefinition</b> will necessarily <i>not</i> be a residual set definition but will specify an actual item name (in other words <b>getName()</b> will not return “<b>*</b>”). See <a href="6.7.15_Residual_Definitions.html">6.7.15</a> <i>Residual Definitions</i>).
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isMandatory()</b>
+									</p>
+									<p class="c5">
+										Reports whether the item is mandatory. A mandatory item is one that, if its parent node exists, must also exist.
+									</p>
+									<p class="c5">
+										This means that a mandatory single-value property must have a value (since there is no such thing a <b>null</b> value). In the case of multi-value properties this means that the property must exist, though it can have zero or more values.
+									</p>
+									<p class="c5">
+										An attempt (in a level 2 implementation) to <b>save</b> a node that has a mandatory child item without first creating that child item will throw a <b>ConstraintViolationException</b> on <b>save</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>int</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getOnParentVersion()</b>
+									</p>
+									<p class="c5">
+										Gets the <b>OnParentVersion</b> status of the property. This governs what occurs (in implementations that support versioning) when the parent node of this item is checked-in. See <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isProtected()</b>
+									</p>
+									<p class="c5">
+										Reports whether the child item is protected. In level 2 implementations, a protected item is one that cannot be removed (except by removing its parent) or modified directly through this API (that is, <b>Item.remove</b>, <b>Node.addNode</b>, <b>Node.setProperty</b> and <b>Property.setValue</b>).
+									</p>
+									<p class="c5">
+										A protected node may be removed or modified (in a level 2 implementation), however, through some mechanism not defined by this specification or as a side-effect of operations other than the standard write methods of the API.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

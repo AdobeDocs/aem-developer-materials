@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.12 Metadata (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.12." id="section_4.12."></a>4.12 Metadata
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									All content in the repository is ultimately accessed through properties (that is, objects that implement the <b>Property</b> interface). The API does not distinguish between “real” content and meta-content.
+								</p>
+							
+							
+								<p class="c5">
+									Such a separation would only duplicate the entire API, since one would probably want to provide the same functionality for handling both meta-content and primary content. The distinction is in any case only meaningful at the level of the application, not the repository. Any particular application built on top of a compliant repository may, of course, choose which content is to be considered “meta”, and which primary.
+								</p>
+							
+							
+								<p class="c5">
+									However, the API does provide the concept of the <i>primary child item.</i> Any one of a node’s child items may be specified as its primary child item. This item can be directly accessed (without knowing its name) with the method <b>Node.getPrimaryItem()</b>. The primary item of a particular node (if it has one) is declared in its node type.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

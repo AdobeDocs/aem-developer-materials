@@ -1,0 +1,95 @@
+
+CardView
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/cardview
+   :layout:
+
+   The layout to render the items as cards in a grid layout.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/vocabulary/selections` vocabulary.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsCardView]
+
+      /**
+       * The URI Template that is returning the HTML response for pagination.
+       * It supports the following variables:
+       *
+       * offset
+       *    The item offset of the current request.
+       * limit
+       *    The item limit of the pagination.
+       * id
+       *    The id of the collection (``[data-foundation-collection-id]``).
+       *
+       * e.g. ``/a/b/c{.offset,limit}.html{+id}``
+       */
+      - src (StringEL)
+
+      /**
+       * The path of the current collection. It will act as the value of ``[data-foundation-collection-id]``.
+       *
+       * e.g. ``${requestPathInfo.suffix}``
+       */
+      - path (StringEL)
+
+      /**
+       * ``true`` to initially display it in selection mode; ``false`` otherwise.
+       */
+      - selectionMode (BooleanEL)
+
+      /**
+       * ``true`` to expand the layout to its parent container; ``false`` otherwise.
+       */
+      - maximized (Boolean)
+
+      /**
+       * The item limit of the pagination.
+       */
+      - limit (Long)
+
+      /**
+       * The id of the client-side state for this layout.
+       *
+       * The following states are saved:
+       *
+       * The active layout
+       *    See ``layoutId`` property.
+       * Selection mode
+       *    The selection mode change the user makes will be saved. It will be available as ``<stateId>.selectionMode`` key.
+       */
+      - stateId (String)
+
+      /**
+       * The name associated with this layout.
+       *
+       * The client-side state with key ``<stateId>.layoutId`` will have the value of this name.
+       *
+       * This is useful when :doc:`../multilayouts/index` is used, so that when the user refreshes the browser, the active layout can be restored by the MultiLayouts.
+       *
+       * It will only be effective when ``stateId`` property is set.
+       */
+      - layoutId (String)
+
+      /**
+       * The ``itemprop`` attribute of each item.
+       */
+      - itemprop (String)
+
+   The items of the layout are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mycards
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/cardview"
+          - stateId = "cq.sites.childpages"
+          - layoutId = "card"
+          - selectionMode = '${state["cq.sites.childpages.selectionMode"].boolean}'
+          - src = "/a/b/c{.offset,limit}.html"
+        + datasource
+          - sling:resourceType = "my/datasource"

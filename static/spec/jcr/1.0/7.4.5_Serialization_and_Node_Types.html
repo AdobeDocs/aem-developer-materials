@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.4.5 Serialization and Node Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.4.5." id="section_7.4.5."></a> 7.4.5 Serialization and Node Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When deserializing content from another content repository, each imported node will come with its attached <b>jcr:primaryType</b> and <b>jcr:mixinTypes</b> properties. This information may be used while deserializing to validate the node according to the specified node types (and to do whatever internal bookkeeping the implementation requires in terms of noting the node types of the incoming nodes).
+								</p>
+							
+							
+								<p class="c5">
+									Any node types referenced by the imported content that are not skipped (see 7.3.3 Respecting Property Semantics) will have to be already registered with the target repository. This implies that it will be necessary to first import and register those node types referenced by the content that are not already registered with the target repository.
+								</p>
+							
+							
+								<p class="c5">
+									Though this specification does not attempt to define the details of the process of importing node type definitions, the fact that node type definitions may themselves be stored as normal content (see <a href="6.7.22.10_nt_nodeType.html">6.7.22.10</a> <i>nt:nodeType</i>) means that the standard serialization/deserialization mechanism can be used to export and import their definitions (see <a href="6.5_Exporting_Repository_Content.html">6.5</a> <i>Exporting Repository Content</i> and <a href="7.3_Importing_Repository_Content.html">7.3</a> <i>Importing Repository Content</i>). Actually registering them is, as mentioned, outside the scope of this specification (see <a href="6.7.1_Node_Type_Configuration.html">6.7.1</a> <i>Node Type Configuration</i>).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.11.4 Persisting by Identifier (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.11.4 Persisting by Identifier</H3>
+	<P>When a change to an
+	item is persisted, the item in the persistent workspace to which
+	that pending change is written is determined as follows:</P>
+	<UL>
+		<LI><P>If the changed <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+		with identifier <I>I</I>, then the changes are written to the
+		persistent node with identifier <I>I</I>.</P>
+		<LI><P>If the changed <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>
+		named <I>P</I> of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+		with identifier <I>I</I>, then the change is written to the
+		persistent property <I>P</I> of the persistent node with identifier
+		<I>I</I>.</P>
+	</UL>
+	<P>These principles apply
+	to both referenceable and non-referenceable nodes (see §3.8
+	<I>Referenceable Nodes</I>). For an overview of how identifiers
+	behave with different methods see §25.1 <I>Treatment of
+	Identifiers</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

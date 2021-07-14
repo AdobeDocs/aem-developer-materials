@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.2.6 Example (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.2.6." id="section_6.4.2.6."></a>6.4.2.6 Example
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Given the same subtree and namespace settings as used in the system view example (see <a href="6.4.1.1_Example.html">6.4.1.1</a> <i>Example</i>), the document view would look like this (note that the following example assumes that multi-value property serialization is not supported and therefore escaping of space literals is not done (see <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>):
+								</p>
+							
+						
+					
+				
+			
+			
+				<br>
+				&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+			
+			
+				<br>
+				&lt;myapp:document xmlns:jcr="http://www.jcp.org/jcr/1.0"
+			
+			
+				<br>
+				xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+			
+			
+				<br>
+				xmlns:mix="http://www.jcp.org/jcr/mix/1.0"<br>
+				xmlns:myapp="http://mycorp.com/myapp"
+			
+			
+				<br>
+				xmlns:mynt="http://mycorp.com/mynt"
+			
+			
+				<br>
+				jcr:primaryType="mynt:document"&gt;
+			
+			
+				<br>
+				myapp:title="JSR 170"
+			
+			
+				<br>
+				myapp:lead="Content Repository"&gt;
+			
+			
+				<br>
+				&lt;myapp:body jcr:primaryType="mynt:body"&gt;
+			
+			
+				<br>
+				&lt;myapp:paragraph jcr:primaryType="mynt:paragraph"
+			
+			
+				<br>
+				myapp:title="Node Types"
+			
+			
+				<br>
+				myapp:text="An important feature..."/&gt;
+			
+			
+				<br>
+				&lt;/myapp:body&gt;
+			
+			
+				<br>
+				&lt;/myapp:document&gt;
+			
+			
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									<i>Note that in the above, the XML has been formatted for readability. The actual XML stream might not have any extraneous whitespace between elements or attributes.</i>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

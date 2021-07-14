@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.8.1 Cloning Nodes Across Workspaces (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.8.1 Cloning Nodes Across Workspaces</H3>
+	<P>Corresponding nodes
+	can be created by <I>cloning</I> a node from one workspace to
+	another using:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.clone(String srcWorkspace,<BR> String
+	srcAbsPath,<BR> String destAbsPath,<BR> 
+	 boolean removeExisting)</FONT></FONT></P>
+	<P>This method clones the
+	subgraph at <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	workspace. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>clone</FONT></FONT>
+	method clones both referenceable and non-referenceable nodes and
+	preserves the identifier of every node in the source subgraph.</P>
+	<P>If there already
+	exists anywhere in this workspace a node with the same identifier as
+	an incoming node from <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>clone</FONT></FONT>
+	will throw an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then the existing node is removed from its current location and the
+	cloned node with the same identifier from <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	is copied to this workspace as part of the copied subgraph (that is,
+	not into the former location of the old node). The subgraph of the
+	cloned node will reflect the state of the clone in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	in other words the existing node will be moved <I>and</I> changed.
+	If the existing node cannot be moved and changed because of node
+	type constraints, access control constraints or because its parent
+	is checked-in (or its parent is non-versionable but its nearest
+	versionable ancestor is checked-in), then the appropriate exception
+	is thrown (<FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlException</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionException</FONT></FONT>,
+	respectively).</P>
+	<P>In the case of
+	shareable nodes, it is possible to clone a node into its own
+	workspace (see §14.1 <I>Creation of Shared Nodes</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

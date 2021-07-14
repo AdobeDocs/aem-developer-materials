@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.10 Example (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.10." id="section_6.2.10."></a>6.2.10 Example
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following section gives some examples of how node access and property read operations are performed. In order to provide some context for the examples, we return to our earlier example of a repository structured like this:
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property = "Some Value"</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i><b>[root]</b></i>
+								</p>
+							
+							
+								<p>
+									└─<b>products</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:created = "2001-01-01T..."</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:content</b>
+								</p>
+							
+							
+								<p>
+									│ ├─<b>myapp:title = "Our Products..."</b>
+								</p>
+							
+							
+								<p>
+									│ ├─<b>myapp:lead = "Geometrixx is proud..."</b>
+								</p>
+							
+							
+								<p>
+									│ ├─<b>myapp:paragraph[1]</b>
+								</p>
+							
+							
+								<p>
+									│ │ ├─<b>myapp:text = "Geometrixx is..."</b>
+								</p>
+							
+							
+								<p>
+									│ │ └─ <b>myapp:image = <i>[binary data]</i></b>
+								</p>
+							
+							
+								<p>
+									│ └─<b>myapp:paragraph[2]</b>
+								</p>
+							
+							
+								<p>
+									│ ├─ <b>myapp:text = "We have..."</b>
+								</p>
+							
+							
+								<p>
+									│ └─ <b>myapp:image = <i>[binary data]</i></b>
+								</p>
+							
+							
+								<p>
+									└─<b>rhombus</b>
+								</p>
+							
+							
+								<p>
+									├─<b>jcr:created = "2002-06-01T"</b>
+								</p>
+							
+							
+								<p>
+									└─<b>jcr:content</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:title = "Rhombus:..."</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:price = "123.00"</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:lead = "Here at..."</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:paragraph[1]</b>
+								</p>
+							
+							
+								<p>
+									│ ├─<b>myapp:text = "The rhombus..."</b>
+								</p>
+							
+							
+								<p>
+									│ └─<b>myapp:image = <i>[binary data]</i></b>
+								</p>
+							
+							
+								<p>
+									└─<b>myapp:paragraph[2]</b>
+								</p>
+							
+							
+								<p>
+									├─<b>myapp:text = "Some say..."</b>
+								</p>
+							
+							
+								<p>
+									└─<b>myapp:image = <i>[binary data]</i></b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									Assuming that the programmer has called:
+								</p>
+							
+							
+								<p class="c12">
+									<b>Session session = ...</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node root = session.getRootNode();</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									From the root node, one can access any node or property in the workspace. For example,
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node n1 = root.getNode("products");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node n2 = n1.getNode("rhombus");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node n3 = n2.getNode("jcr:content");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node n4 = n3.getNode("myapp:paragraph[2]");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property p = n4.getProperty("myapp:text");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Value v = p.getValue();</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>String s = v.getString();</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>System.out.println(s);</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									would print, <b>"Some say..."</b> to standard output. Alternatively, more convenient direct access is also possible,
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property p = root.getProperty("products/rhombus/<br>
+									jcr:content/myapp:paragraph[2]/myapp:text");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>System.out.println(p.getString());</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									Here we use a relative path from the root to access a property deep in the hierarchy.
+								</p>
+							
+							
+								<p class="c5">
+									As well, traversal of the hierarchy is easily done. For example, given the following method,
+								</p>
+							
+							
+								<p class="c12">
+									<b>public void traverse(Node n, int level)<br>
+									throws RepositoryException {</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>String name = (n.getDepth() == 0) ? "/" : n.getName();</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>System.out.println(makeIndent(level) + name);</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>for (PropertyIterator i = n.getProperties();<br>
+									i.hasNext();) {</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property p = i.nextProperty();</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>System.out.println(makeIndent(level + 1) +<br>
+									p.getName() + " = \"" +<br>
+									p.getString() + "\"");</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>}</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>for (NodeIterator i = n.getNodes(); i.hasNext();) {</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node nn = i.nextNode();</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>traverse(nn, level + 1);</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>}</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>}</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									the call,
+								</p>
+							
+							
+								<p class="c12">
+									<b>traverse(root, 0);</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									would print out something like the following:
+								</p>
+							
+							
+								<p class="c12">
+									/
+								</p>
+							
+							
+								<p class="c12">
+									<b>products</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>jcr:created = "2001-01-01T..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>jcr:content</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:title = "Our Products..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:lead = "Geometrixx is proud..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:paragraph[1]</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:text = "Geometrixx is..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:image = ""</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:paragraph[2]</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:text = "We have..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:image = ""</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>rhombus</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>jcr:created = "2002-06-01T..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>jcr:content</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:title = "Rhombus:..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:price = "123.00"</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:lead = "Here at..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:paragraph[1]</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:text = "The rhombus..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:image = ""</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:paragraph[2]</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:text = "Some say..."</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>myapp:image = ""</b>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

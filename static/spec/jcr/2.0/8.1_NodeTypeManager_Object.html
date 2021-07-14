@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 8.1 NodeTypeManager Object (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>8.1 NodeTypeManager Object</H2>
+	<P>A repository has a
+	single, global node type registry that holds all node types
+	available in the repository. The registry is represented by a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	object acquired through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.getNodeTypeManager()</FONT></FONT>.
+		</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType
+	NodeTypeManager.getNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object representing the specified registered node type.
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	also provides the following related methods for accessing registered
+	node types:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeManager.hasNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.getPrimaryNodeTypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.getMixinNodeTypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.getAllNodeTypes()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

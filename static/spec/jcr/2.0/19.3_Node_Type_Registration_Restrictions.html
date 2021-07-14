@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 19.3 Node Type Registration Restrictions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>19.3 Node Type Registration Restrictions</H2>
+	<P>A repository <I>must</I>
+	prevent the registration of any node type that uses a reserved
+	namespace either in its name or in the name of any of its item
+	definitions (see 3.4 <I>Namespace Mapping</I>).</P>
+	<P>A repository <I>may</I>
+	restrict the range of node types that can be registered according to
+	implementation-specific criteria. This is most relevant in cases
+	where a JCR repository is built on top of an existing content store
+	which has intrinsic limitations that restrict the space of supported
+	node types.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

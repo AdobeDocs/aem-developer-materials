@@ -1,0 +1,43 @@
+
+UserProperties
+==============
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/userproperties
+
+   The user properties popover.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellUserProperties] > granite:commonAttrs
+
+      /**
+       * The URL to preferences dialog.
+       * It must be resolved to a :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` element.
+       */
+      - preferencesSrc (StringEL)
+
+      /**
+       * The URL for logout.
+       */
+      - logoutUrl (String) = '/system/sling/logout.html'
+
+      /**
+       * The configuration when not in impersonated session.
+       */
+      + self (granite:ShellUserPropertiesConfig)
+
+      /**
+       * The configuration when in impersonated session.
+       */
+      + impersonated (granite:ShellUserPropertiesConfig)
+
+
+      [granite:ShellUserPropertiesConfig]
+
+      /**
+       * The root node of ``ItemDataSource`` of the content of the form.
+       */
+      + form

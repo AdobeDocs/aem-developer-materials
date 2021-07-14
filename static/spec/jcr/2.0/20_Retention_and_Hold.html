@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 20 Retention and Hold (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>20 Retention and Hold</H1>
+	<P>A repository may
+	support <I>retention and hold</I>, which enables an external
+	retention management application to apply retention policies to
+	repository content and supports the concepts of hold and release<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote22anc" HREF="#sdfootnote22sym"><SUP>22</SUP></A></SUP>.</P>
+	<P>Whether a particular
+	implementation supports these features can be determined by querying
+	the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_RETENTION_SUPPORTED</FONT></FONT>.</P>
+	<P>a return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+	<P>This API is intended
+	for use by a retention and hold management system (often external to
+	the repository). It should not be used as a substitute for normal
+	access control.</P>
+<a name="20.1 Retention Manager"></a>	<H2>20.1 Retention Manager</H2>
+	<P>Retention and hold is
+	exposed through a</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.retention.RetentionManager</FONT></FONT></P>
+	<P>acquired from the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>RetentionManager
+	Session.getRetentionManager()</FONT></FONT>.</P>
+	<P>All changes made
+	through the retention and hold API are session-mediated and
+	therefore require a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>
+	to go into effect.</P>
+<a name="20.2 Placing a Hold"></a>	<H2>20.2 Placing a Hold</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Hold
+	RetentionManager.<BR> addHold(String absPath, String name, boolean
+	isDeep)</FONT></FONT></P>
+	<P>places a hold on the
+	node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	a <I>shallow hold</I> is placed. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	a <I>deep hold</I> is placed. The method returns the resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>Hold</FONT></FONT>
+	object. The hold only takes effect upon <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.
+	A node may have more than one hold.</P>
+	<P>The format and
+	interpretation of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>name</FONT></FONT>
+	is application-dependent. It need not be unique.</P>
+<a name="20.3 Effect of a Hold"></a>	<H2>20.3 Effect of a Hold</H2>
+	<P>A shallow hold in
+	effect on a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	has the same effect as would be the case if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	were protected.</P>
+	<P>A deep hold in effect
+	on a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	has the same effect as would be the case if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	and all nodes in its subgraph were protected (see §3.7.2.2
+	<I>Protected</I>).</P>
+<a name="20.4 Getting the Holds present on a Node"></a>	<H2>20.4 Getting the Holds present on a Node</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Hold[]
+	RetentionManager.getHolds(String absPath)</FONT></FONT></P>
+	<P>returns all holds on
+	the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.</P>
+<a name="20.5 Removing a Hold"></a>	<H2>20.5 Removing a Hold</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	RetentionManager.<BR> removeHold(String absPath, Hold hold)</FONT></FONT></P>
+	<P>removes the specified
+	hold from the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	The removal only takes effect upon <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.</P>
+<a name="20.6 Hold Object"></a>	<H2>20.6 Hold Object</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Hold</FONT></FONT>
+	interface defines two methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Hold.getName()</FONT></FONT></P>
+	<P>which returns the name
+	of the hold, and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Hold.isDeep()</FONT></FONT></P>
+	<P>which reports whether
+	the hold is deep or shallow.</P>
+<a name="20.7 Setting a Retention Policy"></a>	<H2>20.7 Setting a Retention Policy</H2>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	RetentionManager.<BR> setRetentionPolicy(String absPath,
+	RetentionPolicy policy)</FONT></FONT></P>
+	<P>sets the retention
+	policy of the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	to that defined in the specified retention policy object. The policy
+	only takes effect upon <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.</P>
+<a name="20.8 Getting a Retention Policy"></a>	<H2>20.8 Getting a Retention Policy</H2>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>RetentionPolicy
+	RetentionManager.<BR> getRetentionPolicy(String absPath)</FONT></FONT></P>
+	<P>returns the retention
+	policy on the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if no retention policy has been set on the node.</P>
+<a name="20.9 Effect of a Retention Policy"></a>	<H2>20.9 Effect of a Retention Policy</H2>
+	<P>Interpretation and
+	enforcement of a retention policy is an implementation issue.
+	However, in all cases a retention policy in effect on a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>:</P>
+	<UL>
+		<LI><P>prevents the
+		removal of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and</P>
+		<LI><P>prevents the
+		addition and removal of all child nodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		and</P>
+		<LI><P>prevents the
+		addition, removal and change of all properties of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+	</UL>
+<a name="20.10 RetentionPolicy object"></a>	<H2>20.10 RetentionPolicy object</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>RetentionPolicy</FONT></FONT>
+	interface defines one method:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	RetentionPolicy.getName()</FONT></FONT></P>
+	<P>which returns the name
+	of the policy.</P>
+<a name="20.11 Removing a Retention Policy"></a>	<H2>20.11 Removing a Retention Policy</H2>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	RetentionManager.removeRetentionPolicy(String absPath)</FONT></FONT></P>
+	<P>removes the current
+	retention policy on this node, if any. The removal only takes effect
+	upon a call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

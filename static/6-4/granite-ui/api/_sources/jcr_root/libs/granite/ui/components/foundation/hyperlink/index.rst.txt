@@ -1,0 +1,53 @@
+
+Hyperlink
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/hyperlink
+
+   Hyperlink is a component to represent a standard HTML hyperlink (<a>).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Hyperlink] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The href attribute.
+       */
+      - href (StringEL)
+
+      /**
+       * The href attribute. This is usually used to produce different value based on locale.
+       */
+      - href_i18n (StringEL) i18n
+
+      /**
+       * The target attribute.
+       */
+      - target (String)
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+
+      /**
+       * The x-cq-linkchecker attribute.
+       */
+      - 'x-cq-linkchecker' (String) < 'skip', 'valid'
+
+      /**
+       * The icon class.
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * Visually hide the text.
+       */
+      - hideText (Boolean)

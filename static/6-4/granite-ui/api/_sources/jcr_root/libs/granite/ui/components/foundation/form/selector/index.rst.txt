@@ -1,0 +1,128 @@
+
+Selector
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/selector
+   :supertype: /libs/granite/ui/components/foundation/form/field
+
+   Selector provides a selection from a set of options and behaves similar to a set of Radio or Checkbox instances.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormSelector]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The type of the selector.
+       * ``radio`` means it is single selection, just like HTML radios.
+       * ``checkbox`` means it is multiple selection, just like HTML checkboxes.
+       */
+      - type (String) = 'radio' < 'radio', 'checkbox'
+
+      /**
+       * The name that identifies each option when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * ``true`` to generate the `SlingPostServlet @Delete <http://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#delete>`_ hidden input based on the name.
+       */
+      - deleteHint (Boolean) = true
+
+      /**
+       * If ``false``, the checked status of each option is based on matching the form values by ``name`` and ``value`` properties.
+       * Otherwise, the form values are not matched, and the checked status is based on ``checked`` property specified.
+       */
+      - ignoreData (Boolean)
+
+      /**
+       * The available options can be specified as content structure under ``items`` child resource.
+       */
+      + items
+
+   The option has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormSelectorItem]
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The value of the option.
+       */
+      - value (String)
+
+      /**
+       * Indicates if the option is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the option is checked.
+       * Providing ``checked`` property (either ``true`` or ``false``) will imply ``ignoreData`` at the parent resource to be ``true``.
+       */
+      - checked (Boolean)
+
+      /**
+       * The text of the option.
+       */
+      - text (String) i18n
+
+   Example::
+
+      + myselector
+        - name = "browser"
+        - sling:resourceType = "granite/ui/components/foundation/form/selector"
+        + items
+          + option1
+            - value = "ie"
+            - text = "Internet Explorer"
+          + option2
+            - value = "chrome"
+            - text = "Chrome"
+          + option3
+            - value = "firefox"
+            - text = "Firefox"

@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 24.2.4 Node Type Management (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>24.2.4 Node Type Management</H3>
+	<P>These repository
+	descriptors characterize the types of nodes an API consumer may
+	register (see §19 <I>Node Type Management</I>). They do not
+	constrain a repository's built-in node types (see §3.7 <I>Node
+	Types</I>).</P>
+	<TABLE WIDTH=642 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=1 CELLSPACING=0>
+		<COL WIDTH=257>
+		<COL WIDTH=379>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=16>
+				<P><FONT SIZE=1 ><B>Key</B></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT SIZE=1 ><B>Descriptor</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_<BR>SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>node
+				type management </I></FONT><FONT SIZE=1 >is
+				supported.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=95>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_INHERITANCE</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >STRING</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns one of the following </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >javax.jcr.Repository</FONT></FONT></FONT><FONT SIZE=1 >
+				constants indicating </FONT><FONT SIZE=1 ><I>the
+				level of support for node type inheritance</I></FONT><FONT SIZE=1 >:</FONT></P>
+				<UL>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL</FONT></FONT></FONT><FONT SIZE=1 >:
+					Registration of primary node types is limited to those which
+					have only </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >nt:base</FONT></FONT></FONT><FONT SIZE=1 >
+					as supertype. Registration of mixin node types is limited to
+					those without any supertypes.</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE</FONT></FONT></FONT><FONT SIZE=1 >:
+					Registration of primary node types is limited to those with
+					exactly one supertype. Registration of mixin node types is
+					limited to those with at most one supertype.</FONT></P>
+					<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE</FONT></FONT></FONT><FONT SIZE=1 >:
+					Primary node types can be registered with one or more
+					supertypes. Mixin node types can be registered with zero or more
+					supertypes.</FONT></P>
+				</UL>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=37>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_OVERRIDES_<BR>SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>override
+				of inherited property or child node definitions</I></FONT><FONT SIZE=1 >
+				is supported (see §3.7.6 </FONT><FONT SIZE=1 ><I>Node
+				Type Inheritance</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_PRIMARY_ITEM_<BR>NAME_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>primary
+				items</I></FONT><FONT SIZE=1 > are
+				supported (see §3.7.1.7 </FONT><FONT SIZE=1 ><I>Primary
+				Item</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_ORDERABLE_<BR>CHILD_NODES_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>preservation
+				of child node ordering</I></FONT><FONT SIZE=1 >
+				is supported (see §5.2.2.1 </FONT><FONT SIZE=1 ><I>Child
+				Node Order Preservation</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=37>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_RESIDUAL_<BR>DEFINITIONS_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>residual
+				property and child node definitions </I></FONT><FONT SIZE=1 >are
+				supported (see §3.7.2.1.2 </FONT><FONT SIZE=1 ><I>Item
+				Definition Name and Residual Definitions</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_AUTOCREATED_<BR>DEFINITIONS_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>autocreated
+				properties and child nodes</I></FONT><FONT SIZE=1 >
+				are supported (see §3.7.2.3 </FONT><FONT SIZE=1 ><I>Auto-Created</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_SAME_NAME_<BR>SIBLINGS_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>same-name
+				sibling child nodes</I></FONT><FONT SIZE=1 >
+				are supported (see §3.7.4.3 </FONT><FONT SIZE=1 ><I>Same-Name
+				Siblings</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=95>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_PROPERTY_TYPES</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >LONG[]</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns an array holding the </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >javax.jcr.PropertyType</FONT></FONT></FONT><FONT SIZE=1 >
+				constants for the property types (including </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >UNDEFINED</FONT></FONT></FONT><FONT SIZE=1 >,
+				if supported) that a registered node type can specify, or a
+				zero-length array if registered node types cannot specify
+				property definitions (see §3.6.1 </FONT><FONT SIZE=1 ><I>Property
+				Types</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_MULTIVALUED_<BR>PROPERTIES_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >boolean</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>multi-value
+				properties</I></FONT><FONT SIZE=1 > are
+				supported (see §3.6.3 </FONT><FONT SIZE=1 ><I>Single
+				and Multi-Value Properties</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_MULTIPLE_<BR>BINARY_PROPERTIES_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only if </FONT><FONT SIZE=1 ><I>registration
+				of a node types with more than one </I></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 ><I>BINARY</I></FONT></FONT></FONT><FONT SIZE=1 ><I>
+				property</I></FONT><FONT SIZE=1 > is
+				permitted (see §3.6.1.7 </FONT><FONT SIZE=1 ><I>BINARY</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=17>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >_TYPE_MANAGEMENT_VALUE_<BR>CONSTRAINTS_SUPPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns true if and only </FONT><FONT SIZE=1 ><I>value-constraints</I></FONT><FONT SIZE=1 >
+				are supported (see §3.7.3.6 </FONT><FONT SIZE=1 ><I>Value
+				Constraints</I></FONT><FONT SIZE=1 >).</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=257 HEIGHT=16>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPORTED</FONT></FONT></FONT></P>
+			</TD>
+			<TD WIDTH=379>
+				<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+				Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+				if and only the update of node types is supported for node types
+				currently in use as the type of an existing node in the
+				repository.</FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

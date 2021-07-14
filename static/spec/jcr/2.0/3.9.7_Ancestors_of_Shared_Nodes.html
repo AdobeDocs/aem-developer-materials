@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.9.7 Ancestors of Shared Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.9.7 Ancestors of Shared Nodes</H3>
+	<P>Given the following
+	situation:</P>
+	<UL>
+		<LI><P>Node <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		is an ancestor of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is in the shared set <FONT FACE="Courier New, monospace"><FONT SIZE=2>S.</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		is also in the shared set <FONT FACE="Courier New, monospace"><FONT SIZE=2>S.</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		is an ancestor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>
+		is a descendent of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.</FONT></FONT></P>
+	</UL>
+	<P>The following
+	terminology applies:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		is an <I>ancestor</I> of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		(as usual).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		is a <I>share-ancestor</I> of the set <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		and of the individual nodes, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+		and (trivially), <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>Since <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>
+		is a <I>descendent</I> of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		it is also a <I>descendent</I> of every node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		(<FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>,
+		for example). We also say that it is a <I>descendent</I> of the set
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>.</B></FONT></FONT></P>
+		<LI><P>Since <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		is a <I>share-ancestor</I> of <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>
+		is a <I>descendent</I> of <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		is an <I>ancestor</I> (proper) of <FONT FACE="Courier New, monospace"><FONT SIZE=2>D</FONT></FONT>.</P>
+	</UL>
+	<P>Note that the term
+	<I>share-ancestor</I> does not mean <I>shared</I> ancestor. The
+	ancestor (proper) of a member of a shared set is not necessarily an
+	ancestor (proper) of any other member of that set.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

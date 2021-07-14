@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.2.2.1 Name Patterns (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>5.2.2.1 Name Patterns</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	passed in <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getProperties</FONT></FONT>
+	is a string matched against the qualified names (not the paths) of
+	the immediate child items of this node. We call the <FONT FACE="Courier New, monospace"><FONT SIZE=2>namePattern</FONT></FONT>
+	parameter the <I>pattern</I> and the qualified names against which
+	it is tested the <I>target strings</I>.</P>
+	<UL>
+		<LI><P>A <I>pattern</I>
+		consists of one or more <I>globs</I>. In cases of two or more
+		globs, they are delimited by the pipe character (<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>,
+		U+0076).</P>
+		<LI><P>A pattern matches
+		a target string if and only if at least one of its globs matches
+		that target string.</P>
+		<LI><P>A <I>glob</I>
+		matches a target string if and only if it matches character for
+		character, except for any asterisk characters (*, U+002A) in the
+		glob, which match any substring (including the empty string) in the
+		target string.</P>
+	</UL>
+	<P>The characters “<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>”
+	and “<FONT FACE="Courier New, monospace"><FONT SIZE=2>*</FONT></FONT>”
+	are excluded from qualified JCR names (see §3.2.5.2 <I>Qualified
+	Form</I>), so their use as metacharacters in the pattern will not
+	lead to a conflict.</P>
+	<P>For backwards
+	compatibility with JCR 1.0, leading and trailing whitespace around a
+	glob is ignored but whitespace within a glob forms part of the
+	pattern to be matched. 
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

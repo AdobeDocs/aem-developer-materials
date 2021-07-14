@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation-wizard-lazycontainer &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../" src="../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation-workflowstatus" href="../workflowstatus/index.html" />
+    <link rel="prev" title="foundation.validation.validator: foundation.jcr.name" href="../validation/validator/foundation.jcr.name.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../workflowstatus/index.html" title="foundation-workflowstatus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../validation/validator/foundation.jcr.name.html" title="foundation.validation.validator: foundation.jcr.name"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-wizard-lazycontainer">
+<h1>foundation-wizard-lazycontainer<a class="headerlink" href="#foundation-wizard-lazycontainer" title="Permalink to this headline">¶</a></h1>
+<p>A step component that will load its content when <a class="reference internal" href="../../vocabulary/wizard.html"><span class="doc">foundation-wizard</span></a> is navigating to it.
+Use this component when you need a step that is depending on the user input in the preceding steps.</p>
+<div class="section" id="markup">
+<h2>Markup<a class="headerlink" href="#markup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>.foundation-wizard-lazycontainer<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Indicates the component.
+Whenever <code class="docutils literal notranslate"><span class="pre">foundation-wizard-stepchange</span></code> event is triggered, this component will load its content.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">lazycontainer</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-foundation-wizard-lazycontainer-src">
+<h3>[data-foundation-wizard-lazycontainer-src]<a class="headerlink" href="#data-foundation-wizard-lazycontainer-src" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://tools.ietf.org/html/rfc6570">URI Template</a> to fetch the content of the container.
+The variables passed to the template are the fields (e.g. textfield, select) of the preceding steps.
+The field’s name and value are used as variable name and value respectively.</p>
+<p>Selector Rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">lazycontainer</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">foundation</span><span class="o">-</span><span class="n">wizard</span><span class="o">-</span><span class="n">lazycontainer</span><span class="o">-</span><span class="n">src</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation-wizard-lazycontainer</a><ul>
+<li><a class="reference internal" href="#markup">Markup</a><ul>
+<li><a class="reference internal" href="#id1">.foundation-wizard-lazycontainer</a></li>
+<li><a class="reference internal" href="#data-foundation-wizard-lazycontainer-src">[data-foundation-wizard-lazycontainer-src]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../validation/validator/foundation.jcr.name.html"
+                        title="previous chapter">foundation.validation.validator: foundation.jcr.name</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../workflowstatus/index.html"
+                        title="next chapter">foundation-workflowstatus</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/wizard/lazycontainer.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../workflowstatus/index.html" title="foundation-workflowstatus"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../validation/validator/foundation.jcr.name.html" title="foundation.validation.validator: foundation.jcr.name"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

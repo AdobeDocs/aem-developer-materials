@@ -1,0 +1,49 @@
+***************************
+Granite.UI.Foundation.Utils
+***************************
+
+A JavaScript object exposed at ``Granite.UI.Foundation.Utils`` exposing the following ``FoundationUtils`` interface:
+
+.. code-block:: ts
+
+   /**
+    * Provides minimal utitily methods when developing components.
+    */
+   interface FoundationUtils {
+     /**
+      * This method is similar to <code>Array.prototype.every</code>, but in reverse order.
+      *
+      * @param array The array to iterate
+      * @param callback Function to test for each element
+      * @param {Object} [thisArg] Object to use as <code>this</code> when executing <code>callback</code>
+      *
+      * @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+      */
+     everyReverse(array: Array, callback: (value: any, index: number, array: Array) => boolean, thisArg?: any): boolean;
+
+     /**
+      * Debounces the given function, which will postpone its execution until after the given wait milliseconds have elapsed since the last time it was invoked.
+      *
+      * @param func The function to be debounced
+      * @param wait The timeout of the debounce
+      * @param immediate <code>true</code> to trigger the function on the leading edge, instead of the trailing
+      *
+      * @see http://underscorejs.org/#debounce
+      */
+     debounce(func: Function, wait: number, immediate?: boolean): Function;
+
+     /**
+      * Process the given html so that it is suitable to be injected to the DOM (e.g. preventing duplicate js and css).
+      * This method is also modifying the current document (window.document) such that js and css from the given html are not lost.
+      * This is done by injecting the said files to &lt;head>.
+      *
+      * NOTE: From now on, it is better to use <code>foundation-util-htmlparser</code> instead for performance.
+      *
+      * @param html The html string to process
+      * @param selector Only extract out the html under the given selector (inclusive). If no element matchs the selector or this parameter is falsy then html is process as is.
+      * @param callback The callback when all the scripts are already executed
+      * @param avoidMovingExisting Avoid moving the existing CSS and JS elements to &lt;head>. Sometimes, moving those elements is needed in order to prevent double loading when the html is injected again.
+      * @returns The result of the process
+      */
+     processHtml(html: string, selector?: string, callback?: () => void, avoidMovingExisting?: boolean): string;
+   }

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.2 Version Storage (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.2." id="section_8.2.2."></a>8.2.2 Version Storage
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A version history consists of a single <b>nt:versionHistory</b> node with a set of immediate child nodes all of type <b>nt:version</b>, representing all the versions within that version history.
+								</p>
+							
+							
+								<p class="c5">
+									An <b>nt:versionHistory</b> has at least one child, the <b>nt:version</b> node representing the <i>root version</i>. From the root version the version graph proceeds through a network of <b>REFERENCE</b> properties linking any additional child <b>nt:version</b> nodes into a version graph defining the successor relations among the versions. The version graph within any given version history must include all and only the children of that version history’s <b>nt:versionHistory</b> node. The following diagram illustrates a single version history:
+								</p>
+							
+							
+								<p>
+									<img src="jsr170-8_2_2.gif"><br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									The solid arrows represent parent node to child node relations while the dotted arrows represent the successor relations between versions, implemented through <b>REFERENCE</b> properties.
+								</p>
+							
+							
+								<p class="c5">
+									Here we see an <b>nt:versionHistory</b> node, <b>VH</b> with child <b>nt:version</b> nodes <b>V</b><b><sub>root</sub></b> <b>V</b><b><sub>A</sub></b> <b>V</b><b><sub>B</sub></b> and <b>V</b><b><sub>C</sub></b>. The version graph begins at <b>V</b><b><sub>root</sub></b>, which has successors <b>V</b><b><sub>A</sub></b> and <b>V</b><b><sub>B</sub></b>, both of which, in turn, have <b>V</b><b><sub>C</sub></b> as their respective successor.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

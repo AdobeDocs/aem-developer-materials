@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.4 Escaping of Values (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.4." id="section_6.4.4."></a>6.4.4 Escaping of Values
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a non-<b>BINARY</b> value is serialized during either system view or document view export, it is first converted to string form using standard value conversion, see <a href="6.2.6_Property_Type_Conversion.html">6.2.6</a> <i>Property Type Conversion</i> (<b>BINARY</b> values are encoded using Base64).
+								</p>
+							
+							
+								<p class="c5">
+									Within the resulting string, any occurrence of one of the five characters corresponding to the five <i>predefined entity references</i> in XML, ampersand (<b>&amp;</b>), less-than symbol (<b>&lt;</b>), greater-than symbol (<b>&gt;</b>), apostrophe (<b>'</b>), and quotation mark (<b>"</b>) must be escaped as <b>&amp;amp;</b>, <b>&amp;lt;</b>, <b>&amp;gt;</b>, <b>&amp;apos;</b> and <b>&amp;quot;</b>, respectively.
+								</p>
+							
+							
+								<p class="c5">
+									In document view serialization, if the property being serialized is multi-valued (or if the implementation chooses to encode spaces in single value properties too, see below) then the value or values must be further encoded by escaping any occurrence of one of the four whitespace characters: space, tab, carriage return and line feed. The scheme used to encode these characters is the same as that described in <a href="6.4.3_Escaping_of_Names.html">6.4.3</a> <i>Escaping of Names</i>. Note that in this restricted context, applying those escaping rules amounts to the following: a space becomes <b>_x0020_</b>, a tab becomes <b>_x0009_</b>, a carriage return becomes <b>_x000D_</b>, a line feed becomes <b>_x000A_</b> and any underscore (<b>_</b>) that occurs as the first character of a sequence that could be misinterpreted as an escape sequence becomes <b>_x005f_</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Finally, in document view export, the value of the attribute representing a multi-value property is constructed by concatenating the results of the above escaping into a space-delimited list.
+								</p>
+							
+							
+								<p class="c5">
+									In document view export (though not in system view), if multi-value property serialization is supported (see <a href="6.4.2.5_Multi-value_Properties.html">6.4.2.5</a> <i>Multi-value Properties</i>) then a mechanism must be adopted whereby upon re-import the distinction between multi- and single- value properties is not lost. One option is that escaping of space literals must be applied to the value of all single-value properties as well, Another option is that when an XML document is imported in document view, each attribute is assumed to be a single-value property unless out-of-band information defines it to be multi-valued (for example, if the applicable node type defines the property as multi-valued or the XML document is associated with a schema definition that indicates that the attribute is a list value).
+								</p>
+							
+							
+								<p class="c5">
+									Note that the value of a <b>jcr:xmlcharacters</b> property used to represent XML text (see 6.4.2.3 XML Text) is not space-escaped, regardless of the prevailing multi-value property serialization policy.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

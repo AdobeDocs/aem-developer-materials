@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.5 Exporting Repository Content (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_6.5." id="section_6.5."></a> 6.5 Exporting Repository Content
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Level 1 supports the export of repository content to both system view XML and document view XML. The XML can be output either in as a stream or as SAX events.
+								</p>
+							
+							
+								<p class="c5">
+									The export methods are found in the <b>Session</b> object:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Session</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>exportSystemView(String absPath,<br>
+										ContentHandler contentHandler,<br>
+										boolean skipBinary,<br>
+										boolean noRecurse)</b>
+									</p>
+									<p class="c5">
+										Serializes the node (and if <b>noRecurse</b> is <b>false</b>, the whole subtree) at <b>absPath</b> into a series of SAX events by calling the methods of the supplied <b>org.xml.sax.ContentHandler</b>. The resulting XML is in the <i>system view</i> form. Note that <b>absPath</b> must be the path of a node, not a property.
+									</p>
+									<p class="c5">
+										If <b>skipBinary</b> is <b>true</b> then any properties of <b>PropertyType.BINARY</b> will be serialized as if they are empty. That is, the existence of the property will be serialized, but its content will not appear in the serialized output (the <b>&lt;sv:value&gt;</b> element will have no content). Note that in the case of multi-value <b>BINARY</b> properties, the number of values in the property will be reflected in the serialized output, though they will all be empty. If <b>skipBinary</b> is <b>false</b> then the actual value(s) of each <b>BINARY</b> property is recorded using Base64 encoding.
+									</p>
+									<p class="c5">
+										If <b>noRecurse</b> is <b>true</b> then only the node at <b>absPath</b> and its properties, but not its child nodes, are serialized. If <b>noRecurse</b> is <b>false</b> then the entire subtree rooted at <b>absPath</b> is serialized.
+									</p>
+									<p class="c5">
+										If the user lacks read access to some subsection of the specified tree that section simply does not get serialized, since, from the user's point of view it is not there.
+									</p>
+									<p class="c5">
+										The serialized output will reflect the state of the current workspace as modified by the state of this <b>Session</b>. This means that pending changes (regardless of whether they are valid according to node type constraints) and the current session-mapping of namespaces are reflected in the output.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if no node exists at <b>absPath</b>.
+									</p>
+									<p class="c5">
+										A <b>SAXException</b> is thrown if an error occurs while feeding events to the <b>ContentHandler</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>exportSystemView(String absPath,<br>
+										OutputStream out,<br>
+										boolean skipBinary,<br>
+										boolean noRecurse)</b>
+									</p>
+									<p class="c5">
+										Serializes the node (and if <b>noRecurse</b> is <b>false</b>, the whole subtree) at <b>absPath</b> into an XML stream and outputs it through the supplied <b>OutputStream</b>. The resulting XML is in the <i>system view</i> form. Note that <b>absPath</b> must be the path of a node, not a property.
+									</p>
+									<p class="c5">
+										If <b>skipBinary</b> is <b>true</b> then any properties of <b>PropertyType.BINARY</b> will be serialized as if they are empty. That is, the existence of the property will be serialized, but its content will not appear in the serialized output (the <b>&lt;sv:value&gt;</b> element will have no content). Note that in the case of multi-value <b>BINARY</b> properties, the number of values in the property will be reflected in the serialized output, though they will all be empty. If <b>skipBinary</b> is <b>false</b> then the actual value(s) of each <b>BINARY</b> property is recorded using Base64 encoding.
+									</p>
+									<p class="c5">
+										If <b>noRecurse</b> is <b>true</b> then only the node at <b>absPath</b> and its properties, but not its child nodes, are serialized. If <b>noRecurse</b> is <b>false</b> then the entire subtree rooted at <b>absPath</b> is serialized.
+									</p>
+									<p class="c5">
+										If the user lacks read access to some subsection of the specified tree that section simply does not get serialized, since, from the user's point of view it is not there.
+									</p>
+									<p class="c5">
+										The serialized output will reflect the state of the current workspace as modified by the state of this <b>Session</b>. This means that pending changes (regardless of whether they are valid according to node type constraints) and the current session-mapping of namespaces are reflected in the output.
+									</p>
+									<p class="c5">
+										The output XML will be encoded in UTF-8.
+									</p>
+									<p class="c5">
+										An <b>IOException</b> is thrown if an I/O error occurs.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if no node exists at <b>absPath</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>exportDocumentView(String absPath,<br>
+										ContentHandler contentHandler,<br>
+										boolean skipBinary,<br>
+										boolean noRecurse)</b>
+									</p>
+									<p class="c5">
+										Serializes the node (and if <b>noRecurse</b> is <b>false</b>, the whole subtree) at <b>absPath</b> into a series of SAX events by calling the methods of the supplied <b>org.xml.sax.ContentHandler</b>. The resulting XML is in the <i>document view</i> form. Note that <b>absPath</b> must be the path of a node, not a property.
+									</p>
+									<p class="c5">
+										If <b>skipBinary</b> is <b>true</b> then any properties of <b>PropertyType.BINARY</b> will be serialized as if they are empty. That is, the existence of the property will be serialized, but its content will not appear in the serialized output (the value of the attribute will be empty). If <b>skipBinary</b> is <b>false</b> then the actual value(s) of each <b>BINARY</b> property is recorded using Base64 encoding.
+									</p>
+									<p class="c5">
+										If <b>noRecurse</b> is <b>true</b> then only the node at <b>absPath</b> and its properties, but not its child nodes, are serialized. If <b>noRecurse</b> is <b>false</b> then the entire subtree rooted at <b>absPath</b> is serialized.
+									</p>
+									<p class="c5">
+										If the user lacks read access to some subsection of the specified tree that section simply does not get serialized, since, from the user's point of view it is not there.
+									</p>
+									<p class="c5">
+										The serialized output will reflect the state of the current workspace as modified by the state of this <b>Session</b>. This means that pending changes (regardless of whether they are valid according to node type constraints) and the current session-mapping of namespaces are reflected in the output.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if no node exists at <b>absPath</b>.
+									</p>
+									<p class="c5">
+										A <b>SAXException</b> is thrown if an error occurs while feeding events to the <b>ContentHandler</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>exportDocumentView(String absPath,<br>
+										OutputStream out,<br>
+										boolean skipBinary,<br>
+										boolean noRecurse)</b>
+									</p>
+									<p class="c5">
+										Serializes the node (and if <b>noRecurse</b> is <b>false</b>, the whole subtree) at <b>absPath</b> into an XML stream and outputs it through the supplied <b>OutputStream</b>. The resulting XML is in the <i>document view</i> form. Note that <b>absPath</b> must be the path of a node, not a property.
+									</p>
+									<p class="c5">
+										If <b>skipBinary</b> is <b>true</b> then any properties of <b>PropertyType.BINARY</b> will be serialized as if they are empty. That is, the existence of the property will be serialized, but its content will not appear in the serialized output (the value of the attribute will be empty). If <b>skipBinary</b> is <b>false</b> then the actual value(s) of each <b>BINARY</b> property is recorded using Base64 encoding.
+									</p>
+									<p class="c5">
+										If <b>noRecurse</b> is <b>true</b> then only the node at <b>absPath</b> and its properties, but not its child nodes, are serialized. If <b>noRecurse</b> is <b>false</b> then the entire subtree rooted at <b>absPath</b> is serialized.
+									</p>
+									<p class="c5">
+										If the user lacks read access to some subsection of the specified tree that section simply does not get serialized, since, from the user's point of view it is not there.
+									</p>
+									<p class="c5">
+										The serialized output will reflect the state of the current workspace as modified by the state of this <b>Session</b>. This means that pending changes (regardless of whether they are valid according to node type constraints) and the current session-mapping of namespaces are reflected in the output.
+									</p>
+									<p class="c5">
+										The output XML will be encoded in UTF-8.
+									</p>
+									<p class="c5">
+										An <b>IOException</b> is thrown if an I/O error occurs.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if no node exists at <b>absPath</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,73 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.form.rte.plugins.InsertVariablePlugin-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.form.rte.plugins.InsertVariablePlugin-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.form.rte.plugins.InsertVariablePlugin-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CQ.form.rte.plugins.InsertVariablePlugin-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CQ.form.rte.plugins.InsertVariablePlugin"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.form.rte.plugins.Plugin" ext:member="" href="output/CQ.form.rte.plugins.Plugin.html">Plugin</a>
+  <img src="resources/docs/elbow-end.gif"/>InsertVariablePlugin</pre></div>
+                <h1>Class&nbsp;CQ.form.rte.plugins.InsertVariablePlugin</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.form.rte.plugins</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/InsertVariable.js" target="_blank">InsertVariable.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">InsertVariablePlugin</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.form.rte.plugins.Plugin" ext:member="" href="output/CQ.form.rte.plugins.Plugin.html">CQ.form.rte.plugins.Plugin</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.personalization                        </td></tr>
+                    </table>
+        <div class="description">
+	                    <p>This class implements styling text fragments with a CSS class (using "span" tags) as a
+plugin.</p>
+<p>The plugin ID is "<b>variables</b>".</p>
+<p><b>Features</b></p>
+<ul>
+<li><b>variables</b> - adds a style selector (variables will be applied on selection scope)
+</li>
+</ul>
+<p><b>Additional config requirements</b></p>
+<p>The following plugin-specific settings must be configured through the corresponding
+<a ext:cls="CQ.form.rte.EditorKernel" href="output/CQ.form.rte.EditorKernel.html">CQ.form.rte.EditorKernel</a> instance:</p>
+<ul>
+<li>The variablesheets to be used must be provided through
+<a ext:cls="CQ.form.RichText" ext:member="externalStyleSheets" href="output/CQ.form.RichText.html#externalStyleSheets">CQ.form.RichText.externalStyleSheets</a>.</li>
+</ul>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.form.rte.plugins.InsertVariablePlugin-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.form.rte.plugins.InsertVariablePlugin-variables"></a>
+            <b>variables</b> : Object/Object[]            <div class="mdesc">
+                                    <div class="short">Defines CSS classes that are available to the user for formatting text fragments (defaults to { }). There are two way...</div>
+            <div class="long">
+                <p>Defines CSS classes that are available to the user for formatting text fragments (defaults to { }). There are two ways of specifying the CSS classes:</p> <ol> <li>Providing variables as an Object: Use the CSS class name as property name. Specify the text that should appear in the style selector as property value (String).</li> <li>Providing variables as an Object[]: Each element has to provide "cssName" (the CSS class name) and "text" (the text that appears in the style selector) properties.</li> </ol> <p>Styling is applied by adding "span" elements with corresponding "class" attributes appropriately.</p>            </div>
+                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">InsertVariablePlugin</td>
+    </tr>
+            </table>
+                <a id="CQ.form.rte.plugins.InsertVariablePlugin-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ.form.rte.plugins.InsertVariablePlugin-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="CQ.form.rte.plugins.InsertVariablePlugin-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.1 System View XML Mapping (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.1." id="section_6.4.1."></a>6.4.1 System View XML Mapping
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The system view mapping provides a complete serialization of workspace content to XML without loss of information. In level 1 this allows the complete content of a workspace to be exported (see <a href="6.5_Exporting_Repository_Content.html">6.5</a> <i>Exporting Repository Content</i>). In level 2, this also allows for roundtripping of content to XML and back again through export and import (see <a href="7.3_Importing_Repository_Content.html">7.3</a> <i>Importing Repository Content</i>).
+								</p>
+							
+							
+								<p class="c5">
+									Given a subtree of a workspace, the resulting system view is determined as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ol>
+			<li>
+				<p class="c5">
+					The relevant namespace mapping from the repository <b>NamespaceRegistry</b> is included as XML namespace declarations in the top-most XML element (though the <b>xml</b> namespace is excluded, since its presence would be redundant). Additionally a namespace mapping is included that maps to <b>http://www.jcp.org/jcr/sv/1.0</b>, for example <b>xmlns:sv="http://www.jcp.org/jcr/sv/1.0"</b>. In what follows it is assumed that the prefix used is <b>sv</b>, though any prefix is allowed as long as it is mapped to the URI above.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each content repository node becomes an XML element <b>&lt;sv:node&gt;</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each content repository property becomes an XML element <b>&lt;sv:property&gt;</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The name of each content repository node or property becomes the value of the <b>sv:name</b> attribute of the corresponding <b>&lt;sv:node&gt;</b> or <b>&lt;sv:property&gt;</b> element.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If the root node of a workspace is included in the serialized subtree, it receives the special name <b>jcr:root</b> (instead of the empty string).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The property type of each content repository property is recorded in the <b>sv:type</b> attribute of the corresponding <b>&lt;sv:property&gt;</b> element, using the standard string forms for property type names as returned by the method <b>PropertyType.nameFromValue</b> (i.e., “<b>String</b>”, “<b>Binary</b>”, “<b>Date</b>”, “<b>Boolean</b>”, “<b>Double</b>”, “<b>Long</b>”, “<b>Name</b>”, “<b>Path</b>” and “<b>Reference</b>”).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The value of each non-<b>BINARY</b> content repository property is converted to string form (according to <a href="6.2.6_Property_Type_Conversion.html">6.2.6</a> <i>Property Type Conversion</i>). BINARY values are Base64 encoded. In both cases the resulting string is included as XML text within an <b>&lt;sv:value&gt;</b> element within the <b>&lt;sv:property&gt;</b> element. Entity references are used to escape characters which should not be included as literals within XML text (see <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A multi-value property is converted to an <b>&lt;sv:property&gt;</b> element containing multiple <b>&lt;sv:value&gt;</b> elements. The order of the <b>&lt;sv:value&gt;</b> elements reflects the order of the value array returned by <b>Property.getValues</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The hierarchy of the content repository nodes and properties is reflected in the hierarchy of the corresponding XML elements.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Within an <b>&lt;sv:node&gt;</b> element all <b>&lt;sv:property&gt;</b> subelements must occur before the first <b>&lt;sv:node&gt;</b> subelement.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The first two <b>&lt;sv:property&gt;</b> elements within an <b>&lt;sv:node&gt;</b> element must be the <b>jcr:primaryType</b> and <b>jcr:mixinTypes</b> (in that order) properties of the node in question.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					In the case of referenceable nodes, the third <b>&lt;sv:property&gt;</b> element in the <b>&lt;sv:node&gt;</b> element must be <b>jcr:uuid</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The order of the <b>&lt;sv:node&gt;</b> subelements of a parent <b>&lt;sv:node&gt;</b> must reflect the order in which the corresponding child nodes are returned by <b>Node.getNodes()</b>.
+				</p>
+			</li>
+		</ol>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,1 @@
+{"name":"CQ.form.rte.plugins.PersonalizationPlugin","doc":"This class implements styling text fragments with a CSS class (using \"span\" tags) as a\nplugin.\nTh...","configs":[{"name":"variables","doc":"Defines CSS classes that are available to the user for formatting text fragments (defaults to { }..."}],"props":[],"methods":[],"events":[]}

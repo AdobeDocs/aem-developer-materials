@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.11 Versioning (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.11." id="section_4.11."></a>4.11 Versioning
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Support for versioning is an optional feature. The versioning system is built on top of the system of workspaces and referenceable nodes described above.
+								</p>
+							
+							
+								<p class="c5">
+									In a repository that supports versioning, a workspace may contain both <i>versionable</i> and <i>nonversionable</i> nodes. A node is versionable if and only if it has been assigned the <i>mixin type</i> <b>mix:versionable</b>, otherwise it is nonversionable. Repositories that do not support versioning will simply not provide this mixin type, whereas repositories that do support versioning must provide it. The type <b>mix:versionable</b> is a subtype of <b>mix:referenceable</b>, so if a node is versionable it is automatically also referenceable and thus has a UUID.
+								</p>
+							
+							
+								<p class="c5">
+									Being versionable means that at any given time the node's state can be saved for possible future recovery. This saved state is called a <i>version</i> and the action of saving it is called <i>checking in</i>.
+								</p>
+							
+							
+								<p class="c5">
+									Versions exist as part of a <i>version history</i>. Within a version history, the versions form a <i>version graph</i> that describes the predecessor/successor relations among versions of a particular versionable node.
+								</p>
+							
+							
+								<p class="c5">
+									Version histories and their contained versions are stored in version storage. There is one version storage per repository, though it is exposed in each workspace as a special protected subtree below the node <b>/jcr:system/jcr:versionStorage</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

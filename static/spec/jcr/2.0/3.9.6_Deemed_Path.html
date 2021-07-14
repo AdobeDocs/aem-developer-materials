@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.9.6 Deemed Path (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.9.6 Deemed Path</H3>
+	<P>A descendant item of a
+	shared set will have more than one valid path (assuming the shared
+	set has at least two members). When the parent node or path of such
+	a descendant item is requested, an implementation must choose a
+	<I>deemed path</I> to return.</P>
+	<P>How the deemed path is
+	chosen and its stability both over time and across the set of
+	descendent items is an implementation issue.</P>
+	<P>In particular, it is
+	permissible for an implementation to choose deemed paths for two
+	sibling items where those paths differ by more than just the last
+	element. It is also permissible for the deemed path of an item to
+	change from one request to the next on the same item within the same
+	session.</P>
+	<P>Though most
+	implementations are expected to support deemed paths which are more
+	stable than this, flexibility of the deemed path is provided to
+	facilitate implementations which would otherwise not be able to
+	support shareable nodes.</P>
+	<P> 
+	</P>
+	<P>
+	<BR><BR>
+	</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.2.4 Naming Restrictions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.2.4 Naming Restrictions</H3>
+	<P>This definition of <I>JCR
+	name</I> represents the <I>least restrictive</I> set of constraints
+	permitted for the naming of items and other entities. A repository
+	<I>may</I> further restrict the names of entities to a subset of JCR
+	names and in most cases is encouraged to do so. 
+	</P>
+	<P>In a read-only
+	repository, any such restrictions will stem trivially from the fact
+	that the repository controls the set of entity names exposed. A
+	writable repository <I>may</I> enforce any implementation-specific
+	constraint by causing an exception to be thrown on an invalid JCR
+	write method call.</P>
+	<P>The characters
+	declared invalid within a local name (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>/</FONT></FONT>”,
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT>”,
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>[</FONT></FONT>“,
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>]</FONT></FONT>”,
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>|</FONT></FONT>”,
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>*</FONT></FONT>”)
+	represent only those characters which are used as metacharacters in
+	JCR names, paths and name-matching patterns (see §5.2.2 <I>Iterating
+	Over Child Items</I>). These restrictions are not necessarily
+	sufficient to enforce best practices in the creation of JCR names.
+	In particular, the minimal grammar defined here permits JCR names
+	with leading and trailing whitespace as well as characters which may
+	appear superficially identical while representing different code
+	points, creating a potential security issue.</P>
+	<P>Though this
+	specification does not attempt to define good naming practice,
+	implementers are discouraged from permitting names with these and
+	other problematic characteristics when possible. However, there may
+	be cases where the latitude provided by the minimal grammar is
+	useful, for example, when a JCR implementation is built on top of an
+	existing data store with an unconventional naming scheme.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

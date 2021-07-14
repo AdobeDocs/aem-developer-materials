@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.1 Importing Document View (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>11.1 Importing Document View</H2>
+	<P>The <I>document view</I>
+	XML mapping (see §7.3 <I>Document View</I>) allows the import of
+	arbitrary XML into the repository. On import, the repository first
+	checks if the incoming XML appears to be a system view document. If
+	it does not, then it is assumed to be in document view form, and the
+	following occurs:</P>
+	<OL>
+		<LI><P>For each XML
+		namespace declaration with prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		and URI <FONT FACE="Courier New, monospace"><FONT SIZE=2>U</FONT></FONT>:</P>
+		<OL>
+			<LI><P>If the namespace
+			registry already contains a mapping of some prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>P'</FONT></FONT>
+			to <FONT FACE="Courier New, monospace"><FONT SIZE=2>U</FONT></FONT>
+			(where <FONT FACE="Courier New, monospace"><FONT SIZE=2>P'</FONT></FONT>
+			may or may not be equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>)
+			then the namespace registry is left unchanged.</P>
+			<LI><P>If the namespace
+			registry does not contain a mapping to <FONT FACE="Courier New, monospace"><FONT SIZE=2>U</FONT></FONT>
+			then such a mapping is added to the registry. The prefix assigned
+			may be <I>P</I>, if <I>P</I> is not already used in the registry,
+			otherwise the repository must generate and assign a new,
+			previously unused, prefix.</P>
+		</OL>
+		<LI><P>Each XML element
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a JCR node of the same name, <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>.</P>
+		<LI><P>The node type of
+		the JCR node <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		is determined by the implementation in accordance with its policy
+		on respecting property semantics (see §11.3 <I>Respecting Property
+		Semantics</I> and §11.4 <I>Determining Node Types</I>).</P>
+		<LI><P>Each child XML
+		element <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a JCR child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>.</P>
+		<LI><P>Each XML
+		attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		within an XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a property <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		of JCR node <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>.
+		The value of each XML attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		becomes the value of the corresponding property <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+		<LI><P>The type of each
+		imported property is determined by the implementation in accordance
+		with its policy on respecting property semantics (see §11.3
+		<I>Respecting Property Semantics</I> and §11.4 <I>Determining Node
+		Types</I>).</P>
+		<LI><P>Escape sequences
+		representing non-XML-valid characters in element names and
+		whitespace in attribute values may be encountered (for example, if
+		the incoming XML stream is the product of an earlier document view
+		export). In such cases, whether the escape sequences are decoded is
+		left up to the implementation. Note that the predefined entity
+		references <FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;amp;</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;lt;</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;gt;</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;apos;</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;quot;</FONT></FONT>,
+		as well as all other entity and character references, must be
+		decoded in any case, in accordance with the XML specification.</P>
+		<LI><P>An implementation
+		that respects node type information may be able to determine
+		whether a particular attribute is intended to be a single or
+		multi-value property, and treat any spaces embedded in the value
+		accordingly (either as delimiters or as literal spaces).
+		Implementations are also free to rely on information external to
+		this specification (such as any schema associated by the incoming
+		XML) to help determine the intended interpretation of whitespace
+		within a particular incoming attribute value.</P>
+		<LI><P>Text within an
+		XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+		property called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+		of a JCR node called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>,
+		which itself becomes a JCR child node of the node<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		E</FONT></FONT>. The value of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>E/jcr:xmltext/jcr:xmlcharacters</FONT></FONT>
+		will be the character data passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler.characters</FONT></FONT>.</P>
+		<LI><P>If import is done
+		through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+		returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>getImportContentHandler</FONT></FONT>,
+		data passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler.ignorableWhitespace</FONT></FONT>
+		is ignored.</P>
+		<LI><P>If import is done
+		through <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>,
+		pure whitespace between elements (that is, a string containing no
+		non-whitespace characters) is ignored. However, whitespace leading,
+		trailing and between non-whitespace characters is included in the
+		text that is stored in <FONT FACE="Courier New, monospace"><FONT SIZE=2>E/jcr:xmltext/jcr:xmlcharacters</FONT></FONT>.</P>
+	</OL>
+<script type="text/javascript" src="footer.js"></script></body></html>

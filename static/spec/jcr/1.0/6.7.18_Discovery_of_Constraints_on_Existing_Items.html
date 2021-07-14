@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.18 Discovery of Constraints on Existing Items (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.18." id="section_6.7.18."></a> 6.7.18 Discovery of Constraints on Existing Items
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Node</b> and <b>Property</b> interfaces also have methods that allow direct access to the <b>NodeDefinition</b> or <b>PropertyDefinition</b> applicable to a particular node or property.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeDefinition</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDefinition()</b>
+									</p>
+									<p class="c5">
+										Returns the node definition that applies to this <b>Node</b>. In some cases there may appear to be more than one definition that could apply to this node. However, it is assumed that upon creation of this node, a single particular definition was used and it is <i>that</i> definition that this method returns. How this governing definition is selected upon node creation from among others which may have been applicable is an implementation issue and is not covered by this specification. The <b>NodeDefinition</b> returned when this method is called on the root node of a workspace is also up to the implementation.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Property</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>PropertyDefinition</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDefinition()</b>
+									</p>
+									<p class="c5">
+										Returns the property definition that applies to this <b>Property</b>. In some cases there may appear to be more than one definition that could apply to this property. However, it is assumed that upon creation of this property, a single particular definition was used and it is <i>that</i> definition that this method returns. How this governing definition is selected upon property creation from among others which may have been applicable is an implementation issue and is not covered by this specification.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

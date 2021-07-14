@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.2.1.7 Version Extends Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.2.1.7 Version Extends Node</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	interface extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	Under simple versioning, however, versions are not represented by
+	nodes in content, consequently the inherited methods, other than
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.getName()</FONT></FONT>
+	(see §15.2.1.1 <I>Version Name</I>), are not required to function.
+	These methods may throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>.
+	Under full versioning the methods of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	inherited from <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	function on the actual node in content that backs that version (see
+	§3.13.3.1 <I>nt:version</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

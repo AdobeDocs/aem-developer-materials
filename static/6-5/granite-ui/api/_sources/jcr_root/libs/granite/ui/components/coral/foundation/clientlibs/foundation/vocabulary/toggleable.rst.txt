@@ -1,0 +1,113 @@
+*********************
+foundation-toggleable
+*********************
+
+``foundation-toggleable`` is a vocabulary about the concept of an element that can be toggled in term of visibility.
+A good example is a modal dialog, where it can shown to the user and closed accordingly.
+
+
+Markup
+======
+
+
+.foundation-toggleable
+----------------------
+
+Indicates the element is a toggleable.
+
+Selector Rule::
+
+   .foundation-toggleable
+
+
+Event
+=====
+
+
+foundation-toggleable-show
+--------------------------
+
+The event that MUST be triggered when the toggleable is shown (from hidden previously).
+
+The event has the following interface:
+
+.. code-block:: ts
+
+   interface FoundationToggleableShowEvent {
+     (): void;
+   }
+
+Example:
+
+.. code-block:: js
+
+   $(document).on("foundation-toggleable-show", function(e) {});
+
+
+foundation-toggleable-hide
+--------------------------
+
+The event that MUST be triggered when the toggleable is hidden (from shown previously).
+
+The event has the following interface:
+
+.. code-block:: ts
+
+   interface FoundationToggleableHideEvent {
+     (): void;
+   }
+
+Example:
+
+.. code-block:: js
+
+   $(document).on("foundation-toggleable-hide", function(e) {});
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-toggleable``
+
+condition
+   ``.foundation-toggleable``
+
+returned type
+   ``FoundationToggleable``
+
+.. code-block:: ts
+
+   interface FoundationToggleable {
+     /**
+      * Returns <code>true</code> if the toggleable is currently showned to the user; <code>false</code> otherwise.
+      */
+     isOpen(): boolean;
+
+     /**
+      * Shows the toggleable to the user.
+      * This method will trigger <code>foundation-toggleable-show</code> event.
+      *
+      * @param anchor The anchor that can be used as a reference when showing the element.
+      *               Note that this param MAY be overloaded in the future (e.g. MouseEvent is passed).
+      *               As such the implementor is REQUIRED to cater for the param that it doesn't understand.
+      */
+     show(anchor?: Element): void;
+
+     /**
+      * Hides the toggleable from the user.
+      * This method will trigger <code>foundation-toggleable-hide</code> event.
+      */
+     hide(): void;
+   }
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-toggleable" {
+     rankdir=BT;
+     "foundation-toggleable-control" -> "foundation-toggleable" [label="controls", weight=8];
+   }

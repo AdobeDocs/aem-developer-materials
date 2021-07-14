@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.8 Version Storage (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.8 Version Storage</H3>
+	<P>Version histories are
+	stored in a single, repository-wide version storage mutable and
+	readable through the versioning API.</P>
+	<P>Under full versioning
+	the version storage data must, additionally, be reflected in each
+	workspace as a protected (see §3.7.2.2 <I>Protected</I>) subgraph
+	of nodes of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	located below <FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:versionStorage</FONT></FONT>
+	(see §3.11 <I>System Node</I>). Because it is protected, the
+	subgraph cannot be altered through the core write methods of JCR
+	(see §10.2 <I>Core Write Methods</I>) but only through though the
+	methods of the versioning API.</P>
+	<P>Though the general repository-wide
+	version history is reflected in each workspace, the access that a
+	particular <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	gets to that subgraph is governed by that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>'s
+	authorization, just as for any other part of the workspace.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	nodes below <FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:versionStorage</FONT></FONT>,
+	may all be direct children of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionStorage</FONT></FONT>
+	node or may be organized in a deeper substructure of intervening
+	subnodes that sort the version histories by some
+	implementation-specific criteria.</P>
+	<P>The node type of the node
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionStorage</FONT></FONT>
+	and any structural nodes used within the subgraph are left up to the
+	implementation.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.11 Locking Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.11." id="section_8.4.11."></a>8.4.11 Locking Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The methods for locking, unlocking and querying the locking status of a node are found in the <b>Node</b> interface itself:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Lock</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>lock(boolean isDeep, boolean isSessionScoped)</b>
+									</p>
+									<p class="c5">
+										Places a lock on this node. If successful, this node is said to <i>hold</i> the lock.
+									</p>
+									<p class="c5">
+										If <b>isDeep</b> is <b>true</b> then the lock <i>applies</i> to this node and all its descendant nodes; if <b>false</b>, the lock applies only to this, the holding node.
+									</p>
+									<p class="c5">
+										If <b>isSessionScoped</b> is <b>true</b> then this lock will expire upon the expiration of the current session (either through an automatic or explicit <b>Session.logout</b>); if <b>false</b>, this lock does not expire until explicitly unlocked or automatically unlocked due to a implementation-specific limitation, such as a timeout.
+									</p>
+									<p class="c5">
+										Returns a <b>Lock</b> object reflecting the state of the new lock and including a lock token.
+									</p>
+									<p class="c5">
+										The lock token is also automatically added to the set of lock tokens held by the current <b>Session</b>.
+									</p>
+									<p class="c5">
+										If successful, then the property <b>jcr:lockOwner</b> is created and set to the value of <b>Session.getUserID</b> for the current session and the property <b>jcr:lockIsDeep</b> is set to the value passed in as <b>isDeep</b>. These changes are persisted automatically; there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										Note that it is possible to lock a node even if it is checked-in (the lock-related properties will be changed despite the checked-in status). See <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i> for an explanation of “checked-in” status.
+									</p>
+									<p class="c5">
+										If this node is not of mixin node type <b>mix:lockable</b> then a <b>LockException</b> is thrown.
+									</p>
+									<p class="c5">
+										If this node is already locked (either because it holds a lock or a lock above it applies to it), a <b>LockException</b> is thrown.
+									</p>
+									<p class="c5">
+										If <b>isDeep</b> is <b>true</b> and a descendant node of this node already holds a lock, then a <b>LockException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the current session does not have sufficient permissions to place the lock, an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this node has pending unsaved changes.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if this implementation does not support locking.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Lock</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getLock()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>Lock</b> object that applies to this node. This may be either a lock on this node itself or a deep lock on a node above this node.
+									</p>
+									<p class="c5">
+										If this <b>Session</b> (the one through which this <b>Node</b> was acquired) holds the lock token for this lock, then the returned <b>Lock</b> object contains that lock token (accessible through <b>Lock.getLockToken</b>). If this <b>Session</b> does not hold the applicable lock token, then the returned <b>Lock</b> object will not contain the lock token (its <b>Lock.getLockToken</b> method will return <b>null</b>). See <b>Lock</b>, below.
+									</p>
+									<p class="c5">
+										If this node is not locked (no lock applies to this node) then a <b>LockException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the current session does not have sufficient permissions to get the lock, an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if this implementation does not support locking.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>unlock()</b>
+									</p>
+									<p class="c5">
+										Removes the lock on this node. Also removes the properties <b>jcr:lockOwner</b> and <b>jcr:lockIsDeep</b> from this node. These changes are persisted automatically; there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										If this node does not currently hold a lock or holds a lock for which this <b>Session</b> does not have the correct lock token, then a <b>LockException</b> is thrown. Note however that the system may give permission to some users to unlock locks for which they do not have the lock token. Typically such “lock-superuser” capability is intended to facilitate administrational clean-up of orphaned open-scoped locks.
+									</p>
+									<p class="c5">
+										Note also that it is possible to unlock a node even if it is checked-in (the lock-related properties will be changed despite the checked-in status). See <a href="8.2_Versioning.html">8.2</a> <i>Versioning</i> for an explanation of “checked-in” status.
+									</p>
+									<p class="c5">
+										If the current session does not have sufficient permissions to remove the lock, an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this node has pending unsaved changes.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if this implementation does not support locking.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>holdsLock()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node holds a lock; otherwise returns <b>false</b>. To <i>hold</i> a lock means that this node has actually had a lock placed on it specifically, as opposed to just having a lock <i>apply</i> to it due to a deep lock held by an node above.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isLocked()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node is locked either as a result of a lock held by this node or by a deep lock on a node above this node; otherwise returns <b>false</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

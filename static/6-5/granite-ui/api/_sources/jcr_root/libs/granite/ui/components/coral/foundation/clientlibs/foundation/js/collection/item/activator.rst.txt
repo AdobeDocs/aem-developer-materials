@@ -1,0 +1,50 @@
+************************************
+foundation-collection-item-activator
+************************************
+
+``foundation-collection-item-activator`` is a control to select a :doc:`.foundation-collection-item <../../../vocabulary/collection>` element.
+
+
+Markup
+======
+
+
+.foundation-collection-item-activator
+-------------------------------------
+
+Indicates the control.
+When it is activated, the containing ``.foundation-collection-item`` element is selected following :doc:`foundation-selections <../../../vocabulary/selections>` contract.
+
+Selector Rule::
+
+   .foundation-collection-item .foundation-collection-item-activator,
+   .foundation-collection-item.foundation-collection-item-activator
+
+
+Example
+=======
+
+Imagine there is a ``<example-card>`` as the collection item:
+
+.. code-block:: html
+
+   <example-cardview class="foundation-collection">
+     <example-card class="foundation-collection-item">
+       <p>My example card</p>
+       <button type="button" class="foundation-collection-item-activator">Select It</button>
+     </example-card>
+   </example-cardview>
+
+When it is clicked, the containing ``<example-card>`` is selected.
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-item-activator" -> "foundation-collection" [label="selects item"];
+   }

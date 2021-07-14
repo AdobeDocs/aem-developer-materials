@@ -1,0 +1,269 @@
+*****************
+foundation-picker
+*****************
+
+``foundation-picker`` is a :doc:`vocabulary </jcr_root/libs/granite/ui/docs/client/vocabulary>` to allow the user to pick values.
+
+For example, it is leveraged by :doc:`foundation-autocomplete <../js/autocomplete/index>` to implement its picker.
+
+
+Context Element
+===============
+
+Due to the nature of the concept of picker, a picker is always passive, waiting to be initiated by other element to pick values.
+This element is called "context" element.
+
+For example in ``foundation-autocomplete``, the ``<foundation-autocomplete>`` element is the one which initiates its picking workflow, which is done when the user click on the picker button.
+So in this case, the ``<foundation-autocomplete>`` element is then the context element.
+
+The context element can be used by the picker implementation for any purpose.
+Most likely scenario is to use it as the anchor of the popover, assuming the picker is a popover.
+
+
+Lifecycle
+=========
+
+When the context element initiates the picking workflow, it MUST follow the following lifecycle:
+
+1. Context element MAY call ``FoundationPicker#attach``, passing itself as the context parameter.
+
+   When the picker element is detached from the DOM, ``attach`` SHOULD be used to attach it to the DOM.
+   When it is already attached, the function call is OPTIONAL.
+
+2. Context element calls ``FoundationPicker#pick``, where it has two outcomes, which are either a success or a cancelation.
+
+   The function MAY be called multiple times to update the picker UI based on new value.
+
+3. Context element MAY call ``FoundationPicker#focus`` to allow an appropriate element to have focus when the picker UI is presented.
+
+4. Context element MAY call ``FoundationPicker#cancel`` to cancel the picking workflow, only after calling ``FoundationPicker#pick``.
+
+5. After cancelation, context element MAY call ``FoundationPicker#detach``
+
+   The context element SHOULD call the function when it needs to detach the picker element.
+
+The context element can repeat the lifecycle over and over again.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-picker``
+
+returned type
+   ``FoundationPicker``
+
+.. code-block:: ts
+
+   interface FoundationPicker {
+     /**
+      * Attaches the picker element to the DOM.
+      * As this method will inject content to the DOM, this method SHOULD also trigger <code>foundation-contentloaded</code> event as per Granite UI requirement.
+      *
+      * @param context The element triggering the picker API.
+      */
+     attach: (context: Element) => void;
+
+     /**
+      * Detaches the picker element from the DOM.
+      */
+     detach: () => void;
+
+     /**
+      * Presents the UI to allows the user to pick the selections.
+      * e.g. By showing a dialog showing a list of options or search field.
+      *
+      * It returns a promise, promising the selection when fulfilled, or indicating a cancelation when rejected.
+      * The UI also needs to be closed (e.g. closing the dialog) before resolving the promise.
+      *
+      * This method can be called more than once, before <code>#cancel</code> is called.
+      * In this case, the parameters, especially <code>currentInput</code>, are passed with new values, which can be used to update the UI.
+      * The previously returned promise needs to be abandoned.
+      *
+      * When a promised is abandoned, it needs to be discarded and MUST NOT be fulfilled.
+      *
+      * @param context
+      *         The element triggering the picker API.
+      * @param selections
+      *         The current selections.
+      * @param currentInput
+      *         The current text input entered by the user.
+      *         The text can be interpreted in any way by the picker implementation.
+      * @param setValue
+      *         The callback function to reflect the ongoing value selected by the user.
+      *         Note that this value is not a committed value. Rather, it is just a way to update current input field live based on the current user selection.
+      *         When this function is used by the picker implementation, then during cancelation, the picker implementation MUST reset the input field by calling this method again.
+      *
+      *         If the optional <code>currentInput</code> parameter is passed, this parameter MUST be passed also.
+      */
+     pick: (context: Element, selections: FoundationPickerSelection[], currentInput?: string, setValue?: (value :string) => void) => Promise<FoundationPickerSelection[]>;
+
+     /**
+      * Cancels the picking. The UI needs to be cancelled accordingly (e.g. closing the dialog).
+      *
+      * After calling this function, the promise created by <code>#pick</code> is abandoned.
+      *
+      * When a promised is abandoned, it needs to be discarded and MUST NOT be fulfilled.
+      */
+     cancel: () => void;
+
+     /**
+      * Focuses the picker element.
+      *
+      * This allows the picker implementation to focus the appropriate element when the picker is presented to the user.
+      *
+      * @param last <code>true</code> to focus the last item. This makes sense when the picker is implemented as a list for example.
+      */
+     focus?: (last?: boolean) => void;
+
+     /**
+      * Tries to resolve the given values into <code>FoundationPickerSelection</code>s.
+      *
+      * Note that this method MAY resolve the value on best effort basis.
+      * In the event that this method is unable to resolve a value, then <code>null</code> MUST be returned for that value.
+      */
+     resolve?: (rawInputs: string[]) => Promise<FoundationPickerSelection[]>;
+   }
+
+   interface FoundationPickerSelection {
+     /**
+      * The value of the selection. This value will be the value submitted during form submission.
+      */
+     value: string;
+
+     /**
+      * The text of the selection. This is usually used to show the user friendly text.
+      */
+     text: string;
+
+     /**
+      * <code>true</code> if the selection is not from existing value in the system, rather it is defined by the user;
+      * <code>false</code> otherwise.
+      *
+      * For example, instead of choosing from the provided options, the user keys in her own value to create a new item in the system.
+      */
+     isUserDefined: boolean;
+   }
+
+
+Example
+=======
+
+Imagine we need a button to pick values. So when the button is clicked, the picker is shown and the user can then pick value accordingly.
+
+.. code-block:: html
+
+   <button class="example-picker-control" data-example-picker-control-src="/my/picker.html"></button>
+
+The following code is an example to implement the use case:
+
+.. code-block:: js
+
+   (function(window, document, $) {
+     "use strict";
+
+     function handleSelections(control, state, selections) {
+       // Handle the logic here when there is a selection
+       console.log(selections);
+     }
+
+     function show(control, state) {
+       state.api.attach(this);
+
+       state.api.pick(control[0], []).then(function(selections) {
+         state.api.detach();
+         state.open = false;
+
+         handleSelections(control, state, selections);
+       }, function() {
+         cancel(control, state);
+       });
+
+       if ("focus" in state.api) {
+         state.api.focus(last);
+       } else {
+         state.el.focus();
+       }
+
+       state.open = true;
+     }
+
+     function cancel(control, state) {
+       state.api.detach();
+       state.open = false;
+     }
+
+     function getState(control) {
+       var KEY_STATE = "example-picker-control.internal.state";
+
+       var state = control.data(KEY_STATE);
+
+       if (!state) {
+         state = {
+           el: null,
+           open: false,
+           loading: false
+         };
+         control.data(KEY_STATE, state);
+       }
+
+       return state;
+     }
+
+     $(document).on("click", ".example-picker-control", function(e) {
+       e.preventDefault();
+
+       var control = $(this);
+       var state = getState(control);
+
+       if (state.loading) {
+         return;
+       }
+
+       if (state.el) {
+         if (state.open) {
+           state.api.cancel();
+           cancel(control, state);
+         } else {
+           show(control, state);
+         }
+       } else {
+         var src = control[0].dataset.examplePickerControlSrc;
+
+         if (!src) {
+           return;
+         }
+
+         state.loading = true;
+
+         $.ajax({
+           url: src,
+           cache: false
+         }).then(function(html) {
+           return $(window).adaptTo("foundation-util-htmlparser").parse(html);
+         }).then(function(fragment) {
+           return $(fragment).children()[0];
+         }).then(function(pickerEl) {
+           state.loading = false;
+           state.el = pickerEl;
+           state.api = $(pickerEl).adaptTo("foundation-picker");
+
+           show(control, state);
+         }, function() {
+           state.loading = false;
+         });
+       }
+     });
+   })(window, document, Granite.$);
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-autocomplete" {
+     rankdir=BT;
+     "foundation-autocomplete" -> "foundation-picker" [label="uses"];
+   }

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.4.2 Assigning a Primary Node Type (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.4.2." id="section_7.4.2."></a> 7.4.2 Assigning a Primary Node Type
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Assignment of a node type to a node on creation is done by supplying the node type name alongside the new node's path in a call to
+								</p>
+							
+							
+								<p class="c5">
+									<b>Node.addNode(String relPath, String primaryNodeTypeName)</b>
+								</p>
+							
+							
+								<p class="c5">
+									(see <a href="7.1.4_Adding_Nodes.html">7.1.4</a> <i>Adding Nodes</i>).
+								</p>
+							
+							
+								<p class="c5">
+									Alternatively, in many cases the application using the API will not need to explicitly supply a node type since the very name of the new child node will be enough to unambiguously determine its node type by reference to one of the node definitions contained in the node type of the parent node. In such cases, <b>Node.addNode(String relPath)</b> will be sufficient.
+								</p>
+							
+							
+								<p class="c5">
+									Automatic determination of node types is only required to work if the name of the node being added is explicitly named in a child node definition of the parent node type (or one of that type's supertypes; see <a href="6.7.14_NodeDefinition.html">6.7.14</a> <i>NodeDefinition</i>). The implementation is not required to take residual definitions into account (see <a href="6.7.15_Residual_Definitions.html">6.7.15</a> <i>Residual Definitions</i>).
+								</p>
+							
+							
+								<p class="c5">
+									If the node type of the new child node cannot be determined automatically and no primary node type is explicitly specified, then a <b>ConstraintViolationException</b> is thrown (see <a href="7.1.4_Adding_Nodes.html">7.1.4</a> <i>Adding Nodes</i>).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

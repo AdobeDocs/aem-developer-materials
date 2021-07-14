@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>foundation.collection.action.action: foundation.link &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../../../../../../" src="../../../../../../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../../../../../search.html" />
+    <link rel="next" title="foundation.collection.action.action: foundation.pushstate" href="foundation.pushstate.html" />
+    <link rel="prev" title="foundation.collection.action.action: foundation.dialog" href="foundation.dialog.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="foundation.pushstate.html" title="foundation.collection.action.action: foundation.pushstate"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="foundation.dialog.html" title="foundation.collection.action.action: foundation.dialog"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../index.html" accesskey="U">Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foundation-collection-action-action-foundation-link">
+<h1>foundation.collection.action.action: foundation.link<a class="headerlink" href="#foundation-collection-action-action-foundation-link" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">foundation.link</span></code> is an <a class="reference internal" href="../index.html#foundation-collection-action-action"><span class="std std-ref">action of foundation-collection-action</span></a>.</p>
+<p>When the action is triggered, it will cause the user agent to navigate to a URI, using <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/window.open">window.open</a>. It supports the following parameters:</p>
+<dl class="docutils">
+<dt>config.data.href</dt>
+<dd><p class="first">The URI Template that will be expanded into a URI that the user agent navigates to. The URI Template is expanded using variables satisfying the following interface:</p>
+<div class="last highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">FoundationCollectionActionFoundationLinkVariables</span> <span class="p">{</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The value of &lt;code&gt;data-foundation-collection-id&lt;/code&gt; attribute of the given &lt;code&gt;collection&lt;/code&gt; parameter.</span>
+<span class="cm">   */</span>
+  <span class="nx">id</span>: <span class="kt">string</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The array of values of &lt;code&gt;data-foundation-collection-item-id&lt;/code&gt; attribute of the given &lt;code&gt;selections&lt;/code&gt; parameter.</span>
+<span class="cm">   */</span>
+  <span class="nx">item</span>: <span class="kt">string</span><span class="p">[];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>config.data.target</dt>
+<dd>The target of the navigation. This is the <code class="docutils literal notranslate"><span class="pre">strWindowName</span></code> parameter of the window.open().</dd>
+</dl>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Given a simple button:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Navigate<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>You can annotate it with <code class="docutils literal notranslate"><span class="pre">foundation-collection-action</span></code> to navigate to a URL based on collection selections when the user click it:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-action&quot;</span> <span class="na">data-foundation-collection-action</span><span class="o">=</span><span class="s">&#39;{&quot;target&quot;: &quot;.myapp-mycollection&quot;, &quot;activeSelectionCount&quot;: &quot;multiple&quot;, &quot;action&quot;: &quot;foundation.link&quot;, &quot;data&quot;: {&quot;href&quot;: &quot;/my/link.html{?item*}&quot;, &quot;target&quot;: &quot;_blank&quot;}}&#39;</span><span class="p">&gt;</span>Navigate<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relationship-graph">
+<h2>Relationship Graph<a class="headerlink" href="#relationship-graph" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><object data="../../../../../../../../../../../../../_images/graphviz-5b219e4c5b74ce2e9079f794a268be824d23226c.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph &quot;foundation-collection&quot; {
+  rankdir=BT;
+  &quot;foundation-selections&quot; -&gt; &quot;foundation-collection&quot; [label=&quot;extends&quot;, weight=8];
+  &quot;foundation-collection-action&quot; -&gt; &quot;foundation-selections&quot; [label=&quot;reacts to&quot;];
+  &quot;foundation.dialog&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+  &quot;foundation.link&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+  &quot;foundation.pushstate&quot; -&gt; &quot;foundation-collection-action&quot; [label=&quot;provides action to&quot;];
+}</p></object></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">foundation.collection.action.action: foundation.link</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#relationship-graph">Relationship Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="foundation.dialog.html"
+                        title="previous chapter">foundation.collection.action.action: foundation.dialog</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="foundation.pushstate.html"
+                        title="next chapter">foundation.collection.action.action: foundation.pushstate</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/action/action/foundation.link.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="foundation.pushstate.html" title="foundation.collection.action.action: foundation.pushstate"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="foundation.dialog.html" title="foundation.collection.action.action: foundation.dialog"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" >Granite UI Foundation Client-side</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../index.html" >Granite UI Foundation JS Components</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

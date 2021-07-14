@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.9.2 Getting the Statement (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.9.2 Getting the Statement</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Query.getStatement()</FONT></FONT></P>
+	<P>returns the statement
+	set for the query. If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	was created with an explicitly supplied <FONT FACE="Courier New, monospace"><FONT SIZE=2>statement</FONT></FONT>
+	string parameter using <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager.createQuery</FONT></FONT>
+	then this method returns that statement. The statement returned must
+	be semantically identical to the original statement but need not be
+	an identical string (for example, it may be normalized).</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	is actually a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	created with <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.createQuery</FONT></FONT>
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getStatement</FONT></FONT>
+	must return the serialized form of the query, in JCR-SQL2 syntax.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

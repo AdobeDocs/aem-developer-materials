@@ -1,0 +1,35 @@
+
+List
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/list
+   :layout:
+
+   The layout to render list.
+
+   Each item can be any component. It supports a standard ``layoutConfig`` node with the following properties:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsListItemLayoutconfig]
+
+      /**
+       * ``true`` to have mouse interaction effect.
+       */
+      - interactive (Boolean)
+
+   The items of the list are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mylist
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/list"
+        + items
+          + item1
+            - sling:resourceType = "granite/ui/components/foundation/container"
+            + layoutConfig
+              - interactive = true
+          + item2
+            - sling:resourceType = "granite/ui/components/foundation/container"

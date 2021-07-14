@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.4.2.1 General Structure (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.4.2.1." id="section_6.4.2.1."></a>6.4.2.1 General Structure
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Given a subtree of a workspace, the general form of the document view is determined as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ol>
+			<li>
+				<p class="c5">
+					The relevant mappings from the repository namespace registry are rendered as a set of namespace declarations in the top-most XML element (though the <b>xml</b> namespace is excluded, since its presence would be redundant).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each content repository node <b>N</b> becomes an XML element of the same name, <b>N</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each child node <b>C</b> of <b>N</b> becomes a subelement <b>C</b> of XML element <b>N</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The order of the subelements of element <b>N</b> must reflect the order in which the corresponding child nodes are returned by <b>Node.getNodes</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each property <b>P</b> of node <b>N</b> becomes an XML attribute <b>P</b> of XML element <b>N</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The value of each property <b>P</b> is converted to string form according to the standard conversion (see <a href="6.2.6_Property_Type_Conversion.html">6.2.6</a> <i>Property Type Conversion</i>) and becomes the value of the XML attribute <b>P</b>. Entity references are used to escape characters which should not be included as literals within attribute values (see <a href="6.4.4_Escaping_of_Values.html">6.4.4</a> <i>Escaping of Values</i>).
+				</p>
+			</li>
+		</ol>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following sections describe the exceptions to the above general rules.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

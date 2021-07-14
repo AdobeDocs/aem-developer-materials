@@ -1,0 +1,105 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.shared.Form-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.shared.Form-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.shared.Form-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.shared.Form"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.shared.Form</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.shared</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Form.js" target="_blank">Form.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Form</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.shared                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A helper class providing a set of form related utilities.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.shared.Form-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ.shared.Form-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Form-getFields"></a>
+            <b>getFields</b>() : Array            <div class="mdesc">
+                                    <div class="short">Get a list of fields in the document.</div>
+            <div class="long">
+                Get a list of fields in the document.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">Each object in the array represents a field. Each field contains: <div class="mdetail-params"><ul) <li><code>text</code> : String<div class="sub-desc">The label to display (usually the field's caption).</div></li> <li><code>value</code> : String<div class="sub-desc">The name of the field.</div></li> <li><code>enumeration</code> : Array|null<div class="sub-desc">For enumerated fields, a nested array of text/value pairs.</div></li> </ul></div></div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Form</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Form-getLabelForField"></a>
+            <b>getLabelForField</b>(&nbsp;<code>HTMLElement fieldNode</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Return the label text for an &lt;input&gt; or &lt;select&gt;.  When a
+label can't be found, the element's name attrib...</div>
+            <div class="long">
+                <p>Return the label text for an <code>&lt;input&gt;</code> or <code>&lt;select&gt;</code>.  When a
+label can't be found, the element's name attribute is used as a fall-back.</p>
+<p>Note: Public callers can ignore the <code>documentLabelMap</code> parameter (it's used internally
+as a caching mechanism).</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>fieldNode</code> : HTMLElement<div class="sub-desc">The <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> or
+<code>&lt;textArea&gt;</code> node.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">The label text.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Form</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.shared.Form-searchArray"></a>
+            <b>searchArray</b>() : Object            <div class="mdesc">
+                                    <div class="short">Searches an array for an object with a particular property of a particular value.</div>
+            <div class="long">
+                Searches an array for an object with a particular property of a particular value.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Object</code><div class="sub-desc">the first object which matches, or null if no objects match.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Form</td>
+    </tr>
+            </table>
+                <a id="CQ.shared.Form-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

@@ -1,0 +1,1 @@
+{"name":"CQ.Ext.Updater.BasicRenderer","doc":"This class is a base class implementing a simple render method which updates an element using res...","configs":[],"props":[],"methods":[{"name":"render","doc":"This method is called when an Ajax response is received, and an Element needs updating."}],"events":[]}

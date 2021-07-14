@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.8.3 getCorrespondingNodePath (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.8.3." id="section_7.1.8.3."></a>7.1.8.3 getCorrespondingNodePath
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The API also provides a method for quickly finding the path of a node's corresponding node (if it exists) in another workspace:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										String
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getCorrespondingNodePath(String workspaceName)</b>
+									</p>
+									<p class="c5">
+										Returns the absolute path of the node in the specified workspace that corresponds to <b>this</b> node.
+									</p>
+									<p class="c5">
+										If no corresponding node exists then an <b>ItemNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the specified workspace does not exist then a <b>NoSuchWorkspaceException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the current <b>Session</b> does not have sufficient permissions to perform this operation, an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

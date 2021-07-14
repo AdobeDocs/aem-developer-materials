@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.4.3 From DATE To (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.6.4.3 From DATE To</H4>
+	<P><B>STRING</B>: The
+	date is converted to the following format:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>sYYYY</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>-</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>MM</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>-</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>DD</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>hh</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>mm</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>ss</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>.</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>sssTZD</I></FONT></FONT></P>
+	<P>where:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>sYYYY<BR></FONT></FONT>Four-digit
+	year with optional leading positive (‘<FONT FACE="Courier New, monospace"><FONT SIZE=2>+</FONT></FONT>’)
+	or negative (‘<FONT FACE="Courier New, monospace"><FONT SIZE=2>-</FONT></FONT>’)
+	sign. <FONT FACE="Courier New, monospace"><FONT SIZE=2>0000</FONT></FONT>
+	, <FONT FACE="Courier New, monospace"><FONT SIZE=2>-0000</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>+0000</FONT></FONT>
+	all indicate the year 1 BCE. –<FONT FACE="Courier New, monospace"><FONT SIZE=2>YYYY</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>YYYY</FONT></FONT>
+	is the number <I>y</I> indicates the year (<I>y</I>+1) BCE. The
+	absence of a sign or the presence of a positive sign indicates a
+	year CE. For example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>-0054</FONT></FONT>
+	would indicate the year 55 BCE, while <FONT FACE="Courier New, monospace"><FONT SIZE=2>+1969</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>1969</FONT></FONT>
+	indicate the year 1969 CE.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>MM<BR></FONT></FONT>Two-digit
+	month (01 = January, etc.)</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DD<BR></FONT></FONT>Two-digit
+	day of month (01 through 31)</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>hh<BR></FONT></FONT>Two
+	digits of hour (00 through 23, or 24 if <FONT FACE="Courier New, monospace"><FONT SIZE=2>mm</FONT></FONT>
+	is 00 and <FONT FACE="Courier New, monospace"><FONT SIZE=2>ss.sss</FONT></FONT>
+	is 00.000)</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>mm<BR></FONT></FONT>Two
+	digits of minute (00 through 59)</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ss.sss<BR></FONT></FONT>Seconds,
+	to three decimal places (00.000 through 59.999 or 60.999 in the case
+	of leap seconds)</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>TZD<BR></FONT></FONT>Time
+	zone designator (either <I>Z</I> for Zulu, i.e. UTC, or <I>+hh:mm</I>
+	or <I>-hh:mm</I>, i.e. an offset from UTC)</P>
+	<P>Note that the “<FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>”
+	separating the date from the time and the separators “<FONT FACE="Courier New, monospace"><FONT SIZE=2>-</FONT></FONT>”and
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT>”
+	appear literally in the string.</P>
+	<P>This format is a
+	subset of the format defined by ISO 8601:2004. 
+	</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>DATE</FONT></FONT>
+	value cannot be represented in this format a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>BINARY</B>: The
+	date is converted to a string, as described in §3.6.4.2 <I>From
+	BINARY To</I>, and this string is encoded in UTF-8.</P>
+	<P><B>DOUBLE</B>: The
+	date is converted to the number of milliseconds since 00:00 (UTC) 1
+	January 1970 (<FONT FACE="Courier New, monospace"><FONT SIZE=2>1970-01-01T00:00:00.000Z</FONT></FONT>).
+	If this number is out-of-range for a double, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>DECIMAL</B>: The
+	date is converted to the number of milliseconds since 00:00 (UTC) 1
+	January 1970 (<FONT FACE="Courier New, monospace"><FONT SIZE=2>1970-01-01T00:00:00.000Z</FONT></FONT>).</P>
+	<P><B>LONG</B>: The date
+	is converted to the number of milliseconds since 00:00 (UTC) 1
+	January 1970 (<FONT FACE="Courier New, monospace"><FONT SIZE=2>1970-01-01T00:00:00.000Z</FONT></FONT>).
+	If this number is out-of-range for a long, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>All Others</B>: A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P>Since the string and
+	number formats into which a <FONT FACE="Courier New, monospace"><FONT SIZE=2>DATE</FONT></FONT>
+	may be converted can hold only a subset of the information
+	potentially contained within a <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.util.Calendar</FONT></FONT>,
+	conversion from <FONT FACE="Courier New, monospace"><FONT SIZE=2>DATE</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING,
+	BINARY, DOUBLE, DECIMAL</FONT></FONT> or <FONT FACE="Courier New, monospace"><FONT SIZE=2>LONG</FONT></FONT>
+	may result in loss of information.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

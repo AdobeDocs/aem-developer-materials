@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.5 Selecting the Applicable Item Definition (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>10.5 Selecting the Applicable Item Definition</H2>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>addNode</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>setProperty</FONT></FONT>
+	method must determine which, if any, item definitions of the parent
+	node apply to the new child item, based on the name of the new item
+	and, if provided, its type.</P>
+	<P>If more than one item
+	definition still applies even after taking the name and type
+	constraints into consideration, the repository may either fail the
+	add attempt or automatically select one of the item definitions
+	based on implementation-specific criteria.</P>
+	<P>For example, if the
+	parent node <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	has two residual child node definitions that differ only by their
+	OPV value (see §3.7.2.5 <I>On-Parent-Version</I>), then even if
+	both a name and a primary type are supplied in the call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>addNode
+	</FONT></FONT>this will not be sufficient information
+	to unambiguously determine which residual definition the new node
+	should fall under. In such a case, an implementation might
+	automatically select one of the definitions based on the
+	implementation-specific rule that a node with the name <I>X</I> will
+	always have an OPV of <I>V</I> while other nodes will have an OPV of
+	<I>W</I>.</P>
+	<P>When <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	is used to change the value of an existing property, cases where the
+	intended property is ambiguous are handled in the same way as when
+	the method is used to create a new property.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

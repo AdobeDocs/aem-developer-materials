@@ -1,0 +1,86 @@
+*************************
+foundation-overlay-anchor
+*************************
+
+``foundation-overlay-anchor`` is a :doc:`vocabulary </jcr_root/libs/granite/ui/docs/client/vocabulary>` to allow an element to expose its API related to anchoring of overlay.
+
+Imagine there are an overlay element named "O" and a host element named "H".
+The O will be overlaid against H as the anchor. e.g. O maybe shown below O, like in a dropdown.
+Usually H itself can be used as an anchor as is. However, there is a time where H is a complex element where anchor should be one of its descendant.
+
+For example, given an internal markup of an autocomplete as the host, and popover as the overlay:
+
+.. code-block:: html
+
+   <foundation-autocomplete id="autocomplete">
+     <input>
+     <coral-taglist>
+       <coral-tag></coral-tag>
+       <coral-tag></coral-tag>
+       <coral-tag></coral-tag>
+     </coral-taglist>
+   </foundation-autocomplete>
+
+   <coral-popover id="popover"></coral-popover>
+
+The requirement is to anchor the popover against the ``<input>``, instead of the autocomplete element itself.
+However, the ``<input`` is internal element of autocomplete, which should not be assumed by outside code.
+So ``foundation-overlay-anchor`` is an interface to allow the outside code to get the actual anchor element without assuming the implementation detail.
+
+In this case, the JS code showing the popover can do something like this:
+
+.. code-block:: js
+
+   var autocompleteEl = document.getElementById("autocomplete");
+   var popoverEl = document.getElementById("popover");
+
+   var anchorAPI = $(autocompleteEl).adaptTo("foundation-overlay-anchor");
+
+   var anchor;
+   if (anchorAPI) {
+     anchor = anchorAPI.getElement();
+   } else {
+     anchor = autocompleteEl;
+   }
+
+   popoverEl.target = anchor;
+   popoverEl.open = true;
+
+The autocomplete in turn needs to implement the interface:
+
+.. code-block:: js
+
+   var registry = $(window).adaptTo("foundation-registry");
+
+   registry.register("foundation.adapters", {
+     type: "foundation-overlay-anchor",
+     selector: "foundation-autocomplete",
+     adapter: function(el) {
+       return {
+         getElement: function() {
+           return $(el).children("input")[0];
+         }
+       };
+     }
+   });
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-overlay-anchor``
+
+returned type
+   ``FoundationOverlayAnchor``
+
+.. code-block:: ts
+
+   interface FoundationOverlayAnchor {
+     /**
+      * Returns the actual element to be an anchor of an overlay element.
+      *
+      * This method may return the root element itself if there is no descendant element that is better.
+      */
+     getElement: () => Element;
+   }

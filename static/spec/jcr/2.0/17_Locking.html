@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17 Locking (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>17 Locking</H1>
+	<P>A repository may
+	support <I>locking</I>, which enables a user to temporarily prevent
+	other users from changing a node or subgraph of nodes. 
+	</P>
+	<P>Whether an
+	implementation supports locking can be determined by querying the
+	repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_LOCKING_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="17.1 Lockable"></a>	<H2>17.1 Lockable</H2>
+	<P>A lock is placed on a
+	node by calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	(see §17.11.1 <I>LockManager.lock</I>). The node on which a lock is
+	placed is called the<I> holding node</I> of that lock. Only nodes
+	with mixin node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	(inherited as part of their primary node type or explicitly
+	assigned) may hold locks. The definition of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	is:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:lockable]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:lockOwner (STRING) protected IGNORE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:lockIsDeep (BOOLEAN) protected IGNORE</FONT></P>
+<a name="17.2 Shallow and Deep Locks"></a>	<H2>17.2 Shallow and Deep Locks</H2>
+	<P>A lock can be
+	specified as either <I>shallow</I> or <I>deep</I>. A shallow lock
+	applies only to its holding node and its properties. A deep lock
+	applies to its holding node and all its descendants. Consequently,
+	there is a distinction between a lock <I>being held by</I> a node
+	and a lock <I>applying to</I> a node. A lock always applies to its
+	holding node. However, if it is a deep lock, it also applies to all
+	nodes in the holding node's subgraph. When a lock applies to a node,
+	that node is said to be <I>locked</I>.</P>
+	<P>Since a deep lock
+	applies to all nodes in the lock-holding node's subgraph, this may
+	include both <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	nodes and non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	nodes. The deep lock applies to both categories of node equally and
+	it <I>does not</I> add any <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	properties to any of the deep-locked <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	nodes. However, if any such nodes exist and they already have these
+	properties, this means that they are already locked, and hence the
+	attempt to deep lock above them will fail.</P>
+	<P>Additionally, assuming
+	a deep lock exists above a <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node, any attempt to lock this lower level <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node will also fail, because it is already locked from above.</P>
+<a name="17.3 Lock Owner"></a>	<H2>17.3 Lock Owner</H2>
+	<P>Initially, the session through which a
+	lock is placed is the <I>owner</I> of that lock. This means the
+	session has the power to alter the locked node and to remove the
+	lock. In the case of open-scoped locks (as opposed to
+	session-scoped, see §17.7 <I>Session-Scoped and Open-Scoped Locks</I>)
+	control of the lock may be given to another session during the
+	lifetime of that lock. In some implementations giving control of a
+	lock to another session will remove control from the previous
+	session, in others, more than one session may simultaneously own the
+	same open-scoped lock. 
+	</P>
+	<P>Repositories may support
+	client-specified lock owner information. If this is the case, the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property will be set to the value supplied upon lock creation, and
+	will not change during the lifetime of the lock. Otherwise, when a
+	lock is created, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property is set to the user ID bound to the locking <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	(that is, the string returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID</FONT></FONT>)
+	or another implementation-dependent string identifying the user.</P>
+	<P>In implementations that do not support
+	client-specified lock owner information, when an open-scoped lock is
+	moved to a new owner, or assigned an additional one (if supported),
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property may be automatically altered to reflect the change.</P>
+	<P>Strictly speaking it is the session,
+	not the user, that owns a particular lock at a particular time. The
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property is used for informational purposes, so that a client
+	application can, for example, display this information to other
+	users. For this reason the user is sometimes informally referred to
+	as the lock owner.</P>
+	<P>In implementations that record the
+	user ID in <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>,
+	that user will not automatically have the ability to alter the
+	locked node if accessing it through another session. Transfer (or,
+	if supported, addition) of ownership must be done explicitly from
+	one session to another and is not governed by the user ID associated
+	with a session.</P>
+<a name="17.4 Placing and Removing a Lock"></a>	<H2>17.4 Placing and Removing a Lock</H2>
+	<P>When <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	is performed on a <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node, the properties defined in that node type are automatically
+	created and set as follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+		is set to the supplied owner info, the user ID associated with the
+		session that set the lock (this is the value returned by
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID</FONT></FONT>)
+		or another implementation-dependent string identifying the user.</P>
+	</UL>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	is set to reflect whether the lock is deep or not.</P>
+	<P>When <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.unlock</FONT></FONT>
+	is performed on a locked <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node, through a session that owns the lock these two properties are
+	removed.</P>
+	<P>Additionally, the content repository
+	may give permission to some sessions to remove locks for which they
+	are not the owner. Typically such “lock-superuser” capability is
+	intended to facilitate administrational clean-up of orphaned
+	open-scoped locks.</P>
+	<P>An attempt to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>
+	for a node that is not <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException</FONT></FONT>,
+	as will an attempt to lock an already locked node or unlock an
+	already unlocked node.</P>
+<a name="17.5 Lock Token"></a>	<H2>17.5 Lock Token</H2>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object. If the lock is open-scoped the lock will contain a lock
+	token. A lock token is a string that uniquely identifies a
+	particular lock and acts as a key granting lock ownership to any
+	session that hold the token.</P>
+	<P>In order to use the
+	lock token as a key, it must be added to the session, thus
+	permitting that session to alter the nodes to which the lock applies
+	or to remove the lock. When a lock token is attached to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	the session becomes an owner of the lock.</P>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	automatically adds the lock token for a newly placed open-scoped
+	lock to the current session.</P>
+	<P>The client can also
+	control which lock tokens are attached to the session through the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager</FONT></FONT>
+	methods <FONT FACE="Courier New, monospace"><FONT SIZE=2>addLockToken</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeLockToken</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>getLockTokens</FONT></FONT>.</P>
+<a name="17.6 Session-Scoped and Open-Scoped Locks"></a>	<H2>17.6 Session-Scoped and Open-Scoped Locks</H2>
+	<P>When a lock is placed
+	on a node, it can be specified to be either a session-scoped lock or
+	an open-scoped lock. A session-scoped lock automatically expires
+	when the session through which the lock owner placed the lock
+	expires. An open-scoped lock does not expire until it is explicitly
+	unlocked, it times out or an implementation-specific limitation
+	intervenes.</P>
+	<P>In the case of
+	open-scoped locks, the lock token must be attached to the current
+	session in order to alter any nodes locked by that token's lock.</P>
+	<P>In the case of
+	session-scoped locks, the user need not explicitly do anything since
+	the lock is automatically associated with the session and expires
+	with it in any case.</P>
+	<P>With open–scoped
+	locks the token is automatically attached to the session. However,
+	the user must additionally ensure that a reference to the lock token
+	is preserved separately so that it can later be attached to another
+	session since, presumably, an open-scoped lock is being used to
+	avoid co-expiration with the initial session. It is for handling
+	these cases of attaching an existing lock token from a previous
+	session to a new session that the methods <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.addLockToken</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.removeLockToken</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.getLockTokens</FONT></FONT>
+	are provided (see §17.11 <I>LockManager Object</I>).</P>
+	<P>To determine an
+	existing lock’s scoping, the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.isSessionScoped</FONT></FONT>
+	is provided.</P>
+	<P>If a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	is session-scoped, the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.isLockOwningSession</FONT></FONT>
+	can be used to determine whether the current session is the lock
+	owner.</P>
+	<P>An implementation <I>may</I>
+	support simultaneous ownership of open-scoped locks across sessions.</P>
+<a name="17.7 Effect of a Lock"></a>	<H2>17.7 Effect of a Lock</H2>
+	<P>If a lock applies to a
+	node (i.e., the node either holds the lock or is a descendant of a
+	node holding a deep lock), then to all sessions except the
+	lock-owning session, the same restrictions apply with respect to the
+	node as would apply if the node were protected (see §3.7.2.2
+	<I>Protected</I>). 
+	</P>
+	<P>Removing a node is
+	considered an alteration of <I>its parent</I>. This means that a
+	node within the scope of a lock may be removed by a session that is
+	not an owner of that lock, assuming no other restriction prevents
+	the removal. Similarly, a locked node and its subgraph may be moved
+	by a non-lock-owning session if no restriction prevents the
+	alteration of the source and destination parent nodes.</P>
+	<P>
+	Locked nodes can always be read and copied by any session with
+	sufficient access privileges.</P>
+	<P>When an action is
+	prevented due to a lock, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException
+	</FONT></FONT>is thrown either immediately or on the
+	subsequent <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+	Implementations may differ on which of these behaviors is used to
+	enforce locking.</P>
+	<P>There is at most one
+	lock on any node at one time.</P>
+<a name="17.8 Timing Out"></a>	<H2>17.8 Timing Out</H2>
+	<P>Implementations may
+	support client-supplied timeout information, but are not required to
+	do so. Additionally, an implementation may remove (unlock) any lock
+	at any time due to implementation-specific criteria.</P>
+<a name="17.9 Locks and Persistence"></a>	<H2>17.9 Locks and Persistence</H2>
+	<P>When a new node is
+	added below a deep lock by that lock's owning session
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.isLocked(Node)</FONT></FONT>
+	will report true <I>even before the node is persisted</I><SUP><I><A CLASS="sdfootnoteanc" NAME="sdfootnote21anc" HREF="#sdfootnote21sym"><SUP>21</SUP></A></I></SUP>.
+	However, since the node is not visible to other <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>s,
+	its locked status has no effect until it is persisted.</P>
+<a name="17.10 Locks and Transactions"></a>	<H2>17.10 Locks and Transactions</H2>
+	<P><FONT FACE="Verdana, sans-serif">Locking
+	and unlocking are treated just like any other operation in the
+	context of a transaction. For example, consider the following series
+	of operations:</FONT></P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 lock<BR> </FONT></FONT><I>do A<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> </FONT></FONT><I>do B<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> unlock<BR></FONT></FONT><I>commit</I></P>
+	<P>In this example the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>lock</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>
+	have no effect. This series of operations is equivalent to:</P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 </FONT></FONT><I>do A<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> </FONT></FONT><I>do B<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR></FONT></FONT><I>commit</I></P>
+	<P>The reason for this is
+	that changes to a workspace are only made visible to other <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>s
+	upon commit of the transaction, and this includes changes in the
+	locked status of a node. As a result, if a lock is enabled and then
+	disabled within the same transaction, its effect never makes it to
+	the persistent workspace and therefore it does nothing.</P>
+	<P>In order to use locks
+	properly (that is, to prevent the “lost update problem”),
+	locking and unlocking must be done in separate transactions. For
+	example:</P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 lock<BR></FONT></FONT><I>commit</I></P>
+	<P><I>begin</I><BR><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 </FONT></FONT><I>do A<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> </FONT></FONT><I>do B<BR></I><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	 save<BR> unlock<BR></FONT></FONT><I>commit</I></P>
+	<P>This series of
+	operations would ensure that the actions <I>A</I> and <I>B</I> are
+	protected by the lock.</P>
+<a name="17.11 LockManager Object"></a>	<H2>17.11 LockManager Object</H2>
+	<P>The methods for
+	locking, unlocking and querying the locking status of a node are
+	found in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager</FONT></FONT>,
+	acquired through</P>
+	<P>	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager
+	Workspace.getLockManager()</FONT></FONT>.</P>
+<a name="17.11.1 Locking a Node"></a>	<H3>17.11.1 Locking a Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock
+	LockManager.lock(String absPath,<BR>			 boolean isDeep,<BR>			 
+	boolean isSessionScoped,<BR>			 long timeout,<BR>			 String
+	ownerInfo)</FONT></FONT></P>
+	<P>places a lock on the
+	node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	If successful, the node is said to <I>hold</I> the lock.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then the lock <I>applies</I> to the specified node and all its
+	descendant nodes; if <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	the lock applies only to the specified node. On a successful lock,
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	property of the locked node is set to this value.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isSessionScoped</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then this lock will expire upon the expiration of the current
+	session (either through an automatic or explicit <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.logout</FONT></FONT>);
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	this lock does not expire until it is explicitly unlocked, it times
+	out, or it is automatically unlocked due to an
+	implementation-specific limitation.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>timeout</FONT></FONT>
+	parameter specifies the number of seconds until the lock times out
+	(if it is not refreshed in the meantime, see §10.11.1 <I>Refresh</I>).
+	An implementation may use this information as a hint or ignore it
+	altogether. Clients can discover the actual timeout by inspecting
+	the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>ownerInfo</FONT></FONT>
+	parameter can be used to pass a string holding owner information
+	relevant to the client. An implementation may either use or ignore
+	this parameter. If it uses the parameter it must set the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property of the locked node to this value and return this value on
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>.
+	If it ignores this parameter the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property (and the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>)
+	is set to either the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID</FONT></FONT>
+	of the owning session or an implementation-specific string
+	identifying the owner.</P>
+	<P>The method returns a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object representing the new lock.</P>
+	<P>If the lock is
+	open-scoped the returned lock will include a lock token. The lock
+	token is also automatically added to the set of lock tokens held by
+	the current <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.</P>
+	<P>The addition or change
+	of the properties <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	are persisted immediately; there is no need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+	<P>It is possible to lock
+	a node even if it is checked-in (see §15.2.2 <I>Read-Only on
+	Check-In</I>).</P>
+<a name="17.11.2 Getting a Lock"></a>	<H3>17.11.2 Getting a Lock</H3>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=1 ><B><FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock
+	LockManager.getLock(String absPath)</FONT></FONT></B></FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object that applies to the node at absPath. This may be either a
+	lock on the node itself or a deep lock on a node above that node.</P>
+	<P>If the current session
+	holds the lock token for this lock and the lock is open-scoped, then
+	the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object contains that lock token (accessible through
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockToken</FONT></FONT>).
+	If this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	does not hold the applicable lock token and the lock is open-scoped,
+	the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object <I>may</I> return the lock token. Otherwise, the returned
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object will not contain the lock token and its <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockToken</FONT></FONT>
+	method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	(see §17.12.4 <I>Getting a Lock Token</I>).</P>
+<a name="17.11.3 Unlocking a Node"></a>	<H3>17.11.3 Unlocking a Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	void
+	LockManager.unlock(String absPath)</FONT></FONT></P>
+	<P>Removes the lock, and
+	the properties <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>,
+	from the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	These changes are persisted automatically; there is no need to call
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+	As well, the corresponding lock token is removed from the set of
+	lock tokens held by the current session.</P>
+	<P>If this node does not
+	currently hold a lock or holds a lock for which this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is not the owner, then a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException</FONT></FONT>
+	is thrown. 
+	</P>
+	<P>The system may give
+	permission to a non-owning session to unlock a lock. Typically such
+	“lock-superuser” capability is intended to facilitate
+	administrational clean-up of orphaned open-scoped locks.</P>
+	<P>It is possible to
+	unlock a node even if it is checked-in (see §15.2.2 <I>Read-Only on
+	Check-In</I>).</P>
+<a name="17.11.4 Testing for Lock Holding"></a>	<H3>17.11.4 Testing for Lock Holding</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	LockManager.holdsLock(String absPath)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	holds a lock; otherwise returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.
+	To <I>hold</I> a lock means that the node has actually had a lock
+	placed on it specifically, as opposed to having a lock <I>apply</I>
+	to it due to a deep lock held by a node above.</P>
+<a name="17.11.5 Testing for Locked Status"></a>	<H3>17.11.5 Testing for Locked Status</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	LockManager.isLocked(String absPath)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node at absPath is locked either as a result of a lock held
+	by the specified node or by a deep lock on a node above that node;
+	otherwise returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.</P>
+	<P>Alternatively, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.isLocked()</FONT></FONT></P>
+	<P>can be used directly
+	on the node in question.</P>
+<a name="17.11.6 Adding a Lock Token"></a>	<H3>17.11.6 Adding a Lock Token</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	LockManager.addLockToken(String lockToken)</FONT></FONT></P>
+	<P>adds the specified
+	lock token to the current session. Holding a lock token makes this
+	session the owner of the lock specified by that particular lock
+	token. If the implementation does not support simultaneous lock
+	ownership this method will transfer ownership of the lock
+	corresponding to the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>
+	to the current session, otherwise the current session will become an
+	additional owner of that lock. In either case, if the implementation
+	does not support client-specified lock owner information, this
+	method may cause a change in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property (and the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>)
+	of the lock corresponding to the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>
+	(see §17.5 <I>Lock Token</I>).</P>
+<a name="17.11.7 Getting Lock Tokens"></a>	<H3>17.11.7 Getting Lock Tokens</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	LockManager.getLockTokens()</FONT></FONT></P>
+	<P>returns an array
+	containing all lock tokens currently held by the current session.
+	Note that any such tokens will represent open-scoped locks, since
+	session–scoped locks do not have tokens.</P>
+<a name="17.11.8 Removing a Lock Token"></a>	<H3>17.11.8 Removing a Lock Token</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	LockManager.removeLockToken(String lockToken)</FONT></FONT></P>
+	<P>Removes the specified
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>
+	from the current session, causing the session to no longer be an
+	owner of the lock associated with the <FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>.
+	If the implementation does not support client-specified lock owner
+	information, this method may cause a change in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property (and the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>)
+	of the lock corresponding to the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>
+	(see §17.5 <I>Lock Token</I>).</P>
+<a name="17.12 Lock Object"></a>	<H2>17.12 Lock Object</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object represents a lock on a particular node. It is acquired either
+	on lock creation through <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+	or after lock creation through <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.getLock</FONT></FONT>.</P>
+<a name="17.12.1 Getting the Lock Owner"></a>	<H3>17.12.1 Getting the Lock Owner</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Lock.getLockOwner()</FONT></FONT></P>
+	<P>returns the value of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property. This is either the client-supplied lock owner information,
+	the user ID bound to the session that holds the lock or an
+	implementation-specific string identifying the user (see §4.4.1
+	<I>User</I>).</P>
+	<P>The lock owner's
+	identity is only provided for informational purposes. It does not
+	govern who can perform an unlock or make changes to the locked
+	nodes; that depends entirely upon the session that holds the lock
+	token.</P>
+<a name="17.12.2 Testing Lock Depth"></a>	<H3>17.12.2 Testing Lock Depth</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Lock.isDeep()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if this is a deep lock; <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+<a name="17.12.3 Getting the Lock Holding Node"></a>	<H3>17.12.3 Getting the Lock Holding Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Lock.getNode()</FONT></FONT></P>
+	<P>returns the lock
+	holding node. Note that <FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getLock().getNode()</FONT></FONT>
+	(where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is a locked node) will only return <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is the lock holder. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is in the subgraph of the lock holder, <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>,
+	then this call will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>H</FONT></FONT>.</P>
+<a name="17.12.4 Getting a Lock Token"></a>	<H3>17.12.4 Getting a Lock Token</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Lock.getLockToken()</FONT></FONT></P>
+	<P>may return the lock
+	token for this lock. If this lock is open-scoped and the current
+	session holds the lock token for this lock, then this method will
+	return that lock token. If the lock is open-scoped and the current
+	session does not hold the lock token, it <I>may</I> return the lock
+	token. Otherwise this method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+<a name="17.12.5 Testing Lock Aliveness"></a>	<H3>17.12.5 Testing Lock Aliveness</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Lock.isLive()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true
+	</FONT></FONT>if this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object represents a lock that is currently in effect. If this lock
+	has been unlocked either explicitly or due to an
+	implementation-specific limitation (like a timeout) then it returns
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.
+	Note that this method is intended for those cases where one is
+	holding a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	Java object and wants to find out whether the lock (the
+	repository-level entity that is attached to the lockable node) that
+	this object originally represented still exists. For example, a
+	timeout or explicit <FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>
+	will remove a lock from a node but the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	Java object corresponding to that lock may still exist, and in that
+	case its <FONT FACE="Courier New, monospace"><FONT SIZE=2>isLive</FONT></FONT>
+	method will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.</P>
+<a name="17.12.6 Testing Lock Scope"></a>	<H3>17.12.6 Testing Lock Scope</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Lock.isSessionScoped()</FONT></FONT></P>
+	<P>Returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if this is a session-scoped lock and the scope is bound to the
+	current session. Returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+<a name="17.12.7 Testing Lock Owning Session"></a>	<H3>17.12.7 Testing Lock Owning Session</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Lock.isLockOwningSession()</FONT></FONT></P>
+	<P>Returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the current session is the owner of this lock, either because it
+	is session-scoped and bound to this session or open-scoped and this
+	session currently holds the token for this lock. Returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+<a name="17.12.8 Getting Seconds Remaining"></a>	<H3>17.12.8 Getting Seconds Remaining</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>long
+	Lock.getSecondsRemaining()</FONT></FONT></P>
+	<P>If this lock's
+	time-to-live is governed by a timer, the number of remaining seconds
+	until time out is returned. If this lock's time-to-live is not
+	governed by a timer, then this method returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>Long.MAX_VALUE</FONT></FONT>.</P>
+<a name="17.12.9 Refreshing a Lock"></a>	<H3>17.12.9 Refreshing a Lock</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Lock.refresh()</FONT></FONT></P>
+	<P>If this lock's
+	time-to-live is governed by a timer, this method resets that timer.
+	If this lock's time-to-live is not governed by a timer, then this
+	method has no effect.</P>
+<a name="17.13 LockException"></a>	<H2>17.13 LockException</H2>
+	<P>When
+	a method fails due to the presence or absence of a lock on a
+	particular node a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException</FONT></FONT>
+	is thrown.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>,
+	adding the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	LockException.getFailureNodePath()</FONT></FONT>,</P>
+	<P>which
+	returns the absolute path of the node that caused the error, or <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	if the implementation chooses not to, or cannot, return a path.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

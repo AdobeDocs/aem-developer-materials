@@ -1,0 +1,31 @@
+*************************
+foundation-util-keyboard
+*************************
+
+A utility to normalize key commands based on the conventions of the operating system.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-util-keyboard``
+
+condition
+   ``window`` object
+
+returned type
+   ``FoundationUtilKeyboard``
+
+.. code-block:: ts
+
+   interface FoundationUtilKeyboard {
+     /**
+      * Normalizes the given key sequence according to the Operating System conventions. For example, it will transform
+      * cmd, meta and command to ctrl in Windows.
+      *
+      * @param keySequence The key sequence to normalize.
+      * @returns A normalized key command based on the OS conventions.
+      */
+     normalize: (keySequence: string) => string;
+   }

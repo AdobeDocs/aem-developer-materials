@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.3.1 Column Specifier (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.3.1." id="section_6.6.3.1."></a>6.6.3.1 Column Specifier
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The column specifier of a query is the part of the statement that specifies which properties are to be returned as columns in the result table. Support is only required for single-value, non-residual properties that are declared in or inherited by the node types specified in the <i>type constraint</i>. It is optional to allow specification of residual properties as columns.
+								</p>
+							
+							
+								<p class="c5">
+									If no column specifier is given, then at least the default set of columns will be returned. The default set is defined as all single-value, non-residual properties declared in or inherited by the node types specified in the type constraint. It is optional to return columns for residual properties.
+								</p>
+							
+							
+								<p class="c5">
+									In both cases (an explicitly specified set of columns, or the default set) the pseudo-property <b>jcr:path</b> will always be returned as a column. <b>jcr:path</b> is a special column that does not correspond to any actual property, it holds the normalized absolute path for the node represented by each row (see 8.5.2.2 Pseudo-property jcr:path).
+								</p>
+							
+							
+								<p class="c5">
+									As well, a score column will also be included, though it is not required that its contents always be meaningful. Note also that this column may be labeled simply <b>jcr:score</b> or it may be labeled with the signature and parameters of the <b>jcr:score(...)</b> function used in XPath. Additional score-related columns may be also returned by implementations that support multiple <b>jcr:score(...)</b> functions with varying parameters (see 8.5.2.4 Pseudo-property<i>,</i> 6.6.5.2 jcr:contains Function, and 8.5.4.5 CONTAINS).
+								</p>
+							
+							
+								<p class="c5">
+									If columns are explicitly specified then the order in which they are specified in the query is the order in which they will appear in the table. If no columns are explicitly specified then the order in which they appear is implementation-specific.
+								</p>
+							
+							
+								<p class="c5">
+									The <i>column specifier</i> has no effect on the content or form of the <b>NodeIterator</b> view of the query result.
+								</p>
+							
+							
+								<p class="c5">
+									<b>XPath</b>: In XPath the mechanism of the column specifier is not specified, though one possible approach is to interpret as the column specifier the last location step when it uses the attribute axis; in other words, when content repository properties (XML attributes in document view) are selected in the last location step. If this approach is taken then, for example, multiple properties are selected with a union.
+								</p>
+							
+							
+								<p class="c5">
+									Another possible approach is to define an XPath function that specifies the desired columns. This specification, however, does not attempt to define or limit the possible options.
+								</p>
+							
+							
+								<p class="c5">
+									<b>SQL</b>: In SQL the column specifier is the <b>SELECT</b> clause. To select the default column set the <b>*</b> is used.
+								</p>
+							
+							
+								<p class="c5">
+									Examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									
+										
+											
+												
+													
+														
+															<p class="c5">
+																<b>SQL</b>
+															</p>
+														
+													
+												
+											
+										
+									
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b> (one suggested approach)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM nt:base
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//*
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT my:title<br>
+										FROM my:type
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)/@my:title
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT my:title, my:text<br>
+										FROM my:type
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)/<br>
+										(@my:title | @my:text)
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

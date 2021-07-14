@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.13.4.1 Creating a Baseline (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.13.4.1 Creating a Baseline</H4>
+	<P>A baseline is created
+	by performing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	on a configuration proxy node (i.e., a node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	found in configuration storage). Note that since <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	is subtype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	a configuration node will have its own version history, <I>distinct
+	from the version history of its configuration root node</I>.</P>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	of the configuration proxy node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>:</P>
+	<UL>
+		<LI><P>The state of the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		is recorded in a new baseline <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+		just as it would be in a normal version.</P>
+		<LI><P>In addition, the
+		current base version of every versionable node in the configuration
+		is also recorded. 
+		</P>
+	</UL>
+	<P>How the configuration
+	state information is stored is up to the repository. It need not be
+	stored as content in the substructure of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node. For example, some repositories are likely to have some
+	efficient internal mechanisms involving lists of identifiers,
+	possibly stated as a delta against the direct predecessor baseline.
+	The only requirement is that baselines be “restoreable”.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

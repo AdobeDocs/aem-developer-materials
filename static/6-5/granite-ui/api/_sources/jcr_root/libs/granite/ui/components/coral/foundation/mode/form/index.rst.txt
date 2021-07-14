@@ -1,0 +1,45 @@
+
+Form
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/mode/form
+   :deprecated:
+
+   .. warning:: The read-only mode of the field is deprecated, hence this component is also deprecated.
+
+   Form is a container that leverages :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode` vocabulary
+   to switch between ``default`` and ``edit`` mode.
+   When it is in the ``default`` mode, the form fields show the readonly rendering, while showing the editing rendering in ``edit`` mode.
+
+   When ``foundation-mode-change`` event is triggered, this component will change itself to that mode.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ModeForm] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The mode of the form.
+       *
+       * default
+       *    The form is shown in readonly mode, where the fields are optimized for reading, instead of editing.
+       * edit
+       *    The form is shown in edit mode, where the fields are ready to handle user inputs.
+       */
+      - mode (StringEL) < 'default', 'edit'
+
+      /**
+       * The mode group that this component will be part of.
+       */
+      - group (String)
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * Make the element maximized to fill the available space.
+       */
+      - maximized (Boolean)

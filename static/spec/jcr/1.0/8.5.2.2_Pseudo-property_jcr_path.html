@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.2.2 Pseudo-property jcr:path (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.2.2." id="section_8.5.2.2."></a>8.5.2.2 Pseudo-property jcr:path
+		</h4>
+		<ul>
+			<li>
+				<p class="c5">
+					A special column, <b>jcr:path</b>, that does not correspond to any actual property is present in node type tables. The <b>jcr:path</b> column holds the normalized absolute path for the node represented by each row.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>jcr:path</b> column always appears in the result table
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Note that the actual value of a particular <b>jcr:path</b> column within a particular <b>Row</b> of the result table can be calculated by the implementation at the time that a request is made for that value. For example, on the call <b>someRow.getValue("jcr:path")</b> (where <b>someRow</b> is an instance of <b>Row</b>). This type of “lazy loading” allows implementations to avoid calculating paths for all nodes in the return set at query time. Such an approach would be advantageous for those implementations in which path calculation is expensive.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>jcr:path</b> value returned in a result table will be in <i>compact form</i>, where index notation is only used if necessary, i.e., where lack of an index indicates an implicit index of <b>[1]</b>. However, when a test is performed within a <b>WHERE</b> clause against a <b>jcr:path</b>, the query mechanism will intelligently match both compact and explicit forms of the same path. For example, the following <b>WHERE</b> clauses define the same constraint:
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								
+									
+										<p class="c5">
+											<b>WHERE jcr:path='/foo/bar'</b>
+										</p>
+									
+									
+										<p class="c5">
+											<b>WHERE jcr:path='/foo[1]/bar[1]'</b>
+										</p>
+									
+									
+										<p class="c14">
+											Consequently, to select all same name siblings one uses the following syntax:
+										</p>
+									
+									
+										<p class="c5">
+											<b>WHERE jcr:path LIKE '/foo/bar[%]'</b>
+										</p>
+									
+								
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Predicates in the <b>WHERE</b> clause that test <b>jcr:path</b> are only required to support the operators <b>=, &lt;&gt;</b> and <b>LIKE</b>. In the case of <b>LIKE</b> predicates, support is only required for tests using the <b>%</b> wildcard character as a match for a whole path segment (the part between two <b>/</b> characters) or within index brackets. This set of minimum requirements would, for example, allow the following path queries:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							Exact path:<br>
+							<b>jcr:path='/books/mybooks/EffectiveJava'</b>
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Child:<br>
+							<b>jcr:path LIKE '/books/%' AND NOT jcr:path LIKE '/books/%/%'</b>
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Descendant:<br>
+							<b>jcr:path LIKE '/books/mybooks/%'</b>
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Descendant or self:<br>
+							<b>jcr:path LIKE '/books/mybooks/%' OR jcr:path='/books/mybooks'</b>
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							Index test:<br>
+							<b>jcr:path LIKE '/books[%]/mybooks[%]'</b>
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<p class="c5">
+					See also 6.6.3.3 Property Constraint and 6.6.3.4 Path Constraint.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,1 @@
+{"name":"CQ.html5.Util","doc":"The CQ.html5.Util contains utilities for HTML5 widgets like\nCQ.html5.form.FileUploadField, CQ.htm...","configs":[],"props":[],"methods":[{"name":"isUploadSupported","doc":"Returns true if HTML5 Upload is supported"}],"events":[]}

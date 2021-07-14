@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.4 Nodes, Properties and Items (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.4." id="section_4.1.4."></a> 4.1.4 Nodes, Properties and Items
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Because nodes and properties have some common functionality, common methods are defined in the interface <b>Item</b>, to which the sub-interfaces <b>Node</b> and <b>Property</b> add further methods. The following diagram summarizes the basic relationships between the interfaces.
+								</p><img src="jsr170-4_1_4.png" name="Frame4" alt="Frame4" id="Frame4">
+							
+							
+								<p class="c5">
+									This UML diagram indicates that <b>Property</b> and <b>Node</b> are subinterfaces of <b>Item</b>. A single <b>Property</b> has one and only one parent <b>Node</b>. A <b>Node</b> can have either zero parents (only if it is the root node) or one parent. A <b>Node</b> can have any number of child <b>Item</b> objects (i.e., either <b>Property</b> or <b>Node</b> objects).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

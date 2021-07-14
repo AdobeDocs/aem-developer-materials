@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.3.5 Frozen Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.3.5 Frozen Node</H4>
+	<P>Each version records
+	the versionable state of its versionable node at the time of
+	check-in in a <I>frozen node</I>, attached to the version and
+	accessed though <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version.getFrozenNode</FONT></FONT>.
+	Under simple versioning, the frozen node is isolated, having no
+	parent in any workspace. Under full versioning, it is a subnode of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:version</FONT></FONT>
+	node in the version storage subgraph. In both cases the node is of
+	type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:frozenNode</FONT></FONT>
+	(see §3.13.4.1 <I>nt:frozenNode</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

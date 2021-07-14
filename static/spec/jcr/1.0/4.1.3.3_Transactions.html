@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.3.3 Transactions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.3.3." id="section_4.1.3.3."></a>4.1.3.3 Transactions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Throughout this document, any discussion of “persistence of changes upon <b>save</b>” or “immediate persistence of changes through methods that do not require <b>save</b>” refers to cases in which the <b>save</b> is performed <i>outside the scope of a transaction</i>.
+								</p>
+							
+							
+								<p class="c5">
+									<i>Within the scope of a transaction,</i> <b><i>save</i></b> <i>and other methods that act directly on the persistent workspace will</i> not <i>make changes visible to other sessions; this will only occur when the transaction is committed.</i>
+								</p>
+							
+							
+								<p class="c5">
+									However, even within the scope of a transaction, <b>save</b> still performs validation and, if successful, clears pending changes from the <b>Session</b>. As well, <b>refresh(false)</b> still clears pending changes from the <b>Session</b>.
+								</p>
+							
+							
+								<p class="c5">
+									When a transaction commits, it persists only those changes that have been saved; it does <i>not</i> automatically <b>save</b> pending changes <i>and then</i> commit them as well. After a commit, pending changes remain in the <b>Session</b> and may be saved and committed later. Note that support for transactions is optional. See <a href="8.1_Transactions.html">8.1</a> <i>Transactions</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

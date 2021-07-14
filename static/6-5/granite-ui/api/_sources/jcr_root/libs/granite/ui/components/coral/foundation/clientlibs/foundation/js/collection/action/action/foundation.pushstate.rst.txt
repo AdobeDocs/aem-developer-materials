@@ -1,0 +1,41 @@
+foundation.collection.action.action: foundation.pushstate
+=========================================================
+
+``foundation.pushstate`` is an :ref:`action of foundation-collection-action <foundation-collection-action-action>`.
+
+When the action is triggered, it will call :doc:`foundation-content <../../../content/index>`’s pushState(), with the following parameters:
+
+data
+   The value of ``config.data.data``.
+
+title
+   The value of ``config.data.title``.
+
+url
+   The URL expanded from `URI Template <http://tools.ietf.org/html/rfc6570>`_ of ``config.data.href``
+
+   The URI Template is expanded using variables satisfying the following interface:
+
+   .. code-block:: ts
+
+      interface FoundationCollectionActionFoundationPushstateVariables {
+        /**
+         * The array of values of <code>data-foundation-collection-item-id</code> attribute of the given <code>selections</code> parameter.
+         */
+        item: string[]
+      }
+
+
+Relationship Graph
+------------------
+
+.. graphviz::
+
+   digraph "foundation-collection" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends", weight=8];
+     "foundation-collection-action" -> "foundation-selections" [label="reacts to"];
+     "foundation.dialog" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.link" -> "foundation-collection-action" [label="provides action to"];
+     "foundation.pushstate" -> "foundation-collection-action" [label="provides action to"];
+   }

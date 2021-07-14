@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.8 Item Read Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.8." id="section_6.2.8."></a>6.2.8 Item Read Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Item</b> interface also contains a number of other methods, inherited by both <b>Node</b> and <b>Property</b>. The following methods provide access to and information about nodes and properties. <b>Item</b> also has other methods applicable to level 2. In a level 1-only implementation they will either do nothing or throw an exception.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Item</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPath()</b>
+									</p>
+									<p class="c5">
+										Returns the absolute path to this item.
+									</p>
+									<p class="c5">
+										If the path includes items that are same name sibling nodes or multi-value properties then those elements in the path will include the appropriate “square bracket” index notation (for example, <b>/a/b[3]/c</b>).
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getName()</b>
+									</p>
+									<p class="c5">
+										Returns the name of this item. The name is the last item in the path, minus any square-bracket index that may exist. If this item is the root node of the workspace (i.e., if <b>this.getDepth() == 0</b>), an empty string will be returned.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Item</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getAncestor(int depth)</b>
+									</p>
+									<p class="c5">
+										Returns the ancestor of the specified depth below the root. An ancestor of depth <b>x</b> is the <b>Item</b> that is <b>x</b> levels down along the path from the root node to <i>this</i> <b>Item</b>.
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												<b>depth = 0</b> returns the root node.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>depth = 1</b> returns the child of the root node along the path to <i>this</i> <b>Item</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												<b>depth = 2</b> returns the grandchild of the root node along the path to <i>this</i> <b>Item</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												And so on to <b>depth = n</b>, where <b>n</b> is the depth of <i>this</i> <b>Item</b>, which returns <i>this</i> <b>Item</b> itself. If <b>depth &gt; n</b> is specified then an <b>ItemNotFoundException</b> is thrown.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										An <b>ItemNotFoundException</b> will be thrown if <b>depth &lt; 0</b> or <b>depth &gt; n</b> where <b>n</b> is the is the depth of this item along the path returned by <b>getPath()</b>.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the current session does not have sufficient access permissions to retrieve the specified node.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getParent()</b>
+									</p>
+									<p class="c5">
+										Returns the parent of this <b>Item</b>.
+									</p>
+									<p class="c5">
+										An <b>ItemNotFoundException</b> is thrown if there is no parent node. This only happens if this item is the root node of a workspace.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the current session does not have sufficient access permissions to retrieve the parent of this item.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>int</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDepth()</b>
+									</p>
+									<p class="c5">
+										Returns the depth below the root node of <i>this</i> <b>Item</b> (counting <i>this</i> <b>Item</b> itself):
+									</p>
+									<ul>
+										<li>
+											<p class="c12">
+												The root node returns <b>0</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												A property or child node of the root node returns <b>1</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												A property or child node of a child node of the root returns <b>2</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												And so on to <i>this</i> <b>Item</b>.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getSession()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>Session</b> through which this <b>Item</b> was acquired.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isNode()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this <b>Item</b> is a <b>Node</b>; returns <b>false</b> if this <b>Item</b> is a <b>Property</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isSame(Item otherItem)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this <b>Item</b> object (the Java object instance) represents the same actual repository item as the object <b>otherItem</b>.
+									</p>
+									<p class="c5">
+										This method does not compare the <i>states</i> of the two items. For example, if two <b>Item</b> objects representing the same actual repository item have been retrieved through two different sessions and one has been modified, then this method will still return <b>true</b> when comparing these two objects. Note that if two <b>Item</b> objects representing the same repository item are retrieved through the <i>same</i> session they will always reflect the same state (see <a href="7.1.3_Reflecting_Item_State.html">7.1.3</a> <i>Reflecting Item State</i>) so comparing state is not an issue.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>accept(ItemVisitor visitor)</b>
+									</p>
+									<p class="c5">
+										Accepts an <b>ItemVisitor</b> and calls the appropriate <b>visit</b> method according to whether <i>this</i> <b>Item</b> is a <b>Node</b> or a <b>Property</b>.
+									</p>
+									<p class="c5">
+										This method provides support for the <i>visitor</i> design pattern. It takes an <b>Item</b><b>Visitor</b> object that must implement two methods: <b>visit(Node node)</b> and <b>visit(Property property)</b>. Depending on whether this <b>Item</b> is a <b>Node</b> or a <b>Property</b> one of the visit methods is called with this <b>Item</b> as the parameter.
+									</p>
+									<p class="c5">
+										The API also provides the abstract class <b>TraversingItemVisitor</b> implementing <b>ItemVisitor</b>, which automatically traverses the hierarchy calling <b>accept</b> at each node and property. It provides the methods <b>entering</b> and <b>leaving</b> that can be overridden in a subclass to perform custom operations.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

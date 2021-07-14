@@ -1,0 +1,467 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Table &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../" src="../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../search.html" />
+    <link rel="next" title="Tabs" href="../tabs/index.html" />
+    <link rel="prev" title="Simple" href="../renderconditions/simple/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tabs/index.html" title="Tabs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../renderconditions/simple/index.html" title="Simple"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" accesskey="U">Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="table">
+<h1>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/coral/foundation/table">
+<dt>
+<code class="descname">/libs/granite/ui/components/coral/foundation/table</code></dt>
+<dd><p>A table component.</p>
+<p>It implements <a class="reference internal" href="../clientlibs/foundation/vocabulary/selections.html"><span class="doc">foundation-selections</span></a>
+and <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">foundation-mode</span></a> vocabulary.</p>
+<p>Note that this component’s size is maximized to its parent OOTB. Hence it doesn’t make sense if this component has a sibling component,
+as it will take the whole parent’s space.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:Table</span><ol class="gnd-values supertypes"><li class="gnd-values-item supertype">granite:commonAttrs</li><li class="gnd-values-item supertype">granite:renderCondition</li><li class="gnd-values-item supertype">granite:container</li></ol></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionMode</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">none</li></ol><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">none</li><li class="gnd-values-item valueconstraint">row</li></ol></dt>
+<dd><p>The mode of item to be selected:</p>
+<dl class="docutils">
+<dt>none</dt>
+<dd>The selection is disabled</dd>
+<dt>row</dt>
+<dd>Each row is selectable and represents one selection</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionCount</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">multiple</li></ol></dt>
+<dd><p>The count of item to be selected (when the <code class="docutils literal notranslate"><span class="pre">selectionMode</span></code> is enabled):</p>
+<dl class="docutils">
+<dt>single</dt>
+<dd>Only maximum single selection allowed</dd>
+<dt>multiple</dt>
+<dd>Zero or more selection allowed</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">src</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template that is returning the HTML response of the table.
+It is used when the client needs to load data dynamically, such as for sorting, pagination.</p>
+<p>If it is not specified, the feature is disabled.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>offset</dt>
+<dd>The item offset of the current request.</dd>
+<dt>limit</dt>
+<dd>The item limit of the pagination.</dd>
+<dt>id</dt>
+<dd>The id of the collection (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>).</dd>
+<dt>sortName</dt>
+<dd>The name of sorted column.
+This is optional variable that may not be passed when resolving the URI Template.</dd>
+<dt>sortDir</dt>
+<dd>The direction of the sorting: <code class="docutils literal notranslate"><span class="pre">asc</span></code> or <code class="docutils literal notranslate"><span class="pre">desc</span></code>.
+This is optional variable that may not be passed when resolving the URI Template.</dd>
+</dl>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">/a/b/c{.offset,limit}.html{+id}{?sortName,sortDir}</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">path</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path of the current collection.
+It will act as the value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>.</p>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">${requestPathInfo.suffix}</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemResourceType</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The resource type for each item of the column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">limit</span><span class="propertytype gnd-name">long</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">40</li></ol></dt>
+<dd><p>The item limit of the pagination.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">size</span><span class="propertytype gnd-name">integerel</span></dt>
+<dd><p>Indicates the size of the items from datasource to be included.
+If this property is not specified, then all items from datasource will be included, and the next page will be fetched accordingly.</p>
+<p>This is meant to be a performance optimization to avoid fetching the next page unnecessarily.
+For example given the fact that the <code class="docutils literal notranslate"><span class="pre">size</span></code> is set to 20, and the datasource is configured to fetch <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">+</span> <span class="pre">1</span></code>, which is 21,
+the implementation can check if the datasource actually has more item or not just by checking its size.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When <code class="docutils literal notranslate"><span class="pre">size</span></code> is set, you have to make sure your datasource is configured to fetch more than the value of <code class="docutils literal notranslate"><span class="pre">size</span></code>!</p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="44%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">size</span></code></th>
+<th class="head">Actual DS Size</th>
+<th class="head">Has More?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>&lt; 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>= 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>&gt; 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+</tr>
+<tr class="row-odd"><td>(not set)</td>
+<td>n/a</td>
+<td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">sortMode</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">local</li></ol><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">local</li><li class="gnd-values-item valueconstraint">remote</li></ol></dt>
+<dd><p>The sorting mode of the column.</p>
+<p>To enable sorting, the column needs to be configured accordingly.</p>
+<dl class="docutils">
+<dt>local</dt>
+<dd>The sorting is done locally.</dd>
+<dt>remote</dt>
+<dd>The sorting is done remotely.
+The new data are fetched remotely as defined by <code class="docutils literal notranslate"><span class="pre">src</span></code> property.</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">orderable</span><span class="propertytype gnd-name">booleanel</span></dt>
+<dd><p>Indicates if the table row is orderable.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">rowReorderAction</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template handling the POST request to reorder the item.</p>
+<p>When it is set, “orderable” is defaulted to true. Note that it means that if “orderable” is explicitly as “false”, then even though “rowReorderAction” is set, the ordering feature is still disabled.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>item</dt>
+<dd>The id of the reordered item. (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-item-id]</span></a>)</dd>
+<dt>before</dt>
+<dd>The id of the reference item. The item is ordered before this reference item. (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-item-id]</span></a>)</dd>
+<dt>beforeName</dt>
+<dd><p class="first">The name of the before item: <cite>var beforeName = before.substring(before.lastIndexOf(“/”) + 1);</cite>.</p>
+<p class="last">This is meant for convenience for Sling POST Servlet’s <code class="docutils literal notranslate"><span class="pre">:order</span></code> parameter, which requires the node name (instead of path).</p>
+</dd>
+</dl>
+<p>The final URL (after URI Template expansion) is converted to <code class="docutils literal notranslate"><span class="pre">application/x-www-form-urlencoded</span></code> content type.
+For example if we have URI Template of <code class="docutils literal notranslate"><span class="pre">/reorder{?item,before}</span></code> which is expanded into <code class="docutils literal notranslate"><span class="pre">/reorder?item=%2Fcontent%2Fde&amp;before=%2Fcontent%2Fen</span></code>,
+the POST would be against <code class="docutils literal notranslate"><span class="pre">/reorder</span></code> with <code class="docutils literal notranslate"><span class="pre">item=%2Fcontent%2Fde&amp;before=%2Fcontent%2Fen</span></code> as the request body.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">rowReorderAction.abs</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>This property is the equivalence of <code class="docutils literal notranslate"><span class="pre">rowReorderAction</span></code> for absolute path.</p>
+<p>For example if your template is <code class="docutils literal notranslate"><span class="pre">{+item}?order{&amp;before}</span></code>, since it is not starting with “/”,
+the server is unable to know if it is an absolute path.
+So use this property if you want to add the context path regardless.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">metaPath</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path to the resource to render <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-meta</span></a>.
+If not specified, the resource specified at <code class="docutils literal notranslate"><span class="pre">path</span></code> will be used instead.</p>
+<p>The resource will be included using resource type specified at <code class="docutils literal notranslate"><span class="pre">metaResourceType</span></code>, where it can be processed accordingly.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">metaResourceType</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The resource type to render <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-meta</span></a>.</p>
+<p>The resource specified at <code class="docutils literal notranslate"><span class="pre">metaPath</span></code> or <code class="docutils literal notranslate"><span class="pre">path</span></code> will be included using this resource type, where it can be processed accordingly.</p>
+<p>This property is mandatory to specified if <code class="docutils literal notranslate"><span class="pre">.foundation-collection-meta</span></code> needs to be generated.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">modeGroup</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">[data-foundation-mode-group]</span></a>
+this component participates.</p>
+<p>The component supports the <code class="docutils literal notranslate"><span class="pre">default</span></code> or <code class="docutils literal notranslate"><span class="pre">selection</span></code> mode.</p>
+<p>When there is a selection, it will trigger the <code class="docutils literal notranslate"><span class="pre">foundation-mode-change</span></code> event with mode = <code class="docutils literal notranslate"><span class="pre">selection</span></code>,
+while triggering the event with mode = <code class="docutils literal notranslate"><span class="pre">default</span></code> when there is no selection.</p>
+<p>When other component triggers the event with mode = <code class="docutils literal notranslate"><span class="pre">default</span></code>, it will react by clearing the selection.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">skipEmptyRow</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">false</span></code> to show the empty message (or render the empty row using <code class="docutils literal notranslate"><span class="pre">emptyrow</span></code> subresource) when there is no item; <code class="docutils literal notranslate"><span class="pre">true</span></code> to skip showing that message.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">columns</span></dt>
+<dd><p>The columns configuration.
+Use this instead of <code class="docutils literal notranslate"><span class="pre">columnsdatasource</span></code> to configure the columns literally in the content.</p>
+<p>Each subresource of <code class="docutils literal notranslate"><span class="pre">columns</span></code> needs to satisfy <code class="docutils literal notranslate"><span class="pre">[granite:TableColumn]</span></code>.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">columnsdatasource</span></dt>
+<dd><p>The datasource for the columns configuration.
+Use this instead of <code class="docutils literal notranslate"><span class="pre">columns</span></code> to programmatically generate the columns.</p>
+<p>It needs to return the resources satisfying <code class="docutils literal notranslate"><span class="pre">[granite:TableColumn]</span></code>.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">emptyrow</span></dt>
+<dd><p>The component to render the row when there is no item.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:TableColumn</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">name</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The name of the column. This name is used as an ID to indicate the column.
+For example it will be used during server-side sorting.</p>
+<p>If the property is not specified, the resource name is used instead.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">select</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the column is a column to select the item.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">order</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the column is a column to order the item.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">jcr:title</span><span class="propertytype gnd-name">string</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">i18n</dt><dd class="gnd-attributes-value"></dd></dl><p>The text of the column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">alignment</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">left</li></ol><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">left</li><li class="gnd-values-item valueconstraint">right</li><li class="gnd-values-item valueconstraint">center</li></ol></dt>
+<dd><p>The alignment of the column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">fixedWidth</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the column has fixed width.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">draggable</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Allow the column to be reordered visually by the user.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">hidden</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the column is hidden.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">sortable</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>Indicates if the column is sortable.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">sortType</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">alphanumeric</li></ol><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">alphanumeric</li><li class="gnd-values-item valueconstraint">number</li><li class="gnd-values-item valueconstraint">date</li><li class="gnd-values-item valueconstraint">custom</li></ol></dt>
+<dd><p>The type of the cell value of the column for the purpose of sorting.</p>
+<p>The cell value is taken from <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute of the cell, with the cell content as fallback.</p>
+<dl class="docutils">
+<dt>alphanumeric</dt>
+<dd>The value is treated as string.</dd>
+<dt>number</dt>
+<dd>The value is treated as number.</dd>
+<dt>date</dt>
+<dd>The value is treated as date.
+The <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute needs to store the date integer since epoch.</dd>
+<dt>custom</dt>
+<dd>No actual sorting is performed. Rather custom code needs to sort it.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p><strong>Item Markup</strong></p>
+<p>Each item (the row) needs to render the markup of <code class="docutils literal notranslate"><span class="pre">Coral.Table.Row</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-table-row&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-table-cell&quot;</span> <span class="na">coral-table-rowselect</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-table-cell&quot;</span><span class="p">&gt;</span>Text<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-table-cell&quot;</span><span class="p">&gt;</span>Text 2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span> <span class="na">is</span><span class="o">=</span><span class="s">&quot;coral-table-cell&quot;</span> <span class="na">coral-table-roworder</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Each cell in the row can be any arbitrary content.</p>
+<p>To indicate a cell for selection (to select the row), <code class="docutils literal notranslate"><span class="pre">coral-table-rowselect</span></code> attribute needs to be specified at that cell element.
+You can also put arbitrary content in that cell (e.g. a thumbnail). If no content at all, then a checkbox is automatically rendered.</p>
+<p>For the thumbnail (as the content of the selection cell), it is recommended to use 48x48px dimensions.
+e.g. “/content/geometrixx_mobile.thumb.48.48.png?ck=1447060146”</p>
+<p>To indicate a cell for row ordering, <code class="docutils literal notranslate"><span class="pre">coral-table-roworder</span></code> attribute needs to be specified at that cell element.</p>
+<p>For navigation when clicking the row, <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-navigator</span></a> can be specified at <code class="docutils literal notranslate"><span class="pre">&lt;tr&gt;</span></code>.
+It supports navigating to arbitrary location (just like <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code>), or navigating to the collection item.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+ mytable
+  - sling:resourceType = &quot;granite/ui/components/coral/foundation/table&quot;
+  - src = &quot;/a/b/c{.offset,limit}.html{+id}{?sortName,sortDir}&quot;
+  - rowReorderAction = &quot;/reorder{?item,before}&quot;
+  + columns
+    + select
+      - select = true
+    + col1
+      - jcr:title = &quot;Column 1&quot;
+    + col2
+      - jcr:title = &quot;Column 2&quot;
+    + order
+      - order = true
+  + datasource
+    - sling:resourceType = &quot;my/datasource&quot;
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../renderconditions/simple/index.html"
+                        title="previous chapter">Simple</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tabs/index.html"
+                        title="next chapter">Tabs</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/table/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../tabs/index.html" title="Tabs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../renderconditions/simple/index.html" title="Simple"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" >Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

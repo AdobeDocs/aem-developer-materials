@@ -1,0 +1,151 @@
+************************
+foundation-contentloaded
+************************
+
+foundation-contentloaded event
+==============================
+
+This event SHOULD be triggered when a new content is injected to the DOM, which is very similar to `DOMContentLoaded <https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference/DOMContentLoaded>`_ event.
+
+The event SHOULD be triggered at the smallest containing element (the container) possible, which can be the injected element itself.
+
+You can trigger it by using jQuery:
+
+.. code-block:: js
+
+   // in this example, document is the smallest container
+   $(document).trigger("foundation-contentloaded");
+
+   // in this example, `myContainer` is the smallest container
+   myContainer.trigger("foundation-contentloaded");
+
+When listening, the container is available at ``event.target``.
+It is RECOMMENDED that the listener uses the container to scope its operation:
+
+.. code-block:: js
+
+   // Initialize datepicker widget at newly injected markup
+   $(document).on("foundation-contentloaded", function(e) {
+     var container = e.target;
+
+     $(".example-datepicker", container).each(function() {
+       Example.DatePicker.init(this);
+     });
+   });
+
+
+Example
+=======
+
+Imagine there is a button component that upon click, it will load a dialog markup from the server and show it to the user.
+
+The markup is something like this:
+
+.. code-block:: html
+
+   <button class="example-dialog-activator" data-example-dialog-activator-src="/my/dialog.html">Show Dialog</button>
+
+The dialog itself can be an arbitrary markup with complex form fields inside.
+Because of this, when injecting the dialog to the DOM, the button implementation is required to trigger ``foundation-contentloaded`` event,
+using the dialog element as the container element.
+
+The implementation can be something like this:
+
+.. code-block:: js
+
+   $(document).on("click", ".example-dialog-activator", function(e) {
+     e.preventDefault();
+
+     var src = this.dataset.exampleDialogActivatorSrc;
+
+     fetch(src).then(function(response) {
+       return response.text();
+     }).then(function(html) {
+       return parseHTML(html);
+     }).then(function(element) {
+       $(element)
+         .appendTo(document.body)
+         .trigger("foundation-contentloaded");
+
+       element.show();
+     });
+   });
+
+
+Usage Guideline
+===============
+
+Since this event is potentially triggered at every new content injected to the DOM, it needs to be listened to very carefully.
+
+It is normally used so that a JavaScript code can be notified when new content needs to be enhanced ASAP.
+i.e. performing an eager processing as opposed to a lazy one.
+
+Eager vs Lazy Processing
+------------------------
+
+Eager processing is a code which requires to be executed ASAP.
+This is usually for something visible to the user, such as layout operation, initializing component.
+
+Example of eager processing:
+
+.. code-block:: js
+
+   /**
+    * Initialize datepicker widget at newly injected markup.
+    */
+   $(document).on("foundation-contentloaded", function(e) {
+     var container = e.target;
+
+     $(".example-datepicker", container).each(function() {
+       Example.DatePicker.init(this);
+     });
+   });
+
+Lazy processing in the other hand doesn't require the code to be executed ASAP.
+It is typically done by waiting for a certain event to be triggered.
+
+Example of lazy processing:
+
+.. code-block:: js
+
+   /**
+    * `foundation-history-control` implementation, where it only needs to wait for the `click` event to perform its action.
+    * It is done by leveraging event propagation to the root.
+    * It doesn't need to leverage `foundation-contentloaded` at all,
+    * since the event handler needs to be registered once at document level, instead of registering the handler at every element.
+    * This is also good for memory consumption.
+    */
+   $(document).on("click", ".foundation-history-control", function(e) {
+     e.preventDefault();
+
+     var el = this;
+     var action = el.dataset.foundationHistoryControlAction;
+
+     if (action === "back") {
+         window.history.back();
+     } else if (action === "forward") {
+         window.history.forward();
+     }
+   });
+
+Multiple Event Trigger
+----------------------
+
+Since this event may also be triggered multiple times within the same container, the listener should therefore protect itself against this.
+
+Using DatePicker example above, ``Example.DatePicker.init`` needs to check if the relevant element is already initialized or not.
+
+Other Event
+-----------
+
+In your application, there are usually many other events for certain purposes.
+It is RECOMMENDED that these events are used accordingly.
+
+So basically you have to find the best event that fit your use case.
+In theory since we have DOM mutation observer event, we can just remove all the events we currently have and just abuse that.
+If the requirement says that an operation needs to be done during dialog open, then use the event that says exactly that.
+If the requirement says that a widget needs to be upgraded when it is injected to the DOM,
+then you may use ``foundation-contentloaded``, because it is exactly what it says.
+
+If there is no suitable event, as a workaround a more generic event such as mutation observer or ``foundation-contentloaded`` can be used,
+but the handler needs to handle multiple calls, as the granularity doesn't fit well.

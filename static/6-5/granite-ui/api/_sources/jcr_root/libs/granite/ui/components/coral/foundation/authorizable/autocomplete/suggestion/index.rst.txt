@@ -1,0 +1,30 @@
+
+Suggestion
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/authorizable/autocomplete/suggestion
+
+   The implementation of autocomplete suggestion that is specific for granite:servercomponent:`/libs/granite/ui/components/coral/foundation/authorizable/autocomplete`
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:AuthorizableAutocompleteSuggestion]
+
+      /**
+       * The query entered by the user, which will be used to highlight the suggestion.
+       */
+      - query (StringEL)
+
+      /**
+       * The type of value to be submitted:
+       *
+       * id
+       *    Use authorizable ID
+       * path
+       *    Use authorizable home path
+       * principalname
+       *    Use principal name
+       */
+      - valueType (StringEL) = 'id' < 'id', 'path', 'principalname'

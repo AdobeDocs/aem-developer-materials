@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.2.3 Constraints (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.2.3 Constraints</H3>
+	<P>A query can specify a
+	<I>constraint</I> to filter the set of node-tuples by any
+	combination of:</P>
+	<UL>
+		<LI><P>Absolute or relative path, for
+		example:</P>
+		<UL>
+			<LI><P>The node reached
+			by path <FONT FACE="Courier New, monospace"><FONT SIZE=2>/pictures/sunset.jpg</FONT></FONT></P>
+			<LI><P>Nodes that are
+			children of <FONT FACE="Courier New, monospace"><FONT SIZE=2>/pictures</FONT></FONT></P>
+			<LI><P>Nodes that are
+			descendants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>/pictures</FONT></FONT></P>
+		</UL>
+		<LI><P>Name of the node, for example:</P>
+		<UL>
+			<LI><P>Nodes named
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>sunset.jpg</FONT></FONT></P>
+		</UL>
+		<LI><P>Value of a property, for example:</P>
+		<UL>
+			<LI><P>Nodes whose <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:created</FONT></FONT>
+			property is after <FONT FACE="Courier New, monospace"><FONT SIZE=2>2007-03-14T00:00:00.000Z</FONT></FONT></P>
+		</UL>
+		<LI><P>Length of a property, for
+		example:</P>
+		<UL>
+			<LI><P>Nodes whose
+			<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:data</FONT></FONT>
+			property is longer than 100 KB</P>
+		</UL>
+		<LI><P>Existence of a property, for
+		example:</P>
+		<UL>
+			<LI><P>Nodes with a <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:language</FONT></FONT>
+			property</P>
+		</UL>
+		<LI><P>Full-text search, for example:</P>
+		<UL>
+			<LI><P>Nodes which have a property that
+			contains the phrase “beautiful sunset”</P>
+		</UL>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

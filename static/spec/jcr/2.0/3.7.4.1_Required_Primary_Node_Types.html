@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.4.1 Required Primary Node Types (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.4.1 Required Primary Node Types</H4>
+	<P>A child node
+	definition must declare one or more <I>required primary node types</I>.
+		</P>
+	<P>In order to
+	successfully save a scoped child node <I>N</I>, it must be true for
+	each required primary type <I>R</I> that the assigned primary type <I>A</I>
+	of <I>N </I>is of type<I> R</I> (see §3.7.6.3 <I>Is-of-Type
+	Relation</I>). 
+	</P>
+	<P>In cases where this
+	attribute specifies more than one required node type, any particular
+	node instance will still have only one assigned primary type, but
+	that type must be a subtype of <I>all</I> of the types specified by
+	this attribute. Such a situation may arise, for example, in
+	repositories that support multiple inheritance of node types.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

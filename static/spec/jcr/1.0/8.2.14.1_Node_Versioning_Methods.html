@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.14.1 Node Versioning Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.14.1." id="section_8.2.14.1."></a>8.2.14.1 Node Versioning Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>Node</b> interface has the following version-related methods.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										Version
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>checkin()</b>
+									</p>
+									<p class="c5">
+										Creates a new version with a system generated name and returns that version. The <b>jcr:isCheckedOut</b> property of this node is set to <b>false</b> thus putting the node into the <i>checked-in</i> state. This means that this node and its <i>connected non-versionable subtree</i> become read-only. A node's connected non-versionable subtree is the set of non-versionable descendant nodes reachable from that node through child links without encountering any versionable nodes. In other words, the read-only status flows down from the checked-in node along every child link until either a versionable node is encountered or an item with no children is encountered.
+									</p>
+									<p class="c5">
+										Read-only status means that an item cannot be altered by the client using standard API methods (<b>addNode</b>, <b>setProperty</b>, etc.). The only exceptions to this rule are the <b>restore</b><sup><b><a class="sdfootnoteanc" name="sdfootnote11anc" href="#sdfootnote11sym" id="sdfootnote11anc"><sup>11</sup></a></b></sup>, <b>Node.merge</b> and <b>Node.update</b> operations; these do not respect read-only status due to check-in. Note that <b>remove</b> of a read-only node is possible, as long as its parent is not read-only (since removal is an alteration of the parent node).
+									</p>
+									<p class="c5">
+										See <a href="8.2.5_Check_In.html">8.2.5</a> <i>Check In</i> for more details.
+									</p>
+									<p>
+										<a name="OLE_LINK1" id="OLE_LINK1"></a>If this node is already checked-in, this method has no effect but returns the current base version of this node.
+									</p>
+									<p class="c5">
+										If this node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown or if a child item of this node has an <b>OnParentVersion</b> status of <b>ABORT</b>. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of the <b>jcr:mergeFailed</b> property.
+									</p>
+									<p class="c5">
+										If <b>checkin</b> succeeds, the change to the <b>jcr:checkedOut</b> property is automatically saved (there is no need to do an additional <b>save</b>).
+									</p>
+									<p class="c5">
+										If there are unsaved changes pending on this node, an <b>InvalidItemStateException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the checkin.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>checkout()</b>
+									</p>
+									<p class="c5">
+										Sets this versionable node to checked-out status by setting its <b>jcr:isCheckedOut</b> property to <b>true</b>, sets the <b>jcr:predecessors</b> property to be a reference to the current base version (the same value as held in <b>jcr:baseVersion</b>). This method puts the node into the <i>checked-out</i> state, making it and its connected non-versionable subtree no longer read-only (see <b>checkin</b>, above, for an explanation of the term “connected non-versionable subtree”).
+									</p>
+									<p class="c5">
+										If successful, these changes are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										See <a href="8.2.6_Check_Out.html">8.2.6</a> <i>Check Out</i> for more details.
+									</p>
+									<p class="c5">
+										If this node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the checkout.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										NodeIterator
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>merge(String srcWorkspace, boolean bestEffort)</b>
+									</p>
+									<p class="c5">
+										This method can be thought of as a version-sensitive update (see <a href="7.1.8_Updating_and_Cloning_Nodes_across_Workspaces.html">7.1.8</a> <i>Updating and Cloning Nodes across Workspaces</i>).
+									</p>
+									<p class="c5">
+										It recursively tests each versionable node in the subtree of this node against its corresponding node in <b>srcWorkspace</b> with respect to the relation between their respective base versions and either updates the node in question or not, depending on the outcome of the test. For details see <a href="8.2.10_Merge.html">8.2.10</a> <i>Merge</i>.
+									</p>
+									<p class="c5">
+										A <b>MergeException</b> is thrown if <b>bestEffort</b> is <b>false</b> and a versionable node is encountered whose corresponding node's base version is on a divergent branch from this node's base version.
+									</p>
+									<p class="c5">
+										If successful, the changes are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										This method returns a <b>NodeIterator</b> over all versionable nodes in the subtree that received a merge result of <i>fail</i>. If <b>bestEffort</b> is <b>false</b>, this iterator will be empty (since if it <b>merge</b> returns successfully, instead of throwing an exception, it will be because no failures were encountered). If <b>bestEffort</b> is <b>true</b>, this iterator will contain all nodes that received a <i>fail</i> during the course of this <b>merge</b> operation.
+									</p>
+									<p class="c5">
+										If the specified <b>srcWorkspace</b> does not exist, a <b>NoSuchWorkspaceException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the current session does not have sufficient permissions to perform the operation, then an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the merge.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>doneMerge(Version version)</b>
+									</p>
+									<p class="c5">
+										Completes the merge process with respect to this node and the specified <b>version</b>.
+									</p>
+									<p class="c5">
+										See <a href="8.2.10_Merge.html">8.2.10</a> <i>Merge</i> for more details.
+									</p>
+									<p class="c5">
+										If successful, the changes are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the version specified is not among those referenced in this node's <b>jcr:mergeFailed</b> property or if this node is currently checked-in.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if this node is not versionable.
+									</p>
+									<p class="c5">
+										If there are unsaved changes pending on this node, an <b>InvalidItemStateException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the operation.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>cancelMerge(Version version)</b>
+									</p>
+									<p class="c5">
+										Cancels the merge process with respect to this node and the specified <b>version</b>.
+									</p>
+									<p class="c5">
+										See <a href="8.2.10_Merge.html">8.2.10</a> <i>Merge</i> for more details.
+									</p>
+									<p class="c5">
+										If successful, the changes are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the version specified is not among those referenced in this node's <b>jcr:mergeFailed</b> property or if this node is currently checked-in.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if this node is not versionable.
+									</p>
+									<p class="c5">
+										If there are unsaved changes pending on this node, an <b>InvalidItemStateException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the operation.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										boolean
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isCheckedOut()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node is either
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												versionable and currently checked-out,
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												non-versionable and its nearest versionable ancestor is checked-out or
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												non-versionable and it has no versionable ancestor.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										Returns <b>false</b> if this node is either
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												versionable and currently checked-in or
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												non-versionable and its nearest versionable ancestor is checked-in.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>restore(String versionName,<br>
+										boolean removeExisting)</b>
+									</p>
+									<p class="c5">
+										Restores this node to the state defined by the version with the specified <b>versionName</b>.
+									</p>
+									<p class="c5">
+										If this node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										If successful, the change is persisted immediately and there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if no version with the specified <b>versionName</b> exists in this node's version history or if an attempt is made to restore the root version (<b>jcr:rootVersion</b>).
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										This method will work regardless of whether this node is checked-in or not.
+									</p>
+									<p class="c5">
+										A UUID collision occurs when a node exists <i>outside the subtree rooted at this node</i> with the same UUID as a node that would be introduced by the <b>restore</b> operation <i>into the subtree at this node</i>. The result in such a case is governed by the <b>removeExisting</b> flag. If <b>removeExisting</b> is <b>true</b>, then the incoming node takes precedence, and the existing node (and its subtree) is removed. If <b>removeExisting</b> is <b>false</b>, then a <b>ItemExistsException</b> is thrown and no changes are made. Note that this applies not only to cases where the restored node itself conflicts with an existing node but also to cases where a conflict occurs with <i>any</i> node that would be introduced into the workspace by the restore operation. In particular conflicts involving subnodes of the restored node that have <b>OnParentVersion</b> settings of <b>COPY</b> or <b>VERSION</b> (see <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>) are also governed by the <b>removeExisting</b> flag.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the restore.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>restore(Version version,<br>
+										boolean removeExisting)</b>
+									</p>
+									<p class="c5">
+										Restores this node to the state defined by the specified <b>version</b>.
+									</p>
+									<p class="c5">
+										If this node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										If successful, the change is persisted immediately and there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the specified <b>version</b> is not part of this node's version history.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										This method will work regardless of whether this node is checked-in or not.
+									</p>
+									<p class="c5">
+										A UUID collision occurs when a node exists <i>outside the subtree rooted at this node</i> with the same UUID as a node that would be introduced by the <b>restore</b> operation <i>into the subtree at this node</i>. The result in such a case is governed by the <b>removeExisting</b> flag. If <b>removeExisting</b> is <b>true</b>, then the incoming node takes precedence, and the existing node (and its subtree) is removed. If <b>removeExisting</b> is <b>false</b>, then a <b>ItemExistsException</b> is thrown and no changes are made. Note that this applies not only to cases where the restored node itself conflicts with an existing node but also to cases where a conflict occurs with <i>any</i> node that would be introduced into the workspace by the restore operation. In particular conflicts involving subnodes of the restored node that have <b>OnParentVersion</b> settings of <b>COPY</b> or <b>VERSION</b> (see <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>) are also governed by the <b>removeExisting</b> flag.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the restore.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>restore(Version version,<br>
+										String&nbsp;relPath,<br>
+										boolean removeExisting)</b>
+									</p>
+									<p class="c5">
+										Restores the specified <b>version</b> to <b>relPath</b>, relative to this node.
+									</p>
+									<p class="c5">
+										A node need not exist at <b>relPath</b>, though the parent of <b>relPath</b> must exist, otherwise a <b>PathNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										If a node <i>does</i> exist at <b>relPath</b> then it must correspond to the version being restored (the version must be a version <i>of that node</i>), otherwise a <b>VersionException</b> is thrown.
+									</p>
+									<p class="c5">
+										If no node exists at <b>relPath</b> then a <b>VersionException</b> is thrown if the parent node of <b>relPath</b> is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										If there is a node at <b>relPath</b> then the checked-in status of that node itself and the checked-in status of its parent are irrelevant. The restore will work even if one or both are checked-in.
+									</p>
+									<p class="c5">
+										A UUID collision occurs when a node exists <i>outside the subtree rooted at</i> <b><i>relPath</i></b> with the same UUID as a node that would be introduced by the <b>restore</b> operation <i>into the subtree at</i> <b><i>relPath</i></b> (note that in cases where there is no node at <b>relPath</b>, this amounts to saying that a UUID collision occurs if there exists a node <i>anywhere</i> in this workspace with the same UUID as a node that would be introduced by the <b>restore</b>). The result in such a case is governed by the <b>removeExisting</b> flag. If <b>removeExisting</b> is <b>true</b> then the incoming node takes precedence, and the existing node (and its subtree) is removed. If <b>removeExisting</b> is <b>false</b>, then a <b>ItemExistsException</b> is thrown and no changes are made. Note that this applies not only to cases where the restored node itself conflicts with an existing node but also to cases where a conflict occurs with <i>any</i> node that would be introduced into the workspace by the restore operation. In particular conflicts involving subnodes of the restored node that have <b>OnParentVersion</b> settings of <b>COPY</b> or <b>VERSION</b> (see <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>) are also governed by the <b>removeExisting</b> flag.
+									</p>
+									<p class="c5">
+										If the would-be parent of the location <b>relPath</b> is actually a property, or if a node type restriction would be violated, then a <b>ConstraintViolationException</b> is thrown.
+									</p>
+									<p class="c5">
+										If the <b>restore</b> succeeds, the changes made to this node are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										An <b>UnsupportedRepositoryOperationException</b> is thrown if versioning is not supported.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the restore.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										void
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>restoreByLabel(String versionLabel,<br>
+										boolean removeExisting)</b>
+									</p>
+									<p class="c5">
+										Restores this node to the state defined by the version with the specified <b>versionLabel</b>.
+									</p>
+									<p class="c5">
+										If this node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										If successful, the change is persisted immediately and there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if no version with the specified <b>versionLabel</b> exists in this node's version history.
+									</p>
+									<p class="c5">
+										This method will work regardless of whether this node is checked-in or not.
+									</p>
+									<p class="c5">
+										A UUID collision occurs when a node exists <i>outside the subtree rooted at this node</i> with the same UUID as a node that would be introduced by the <b>restore</b> operation <i>into the subtree at this node</i>. The result in such a case is governed by the <b>removeExisting</b> flag. If <b>removeExisting</b> is <b>true</b>, then the incoming node takes precedence, and the existing node (and its subtree) is removed. If <b>removeExisting</b> is <b>false</b>, then a <b>ItemExistsException</b> is thrown and no changes are made. Note that this applies not only to cases where the restored node itself conflicts with an existing node but also to cases where a conflict occurs with <i>any</i> node that would be introduced into the workspace by the restore operation. In particular conflicts involving subnodes of the restored node that have <b>OnParentVersion</b> settings of <b>COPY</b> or <b>VERSION</b> (see <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>) are also governed by the <b>removeExisting</b> flag.
+									</p>
+									<p class="c5">
+										An <b>InvalidItemStateException</b> is thrown if this <b>Session</b> (not necessarily this <b>Node</b>) has pending unsaved changes.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the restore.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										VersionHistory
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getVersionHistory()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>VersionHistory</b> object of this node. This object provides access to the <b>nt:versionHistory</b> node holding this node's versions.
+									</p>
+									<p class="c5">
+										If <b>this</b> node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										Version
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getBaseVersion()</b>
+									</p>
+									<p class="c5">
+										Returns the current base version of this versionable node.
+									</p>
+									<p class="c5">
+										If this node is not versionable, an <b>UnsupportedRepositoryOperationException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

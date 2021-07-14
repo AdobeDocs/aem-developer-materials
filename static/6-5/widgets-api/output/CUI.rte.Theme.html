@@ -1,0 +1,95 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CUI.rte.Theme-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CUI.rte.Theme-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CUI.rte.Theme-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CUI.rte.Theme"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CUI.rte.Theme</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CUI.rte</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/RichText.js" target="_blank">RichText.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Theme</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    The theme-specific constants for <a ext:cls="CQ.form.RichText" href="output/CQ.form.RichText.html">CQ.form.RichText</a>.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CUI.rte.Theme-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.Theme-ANCHOR_CLASS"></a>
+            <b>ANCHOR_CLASS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; CSS class to be used for styling an anchor (defauls to "cq-rte-anchor")                                    </div>
+        </td>
+        <td class="msource">Theme</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.Theme-DEFAULT_HEIGHT"></a>
+            <b>DEFAULT_HEIGHT</b> : Number            <div class="mdesc">
+                                        &lt;static&gt; The default height of a rich text editor component, including the toolbar(s)
+(defaults to 210)                                    </div>
+        </td>
+        <td class="msource">Theme</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.Theme-DEFAULT_REQCSS_PATH"></a>
+            <b>DEFAULT_REQCSS_PATH</b> : String            <div class="mdesc">
+                                    <div class="short">&lt;static&gt; The default path where the required stylesheets are located (defaults to
+"/libs/cq/widgets/themes/defa...</div>
+            <div class="long">
+                &lt;static&gt; The default path where the required stylesheets are located (defaults to
+"/libs/cq/widgets/themes/default/widgets/form/RichText" [5.2] resp.
+"/libs/cq/ui/widgets/themes/default/widgets/form/RichText" [as of 5.3])            </div>
+                                    </div>
+        </td>
+        <td class="msource">Theme</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.Theme-TABLESELECTION_CLASS"></a>
+            <b>TABLESELECTION_CLASS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; CSS class to be used for custom selections within a table (defaults to
+"cq-rte-tableselection")                        	        <i>Added in CQ 5.3.</i>
+                        </div>
+        </td>
+        <td class="msource">Theme</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CUI.rte.Theme-TABLE_NOBORDER_CLASS"></a>
+            <b>TABLE_NOBORDER_CLASS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; CSS class to be used for styling a table with no actual border (defaults to
+"cq-rte-forcedborder")                                    </div>
+        </td>
+        <td class="msource">Theme</td>
+    </tr>
+            </table>
+                <a id="CUI.rte.Theme-methods"></a>
+        <h2>Public Methods</h2>
+        <div class="no-members">This class has no public methods.</div>        <a id="CUI.rte.Theme-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

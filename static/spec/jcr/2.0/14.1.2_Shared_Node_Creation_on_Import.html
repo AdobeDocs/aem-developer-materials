@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.1.2 Shared Node Creation on Import (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>14.1.2 Shared Node Creation on Import</H3>
+	<P>During import the
+	behavior of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_THROW</FONT></FONT>
+	indicates that if an incoming referenceable node has the same
+	identifier as an existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node in the workspace, the incoming node is created and added to the
+	shared set of the existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node (see §3.9.1 <I>mix:shareable</I>). Note that if the import in
+	question is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	import (see §11.6.2 <I>Session Event-Based Import</I> and §11.7.2
+	<I>Session Stream-Based Import</I>) new shared transient nodes will
+	be created. These nodes are not considered to be <I>new</I>, in the
+	sense that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.isNew</FONT></FONT>
+	will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

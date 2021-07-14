@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 5.1 A File System-backed Content Repository (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_5.1." id="section_5.1."></a> 5.1 A File System-backed Content Repository
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									An obvious implementation of a content repository is as a layer on top of a conventional file system.
+								</p>
+							
+							
+								<p class="c5">
+									Consider, for example, a file system with the following layout:
+								</p>
+							
+							
+								<p class="c12">
+									<b>content/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>newpaintings/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>bigredstripe.gif</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>bigredstripe.desc</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>oldpaintings/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>sistinechapel.gif</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>sistinechapel.desc</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									Here is a possible mapping of this file structure to the content repository:
+								</p>
+								
+									
+										
+											
+												
+													
+														
+															
+																
+																	
+																		
+																			
+																				
+																					
+																						
+																							
+																								<p class="c12">
+																									<b>Node</b>
+																								</p>
+																							
+																							
+																								<p class="c12">
+																									<b>Property = "..."</b>
+																								</p>
+																							
+																						
+																					
+																				
+																			
+																		
+																	
+																
+															
+														
+													
+												
+											
+										
+									
+								
+							
+						
+					
+				
+			
+		
+		<table border="1" cellpadding="7" cellspacing="0">
+			
+			
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>content/</b>
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						<b>/</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>newpaintings/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>newpaintings</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>bigredstripe.gif</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>bigredstripe.gif</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>(creation date of the file)</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>jcr:created = "2001-01-01T00:00:00.000Z"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>&lt;binary data&gt;</i></b>
+					</p>
+				</td>
+				<td>
+					
+						
+							<br>
+							│ │ └─<b>jcr:content</b>
+						
+						
+							<br>
+							│ │ └─<b>myapp:data = &lt;binary data&gt;</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>bigredstripe.desc</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ └─<b>bigredstripe.desc</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>(creation date of the file)</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>jcr:created = "2001-01-02T00:00:00.000Z"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>"An excellent example..."</b>
+					</p>
+				</td>
+				<td>
+					
+						
+							<br>
+							│ └─<b>jcr:content</b>
+						
+						
+							<br>
+							│ └─<b>myapp:data = "An excellent..."</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>oldpaintings/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>oldpaintings</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>sistinechapel.gif</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>sistinechapel.gif</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>(creation date of the file)</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>jcr:created = "2001-01-03T00:00:00.000Z"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>&lt;binary data&gt;</i></b>
+					</p>
+				</td>
+				<td>
+					
+						
+							<br>
+							│ └─<b>jcr:content</b>
+						
+						
+							<br>
+							│ └─<b>myapp:data = &lt;binary data&gt;</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>sistinechapel.desc</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>sistinechapel.desc</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>(creation date of the file)</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>jcr:created = "2001-01-04T00:00:00.000Z"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>"Not bad."</b>
+					</p>
+				</td>
+				<td>
+					
+						
+							<br>
+							└─<b>jcr:content</b>
+						
+						
+							<br>
+							└─<b>myapp:data = "Not bad."</b>
+						
+					
+				</td>
+			</tr>
+		</table>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									In this example, both directories and files are mapped to nodes. Nodes that represent files have a <b>jcr:created</b> property and a <b>jcr:content</b> node. The <b>jcr:content</b> node in turn has a single <b>myapp:data</b> property that holds the actual contents of the corresponding file (note that the nodes representing the files <b>bigredstripe.gif</b> and so forth, are of node type <b>nt:file</b>; see <a href="6.7.22.6_nt_file.html">6.7.22.6</a> <i>nt:file</i>).
+								</p>
+							
+							
+								<p class="c5">
+									A variation on the above arrangement is to reflect the directory structure directly but combine the file pairs (the picture and the description text) into a single node:
+								</p>
+								
+									
+										
+											
+												
+													
+														
+															
+																
+																	
+																		
+																			
+																				
+																					
+																						
+																							
+																								<p class="c12">
+																									<b>Node/</b>
+																								</p>
+																							
+																							
+																								<p class="c12">
+																									<b>Property = "..."</b>
+																								</p>
+																							
+																						
+																					
+																				
+																			
+																		
+																	
+																
+															
+														
+													
+												
+											
+										
+									
+								
+							
+						
+					
+				
+			
+		
+		<table border="1" cellpadding="7" cellspacing="0">
+			
+			
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>content/</b>
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						<b>/</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>newpaintings/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>newpaintings</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>bigredstripe.gif</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ └─<b>bigredstripe</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>(creation date of .gif or .desc</b>
+						
+						
+							<br>
+							<b>whichever was first)</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ ├─<b>jcr:created = "2001-05-03T00:00:00.000Z"</b>
+						
+						
+							<br>
+							│ │
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>&lt;binary data&gt;</i></b>
+					</p>
+				</td>
+				<td>
+					
+						
+							<br>
+							│ └─<b>jcr:content</b>
+						
+						
+							<br>
+							│ ├─<b>myapp:image = &lt;binary data&gt;</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>bigredstripe.desc</b>
+						
+						
+							<br>
+							<b>"An excellent example</b>
+						
+						
+							<br>
+							<b>of stripeism."</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ └─<b>myapp:desc = "An excellent example</b>
+						
+						
+							<br>
+							│ <b>of stripeism."</b>
+						
+						
+							<br>
+							│
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>oldpaintings/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>oldpaintings</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>sistinechapel.gif</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						└─<b>sistinechapel</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>(creation date of .gif or .desc</b>
+						
+						
+							<br>
+							<b>whichever was first)</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							├─<b>jcr:created = "2001-06-04T00:00:00.000Z"</b>
+						
+						
+							<br>
+							│
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>&lt;binary data&gt;</i></b>
+					</p>
+				</td>
+				<td>
+					
+						
+							<br>
+							└─<b>jcr:content</b>
+						
+						
+							<br>
+							├─<b>myapp:image = &lt;binary data&gt;</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>sistinechapel.desc</b>
+						
+						
+							<br>
+							<b>"Not bad."</b>
+						
+					
+				</td>
+				<td>
+					<p>
+						└─<b>myapp:desc = "Not bad."</b>
+					</p>
+				</td>
+			</tr>
+		</table>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									In this example, there is no longer a one-to-one correspondence between file and hierarchy node (though as above, nodes of type <b>nt:file</b> combined with application-specific content node types are used).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

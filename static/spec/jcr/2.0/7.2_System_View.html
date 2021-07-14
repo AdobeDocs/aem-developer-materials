@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7.2 System View (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>7.2 System View</H2>
+	<P>The exported system
+	view XML document is constructed as follows:</P>
+	<OL>
+		<LI><P>For every
+		namespace used within the subgraph rooted at <I>N</I>, the
+		corresponding JCR namespace mapping in the current session <I>is
+		included</I> as an XML namespace declaration such that any use of a
+		namespace prefix is within the scope of the appropriate namespace
+		declaration.</P>
+		<LI><P>Other JCR
+		namespace mappings in the current session <I>may be included</I> as
+		XML namespace declarations in the exported document.</P>
+		<LI><P>The JCR namespace
+		mapping of the prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>
+		<I>may be excluded</I> from the namespace declarations in the
+		exported document.</P>
+		<LI><P>A namespace
+		declaration for the URI <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.jcp.org/jcr/sv/1.0</FONT></FONT>,
+		is included such that any use of the corresponding namespace prefix
+		is within the scope of the declaration. In this section the prefix
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>sv</FONT></FONT>
+		is assumed, making the declaration
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:sv=“http://www.jcp.org/jcr/sv/1.0”</FONT></FONT>.
+				</P>
+		<LI><P>Each JCR node
+		becomes an XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>.</P>
+		<LI><P>Each JCR property
+		becomes an XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>.</P>
+		<LI><P>The name of each
+		JCR node or property becomes the value of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:name</FONT></FONT>
+		attribute of the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element.</P>
+		<LI><P>If the root node
+		of a workspace is included in the serialized subgraph, it receives
+		the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>.</P>
+		<LI><P>The property type
+		of each content repository property is recorded in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:type</FONT></FONT>
+		attribute of the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element, using the standard string forms for property type names as
+		returned by the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType.nameFromValue</FONT></FONT>.</P>
+		<LI><P>The value of each<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		BINARY</FONT></FONT> JCR property is Base64<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote12anc" HREF="#sdfootnote12sym"><SUP>12</SUP></A></SUP>
+		encoded and the resulting string is included as XML text within an
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		element within the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element. 
+		</P>
+		<LI><P>The value of each
+		non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		JCR property is converted to string form according to the standard
+		conversion (see §3.6.4 <I>Property Type Conversion</I>) and the
+		resulting string is included as XML text within an <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		element within the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element.</P>
+		<OL>
+			<LI><P>Entity
+			references are used to escape characters which cannot be included
+			as literals within XML text (see §7.5 <I>Escaping of Values</I>).
+						</P>
+			<LI><P>If, after
+			conversion to string and entity escaping is performed, the string
+			form of a value still contains characters which cannot appear in
+			an XML document (neither as literals nor as character references<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote13anc" HREF="#sdfootnote13sym"><SUP>13</SUP></A></SUP>)
+			then:</P>
+			<OL TYPE=i>
+				<LI><P>The string form
+				is further encoded using Base64 encoding. 
+				</P>
+				<LI><P>The attribute
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi:type=“xsd:base64Binary”</FONT></FONT>
+				is added to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+				element. 
+				</P>
+				<LI><P>The namespace
+				mappings for <FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi</FONT></FONT>
+				and <FONT FACE="Courier New, monospace"><FONT SIZE=2>xsd</FONT></FONT>
+				are added to the exported XML document so that the <FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi:type</FONT></FONT>
+				attribute is within their scope. The namespace declarations
+				required are <FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:xsd=“http://www.w3.org/2001/XMLSchema”</FONT></FONT>
+				and <FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:xsi=“http://www.w3.org/2001/XMLSchema-instance”</FONT></FONT>.
+				Note that the prefixes representing these two namespaces need not
+				be <I>literally</I> “<FONT FACE="Courier New, monospace"><FONT SIZE=2>xsd</FONT></FONT>”
+				and “<FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi</FONT></FONT>”.
+				Any two prefixes are permitted as long as the corresponding
+				namespace declarations are changed accordingly.</P>
+			</OL>
+		</OL>
+		<LI><P>A multi-value
+		property is converted to an <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element containing multiple <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		elements. The order of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		elements reflects the order of the value array returned by
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues</FONT></FONT>.
+		If a property is multi-valued but happens to have only one value,
+		then the attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:multiple=“true”</FONT></FONT>
+		<I>must</I> be added to the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element. If the property is multi-valued and has more than one
+		value then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:multiple=“true”</FONT></FONT>
+		attribute <I>may</I> be added.</P>
+		<LI><P>The hierarchy of
+		the content repository nodes and properties is reflected in the
+		hierarchy of the corresponding XML elements.</P>
+		<LI><P>Within an
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element all <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		subelements must occur before the first <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		subelement.</P>
+		<LI><P>The first
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element in an <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+		(see §3.7.10 <I>Base Primary Node Type</I>).</P>
+		<LI><P>If a node has a
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property, then the second <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		(see §3.7.10 <I>Base Primary Node Type</I>). 
+		</P>
+		<LI><P>In the case of
+		referenceable nodes, the third <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		(see §3.8.1.1 <I>mix:referenceable</I>).</P>
+		<LI><P>The order of the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		subelements of a parent <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		must reflect the order in which the corresponding child nodes are
+		returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes()</FONT></FONT>.</P>
+		<LI><P>Shared nodes are
+		exported as described in §14.7 <I>Export</I>.</P>
+	</OL>
+	<P>A writable repository
+	may support import using system view (see §11 <I>Import</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

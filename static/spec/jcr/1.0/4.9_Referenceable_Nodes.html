@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.9 Referenceable Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.9." id="section_4.9."></a>4.9 Referenceable Nodes
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The concept of the <i>referenceable node</i> is foundational to many features of the repository, including <i>multiple workspaces</i> and <i>versioning</i>. The following principles define the characteristics and functioning of referenceable nodes:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					A repository <i>may</i> support <i>referenceable</i> <i>nodes</i>. To do this the repository must support the mixin type <b>mix:referenceable</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>mix:referenceable</b> type has the effect of enforcing, on any node to which it is assigned, the presence of a property called <b>jcr:uuid</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <b>jcr:uuid</b> property is a protected, auto-created, mandatory property. This means that it is created and administered by the system and can only be read (but not changed or deleted) by the client.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The job of the <b>jcr:uuid</b> property is to expose the universally unique identifier (UUID) of its node.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The UUID of a referenceable node is assigned on node creation (or at least on node persistence) by the system itself.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					In a given workspace, there is never more than one node with a given UUID, though there may be nodes that are not <b>mix:referenceable</b> and so do not have UUIDs at all.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If a node that is not <b>mix:referenceable</b> happens to have a property called <b>jcr:uuid</b>, then this property has no special significance (Note that adding such a property is not recommended: In general, the <b>jcr</b> prefix should be reserved for items defined within the specification, though this restriction may not be enforced by the implementation).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A repository implementation may make its workspace root nodes <b>mix:referenceable</b>. If so, then the root node of <i>all</i> workspaces must be referenceable, and all must have the <i>same</i> UUID.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Some implementations may allow or even require every node to have a UUID, and hence be <b>mix:referenceable</b>. In some cases however, especially where this API is implemented on top of an existing datastore, the provision of UUIDs for every node may be impractical. For this reason, an implementation is free to enforce whatever policies it wishes regarding where within a workspace tree referenceable nodes may be created or existing nodes extended with an assignment of <b>mix:referenceable</b> (in fact, this stems from the more general principle that an implementation is free to enforce such policies on the assignment of primary and mixin node types in general).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

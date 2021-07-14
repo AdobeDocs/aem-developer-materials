@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.7.7 Simple vs. Full Versioning after Restore (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.7.7 Simple vs. Full Versioning after Restore</H3>
+	<P>Under simple
+	versioning <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is automatically checked-in.</P>
+	<P>Under full versioning the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:isCheckedOut</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(though the other elements of a check-in are not performed).
+	Additionally, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+	property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>.
+	Note that after the next check-out (see §15.3 <I>Check-Out</I>) and
+	subsequent check-in of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	the version <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+	will acquire an additional direct successor, forming a branch.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

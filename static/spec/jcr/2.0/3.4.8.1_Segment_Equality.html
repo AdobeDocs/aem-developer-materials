@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.8.1 Segment Equality (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.4.8.1 Segment Equality</H4>
+	<P>Two paths <I>P</I><SUB><I>1</I></SUB>
+	and <I>P</I><SUB><I>2</I></SUB> are segment-equal if and only if:</P>
+	<UL>
+		<LI><P>They contain the
+		same number of segments.</P>
+		<LI><P>Each segment in
+		<I>P</I><SUB><I>1</I></SUB> is equal to the segment at the same
+		position in <I>P</I><SUB><I>2</I></SUB>.</P>
+	</UL>
+	<P>Two name segments are
+	equal if and only if their JCR names are equal (see §3.2.7 <I>Equality
+	of Names</I>) and their integer indexes are equal.</P>
+	<P>Equality for
+	identifier segments is as defined for identifiers in general, that
+	is, by standard Java <FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	equality.</P>
+	<P>Equality for root,
+	self and parent segments is simple type identity; every instance of
+	a root, parent or self segment is equal to every other instance of
+	the same type.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

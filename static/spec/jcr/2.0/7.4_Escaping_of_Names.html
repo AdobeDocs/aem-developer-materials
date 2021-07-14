@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7.4 Escaping of Names (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>7.4 Escaping of Names</H2>
+	<P>Though a JCR prefix is
+	always a valid XML prefix, the JCR local name may not be a valid XML
+	name. Consequently, for document view serialization, each JCR name
+	is converted to a valid XML name (as defined by XML 1.0) by
+	translating invalid characters into escaped numeric entity
+	encodings<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote16anc" HREF="#sdfootnote16sym"><SUP>16</SUP></A></SUP>.</P>
+	<P>The escape character
+	is the underscore (“_”). Any invalid character is escaped as
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>_x</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>HHHH</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>_</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>HHHH</I></FONT></FONT>
+	is the four-digit hexadecimal UTF-16 code for the character. When
+	producing escape sequences the implementation should use lowercase
+	letters for the hex digits <FONT FACE="Courier New, monospace"><FONT SIZE=2>a</FONT></FONT>-<FONT FACE="Courier New, monospace"><FONT SIZE=2>f</FONT></FONT>.
+	When unescaping, however, both upper and lowercase alphabetic
+	hexadecimal characters must be recognized.</P>
+	<P>Escaping and
+	unescaping is done by parsing the name from left to right.</P>
+	<P>The underscore
+	character (“_”), when appearing as literal, is itself escaped if
+	it is followed by <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>xHHHH</I></FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>H</I></FONT></FONT>
+	is one of the following characters: <FONT FACE="Courier New, monospace"><FONT SIZE=2>0123456789abcdefABCDEF</FONT></FONT>.</P>
+	<P>For example,</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My
+	Documents</FONT></FONT>” is encoded as
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020_Documents</FONT></FONT>”.</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_Documents</FONT></FONT>”
+	is not encoded.</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020Documents</FONT></FONT>”
+	is encoded as <FONT FACE="Courier New, monospace"><FONT SIZE=2>“My_x005f_x0020Documents”.</FONT></FONT></P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020_Documents</FONT></FONT>”
+	is encoded as “<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x005f_x0020_Documents</FONT></FONT>”.</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020
+	Documents</FONT></FONT>” is encoded as
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x005f_x0020_x0020_Documents</FONT></FONT>”.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

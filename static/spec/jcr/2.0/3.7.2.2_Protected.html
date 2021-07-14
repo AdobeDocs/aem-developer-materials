@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.2.2 Protected (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.2.2 Protected</H4>
+	<P>If an item <I>I</I> is
+	declared protected it is <I>repository-controlled</I>.</P>
+	<P>If <I>I</I> is a node
+	then, through the<I> core write methods of JCR</I> (see §10.2 <I>Core
+	Write Methods</I>),</P>
+	<UL>
+		<LI><P><I>I</I> cannot
+		be removed,</P>
+		<LI><P>child nodes of <I>I</I>
+		cannot be added, removed, or reordered,</P>
+		<LI><P>properties of <I>I</I>
+		cannot be added or removed,</P>
+		<LI><P>the values of
+		existing properties of <I>I</I> cannot be changed,</P>
+		<LI><P>the primary node
+		type of <I>I</I> cannot be changed and</P>
+		<LI><P>mixin node types
+		cannot be added to or removed from <I>I</I>.</P>
+	</UL>
+	<P>If I is a property
+	then, through the <I>core write methods of JCR </I>(see §10.2 <I>Core
+	Write Methods</I>),</P>
+	<UL>
+		<LI><P><I>I</I> cannot
+		be removed and</P>
+		<LI><P>the value of <I>I
+		</I>cannot be changed.</P>
+	</UL>
+	<P>Additionally, if <I>I</I>
+	is a property, its being repository-controlled also implies that its
+	value is under the control of the repository and can change at any
+	time, before or after save. See §3.7.2.3.2 <I>Auto-Created and
+	Protected</I>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.10 Corresponding Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>3.10 Corresponding Nodes</H2>
+	<P>In a repository with
+	more than one workspace, a node in one workspace <I>may</I> have
+	<I>corresponding nodes</I> in one or more other workspaces.</P>
+	<P>Given a repository <I>R</I>
+	with workspaces <I>W</I><SUB><I>0</I></SUB>, <I>W</I><SUB><I>1</I></SUB>,...<I>W</I><SUB><I>k</I></SUB>
+	and a node <I>N</I><SUB><I>0</I></SUB> in <I>W</I><SUB><I>0</I></SUB>
+	with identifier <I>I</I><SUB><I>0</I></SUB> then for each workspace
+	<I>W</I><SUB><I>x</I></SUB> in <I>R</I>, if <I>W</I><SUB><I>x</I></SUB>
+	has a node <I>N</I><SUB><I>x</I></SUB> with identifier <I>I</I><SUB><I>0</I></SUB>,
+	<I>N</I><SUB><I>x</I></SUB> is a corresponding node of <I>N</I><SUB><I>0</I></SUB>.
+	Some corollaries include:</P>
+	<UL>
+		<LI><P>Every node corresponds to itself.</P>
+		<LI><P>A non-shared node has at most one
+		corresponding node per workspace. In repositories that support
+		<I>shareable nodes</I> the nodes within a shared-set have the same
+		identifier and therefore a node in another workspace with that
+		identifier will have more than one corresponding node in that
+		workspace (see §3.9 <I>Shareable Nodes Model</I>).</P>
+	</UL>
+	<P>Apart from having the
+	same identifier, corresponding nodes need have nothing else in
+	common. They can have different sets of properties and child nodes,
+	for example.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

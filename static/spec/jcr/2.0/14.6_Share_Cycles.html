@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14.6 Share Cycles (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>14.6 Share Cycles</H2>
+	<P>In an implementation
+	that forbids share cycles, any session-write method that can create
+	a shared node will cause a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ShareCycleException</FONT></FONT>
+	to be thrown either immediately or on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>,
+	if persisting the change would result in a share cycle. 
+	</P>
+	<P>Similarly, any
+	workspace-write method that can create a shared node will throw a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ShareCycleException</FONT></FONT>
+	if completion of the operation would result in a share cycle.</P>
+	<P>In an implementation
+	that does not prevent share cycles, checking for cycles is left to
+	the repository user.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.13.2 Configuration Proxy Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.13.2 Configuration Proxy Nodes</H3>
+	<P>Each configuration in
+	a given workspace is represented by a distinct <I>proxy node</I> of
+	type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	located in <I>configuration storage</I> within the same workspace
+	under <FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:configurations/</FONT></FONT>.
+	The configuration storage in a particular workspace is specific to
+	that workspace. It is not a common repository-wide store mirrored
+	into each workspace, as is the case with version storage.</P>
+	<P>The proxy node of a
+	configuration is used to perform certain operations on that
+	configuration. In particular, version operations performed on the
+	proxy node act not only on that node itself but also on the
+	configuration it represents, as a whole. Creating a baseline, for
+	example, is done by performing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>checkin</FONT></FONT>
+	on a configuration’s proxy node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

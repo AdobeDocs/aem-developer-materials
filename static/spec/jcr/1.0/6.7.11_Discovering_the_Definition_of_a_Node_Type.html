@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.11 Discovering the Definition of a Node Type (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.11." id="section_6.7.11."></a> 6.7.11 Discovering the Definition of a Node Type
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>NodeType</b> object represents a primary or mixin node type available in the repository.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.nodetype.<br>
+										<b>NodeType</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getName()</b>
+									</p>
+									<p class="c5">
+										Returns the name of the node type.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isMixin()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this is a mixin type; returns <b>false</b> if it is primary.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasOrderableChildNodes()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if nodes of this type must support orderable child nodes; returns <b>false</b> otherwise. If a node type returns <b>true</b> on a call to this method, then all nodes of that node type <i>must</i> support the method <b>Node.orderBefore</b>. If a node type returns <b>false</b> on a call to this method, then nodes of that node type <i>may</i> support <b>Node.orderBefore</b>. Only the primary node type of a node controls that node's status in this regard. This setting on a mixin node type will not have any effect on the node. See <a href="7.1.11_Ordering_Child_Nodes.html">7.1.11</a> <i>Ordering Child Nodes</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPrimaryItemName()</b>
+									</p>
+									<p class="c5">
+										Returns the name of the primary item (one of the child items of the nodes of this node type). If this node has no primary item, then this method returns <b>null</b>. This indicator is used by the method <b>Node.getPrimaryItem()</b>. See <a href="6.2.3_Node_Read_Methods.html">6.2.3</a> <i>Node Read Methods</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getSupertypes()</b>
+									</p>
+									<p class="c5">
+										Returns all supertypes of this node type in the node type inheritance hierarchy. For primary types apart from <b>nt:base</b>, this list will always include at least <b>nt:base</b>. For mixin types, there is no required supertype.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDeclaredSupertypes()</b>
+									</p>
+									<p class="c5">
+										Returns the <i>direct</i> supertypes of this node type in the node type inheritance hierarchy, that is, those actually declared in this node type. In single-inheritance systems, this will always be an array of size 0 or 1. In systems that support multiple inheritance of node types this array may be of size greater than 1.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isNodeType(String nodeTypeName)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node type is <b>nodeTypeName</b> or a subtype of <b>nodeTypeName</b>, otherwise returns <b>false</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>PropertyDefinition[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPropertyDefinitions()</b>
+									</p>
+									<p class="c5">
+										Returns an array containing the property definitions of this node type. This includes both those property definitions actually declared in this node type and those inherited from the supertypes of this type.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>PropertyDefinition[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDeclaredPropertyDefinitions()</b>
+									</p>
+									<p class="c5">
+										Returns an array containing the property definitions actually declared in this node type.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeDefinition[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getChildNodeDefinitions()</b>
+									</p>
+									<p class="c5">
+										Returns an array containing the child node definitions of this node type. This includes both those child node definitions actually declared in this node type and those inherited from the supertypes of this node type.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeDefinition[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getDeclaredChildNodeDefinitions()</b>
+									</p>
+									<p class="c5">
+										Returns an array containing the child node definitions actually declared in this node type.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>canSetProperty(String propertyName,<br>
+										Value value)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if setting <b>propertyName</b> to <b>value</b> is allowed by this node type. Otherwise returns <b>false</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>canSetProperty(String propertyName,<br>
+										Value[] values)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if setting <b>propertyName</b> to <b>values</b> is allowed by this node type. Otherwise returns <b>false</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>canAddChildNode(String childNodeName)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node type allows the addition of a child node called <b>childNodeName</b> without specific node type information (that is, given the definition of this parent node type, the child node name is sufficient to determine the intended child node type). Returns <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>canAddChildNode(String childNodeName,<br>
+										String nodeTypeName)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this node type allows the addition of a child node called <b>childNodeName</b> of node type <b>nodeTypeName</b>. Returns <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>canRemoveItem(String itemName)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if removing the child item called <b>itemName</b> is allowed by this node type. Returns <b>false</b> otherwise.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.11.5 Timing of Validation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.11.5 Timing of Validation</H3>
+	<P>For session-write
+	methods, implementers have flexibility in deciding whether a
+	particular validation is to be performed immediately on invocation
+	of the write method or later on persist. For example, in the case
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>,
+	an implementer might immediately check that the path given is valid
+	while postponing validation of node type constraints until
+	persist-time.</P>
+	<UL>
+		<LI><P>It is <I>suggested</I>
+		that an implementation perform each validation as soon as possible,
+		given the underlying design of the repository.</P>
+		<LI><P>It is <I>required</I>
+		that an implementation prohibit the emergence of a persistent state
+		in violation of the validation rules defined by this specification.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

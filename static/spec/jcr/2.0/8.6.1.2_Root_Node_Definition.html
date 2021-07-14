@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 8.6.1.2 Root Node Definition (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>8.6.1.2 Root Node Definition</H4>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getDefinition</FONT></FONT>
+	called on the root node must return a valid, non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	object. The values returned by the methods of this object must be as
+	follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getName()</FONT></FONT>:
+		““, the empty string.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaringNodeType()</FONT></FONT>:
+		A valid <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+		object (see §8.6.1.3 <I>Root Declaring Node Type</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>isMandatory()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>isAutoCreated()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>isProtected()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>allowsSameNameSiblings()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getOnParentVersion()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>,
+		if versioning is supported and the root node is capable of being
+		made versionable, <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		otherwise.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getDefaultPrimaryType()</FONT></FONT>:
+		A valid non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+		object (see §3.7.8 <I>Root Node Type</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getRequiredPrimaryTypes()</FONT></FONT>:
+		An array containing a single <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+		object identical with that returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>getDefaultPrimaryType</FONT></FONT>.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

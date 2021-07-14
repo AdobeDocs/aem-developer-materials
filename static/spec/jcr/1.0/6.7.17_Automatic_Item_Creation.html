@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.17 Automatic Item Creation (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.17." id="section_6.7.17."></a> 6.7.17 Automatic Item Creation
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The ability to specify the automatic creation of child nodes and properties has a number of interesting repercussions. Consider a situation where we have three node types, <b>C,</b> <b>B</b> and <b>A</b>:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>C</b> specifies an auto-created <b>STRING</b> property called <b>Z</b> with default value “<b>hello</b>”.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>B</b> specifies an auto-created child node <b>Y</b> of node type <b>C</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>A</b> specifies an auto-created child node called <b>X</b> of node type <b>B</b>.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Therefore, when a node <b>N</b> of node type <b>A</b> is added, this triggers a chain of automatic node creation resulting in a structure like this:
+								</p>
+							
+							
+								<p class="c5">
+									<b>N--&gt; X--&gt; Y--&gt; Z="hello"</b>
+								</p>
+							
+							
+								<p class="c5">
+									It is perfectly possible for a repository to have node types that may result in a cascade of item creation. However, <i>it must never be the case that a repository has</i> <i>a set of node types that may result in an infinite loop of automatic item creation</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

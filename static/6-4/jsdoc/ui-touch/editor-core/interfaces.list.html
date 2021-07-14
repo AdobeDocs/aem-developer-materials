@@ -1,0 +1,5395 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Editor Core Interfaces</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Editor Core</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.html">Granite</a></li><li><a href="Granite.author.html">Granite.author</a></li><li><a href="Granite.author.components.html">Granite.author.components</a></li><li><a href="Granite.author.ContentFrame.html">Granite.author.ContentFrame</a></li><li><a href="Granite.author.design.html">Granite.author.design</a></li><li><a href="Granite.author.developer.html">Granite.author.developer</a></li><li><a href="Granite.author.DialogFrame.html">Granite.author.DialogFrame</a></li><li><a href="Granite.author.edit.html">Granite.author.edit</a></li><li><a href="Granite.author.edit.EditableActions.html">Granite.author.edit.EditableActions</a></li><li><a href="Granite.author.edit.ToolbarActions.html">Granite.author.edit.ToolbarActions</a></li><li><a href="Granite.author.editableHelper.html">Granite.author.editableHelper</a></li><li><a href="Granite.author.editables.html">Granite.author.editables</a></li><li><a href="Granite.author.EditorFrame.html">Granite.author.EditorFrame</a></li><li><a href="Granite.author.overlayManager.html">Granite.author.overlayManager</a></li><li><a href="Granite.author.OverlayWrapper.html">Granite.author.OverlayWrapper</a></li><li><a href="Granite.author.pageDesign.html">Granite.author.pageDesign</a></li><li><a href="Granite.author.pageInfo.html">Granite.author.pageInfo</a></li><li><a href="Granite.author.responsive.html">Granite.author.responsive</a></li><li><a href="Granite.author.responsive.EditableActions.html">Granite.author.responsive.EditableActions</a></li><li><a href="Granite.author.selection.html">Granite.author.selection</a></li><li><a href="Granite.author.ui.html">Granite.author.ui</a></li><li><a href="Granite.author.ui.assetFinder.html">Granite.author.ui.assetFinder</a></li><li><a href="Granite.author.ui.componentBrowser.html">Granite.author.ui.componentBrowser</a></li><li><a href="Granite.author.ui.coralCompatibility.html">Granite.author.ui.coralCompatibility</a></li><li><a href="Granite.author.ui.dropController.html">Granite.author.ui.dropController</a></li><li><a href="Granite.author.ui.emulator.html">Granite.author.ui.emulator</a></li><li><a href="Granite.author.ui.globalBar.html">Granite.author.ui.globalBar</a></li><li><a href="Granite.author.ui.helpers.html">Granite.author.ui.helpers</a></li><li><a href="Granite.author.ui.SidePanel.html">Granite.author.ui.SidePanel</a></li><li><a href="Granite.author.ui.statusBarManager.html">Granite.author.ui.statusBarManager</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Granite.author.Component.html">Granite.author.Component</a></li><li><a href="Granite.author.design.Dialog.html">Granite.author.design.Dialog</a></li><li><a href="Granite.author.design.Layer.html">Granite.author.design.Layer</a></li><li><a href="Granite.author.design.Overlay.html">Granite.author.design.Overlay</a></li><li><a href="Granite.author.developer.Layer.html">Granite.author.developer.Layer</a></li><li><a href="Granite.author.edit.Dialog.html">Granite.author.edit.Dialog</a></li><li><a href="Granite.author.edit.Layer.html">Granite.author.edit.Layer</a></li><li><a href="Granite.author.edit.LayoutToolbar.html">Granite.author.edit.LayoutToolbar</a></li><li><a href="Granite.author.edit.Overlay.html">Granite.author.edit.Overlay</a></li><li><a href="Granite.author.edit.Toolbar.html">Granite.author.edit.Toolbar</a></li><li><a href="Granite.author.Editable.html">Granite.author.Editable</a></li><li><a href="Granite.author.Inspectable.html">Granite.author.Inspectable</a></li><li><a href="Granite.author.Layer.html">Granite.author.Layer</a></li><li><a href="Granite.author.LayerManager.html">Granite.author.LayerManager</a></li><li><a href="Granite.author.PageInfoHelper.html">Granite.author.PageInfoHelper</a></li><li><a href="Granite.author.PreviewLayer.html">Granite.author.PreviewLayer</a></li><li><a href="Granite.author.responsive.Layer.html">Granite.author.responsive.Layer</a></li><li><a href="Granite.author.responsive.Overlay.html">Granite.author.responsive.Overlay</a></li><li><a href="Granite.author.responsive.Toolbar.html">Granite.author.responsive.Toolbar</a></li><li><a href="Granite.author.ScaffoldingLayer.html">Granite.author.ScaffoldingLayer</a></li><li><a href="Granite.author.ui.assetFinder.AssetDragAndDrop.html">Granite.author.ui.assetFinder.AssetDragAndDrop</a></li><li><a href="Granite.author.ui.ComponentDragAndDrop.html">Granite.author.ui.ComponentDragAndDrop</a></li><li><a href="Granite.author.ui.ContentTree.html">Granite.author.ui.ContentTree</a></li><li><a href="Granite.author.ui.Dialog.html">Granite.author.ui.Dialog</a></li><li><a href="Granite.author.ui.EditableAction.html">Granite.author.ui.EditableAction</a></li><li><a href="Granite.author.ui.EditableDragAndDrop.html">Granite.author.ui.EditableDragAndDrop</a></li><li><a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></li><li><a href="Granite.author.ui.StatusBar.html">Granite.author.ui.StatusBar</a></li><li><a href="Granite.author.ui.Toolbar.html">Granite.author.ui.Toolbar</a></li><li><a href="Granite.author.ui.ToolbarAction.html">Granite.author.ui.ToolbarAction</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html#event:cq-asset-dragend">Document#event:cq-asset-dragend</a></li><li><a href="Document.html#event:cq-asset-dragstart">Document#event:cq-asset-dragstart</a></li><li><a href="Document.html#event:cq-asset-dropped">Document#event:cq-asset-dropped</a></li><li><a href="Document.html#event:cq-components-filtered">Document#event:cq-components-filtered</a></li><li><a href="Document.html#event:cq-components-loaded">Document#event:cq-components-loaded</a></li><li><a href="Document.html#event:cq-components-store-cleaned">Document#event:cq-components-store-cleaned</a></li><li><a href="Document.html#event:cq-components-store-set">Document#event:cq-components-store-set</a></li><li><a href="Document.html#event:cq-content-frame-loaded">Document#event:cq-content-frame-loaded</a></li><li><a href="Document.html#event:cq-content-frame-unload">Document#event:cq-content-frame-unload</a></li><li><a href="Document.html#event:cq-contexthub-toggle">Document#event:cq-contexthub-toggle</a></li><li><a href="Document.html#event:cq-editable-added">Document#event:cq-editable-added</a></li><li><a href="Document.html#event:cq-editables-loaded">Document#event:cq-editables-loaded</a></li><li><a href="Document.html#event:cq-editables-updated">Document#event:cq-editables-updated</a></li><li><a href="Document.html#event:cq-editor-content-location-changed">Document#event:cq-editor-content-location-changed</a></li><li><a href="Document.html#event:cq-editor-loaded">Document#event:cq-editor-loaded</a></li><li><a href="Document.html#event:cq-editor-statusbar-loaded">Document#event:cq-editor-statusbar-loaded</a></li><li><a href="Document.html#event:cq-emulatorbar-toggle">Document#event:cq-emulatorbar-toggle</a></li><li><a href="Document.html#event:cq-hide-overlays">Document#event:cq-hide-overlays</a></li><li><a href="Document.html#event:cq-history-paragraph-id-changed">Document#event:cq-history-paragraph-id-changed</a></li><li><a href="Document.html#event:cq-history-step-committed">Document#event:cq-history-step-committed</a></li><li><a href="Document.html#event:cq-history-step-completed">Document#event:cq-history-step-completed</a></li><li><a href="Document.html#event:cq-history-step-error">Document#event:cq-history-step-error</a></li><li><a href="Document.html#event:cq-inspectable-added">Document#event:cq-inspectable-added</a></li><li><a href="Document.html#event:cq-interaction-blur">Document#event:cq-interaction-blur</a></li><li><a href="Document.html#event:cq-interaction-fastdblclick">Document#event:cq-interaction-fastdblclick</a></li><li><a href="Document.html#event:cq-interaction-focus">Document#event:cq-interaction-focus</a></li><li><a href="Document.html#event:cq-interaction-hover">Document#event:cq-interaction-hover</a></li><li><a href="Document.html#event:cq-interaction-slowdblclick">Document#event:cq-interaction-slowdblclick</a></li><li><a href="Document.html#event:cq-layer-activated">Document#event:cq-layer-activated</a></li><li><a href="Document.html#event:cq-overlay-click">Document#event:cq-overlay-click</a></li><li><a href="Document.html#event:cq-overlay-fast-dblclick">Document#event:cq-overlay-fast-dblclick</a></li><li><a href="Document.html#event:cq-overlay-hold">Document#event:cq-overlay-hold</a></li><li><a href="Document.html#event:cq-overlay-hover">Document#event:cq-overlay-hover</a></li><li><a href="Document.html#event:cq-overlay-outside-click">Document#event:cq-overlay-outside-click</a></li><li><a href="Document.html#event:cq-overlay-slow-dblclick">Document#event:cq-overlay-slow-dblclick</a></li><li><a href="Document.html#event:cq-overlays-repositioned">Document#event:cq-overlays-repositioned</a></li><li><a href="Document.html#event:cq-page-design-loaded">Document#event:cq-page-design-loaded</a></li><li><a href="Document.html#event:cq-page-info-loaded">Document#event:cq-page-info-loaded</a></li><li><a href="Document.html#event:cq-persistence-after-copy">Document#event:cq-persistence-after-copy</a></li><li><a href="Document.html#event:cq-persistence-after-create">Document#event:cq-persistence-after-create</a></li><li><a href="Document.html#event:cq-persistence-after-delete">Document#event:cq-persistence-after-delete</a></li><li><a href="Document.html#event:cq-persistence-after-move">Document#event:cq-persistence-after-move</a></li><li><a href="Document.html#event:cq-persistence-after-update">Document#event:cq-persistence-after-update</a></li><li><a href="Document.html#event:cq-persistence-before-copy">Document#event:cq-persistence-before-copy</a></li><li><a href="Document.html#event:cq-persistence-before-create">Document#event:cq-persistence-before-create</a></li><li><a href="Document.html#event:cq-persistence-before-delete">Document#event:cq-persistence-before-delete</a></li><li><a href="Document.html#event:cq-persistence-before-move">Document#event:cq-persistence-before-move</a></li><li><a href="Document.html#event:cq-persistence-before-update">Document#event:cq-persistence-before-update</a></li><li><a href="Document.html#event:cq-show-overlays">Document#event:cq-show-overlays</a></li><li><a href="Document.html#event:cq-sidepanel-aftertoggle">Document#event:cq-sidepanel-aftertoggle</a></li><li><a href="Document.html#event:cq-sidepanel-beforetoggle">Document#event:cq-sidepanel-beforetoggle</a></li><li><a href="Document.html#event:cq-sidepanel-resized">Document#event:cq-sidepanel-resized</a></li><li><a href="Document.html#event:cq-sidepanel-tab-switched">Document#event:cq-sidepanel-tab-switched</a></li><li><a href="Document.html#event:editor-frame-mode-changed">Document#event:editor-frame-mode-changed</a></li><li><a href="Document.html#event:inline-edit-start">Document#event:inline-edit-start</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="interfaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Interfaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Document.html">Document</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Interfaces</h1>
+<section>
+
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="Granite.author.Component.html">Component</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.design.Dialog.html">Dialog</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.design.Layer.html">Layer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.design.Overlay.html">Overlay</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.developer.Layer.html">Layer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.edit.Dialog.html">Dialog</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.edit.Layer.html">Layer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.edit.LayoutToolbar.html">LayoutToolbar</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.edit.Overlay.html">Overlay</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.edit.Toolbar.html">Toolbar</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.Editable.html">Editable</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.Inspectable.html">Inspectable</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.Layer.html">Layer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.LayerManager.html">LayerManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.PageInfoHelper.html">PageInfoHelper</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.PreviewLayer.html">PreviewLayer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.responsive.Layer.html">Layer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.responsive.Overlay.html">Overlay</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.responsive.Toolbar.html">Toolbar</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ScaffoldingLayer.html">ScaffoldingLayer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.assetFinder.AssetDragAndDrop.html">AssetDragAndDrop</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.ComponentDragAndDrop.html">ComponentDragAndDrop</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.ContentTree.html">ContentTree</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.Dialog.html">Dialog</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.EditableAction.html">EditableAction</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.EditableDragAndDrop.html">EditableDragAndDrop</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.Overlay.html">Overlay</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.StatusBar.html">StatusBar</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.Toolbar.html">Toolbar</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Granite.author.ui.ToolbarAction.html">ToolbarAction</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="namespaces.html#Granite"><a href="Granite.html">Granite</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author"><a href="Granite.author.html">author</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.components"><a href="Granite.author.components.html">components</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ContentFrame"><a href="Granite.author.ContentFrame.html">ContentFrame</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.design"><a href="Granite.author.design.html">design</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.developer"><a href="Granite.author.developer.html">developer</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.DialogFrame"><a href="Granite.author.DialogFrame.html">DialogFrame</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.edit"><a href="Granite.author.edit.html">edit</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.edit.EditableActions"><a href="Granite.author.edit.EditableActions.html">EditableActions</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.edit.ToolbarActions"><a href="Granite.author.edit.ToolbarActions.html">ToolbarActions</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.editableHelper"><a href="Granite.author.editableHelper.html">editableHelper</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.editables"><a href="Granite.author.editables.html">editables</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.EditorFrame"><a href="Granite.author.EditorFrame.html">EditorFrame</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.overlayManager"><a href="Granite.author.overlayManager.html">overlayManager</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.OverlayWrapper"><a href="Granite.author.OverlayWrapper.html">OverlayWrapper</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.pageDesign"><a href="Granite.author.pageDesign.html">pageDesign</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.pageInfo"><a href="Granite.author.pageInfo.html">pageInfo</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.responsive"><a href="Granite.author.responsive.html">responsive</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.responsive.EditableActions"><a href="Granite.author.responsive.EditableActions.html">EditableActions</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.selection"><a href="Granite.author.selection.html">selection</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui"><a href="Granite.author.ui.html">ui</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.assetFinder"><a href="Granite.author.ui.assetFinder.html">assetFinder</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.componentBrowser"><a href="Granite.author.ui.componentBrowser.html">componentBrowser</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.coralCompatibility"><a href="Granite.author.ui.coralCompatibility.html">coralCompatibility</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.dropController"><a href="Granite.author.ui.dropController.html">dropController</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.emulator"><a href="Granite.author.ui.emulator.html">emulator</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.globalBar"><a href="Granite.author.ui.globalBar.html">globalBar</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.helpers"><a href="Granite.author.ui.helpers.html">helpers</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.SidePanel"><a href="Granite.author.ui.SidePanel.html">SidePanel</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#Granite.author.ui.statusBarManager"><a href="Granite.author.ui.statusBarManager.html">statusBarManager</a></a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Events</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-asset-dragend">cq-asset-dragend</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An asset has ended being dragged</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.assetFinder.AssetDragAndDrop.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-asset-dragstart">cq-asset-dragstart</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An asset has started being dragged</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.assetFinder.AssetDragAndDrop.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-asset-dropped">cq-asset-dropped</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An asset has been dropped</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.assetFinder.AssetDragAndDrop.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-components-filtered">cq-components-filtered</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>All the allowed components corresponding to the current content have been filtered</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		storage/components.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-components-loaded">cq-components-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p><a href="Granite.author.components.html">Granite.author.components</a> module is available after this event is sent</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		editor.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-components-store-cleaned">cq-components-store-cleaned</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The <a href="Granite.author.components.html">Granite.author.components</a> store has bean cleaned</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		storage/components.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-components-store-set">cq-components-store-set</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The <a href="Granite.author.components.html">Granite.author.components</a> store has bean set</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		storage/components.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-content-frame-loaded">cq-content-frame-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The content frame has been loaded</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ContentFrame.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-content-frame-unload">cq-content-frame-unload</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The content frame unloads current content. Use this event to clean up any references to the iframe document to avoid possible memory leaks.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ContentFrame.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-contexthub-toggle">cq-contexthub-toggle</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The contextHub bar visibility has been toggled</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.globalBar.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-editable-added">cq-editable-added</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Triggered when an Editable is added to the <a href="Granite.author.editables.html">Granite.author.editables</a> store</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The added item</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		storage/editables.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-editables-loaded">cq-editables-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>editables module is available after this event</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ContentFrame.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-editables-updated">cq-editables-updated</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Triggered when the <a href="Granite.author.editables.html">Granite.author.editables</a> store is updated</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>editable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The added item</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		storage/editables.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-editor-content-location-changed">cq-editor-content-location-changed</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Triggered when the content location change</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Event object containing the location of the content</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		EditorFrame.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-editor-loaded">cq-editor-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The different data stores:<br><a href="Granite.author.pageInfo.html">Granite.author.pageInfo</a>,<br><a href="Granite.author.pageDesign.html">Granite.author.pageDesign</a>,<br><a href="Granite.author.components.html">Granite.author.components</a> and<br><a href="Granite.author.editables.html">Granite.author.editables</a></p>
+<p>and the different core modules:<br><a href="Granite.author.ContentFrame.html">Granite.author.ContentFrame</a>,<br><a href="Granite.author.EditorFrame.html">Granite.author.EditorFrame</a>,<br><a href="Granite.author.ui.SidePanel.html">Granite.author.ui.SidePanel</a>,<br>etc.</p>
+<p>are being initialized and ready to be used after this event is sent</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		editor.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-editor-statusbar-loaded">cq-editor-statusbar-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The statuses of the current resource have been loaded.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.StatusBar.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-emulatorbar-toggle">cq-emulatorbar-toggle</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The emulator bar visibility has been toggled</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.emulator.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-hide-overlays">cq-hide-overlays</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Hides all the <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a>s</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-history-paragraph-id-changed">cq-history-paragraph-id-changed</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The id of a paragraph has changed</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		history/actions/history.actions.DeleteParagraph.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-history-step-committed">cq-history-step-committed</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An history step has been committed</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		history/history.Step.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-history-step-completed">cq-history-step-completed</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An history step has been completed</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		history/history.Step.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-history-step-error">cq-history-step-error</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An history step has failed</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		history/history.Step.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-inspectable-added">cq-inspectable-added</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Triggered when an Inspectable/Editable is added to the <a href="Granite.author.editables.html">Granite.author.editables</a> store<br>Please use &quot;cq-editable-added&quot; instead</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>inspectable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Granite.author.Inspectable.html">Granite.author.Inspectable</a></span>
+|
+
+<span class="param-type"><a href="Granite.author.Editable.html">Granite.author.Editable</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The added item</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd class="yes-def tag-deprecated">
+        <ul class="dummy">
+            <li>Yes</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		storage/editables.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-interaction-blur">cq-interaction-blur</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A blur interaction has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		edit/edit.Interactions.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-interaction-fastdblclick">cq-interaction-fastdblclick</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A fast double click interaction has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		edit/edit.Interactions.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-interaction-focus">cq-interaction-focus</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A focus interaction has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		edit/edit.Interactions.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-interaction-hover">cq-interaction-hover</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An hover interaction has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		edit/edit.Interactions.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-interaction-slowdblclick">cq-interaction-slowdblclick</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A slow double click interaction has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		edit/edit.Interactions.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-layer-activated">cq-layer-activated</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A layer has been activated</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>layer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the layer activated</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prevLayer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the previous layer</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		layers/LayerManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlay-click">cq-overlay-click</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A click action has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlay-fast-dblclick">cq-overlay-fast-dblclick</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A fast double clicked has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlay-hold">cq-overlay-hold</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A taphold action has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlay-hover">cq-overlay-hover</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An hover action has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlay-outside-click">cq-overlay-outside-click</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An outside click action has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlay-slow-dblclick">cq-overlay-slow-dblclick</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A slow double clicked has been performed over an <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-overlays-repositioned">cq-overlays-repositioned</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The overlays have been repositioned</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-page-design-loaded">cq-page-design-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p><a href="Granite.author.pageDesign.html">Granite.author.pageDesign</a> module is available after this event is sent</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		editor.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-page-info-loaded">cq-page-info-loaded</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p><a href="Granite.author.pageInfo.html">Granite.author.pageInfo</a> module is available after this event is sent</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		editor.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-after-copy">cq-persistence-after-copy</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> has been copied</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-after-create">cq-persistence-after-create</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> has been created</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-after-delete">cq-persistence-after-delete</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> has been deleted</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-after-move">cq-persistence-after-move</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> has been moved</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-after-update">cq-persistence-after-update</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> has been updated</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-before-copy">cq-persistence-before-copy</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> is about to be copied</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-before-create">cq-persistence-before-create</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> is about to be created</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-before-delete">cq-persistence-before-delete</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> is about to be deleted</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-before-move">cq-persistence-before-move</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> is about to be moved</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-persistence-before-update">cq-persistence-before-update</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>An <a href="Granite.author.Editable.html">Granite.author.Editable</a> is about to be updated</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		persistence/persistence.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-show-overlays">cq-show-overlays</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Shows all the <a href="Granite.author.ui.Overlay.html">Granite.author.ui.Overlay</a>s</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		overlayManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-sidepanel-aftertoggle">cq-sidepanel-aftertoggle</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The side panel has been toggled</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-sidepanel-beforetoggle">cq-sidepanel-beforetoggle</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The side panel is about to be toggled</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-sidepanel-resized">cq-sidepanel-resized</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The side panel has been resized</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:cq-sidepanel-tab-switched">cq-sidepanel-tab-switched</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Tab has been switched on the side panel</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		ui/ui.SidePanel.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:editor-frame-mode-changed">editor-frame-mode-changed</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>WCM mode has changed</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		edit/edit.Layer.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:inline-edit-start">inline-edit-start</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The inline edition has started</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		editableHelper.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<b class="aem-version">AEM 6.4</b> - © Copyright 2018 Adobe Systems Incorporated All Rights Reserved.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Tue Apr 24th 2018
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

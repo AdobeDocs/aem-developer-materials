@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.3.4 Seeing Changes Made by Other Sessions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.3.4." id="section_7.1.3.4."></a>7.1.3.4 Seeing Changes Made by Other Sessions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When recording pending changes to an <b>Item</b> in the <b>Session</b> at least two approaches are possible. Which approach is taken is up to the implementation.
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>Copy-on-Read</b>: When an <b>Item</b> object is acquired, its state in persistent storage is copied to transient storage associated with the <b>Session</b>. Any subsequent changes are applied to the transient state object. Upon <b>save</b>, the transient state object is copied back to persistent storage and removed from transient storage. In such an implementation, when an <b>Item</b> is retrieved through a particular <b>Session</b>, any changes made to the persistent state of that item by another <b>Session</b> will not be visible to the first <b>Session</b> until a <b>refresh</b> and reacquisition of the item in question. Under this system, conflicts with persistent state will only be detected upon <b>save</b>, meaning that <b>InvalidItemStateException</b> will only be thrown on <b>save</b>, not earlier. The copy-on-read approach also has some repercussions in the context of transactions (in those implementations that support this feature). See <a href="8.1.4_Single_Session_Across_Multiple_Transactions.html">8.1.4</a> <i>Single Session Across Multiple Transactions</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>Copy-on-Write</b>: An alternative approach is <i>not</i> to immediately copy the state of a newly acquired <b>Item</b> object to transient storage, but rather to only copy the state when a change is made to that state. In this case, as long as no changes are made to an <b>Item</b> object, its state always reflects the current state in persistent storage and thus any changes in that persistent state made by other sessions are immediately visible through the methods of that <b>Item</b>. If, on the other hand, a change is made to the <b>Item</b> state by this Session then the item state is copied from persistent storage to transient storage and the change is applied to that copy. From this point until a <b>refresh</b> or <b>save</b>, changes made to the persistent item will not be visible through the <b>Item</b> object. Note that in copy-on-write implementations a <b>refresh(true)</b> (a refresh that does not discard pending changes) will, by definition, have no effect.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									This specification does not prescribe either of these approaches. Implementations are free to use either one (or indeed any other that may be suitable) as long as the minimal requirement is met of never allowing two <b>Item</b> objects acquired through the same <b>Session</b> to reflect conflicting state information.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

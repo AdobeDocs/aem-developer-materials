@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.1.1 Session-Write (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.1.1 Session-Write</H3>
+	<P>Changes made through a
+	session-write are buffered in a transient store associated with that
+	method's current session (see §3.1.8.2 <I>Current Session and
+	Workspace</I>). The transient store permits a series of changes to
+	be made without validation at every step, thus allowing item
+	structures to be temporarily invalid while they are being
+	constructed. Once completed, the change set can be <I>saved</I>.</P>
+	<UL>
+		<LI><P>Before save, a
+		change in transient store is <I>pending</I>.</P>
+		<LI><P>Upon save, all
+		changes in transient store are <I>dispatched</I>.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

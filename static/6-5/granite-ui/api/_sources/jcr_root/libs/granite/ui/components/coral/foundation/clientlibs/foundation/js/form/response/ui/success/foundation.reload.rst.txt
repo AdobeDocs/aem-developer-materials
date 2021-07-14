@@ -1,0 +1,13 @@
+foundation.form.response.ui.success: foundation.reload
+======================================================
+
+``foundation.reload`` is a success response handler of :doc:`../../../index`.
+
+It will reload the page (i.e. ``window.location.reload()``).
+Upon reload, the notification message is also shown.
+
+Config
+------
+
+message
+   The message to notify the user. If it is not provided, default message is used.

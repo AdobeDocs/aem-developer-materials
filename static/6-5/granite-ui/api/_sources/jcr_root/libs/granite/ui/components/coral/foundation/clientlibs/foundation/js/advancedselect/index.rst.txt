@@ -1,0 +1,203 @@
+*************************
+foundation-advancedselect
+*************************
+
+``foundation-advancedselect`` is a concept of select—similar purpose as <select>—that leverages :doc:`foundation-collection <../../vocabulary/collection>` and :doc:`foundation-selections <../../vocabulary/selections>` vocabulary to indicates its options. This would allow arbitary component implementing ``foundation-collection`` to be used, while still providing the concept of select.
+
+It works with <form> submission. It will submit the selected values in that case.
+
+It listens to ``foundation-selections-change`` event, which upon trigger performs the following:
+
+1. Update the selection values (``.foundation-advancedselect-values``)
+2. Update the selection count (``.foundation-advancedselect-status``)
+
+
+Markup
+======
+
+
+.foundation-advancedselect
+--------------------------
+
+Indicates the ``foundation-advancedselect`` element.
+
+Selector Rule::
+
+   .foundation-advancedselect
+
+Example
+
+.. code-block:: html
+
+   <div class="foundation-advancedselect" data-foundation-advancedselect-name="myselect">
+     <div class="foundation-advancedselect-navigator" data-foundation-advancedselect-navigator-path="/a/b">
+       <button class="foundation-advancedselect-control" data-foundation-advancedselect-control-src="/a.advancedselect.html">Item A</button>
+     </div>
+     <div class="foundation-advancedselect-collection foundation-collection">
+       <div class="foundation-collection-item" data-foundation-collection-item-id="/a/b/c">Item C</div>
+       <div class="foundation-collection-item" data-foundation-collection-item-id="/a/b/z">Item Z</div>
+     </div>
+     <div class="foundation-advancedselect-values"></div>
+   </div>
+
+
+[data-foundation-advancedselect-name]
+-------------------------------------
+
+The name of hidden inputs (<input type="hidden">), which store the selected values (``.foundation-advancedselect-values``).
+
+Selector Rule::
+
+   .foundation-advancedselect[data-foundation-advancedselect-name]
+
+
+.foundation-advancedselect-values
+---------------------------------
+
+Indicates the element acting as the container of the selected values, which represented by hidden inputs (<input type="hidden">), each has ``name`` property equals to value of ``[data-foundation-advancedselect-name]`` and ``value`` property equals to value of ``[data-foundation-collection-item-id]`` of the selected item.
+
+Selector Rule::
+
+   .foundation-advancedselect .foundation-advancedselect-values
+
+Example
+
+.. code-block:: html
+
+   <div class="foundation-advancedselect" data-foundation-advancedselect-name="myselect">
+     <!-- ... -->
+     <div class="foundation-advancedselect-collection foundation-collection">
+       <div class="foundation-collection-item foundation-selections-item" data-foundation-collection-item-id="/a/b/c"></div>
+       <div class="foundation-collection-item" data-foundation-collection-item-id="/a/b/z"></div>
+     </div>
+     <div class="foundation-advancedselect-values">
+       <input type="hidden" name="myselect" value="/a/b/c">
+     </div>
+   </div>
+
+
+.foundation-advancedselect-collection
+-------------------------------------
+
+Indicates the element is a ``foundation-collection`` under management of the ``foundation-advancedselect``.
+
+Selector Rule::
+
+   .foundation-advancedselect-collection
+
+
+.foundation-advancedselect-navigator
+------------------------------------
+
+Indicates the element acting as the navigator, which is usually used to contain ``.foundation-advancedselect-control``.
+
+Selector Rule::
+
+   .foundation-advancedselect .foundation-advancedselect-navigator
+
+
+[data-foundation-advancedselect-navigator-path]
+-----------------------------------------------
+
+The current path of the navigator.
+
+Selector Rule::
+
+   .foundation-advancedselect-navigator[data-foundation-advancedselect-navigator-path]
+
+
+.foundation-advancedselect-status
+---------------------------------
+
+Indicates the element of the selection status.
+
+Selector Rule::
+
+   .foundation-advancedselect .foundation-advancedselect-status
+
+
+[data-foundation-advancedselect-status-template]
+------------------------------------------------
+
+The template string to generate the value of the status. Currently only ``count`` variable is supported. The variable is indicated by ``{{count}}`` pattern.
+
+Selector Rule::
+
+   .foundation-advancedselect-status[data-foundation-advancedselect-status-template]
+
+Example
+
+.. code-block:: html
+
+   <div
+     class="foundation-advancedselect-status"
+     data-foundation-advancedselect-status-template="{{count}} selected">
+   </div>
+
+
+.foundation-advancedselect-control
+----------------------------------
+
+Indicates the control to manipulate ``.foundation-advancedselect``. Upon activation, it will perform the action specified by ``[data-foundation-advancedselect-control-action]``.
+
+Selector Rule::
+
+   .foundation-advancedselect-control
+
+
+[data-foundation-advancedselect-control-action]
+-----------------------------------------------
+
+The action to be performed when ``.foundation-advancedselect-control`` is activated.
+
+Currently only ``foundation.navigate`` is supported.
+
+Selector Rule::
+
+   .foundation-advancedselect-control[data-foundation-advancedselect-control-action]
+
+
+foundation.navigate
+^^^^^^^^^^^^^^^^^^^
+
+Navigate the current view of ``.foundation-advancedselect-collection`` to another, which is located at ``[data-foundation-advancedselect-control-src]``. This action is usually used to navigate to different "folder" similar to a file system.
+
+Given ``newContent`` as the newly fetched content, the following will be performed:
+
+1. ``.foundation-advancedselect-navigator`` of ``newContent`` replaces the old one
+2. ``.foundation-collection-item`` of ``newContent`` replaces the old ones
+3. ``.foundation-collection-item`` of ``newContent`` that are previously selected will be selected again, using value of ``[data-foundation-collection-item-id]`` as the key.
+
+
+[data-foundation-advancedselect-control-src]
+--------------------------------------------
+
+The URL returning the HTML of a ``.foundation-advancedselect`` to replace the old one as specified by the ``[data-foundation-advancedselect-control-action]``, for example:
+
+.. code-block:: html
+
+   <div>
+     <div class="foundation-advancedselect">
+       <div class="foundation-advancedselect-navigator" data-foundation-advancedselect-navigator-path="/a/b/c"></div>
+       <div class="foundation-advancedselect-collection foundation-collection">
+         <div class="foundation-collection-item" data-foundation-collection-item-id="/a/b/c/d1"></div>
+         <div class="foundation-collection-item" data-foundation-collection-item-id="/a/b/c/d2"></div>
+       </div>
+     </div>
+   </div>
+
+Selector Rule::
+
+   .foundation-advancedselect-control[data-foundation-advancedselect-control-src]
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-advancedselect" {
+     rankdir=BT;
+     "foundation-selections" -> "foundation-collection" [label="extends"];
+     "foundation-advancedselect" -> "foundation-selections" [label="implements"];
+   }

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.4.5 CONTAINS (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.4.5." id="section_8.5.4.5."></a>8.5.4.5 CONTAINS
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Within the <b>WHERE</b> clause, the <b>CONTAINS</b> function is used to embed a statement in a full-text search language. The function takes two parameters: <b>scope</b> and <b>searchexp</b> (see EBNF above)
+								</p>
+							
+							
+								<p class="c5">
+									At minimum, all implementations must support the <i>simple search-engine syntax</i> defined by <b>searchexp</b> in the EBNF above. This syntax is based on the syntax of search engines like Google.
+								</p>
+							
+							
+								<p class="c5">
+									The semantics of the simple search expression are as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					Terms separated by whitespace are implicitly <b>AND</b>ed together.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Terms may also be <b>OR</b>ed with explicit use of the <b>OR</b> keyword.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>AND</b> has higher precedence than <b>OR</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Terms may be excluded by prefixing with a <b>–</b> (minus sign) character. This means that the result set <i>must not</i> contain the excluded term.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					A term may be either a single word or a phrase delimited by double quotes (“<b>"</b>”).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The entire text search expression (<b>searchexp</b> in the EBNF, above) <i>must be</i> delimited by single quotes (“<b>'</b>”).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Within the <b>searchexp</b> literal instances of single quote (“<b>'</b>”), double quote (“<b>"</b>”) and hyphen (“<b>-</b>”) must be escaped with a backslash (“<b>\</b>”). Backslash itself must therefore also be escaped, ending up as double backslash (“<b>\\</b>”).
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>scope</b> specifies the particular property that the full-text search is to be performed on. However, support for searching on particular properties is not required. Specifying '.' indicates that the full-text search is to be done on all <i>indexed properties</i> of the nodes specified by the rest of the query. Only support for a scope of '.' is required.
+								</p>
+							
+							
+								<p class="c5">
+									The scope of the <b>CONTAINS</b> clause specifying '.' is the intersection of two sets. These two sets are:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The values of those properties that are the immediate children of the nodes specified by the <b>FROM</b> clause and other subclauses of <b>WHERE</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The contents of the full-text index of the repository. A repository may, for example, index only the values of <b>STRING</b> properties. Additionally, it may index some binary properties according to some application-specific encoding. The scope of full-text indexing is implementation specific.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									For example, the query,
+								</p>
+							
+							
+								<p class="c12">
+									SELECT * FROM mynt:product WHERE<br>
+									CONTAINS(., 'apples "good for you" –oranges')
+								</p>
+							
+							
+								<p class="c18">
+									would return a result containing all nodes of type <b>mynt:product</b> that have am indexed property whose value contains the string “apples”, the string “good for you” and does not contain the string “oranges”.
+								</p>
+							
+							
+								<p class="c5">
+									The relevance score for each matching node may be returned as in score column. The specification does not define the calculation of the score value, it is implementation specific.
+								</p>
+							
+							
+								<p class="c5">
+									An implementation may additionally support other embedded full-text search languages other than the simple search engine style shown here.
+								</p>
+							
+							
+								<p class="c5">
+									See also <u>6.6.3.3</u> Property Constraint, 6.6.5.2 jcr:contains Function and 8.5.2.4 Pseudo-property.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

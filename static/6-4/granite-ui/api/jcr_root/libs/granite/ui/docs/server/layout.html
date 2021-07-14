@@ -1,0 +1,214 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Layout &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Container Component" href="container.html" />
+    <link rel="prev" title="DataSource" href="datasource.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="container.html" title="Container Component"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="datasource.html" title="DataSource"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Granite UI Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="layout">
+<h1>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h1>
+<p>Layout is a mechanism to allow a component (usually a container-like component) to offload the actual rendering. It is intended such that (1) the component can focus on its actual semantic purpose; (2) the technical implementation of the layout can be extracted out from both the component and the content. This way the content can be strictly semantic based on intention of the author.</p>
+<p>A component supports a layout by means of configuring a sub-node named <code class="docutils literal notranslate"><span class="pre">layout</span></code>.</p>
+<p>For example given the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">mycontainer</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+  <span class="o">+</span> <span class="n">layout</span>
+    <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/layouts/container&quot;</span>
+  <span class="o">+</span> <span class="n">items</span>
+    <span class="o">+</span> <span class="n">button1</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/button&quot;</span>
+      <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button1&quot;</span>
+    <span class="o">+</span> <span class="n">button2</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/button&quot;</span>
+      <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button2&quot;</span>
+</pre></div>
+</div>
+<p>The above content will be rendered as:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Button1<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Button2<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">/apps/example/mycontainer</span></code> node has a resource type of <a class="reference internal" href="../../components/foundation/container/index.html#/libs/granite/ui/components/foundation/container" title="/libs/granite/ui/components/foundation/container"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/foundation/container</span></code></a>. The container component renders the content as <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;&lt;/div&gt;</span></code>. And as it is a container-like component, it understands the concept of layout. The layout used is <a class="reference internal" href="../../components/foundation/layouts/container/index.html#/libs/granite/ui/components/foundation/layouts/container" title="/libs/granite/ui/components/foundation/layouts/container"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/foundation/layouts/container</span></code></a>, where it will render each item as defined by the renderer of the item, without any manipulation. (Refer to individual component documentation for detailed behavior)</p>
+<p>Another example is <a class="reference internal" href="../../components/foundation/layouts/mode/index.html#/libs/granite/ui/components/foundation/layouts/mode" title="/libs/granite/ui/components/foundation/layouts/mode"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/foundation/layouts/mode</span></code></a>, where it needs to prepare more complex markup:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">mycontainer</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+  <span class="o">+</span> <span class="n">layout</span>
+    <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/layout/mode&quot;</span>
+    <span class="o">-</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;cq-siteadmin-admin-childpages&quot;</span>
+  <span class="o">+</span> <span class="n">items</span>
+    <span class="o">+</span> <span class="n">default</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+    <span class="o">+</span> <span class="n">selection</span>
+      <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/container&quot;</span>
+</pre></div>
+</div>
+<p>The above content will be rendered as (as of this writing):</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-layout-mode2&quot;</span> <span class="na">data-foundation-layout</span><span class="o">=</span><span class="s">&#39;{&quot;name&quot;:&quot;foundation-layout-mode2&quot;,&quot;group&quot;:&quot;cq-siteadmin-admin-childpages&quot;}&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-layout-mode2-item foundation-layout-mode2-item-active&quot;</span> <span class="na">data-foundation-layout-mode2-item-mode</span><span class="o">=</span><span class="s">&quot;default&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-layout-mode2-item&quot;</span> <span class="na">data-foundation-layout-mode2-item-mode</span><span class="o">=</span><span class="s">&quot;selection&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="component-development">
+<h2>Component Development<a class="headerlink" href="#component-development" title="Permalink to this headline">¶</a></h2>
+<p>A component can support layout conveniently by using <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/ComponentHelper.html">ComponentHelper</a> class.</p>
+<p>Here is the essence of the code of <a class="reference internal" href="../../components/foundation/container/index.html#/libs/granite/ui/components/foundation/container" title="/libs/granite/ui/components/foundation/container"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/foundation/container</span></code></a> to support layout (as of this writing):</p>
+<div class="highlight-jsp notranslate"><div class="highlight"><pre><span></span><span class="k">&lt;%@</span><span class="n">include</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;/libs/granite/ui/global.jsp&quot;</span><span class="k">%&gt;&lt;%</span>
+<span class="k">%&gt;&lt;%@</span><span class="n">page</span> <span class="n">session</span><span class="o">=</span><span class="s">&quot;false&quot;</span>
+          <span class="n">import</span><span class="o">=</span><span class="s">&quot;com.adobe.granite.ui.components.AttrBuilder,</span>
+<span class="s">                  com.adobe.granite.ui.components.ComponentHelper.Options,</span>
+<span class="s">                  com.adobe.granite.ui.components.Tag&quot;</span><span class="k">%&gt;&lt;%</span>
+
+    <span class="n">Tag</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">.</span><span class="na">consumeTag</span><span class="o">();</span>
+    <span class="n">tag</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;div&quot;</span><span class="o">);</span>
+
+    <span class="n">AttrBuilder</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="na">getAttrs</span><span class="o">();</span>
+    <span class="n">cmp</span><span class="o">.</span><span class="na">populateCommonAttrs</span><span class="o">(</span><span class="n">attrs</span><span class="o">);</span>
+
+    <span class="n">cmp</span><span class="o">.</span><span class="na">includeForLayout</span><span class="o">(</span><span class="n">resource</span><span class="o">,</span> <span class="k">new</span> <span class="n">Options</span><span class="o">().</span><span class="na">tag</span><span class="o">(</span><span class="n">tag</span><span class="o">));</span>
+<span class="k">%&gt;</span>
+</pre></div>
+</div>
+<p>It uses <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/Tag.html">Tag</a> class to prepare the tag information—including the attributes—required for container markup and then pass the tag to the layout renderer—using <code class="docutils literal notranslate"><span class="pre">ComponentHelper#includeForLayout</span></code>. The layout renderer in turn can set more information to this passed tag and then render the content. The following is the code of <code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">granite/ui/components/foundation/layouts/container</span></code> layout (as of this writing):</p>
+<div class="highlight-jsp notranslate"><div class="highlight"><pre><span></span><span class="k">&lt;%@</span><span class="n">include</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;/libs/granite/ui/global.jsp&quot;</span><span class="k">%&gt;&lt;%</span>
+<span class="k">%&gt;&lt;%@</span><span class="n">page</span> <span class="n">session</span><span class="o">=</span><span class="s">&quot;false&quot;</span>
+          <span class="n">import</span><span class="o">=</span><span class="s">&quot;java.util.Iterator,</span>
+<span class="s">                  com.adobe.granite.ui.components.AttrBuilder,</span>
+<span class="s">                  com.adobe.granite.ui.components.LayoutBuilder,</span>
+<span class="s">                  com.adobe.granite.ui.components.Tag&quot;</span><span class="k">%&gt;&lt;%</span>
+
+    <span class="n">Tag</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">.</span><span class="na">consumeTag</span><span class="o">();</span>
+
+    <span class="n">LayoutBuilder</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">.</span><span class="na">getLayout</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">layout</span><span class="o">.</span><span class="na">hasName</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">AttrBuilder</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="na">getAttrs</span><span class="o">();</span>
+        <span class="n">attrs</span><span class="o">.</span><span class="na">addClass</span><span class="o">(</span><span class="n">layout</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+        <span class="n">attrs</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;data-foundation-layout&quot;</span><span class="o">,</span> <span class="n">layout</span><span class="o">.</span><span class="na">toJSON</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="n">tag</span><span class="o">.</span><span class="na">printlnStart</span><span class="o">(</span><span class="n">out</span><span class="o">);</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">.</span><span class="na">getItemDataSource</span><span class="o">().</span><span class="na">iterator</span><span class="o">();</span> <span class="n">items</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();)</span> <span class="o">{</span>
+        <span class="k">%&gt;</span><span class="nt">&lt;sling:include</span> <span class="na">resource=</span><span class="s">&quot;</span><span class="k">&lt;%=</span> <span class="n">items</span><span class="o">.</span><span class="na">next</span><span class="o">()</span> <span class="k">%&gt;</span><span class="s">&quot;</span> <span class="nt">/&gt;</span><span class="k">&lt;%</span>
+    <span class="o">}</span>
+
+    <span class="n">tag</span><span class="o">.</span><span class="na">printlnEnd</span><span class="o">(</span><span class="n">out</span><span class="o">);</span>
+<span class="k">%&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Layout</a><ul>
+<li><a class="reference internal" href="#component-development">Component Development</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="datasource.html"
+                        title="previous chapter">DataSource</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="container.html"
+                        title="next chapter">Container Component</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../_sources/jcr_root/libs/granite/ui/docs/server/layout.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="container.html" title="Container Component"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="datasource.html" title="DataSource"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Granite UI Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

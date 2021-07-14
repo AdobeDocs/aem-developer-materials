@@ -1,0 +1,303 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ_Analytics.Operator-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ_Analytics.Operator-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ_Analytics.Operator-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ_Analytics.Operator"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ_Analytics.Operator</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ_Analytics</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/operators.js" target="_blank">operators.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Operator</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">personalization.core                        </td></tr>
+                    </table>
+        <div class="description">
+	                    The <code>CQ_Analytics.Operator</code> object is a singleton providing the most common operator names and
+utils around the operators.<br><br><i>This class is a singleton and cannot be created directly.</i>	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ_Analytics.Operator-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.BEGINS_WITH"></a>
+            <b>Operator.BEGINS_WITH</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "begins with".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.CONTAINS"></a>
+            <b>Operator.CONTAINS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "contains".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.DOES_NOT_EXIST"></a>
+            <b>Operator.DOES_NOT_EXIST</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "does not exists".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.EQUALS"></a>
+            <b>Operator.EQUALS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "equals".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.EXISTS"></a>
+            <b>Operator.EXISTS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "exists".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.GREATER"></a>
+            <b>Operator.GREATER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "greater than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.GREATER_OR_EQUAL"></a>
+            <b>Operator.GREATER_OR_EQUAL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "equals or greater than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.IS"></a>
+            <b>Operator.IS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "is".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.LESS"></a>
+            <b>Operator.LESS</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "less than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.LESS_OR_EQUAL"></a>
+            <b>Operator.LESS_OR_EQUAL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "equals or less than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.NOT_EQUAL"></a>
+            <b>Operator.NOT_EQUAL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "not equals".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.OLDER"></a>
+            <b>Operator.OLDER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "older than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.OLDER_OR_EQUAL"></a>
+            <b>Operator.OLDER_OR_EQUAL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "equals or older than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.YOUNGER"></a>
+            <b>Operator.YOUNGER</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "younger than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-Operator.YOUNGER_OR_EQUAL"></a>
+            <b>Operator.YOUNGER_OR_EQUAL</b> : String            <div class="mdesc">
+                                        &lt;static&gt; Operator "equals or younger than".                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.Operator-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-getOperation"></a>
+            <b>getOperation</b>(&nbsp;<code>CQ_Analytics.Operator operator</code>&nbsp;) : String/Function            <div class="mdesc">
+                                    <div class="short">Returns operator operation, which can be either:<ul>
+<li>String: mathematical JS operator like ==, <, <=, > ... </li>
+<li>Function: function requiring 2 parameters, the 2 values to operate and which returns true if operation
+success, false otherwise.
+Example: contains operator function.<code>
+         function(s1, s2) {
+        if (s1) {
+            if (s2) {
+                s1 = "" + s1;
+                s2 = "" + s2;
+                return s1.toLowerCase().indexOf(s2.toLowerCase()) != -1;
+            }
+            return true;
+        }
+        return false;
+    }
+</code></li>
+</ul></div>
+            <div class="long">
+                Returns operator operation, which can be either:<ul>
+<li>String: mathematical JS operator like ==, <, <=, > ... </li>
+<li>Function: function requiring 2 parameters, the 2 values to operate and which returns true if operation
+success, false otherwise.
+Example: contains operator function.<code>
+         function(s1, s2) {
+        if (s1) {
+            if (s2) {
+                s1 = "" + s1;
+                s2 = "" + s2;
+                return s1.toLowerCase().indexOf(s2.toLowerCase()) != -1;
+            }
+            return true;
+        }
+        return false;
+    }
+</code></li>
+</ul>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>operator</code> : CQ_Analytics.Operator<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String/Function</code><div class="sub-desc">Operator string or function if operator is defined, empty string otherwise.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-getText"></a>
+            <b>getText</b>(&nbsp;<code>CQ_Analytics.Operator operator</code>&nbsp;) : String            <div class="mdesc">
+                                    <div class="short">Returns operator friendly name.</div>
+            <div class="long">
+                Returns operator friendly name.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>operator</code> : CQ_Analytics.Operator<div class="sub-desc"></div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">text if defined, empty string otherwise.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-operate"></a>
+            <b>operate</b>(&nbsp;<code>Object object</code>, <code>String property</code>, <code>CQ_Analytics.Operator operator</code>, <code>String value</code>, <span class="optional" title="Optional">[<code>String valueFormat</code>]</span>&nbsp;) : Boolean            <div class="mdesc">
+                                    <div class="short">Operates a property value and a value with an operator. Sample: 
+           var obj = {};
+           obj["age"] = 3...</div>
+            <div class="long">
+                Operates a property value and a value with an operator. Sample: <code>
+           var obj = {};
+           obj["age"] = 30;
+           CQ_Analytics.OperatorActions.operate(obj, "age", CQ_Analytics.Operator.IS, "30", "parseInt"); //returns true
+           CQ_Analytics.OperatorActions.operate(obj, "age", CQ_Analytics.Operator.GREATER_THAN, "40", "parseInt"); //returns false
+</code>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>object</code> : Object<div class="sub-desc">Value container.</div></li><li><code>property</code> : String<div class="sub-desc">Name of the property to operate.</div></li><li><code>operator</code> : CQ_Analytics.Operator<div class="sub-desc"></div></li><li><code>value</code> : String<div class="sub-desc">The second value of the operation</div></li><li><code>valueFormat</code> : String<div class="sub-desc">(optional) An optional value formatter (parseInt, parseFloat, toString...)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Boolean</code><div class="sub-desc">true if operation success, false otherwise.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ_Analytics.Operator-setText"></a>
+            <b>setText</b>(&nbsp;<code>CQ_Analytics.Operator operator</code>, <code>String newText</code>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Set operator friendly name.</div>
+            <div class="long">
+                Set operator friendly name.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>operator</code> : CQ_Analytics.Operator<div class="sub-desc"></div></li><li><code>newText</code> : String<div class="sub-desc">The next text</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Operator</td>
+    </tr>
+            </table>
+                <a id="CQ_Analytics.Operator-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

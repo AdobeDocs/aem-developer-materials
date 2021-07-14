@@ -1,0 +1,29 @@
+********************************
+Granite UI Foundation Components
+********************************
+
+.. toctree::
+   :titlesonly:
+
+   utils/index
+   registry/index
+   adapter/index
+   ui/index
+   validation/index
+   validation/bind
+   collection/action/index
+   collection/action/action/foundation.link
+   collection/action/action/foundation.pushstate
+   toggleable/control
+   mode/change
+   editable/editor/foundation.text
+   editable/control
+   form/index
+   field/autosubmit
+   content/index
+   content/control
+   content/history
+   history/index
+   layout/index
+   layout/control
+   advancedselect/index

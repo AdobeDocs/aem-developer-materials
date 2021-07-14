@@ -1,0 +1,2329 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<comments
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:noNamespaceSchemaLocation='comments.xsd'
+  name="jcr-1.0_to_jcr-2.0"
+  jdversion="1.1.1">
+
+<!-- This file contains comments for a JDiff report. -->
+<!-- It is used only in generating the report, and does not need to ship with the final report. -->
+
+<!-- The id attribute in an identifier element identifies the change as noted in the report. -->
+<!-- An id has the form package[.class[.[ctor|method|field].signature]], where [] indicates optional text. -->
+<!-- A comment element can have multiple identifier elements, which will -->
+<!-- will cause the same text to appear at each place in the report, but -->
+<!-- will be converted to separate comments when the comments file is used. -->
+<!-- HTML tags in the text field will appear in the report. -->
+<!-- You also need to close p HTML elements, used for paragraphs - see the top-level documentation. -->
+<comment>
+  <identifier id="javax.jcr"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.AccessDeniedException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Binary"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.GuestCredentials"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.InvalidLifecycleTransitionException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Item"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Item.remove_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Item.save_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.NAMESPACE_EMPTY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.NAMESPACE_JCR"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.NAMESPACE_MIX"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.NAMESPACE_NT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.NAMESPACE_XML"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.PREFIX_EMPTY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.PREFIX_JCR"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.PREFIX_MIX"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.PREFIX_NT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.NamespaceRegistry.PREFIX_XML"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.JCR_CHILD_NODE_DEFINITION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.JCR_CONTENT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.JCR_FROZEN_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.JCR_PROPERTY_DEFINITION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.JCR_ROOT_VERSION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.JCR_VERSION_LABELS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.cancelMerge_changed(javax.jcr.version.Version)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.checkin_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.checkout_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.doneMerge_changed(javax.jcr.version.Version)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.followLifecycleTransition_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getAllowedLifecycleTransistions_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getBaseVersion_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getIdentifier_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getLock_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getNodes_added(java.lang.String[])"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getProperties_added(java.lang.String[])"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getReferences_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getSharedSet_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getUUID_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getVersionHistory_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getWeakReferences_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.getWeakReferences_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.holdsLock_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.lock_changed(boolean, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.merge_changed(java.lang.String, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.removeShare_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.removeSharedSet_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.restoreByLabel_changed(java.lang.String, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.restore_added(java.lang.String, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.restore_changed(javax.jcr.version.Version, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.restore_changed(javax.jcr.version.Version, java.lang.String, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.restore_removed(java.lang.String, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.setPrimaryType_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.setProperty_added(java.lang.String, java.math.BigDecimal)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.setProperty_added(java.lang.String, javax.jcr.Binary)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.setProperty_changed(java.lang.String, java.io.InputStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Node.unlock_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_ACTIVITY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_AUTOCREATED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_BASE_VERSION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_CHILD_VERSION_HISTORY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_CONFIGURATION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_CONTENT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_COPIED_FROM"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_CREATED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_CREATED_BY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_CURRENT_LIFECYCLE_STATE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_DATA"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_DEFAULT_PRIMARY_TYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_DEFAULT_VALUES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_DESCRIPTION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_ENCODING"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_FROZEN_MIXIN_TYPES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_FROZEN_PRIMARY_TYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_FROZEN_UUID"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_HAS_ORDERABLE_CHILD_NODES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_HOST"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_ID"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_IS_ABSTRACT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_IS_CHECKED_OUT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_IS_MIXIN"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_LANGUAGE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_LAST_MODIFIED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_LAST_MODIFIED_BY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_LIFECYCLE_POLICY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_LOCK_IS_DEEP"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_LOCK_OWNER"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_MANDATORY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_MERGE_FAILED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_MIMETYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_MIXIN_TYPES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_MULTIPLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_NAME"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_NODE_TYPE_NAME"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_ON_PARENT_VERSION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PATH"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PORT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PREDECESSORS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PRIMARY_ITEM_NAME"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PRIMARY_TYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PROTECTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_PROTOCOL"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_REPOSITORY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_REQUIRED_PRIMARY_TYPES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_REQUIRED_TYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_ROOT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_SAME_NAME_SIBLINGS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_STATEMENT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_SUCCESSORS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_SUPERTYPES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_TITLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_UUID"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_VALUE_CONSTRAINTS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_VERSIONABLE_UUID"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_VERSION_HISTORY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.JCR_WORKSPACE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.getBinary_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.getDecimal_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.getNode_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.getProperty_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.getStream_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.isMultiple_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.setValue_added(java.io.InputStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.setValue_added(java.math.BigDecimal)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.setValue_added(javax.jcr.Binary)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Property.setValue_removed(java.io.InputStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType.DECIMAL"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType.TYPENAME_DECIMAL"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType.TYPENAME_URI"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType.TYPENAME_WEAKREFERENCE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType.URI"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.PropertyType.WEAKREFERENCE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.IDENTIFIER_STABILITY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.IDENTIFIER_STABILITY_INDEFINITE_DURATION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.IDENTIFIER_STABILITY_METHOD_DURATION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.IDENTIFIER_STABILITY_SAVE_DURATION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.IDENTIFIER_STABILITY_SESSION_DURATION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.LEVEL_1_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.LEVEL_2_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_INHERITANCE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_OVERRIDES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_PROPERTY_TYPES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_SAME_NAME_SIBLINGS_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.NODE_TYPE_MANAGEMENT_VALUE_CONSTRAINTS_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_ACCESS_CONTROL_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_ACTIVITIES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_BASELINES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_JOURNALED_OBSERVATION_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_LIFECYCLE_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_QUERY_SQL_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_RETENTION_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_SHAREABLE_NODES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_SIMPLE_VERSIONING_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_UNFILED_CONTENT_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_UPDATE_MIXIN_NODE_TYPES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_UPDATE_PRIMARY_NODE_TYPE_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_WORKSPACE_MANAGEMENT_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_XML_EXPORT_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.OPTION_XML_IMPORT_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_FULL_TEXT_SEARCH_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_JOINS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_JOINS_INNER"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_JOINS_INNER_OUTER"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_JOINS_NONE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_LANGUAGES"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_STORED_QUERIES_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_XPATH_DOC_ORDER"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.QUERY_XPATH_POS_INDEX"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.WRITE_SUPPORTED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.getDescriptorValue_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.getDescriptorValues_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.isSingleValueDescriptor_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Repository.isStandardDescriptor_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.getCause_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.getLocalizedMessage_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.getMessage_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.printStackTrace_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.printStackTrace_removed(java.io.PrintStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.printStackTrace_removed(java.io.PrintWriter)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryException.rootCause"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.RepositoryFactory"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.ACTION_ADD_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.ACTION_READ"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.ACTION_REMOVE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.ACTION_SET_PROPERTY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.addLockToken_changed(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getAccessControlManager_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getLockTokens_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getNodeByIdentifier_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getNodeByUUID_changed(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getNode_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getProperty_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.getRetentionManager_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.hasCapability_added(java.lang.String, java.lang.Object, java.lang.Object[])"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.hasPermission_added(java.lang.String, java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.nodeExists_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.propertyExists_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.removeItem_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.removeLockToken_changed(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Session.save_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getBinary_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getBoolean_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getDate_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getDecimal_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getDouble_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getLong_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Value.getStream_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory.createBinary_added(java.io.InputStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory.createValue_added(java.io.InputStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory.createValue_added(java.math.BigDecimal)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory.createValue_added(javax.jcr.Binary)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory.createValue_added(javax.jcr.Node, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.ValueFactory.createValue_removed(java.io.InputStream)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_ACTIVITIES_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_CONFIGURATIONS_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_JCR_XMLCHARACTERS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_JCR_XMLTEXT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_NODE_TYPES_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_SYSTEM_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_UNFILED_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_VERSION_STORAGE_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.NAME_WORKSPACE_ROOT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_ACTIVITIES_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_CONFIGURATIONS_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_NODE_TYPES_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_SYSTEM_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_UNFILED_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_VERSION_STORAGE_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.PATH_WORKSPACE_ROOT"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.RELPATH_JCR_XMLCHARACTERS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.createWorkspace_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.createWorkspace_added(java.lang.String, java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.deleteWorkspace_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.getLockManager_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.getVersionManager_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.importXML_changed(java.lang.String, java.io.InputStream, int)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.Workspace.restore_changed(javax.jcr.version.Version[], boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.Lock"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.Lock.getSecondsRemaining_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.Lock.isLockOwningSession_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.LockException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.LockException.ctor_added(java.lang.String, java.lang.Throwable, java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.LockException.getFailureNodePath_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.lock.LockManager"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.InvalidNodeTypeDefinitionException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeDefinition"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeDefinition.getDefaultPrimaryTypeName_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeDefinition.getRequiredPrimaryTypeNames_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeDefinitionTemplate"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_CREATED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_LANGUAGE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_LAST_MODIFIED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_LIFECYCLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_LOCKABLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_MIMETYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_REFERENCEABLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_SHAREABLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_SIMPLE_VERSIONABLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_TITLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.MIX_VERSIONABLE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_ACTIVITY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_ADDRESS"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_BASE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_CHILD_NODE_DEFINITION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_CONFIGURATION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_FILE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_FOLDER"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_FROZEN_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_HIERARCHY_NODE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_LINKED_FILE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_NODE_TYPE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_PROPERTY_DEFINITION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_QUERY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_RESOURCE"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_UNSTRUCTURED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_VERSION"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_VERSIONED_CHILD"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.NT_VERSION_HISTORY"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.canRemoveItem_changed(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.canRemoveNode_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.canRemoveProperty_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.getDeclaredChildNodeDefinitions_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.getDeclaredPropertyDefinitions_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.getDeclaredSubtypes_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.getName_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.getPrimaryItemName_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.getSubtypes_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.hasOrderableChildNodes_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeType.isMixin_removed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeDefinition"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeExistsException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.createNodeDefinitionTemplate_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.createNodeTypeTemplate_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.createNodeTypeTemplate_added(javax.jcr.nodetype.NodeTypeDefinition)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.createPropertyDefinitionTemplate_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.hasNodeType_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.registerNodeType_added(javax.jcr.nodetype.NodeTypeDefinition, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.registerNodeTypes_added(javax.jcr.nodetype.NodeTypeDefinition[], boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.unregisterNodeType_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeManager.unregisterNodeTypes_added(java.lang.String[])"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.NodeTypeTemplate"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.PropertyDefinition"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.PropertyDefinition.getAvailableQueryOperators_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.PropertyDefinition.isFullTextSearchable_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.PropertyDefinition.isQueryOrderable_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.nodetype.PropertyDefinitionTemplate"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event.NODE_MOVED"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event.PERSIST"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event.getDate_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event.getIdentifier_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event.getInfo_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.Event.getUserData_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.EventJournal"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.ObservationManager"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.ObservationManager.getEventJournal_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.ObservationManager.getEventJournal_added(int, java.lang.String, boolean, java.lang.String[], java.lang.String[])"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.observation.ObservationManager.setUserData_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.JCR_JQOM"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.JCR_SQL2"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.SQL"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.XPATH"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.bindValue_added(java.lang.String, javax.jcr.Value)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.execute_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.getBindVariableNames_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.setLimit_added(long)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Query.setOffset_added(long)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.QueryManager"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.QueryManager.getQOMFactory_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.QueryResult"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.QueryResult.getSelectorNames_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row.getNode_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row.getNode_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row.getPath_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row.getPath_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row.getScore_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.Row.getScore_added(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.query.qom"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.retention"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.security"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.ActivityViolationException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.LabelExistsVersionException"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.Version"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.Version.getFrozenNode_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.Version.getLinearPredecessor_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.Version.getLinearSuccessor_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.addVersionLabel_changed(java.lang.String, java.lang.String, boolean)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.getAllFrozenNodes_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.getAllLinearFrozenNodes_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.getAllLinearVersions_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.getVersionByLabel_changed(java.lang.String)"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.getVersionableIdentifier_added()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionHistory.getVersionableUUID_changed()"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+<comment>
+  <identifier id="javax.jcr.version.VersionManager"/>
+  <text>
+    InsertCommentsHere
+  </text>
+</comment>
+
+</comments>

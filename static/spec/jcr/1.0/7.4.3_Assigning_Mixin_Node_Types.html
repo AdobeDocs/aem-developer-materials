@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.4.3 Assigning Mixin Node Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.4.3." id="section_7.4.3."></a> 7.4.3 Assigning Mixin Node Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									To assign a mixin type, the method<br>
+									<b>Node.addMixin(String mixinName)</b> is used. The mixin type adds additional child node or property definitions to a node (i.e., either permitting or requiring additional child nodes or properties).
+								</p>
+							
+							
+								<p class="c5">
+									Conflicts with other mixin node types or with the primary node type that are detected immediately will cause a <b>ConstraintViolationException</b> to be thrown on the <b>addMixin</b> call. Conflicts detected upon <b>save</b> will cause a <b>ConstraintViolationException</b> to be thrown at that time. Which conflicts are detected at which stage may differ across implementations.
+								</p>
+							
+							
+								<p class="c5">
+									Note that the <i>orderable child nodes status</i> of a mixin node type has no effect, so it will never conflict with the orderable child nodes status of the primary node type.
+								</p>
+							
+							
+								<p class="c5">
+									In some implementations it may be possible to add mixin types to a node only before the first <b>save</b> of that node (in effect, at node creation). Other implementations may support dynamic addition, and possibly removal, of mixin node types during a node's lifetime. The method <b>Node.removeMixin</b> is provided for those cases that support dynamic removal. If an implementation does not support dynamic addition or removal, the <b>addMixin</b> or <b>removeMixin</b> method will throw a <b>ConstraintViolationException</b>.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>addMixin(String mixinName)</b>
+									</p>
+									<p class="c5">
+										Adds the specified mixin node type to this node. Also adds <b>mixinName</b> to this node's <b>jcr:mixinTypes</b> property immediately. Semantically, the mixin node type assignment <i>may</i> take effect immediately and at the very least, it <i>must</i> take effect on <b>save</b>.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown either immediately or on <b>save</b> if a conflict with another assigned mixin or the primary node type or for an implementation-specific reason. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										In some implementations it may only be possible to add mixin types before a node is first saved, and not after. In such cases any later calls to <b>addMixin</b> will throw a <b>ConstraintViolationException</b> either immediately or on <b>save</b>.
+									</p>
+									<p class="c5">
+										If the specified mixin node type is not recognized a <b>NoSuchNodeTypeException</b> is thrown either immediately or on <b>save</b>. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown either immediately or on <b>save</b> if <b>this</b> node is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown either immediately or on <b>save</b> if a lock prevents the addition of the mixin. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> will be thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>removeMixin(String mixinName)</b>
+									</p>
+									<p class="c5">
+										Removes the specified mixin node type from this node. Also removes <b>mixinName</b> from this node's <b>jcr:mixinTypes</b> property immediately. Semantically, the mixin node type removal <i>may</i> take effect immediately and at the very least, it <i>must</i> take effect on <b>save</b>.
+									</p>
+									<p class="c5">
+										If this node does not have the specified mixin, a <b>NoSuchNodeTypeException</b> is thrown either immediately or on <b>save</b>. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately or on <b>save</b> if the removal of a mixin is not allowed. Implementations are free to enforce any policy they like with regard to mixin removal and may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown either immediately or on <b>save</b> if <b>this</b> node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown either immediately or on <b>save</b> if a lock prevents the removal of the mixin. Implementations may differ on when this validation is done.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> will be thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>canAddMixin(String mixinName)</b>
+									</p>
+									<p class="c5">
+										Returns true if the specified mixin node type, <b>mixinName</b>, can be added to this node. Returns <b>false</b> otherwise. A result of <b>false</b> must be returned in each of the following cases:
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												The mixin's definition conflicts with an existing primary or mixin node type of this node.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												This node is versionable and checked-in or is non-versionable and its nearest versionable ancestor is checked-in.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												This node is <i>protected</i> (as defined in this node's <b>NodeDefinition</b>, found in the node type of this node's parent).
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												An access control restriction would prevent the addition of the mixin.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												A lock would prevent the addition of the mixin.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												An implementation-specific restriction would prevent the addition of the mixin.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										A <b>NoSuchNodeTypeException</b> is thrown if the specified mixin node type name is not recognized.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> will be thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

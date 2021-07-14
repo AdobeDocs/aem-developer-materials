@@ -1,0 +1,71 @@
+
+Field
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/field
+
+   Field is an abstract component that is extended by the actual field implementation, such as :granite:servercomponent:`textfield </libs/granite/ui/components/foundation/form/textfield>`.
+   It is created to make creating a form field easier. It handles:
+
+   * field label and field description
+   * read-only mode
+   * root field (``com.adobe.granite.ui.components.ComponentHelper.Options#rootField``)
+
+
+   **Life Cycle**
+
+   It will call the following scripts in order:
+
+   init.jsp
+      This script needs to set a ValueMap to the request attribute, like so ``request.setAttribute(com.adobe.granite.ui.components.Field.class.getName(), vm);``.
+      The value map needs to contain at least property named ``value`` that is storing the value of the field.
+      The implementor is free to put any property to this map, though it is encouraged to namespace the property name to avoid future conflict.
+      By default Field is giving default implementation of init.jsp, setting the value to of ``value`` property of type ``StringEL``.
+      This map is also available during the calling of ``render.jsp``.
+
+   render.jsp
+      This is where the actual rendering of the actual field is performed.
+
+      At this point the field also set ``labelId`` key to ValueMap described at ``init.jsp``. This labelId is used to set the ``id`` attribute of the label.
+      The actual field should make use of this labelId to set the appropriate ARIA attribute (e.g. ``aria-labelledby``) accordingly.
+
+
+   **Read-only Mode**
+
+   This feature is enabled by setting ``renderReadOnly`` property to true.
+   The read-only version of the component is rendered by including the read-only resource type.
+   Consult ``com.adobe.granite.ui.components.ComponentHelper#getReadOnlyResourceType`` for details.
+   If read-only resource type is not available, no read-only version is rendered.
+   The value set during ``init.jsp`` will be inspected to check if it is empty. If it is empty the read-only mode will be hidden, unless ``showEmptyInReadOnly`` property is set to true in the content.
+
+
+   **Content Structure**
+
+   .. gnd:gnd::
+
+      [granite:FormField] > granite:renderCondition
+
+      /**
+       * The label of the component.
+       */
+      - fieldLabel (String) i18n
+
+      /**
+       * The description of the component.
+       */
+      - fieldDescription (String) i18n
+
+      /**
+       * Renders the read-only markup as well.
+       */
+      - renderReadOnly (Boolean)
+
+      /**
+       * Shows read-only version even when it has empty value or unchecked.
+       */
+      - showEmptyInReadOnly (Boolean)
+
+      /**
+       * ``true`` to hide the whole field (including the wrapper); ``false`` otherwise.
+       */
+      - renderHidden (Boolean)

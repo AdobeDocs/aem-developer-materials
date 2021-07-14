@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.4.2.1 Parent Resolution (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.4.2.1 Parent Resolution</H4>
+	<P>In most cases an item
+	will have only one parent, in such a case, parent resolution is
+	trivial. In repositories that support shareable nodes, a node may
+	share its child nodes and properties with other nodes. A child item
+	of a shared node therefore has more than one parent. In such a case
+	the parent resolved depends upon the <I>deemed path</I> of the item,
+	which is an implementation-specific issue (see §3.9.5 <I>Deemed
+	Path</I>). An attempt to resolve the parent of a workspace root node
+	always fails.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

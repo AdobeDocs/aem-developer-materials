@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.9 Discovering available Node Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.9." id="section_6.7.9."></a> 6.7.9 Discovering available Node Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Discovery of which node types are available in a content repository is done through the <b>NodeTypeManager</b> object, which is acquired via the <b>Workspace.</b> Recall from earlier in the specification:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Workspace</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeTypeManager</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNodeTypeManager()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>NodeTypeManager</b> object through which available node types are discovered. There is one node type registry per repository, therefore the <b>NodeTypeManager</b> is not workspace-specific; it provides introspection methods for the global, repository-wide set of available node types.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<br>
+									The <b>NodeTypeManager</b> provides the following methods:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.nodetype.<b><br>
+										NodeTypeManager</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNodeType(String nodeTypeName)</b>
+									</p>
+									<p class="c5">
+										Returns the <b>NodeType</b> specified by <b>nodeTypeName</b>. If no node type by that name is registered, a <b>NoSuchNodeTypeException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType<br>
+										Iterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getAllNodeTypes()</b>
+									</p>
+									<p class="c5">
+										Returns all available node types, primary and mixin.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType<br>
+										Iterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getPrimaryNodeTypes()</b>
+									</p>
+									<p class="c5">
+										Returns all available primary node types.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>NodeType<br>
+										Iterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getMixinNodeTypes()</b>
+									</p>
+									<p class="c5">
+										Returns all available mixin types. If none are available, an empty iterator is returned.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

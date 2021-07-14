@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.17.1 Restrictions (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.17.1 Restrictions</H4>
+	<P>The following
+	restrictions apply to all external node types:</P>
+	<UL>
+		<LI><P>An implementation
+		<I>must not</I> allow external node types with node type names in
+		the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>
+		namespaces.</P>
+		<LI><P>An implementation
+		may allow external node types which have item definitions in the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr</FONT></FONT>
+		namespace. Such an item definition must only reuse an item
+		definition from a JCR-defined node type.</P>
+		<LI><P>Any jcr
+		namespaced item definition <I>D'</I> in an external node type <I>T'</I>
+		must not be invalid with respect to the JCR-defined definition <I>D</I>
+		in the JCR-defined node <I>T</I> (with <I>D</I>, <I>D'</I>, <I>T</I>
+		and <I>T'</I> as above, see §3.7.6.8 <I>Item Definitions in
+		Subtypes</I>).</P>
+		<LI><P>Any jcr
+		namespaced item definition in an external node type must be used
+		for a purpose equivalent to its JCR use. 
+		</P>
+		<LI><P>All custom node
+		types must adhere to semantics of subtyping (see §3.7.6.6
+		<I>Semantics of Subtyping</I>)</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

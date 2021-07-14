@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.5.3 Adding an Access Control Entry (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.5.3 Adding an Access Control Entry</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	AccessControlList.addAccessControlEntry(<BR>	java.security.Principal
+	prinicipal,<BR> Privilege[] privileges)</FONT></FONT></P>
+	<P>adds an access control
+	entry consisting of the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>principal</FONT></FONT>
+	and the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>privileges</FONT></FONT>
+	to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList
+	</FONT></FONT>policy and returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the <FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlList</FONT></FONT>
+	was thereby modified.</P>
+	<P>How the entries are
+	grouped within the list is implementation-specific. An
+	implementation may, for example, combine the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>privileges</FONT></FONT>
+	with those added by a previous call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>addAccessControlEntry</FONT></FONT>
+	for the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Principal</FONT></FONT>.
+	However, a call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>addAccessControlEntry</FONT></FONT>
+	for a given <FONT FACE="Courier New, monospace"><FONT SIZE=2>Principal</FONT></FONT>
+	can never remove a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	added by a previous call.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

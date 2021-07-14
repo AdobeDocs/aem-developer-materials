@@ -1,0 +1,21 @@
+
+Popover
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/popover
+   :layout:
+
+   The popover layout.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   The body of the popover is specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + mypopover
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/popover"
+          + items
+            + item1
+            + item2

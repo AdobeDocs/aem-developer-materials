@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.3 SQL EBNF (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.3." id="section_8.5.3."></a>8.5.3 SQL EBNF
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									<i>Terminals are in bold or in single quotes.</i>
+								</p>
+							
+							
+								<p class="c12">
+									query ::= select [from] [where] [orderby]
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p>
+									select ::= <b>SELECT</b> ('<b>*'</b> | proplist )<br><br>
+								</p>
+							
+							
+								<p>
+									from ::= <b>FROM</b> ntlist<br><br>
+								</p>
+							
+							
+								<p>
+									where ::= <b>WHERE</b> whereexp<br><br>
+								</p>
+							
+							
+								<p class="c12">
+									orderby ::= <b>ORDER BY</b> propname [<b>DESC</b>|<b>ASC</b>]
+								</p>
+							
+							
+								<p class="c12">
+									{',' propname [<b>DESC</b>|<b>ASC</b>]}
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									proplist ::= propname {'<b>,</b>' propname}
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									ntlist ::= ntname {',' ntname}
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									whereexp ::= propname op value |
+								</p>
+							
+							
+								<p class="c12">
+									propname <b>IS NULL</b> |
+								</p>
+							
+							
+								<p class="c12">
+									propname <b>IS NOT NULL</b> |<br>
+									value <b>IN</b> propname |<br>
+									like |
+								</p>
+							
+							
+								<p class="c12">
+									contains |<br>
+									whereexp <b>AND</b> whereexp |<br>
+									whereexp <b>OR</b> whereexp |<br> <b>NOT</b> whereexp |<br>
+									'<b>('</b> whereexp '<b>)'</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									op ::= '='|'&gt;'|'&lt;'|'&gt;='|'<b>&lt;=</b>'|'<b>&lt;&gt;</b>'
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									propname ::= joinpropname | simplepropname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									joinpropname ::= quotedjoinpropname |<br>
+									unquotedjoinpropname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									quotedjoinpropname ::= ''' unquotedjoinpropname '''
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									unquotedjoinpropname ::= ntname '.jcr:path'
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									simplepropname ::= quotedpropname | unquotedpropname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									quotedpropname ::= ''' unquotedpropname '''
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									unquotedpropname ::= <i>/* A property name, possible a pseudo-property: jcr:score or jcr:path */</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									ntname ::= quotedntname | unquotedntname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									quotedntname ::= ''' unquotedntname '''
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									unquotedntname ::= <i>/* A node type name */</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									value ::= ''' literalvalue ''' | literalvalue
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									literalvalue ::= <i>/* A property value (in standard string<br>
+									form) */</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p>
+									like ::= propname <b>LIKE</b> likepattern [ escape ]<br><br>
+								</p>
+							
+							
+								<p class="c12">
+									likepattern ::= ''' likechar { likepattern } '''
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									likechar ::= char | '<b>%'</b> | '<b>_'</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									escape ::= <b>ESCAPE</b> ''' likechar '''
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									char ::= <i>/* Any character valid within the<br>
+									string representation of a value<br>
+									except for the characters % and _<br>
+									themselves. These must be escaped */</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p>
+									contains ::= <b>CONTAINS(</b>scope ',' searchexp '<b>)'</b> <br><br>
+								</p>
+							
+							
+								<p class="c12">
+									scope ::= unquotedpropname | '<b>.</b>'
+								</p>
+							
+							
+								<p class="c12">
+									searchexp ::= ''' exp '''
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									exp ::= [-]term {whitespace [OR] whitespace [-]term}
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									term ::= word | '"' word {whitespace word} '"'
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									word ::= <i>/* A string containing no whitespace */</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									whitespace ::= <i>/* A string of only whitespace*/</i>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

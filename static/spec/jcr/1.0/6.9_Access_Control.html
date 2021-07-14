@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.9 Access Control (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_6.9." id="section_6.9."></a>6.9 Access Control
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A level 1 compliant implementation must support the access control discovery method <b>Session.checkPermission</b> (see below).
+								</p>
+							
+							
+								<p class="c5">
+									In the simplest cases, where an implementation does not actually support access control, the behavior of this method can be hardcoded.
+								</p>
+							
+							
+								<p class="c5">
+									In repositories that do support access control, this method reports whether a particular <b>Session</b> has permission to perform a particular action according to the relevant access control policies. However, the specification does not attempt to define mechanisms for the <i>setting</i> of access control policies.
+								</p>
+							
+							
+								<p class="c5">
+									As mentioned above (see <a href="6.1_Accessing_the_Repository.html">6.1</a> <i>Accessing the Repository</i>), the <b>Session</b> object returned by <b>Repository.login</b> reflects a particular set of access permissions. These permissions may be determined by the <b>Credentials</b> passed on <b>login</b> or by some external authentication and authorization mechanism within which the repository implementation is embedded.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

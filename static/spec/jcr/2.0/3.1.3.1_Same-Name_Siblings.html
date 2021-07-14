@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.1.3.1 Same-Name Siblings (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.1.3.1 Same-Name Siblings</H4>
+	<P>In the simplest case,
+	every child item of a given parent has a unique name. However, child
+	nodes with identical names can only occur if a repository supports
+	<I>same-name siblings </I>(see §22 <I>Same-Name Siblings</I>).
+	Additionally, some repositories may support a node and sibling
+	property having the same name (see §5.1.8 <I>Node and Property with
+	Same Name</I>). However, two sibling properties can never have the
+	same name.</P>
+	<P>To distinguish sibling
+	nodes with the same name an integer index, starting at 1, is used.
+	A node with no same-name siblings has an implicit index of 1 and a
+	node name without an index is understood to have an index of 1.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

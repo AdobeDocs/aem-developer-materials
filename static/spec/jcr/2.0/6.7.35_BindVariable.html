@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.35 BindVariable (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.35 BindVariable</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type BindVariableValue extends
+	StaticOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Prefix bindVariableName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to the value of a bind
+	variable.</P>
+	<P>The query is <I>invalid</I> if no
+	value is bound to <FONT FACE="Courier New, monospace">bindVariableName</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">BindVariableValue ::=
+	'$'bindVariableName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">bindVariableName ::= Prefix</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue
+	QueryObjectModelFactory.<BR> bindVariableValue(String
+	bindVariableName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>BindVariableValue</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>StaticOperand
+	BindVariableValue.getBindVariableName()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

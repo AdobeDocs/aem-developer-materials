@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.4.9 Escaping (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.4.9." id="section_6.6.4.9."></a>6.6.4.9 Escaping
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The names of elements and attributes (corresponding to nodes and properties, respectively) within an XPath statement must correspond to the form in which they (notionally) appear in the document view. This means that spaces (and any other non-XML characters) within names must be encoded according to the rules described in <a href="6.4.3_Escaping_of_Names.html">6.4.3</a> <i>Escaping of Names</i>.
+								</p>
+							
+							
+								<p class="c5">
+									The values of attributes, on the other hand, are not escaped in the XPath usage of document view (as opposed to the export usage, see 6.4.2.5 Multi-value Properties<i>,</i> 6.4.4 Escaping of Values and <i>6.6.4.10</i> Searching Multi-value Properties). As a result, string literals in XPath predicates that test those attribute values are not escaped either. They may contain whitespace as well as the characters ampersand (<b>&amp;</b>), less-than (<b>&lt;</b>), greater-than (<b>&gt;</b>), quotation mark (") and apostrophe (<b>'</b>). In XPath the entity references that would be used within an XML document (<b>&amp;lt;</b>, <b>&amp;gt;</b> etc..) are not used. However, the apostrophe (<b>'</b>) and quotation mark(<b>"</b>) must be escaped according to the standard rules of XPath with regard to string literals: If the literal is delimited by apostrophes, two adjacent apostrophes within the literal are interpreted as a single apostrophe. Similarly, if the literal is delimited by quotation marks, two adjacent quotation marks within the literal are interpreted as one quotation mark.<sup><a class="sdfootnoteanc" name="sdfootnote6anc" href="#sdfootnote6sym" id="sdfootnote6anc"><sup>6</sup></a></sup>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

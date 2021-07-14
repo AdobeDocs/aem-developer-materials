@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.7.6 Restoring Child Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.7.6 Restoring Child Nodes</H3>
+	<P>For each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>:</P>
+		<UL>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+			is true, then <FONT FACE="Courier New, monospace"><FONT SIZE=2>F/C</FONT></FONT>
+			and its subgraph is copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>,
+			replacing any existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+			and its subgraph <I>and</I> any node in the workspace with the
+			same identifier as <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			or a node in the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+			is removed.</P>
+			<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+			is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+			then <FONT FACE="Courier New, monospace"><FONT SIZE=2>F/C</FONT></FONT>
+			and its subgraph is copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>,
+			replacing any existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+			and its subgraph <I>unless</I> there exists a node in the
+			workspace with the same identifier as <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>,
+			or a node in the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>,
+			in which case an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+			is thrown , all changes made by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+			are rolled back leaving <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+			unchanged.</P>
+		</UL>
+	</UL>
+	<P>Under
+	full versioning each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is versionable, is represented in <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	not as a copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+	but as special node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionedChild</FONT></FONT>
+	containing a reference to the version history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.
+	On restore, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+	in the workspace is replaced by a version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>.
+	The determination of which version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	to use is implementation-dependent (see §15.7.5 <I>Chained Versions
+	on Restore</I>).</P>
+	<P>In a
+	repository that supports orderable child nodes, the relative
+	ordering of the set of child nodes C that are copied from F is
+	preserved.</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+		will never have a child node with an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		(see §15.2 <I>Check-In: Creating a Version</I>).</P>
+	</UL>
+	<P>For each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	but not on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+		is removed. Note that while a node with a child item of OPV <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT
+		</FONT></FONT>cannot be versioned, it is legal for a
+		previously versioned node to have such a child item added to it and
+		then for it to be restored to the state that it had before that
+		item was added, as this step indicates.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		then no change is made to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+		is re-initialized as if it were newly created, as defined in its
+		node type.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/C</FONT></FONT>
+		may be re-initialized according to an implementation-specific
+		mechanism.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,190 @@
+
+ColumnView
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/columnview
+
+   A Miller columns component.
+
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/selections`
+   and :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode` vocabulary.
+
+   Note that this component's size is maximized to its parent OOTB. Hence it doesn't make sense if this component has a sibling component,
+   as it will take the whole parent's space.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ColumnView] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * ``true`` to enable the selection of item; ``false`` otherwise.
+       */
+      - selectionMode (BooleanEL) = 'true'
+
+      /**
+       * The count of item to be selected (when the ``selectionMode`` is enabled):
+       *
+       * single
+       *    Only maximum single selection allowed
+       * multiple
+       *    Zero or more selection allowed
+       */
+      - selectionCount (StringEL) = 'multiple'
+
+      /**
+       * The URI Template that is returning the HTML response of the column view.
+       * It is used when the client needs to load data dynamically, such as for pagination.
+       *
+       * Note that only the items of the current column are rendered using the provided item datasource.
+       * The items of the ancestors columns are loaded lazily in different requests.
+       *
+       * If it is not specified, the feature is disabled.
+       *
+       * It supports the following variables:
+       *
+       * It supports the following variables:
+       *
+       * offset
+       *    The item offset of the current request.
+       * limit
+       *    The item limit of the pagination.
+       * id
+       *    The path of the target column.
+       */
+      - src (StringEL)
+
+      /**
+       * The path of the current column. It will act as the value of ``[data-foundation-collection-id]``.
+       *
+       * e.g. ``${requestPathInfo.suffix}``
+       */
+      - path (StringEL)
+
+      /**
+       * ``true`` to also load the ancestors of the current columns up to the ``rootPath``; ``false`` otherwise.
+       */
+      - loadAncestors (Boolean)
+
+      /**
+       * ``true`` to also render a special column for the root resource when ``path == rootPath``; ``false`` otherwise.
+       * This special column is used to allow the user to select the root path.
+       *
+       * Say you set ``path = /``, this component by default will render a column containing the items of that path (e.g. ``/apps``, ``/etc``).
+       * When this property is ``true``, when ``path == rootPath``, this component will also render a column containing a single item representing the root.
+       * In other words it will render two columns; first, the special root column; second, the normal column.
+       *
+       * It can be illustrated with the following visualization::
+       *
+       *    When showRoot = false, path = /, rootPath = /:
+       *
+       *    +------+
+       *    | apps |
+       *    | etc  |
+       *    | home |
+       *    | libs |
+       *    +------+
+       *
+       *    When showRoot = true, path = /, rootPath = /:
+       *
+       *    +-----+------+
+       *    |  /  | apps |
+       *    |     | etc  |
+       *    |     | home |
+       *    |     | libs |
+       *    +-----+------+
+       *
+       * When rendering the root resource for the item in the special column, this component will also honor the ``itemResourceType`` property.
+       */
+      - showRoot (Boolean)
+
+      /**
+       * The path of the root column.
+       */
+      - rootPath (StringEL) = '/'
+
+      /**
+       * The resource type for each item of the column.
+       */
+      - itemResourceType (String)
+
+      /**
+       * The item limit of the pagination.
+       */
+      - limit (Long) = '40'
+
+      /**
+       * Indicates the size of the items from datasource to be included.
+       * If this property is not specified, then all items from datasource will be included, and the next page will be fetched accordingly.
+       *
+       * This is meant to be a performance optimization to avoid fetching the next page unnecessarily.
+       * For example given the fact that the ``size`` is set to 20, and the datasource is configured to fetch ``size + 1``, which is 21,
+       * the implementation can check if the datasource actually has more item or not just by checking its size.
+       *
+       * .. warning:: When ``size`` is set, you have to make sure your datasource is configured to fetch more than the value of ``size``!
+       *
+       * =========  ==============  =========
+       * ``size``   Actual DS Size  Has More?
+       * =========  ==============  =========
+       * 20         < 20            ``false``
+       * 20         = 20            ``false``
+       * 20         > 20            ``true``
+       * (not set)  n/a             ``true``
+       * =========  ==============  =========
+       */
+      - size (IntegerEL)
+
+      /**
+       * The URI Template that is returning the HTML response for the preview of an item.
+       *
+       * It supports the following variables:
+       *
+       * id
+       *    The id/path of the item.
+       */
+      - previewSrc (StringEL)
+      
+      /**
+       * ``true`` to render the preview column maximized to the available space; ``false`` otherwise.
+       *
+       * Note that if you enable this, it generally works well visually only when you have one and only one column (beside the preview column) in the column view.
+       */
+      - previewMaximized (Boolean)
+
+      /**
+       * The resource type to render :doc:`.foundation-collection-meta </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`.
+       *
+       * The resource specified at ``path`` will be included using this resource type, where it can be processed accordingly.
+       */
+      - metaResourceType (String)
+
+      /**
+       * The value of :doc:`[data-foundation-mode-group] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode>`.
+       */
+      - modeGroup (String)
+
+      /**
+       * The value of :doc:`[data-foundation-mode-group] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode>`
+       * this component participates.
+       *
+       * The component supports the ``default`` or ``selection`` mode.
+       *
+       * When there is a selection, it will trigger the ``foundation-mode-change`` event with mode = ``selection``,
+       * while triggering the event with mode = ``default`` when there is no selection.
+       *
+       * When other component triggers the event with mode = ``default``, it will react by clearing the selection.
+       */
+      - modeGroup (String)
+
+   Example::
+
+      + mycolumnview
+        - sling:resourceType = "granite/ui/components/coral/foundation/columnview"
+        - src = "/a/b/c{.offset,limit}.html{+id}"
+        - previewSrc = "/a/b/c.preview.html{+id}"
+        - path = "${requestPathInfo.suffix}"
+        - loadAncestors = true
+        - rootPath = "/content"
+        + datasource
+          - sling:resourceType = "my/datasource"

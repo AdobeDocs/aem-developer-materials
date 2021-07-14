@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.2.6 Privilege Object (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.2.6 Privilege Object</H3>
+	<P>The characteristics of
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Privilege</FONT></FONT>
+	object are exposed through the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	String
+	Privilege.getName()</FONT></FONT></P>
+	<P>returns the name of
+	this privilege. Since the privilege name is a JCR name it must be
+	returned in qualified form (see §3.2.6 <I>Use of Qualified and
+	Expanded Names</I>).</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	boolean
+	Privilege.isAbstract()</FONT></FONT></P>
+	<P>returns whether the
+	privilege is abstract.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	boolean
+	Privilege.isAggregate()</FONT></FONT></P>
+	<P>returns whether the
+	privilege is aggregate.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	Privilege[]
+	Privilege.getDeclaredAggregatePrivileges()</FONT></FONT>.</P>
+	<P>If this privilege is
+	aggregate, this method returns the privileges directly contained
+	within it. Otherwise, it returns an empty array.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	Privilege[]
+	Privilege.getAggregatePrivileges()</FONT></FONT>.</P>
+	<P>If this privilege is
+	aggregate, this method returns the privileges it contains, the
+	privileges contained by any aggregate privileges among those, and so
+	on (i.e., the transitive closure of privileges contained by the
+	initial privilege). Otherwise, it returns an empty array.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

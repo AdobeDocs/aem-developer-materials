@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4 The Repository Model (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h2>
+			<a name="section_4." id="section_4."></a>4 The Repository Model
+		</h2>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A content repository consists of one or more <i>workspaces</i>, each of which contains a tree of <i>items</i>. An item is either a <i>node</i> or a <i>property</i>. Each node may have zero or more child nodes and zero or more child properties. There is a single root node per workspace, which has no parent. All other nodes have one parent. Properties have one parent (a node) and cannot have children; they are the leaves of the tree. All of the actual content in the repository is stored within the values of the properties.
+								</p>
+							
+							
+								<p>
+									<img src="jsr170-4.gif" align="left" hspace="12"><br clear="left">
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									In the diagram above, we see the single root node of some workspace with child nodes <b>a</b>, <b>b</b> and <b>c</b>, each of which have further child nodes or properties. For example, the node <b>a</b> has two child nodes, <b>d</b> and <b>e</b>. Node <b>e</b>, in turn, has two properties, <b>j</b> and <b>k</b>. The property <b>j</b> contains an image (a picture of a rabbit) and <b>k</b> contains a floating-point number (<b>6.022 × 10</b><b><sup>23</sup></b>). Similarly, the property <b>i</b> contains a boolean value (<b>true</b>), the property <b>g</b> contains a string (“<b>Once upon a time...</b>”) and the property <b>h</b> contains an integer (<b>-25</b>).
+								</p>
+							
+							
+								<p class="c5">
+									Any item in the hierarchy can be identified by an <i>absolute path</i>. For example, the path <b>/</b> refers to the root node and the path <b>/a/d/i</b> refers to the property with value <b>true</b>. Absolute paths always begin with a <b>/</b> character.
+								</p>
+							
+							
+								<p class="c5">
+									A <i>relative path</i> specifies a node or property relative to another location within the hierarchy. For example, relative to node <b>/a</b> in the above diagram, the path to the property with value <b>true</b> is <b>d/i</b>. The Unix-style path segments “<b>.</b>” and “<b>..</b>” (meaning respectively, “this” and “parent”) are also supported so that, relative to <b>/a</b>, the property containing the value <b>–25</b> would be <b>../c/h</b>. Relative paths are distinguished from absolute paths by having <i>no</i> leading <b>/</b> character.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

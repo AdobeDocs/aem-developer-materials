@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7 Export (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>7 Export</H1>
+	<P>A JCR repository must
+	support export of content to two XML formats: <I>system view</I> and
+	<I>document view</I>.</P>
+<a name="7.1 Exporting a Subgraph"></a>	<H2>7.1 Exporting a Subgraph</H2>
+	<P>Export operates on a
+	subgraph of a workspace. Given a repository <I>R</I> with workspace
+	<I>W</I> and a node <I>N</I> within <I>W</I> the following sections
+	describe the algorithm for producing the system view and document
+	view serializations of the subgraph rooted at <I>N</I>.</P>
+	<P>In a repository that
+	supports <I>shareable nodes</I> the set of nodes below <I>N</I> may
+	not be a tree, it may, more generally, be a subgraph with unique
+	source <I>N</I> (see §3.9 <I>Shareable Nodes Model</I>).</P>
+<a name="7.2 System View"></a>	<H2>7.2 System View</H2>
+	<P>The exported system
+	view XML document is constructed as follows:</P>
+	<OL>
+		<LI><P>For every
+		namespace used within the subgraph rooted at <I>N</I>, the
+		corresponding JCR namespace mapping in the current session <I>is
+		included</I> as an XML namespace declaration such that any use of a
+		namespace prefix is within the scope of the appropriate namespace
+		declaration.</P>
+		<LI><P>Other JCR
+		namespace mappings in the current session <I>may be included</I> as
+		XML namespace declarations in the exported document.</P>
+		<LI><P>The JCR namespace
+		mapping of the prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>
+		<I>may be excluded</I> from the namespace declarations in the
+		exported document.</P>
+		<LI><P>A namespace
+		declaration for the URI <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.jcp.org/jcr/sv/1.0</FONT></FONT>,
+		is included such that any use of the corresponding namespace prefix
+		is within the scope of the declaration. In this section the prefix
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>sv</FONT></FONT>
+		is assumed, making the declaration
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:sv=“http://www.jcp.org/jcr/sv/1.0”</FONT></FONT>.
+				</P>
+		<LI><P>Each JCR node
+		becomes an XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>.</P>
+		<LI><P>Each JCR property
+		becomes an XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>.</P>
+		<LI><P>The name of each
+		JCR node or property becomes the value of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:name</FONT></FONT>
+		attribute of the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element.</P>
+		<LI><P>If the root node
+		of a workspace is included in the serialized subgraph, it receives
+		the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>.</P>
+		<LI><P>The property type
+		of each content repository property is recorded in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:type</FONT></FONT>
+		attribute of the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element, using the standard string forms for property type names as
+		returned by the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType.nameFromValue</FONT></FONT>.</P>
+		<LI><P>The value of each<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		BINARY</FONT></FONT> JCR property is Base64<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote12anc" HREF="#sdfootnote12sym"><SUP>12</SUP></A></SUP>
+		encoded and the resulting string is included as XML text within an
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		element within the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element. 
+		</P>
+		<LI><P>The value of each
+		non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		JCR property is converted to string form according to the standard
+		conversion (see §3.6.4 <I>Property Type Conversion</I>) and the
+		resulting string is included as XML text within an <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		element within the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element.</P>
+		<OL>
+			<LI><P>Entity
+			references are used to escape characters which cannot be included
+			as literals within XML text (see §7.5 <I>Escaping of Values</I>).
+						</P>
+			<LI><P>If, after
+			conversion to string and entity escaping is performed, the string
+			form of a value still contains characters which cannot appear in
+			an XML document (neither as literals nor as character references<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote13anc" HREF="#sdfootnote13sym"><SUP>13</SUP></A></SUP>)
+			then:</P>
+			<OL TYPE=i>
+				<LI><P>The string form
+				is further encoded using Base64 encoding. 
+				</P>
+				<LI><P>The attribute
+				<FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi:type=“xsd:base64Binary”</FONT></FONT>
+				is added to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+				element. 
+				</P>
+				<LI><P>The namespace
+				mappings for <FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi</FONT></FONT>
+				and <FONT FACE="Courier New, monospace"><FONT SIZE=2>xsd</FONT></FONT>
+				are added to the exported XML document so that the <FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi:type</FONT></FONT>
+				attribute is within their scope. The namespace declarations
+				required are <FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:xsd=“http://www.w3.org/2001/XMLSchema”</FONT></FONT>
+				and <FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:xsi=“http://www.w3.org/2001/XMLSchema-instance”</FONT></FONT>.
+				Note that the prefixes representing these two namespaces need not
+				be <I>literally</I> “<FONT FACE="Courier New, monospace"><FONT SIZE=2>xsd</FONT></FONT>”
+				and “<FONT FACE="Courier New, monospace"><FONT SIZE=2>xsi</FONT></FONT>”.
+				Any two prefixes are permitted as long as the corresponding
+				namespace declarations are changed accordingly.</P>
+			</OL>
+		</OL>
+		<LI><P>A multi-value
+		property is converted to an <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element containing multiple <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		elements. The order of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:value&gt;</FONT></FONT>
+		elements reflects the order of the value array returned by
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues</FONT></FONT>.
+		If a property is multi-valued but happens to have only one value,
+		then the attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:multiple=“true”</FONT></FONT>
+		<I>must</I> be added to the corresponding <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element. If the property is multi-valued and has more than one
+		value then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:multiple=“true”</FONT></FONT>
+		attribute <I>may</I> be added.</P>
+		<LI><P>The hierarchy of
+		the content repository nodes and properties is reflected in the
+		hierarchy of the corresponding XML elements.</P>
+		<LI><P>Within an
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element all <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		subelements must occur before the first <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		subelement.</P>
+		<LI><P>The first
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element in an <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+		(see §3.7.10 <I>Base Primary Node Type</I>).</P>
+		<LI><P>If a node has a
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property, then the second <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		(see §3.7.10 <I>Base Primary Node Type</I>). 
+		</P>
+		<LI><P>In the case of
+		referenceable nodes, the third <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:property&gt;</FONT></FONT>
+		element in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		element must be <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		(see §3.8.1.1 <I>mix:referenceable</I>).</P>
+		<LI><P>The order of the
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		subelements of a parent <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;sv:node&gt;</FONT></FONT>
+		must reflect the order in which the corresponding child nodes are
+		returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes()</FONT></FONT>.</P>
+		<LI><P>Shared nodes are
+		exported as described in §14.7 <I>Export</I>.</P>
+	</OL>
+	<P>A writable repository
+	may support import using system view (see §11 <I>Import</I>).</P>
+<a name="7.3 Document View"></a>	<H2>7.3 Document View</H2>
+	<P>The document view
+	provides a more human-readable serialization than system view.
+	Unlike system view, document view is lossy. It does not preserve all
+	information in the subgraph.</P>
+	<OL>
+		<LI><P>For every
+		namespace used within the subgraph rooted at <I>N</I>, the
+		corresponding JCR namespace mapping in the current session <I>is
+		included</I> in the exported document such that any use of the
+		namespace prefix in the exported document is within the scope of
+		the appropriate namespace declaration.</P>
+		<LI><P>Other JCR
+		namespace mappings in the current session <I>may be included</I> as
+		XML namespace declarations in the exported document.</P>
+		<LI><P>The JCR namespace
+		mapping of the prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>
+		<I>may be excluded</I> from the namespace declarations in the
+		exported document.</P>
+		<LI><P>Each JCR node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes an XML element of the same name, <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If the root node
+		of a workspace is included in the serialized subgraph, it becomes
+		an XML elements with the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>.</P>
+		<LI><P>Each child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes a subelement <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>The order of the
+		subelements of element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		must reflect the order in which the corresponding child nodes are
+		returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes</FONT></FONT>.</P>
+		<LI><P>Each property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		becomes an XML attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		of XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		property its value is Base64 encoded. The resulting string becomes
+		the value of the XML attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		is a non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+		property its value is converted to string form according to the
+		standard conversion (see §3.6.4 <I>Property Type Conversion</I>).
+		Entity references are used to escape characters which cannot be
+		included as literals within attribute values (see §7.5 <I>Escaping
+		of Values</I>).</P>
+	</OL>
+	<P>A writable repository
+	may<B> </B>support document view import (see §11.1 <I>Importing
+	Arbitrary XML</I>).</P>
+	<P>The following sections
+	describe the exceptions to the above general rules.</P>
+<a name="7.3.1 XML Text"></a>	<H3>7.3.1 XML Text</H3>
+	<P>In a repository that
+	supports it, on document view import XML text is converted to the
+	special node/property structure <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext/jcr:xmlcharacters</FONT></FONT>
+	(see §11.1 <I>Importing Document View</I>). When this structure is
+	exported back to XML the process is reversed.</P>
+	<P>If a child node of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	is encountered and that <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	node has one and only one child item and that item is a
+	single-valued property called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>,
+	then the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	node is not converted into an XML element. Instead, the value of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+	property becomes text within the body of the XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	Entity references are used to escape characters which cannot be
+	included as literals within XML text (see §7.5 <I>Escaping of
+	Values</I>) however, escaping of whitespace is not performed (see
+	§7.3.3 <I>Multi-Value Properties</I>). Two or more <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>
+	nodes adjacent within the ordering of a child node set will have the
+	values of their respective <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+	concatenated into a single resulting XML text node.</P>
+<a name="7.3.2 Invalid Item Names"></a>	<H3>7.3.2 Invalid Item Names</H3>
+	<P>If the name of a
+	content repository item <FONT FACE="Courier New, monospace"><FONT SIZE=2>I</FONT></FONT>
+	is not a valid XML element or attribute name (as the case may be)
+	then on export the repository may either ignore the item in question
+	or employ the escaping scheme described in §7.4 <I>Escaping of
+	Names</I>. Which approach is taken is implementation-dependent.</P>
+<a name="7.3.3 Multi-Value Properties"></a>	<H3>7.3.3 Multi-Value Properties</H3>
+	<P>If a multi-value
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is encountered on export, the repository may either ignore the
+	multi-value property or serialize it as an attribute whose value is
+	an XML Schema list type<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote14anc" HREF="#sdfootnote14sym"><SUP>14</SUP></A></SUP>
+	(i.e., a whitespace-delimited list of strings). If the latter
+	approach is taken then:</P>
+	<UL>
+		<LI><P>Each value in the
+		property is converted to a string according to standard conversion,
+		see §3.6.4 <I>Property Type Conversion</I>. If the multi-value
+		property contains no values, then it is serialized as an empty
+		string.</P>
+		<LI><P>All literal
+		whitespace within each string is escaped, as well as any characters
+		that should not be included as literals in any case, see §7.5
+		<I>Escaping of Values</I>.</P>
+		<LI><P>The final
+		attribute value is constructed by concatenating the resulting
+		strings, with the addition of the space delimiter, into a single
+		string. The order of concatenation must be the same as the order in
+		which the values appear in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		array returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues</FONT></FONT>.</P>
+		<LI><P>Furthermore, if
+		multi-value property serialization is supported, then a mechanism
+		must be adopted whereby upon re-import the distinction between
+		multi- and single- value properties is not lost, see §7.5 <I>Escaping
+		of Values</I>.</P>
+		<LI><P>Note that this
+		escaping of space literals does not apply to the value of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext/jcr:xmlcharacters</FONT></FONT>
+		when it is converted to XML text. In that case only the standard
+		XML entity escaping is required, regardless of whether multi-value
+		property serialization is supported (see §7.3.1 <I>XML Text</I>
+		and §7.5 <I>Escaping of Values</I>).</P>
+	</UL>
+<a name="7.3.4 Invalid Characters in Values"></a>	<H3>7.3.4 Invalid Characters in Values</H3>
+	<P>If the string form of
+	the value of property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	contains characters which cannot appear in XML documents at all
+	(neither as literals nor as character references<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote15anc" HREF="#sdfootnote15sym"><SUP>15</SUP></A></SUP>)
+	then the attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is simply excluded from the document view serialization and does not
+	appear at all.</P>
+<a name="7.4 Escaping of Names"></a>	<H2>7.4 Escaping of Names</H2>
+	<P>Though a JCR prefix is
+	always a valid XML prefix, the JCR local name may not be a valid XML
+	name. Consequently, for document view serialization, each JCR name
+	is converted to a valid XML name (as defined by XML 1.0) by
+	translating invalid characters into escaped numeric entity
+	encodings<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote16anc" HREF="#sdfootnote16sym"><SUP>16</SUP></A></SUP>.</P>
+	<P>The escape character
+	is the underscore (“_”). Any invalid character is escaped as
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>_x</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>HHHH</I></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>_</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>HHHH</I></FONT></FONT>
+	is the four-digit hexadecimal UTF-16 code for the character. When
+	producing escape sequences the implementation should use lowercase
+	letters for the hex digits <FONT FACE="Courier New, monospace"><FONT SIZE=2>a</FONT></FONT>-<FONT FACE="Courier New, monospace"><FONT SIZE=2>f</FONT></FONT>.
+	When unescaping, however, both upper and lowercase alphabetic
+	hexadecimal characters must be recognized.</P>
+	<P>Escaping and
+	unescaping is done by parsing the name from left to right.</P>
+	<P>The underscore
+	character (“_”), when appearing as literal, is itself escaped if
+	it is followed by <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>xHHHH</I></FONT></FONT>
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>H</I></FONT></FONT>
+	is one of the following characters: <FONT FACE="Courier New, monospace"><FONT SIZE=2>0123456789abcdefABCDEF</FONT></FONT>.</P>
+	<P>For example,</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My
+	Documents</FONT></FONT>” is encoded as
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020_Documents</FONT></FONT>”.</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_Documents</FONT></FONT>”
+	is not encoded.</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020Documents</FONT></FONT>”
+	is encoded as <FONT FACE="Courier New, monospace"><FONT SIZE=2>“My_x005f_x0020Documents”.</FONT></FONT></P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020_Documents</FONT></FONT>”
+	is encoded as “<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x005f_x0020_Documents</FONT></FONT>”.</P>
+	<P>“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x0020
+	Documents</FONT></FONT>” is encoded as
+	“<FONT FACE="Courier New, monospace"><FONT SIZE=2>My_x005f_x0020_x0020_Documents</FONT></FONT>”.</P>
+<a name="7.5 Escaping of Values"></a>	<H2>7.5 Escaping of Values</H2>
+	<P>When a non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	value is serialized during either system view or document view
+	export, it is first converted to string form using standard value
+	conversion, see §3.6.4 <I>Property Type Conversion. </I><FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	values are encoded using Base64. The resulting string then undergoes
+	any further changes required by the standard XML escaping rules<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote17anc" HREF="#sdfootnote17sym"><SUP>17</SUP></A></SUP>.</P>
+	<P>In document view
+	serialization, if the property being serialized is multi-valued (or
+	if the implementation chooses to encode spaces in single-value
+	properties as well, see below) then the value or values must be
+	further encoded by escaping any occurrence of one of the four
+	whitespace characters: space, tab, carriage return and line feed.
+	The scheme used to encode these characters is the same as that
+	described in §7.4 <I>Escaping of Names</I>. Note that in this
+	restricted context, applying those escaping rules amounts to the
+	following: a space becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>_x0020_</FONT></FONT>,
+	a tab becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>_x0009_</FONT></FONT>,
+	a carriage return becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>_x000D_</FONT></FONT>,
+	a line feed becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>_x000A_</FONT></FONT>
+	and any underscore (<FONT FACE="Courier New, monospace"><FONT SIZE=2>_</FONT></FONT>)
+	that occurs as the first character of a sequence that could be
+	misinterpreted as an escape sequence becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>_x005f_</FONT></FONT>.</P>
+	<P>Finally, in document
+	view export, the value of the attribute representing a multi-value
+	property is constructed by concatenating the results of the above
+	escaping into a space-delimited list.</P>
+	<P>In document view
+	export (though not in system view), if multi-value property
+	serialization is supported (see §7.3.3 <I>Multi-Value Properties</I>)
+	then a mechanism must be adopted whereby upon re-import the
+	distinction between multi- and single- value properties is not lost.
+	One option is that escaping of space literals must be applied to the
+	value of all single-value properties as well. Another option is that
+	when an XML document is imported in document view, each attribute is
+	assumed to be a single-value property unless out-of-band information
+	defines it to be multi-valued (for example, if the applicable node
+	type defines the property as multi-valued or the XML document is
+	associated with a schema definition that indicates that the
+	attribute is a list value). The approach taken is
+	implementation-specific.</P>
+	<P>Note that the value of
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+	property used to represent XML text (see §7.3.1 <I>XML Text</I>) is
+	not space-escaped, regardless of the prevailing multi-value property
+	serialization policy.</P>
+<a name="7.6 Export API"></a>	<H2>7.6 Export API</H2>
+	<P>Exported XML can be
+	output either as a stream or as a series of SAX events. The export
+	methods are found in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object.</P>
+<a name="7.6.1 System View Export"></a>	<H3>7.6.1 System View Export</H3>
+	<P>The methods</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.exportSystemView(String absPath,<BR> 
+	 ContentHandler contentHandler,<BR> 
+	boolean skipBinary,<BR> boolean
+	noRecurse)</FONT></FONT></P>
+	<P>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.exportSystemView(String absPath,<BR> 
+	 OutputStream out,<BR> boolean
+	skipBinary,<BR> boolean noRecurse)</FONT></FONT></P>
+	<P>serialize the item
+	subgraph starting at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.</P>
+	<P>The first method
+	serializes content to XML as a series of SAX events triggered by the
+	repository calling the methods of the supplied
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>org.xml.sax.ContentHandler</FONT></FONT>.
+		</P>
+	<P>The second method
+	serializes content to an XML stream and outputs it to the supplied
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>java.io.OutputStream</FONT></FONT>.</P>
+	<P>The resulting XML is
+	in the system view form. 
+	</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>skipBinary</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then any properties of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	will be serialized with empty <FONT FACE="Courier New, monospace"><FONT SIZE=2>sv:value</FONT></FONT>
+	elements. In the case of multi-value <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	properties, the number of values in the property will be reflected
+	in the serialized output, though they will all be empty.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>skipBinary
+	</FONT></FONT>is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	then the actual values of each <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	property are serialized.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>noRecurse</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then only the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	and its properties, but not its child nodes, are serialized. If
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>noRecurse</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	then the entire subgraph is serialized.</P>
+<a name="7.6.2 Document View Export"></a>	<H3>7.6.2 Document View Export</H3>
+	<P>The methods</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.exportDocumentView(String absPath,<BR> 
+	 ContentHandler contentHandler,<BR> 
+	 boolean skipBinary,<BR> boolean
+	noRecurse)</FONT></FONT></P>
+	<P>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.exportDocumentView(String absPath,<BR> 
+	 OutputStream out,<BR> 
+	boolean skipBinary,<BR> boolean
+	noRecurse)</FONT></FONT></P>
+	<P>work identically to
+	their respective system view variants, except that the resulting XML
+	is in the document view form.</P>
+<a name="7.7 Export Scope"></a>	<H2>7.7 Export Scope</H2>
+	<P>Export obeys the
+	access restrictions of the bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	lacks read access to some subsection of the specified content, that
+	section is not exported.</P>
+	<P>The exported output
+	reflects the state of the bound persistent workspace as modified by
+	the transient store of the bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	This means that pending changes and all namespace mappings in the
+	namespace registry, as modified by the current session-mappings, are
+	reflected in the output. 
+	</P>
+<a name="7.8 Encoding"></a>	<H2>7.8 Encoding</H2>
+	<P>XML streams produced
+	by export must be encoded in UTF-8 or UTF-16 as per the XML
+	specification<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote18anc" HREF="#sdfootnote18sym"><SUP>18</SUP></A></SUP>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.21 ChildNode (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.21 ChildNode</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type ChildNode extends
+	Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Path path</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Tests whether the <FONT FACE="Courier New, monospace">selectorName</FONT>
+	node is a child of a node reachable by the absolute path specified.
+	A node-tuple satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace">selectorNode.getParent().isSame(session.getNode(path))</FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace">selectorNode</FONT>
+	is the node for the specified selector.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace">selectorName</FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace">path</FONT>
+		is not a syntactically valid absolute path (see §3.3.4<I> Lexical
+		Path Grammar</I>). Note, however, that if <FONT FACE="Courier New, monospace">path</FONT>
+		is syntactically valid but does not identify a node in the
+		workspace (or the node is not visible to this session, because of
+		access control constraints), the query is <I>valid</I> but the
+		constraint is not satisfied.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">ChildNode ::= 'ISCHILDNODE('
+	[selectorName ','] Path ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If only one
+	selector exists in this query, explicit<BR> 
+	specification of the selectorName is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode
+	QueryObjectModelFactory.<BR> childNode(String selectorName,
+	String path)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNode</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNode.getSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNode.getParentPath()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

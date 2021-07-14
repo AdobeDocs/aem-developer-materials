@@ -1,0 +1,63 @@
+
+NumberField
+===========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/numberfield
+   :supertype: /libs/granite/ui/components/foundation/form/field
+
+   NumberField is an input component where the user can only enter numbers.
+   It supports increment and decrement features, where the step and boundary values can be configured.
+
+   It extends :granite:servercomponent:`Field </libs/granite/ui/components/foundation/form/field>` component.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormNumberField] > granite:FormField, granite:commonAttrs
+
+      /**
+       * The name that identifies the field when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * The value of the field.
+       */
+      - value (StringEL)
+
+      /**
+       * Indicates if the field is in disabled state.
+       */
+      - disabled (Boolean)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The minimum value allowed.
+       */
+      - min (Double)
+
+      /**
+       * The maximum value allowed.
+       */
+      - max (Double)
+
+      /**
+       * The increment/decrement step amount.
+       */
+      - step (Double) = '1'
+
+      /**
+       * The fallback value when the input does not provide an initial value.
+       */
+      - defaultValue (String) = "0"

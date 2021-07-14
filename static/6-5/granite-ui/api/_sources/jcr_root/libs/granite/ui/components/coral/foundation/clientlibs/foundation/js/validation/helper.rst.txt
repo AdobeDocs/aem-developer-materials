@@ -1,0 +1,54 @@
+****************************
+foundation-validation-helper
+****************************
+
+A helper API related to validation of a container.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-validation-helper``
+
+condition
+   ``*``
+
+returned type
+   ``FoundationValidationHelper``
+
+.. code-block:: ts
+
+   interface FoundationValidationHelper {
+     /**
+      * Returns the submittables elements under this container element.
+      * Each returned element is a <code>:-foundation-submittables</code>.
+      */
+     getSubmittables: () => Element[];
+
+     /**
+      * <code>true</code> if this container element is valid; <code>false</code> otherwise.
+      * It is valid when all the submittables under this element are valid.
+      */
+     isValid: () => boolean;
+   }
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <form id="my-form">
+     <input name="input1">
+     <input name="input2">
+     <input name="input3">
+     <input name="input4">
+   </form>
+
+.. code-block:: js
+
+   var helper = $("#my-form").adaptTo("foundation-validation-helper");
+
+   helper.getSubmittables(); // Returns the array of elements of input1, input2, input3, input4.
+   helper.isValid(); // Return true, as all the inputs are valid.

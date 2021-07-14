@@ -1,0 +1,129 @@
+*************************
+foundation-picker-control
+*************************
+
+``foundation-picker-control`` is a control for :doc:`../../vocabulary/picker`.
+
+
+Markup
+======
+
+
+.foundation-picker-control
+--------------------------
+
+Indicates the control. When the control is activated, the configured picker will be shown.
+
+Selector Rule::
+
+   .foundation-picker-control
+
+
+[data-foundation-picker-control-action]
+---------------------------------------
+
+The JSON config to configure the behaviour of ``.foundation-picker-control`` to handle selections,
+which satisfies ``FoundationPickerControlActionConfig`` interface.
+
+Selector Rule::
+
+   .foundation-picker-control[data-foundation-picker-control-action]
+
+
+[data-foundation-picker-control-src]
+------------------------------------
+
+The URL to the ``.foundation-picker`` content that will be loaded and shown upon activate.
+
+Selector Rule::
+
+	 .foundation-picker-control[data-foundation-picker-control-src]
+
+
+FoundationPickerControlActionConfig
+===================================
+
+.. code-block:: ts
+
+   interface FoundationPickerControlActionConfig {
+     /**
+      * The pluggable action name to handle the selections. See Action Registration section.
+      * If this property is not specified, no action will be performed.
+      */
+     name?: string;
+
+     /**
+      * The general purpose data to be used by the action handler. Consult specific action handler for details.
+      */
+     data?: any;
+   }
+
+
+Action Registration
+===================
+
+The action of ``.foundation-picker-control`` can be registered to the :doc:`registry <../registry/index>` using ``foundation.picker.control.action`` as the name and the config satisfying the following interface:
+
+.. code-block:: ts
+
+   interface FoundationPickerControlActionAdapter {
+     /**
+      * The name of the action. It is recommended that it is namespaced using dot notation according to application that register the action.
+      * "foundation" namespace is reserved for Granite UI.
+      *
+      * @example
+      * foundation.foo.bar
+      */
+     name: string;
+
+     /**
+      * The handler to actually perform the action.
+      * If <code>false</code> is returned, the next action in the chain will be evaluated. Otherwise the chain stops.
+      *
+      * @param name The name of the action
+      * @param el The element of the <code>.foundation-picker-control</code>
+      * @param config The value of <code>[data-foundation-picker-control-action]</code>
+      * @param selections The array of <code>FoundationPickerSelection</code> objects representing the selections
+      */
+     handler: (name: string, el: Element, config: FoundationPickerControlActionConfig, selections: FoundationPickerSelection[]) => boolean;
+   }
+
+A chain of registered actions is created using LIFO (last in, first out) algorithm.
+The action handler will be called when the name matches. If false is returned by the handler, the next action in the chain will be evaluated. Otherwise the chain stops.
+
+Example
+-------
+
+.. code-block:: js
+
+   /**
+    * <code>example.console.log<code> is a handler that simply print the selections to the console.
+    */
+   $(window).adaptTo("foundation-registry").register("foundation.picker.control.action", {
+     name: "example.console.log",
+     handler: function(name, el, config, selections) {
+       console.log(selections);
+     }
+   });
+
+
+Example
+=======
+
+.. code-block:: html
+
+   <button
+     class="foundation-picker-control"
+     data-foundation-picker-control-action='{"name":"example.console.log"}'
+     data-foundation-picker-control-src="/my/picker.html">Pick Something</button>
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-picker" {
+     rankdir=BT;
+     "foundation-picker-control" -> "foundation-picker" [label="controls", weight=8];
+   }

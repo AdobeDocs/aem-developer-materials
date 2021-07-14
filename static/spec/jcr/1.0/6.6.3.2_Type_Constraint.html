@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.3.2 Type Constraint (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.3.2." id="section_6.6.3.2."></a>6.6.3.2 Type Constraint
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A type constraint specifies the common primary node type of the returned nodes, plus, possibly, additional mixin types that they also must have. Type constraints are inheritance-sensitive in that specifying a constraint of node type <b>X</b> will include all nodes explicitly declared to be type <b>X</b>, as well as all nodes of subtypes of <b>X</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Implementations are required to support constraints of one primary type. It is optional to support constraints based on multiple primary node types (this would, in any case, only be applicable to implementations that supported multiple inheritance of node types). It is also optional to support constraints on (one or more) mixin node types.
+								</p>
+							
+							
+								<p class="c5">
+									Note however, that property constraints can always be used to test <i>declared</i> types (that is, a non-inheritance-sensitive test), by testing the values of the properties <b>jcr:primaryType</b> and <b>jcr:mixinType</b>.(see 6.6.3.3 Property Constraint).
+								</p>
+							
+							
+								<p class="c5">
+									<b>XPath</b>: In XPath the <b>element</b> test is used to test against node type. It is optional to support <b>element</b> tests on location steps other than the last.
+								</p>
+							
+							
+								<p class="c5">
+									<b>SQL</b>: In SQL the type constraint is expressed in the <b>FROM</b> clause.
+								</p>
+							
+							
+								<p class="c5">
+									Examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									
+										
+											
+												
+													
+														
+															<p class="c5">
+																<b>SQL</b>
+															</p>
+														
+													
+												
+											
+										
+									
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE jcr:path LIKE '/nodes[%]/%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										/jcr:root/nodes//<br>
+										element(*, my:type)
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

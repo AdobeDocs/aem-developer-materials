@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.4.1 From STRING To (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.6.4.1 From STRING To</H4>
+	<P><B>BINARY</B>: The
+	string is encoded using UTF-8.</P>
+	<P><B>DATE</B>: If the
+	string is in the format described in §3.6.4.3 <I>From DATE To</I>,
+	it is converted directly, otherwise a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>DOUBLE</B>: The
+	string is converted using <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.lang.Double.valueOf(String)</FONT></FONT>.</P>
+	<P><B>DECIMAL</B>: The
+	string is converted using the constructor<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	java.math.BigDecimal(String)</FONT></FONT>.</P>
+	<P><B>LONG</B>: The
+	string is converted using <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.lang.Long.valueOf(String)</FONT></FONT>.</P>
+	<P><B>BOOLEAN</B>: The
+	string is converted using <FONT FACE="Courier New, monospace"><FONT SIZE=2>java.lang.Boolean.valueOf(String)</FONT></FONT>.</P>
+	<P><B>NAME</B>: If the
+	string is a syntactically valid qualified JCR name with a registered
+	prefix, it is converted directly. If it is a syntactically valid
+	expanded JCR name with a registered namespace URI, it is returned in
+	qualified form. If it is a syntactically valid expanded JCR name
+	with an <I>unregistered</I> namespace URI, a prefix is created
+	automatically, the mapping added to the local namespace mappings
+	(see §3.5.2 <I>Session-Local Mappings</I>), and the name is
+	returned in qualified form. Otherwise a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>PATH</B>: If the
+	string is a valid JCR path then each name segment is converted as
+	per <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+	conversion above, and all other segments are converted directly. If
+	one or more name conversions fails or if the string is not a valid
+	path then a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown. The presence of an item in the current workspace at that
+	path is not required.</P>
+	<P><B>URI</B>: If the
+	string is a syntactically valid URI-reference, it is converted
+	directly, otherwise a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown. The string is parsed as described in RFC 3986. In
+	particular, the first colon (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>:</FONT></FONT>”)
+	encountered is interpreted as the scheme delimiter and the string as
+	a whole is assumed to already be in percent-encoded form. This means
+	that if a non-URI-legal character is encountered it is not
+	percent-encoded, but is instead regarded as an error and a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown.</P>
+	<P><B>REFERENCE or
+	WEAKREFERENCE</B>: If the string is a syntactically valid
+	identifier, according to the implementation, it is converted
+	directly, otherwise a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>
+	is thrown. The identifier is not required to be that of an existing
+	node in the current workspace.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

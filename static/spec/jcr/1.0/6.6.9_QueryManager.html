@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.9 QueryManager (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.9." id="section_6.6.9."></a>6.6.9 QueryManager
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The <b>QueryManager</b> object provides methods for creating queries, retrieving saved queries and for discovering supported query languages:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.query.<br>
+										<b>QueryManager</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										Query
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createQuery(String statement,<br>
+										String language)</b>
+									</p>
+									<p class="c5">
+										Creates a new query by specifying the query <b>statement</b> itself and the <b>language</b> in which the query is stated. If the query <b>statement</b> is syntactically invalid, given the language specified, an <b>InvalidQueryException</b> is thrown. The <b>language</b> parameter must be a string from among those returned by <b>QueryManager.getSupportedQueryLanguages()</b>; if it is not, then an <b>InvalidQueryException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Query</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getQuery(Node node)</b>
+									</p>
+									<p class="c5">
+										Retrieves an existing persistent query. If <b>node</b> is not a valid persisted query (that is, a node of type <b>nt:query</b>), an <b>InvalidQueryException</b> is thrown.
+									</p>
+									<p class="c5">
+										Persistent queries are created by first using <b>QueryManager.createQuery</b> to create a <b>Query</b> object and then calling <b>Query.save</b> to persist the query to a location in the workspace.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getSupportedQueryLanguages()</b>
+									</p>
+									<p class="c5">
+										Returns an array of strings identifying the supported query languages. In level 1 this set must include the string represented by the constant <b>Query.XPATH</b>. If SQL is supported it must additionally include <b>Query.SQL</b>. An implementation of either level may also support other languages.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

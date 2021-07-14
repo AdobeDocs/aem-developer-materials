@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 4.1.1 Example Repository Acquisition (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>4.1.1 Example Repository Acquisition</H3>
+	<P>An application may
+	explicitly specify the repository factory implementation. For
+	example:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Map
+	parameters = new HashMap();</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>parameters.put(&quot;com.vendor.address&quot;,</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>&quot;vendor://localhost:9999/repo&quot;);</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory
+	factory = (RepositoryFactory)</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Class.forName(&quot;com.vendor.RepositoryFactoryImpl&quot;);</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository
+	repo = factory.getRepository(parameters);</FONT></FONT></FONT></P>
+	<P>Some implementations
+	may allow acquisition of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ServiceLoader</FONT></FONT>
+	in Java SE 6. For example:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Map
+	parameters = new HashMap();</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>parameters.put(&quot;com.vendor.address&quot;,</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>&quot;vendor://localhost:9999/repo&quot;);</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository
+	repo = null;</FONT></FONT></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>for
+	(RepositoryFactory factory :</FONT></FONT></FONT></P>
+	<P>
+	 
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>ServiceLoader.load(RepositoryFactory.class))
+	{</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>repo
+	= factory.getRepository(parameters);</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>if
+	(repo != null) {</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>//
+	factory accepted parameters</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>break;</FONT></FONT></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></P>
+	<P>Note that in Java SE
+	prior to version 6, one may use the class
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.imageio.spi.ServiceRegistry</FONT></FONT>
+	to look up the available <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryFactory</FONT></FONT>
+	implementations.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

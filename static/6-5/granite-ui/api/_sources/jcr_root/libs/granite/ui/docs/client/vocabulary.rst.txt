@@ -1,0 +1,156 @@
+*********************
+Granite UI Vocabulary
+*********************
+
+When developing a UI, it is often the case that you repeat the similar concept over and over again. This repetition can be abstracted such that many code implementations can share and reuse the same understanding, which we call as *vocabulary*.
+
+Vocabulary is a collection of words that have defined semantic. They are manifested as HTML attributes—usually class attribute—as well as DOM API and events.
+
+It is important to understand that its role is to only define semantic, not implementation. i.e. it is abstract. It is usually manipulated or implemented by :doc:`components <component>`.
+
+In Java programming language, the vocabulary concept is very similar to *interface*, such as `Collection <http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html>`_, `Runnable <https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html>`_.
+
+
+foundation-toggleable Case Study
+================================
+
+:doc:`../../components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` is a vocabulary about the concept of an element that can be toggled in term of visibility.
+There are many components that can implement this toggleable concept, such as dialog, disclosure panel.
+
+To show how it works, let's take existing component from HTML: `\<dialog\> <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>`_.
+
+Imagine we have the following dialog markup:
+
+.. code-block:: html
+
+   <dialog id="mydialog">
+     <p>Greetings, one and all!</p>
+   </dialog>
+
+At this state ``mydialog`` has its own default meaning and behaviour, and not implementing ``foundation-toggleable`` vocabulary.
+In order to make it as foundation-toggleable, as per its documentation, you have to assign ``foundation-toggleable`` class to the element:
+
+.. code-block:: html
+
+   <dialog id="mydialog" class="foundation-toggleable">
+     <p>Greetings, one and all!</p>
+   </dialog>
+
+By default, the ``<dialog>`` is not shown. So in order to show it, you need a component that can manipulate it.
+We call this kind of component as *control* (or sometimes *activator*).
+In the case of ``foundation-toggleable``, we have a control named :doc:`../../components/coral/foundation/clientlibs/foundation/js/toggleable/control`.
+
+Let's add the control and configure it to manipulate the dialog:
+
+.. code-block:: html
+
+   <button class="foundation-toggleable-control" data-foundation-toggleable-control-target="#mydialog">Toggle Dialog</button>
+
+   <dialog id="mydialog" class="foundation-toggleable">
+     <p>Greetings, one and all!</p>
+   </dialog>
+
+When you click the control button, the dialog should be opened and closed accordingly, except that it doesn't work yet.
+In order to make it work, you have to implement an adapter so that the existing ``<dialog>`` API is exposed as ``foundation-toggleable`` API.
+We do that by registering the adapter implementation to the :doc:`../../components/coral/foundation/clientlibs/foundation/js/registry/index` as per ``foundation-toggleable`` documentation:
+
+.. code-block:: js
+   :emphasize-lines: 5,6
+
+   /**
+    * Adapter of foundation-toggleable for <dialog>.
+    */
+   $(window).adaptTo("foundation-registry").register("foundation.adapters", {
+       type: "foundation-toggleable",
+       selector: "dialog",
+       adapter: function(el) {
+           var toggleable = $(el);
+
+           return {
+               isOpen: function() {
+                   return el.open;
+               },
+               show: function(anchor) {
+                   el.show(anchor);
+                   toggleable.trigger("foundation-toggleable-show");
+               },
+               hide: function() {
+                   el.close();
+                   toggleable.trigger("foundation-toggleable-hide");
+               }
+           };
+       }
+   });
+
+``foundation-toggleable-control`` implementation can then simply adapt the target element to ``foundation-toggleable`` using :doc:`../../components/coral/foundation/clientlibs/foundation/js/adapter/index`:
+
+.. code-block:: js
+   :emphasize-lines: 6
+
+   $(document).on("click", ".foundation-toggleable-control", function(e) {
+       e.preventDefault();
+       var control = $(this);
+       var toggleable = $(control.data("foundationToggleableControlTarget"));
+
+       var api = toggleable.adaptTo("foundation-toggleable");
+
+       if (api.isOpen()) {
+           api.hide();
+       } else {
+           api.show(control[0]);
+       }
+    });
+
+As noted before, ``<dialog>`` is just one of possible implementation of toggleable. Now let's use CoralUI components, namely ``coral-Button`` and ``coral-Modal``:
+
+.. code-block:: html
+
+   <button class="foundation-toggleable-control coral-Button" data-foundation-toggleable-control-target="#mydialog">Toggle Dialog</button>
+
+   <div id="mydialog" class="foundation-toggleable coral-Modal">
+     ...
+   </div>
+
+Now this is where Granite UI design shines.
+
+``foundation-toggleable-control`` has independent implementation of the underlying widget and is only relying on the ``foundation-toggleable`` interface. Therefore its implementation doesn't need to be changed when we use ``coral-Button``.
+In other words, ``foundation-toggleable-control`` is able to control any ``foundation-toggleable`` component.
+This is a good example of "Program to an *interface*, not an *implementation*".
+
+For ``coral-Modal``, you just need to implement the adapter of ``foundation-toggleable`` for it as before:
+
+.. code-block:: js
+   :emphasize-lines: 2,3
+
+   $(window).adaptTo("foundation-registry").register("foundation.adapters", {
+       type: "foundation-toggleable",
+       selector: ".foundation-toggleable.coral-Modal",
+       adapter: function(el) {
+           return {
+               isOpen: function() {
+                   // ...
+               },
+               show: function(anchor) {
+                   // ...
+               },
+               hide: function() {
+                   // ...
+               }
+           };
+       }
+   });
+
+Here is the diagram describing ``foundation-toggleable``:
+
+.. graphviz::
+
+   digraph "foundation-toggleable" {
+     rankdir=BT;
+     "foundation-toggleable-control" -> "foundation-toggleable" [label="controls", weight=8];
+     "widget1" -> "foundation-toggleable" [label="implements"];
+     "widget2" -> "foundation-toggleable" [label="implements"];
+     "widget3" -> "foundation-toggleable" [label="implements"];
+   }
+
+So as you can see, whenever there is a new widget library, one can simply write an adapter for it to work with Granite UI.
+In other words, Granite UI Foundation Vocabulary is the missing semantic to build long lasting, evolable Rich Internet Application.

@@ -1,0 +1,10 @@
+
+Container
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/container
+   :layout:
+
+   A layout that is simply including each item as is. Most container-like component will use this layout by default.
+
+   The body of the container is specified using :ref:`ItemDataSource <ItemDataSource>`.

@@ -1,0 +1,249 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.chart.NumericAxis-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.chart.NumericAxis-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.chart.NumericAxis-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.Ext.chart.NumericAxis"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.chart.Axis" ext:member="" href="output/CQ.Ext.chart.Axis.html">Axis</a>
+  <img src="resources/docs/elbow-end.gif"/>NumericAxis</pre></div>
+                <h1>Class&nbsp;CQ.Ext.chart.NumericAxis</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext.chart</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Chart.js" target="_blank">Chart.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">NumericAxis</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.chart.Axis" ext:member="" href="output/CQ.Ext.chart.Axis.html">CQ.Ext.chart.Axis</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    A type of axis whose units are measured in numeric values.	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.chart.NumericAxis-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-adjustMaximumByMajorUnit"></a>
+            <b>adjustMaximumByMajorUnit</b> : Boolean            <div class="mdesc">
+                                        Indicates whether to extend maximum beyond data's maximum to the nearest
+majorUnit.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-adjustMinimumByMajorUnit"></a>
+            <b>adjustMinimumByMajorUnit</b> : Boolean            <div class="mdesc">
+                                        Indicates whether to extend the minimum beyond data's minimum to the
+nearest majorUnit.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-alwaysShowZero"></a>
+            <b>alwaysShowZero</b> : Boolean            <div class="mdesc">
+                                        If true, and the bounds are calculated automatically, either the minimum
+or maximum will be set to zero.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-calculateByLabelSize"></a>
+            <b>calculateByLabelSize</b> : Boolean            <div class="mdesc">
+                                        Indicates whether to factor in the size of the labels when calculating a
+major unit.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row inherited">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-hideOverlappingLabels"></a>
+            <b>hideOverlappingLabels</b> : Boolean            <div class="mdesc">
+                                        If true, labels that overlap previously drawn labels on the axis will be hidden.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="hideOverlappingLabels" href="output/CQ.Ext.chart.Axis.html#hideOverlappingLabels">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-labelFunction"></a>
+            <b>labelFunction</b> : String            <div class="mdesc">
+                                    <div class="short">A string reference to the globally-accessible function that may be called to
+determine each of the label values for t...</div>
+            <div class="long">
+                A string reference to the globally-accessible function that may be called to
+determine each of the label values for this axis.            </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="labelFunction" href="output/CQ.Ext.chart.Axis.html#labelFunction">Axis</a></td>
+    </tr>
+        <tr class="property-row inherited">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-labelSpacing"></a>
+            <b>labelSpacing</b> : Number            <div class="mdesc">
+                                        The space, in pixels, between labels on an axis.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="labelSpacing" href="output/CQ.Ext.chart.Axis.html#labelSpacing">Axis</a></td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-majorUnit"></a>
+            <b>majorUnit</b> : Number            <div class="mdesc">
+                                        The spacing between major intervals on this axis.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-maximum"></a>
+            <b>maximum</b> : Number            <div class="mdesc">
+                                        The maximum value drawn by the axis. If not set explicitly, the axis
+maximum will be calculated automatically.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-minimum"></a>
+            <b>minimum</b> : Number            <div class="mdesc">
+                                        The minimum value drawn by the axis. If not set explicitly, the axis
+minimum will be calculated automatically.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-minorUnit"></a>
+            <b>minorUnit</b> : Number            <div class="mdesc">
+                                        The spacing between minor intervals on this axis.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row inherited alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-orientation"></a>
+            <b>orientation</b> : String            <div class="mdesc">
+                                        The direction in which the axis is drawn. May be "horizontal" or "vertical".                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="orientation" href="output/CQ.Ext.chart.Axis.html#orientation">Axis</a></td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-position"></a>
+            <b>position</b> : String            <div class="mdesc">
+                                        Indicates the position of the axis relative to the chart                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row inherited alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-reverse"></a>
+            <b>reverse</b> : Boolean            <div class="mdesc">
+                                        If true, the items on the axis will be drawn in opposite direction.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="reverse" href="output/CQ.Ext.chart.Axis.html#reverse">Axis</a></td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-roundMajorUnit"></a>
+            <b>roundMajorUnit</b> : Boolean            <div class="mdesc">
+                                        Indicates whether to round the major unit.                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-scale"></a>
+            <b>scale</b> : String            <div class="mdesc">
+                                        The scaling algorithm to use on this axis. May be "linear" or
+"logarithmic".                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-snapToUnits"></a>
+            <b>snapToUnits</b> : Boolean            <div class="mdesc">
+                                    <div class="short">If true, the labels, ticks, gridlines, and other objects will snap to the
+nearest major or minor unit. If false, thei...</div>
+            <div class="long">
+                If true, the labels, ticks, gridlines, and other objects will snap to the
+nearest major or minor unit. If false, their position will be based on
+the minimum value.            </div>
+                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+        <tr class="property-row inherited alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-type"></a>
+            <b>type</b> : String            <div class="mdesc">
+                                        The type of axis.                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.chart.Axis" ext:member="type" href="output/CQ.Ext.chart.Axis.html#type">Axis</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.chart.NumericAxis-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.chart.NumericAxis-NumericAxis"></a>
+            <b>NumericAxis</b>()            <div class="mdesc">
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">NumericAxis</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.chart.NumericAxis-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

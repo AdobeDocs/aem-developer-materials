@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.2 Shallow and Deep Locks (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.2 Shallow and Deep Locks</H2>
+	<P>A lock can be
+	specified as either <I>shallow</I> or <I>deep</I>. A shallow lock
+	applies only to its holding node and its properties. A deep lock
+	applies to its holding node and all its descendants. Consequently,
+	there is a distinction between a lock <I>being held by</I> a node
+	and a lock <I>applying to</I> a node. A lock always applies to its
+	holding node. However, if it is a deep lock, it also applies to all
+	nodes in the holding node's subgraph. When a lock applies to a node,
+	that node is said to be <I>locked</I>.</P>
+	<P>Since a deep lock
+	applies to all nodes in the lock-holding node's subgraph, this may
+	include both <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	nodes and non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	nodes. The deep lock applies to both categories of node equally and
+	it <I>does not</I> add any <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	properties to any of the deep-locked <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	nodes. However, if any such nodes exist and they already have these
+	properties, this means that they are already locked, and hence the
+	attempt to deep lock above them will fail.</P>
+	<P>Additionally, assuming
+	a deep lock exists above a <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node, any attempt to lock this lower level <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>
+	node will also fail, because it is already locked from above.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

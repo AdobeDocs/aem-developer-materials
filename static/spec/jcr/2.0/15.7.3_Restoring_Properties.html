@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.7.3 Restoring Properties (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.7.3 Restoring Properties</H3>
+	<P>For each property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+	(other than <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenPrimaryType</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenMixinTypes</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:frozenUuid</FONT></FONT>):</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>F/P</FONT></FONT>
+		is copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>,
+		replacing any existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>
+		will never have a property with an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		(see §15.2 <I>Check-In: Creating a Version</I>).</P>
+	</UL>
+	<P>For each property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	but not on <FONT FACE="Courier New, monospace"><FONT SIZE=2>F</FONT></FONT>:</P>
+	<UL>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT</FONT></FONT>
+		then <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		is removed. Note that while a node with a child item of OPV <FONT FACE="Courier New, monospace"><FONT SIZE=2>ABORT
+		</FONT></FONT>cannot be versioned, it is legal for a
+		previously versioned node to have such a child item added to it and
+		then for it to be restored to the state that it had before that
+		item was added, as this step indicates.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		then no change is made to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>INITIALIZE</FONT></FONT>
+		then, if <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		has a default value (either defined in the node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		or implementation-defined) its value is changed to that default
+		value. If <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		has no default value then it is left unchanged.</P>
+		<LI><P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COMPUTE</FONT></FONT>
+		then the value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N/P</FONT></FONT>
+		may be changed according to an implementation-specific mechanism.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,94 @@
+
+RadioGroup
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/radiogroup
+
+   A container to group a set of radio.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormRadioGroup]
+
+      /**
+       * The id attribute.
+       */
+      - id (String)
+
+      /**
+       * The class attribute. This is used to indicate the semantic relationship of the component similar to ``rel`` attribute.
+       */
+      - rel (String)
+
+      /**
+       * The class attribute.
+       */
+      - class (String)
+
+      /**
+       * The title attribute.
+       */
+      - title (String) i18n
+
+      /**
+       * The name that identifies each radio when submitting the form.
+       */
+      - name (String)
+
+      /**
+       * Indicates if the field is mandatory to be filled.
+       */
+      - required (Boolean)
+
+      /**
+       * The name of the validator to be applied. E.g. ``foundation.jcr.name``.
+       * See :doc:`validation </jcr_root/libs/granite/ui/components/foundation/clientlibs/foundation/js/validation/index>` in Granite UI.
+       */
+      - validation (String) multiple
+
+      /**
+       * The label of the radio group.
+       */
+      - text (String) i18n
+
+      /**
+       * ``true`` to list the radios vertically; ``false`` otherwise.
+       */
+      - vertical (Boolean)
+
+      /**
+       * Renders the read-only markup as well.
+       */
+      - renderReadOnly (Boolean)
+
+      /**
+       * If ``false``, the checked status is based on matching the form values by ``name`` and ``value`` properties.
+       * Otherwise, the form values are not matched, and the checked status is based on ``checked`` property specified
+       * by one of the radios.
+       */
+      - ignoreData (Boolean)
+
+   The items of this component are specified using :ref:`ItemDataSource <ItemDataSource>`.
+
+   Example::
+
+      + myradiogroup
+        - sling:resourceType = "granite/ui/components/foundation/form/radiogroup"
+        + items
+          + option1
+            - sling:resourceType = "granite/ui/components/foundation/form/radio"
+            - name = "browser"
+            - value = "ie"
+            - text = "Internet Explorer"
+          + option2
+            - sling:resourceType = "granite/ui/components/foundation/form/radio"
+            - name = "browser"
+            - value = "chrome"
+            - text = "Chrome"
+          + option3
+            - sling:resourceType = "granite/ui/components/foundation/form/radio"
+            - name = "browser"
+            - value = "firefox"
+            - text = "Firefox"

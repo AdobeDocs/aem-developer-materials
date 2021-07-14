@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.6.3 JCR-JQOM Notation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.6.3 JCR-JQOM Notation</H3>
+	<P>JCR-JQOM is a mapping
+	of the AQM to a Java API.</P>
+	<P>Each method and
+	parameter name of the JCR-JQOM Java API corresponds to the type of
+	the same name in the AQM grammar. The semantics of each JCR-JQOM
+	method is described by reference to the semantics of the
+	corresponding AQM production.</P>
+	<P>A JCR-JQOM query is
+	built by assembling objects created using the factory methods of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>.</P>
+	<P>For each AQM type, the
+	following are listed:</P>
+	<UL>
+		<LI><P>If the AQM type is a <I>non-enum</I>
+		and <I>non-abstract</I> (in the AQM sense, not the Java sense) then
+		the factory method of <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory</FONT></FONT>
+		used to create an instance of that type is listed.</P>
+		<LI><P>If the AQM type is <I>non-enum</I>
+		then the corresponding Java interface is listed.</P>
+		<LI><P>If the AQM type is an <I>enum
+		</I>then the corresponding constants of <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants</FONT></FONT>
+		are listed.</P>
+	</UL>
+	<P>Unless otherwise
+	indicated, the Java interfaces listed in this section are in the
+	package <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.query.qom</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

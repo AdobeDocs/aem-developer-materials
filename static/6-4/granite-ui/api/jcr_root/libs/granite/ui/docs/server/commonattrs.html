@@ -1,0 +1,197 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Common Attributes &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Hiding Resource Dynamically" href="resourcehiding.html" />
+    <link rel="prev" title="Container Component" href="container.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="resourcehiding.html" title="Hiding Resource Dynamically"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="container.html" title="Container Component"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Granite UI Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="common-attributes">
+<h1>Common Attributes<a class="headerlink" href="#common-attributes" title="Permalink to this headline">¶</a></h1>
+<p>UI components often share certain intentions. This topic is describing the current intentions available, such that the benefit of standardization can be leveraged. When developing a new server component, it is RECOMMENDED to use these shared intentions, instead of creating your own names. Any common intention arises in the future will be also added here.</p>
+<p>This concept is analogous to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes">HTML global attributes</a>.</p>
+<p>Currently the following properties and nodes are common:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:commonAttrs</span></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:id</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The HTML id attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:rel</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The HTML class attribute. This is used to indicate the semantic relationship of the component similar to HTML <code class="docutils literal notranslate"><span class="pre">rel</span></code> attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:class</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The HTML class attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:title</span><span class="propertytype gnd-name">string</span></dt>
+<dd><dl class="gnd-attributes"><dt class="gnd-attributes-key gnd-attributes-key--flag">i18n</dt><dd class="gnd-attributes-value"></dd></dl><p>The HTML title attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:hidden</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>The HTML hidden attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:itemscope</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p>The HTML itemscope attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:itemtype</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The HTML itemtype attribute.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">granite:itemprop</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The HTML itemprop attribute.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">granite:data</span></dt>
+<dd><p>Each property of this node is converted into a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*">HTML data-* attribute</a>.
+If the property value is an instance of a String, it will be interpreted as <a class="reference internal" href="el.html"><span class="doc">StringEL</span></a>.
+The property with a prefixed name is ignored.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<div class="section" id="component-development">
+<h2>Component Development<a class="headerlink" href="#component-development" title="Permalink to this headline">¶</a></h2>
+<p>To leverage these common attributes in your component, you can use <a class="reference external" href="https://helpx.adobe.com/experience-manager/6-4/sites/developing/using/reference-materials/javadoc/com/adobe/granite/ui/components/ComponentHelper.html#populateCommonAttrs(com.adobe.granite.ui.components.AttrBuilder)">ComponentHelper#populateCommonAttrs(AttrBuilder)</a>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Tag</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">.</span><span class="na">consumeTag</span><span class="o">();</span>
+<span class="n">AttrBuilder</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="na">getAttrs</span><span class="o">();</span>
+<span class="n">cmp</span><span class="o">.</span><span class="na">populateCommonAttrs</span><span class="o">(</span><span class="n">attrs</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Common Attributes</a><ul>
+<li><a class="reference internal" href="#component-development">Component Development</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="container.html"
+                        title="previous chapter">Container Component</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="resourcehiding.html"
+                        title="next chapter">Hiding Resource Dynamically</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../_sources/jcr_root/libs/granite/ui/docs/server/commonattrs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="resourcehiding.html" title="Hiding Resource Dynamically"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="container.html" title="Container Component"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Granite UI Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

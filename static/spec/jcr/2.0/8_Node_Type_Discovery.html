@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 8 Node Type Discovery (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>8 Node Type Discovery</H1>
+	<P>All repositories are
+	required to support methods for the discovery of the following node
+	type-related information:</P>
+	<UL>
+		<LI><P>Which node types are supported in
+		the repository.</P>
+		<LI><P>The definition of a supported
+		node type.</P>
+		<LI><P>The node type of a node.</P>
+		<LI><P>The definition of an item in the
+		node type of its parent.</P>
+	</UL>
+<a name="8.1 NodeTypeManager Object"></a>	<H2>8.1 NodeTypeManager Object</H2>
+	<P>A repository has a
+	single, global node type registry that holds all node types
+	available in the repository. The registry is represented by a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	object acquired through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.getNodeTypeManager()</FONT></FONT>.
+		</P>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType
+	NodeTypeManager.getNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object representing the specified registered node type.
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	also provides the following related methods for accessing registered
+	node types:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeManager.hasNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.getPrimaryNodeTypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.getMixinNodeTypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeTypeManager.getAllNodeTypes()</FONT></FONT></P>
+<a name="8.2 NodeType Object"></a>	<H2>8.2 NodeType Object</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	interface is a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>,
+	which provides access methods to the static definitional
+	characteristics of a node type. 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	adds methods relevant to a “live” node type that is registered
+	in a repository.</P>
+	<P>Repositories that
+	support <I>node type management</I> must implement <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>,
+	which is another subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>
+	(see §19 <I>Node Type Management</I>).</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	interface provides methods to access the attributes of a node type:</P>
+<a name="8.2.1 Name"></a>	<H3>8.2.1 Name</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NodeTypeDefinition.getName()</FONT></FONT></P>
+	<P>returns the name of
+	the node type (see §3.7.1.1 <I>Node Type Name</I>).</P>
+<a name="8.2.2 Supertypes and Subtypes"></a>	<H3>8.2.2 Supertypes and Subtypes</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	NodeTypeDefinition.getDeclaredSupertypeNames()</FONT></FONT></P>
+	<P>returns the list of
+	the names of declared supertypes in this definition (see §3.7.1.2
+	<I>Supertypes</I>). 
+	</P>
+	<P>In a repository that
+	supports <I>node type management</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeDefinition</FONT></FONT>
+	objects not bound to a live node type may be encountered (for
+	example, in the form of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>).
+	In such cases this method may return <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	additionally provides the following methods for accessing supertype
+	and subtype information</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType[]
+	NodeType.getDeclaredSupertypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType[]
+	NodeType.getSuperTypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.isNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeType.getDeclaredSubtypes()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeIterator
+	NodeType.getSubtypes()</FONT></FONT></P>
+<a name="8.2.3 Abstract"></a>	<H3>8.2.3 Abstract</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeDefinition.isAbstract()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node type is abstract and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.1.3 <I>Abstract</I>).</P>
+<a name="8.2.4 Mixin"></a>	<H3>8.2.4 Mixin</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeDefinition.isMixin()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node type is a mixin and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	if it is a primary type (see §3.7.1.4 <I>Mixin</I>).</P>
+<a name="8.2.5 Queryable Node Type"></a>	<H3>8.2.5 Queryable Node Type</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeDefinition.isQueryable()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node type is queryable and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.1.5 <I>Queryable Node Type</I>).</P>
+<a name="8.2.6 Orderable Child Nodes"></a>	<H3>8.2.6 Orderable Child Nodes</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeDefinition.hasOrderableChildNodes()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the node type supports orderable child nodes and <FONT FACE="Courier New, monospace">false</FONT>
+	otherwise (see §3.7.1.6 <I>Orderable Child Nodes</I>). Support for
+	<I>orderable child nodes</I> is optional (see §23 <I>Orderable
+	Child Nodes</I>).</P>
+<a name="8.2.7 Primary Item"></a>	<H3>8.2.7 Primary Item</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NodeTypeDefinition.getPrimaryItemName()</FONT></FONT></P>
+	<P>returns the primary
+	item of the node type, if any (see §3.7.1.7 <I>Primary Item</I>).</P>
+<a name="8.2.8 Property Definitions"></a>	<H3>8.2.8 Property Definitions</H3>
+	<P>The set of property
+	definitions is represented by an array of <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition</FONT></FONT>
+	objects, accessed through the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition[]<BR>
+	 NodeTypeDefinition.getDeclaredPropertyDefinitions()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition[]
+	NodeType.getPropertyDefinitions()</FONT></FONT></P>
+	<P>(see §3.7.1.8
+	<I>Property Definitions</I>)</P>
+<a name="8.2.9 Child Node Definitions"></a>	<H3>8.2.9 Child Node Definitions</H3>
+	<P>The set of child node
+	definitions is represented by an array of <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	objects, accessed through the following methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition[]<BR>
+	 NodeTypeDefinition.getDeclaredChildNodeDefinitions()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition[]
+	NodeType.getChildNodeDefinitions()</FONT></FONT></P>
+	<P>(see §3.7.1.8
+	<I>Property Definitions</I>)</P>
+<a name="8.3 ItemDefinition Object"></a>	<H2>8.3 ItemDefinition Object</H2>
+	<P>The attributes common
+	to both property and child node definitions are accessed through the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemDefinition</FONT></FONT>
+	interface. Attributes specific to property definitions or child node
+	definitions are accessed through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	interfaces, respectively. These interfaces are both subclasses of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemDefinition</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemDefinition</FONT></FONT>
+	interface provides methods to access the following attributes:</P>
+<a name="8.3.1 Name"></a>	<H3>8.3.1 Name</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ItemDefinition.getName()</FONT></FONT></P>
+	<P>returns the JCR Name
+	(in qualified form) of the item to which the definition applies or
+	“*”, indicating that the definition is residual (see §3.7.2.1
+	<I>Item Definition Name</I>).</P>
+<a name="8.3.2 Protected"></a>	<H3>8.3.2 Protected</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	ItemDefinition.isProtected()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the item is protected and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.2.2 <I>Protected</I>).</P>
+<a name="8.3.3 Auto-Created"></a>	<H3>8.3.3 Auto-Created</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	ItemDefinition.isAutoCreated()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the item is auto-created and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.2.3 <I>Auto-Created</I>).</P>
+<a name="8.3.4 Mandatory"></a>	<H3>8.3.4 Mandatory</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	ItemDefinition.isMandatory()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the item is mandatory and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.2.4 <I>Mandatory</I>).</P>
+<a name="8.3.5 On-Parent-Version"></a>	<H3>8.3.5 On-Parent-Version</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	ItemDefinition.getOnParentVersion()</FONT></FONT></P>
+	<P>returns the
+	on-parent-version setting of the definition; one of the constants of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>OnParentVersionAction</FONT></FONT>
+	(see §3.7.2.5 <I>On-Parent-Version</I>).</P>
+<a name="8.3.6 Declaring Node Type"></a>	<H3>8.3.6 Declaring Node Type</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType
+	</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemDefinition.</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaringNodeType()</FONT></FONT></P>
+	<P>returns the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object that contains this definition (see §8.2 <I>NodeType Object</I>).</P>
+<a name="8.4 PropertyDefinition Object"></a>	<H2>8.4 PropertyDefinition Object</H2>
+	<P>The attributes
+	specific to property definitions are accessed through the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition</FONT></FONT>
+	interface, which is a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemDefinition</FONT></FONT>:</P>
+<a name="8.4.1 Required Type"></a>	<H3>8.4.1 Required Type</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>int
+	PropertyDefinition.getRequiredType()</FONT></FONT></P>
+	<P>returns the property
+	type setting of the definition, which must be one of the constants
+	of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyType</FONT></FONT>
+	interface (see §3.7.3.1 <I>Property Type</I>).</P>
+<a name="8.4.2 Default Values"></a>	<H3>8.4.2 Default Values</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]
+	PropertyDefinition.getDefaultValues()</FONT></FONT></P>
+	<P>returns the default
+	values of the definition (see §3.7.3.2 <I>Default Values</I>).</P>
+<a name="8.4.3 Available Query Operators"></a>	<H3>8.4.3 Available Query Operators</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	PropertyDefinition.getAvailableQueryOperators()</FONT></FONT></P>
+	<P>returns an array of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	constants indicating which query operators are supported for this
+	property (see §3.7.3.3 <I>Available Query Operators</I>). The
+	constants are defined in the class <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelConstants</FONT></FONT>
+	and represent the operators defined in §6.7.16 <I>Comparison</I>.</P>
+<a name="8.4.4 Full-Text Searchable"></a>	<H3>8.4.4 Full-Text Searchable</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeDefinition.isFullTextSearchable()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the property is full-text searchable and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.3.4 <I>Full-Text Searchable</I>).</P>
+<a name="8.4.5 Query-Orderable"></a>	<H3>8.4.5 Query-Orderable</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeTypeDefinition.isQueryOrderable()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the property is query-orderable and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.3.5 <I>Query-Orderable</I>).</P>
+<a name="8.4.6 Value Constraints"></a>	<H3>8.4.6 Value Constraints</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	PropertyDefinition.getValueConstraints()</FONT></FONT></P>
+	<P>returns the value
+	constraints of the definition (see §3.7.3.6 <I>Value Constraints</I>),</P>
+<a name="8.4.7 Multi-value"></a>	<H3>8.4.7 Multi-value</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	PropertyDefinition.isMultiple()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the definition defines a multi-value property and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	if it defines a single value property (see §3.7.3.7 <I>Multi-Value</I>).</P>
+<a name="8.5 NodeDefinition Object"></a>	<H2>8.5 NodeDefinition Object</H2>
+	<P>The attributes
+	specific to child node definitions are accessed through the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	interface, which is a subclass of <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemDefinition</FONT></FONT>:</P>
+<a name="8.5.1 Required Primary Node Types"></a>	<H3>8.5.1 Required Primary Node Types</H3>
+	<P>The methods 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType[]
+	NodeDefinition.getRequiredPrimaryTypes()</FONT></FONT>
+	and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	NodeDefinition.getRequiredPrimaryTypeNames()</FONT></FONT></P>
+	<P>return information
+	about the required primary node types of the definition (§3.7.4.1
+	<I>Required Primary Node Types</I>). The latter method returns the
+	names of the node types while the former method returns the live
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	objects representing the types. The former only functions if the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	is part of a live registered <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>.</P>
+<a name="8.5.2 Default Primary Node Type"></a>	<H3>8.5.2 Default Primary Node Type</H3>
+	<P>The methods 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType
+	NodeDefinition.getDefaultPrimaryType()</FONT></FONT>
+	and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NodeDefinition.getDefaultPrimaryTypeName()</FONT></FONT></P>
+	<P>return information
+	about the default primary node type of the definition (§3.7.4.2
+	<I>Default Primary Node Type</I>). The latter method returns the
+	name of the node type while the former method returns the live
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object representing the type. The former only functions if the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	is part of a live registered <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>.
+		</P>
+<a name="8.5.3 Same-Name Siblings"></a>	<H3>8.5.3 Same-Name Siblings</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeDefinition.allowsSameNameSiblings()</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the definition allows same-name sibling nodes and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise (see §3.7.4.3 <I>Same-Name Siblings</I>).</P>
+<a name="8.6 Node Type Information for Existing Nodes"></a>	<H2>8.6 Node Type Information for Existing Nodes</H2>
+	<P>Given an existing
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>,
+	the methods 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType
+	Node.getPrimaryNodeType()</FONT></FONT> and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType[]
+	Node.getMixinNodeTypes()</FONT></FONT></P>
+	<P>return, respectively,
+	the primary and mixin node types of the node. The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.isNodeType(String nodeTypeName)</FONT></FONT></P>
+	<P>returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	if the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	is of the specified node type, according to the <I>is-of-type</I>
+	relation (see §3.7.6.3 <I>Is-of-Type Relation</I>), and <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	otherwise.</P>
+<a name="8.6.1.1 Discovery of Item Definitions"></a>	<H4>8.6.1.1 Discovery of Item Definitions</H4>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>
+	interfaces offer methods that allow direct access to the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition</FONT></FONT>
+	within the node type of a parent node that is applicable to a
+	particular child item:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition
+	Node.getDefinition()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinition
+	Property.getDefinition()</FONT></FONT></P>
+	<P>The definition that
+	applies to an item is determined upon creation of that item (see
+	§3.7.7 <I>Applicable Item Definition</I>).</P>
+<a name="8.6.1.2 Root Node Definition"></a>	<H4>8.6.1.2 Root Node Definition</H4>
+	<P>The method
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getDefinition</FONT></FONT>
+	called on the root node must return a valid, non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	object. The values returned by the methods of this object must be as
+	follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getName()</FONT></FONT>:
+		““, the empty string.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaringNodeType()</FONT></FONT>:
+		A valid <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+		object (see §8.6.1.3 <I>Root Declaring Node Type</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>isMandatory()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>isAutoCreated()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>isProtected()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>allowsSameNameSiblings()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT></P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getOnParentVersion()</FONT></FONT>:
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>,
+		if versioning is supported and the root node is capable of being
+		made versionable, <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>
+		otherwise.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getDefaultPrimaryType()</FONT></FONT>:
+		A valid non-<FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+		object (see §3.7.8 <I>Root Node Type</I>).</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getRequiredPrimaryTypes()</FONT></FONT>:
+		An array containing a single <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+		object identical with that returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>getDefaultPrimaryType</FONT></FONT>.</P>
+	</UL>
+<a name="8.6.1.3 Root Declaring Node Type"></a>	<H4>8.6.1.3 Root Declaring Node Type</H4>
+	<P>Calling
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaringNodeType()</FONT></FONT>
+	on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinition</FONT></FONT>
+	of the root node must return a valid <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object. The values returned by the methods of this object must be as
+	follows:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>getName()</FONT></FONT>
+		returns the name of a node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is implementation-determined.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.day.com/maven/jsr170/javadocs/jcr-1.0/javax/jcr/nodetype/NodeType.html#isNodeType%28java.lang.String%29">isNodeType</A></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>(String&nbsp;nodeTypeName)</FONT></FONT>
+		returns <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+		if an only if <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeTypeName</FONT></FONT>
+		is <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		or a supertype of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.day.com/maven/jsr170/javadocs/jcr-1.0/javax/jcr/nodetype/NodeType.html#getChildNodeDefinitions%28%29">getChildNodeDefinitions</A></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>()</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>getDeclaredChildNodeDefinitions()</FONT></FONT>
+		both return an array containing the child node definition of the
+		root node.</P>
+	</UL>
+	<P>All other methods either return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	(if they return a <FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean</FONT></FONT>)
+	or an empty array (if they return an array).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

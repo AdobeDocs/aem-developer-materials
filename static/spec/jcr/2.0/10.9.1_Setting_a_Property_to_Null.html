@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.9.1 Setting a Property to Null (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.9.1 Setting a Property to Null</H3>
+	<P>A property can also be
+	removed by setting its value to <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.
+	When this is done, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	parameter must be cast to a non-array type for single-value
+	properties and an array type for multi-value properties.</P>
+	<P>Note that setting a
+	multi-value property to an array containing <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	values is different from setting it to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	cast to an array type. In the former case, all <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	values within the array are removed and the array is compacted to
+	include only non-null values even if this results in a multi-value
+	property being set to an empty array. In the latter case the entire
+	property is removed. For example,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>p.setValue((String[])null)</FONT></FONT></P>
+	<P>would remove property
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>p</FONT></FONT>,
+	whereas</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>p.setValue(new
+	String[]{“a”, null, “b”})</FONT></FONT></P>
+	<P>would set <FONT FACE="Courier New, monospace"><FONT SIZE=2>p</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>[“a”,”b”]
+	</FONT></FONT>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>p.setValue(new
+	String[]{null})</FONT></FONT></P>
+	<P>would set <FONT FACE="Courier New, monospace"><FONT SIZE=2>p</FONT></FONT>
+	to the empty array, <FONT FACE="Courier New, monospace"><FONT SIZE=2>[]</FONT></FONT>
+	(see §10.4.2.4 <I>No Null Values</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

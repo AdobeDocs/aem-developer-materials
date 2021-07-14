@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.13 Hierarchical versus Direct Access (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.13." id="section_4.13."></a> 4.13 Hierarchical versus Direct Access
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Though this specification provides a hierarchical, tree-based view of content, it is also compatible with repository implementations that are not primarily hierarchy-based.
+								</p>
+							
+							
+								<p class="c5">
+									Though such implementations must still expose a hierarchical structure, the flexibility of this specification ensures that this need not be a particularly restrictive requirement. The following strategies, amongst others, can be adopted by implementations that are not primarily hierarchical:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The exposed hierarchy can be almost flat. A very shallow tree consisting of a root node with a large set of child nodes or properties is a valid arrangement. The names of the nodes may be identical with the UUIDs of the nodes.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					There is no requirement that a particular hierarchical view of the repository be in any way “primary”. Through the use of <b>REFERENCE</b> properties feature, many orthogonal hierarchical views of the same underlying content are supported. This does away with the notion that there is a single canonical hierarchy. See, for example, <a href="6.7.22.7_nt_linkedFile.html">6.7.22.7</a> <i>nt:linkedFile</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Hierarchical navigation is only one possible way to access the repository. The specification also supports a search query interface (see <a href="6.6_Searching_Repository_Content.html">6.6</a> <i>Searching Repository Content</i>). In addition, direct access via node UUID is also provided (see <a href="6.2.1_Session_Read_Methods.html">6.2.1</a> <i>Session Read Methods)</i>.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

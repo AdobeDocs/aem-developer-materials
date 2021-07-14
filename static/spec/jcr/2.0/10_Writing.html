@@ -1,0 +1,1014 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10 Writing (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>10 Writing</H1>
+	<P>A repository may be
+	<I>writable</I>. 
+	</P>
+	<P>Whether an
+	implementation supports writing can be determined by querying the
+	repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.WRITE_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="10.1 Types of Write Methods"></a>	<H2>10.1 Types of Write Methods</H2>
+	<P>A JCR write method is
+	either a <I>session-write</I> or a <I>workspace-write</I>.</P>
+<a name="10.1.1 Session-Write"></a>	<H3>10.1.1 Session-Write</H3>
+	<P>Changes made through a
+	session-write are buffered in a transient store associated with that
+	method's current session (see §3.1.8.2 <I>Current Session and
+	Workspace</I>). The transient store permits a series of changes to
+	be made without validation at every step, thus allowing item
+	structures to be temporarily invalid while they are being
+	constructed. Once completed, the change set can be <I>saved</I>.</P>
+	<UL>
+		<LI><P>Before save, a
+		change in transient store is <I>pending</I>.</P>
+		<LI><P>Upon save, all
+		changes in transient store are <I>dispatched</I>.</P>
+	</UL>
+<a name="10.1.2 Workspace-Write"></a>	<H3>10.1.2 Workspace-Write</H3>
+	<UL>
+		<LI><P>A change made
+		through a workspace-write is immediately <I>dispatched</I>.</P>
+	</UL>
+<a name="10.1.3 Transactions"></a>	<H3>10.1.3 Transactions</H3>
+	<UL>
+		<LI><P>In the absence of
+		a transaction, every <I>dispatched</I> change is immediately
+		<I>persisted</I>.</P>
+		<LI><P>Within a
+		transaction, dispatched changes are persisted upon <I>commit</I>.</P>
+	</UL>
+	<P>(see §21
+	<I>Transactions</I>).</P>
+<a name="10.1.4 Visibility of Changes"></a>	<H3>10.1.4 Visibility of Changes</H3>
+	<P>A change that is
+	<I>pending </I>or <I>dispatched</I> (but not <I>persisted</I>) is
+	visible only to the session through which that change was made. A
+	change that is <I>persisted</I> is visible to all other sessions
+	bound to the same persistent workspace that have sufficient read
+	permission.</P>
+<a name="10.1.5 Write Methods"></a>	<H3>10.1.5 Write Methods</H3>
+	<P>The write API is
+	divided into the two types as follows.</P>
+<a name="10.1.5.1 Session-Write"></a>	<H4>10.1.5.1 Session-Write</H4>
+	<P>The session-write
+	methods are</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>setProperty</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>orderBefore</FONT></FONT>.
+				</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>setValue</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeShare</FONT></FONT>,
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeSharedSet</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeItem</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.storeAsNode</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setPrimaryType</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>addMixin</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeMixin</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>RetentionManager.addHold</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeHold</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>setRetentionPolicy</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeRetentionPolicy</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlManager.setPolicy</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removePolicy</FONT></FONT>.</P>
+	</UL>
+<a name="10.1.5.2 Workspace-Write Methods"></a>	<H4>10.1.5.2 Workspace-Write Methods</H4>
+	<P>The workspace-write
+	methods are:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>copy</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>clone</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>.
+				</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.checkin</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>checkout</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>checkpoint</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>restoreByLabel</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>cancelMerge</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>doneMerge</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>createActivity</FONT></FONT>
+		, <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeActivity</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>createConfiguration</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.update</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>followLifecycleTransition</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.lock</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>unlock</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory.addVersionLabel</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeVersionLabel</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeVersion</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>.</P>
+		<LI><P>Methods of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>org.xml.sax.ContentHandler</FONT></FONT>
+		acquired through <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.getContentHandler</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.createWorkspace</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>deleteWorkspace</FONT></FONT>
+		(these create or delete another workspace, though they do not
+		affect <I>this</I> workspace).</P>
+	</UL>
+<a name="10.1.5.3 Optional In-Content Side-Effects"></a>	<H4>10.1.5.3 Optional In-Content Side-Effects</H4>
+	<P>Some repositories may
+	choose to expose internal state data as virtual content within a
+	workspace. For example, the set of registered node types may be so
+	exposed. 
+	</P>
+	<P>In such cases, methods
+	which directly affect the exposed internal state and, as a side
+	effect, change virtual content must do so in a workspace-write
+	manner. For example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager.registerNodeType</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>unregisterNodeType</FONT></FONT>
+	should immediately dispatch changes to the in-content node type
+	representation. 
+	</P>
+<a name="10.2 Core Write Methods"></a>	<H2>10.2 Core Write Methods</H2>
+	<P>The
+	<I>core write methods</I>
+	of JCR are those write methods of the API whose write effect is <I>not</I>
+	incidental to the support of another feature, such as versioning,
+	import, locking, and so forth. Both session-write and
+	workspace-write methods are among the core write methods. The core
+	write methods are:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>setProperty</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>orderBefore</FONT></FONT>.
+				</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>setValue</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>remove</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeShare</FONT></FONT>,
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeSharedSet</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.move</FONT></FONT>,
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeItem</FONT></FONT>.</P>
+	</UL>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>copy</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>clone</FONT></FONT>.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>.</P>
+	</UL>
+<a name="10.3 Session and Workspace Objects"></a>	<H2>10.3 Session and Workspace Objects</H2>
+	<P>Given the set <I>S</I><SUB><I>0</I></SUB><I>..S</I><SUB><I>n</I></SUB>
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	objects bound to a persistent workspace <I>W</I><SUP><I>P</I></SUP>,
+	for each <I>S</I><SUB><I>i</I></SUB>, there exists a distinct
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	object <I>W</I><SUB><I>i</I></SUB><I>, </I>bound one-to-one to <I>S</I><SUB><I>i</I></SUB>,
+	that represents the <I>view</I> of <I>W</I><SUP><I>P</I></SUP>
+	through the access permissions of <I>S</I><SUB><I>i</I></SUB>.</P>
+	<P>Despite their
+	one-to-one correspondence, <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	are defined as separate objects in order to differentiate the
+	behavior of session-write methods from the behavior of
+	workspace-write methods.</P>
+<a name="10.3.1 Writing Without a Transaction"></a>	<H3>10.3.1 Writing Without a Transaction</H3>
+	<P>The following diagram
+	depicts the behavior of write methods <I>without a transaction</I>.</P>
+	<P><IMG SRC="jcr-spec_html_37743a2.png" NAME="graphics7" ALIGN=LEFT HSPACE=14 WIDTH=629 HEIGHT=466 BORDER=0><BR CLEAR=LEFT><BR><BR>
+	</P>
+<a name="10.3.2 Writing Within a Transaction"></a>	<H3>10.3.2 Writing Within a Transaction</H3>
+	<P>The following diagrams
+	depicts the behavior of write methods <I>within a transaction</I>.</P>
+	<P><IMG SRC="jcr-spec_html_34a73c34.png" NAME="graphics8" ALIGN=LEFT HSPACE=14 WIDTH=629 HEIGHT=697 BORDER=0><BR CLEAR=LEFT><BR><BR>
+	</P>
+<a name="10.4 Adding Nodes and Setting Properties"></a>	<H2>10.4 Adding Nodes and Setting Properties</H2>
+	<P>This section covers
+	the JCR API methods for adding new nodes and properties and changing
+	the values of existing properties.</P>
+<a name="10.4.1 Adding a Node"></a>	<H3>10.4.1 Adding a Node</H3>
+	<P>The methods</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Node.addNode(String relPath, String primaryNodeTypeName)</FONT></FONT></P>
+	<P>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node
+	Node.addNode(String relPath)</FONT></FONT></P>
+	<P>add a node at the
+	specified location relative to this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>.
+	The former specifies the intended primary node type of the node,
+	while the latter assumes that the repository can determine the
+	intended type from the node type of the parent.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>
+	is a <I>session-write</I> method and therefore requires a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	to dispatch the change (see §10.11 <I>Saving</I>).</P>
+<a name="10.4.2 Setting a Property"></a>	<H3>10.4.2 Setting a Property</H3>
+	<P>The generic method for
+	setting a property is</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property
+	Node.setProperty(String name, Value value, int type)</FONT></FONT>.</P>
+	<P>This method sets the
+	property of this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	with the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>name</FONT></FONT>
+	to the specified value and the specified type, converting the given
+	value to that type if necessary. If the property already exists its
+	value is changed. If it does not exist, it is added.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	is a <I>session-write</I> method and therefore requires a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	to dispatch the change (see §10.11 <I>Saving</I>).</P>
+<a name="10.4.2.1 Changing Existing Properties"></a>	<H4>10.4.2.1 Changing Existing Properties</H4>
+	<P>An existing property
+	can also be changed with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Property.setValue(Value value)</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.setValue</FONT></FONT>
+	is a <I>session-write</I> method and therefore requires a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	to dispatch the change (see §10.11 <I>Saving</I>).</P>
+<a name="10.4.2.2 Type-Specific Signatures"></a>	<H4>10.4.2.2 Type-Specific Signatures</H4>
+	<P>Signatures of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.setValue</FONT></FONT>
+	are also provided in which the intended JCR type is implied by the
+	Java type passed in. For example, 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty(String
+	name, Calendar value)</FONT></FONT></P>
+	<P>sets a JCR <FONT FACE="Courier New, monospace"><FONT SIZE=2>DATE</FONT></FONT>
+	property called <FONT FACE="Courier New, monospace"><FONT SIZE=2>name</FONT></FONT>
+	to the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>value</FONT></FONT>.
+	See the Javadoc for the full set of signatures.</P>
+<a name="10.4.2.3 Setting a DECIMAL Property"></a>	<H4>10.4.2.3 Setting a DECIMAL Property</H4>
+	<P>When setting a
+	property of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>DECIMAL</FONT></FONT>
+	using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty(String
+	name, BigDecimal value)</FONT></FONT> or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.setValue(BigDecimal
+	value)</FONT></FONT></P>
+	<P>the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>java.math.BigDecimal</FONT></FONT>
+	object passed must be an instance of the actual class <FONT FACE="Courier New, monospace"><FONT SIZE=2>BigDecimal</FONT></FONT>,
+	not an instance of a subclass.</P>
+<a name="10.4.2.4 No Null Values"></a>	<H4>10.4.2.4 No Null Values</H4>
+	<P>Every property must
+	have a value. The range of property states does not include having a
+	“null value”, or “no value”. Setting a property to “null”
+	is equivalent to removing that property (see §10.9 <I>Removing
+	Nodes and Properties</I>).</P>
+<a name="10.4.2.5 Multi-value Properties and Null"></a>	<H4>10.4.2.5 Multi-value Properties and Null</H4>
+	<P>As with single-value
+	properties, there is no such thing as a null value. If a value
+	within a multi-value property is set to null, this is equivalent to
+	removing that value from the value array. In such a case the array
+	is automatically compacted, shifting the indices of those values
+	with an index greater than that of the removed value by -1. However,
+	while no value within a multi-value property can be null, a
+	multi-value property can exist with no values (i.e., it can be an
+	empty array).</P>
+<a name="10.4.2.6 Setting Multi-value vs. Single-value Properties"></a>	<H4>10.4.2.6 Setting Multi-value vs. Single-value Properties</H4>
+	<P>Multi-value and
+	single-value properties are set using different signatures of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.setValue</FONT></FONT>.
+	Multi-value properties must be set using the signatures that take
+	either a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value[]</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]</FONT></FONT>.
+	Single-value properties must be set using the signatures that take
+	non-array value arguments. An attempt to set a multi-value property
+	with a non-array value argument, or a single-value property with an
+	array value argument, will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFormatException</FONT></FONT>.</P>
+<a name="10.4.3 Creating Value Objects"></a>	<H3>10.4.3 Creating Value Objects</H3>
+	<P>In many cases a
+	property must be set using a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	object. <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	objects are created using a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>,
+	acquired through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getValueFactory()</FONT></FONT>.</P>
+	<P>The generic <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	creation method is 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value
+	ValueFactory.createValue(String value, int type)</FONT></FONT></P>
+	<P>which takes the
+	string-form of the specified type and returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+	of that type using standard property type conversion (see §3.6.4
+	<I>Property Type Conversion</I>).</P>
+<a name="10.4.3.1 Type-Specific Methods"></a>	<H4>10.4.3.1 Type-Specific Methods</H4>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ValueFactory</FONT></FONT>
+	also provides methods for creating values of each property type from
+	the corresponding Java type. See the Javadoc for the full set of
+	signatures.</P>
+<a name="10.4.3.2 Creating a BINARY Value"></a>	<H4>10.4.3.2 Creating a BINARY Value</H4>
+	<P>To create a <FONT FACE="Courier New, monospace"><FONT SIZE=2>BINARY</FONT></FONT>
+	value a <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.Binary</FONT></FONT>
+	object is first created from a stream using</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Binary
+	ValueFactory.createBinary(InputStream stream) </FONT></FONT>
+	</P>
+	<P>and then passed to 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Value
+	ValueFactory.createValue(Binary value)</FONT></FONT>.</P>
+<a name="10.5 Selecting the Applicable Item Definition"></a>	<H2>10.5 Selecting the Applicable Item Definition</H2>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>addNode</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>setProperty</FONT></FONT>
+	method must determine which, if any, item definitions of the parent
+	node apply to the new child item, based on the name of the new item
+	and, if provided, its type.</P>
+	<P>If more than one item
+	definition still applies even after taking the name and type
+	constraints into consideration, the repository may either fail the
+	add attempt or automatically select one of the item definitions
+	based on implementation-specific criteria.</P>
+	<P>For example, if the
+	parent node <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	has two residual child node definitions that differ only by their
+	OPV value (see §3.7.2.5 <I>On-Parent-Version</I>), then even if
+	both a name and a primary type are supplied in the call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>addNode
+	</FONT></FONT>this will not be sufficient information
+	to unambiguously determine which residual definition the new node
+	should fall under. In such a case, an implementation might
+	automatically select one of the definitions based on the
+	implementation-specific rule that a node with the name <I>X</I> will
+	always have an OPV of <I>V</I> while other nodes will have an OPV of
+	<I>W</I>.</P>
+	<P>When <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setProperty</FONT></FONT>
+	is used to change the value of an existing property, cases where the
+	intended property is ambiguous are handled in the same way as when
+	the method is used to create a new property.</P>
+<a name="10.6 Moving Nodes"></a>	<H2>10.6 Moving Nodes</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.move(String srcAbsPath, String destAbsPath)</FONT></FONT></P>
+	<P>moves the subgraph at
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	to a new location at <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>.
+	This is a session-write operation (see §10.1.1 <I>Session-Write</I>).
+	The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.move(String srcAbsPath, String destAbsPath)</FONT></FONT></P>
+	<P>does the same, but is
+	a workspace-write operation (see §10.1.1 <I>Workspace-Write</I>).</P>
+<a name="10.6.1 Referenceable vs Non-Referenceable Nodes"></a>	<H3>10.6.1 Referenceable vs Non-Referenceable Nodes</H3>
+	<P>A referenceable node
+	is guaranteed to maintain the same identifier across a <FONT FACE="Courier New, monospace"><FONT SIZE=2>move</FONT></FONT>
+	operation. 
+	</P>
+	<P>Non-referenceable
+	nodes, on the other hand, <I>may</I> be tied either partially or
+	entirely (as in the case where the identifier equals the path) to
+	their position in the hierarchy and therefore may change identifier
+	upon <FONT FACE="Courier New, monospace"><FONT SIZE=2>move</FONT></FONT>.
+		</P>
+	<P>Though nothing
+	prevents an implementation from making non-referenceable node
+	identifiers as stable as referenceable node identifiers, a user
+	cannot rely upon this across repository vendors. For an overview of
+	how identifiers behave with different methods see §25.1 <I>Treatment
+	of Identifiers.</I></P>
+<a name="10.7 Copying Nodes"></a>	<H2>10.7 Copying Nodes</H2>
+	<P>Nodes can be copied
+	from one path location to another within a workspace and, in
+	repositories with more than one workspace, across workspaces (see
+	§3.10 <I>Multiple Workspaces and Corresponding Nodes</I>). A copy
+	operation on a node copies the node and its subgraph. Properties
+	cannot be copied individually.</P>
+<a name="10.7.1 Copying Within a Workspace"></a>	<H3>10.7.1 Copying Within a Workspace</H3>
+	<P>The method 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.copy(String srcAbsPath, String destAbsPath)</FONT></FONT></P>
+	<P>copies the node at
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	and its subgraph to a new location at <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>.
+	This is a workspace-write operation (see §10.1.1 <I>Workspace-Write</I>).</P>
+<a name="10.7.2 Copying Across Workspaces"></a>	<H3>10.7.2 Copying Across Workspaces</H3>
+	<P>In a repository with
+	more than one workspace, the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.copy(String srcWorkspace,<BR> String
+	srcAbsPath,<BR> String destAbsPath)</FONT></FONT></P>
+	<P>copies the node at
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	and its subgraph to a new location at <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>
+	in the current workspace. This is a workspace-write operation (see
+	§10.1.2 <I>Workspace-Write</I>).</P>
+<a name="10.7.3 Copying to an Empty Location"></a>	<H3>10.7.3 Copying to an Empty Location</H3>
+	<P>When a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is copied to a path location where no node currently exists, a new
+	node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	is created at that location. The subgraph rooted at and including <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>)
+	is created and is identical to the subgraph rooted at and including
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>)
+	with the following exceptions:</P>
+	<UL>
+		<LI><P>If the copy is
+		within the same workspace, every node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'
+		</FONT></FONT>is given a new and distinct identifier.
+		If the copy is to another workspace, every referenceable node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+		is given a new and distinct identifier while every
+		non-referenceable node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+		<I>may</I> be given a new and distinct identifier (see §3.8
+		<I>Referenceable Nodes</I>).</P>
+	</UL>
+	<UL>
+		<LI><P>The repository
+		<I>may</I> automatically drop any <I>mixin node type</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		present on any node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.
+		Dropping a mixin node type in this context means that while <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		remains unchanged, its copy <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will lack the mixin <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		and any child nodes and properties defined by <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		that are present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>.
+		For example, a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		that is <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+		may be copied such that the resulting node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will be a copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		except that <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will not be <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+		and will not have any of the properties defined by <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>.
+		In order for a mixin node type to be dropped it must be listed by
+		name in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>.
+		The resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will reflect any change.</P>
+	</UL>
+	<UL>
+		<LI><P>If a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		is referenceable and its <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:referenceable</FONT></FONT>
+		mixin is <I>not</I> dropped on copy, then the resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will reflect the new identifier assigned to <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>.</P>
+		<LI><P>Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKEREFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		is copied to its new location <FONT FACE="Courier New, monospace"><FONT SIZE=2>R'</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT><I>.</I>
+		If <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>
+		references a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		<I>within</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		then the value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>R'</FONT></FONT>
+		will be the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>,
+		the new copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>,
+		thus preserving the reference within the subgraph (see §3.8
+		<I>Referenceable Nodes</I>).</P>
+	</UL>
+<a name="10.7.4 Copying to an Existing Node"></a>	<H3>10.7.4 Copying to an Existing Node</H3>
+	<P>When
+	a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is copied to a location where a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	already exists the repository may either immediately throw an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	<I>or</I> attempt to update the node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	by selectively replacing part of its subgraph with a copy of the
+	relevant part of the subgraph of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	If the node types of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N
+	</FONT></FONT>and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	are compatible, the implementation supports update-on-copy for these
+	node types and no other errors occur, then the copy will succeed.
+	Otherwise an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	is thrown.</P>
+	<P>Which
+	node types can be updated on copy and the details of any such
+	updates are implementation-dependent. For example, some
+	implementations may support update-on-copy for mix:versionable
+	nodes. In such a case the versioning-related properties of the
+	target node would remain unchanged (<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+	etc.) while the substantive content part of the subgraph would be
+	replaced with that of the source node. 
+	</P>
+<a name="10.8 Cloning and Updating Nodes"></a>	<H2>10.8 Cloning and Updating Nodes</H2>
+	<P>A node can be <I>cloned</I>
+	to another workspaces to create a new corresponding node (see §3.10
+	<I>Corresponding Nodes</I>)</P>
+<a name="10.8.1 Cloning Nodes Across Workspaces"></a>	<H3>10.8.1 Cloning Nodes Across Workspaces</H3>
+	<P>Corresponding nodes
+	can be created by <I>cloning</I> a node from one workspace to
+	another using:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.clone(String srcWorkspace,<BR> String
+	srcAbsPath,<BR> String destAbsPath,<BR> 
+	 boolean removeExisting)</FONT></FONT></P>
+	<P>This method clones the
+	subgraph at <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcAbsPath</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>destAbsPath</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	workspace. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>clone</FONT></FONT>
+	method clones both referenceable and non-referenceable nodes and
+	preserves the identifier of every node in the source subgraph.</P>
+	<P>If there already
+	exists anywhere in this workspace a node with the same identifier as
+	an incoming node from <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>clone</FONT></FONT>
+	will throw an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then the existing node is removed from its current location and the
+	cloned node with the same identifier from <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>
+	is copied to this workspace as part of the copied subgraph (that is,
+	not into the former location of the old node). The subgraph of the
+	cloned node will reflect the state of the clone in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	in other words the existing node will be moved <I>and</I> changed.
+	If the existing node cannot be moved and changed because of node
+	type constraints, access control constraints or because its parent
+	is checked-in (or its parent is non-versionable but its nearest
+	versionable ancestor is checked-in), then the appropriate exception
+	is thrown (<FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>AccessControlException</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionException</FONT></FONT>,
+	respectively).</P>
+	<P>In the case of
+	shareable nodes, it is possible to clone a node into its own
+	workspace (see §14.1 <I>Creation of Shared Nodes</I>).</P>
+<a name="10.8.2 Getting a Corresponding Node"></a>	<H3>10.8.2 Getting a Corresponding Node</H3>
+	<P>Finding the path of a
+	node's corresponding node in another workspace is done with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Node.getCorrespondingNodePath(String workspaceName)</FONT></FONT>.</P>
+	<P>This method returns
+	the absolute path of the node in the specified workspace that
+	corresponds to this node.</P>
+<a name="10.8.3 Updating Nodes Across Workspaces"></a>	<H3>10.8.3 Updating Nodes Across Workspaces</H3>
+	<P>Node correspondence
+	governs the behavior of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>
+	method:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.update(String srcWorkspace)</FONT></FONT></P>
+	<P>causes <FONT FACE="Courier New, monospace"><FONT SIZE=2>this</FONT></FONT>
+	node to be updated to reflect the state of its corresponding node in
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>.</P>
+	<P>If this node does have
+	a corresponding node in the workspace <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	then this replaces this node and its subgraph with a clone of the
+	corresponding node and its subgraph.</P>
+	<P>If this node does not
+	have a corresponding node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>srcWorkspace</FONT></FONT>,
+	then the method has no effect.</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>
+	succeeds, the changes made to this node and its subgraph are applied
+	to the workspace immediately, there is no need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>
+	method does not respect the checked-in status of nodes. An <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>
+	may change a node even if it is currently checked-in.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.update</FONT></FONT>
+	works for both versionable and non-versionable nodes (see §3.13
+	<I>Versioning Model</I>)</P>
+<a name="10.9 Removing Nodes and Properties"></a>	<H2>10.9 Removing Nodes and Properties</H2>
+	<P>Removing a node or
+	property can be done with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Item.remove()</FONT></FONT></P>
+	<P>On the item to be
+	removed itself, or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.removeItem(String absPath)</FONT></FONT></P>
+	<P>Where <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>
+	specifies the item to be removed.</P>
+	<P>These methods are
+	session-write and therefore require a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	to dispatch the change.</P>
+<a name="10.9.1 Setting a Property to Null"></a>	<H3>10.9.1 Setting a Property to Null</H3>
+	<P>A property can also be
+	removed by setting its value to <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>.
+	When this is done, the <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	parameter must be cast to a non-array type for single-value
+	properties and an array type for multi-value properties.</P>
+	<P>Note that setting a
+	multi-value property to an array containing <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	values is different from setting it to a <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	cast to an array type. In the former case, all <FONT FACE="Courier New, monospace"><FONT SIZE=2>null</FONT></FONT>
+	values within the array are removed and the array is compacted to
+	include only non-null values even if this results in a multi-value
+	property being set to an empty array. In the latter case the entire
+	property is removed. For example,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>p.setValue((String[])null)</FONT></FONT></P>
+	<P>would remove property
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>p</FONT></FONT>,
+	whereas</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>p.setValue(new
+	String[]{“a”, null, “b”})</FONT></FONT></P>
+	<P>would set <FONT FACE="Courier New, monospace"><FONT SIZE=2>p</FONT></FONT>
+	to <FONT FACE="Courier New, monospace"><FONT SIZE=2>[“a”,”b”]
+	</FONT></FONT>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>p.setValue(new
+	String[]{null})</FONT></FONT></P>
+	<P>would set <FONT FACE="Courier New, monospace"><FONT SIZE=2>p</FONT></FONT>
+	to the empty array, <FONT FACE="Courier New, monospace"><FONT SIZE=2>[]</FONT></FONT>
+	(see §10.4.2.4 <I>No Null Values</I>).</P>
+<a name="10.9.1.1 Removing a REFERENCE Target"></a>	<H4>10.9.1.1 Removing a REFERENCE Target</H4>
+	<P>To remove a node that
+	is the target of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property, one must first remove that <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property (with the exception of <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	properties within the frozen node of a version, see §3.13.4.6
+	<I>References in a Frozen Node</I>).</P>
+	<P>The check for
+	referential integrity is done <I>on persist</I> of the removal. If
+	the subgraph to be removed contains a node that is the target of a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property outside that subgraph, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ReferentialIntegrityException</FONT></FONT>
+	is thrown.</P>
+<a name="10.10 Node Type Assignment"></a>	<H2>10.10 Node Type Assignment</H2>
+	<P>Most writable
+	repository implementations will support assignment of primary and
+	mixin node types on node creation. Some implementations may also
+	support assignment of new primary or mixin node types to existing
+	nodes.</P>
+<a name="10.10.1 Node Type Assignment Behavior"></a>	<H3>10.10.1 Node Type Assignment Behavior</H3>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>
+	the primary node type of the new node is assigned. In cases where a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>
+	does not explicitly specify a primary node type, it is determined by
+	the applicable child node definition (see §3.7.7 <I>Applicable Item
+	Definition</I>). Otherwise, it is determined by the node type name
+	passed. The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+	property is created immediately and set to the name of the primary
+	node type. This property is defined as <FONT FACE="Courier New, monospace"><FONT SIZE=2>mandatory</FONT></FONT>
+	in the node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	(see §3.7.10 <I>Base Primary Node Type</I>) and will therefore
+	appear on every node. 
+	</P>
+	<P>The constraints
+	enforced by the assigned node type may take effect immediately, or
+	on persist. Whichever is chosen, this <I>node</I> <I>type assignment
+	behavior</I> must be consistent across all methods that assign node
+	types (<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.setPrimaryType</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addMixin</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeMixin</FONT></FONT>,
+	see §10.10.2 <I>Updating a Node's Primary Type</I> and §10.10.3
+	<I>Assigning Mixin Node Types</I>).</P>
+	<P>If <I>immediate effect</I>
+	is implemented then conflicts with other mixins or with the primary
+	type are detected immediately and an exception thrown. If <I>on-persist
+	effect</I> is implemented, such conflicts are detected and the
+	appropriate exception thrown on persist. This validation can also be
+	performed pre-emptively with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Node.canAddMixin(String mixinName)</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	</FONT></FONT>
+	</P>
+<a name="10.10.2 Updating a Node's Primary"></a>	<H3>10.10.2 Updating a Node's Primary
+	Type</H3>
+	<P>A repository <I>may</I>
+	permit the primary type of a node to be changed during its lifetime.
+	Repositories are free to limit the scope of permitted changes both
+	in terms of which nodes may be changed and which changes are
+	allowed.</P>
+	<P>The method for
+	changing the primary type of a particular node is</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.setPrimaryType(String nodeTypeName)</FONT></FONT>.</P>
+	<P>This method changes
+	the primary node type of the node to <FONT FACE="Courier New, monospace"><FONT SIZE=2>nodeTypeName</FONT></FONT>,
+	and immediately changes the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+	property of the node appropriately.</P>
+	<P>Semantically, the new
+	node type takes effect in accordance with the <I>node type
+	assignment behavior</I> of the repository (see §10.10.1 <I>Node
+	Type Assignment Behavior</I>).</P>
+<a name="10.10.3 Assigning Mixin Node Types"></a>	<H3>10.10.3 Assigning Mixin Node Types</H3>
+	<P>In addition to its
+	single primary node type, a node may have one or more mixin node
+	types assigned to it (see §3.7.5 <I>Mixin Node Types</I>).
+	Assignment of mixin types is done through 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.addMixin(String mixinName)</FONT></FONT>.</P>
+	<P>A repository that
+	supports the assignment of mixin types may permit mixin addition
+	only before the first save of a node (in effect, only on node
+	creation) or it may permit mixin addition and removal during the
+	lifetime of a node. Removal of mixin node types is done with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.removeMixin(String mixinName)</FONT></FONT>.</P>
+<a name="10.10.3.1 jcr:mixinTypes"></a>	<H4>10.10.3.1 jcr:mixinTypes</H4>
+	<P>When a new mixin type
+	is assigned using <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addMixin</FONT></FONT>,
+	the name of the mixin is added immediately to the multi-valued
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+	property. If the property does not exist, it is created. This
+	property is defined as non-mandatory in the node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	and therefore may appear on any node. When a mixin is removed with
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeMixin</FONT></FONT>
+	the name of the mixin type is immediately removed from the property.</P>
+	<P>Semantically, any
+	changes to mixin node types take effect in accordance with the <I>node
+	type assignment behavior</I> of the repository (see §10.10.1 <I>Node
+	Type Assignment Behavior</I>).</P>
+<a name="10.10.3.2 Pre-emptive Node Type Validation"></a>	<H4>10.10.3.2 Pre-emptive Node Type Validation</H4>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeType</FONT></FONT>
+	object can be queried to pre-emptively determine whether a
+	particular child item's addition or removal is allowed by that node
+	type. The methods are:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.canSetProperty(String propertyName,<BR> 
+	 Value value)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.canSetProperty(String propertyName,<BR> 
+	 Value[] values)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.canAddChildNode(String childNodeName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.canAddChildNode(String childNodeName,<BR> 
+	 String nodeTypeName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.canRemoveNode(String nodeName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	NodeType.canRemoveProperty(String propertyName)</FONT></FONT></P>
+<a name="10.10.3.3 Automatic Addition and Removal of Mixins"></a>	<H4>10.10.3.3 Automatic Addition and Removal of Mixins</H4>
+	<P>A repository may
+	automatically assign a mixin type to a node upon creation. For
+	example if, as a matter of configuration, all <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:file</FONT></FONT>
+	nodes in a repository are to be versionable, then the repository may
+	automatically assign the mixin type <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	to each such node as it is created.</P>
+	<P>Similarly, a
+	repository may automatically strip incoming imported nodes of any
+	mixin node types that the repository does not support (see §11.3
+	<I>Respecting Property Semantics</I>).</P>
+	<P>Note that this
+	behavior is distinct from that of adding a mixin type as a supertype
+	of some primary types in the node type inheritance hierarchy (see
+	§3.7.16.1.2 <I>Additions to the Hierarchy</I>). Though the two
+	features may both be employed in the same repository, they differ in
+	that one affects the actual hierarchy of the supported node types,
+	while the other works on a node-by-node basis.</P>
+<a name="10.11 Saving"></a>	<H2>10.11 Saving</H2>
+	<P>When a change is made
+	to an item through a session-write method bound to a session <I>S</I>,
+	that change is immediately visible through all subsequent read
+	method calls through <I>S</I>. When</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.save()</FONT></FONT></P>
+	<P>is performed on <I>S</I>,
+	all pending changes recorded in <I>S</I> are dispatched. Without
+	transactions this causes the changes to be persisted. Within a
+	transaction the changes must first be committed in order to be
+	persisted. When a change is persisted it becomes visible to other
+	sessions bound to the same persistent workspace.</P>
+	<P>From the point of view
+	of a session <I>S</I>, the apparent state of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	bound to <I>S</I> does not change upon a <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	of <I>S</I> (apart from the values returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>isNew</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>isModified</FONT></FONT>,
+	see §10.11.3 <I>Item Status</I>) since that state will have been
+	visible <I>to S</I> since the session-write method call that caused
+	it.</P>
+	<P>If one or more of the
+	pending changes cause an exception to be thrown on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>,
+	then <I>no</I> pending changes are dispatched and the set of pending
+	changes recorded on the session is left unaffected.</P>
+<a name="10.11.1 Refresh"></a>	<H3>10.11.1 Refresh</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.refresh(boolean keepChanges)</FONT></FONT></P>
+	<P>refreshes the state of
+	the transient session store.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>keepChanges</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	all pending changes in the session are discarded and all items bound
+	to that session revert to their current dispatched state. Without
+	transactions, this is the current persisted state. Within a
+	transaction, this state will reflect persistent storage as modified
+	by changes that have been saved but not yet committed.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>keepChanges</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then pending changes are not discarded but items that do not have
+	changes pending have their state refreshed to reflect the current
+	persisted state, thus revealing changes made by other sessions.</P>
+	<P>If an exception occurs
+	on <FONT FACE="Courier New, monospace"><FONT SIZE=2>refresh</FONT></FONT>,
+	the set of all pending changes recorded on the session is left
+	unaffected and the state of all bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>s
+	is also unaffected.</P>
+<a name="10.11.2 Session Status"></a>	<H3>10.11.2 Session Status</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Session.hasPendingChanges()</FONT></FONT></P>
+	<P>is used to determine
+	if a session holds pending changes.</P>
+<a name="10.11.3 Item Status"></a>	<H3>10.11.3 Item Status</H3>
+	<P>Whether an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	has pending changes can be determined with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Item.isModified()</FONT></FONT>.</P>
+	<P>Whether an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	constitutes part of the pending changes of its parent can be
+	determined with 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>boolean
+	Item</FONT></FONT>.<FONT FACE="Courier New, monospace"><FONT SIZE=2>isNew()</FONT></FONT>.</P>
+<a name="10.11.4 Persisting by Identifier"></a>	<H3>10.11.4 Persisting by Identifier</H3>
+	<P>When a change to an
+	item is persisted, the item in the persistent workspace to which
+	that pending change is written is determined as follows:</P>
+	<UL>
+		<LI><P>If the changed <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+		with identifier <I>I</I>, then the changes are written to the
+		persistent node with identifier <I>I</I>.</P>
+		<LI><P>If the changed <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+		is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property</FONT></FONT>
+		named <I>P</I> of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+		with identifier <I>I</I>, then the change is written to the
+		persistent property <I>P</I> of the persistent node with identifier
+		<I>I</I>.</P>
+	</UL>
+	<P>These principles apply
+	to both referenceable and non-referenceable nodes (see §3.8
+	<I>Referenceable Nodes</I>). For an overview of how identifiers
+	behave with different methods see §25.1 <I>Treatment of
+	Identifiers</I>.</P>
+<a name="10.11.5 Timing of Validation"></a>	<H3>10.11.5 Timing of Validation</H3>
+	<P>For session-write
+	methods, implementers have flexibility in deciding whether a
+	particular validation is to be performed immediately on invocation
+	of the write method or later on persist. For example, in the case
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.addNode</FONT></FONT>,
+	an implementer might immediately check that the path given is valid
+	while postponing validation of node type constraints until
+	persist-time.</P>
+	<UL>
+		<LI><P>It is <I>suggested</I>
+		that an implementation perform each validation as soon as possible,
+		given the underlying design of the repository.</P>
+		<LI><P>It is <I>required</I>
+		that an implementation prohibit the emergence of a persistent state
+		in violation of the validation rules defined by this specification.</P>
+	</UL>
+<a name="10.11.6 Invalid States"></a>	<H3>10.11.6 Invalid States</H3>
+	<P>If an item has been
+	modified in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	but not yet persisted, and its corresponding item in the persistent
+	workspace is altered through a workspace-write method, this has no
+	effect on the transient state of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	The altered item in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	remains and may be persisted later. However, the change made to the
+	workspace <I>may</I> render the attempt to persist the
+	session-change invalid (for example, if the workspace-change removed
+	the parent of the session-change item). Note that this is precisely
+	the same situation as would arise if a change were made to a
+	workspace through <I>another</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	In both cases the persist of the change may throw an
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>.</P>
+<a name="10.11.7 Reflecting Item State"></a>	<H3>10.11.7 Reflecting Item State</H3>
+	<P>When changes are made
+	to an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object, those changes are recorded in its bound <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and immediately reflected in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object itself. A subsequent re-retrieval of the same item entity
+	through a method bound to the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	will return an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object reflecting the recent change. Note that this includes
+	acquisition of nodes and properties through standard getter methods
+	such as <FONT FACE="Courier New, monospace"><FONT SIZE=2>getNode</FONT></FONT>
+	and also retrieval through other means, such as a query (see §6
+	<I>Query</I>).</P>
+	<P>Whether the second
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object is the same actual Java object instance as the first is an
+	implementation issue. However, the state reflected by the object
+	must at all times be consistent with any other <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object bound to the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	that represents the same actual item entity. The criteria of item
+	identity in this context are those described in §10.11.4 <I>Persisting
+	by Identifier</I>.</P>
+<a name="10.11.8 Invalid Items"></a>	<H3>10.11.8 Invalid Items</H3>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object may become invalid for a number of reasons.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.remove</FONT></FONT>
+	has been called on the item any subsequent calls to any read or
+	write methods or invocations of <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>refresh</FONT></FONT>
+	on that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>,
+	from within the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>,
+	will throw an <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>.
+	Before the removal is saved it may be cancelled by a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.refresh(false)</FONT></FONT>.
+	At this point the invalid <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object may become valid again, or the repository may require a new
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	object to be acquired. Which approach is taken is a matter of
+	implementation.</P>
+	<P>An
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>
+	<I>may</I> be thrown immediately on a write method of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	if the change being made would, upon persist, conflict with a change
+	made and persisted through another <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	If detection of the conflict is only possible at persist-time, then
+	an <FONT FACE="Courier New, monospace"><FONT SIZE=2>InvalidItemStateException</FONT></FONT>
+	will be thrown at that point. Whether a conflict is detected when
+	the change is made or on persist depends on the implementation. 
+	</P>
+	<P>Apart from these
+	specific cases, the validity of an <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	must be as stable as the <I>identifiers</I> used in the repository
+	(see §3.3 <I>Identifiers</I>).</P>
+<a name="10.11.9 Seeing Changes Made by Other Sessions"></a>	<H3>10.11.9 Seeing Changes Made by Other Sessions</H3>
+	<P>Transient storage of
+	pending changes in a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	may be implemented a number of ways. A repository is free to use any
+	approach as long as it guarantees that two <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item</FONT></FONT>
+	objects bound to the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	will never reflect conflicting state information.</P>
+<a name="10.12 Namespace Registration  "></a>	<H2>10.12 Namespace Registration  </H2>
+	<P>A repository has a
+	single namespace registry (see §3.5.1 <I>Namespace Registry</I>)
+	represented by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceRegistry</FONT></FONT>
+	object, acquired through</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceRegistry</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.getNamespaceRegistry()</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceRegistry</FONT></FONT>
+	allows for persistent changes to namespaces through the following
+	methods.</P>
+<a name="10.12.1 Registering a Namespace"></a>	<H3>10.12.1 Registering a Namespace</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	NamespaceRegistry.<BR> registerNamespace(String prefix, String
+	uri)</FONT></FONT></P>
+	<P>sets a one-to-one
+	mapping between <FONT FACE="Courier New, monospace"><FONT SIZE=2>prefix</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>uri</FONT></FONT>
+	in the global namespace registry of this repository.</P>
+	<P>Assigning a new prefix
+	to a URI that already exists in the namespace registry erases the
+	old prefix. Apart from the XML restriction (see §10.9.3 <I>Namespace
+	Restrictions</I>) this can almost always be done, though an
+	implementation is free to prevent particular remappings by throwing
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceException</FONT></FONT>.
+	Re-assigning an already registered prefix to a new URI in effect
+	unregisters its former URI.</P>
+<a name="10.12.2 Unregistering a Namespace"></a>	<H3>10.12.2 Unregistering a Namespace</H3>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	NamespaceRegistry.unregisterNamespace(String prefix)</FONT></FONT></P>
+	<P>removes a namespace
+	mapping from the registry.</P>
+<a name="10.12.3 Namespace Restrictions"></a>	<H3>10.12.3 Namespace Restrictions</H3>
+	<P>The following
+	restrictions apply to registering, re-registering and unregistering
+	namespaces:</P>
+	<UL>
+		<LI><P>To avoid
+		conflicts with XML , attempting to register a prefix that begins
+		with the characters “xml” (in any combination of case) will
+		throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceException</FONT></FONT>.</P>
+		<LI><P>Attempting to
+		re-assign or unregister a built-in prefix (<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>sv</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>xml</FONT></FONT>,
+		or the empty prefix) will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceException</FONT></FONT>.</P>
+		<LI><P>An attempt to
+		unregister a namespace that is not currently registered will throw
+		a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceException</FONT></FONT>.</P>
+		<LI><P>An implementation
+		may prevent the re-assignment or unregistration of any prefixes for
+		implementation-specific reasons by throwing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NamespaceException</FONT></FONT>.</P>
+	</UL>
+<a name="10.12.4 Namespace Information"></a>	<H3>10.12.4 Namespace Information</H3>
+	<P>The following methods
+	provide information about the state of the registry: 
+	</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	NamespaceRegistry.getPrefixes()</FONT></FONT></P>
+	<P>returns all currently
+	registered prefixes.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	NamespaceRegistry.getURIs()</FONT></FONT></P>
+	<P>returns all currently
+	registered URIs.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NamespaceRegistry.getURI(String prefix)</FONT></FONT></P>
+	<P>returns the URI
+	currently mapped to the given <FONT FACE="Courier New, monospace"><FONT SIZE=2>prefix</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	NamespaceRegistry.getPrefix(String uri)</FONT></FONT></P>
+	<P>returns the prefix
+	currently mapped to the given <FONT FACE="Courier New, monospace"><FONT SIZE=2>uri</FONT></FONT>.</P>
+<a name="10.12.4.1 Relationship to Session Namespace Mapping"></a>	<H4>10.12.4.1 Relationship to Session Namespace Mapping</H4>
+	<P>The repository
+	namespace registry serves as the default mapping and is copied to a
+	session's internal mapping table on session creation. The mappings
+	can then be changed independently of the registry within the scope
+	of that session. The methods shown here affect and report only the
+	state of the central registry. Existing local namespace mappings
+	will not be affected by changes to the persistent namespace
+	registry.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

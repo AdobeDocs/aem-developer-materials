@@ -1,0 +1,31 @@
+
+Help
+====
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/help
+
+   Component to render the help menu in the shell.
+
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellHelp] > granite:commonAttrs
+
+   Example::
+
+      + myhelp
+        - sling:resourceType = "granite/ui/components/shell/help"
+        + items
+          + home
+            - sling:resourceType = "granite/ui/components/shell/help/item"
+            - href_i18n = "https://www.adobe.com/go/aem6_4_docs"
+            - icon = "globe"
+            - text = "Help Home"
+          + community
+            - sling:reisourceType = "granite/ui/components/shell/help/item"
+            - href_i18n = "https://www.adobe.com/go/aem6_4_community_en"
+            - icon = "users"
+            - text = "Community"

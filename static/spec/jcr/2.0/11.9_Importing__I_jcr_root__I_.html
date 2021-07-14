@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11.9 Importing <I>jcr:root</I> (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>11.9 Importing <I>jcr:root</I></H2>
+	<P>If the root node of a
+	workspace is exported it will be rendered in XML (in either view)
+	under the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>.
+	In addition, if the root node is referenceable this will be recorded
+	in the serialization of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+	property.</P>
+	<P>If this XML document
+	is imported back into the workspace a number of different results
+	may occur, depending on the methods and settings used to perform the
+	import. The following summarizes the possible results of using
+	various <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuidBehavior</FONT></FONT>
+	values (in either using either <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.getImportContentHandler</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.importXML</FONT></FONT>)
+	when a node with the same identifier as the existing root node is
+	encountered on import (the constants below are defined in the
+	interface <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.ImportUUIDBehavior</FONT></FONT>).</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_CREATE_NEW</FONT></FONT>:
+	The XML element representing <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>
+	is rendered as a normal node at the position specified (with the
+	name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>).
+	It gets a new identifier, so there is no effect on the existing root
+	node of the workspace.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REMOVE_EXISTING</FONT></FONT>:
+	If deserialization is done through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	(acquired by <FONT FACE="Courier New, monospace"><FONT SIZE=2>getImportContentHandler</FONT></FONT>)
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	will be thrown. Similarly, if deserialization is done through
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>
+	will be thrown. Note that this is simply a special case of the
+	general rule that under this <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuidBehavior</FONT></FONT>
+	setting, an exception will be thrown on any attempt to import a node
+	with the same identifier as the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentAbsPath</FONT></FONT>
+	<I>or any of its ancestors </I>(which, of course, includes the root
+	node).</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REPLACE_EXISTING</FONT></FONT>:
+	This setting is equivalent to importing into the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and then calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>save
+	</FONT></FONT> since <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	always operates according to identifier. In both cases the result is
+	that the root node of the workspace will be replaced along with its
+	subgraph (i.e., the whole workspace), just as if the root node had
+	been altered through the normal <FONT FACE="Courier New, monospace"><FONT SIZE=2>getNode</FONT></FONT>-<I>make
+	</I><I>change</I>-<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	cycle.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_THROW</FONT></FONT>:
+	Under this setting a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	method will throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>.</P>
+	<P>Note that an
+	implementation is always free to prevent the replacement of a root
+	node (or indeed any node) either through access control restrictions
+	or other implementation-specific restrictions.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

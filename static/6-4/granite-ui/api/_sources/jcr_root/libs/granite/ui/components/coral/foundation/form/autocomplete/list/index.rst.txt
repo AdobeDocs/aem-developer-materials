@@ -1,0 +1,41 @@
+
+AutocompleteList
+================
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/form/autocomplete/list
+
+   The suggestion implementation showing the list to the user.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:FormAutocompleteList] > granite:commonAttrs
+
+      /**
+       * The `URI Template <http://tools.ietf.org/html/rfc6570>`_ that is giving the response of HTML of the suggestion.
+       * The format of the HTML is a stream of ``li`` elements. For example:
+       *
+       * .. code-block:: html
+       *
+       *    <li class="coral-SelectList-item coral-SelectList-item--option" data-value="itemvalue1">Item Display 1</li>
+       *    <li class="coral-SelectList-item coral-SelectList-item--option" data-value="itemvalue2">Item Display 2</li>
+       *
+       * The URI Template supports ``start``, ``end``, ``query`` variables.
+       *
+       * start
+       *    The start index of the paging of selection items to be returned.
+       *
+       * end
+       *    The end index of the paging of selection items to be returned.
+       *
+       * query
+       *    The text that the user queries for.
+       *
+       * Example::
+       *
+       *    /path.html?start={start}&end={end}&query={query}&my-other-param=param1
+       *
+       * If this property is not set, the items are read from the DataSource.
+       */
+      - src (StringEL)

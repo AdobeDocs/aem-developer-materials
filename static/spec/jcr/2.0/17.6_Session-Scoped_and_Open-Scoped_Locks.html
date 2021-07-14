@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.6 Session-Scoped and Open-Scoped Locks (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.6 Session-Scoped and Open-Scoped Locks</H2>
+	<P>When a lock is placed
+	on a node, it can be specified to be either a session-scoped lock or
+	an open-scoped lock. A session-scoped lock automatically expires
+	when the session through which the lock owner placed the lock
+	expires. An open-scoped lock does not expire until it is explicitly
+	unlocked, it times out or an implementation-specific limitation
+	intervenes.</P>
+	<P>In the case of
+	open-scoped locks, the lock token must be attached to the current
+	session in order to alter any nodes locked by that token's lock.</P>
+	<P>In the case of
+	session-scoped locks, the user need not explicitly do anything since
+	the lock is automatically associated with the session and expires
+	with it in any case.</P>
+	<P>With open–scoped
+	locks the token is automatically attached to the session. However,
+	the user must additionally ensure that a reference to the lock token
+	is preserved separately so that it can later be attached to another
+	session since, presumably, an open-scoped lock is being used to
+	avoid co-expiration with the initial session. It is for handling
+	these cases of attaching an existing lock token from a previous
+	session to a new session that the methods <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.addLockToken</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.removeLockToken</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockManager.getLockTokens</FONT></FONT>
+	are provided (see §17.11 <I>LockManager Object</I>).</P>
+	<P>To determine an
+	existing lock’s scoping, the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.isSessionScoped</FONT></FONT>
+	is provided.</P>
+	<P>If a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	is session-scoped, the method <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.isLockOwningSession</FONT></FONT>
+	can be used to determine whether the current session is the lock
+	owner.</P>
+	<P>An implementation <I>may</I>
+	support simultaneous ownership of open-scoped locks across sessions.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

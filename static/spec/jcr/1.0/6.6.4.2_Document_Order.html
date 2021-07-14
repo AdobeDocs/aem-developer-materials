@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.4.2 Document Order (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.4.2." id="section_6.6.4.2."></a>6.6.4.2 Document Order
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The results returned by an XPath query <i>may</i> reflect the document order of the elements returned if no <b>order by</b> clause is specified (see 6.6.3.5 Ordering Specifier, above).
+								</p>
+							
+							
+								<p class="c5">
+									Support for this is optional, since some implementations (notably, database-backed ones) will not have a notion of document order.
+								</p>
+							
+							
+								<p class="c5">
+									If document order searching is supported, then the context functions related to document order, <b>last()</b> and <b>position()</b>, must also be supported.
+								</p>
+							
+							
+								<p class="c5">
+									<b>Repository.getDescriptor(</b><b>QUERY_XPATH_DOC_ORDER</b><b>)</b> returning “<b>true</b>” indicates that document order searching is supported.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

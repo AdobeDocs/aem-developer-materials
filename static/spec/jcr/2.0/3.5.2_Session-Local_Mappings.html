@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.5.2 Session-Local Mappings (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.5.2 Session-Local Mappings</H3>
+	<P>A local set of
+	namespace mappings is associated with each session. When a new
+	session is acquired, the mappings present in the persistent
+	namespace registry are copied to the local namespace mappings of
+	that session. A user can then add new mappings or change existing
+	ones. The resulting mapping table applies only within the scope of
+	that session (see §5.11 <I>Namespace Mapping</I>).</P>
+	<P>If a JCR method
+	returns a name from the repository with a namespace URI for which no
+	local mapping exists, a prefix is created automatically and a
+	mapping between that prefix and the namespace URI in question is
+	added to the set of local mappings. The new prefix must differ from
+	those already present among the set of local mappings. If a JCR
+	method is passed a name or path containing a prefix which does not
+	exist in the local mapping an exception is thrown.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

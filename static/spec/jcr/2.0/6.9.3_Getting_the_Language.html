@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.9.3 Getting the Language (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.9.3 Getting the Language</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	Query.getLanguage()</FONT></FONT></P>
+	<P>returns the language
+	in which the query is specified. If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	was created with an explicitly supplied <FONT FACE="Courier New, monospace"><FONT SIZE=2>language</FONT></FONT>
+	string parameter using <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryManager.createQuery</FONT></FONT>
+	then this method returns that string.</P>
+	<P>If the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query</FONT></FONT>
+	is actually a <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModel</FONT></FONT>
+	created with <FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.createQuery</FONT></FONT>
+	then <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.getLanguage</FONT></FONT>
+	will return the string constant <FONT FACE="Courier New, monospace"><FONT SIZE=2>Query.JCR_SQL2</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

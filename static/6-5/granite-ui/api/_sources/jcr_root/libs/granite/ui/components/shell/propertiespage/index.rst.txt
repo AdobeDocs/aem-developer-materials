@@ -1,0 +1,140 @@
+
+PropertiesPage
+==============
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/propertiespage
+
+   Properties page is a page showing the properties of a resource.
+
+   It also supports :doc:`resource filtering using FilteringResourceWrapper </jcr_root/libs/granite/ui/docs/server/resourcehiding>` and acts as its container.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellPropertiesPage]
+
+      /**
+       * A general purpose ID to uniquely identify the console.
+       *
+       * The recommended value is hierarchical separated by "-".
+       * e.g. "cq-commerce-report"
+       */
+      - consoleId (StringEL)
+
+      /**
+       * The base title of the page.
+       *
+       * e.g. "AEM Sites"
+       */
+      - jcr:title (String)
+
+      /**
+       * The URL to navigate to when closing this page, e.g., when the user presses "Close".
+       */
+      - backHref (StringEL)
+
+      /**
+       * The id of the form component.
+       *
+       * The intention of propertiespage is to standardize the property screen, including the behaviour of form success handler whether the page is reloaded or redirected or otherwise.
+       * Thus, it is RECOMMENDED that the form is a :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/form/index` without any success handler configured.
+       * propertiespage will manage the form success handler behaviour internally.
+       */
+      - formId (String)
+
+      /**
+       * When ``formId`` is specified, ``true`` to indicate if a simple "Save" button is rendered, ``false`` to render a more complex form actions (currently "Save & Close" and "Save").
+       *
+       * Note that this flag is only temporary for compatibility, since the intention is to standardize the UX as the behaviour when the value is ``false``.
+       */
+      - simpleSave (Boolean) = true
+
+      /**
+       * To redirect the page, this resource can be specified.
+       * It will be included, where the redirect can be performed.
+       */
+      + redirector
+
+      /**
+       * A folder to specify the content of ``<head>`` of the page.
+       * Its child resources are iterated and included as is.
+       */
+      + head
+
+      /**
+       * The component to render the title.
+       *
+       * This is optional, and if not specified, the value of ``jcr:title`` is used.
+       * If the title is just a simple string, :doc:`../title/index` can be used.
+       *
+       * The only requirement of the component is to generate a simple text without any wrapping markup.
+       * E.g. To have a title of "My Page", just make the component do something like ``out.print("My Page")``.
+       */
+      + title
+
+      /**
+       * The header area just above the properties view.
+       * Any component can be used here.
+       */
+      + header
+
+      /**
+       * The :doc:`render condition </jcr_root/libs/granite/ui/docs/server/rendercondition>` component to check if the form is editable by the current session.
+       *
+       * By default the form is assumed to be editable, even though the form submission may fail and handled accordingly.
+       */
+      + editcondition
+
+      /**
+       * The component to render the properties view (the content area).
+       */
+      + content
+
+      /**
+       * The footer area just below the properties view.
+       * Any component can be used here.
+       */
+      + footer
+
+      /**
+       * The folder for the actions applicable in the context of the properties page.
+       *
+       * The action can be any action component such as :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/button/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/anchorbutton/index`,
+       * :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/pulldown/index`,
+       *
+       * The ``actionBar`` variant of the components above SHOULD be used, unless ``primary`` variant is used.
+       */
+      + actions
+
+      /**
+       * A folder to specify the panels of the rail.
+       *
+       * Its child resources are considered as the panels, where each MUST be a :doc:`../../coral/foundation/panel/railpanel/index` (or its derivative).
+       *
+       * By default the rail is closed. To make it always open, ``alwaysActive`` boolean property can be specified.
+       * One of the railpanel then must be configured to be active.
+       */
+      + rails
+
+
+   Example::
+
+      + mypage
+        - sling:resourceType = "granite/ui/components/shell/propertiespage"
+        - jcr:title = "My Properties"
+        - formId = "myFormId"
+        - backHref = '${empty header.Referer ? granite:concat("/mycollection.html", granite:encodeURIPath(granite:relativeParent(param.item, 1))) : header.Referer}'
+        + content
+          - sling:resourceType = "granite/ui/components/coral/foundation/form"
+          - granite:id = "myFormId"
+        + rails
+          - alwaysActive = true
+          + panel1
+            - sling:resourceType = "granite/ui/components/coral/foundation/panel/railpanel"
+            - jcr:title = "Panel 1"
+            - active = true
+          + panel2
+            - sling:resourceType = "granite/ui/components/coral/foundation/panel/railpanel"
+            - jcr:title = "Panel 2"

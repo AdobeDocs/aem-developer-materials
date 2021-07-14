@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.1 Session Read Methods (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.1." id="section_6.2.1."></a>6.2.1 Session Read Methods
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following are the methods of <b>Session</b> associated with accessing information about a repository and for accessing content from this <b>Session</b>'s workspace. <b>Session</b> has other methods as well. In a level 1-only implementation, these other methods will either do nothing or throw an exception. See and <a href="7.1_Writing_Repository_Content.html">7.1</a> <i>Writing Repository Content</i>.
+								</p>
+							
+							
+								<p class="c5">
+									The most important methods exposed by Session are those that provide access to the Items in the workspace tree: typically the user would begin by calling <b>Session.getRootNode()</b>, which returns the root node of the workspace. From this the user can traverse the workspace tree. It is also possible to directly access a node in the workspace with <b>Session.getNodeByUUID</b> or <b>Session.getItem</b>.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Session</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Repository</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getRepository()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>Repository</b> object through which this <b>Session</b> was acquired.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getUserID()</b>
+									</p>
+									<p class="c5">
+										Gets the user ID associated with this <b>Session</b>. How the user ID is set is up to the implementation, it may be a string passed in as part of the credentials or it may be a string acquired in some other way. This method is free to return an “anonymous user ID” or <b>null</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getAttributeNames()</b>
+									</p>
+									<p class="c5">
+										Returns the names of the attributes set in this session as a result of the <b>Credentials</b> that were used to acquire it. Not all <b>Credentials</b> implementations will contain attributes (though, for example, <b>SimpleCredentials</b> does allow for them). This method returns an empty array if the <b>Credentials</b> instance did not provide attributes.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Object</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getAttribute(String name)</b>
+									</p>
+									<p class="c5">
+										Returns the value of the named attribute as an <b>Object</b>, or <b>null</b> if no attribute of the given name exists. See <b>Session.getAttributeNames</b>, above.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Workspace</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getWorkspace()</b>
+									</p>
+									<p class="c5">
+										Returns the <b>Workspace</b> attached to this <b>Session</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getRootNode()</b>
+									</p>
+									<p class="c5">
+										Returns the root node of the workspace, <b>/</b>. This node is the main access point to the content of the workspace.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Item</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getItem(String absPath)</b>
+									</p>
+									<p class="c5">
+										Returns the item at the specified absolute path in the workspace.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if no item at <b>absPath</b> exists.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>itemExists(String absPath)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if an item exists at <b>absPath</b> and this <b>Session</b> has read access to it; otherwise returns <b>false</b>. Also returns <b>false</b> if the specified <b>absPath</b> is malformed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getNodeByUUID(String uuid)</b>
+									</p>
+									<p class="c5">
+										Returns the node specified by the given UUID. Only applies to nodes that expose a UUID, in other words, those of mixin node type <b>mix:referenceable</b>.
+									</p>
+									<p class="c5">
+										An <b>ItemNotFoundException</b> is thrown if no item with the specified UUID exists.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Session</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>impersonate(Credentials c)</b>
+									</p>
+									<p class="c5">
+										Returns a new <b>Session</b> in accordance with the specified (new) <b>Credentials</b>. Allows the current user to “impersonate” another using incomplete or relaxed credentials requirements (perhaps including a user name but no password, for example), assuming that this <b>Session</b> gives them that permission.
+									</p>
+									<p class="c5">
+										The new <b>Session</b> is tied to a new <b>Workspace</b> instance. In other words, <b>Workspace</b> instances are not re-used. However, the <b>Workspace</b> instance returned represents the same actual persistent workspace entity in the repository as is represented by the <b>Workspace</b> object tied to this <b>Session</b>.
+									</p>
+									<p class="c5">
+										A <b>LoginException</b> is thrown if this session does not have sufficient permissions to perform the operation.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>logout()</b>
+									</p>
+									<p class="c5">
+										Releases all resources associated with this <b>Session</b>. This method should be called when a <b>Session</b> is no longer needed.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>isLive()</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if this <b>Session</b> object is usable by the client. A usable <b>Session</b> object is one that is neither logged-out, timed-out nor in any other way disconnected from the repository.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

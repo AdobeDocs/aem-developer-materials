@@ -1,0 +1,1205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25 Appendix (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>25 Appendix</H1>
+<a name="25.1 Treatment of Identifiers"></a>	<H2>25.1 Treatment of Identifiers</H2>
+	<P>A number of different
+	methods in the API transfer node state from one location to another.
+	They often differ in how they treat the identifier of the node. Some
+	methods always behave the same way in this regard, others have
+	various options that control their behavior. The following table
+	summarizes the behaviors of the methods.</P>
+	<TABLE WIDTH=628 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=8 CELLSPACING=0>
+		<COL WIDTH=146>
+		<COL WIDTH=188>
+		<COL WIDTH=243>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=32>
+				<P><B>Method</B></P>
+			</TD>
+			<TD WIDTH=188>
+				<P><B>Referenceable
+				Identifiers</B></P>
+			</TD>
+			<TD WIDTH=243>
+				<P><B>Non-referenceable
+				Identifiers</B></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=74>
+				<P><B>Save<BR></B><BR>
+				</P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=447>
+				<P>Identifiers <I>must</I>
+				be preserved, with the possible exception of the first save of a
+				new node (see §3.7.1 <I>Identifier Assignment</I>). The state of
+				a transient node is saved to the persistent node with the same
+				identifier.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=19>
+				<P><B>Copy<BR></B><FONT SIZE=1 >(within
+				a workspace)</FONT></P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=447>
+				<P>New identifiers
+				<I>must</I> be created.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=19>
+				<P><B>Copy<BR></B><FONT SIZE=1 >(between
+				workspaces)</FONT></P>
+			</TD>
+			<TD WIDTH=188>
+				<P>New referenceable
+				identifiers <I>must</I> be created.</P>
+			</TD>
+			<TD WIDTH=243>
+				<P>New
+				non-referenceable identifiers <I>may</I> be created. The
+				stability of non-referenceable identifiers is a repository
+				implementation variant.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=33>
+				<P><B>Move </B>
+				</P>
+			</TD>
+			<TD WIDTH=188>
+				<P>Referenceable
+				identifiers <I>must</I> be preserved.</P>
+			</TD>
+			<TD ROWSPAN=3 WIDTH=243>
+				<P>Non-referenceable
+				identifiers <I>may</I> be preserved. The stability of
+				non-referenceable identifiers is a repository implementation
+				variant.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=136>
+				<P><B>Clone, Restore</B></P>
+			</TD>
+			<TD WIDTH=188>
+				<P>Referenceable
+				identifiers <I>must</I> be preserved. On conflict with an
+				existing node a flag governs whether the existing node is removed
+				or an exception thrown.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=19>
+				<P><B>Update, Merge</B></P>
+			</TD>
+			<TD WIDTH=188>
+				<P>Referenceable
+				identifiers <I>must</I> be preserved. On conflict with an
+				existing node, that node is replaced at its existing location in
+				the target workspace.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=146 HEIGHT=18>
+				<P><B>Import</B></P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=447>
+				<P>A flag determines
+				whether new identifiers are created or incoming ones preserved.
+				On conflict with an existing node the options are to either
+				replace the existing node in place, remove the existing node, or
+				throw an exception.</P>
+			</TD>
+		</TR>
+	</TABLE>
+<a name="25.2 Compact Node Type Definition Notation"></a>	<H2>25.2 Compact Node Type Definition Notation</H2>
+	<P>The following grammar
+	defines the compact node type definition (CND) notation used to
+	define node types throughout this specification.</P>
+<a name="25.2.1 String Literals in CND Grammar"></a>	<H3>25.2.1 String Literals in CND Grammar</H3>
+	<P>Throughout this
+	section string literals that appear in the syntactic grammar
+	defining CND must be interpreted as specified in §1.3.1 <I>String
+	Literals in Syntactic Grammars</I>.</P>
+<a name="25.2.2 Variant Node Type Definitions"></a>	<H3>25.2.2 Variant Node Type Definitions</H3>
+	<P>In a CND, the presence
+	of a question mark (“<FONT FACE="Courier New, monospace"><FONT SIZE=2>?</FONT></FONT>”)
+	indicates that an attribute in question can vary across repository
+	implementations (see §3.7.10 <I>Base Primary Node Type</I> and
+	3.7.11 <I>Standard Application Node Types</I>).</P>
+	<P>In the case of the
+	queryable node type attribute, the absence of an explicit keyword
+	(either <FONT FACE="Courier New, monospace"><FONT SIZE=2>query</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>noquery</FONT></FONT>)
+	indicates that the attribute is a variant.</P>
+	<P>Such <I>variant node
+	type definitions</I> cannot be instantiated in a repository as-is.
+	If an implementation supports a variant node type its node type
+	registry must contain a definition of that node type in which each
+	variant attribute is resolved to a concrete value.</P>
+<a name="25.2.3 CND Grammar"></a>	<H3>25.2.3 CND Grammar</H3>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A CND consists of zero or
+	more blocks, each of which is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">either a namespace
+	declaration or a node type definition.</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">Namespace prefixes referenced
+	in a node type definition</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">block must be declared in a
+	preceding namespace declaration</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">block. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Cnd ::=
+	{NamespaceMapping | NodeTypeDef}</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A namespace declaration
+	consists of prefix/URI pair. The</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">prefix must be a valid JCR
+	namespace prefix, which is the</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">same as a valid XML namespace
+	prefix. The URI can in fact be</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">any string. Just as in XML,
+	it need not actually be a URI,</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">though adhering to that
+	convention is recommended. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NamespaceMapping ::= '&lt;'
+	Prefix '=' Uri '&gt;'</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Prefix ::= String</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Uri ::= String</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A node type definition
+	consists of a node type name followed</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">by an optional supertypes
+	block, an optional node type</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">attributes block and zero or
+	more blocks, each of which is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">either a property or child
+	node definition. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeTypeDef
+	::= NodeTypeName [Supertypes]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[NodeTypeAttribute
+	{NodeTypeAttribute}]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>{PropertyDef
+	| ChildNodeDef}</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node type name is
+	delimited by square brackets and must</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">be a valid JCR name. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeTypeName ::= '[' String
+	']'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The list of supertypes is
+	prefixed by a '&gt;'. If the node</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">type is not a mixin then it
+	implicitly has <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	as a</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">supertype even if neither
+	nt:base nor a subtype of nt:base</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">appears in the list or if
+	this element is absent. A question</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mark indicates that the
+	supertypes list is a variant. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Supertypes
+	::= '&gt;' (StringList | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node type attributes are
+	indicated by the presence or</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of keywords. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeTypeAttribute
+	::= Orderable | Mixin | Abstract | Query |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>PrimaryItem</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* In the following, mention of
+	a keyword, like 'orderable',</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">refers to all the forms of
+	that keyword, including short</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">forms ('ord' and 'o', for
+	example) */</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'orderable' is present
+	without a '?' then orderable child</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">nodes is supported. If
+	'orderable' is present with a '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then orderable child nodes is
+	a variant. If 'orderable'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is absent then orderable
+	child nodes is not supported. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Orderable ::= ('orderable' |
+	'ord' | 'o') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'mixin' is present without
+	a '?' then the node type is a</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mixin. If 'mixin' is present
+	with a '?' then the mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">status is a variant. If
+	'mixin' is absent then the node type</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is primary. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Mixin ::= ('mixin' | 'mix' |
+	'm') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'abstract' is present
+	without a '?' then the node type is </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">abstract. If 'abstract' is
+	present with a '?' then the</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">abstract status is a variant.
+	If 'abstract' is absent then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the node type is concrete. */
+	 </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Abstract ::= ('abstract' |
+	'abs' | 'a') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'query' is present then
+	the node type is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">queryable. If 'noquery' is
+	present then the node type is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">not queryable. If neither
+	query nor noquery are present then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the queryable setting of the
+	node type is a variant. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Query ::=
+	('noquery' | 'nq') | ('query' | 'q' )</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'primaryitem' is present
+	without a '?' then the string</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">following it is the name of
+	the primary item of the node</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">type. If 'primaryitem' is
+	present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the primary item is a
+	variant. If 'primaryitem' is absent</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then the node type has no
+	primary item. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PrimaryItem
+	::= ('primaryitem'| '!')(String | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A property definition
+	consists of a property name element</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">followed by optional property
+	type, default values, property</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">attributes and value
+	constraints elements. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyDef
+	::= PropertyName [PropertyType] [DefaultValues]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[PropertyAttribute
+	{PropertyAttribute}]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[ValueConstraints]</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The
+	property name, or '*' to indicate a residual property</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">definition, is prefixed with
+	a '-'. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyName ::= '-' String</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The property type is
+	delimited by parentheses ('*' is a</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">synonym for UNDEFINED). If
+	this element is absent,</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">STRING is assumed. A '?'
+	indicates that this attribute is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">a variant. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyType ::= '('
+	('STRING' | 'BINARY' | 'LONG' | 'DOUBLE' |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'BOOLEAN'
+	| 'DATE' | 'NAME' | 'PATH' | </B></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'REFERENCE'
+	| 'WEAKREFERENCE' |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'DECIMAL'
+	| 'URI' | 'UNDEFINED' | '*' |<BR> '?') ')'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The default values, if any,
+	are listed after a '='. The</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">attribute is a list in order
+	to accommodate multi-</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">value properties. The absence
+	of this element indicates that</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">there is no static default
+	value reportable. A '?' indicates</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">that this attribute is a
+	variant */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>DefaultValues ::= '='
+	(StringList | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The value constraints, if
+	any, are listed after a '&lt;'. The</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of this element
+	indicates that no value constraints</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">reportable within the value
+	constraint syntax. A '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">indicates that this attribute
+	is a variant */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>ValueConstraints ::= '&lt;'
+	(StringList | '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* A child node definition
+	consists of a node name element</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">followed by optional required
+	node types, default node types</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">and node attributes elements.
+	*/</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>ChildNodeDef ::= NodeName
+	[RequiredTypes] [DefaultType]</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>[NodeAttribute
+	{NodeAttribute}]</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node
+	name, or '*' to indicate a residual property</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">definition, is prefixed with
+	a '+'. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeName ::= '+' String</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The required primary node
+	type list is delimited by</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">parentheses.
+	If this element is missing then a required</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">primary node type of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>
+	is assumed. A '?' indicates </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">that the this attribute is a
+	variant. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>RequiredTypes
+	::= '(' (StringList | '?') ')'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The default primary node type
+	is prefixed by a '='. If this</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">element is missing then no
+	default primary node type is set.</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">A '?' indicates that this
+	attribute is a variant */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>DefaultType ::= '=' (String |
+	'?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The property attributes are
+	indicated by the presence or</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of keywords. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>PropertyAttribute ::=
+	Autocreated | Mandatory | Protected | </B></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>Opv |
+	Multiple | QueryOps | NoFullText | </B></FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>NoQueryOrder</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The node attributes are
+	indicated by the presence or</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absence of keywords. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NodeAttribute ::= Autocreated
+	| Mandatory | Protected |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>Opv | Sns</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'autocreated' is present
+	without a '?' then the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is autocreated. If
+	'autocreated' is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the autocreated status is a
+	variant. If 'autocreated' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the item is not
+	autocreated. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Autocreated ::=
+	('autocreated' | 'aut' | 'a' )['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'mandatory' is present
+	without a '?' then the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is mandatory. If 'mandatory'
+	is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the mandatory status is a
+	variant. If 'mandatory' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the item is not
+	mandatory. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Mandatory ::= ('mandatory' |
+	'man' | 'm') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'protected' is present
+	without a '?' then the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is protected. If 'protected'
+	is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the protected status is a
+	variant. If 'protected' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the item is not
+	protected. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Protected ::= ('protected' |
+	'pro' | 'p') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The OPV status of an item is
+	indicated by the presence of</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">that corresponding keyword.
+	If no OPV keyword is present</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then an OPV status of COPY is
+	assumed. If the keyword 'OPV'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">followed by a '?' is present
+	then the OPV status of the item</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is a variant. </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Opv ::= 'COPY' | 'VERSION' |
+	'INITIALIZE' | 'COMPUTE' |</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>'IGNORE' | 'ABORT' |
+	('OPV' '?')</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'multiple' is present
+	without a '?' then the property </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">is multi-valued. If
+	'multiple' is present with a '?' then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the multi-value status is a
+	variant. If 'multiple' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">absent then the property is
+	single-valued. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Multiple ::= ('multiple' |
+	'mul' | '*') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* The available query
+	comparison operators are listed after</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the keyword 'queryops'. If
+	'queryops' is followed by a '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then this attribute is a
+	variant. If this element is absent</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then the full set of
+	operators is available. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>QueryOps ::= ('queryops' |
+	'qop')</B></FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace"><B>(('''Operator
+	{','Operator}''') | '?')</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Operator ::= '=' | '&lt;&gt;'
+	| '&lt;' | '&lt;=' | '&gt;' | '&gt;=' | 'LIKE'</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'nofulltext' is present
+	without a '?' then the property </FONT>
+	</P>
+	<P>
+	 <FONT FACE="Courier New, monospace">does not support full text
+	search. If 'nofulltext' is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">present with a '?' then this
+	attribute is a variant. If</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'nofulltext' is absent then
+	the property does support full</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">text search. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NoFullText
+	::= ('nofulltext' | 'nof') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'noqueryorder' is present
+	without a '?' then query</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">results cannot be ordered by
+	this property. If</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'noqueryorder' is present
+	with a '?' then this attribute is</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">a variant. If 'noqueryorder'
+	is absent then query results</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">can be ordered by this
+	property. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>NoQueryOrder ::=
+	('noqueryorder' | 'nqord') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* If 'sns' is present without a
+	'?' then the child node</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">supports same-name siblings.
+	If 'sns' is present with a '?'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">then this attribute is a
+	variant. If 'sns' is absent then</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">the child node does support
+	same-name siblings. */ </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Sns ::=
+	('sns' | '*') ['?']</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Strings */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>StringList ::= String {','
+	String}</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>String ::= QuotedString |
+	UnquotedString</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Quotes are used to allow for
+	strings (i.e., names, prefixes,</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">URIs, values or constraint
+	strings) with characters that</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">would otherwise be
+	interpreted as delimiters in CND. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>QuotedString ::=
+	SingleQuotedString | DoubleQuotedString</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Within a SingleQuotedString,
+	single quote literals (') must</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">be escaped. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>SingleQuotedString ::= '''
+	UnquotedString '''</B></FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* Within a DoubleQuotedString,
+	double quote literals (&quot;) must</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">be escaped. */</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>DoubleQuotedString
+	::= '&quot;' UnquotedString '&quot;'</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>UnquotedString ::= XmlChar
+	{XmlChar}</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>XmlChar ::= /* see §3.2.2
+	Local Names */</B></FONT></P>
+<a name="25.2.3.1 Case Insensitive Keywords"></a>	<H4>25.2.3.1 Case Insensitive Keywords</H4>
+	<P>The keywords of CND,
+	though defined above as terminal strings with specific cases, are in
+	fact case-insensitive. For example, <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+	can be written <FONT FACE="Courier New, monospace"><FONT SIZE=2>string</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>String</FONT></FONT>
+	or even <FONT FACE="Courier New, monospace"><FONT SIZE=2>StRiNg</FONT></FONT>.</P>
+<a name="25.2.3.2 Escaping"></a>	<H4>25.2.3.2 Escaping</H4>
+	<P>The standard Java
+	escape sequences are supported:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\n</FONT></FONT>
+	newline</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\t</FONT></FONT>
+	tab</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\b</FONT></FONT>
+	backspace</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\f</FONT></FONT>
+	form feed</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\r</FONT></FONT>
+	return</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\”</FONT></FONT>
+	double quote</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\'</FONT></FONT>
+	single quote</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\”</FONT></FONT>
+	double quote</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\\</FONT></FONT>
+	back slash</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>\u</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><I>HHHH</I></FONT></FONT>
+	Unicode character in hexadecimal</P>
+<a name="25.2.3.3 Comments"></a>	<H4>25.2.3.3 Comments</H4>
+	<P>Comments can be
+	included in the notation using either of the standard Java forms. A
+	comment is defined as:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>Comment ::= LineComment |
+	BlockComment</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>LineComment
+	::= &quot;//&quot; LineCommentText </B></FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>BlockComment
+	::= &quot;/*&quot; BlockCommentText &quot;*/&quot;</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>LineCommentText ::= /* Any
+	text ending in a newline */</B></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><B>BlockComment ::= /* Any text
+	except the end-block-comment<BR> character pair
+	*/</B></FONT></P>
+	<P>A comment can appear
+	between any two valid tokens of the CND grammar. Comments are not
+	defined within the main CND grammar, but are intended to be stripped
+	during preprocessing, prior to the actual parsing of the CND.</P>
+<a name="25.2.3.4 Extension Syntax"></a>	<H4>25.2.3.4 Extension Syntax</H4>
+	<P>Vendor-specific
+	extensions are supported through the extension syntax:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>VendorExtension
+	::= &quot;{&quot; Vendorname VendorBody &quot;}&quot;</B></FONT></FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>VendorName
+	::= /* A unique vendor-specific identifier<BR> 
+	containing no whitespace */</B></FONT></FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>VendorBody
+	::= /* Any string not including &quot;}&quot; */</B></FONT></FONT></FONT></P>
+	<P>Like a comment, an
+	extension can appear between any two tokens of the CND grammar.
+	Extensions are not defined within the main CND grammar, but are
+	intended to be handled during preprocessing, prior to the actual
+	parsing of the CND. The first whitespace-delimited token of the
+	extension should be a unique vendor-specific identifier. The
+	semantics of the extension body are implementation-specific.</P>
+<a name="25.2.3.5 Whitespace and Short Forms"></a>	<H4>25.2.3.5 Whitespace and Short Forms</H4>
+	<P>The notation can be
+	compacted by taking advantage of the following the fact that spacing
+	around keychars <FONT FACE="Courier New, monospace"><FONT SIZE=2>([
+	] &gt; , - ( ) = &lt;</FONT></FONT>), newlines and
+	indentation are not required. So, the following is also well-formed:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[x]&gt;y,z
+	orderable mixin -p(DATE)=a,b primary mandatory autocreated protected
+	multiple VERSION &lt;c,d</FONT></P>
+	<P>Additionally, though
+	spaces are required around the keywords (orderable, mixin, date,
+	mandatory, etc.), short forms for keywords can be used. So, this:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">[x]&gt;y,z o
+	m-p(DATE)=a,b ! m a p * VERSION &lt;c,d</FONT></P>
+	<P>is also well-formed.</P>
+<a name="25.2.4 Examples"></a>	<H3>25.2.4 Examples</H3>
+	<P>Here is a “worst-case
+	scenario” example that demonstrates all the features of the
+	notation:</P>
+	<P>
+	<FONT FACE="Courier New, monospace">/* An example node type
+	definition */</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The namespace declaration</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">&lt;ns =
+	'http://namespace.com/ns'&gt;</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Node type name</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">[ns:NodeType]</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// Supertypes</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">&gt; ns:ParentType1,
+	ns:ParentType2</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node type is abstract</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">abstract</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node type supports
+	orderable child nodes</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">orderable</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This is a mixin node type</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">mixin</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node type is not
+	queryable</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">noquery</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// ex:property is the primary
+	item</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">primaryitem ex:property</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// A property called
+	'ex:property' of type STRING</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">- ex:property
+	(STRING)</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The default values for this
+	(multi-value) property are...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">= 'default1', 'default2'</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This
+	property is... </FONT>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">mandatory autocreated protected</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// ...and
+	multi-valued.</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">multiple<BR></FONT><BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// It has an on-parent-version
+	setting of...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">VERSION</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The constraint settings
+	are...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">&lt; 'constraint1',
+	'constraint2'</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The supported query operators
+	are...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">queryops '=, &lt;&gt;, &lt;, &lt;=,
+	&gt;, &gt;=, LIKE'</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// The property is not full text
+	searchable</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">nofulltext</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// query results are not
+	orderable by this property</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">noqueryorder</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// A child node called ns:node
+	which must be of</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">// at least the node types
+	ns:reqType1 and ns:reqType2</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">+ ns:node (ns:reqType1,
+	ns:reqType2)</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// with default primary node
+	type is...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">= ns:defaultType</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// This node is...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">mandatory autocreated protected</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// supports same name siblings</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">sns</FONT></P>
+	<P>
+	<BR><BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">// and has an on-parent-version
+	setting of ...</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">VERSION</FONT></P>
+</DIV>
+<DIV ID="sdfootnote1">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://unicode.org/charts/PDF/U0000.pdf</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote2">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote2sym" HREF="#sdfootnote2anc">2</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://tools.ietf.org/html/rfc3986#section-3</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote3">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote3sym" HREF="#sdfootnote3anc">3</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</A></FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote4">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote4sym" HREF="#sdfootnote4anc">4</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.ietf.org/rfc/rfc3986.txt</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote5">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote5sym" HREF="#sdfootnote5anc">5</A>
+	see <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.ietf.org/rfc/rfc4646.txt</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote6">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote6sym" HREF="#sdfootnote6anc">6</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.iana.org/assignments/media-types</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote7">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote7sym" HREF="#sdfootnote7anc">7</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.iana.org/assignments/character-sets</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote8">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote8sym" HREF="#sdfootnote8anc">8</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.ietf.org/rfc/rfc2616.txt</FONT></FONT>
+	§3.11.</P>
+</DIV>
+<DIV ID="sdfootnote9">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote9sym" HREF="#sdfootnote9anc">9</A>
+	See
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>http://java.sun.com/j2se/1.4.2/docs/guide/jar/<BR>jar.html#Service%20Provider</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote10">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote10sym" HREF="#sdfootnote10anc">10</A>
+	See the SQL:92 rules for <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;regular
+	identifier&gt;</FONT></FONT> (in ISO/IEC 9075:1992
+	§5.2 <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;token&gt;</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;separator&gt;</FONT></FONT>).</P>
+</DIV>
+<DIV ID="sdfootnote11">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote11sym" HREF="#sdfootnote11anc">11</A>
+	See the SQL:92 rules for <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;regular
+	identifier&gt;</FONT></FONT> (in ISO/IEC 9075:1992
+	§5.2 <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;token&gt;</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;separator&gt;</FONT></FONT>).</P>
+</DIV>
+<DIV ID="sdfootnote12">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote12sym" HREF="#sdfootnote12anc">12</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://tools.ietf.org/html/rfc4648</FONT></FONT>
+	§4.</P>
+</DIV>
+<DIV ID="sdfootnote13">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote13sym" HREF="#sdfootnote13anc">13</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#charsets">http://www.w3.org/TR/REC-xml/#charsets</A></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#NT-CharRef">http://www.w3.org/TR/REC-xml/#NT-CharRef</A></FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#wf-Legalchar">http://www.w3.org/TR/REC-xml/#wf-Legalchar</A></FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote14">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote14sym" HREF="#sdfootnote14anc">14</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.w3.org/TR/xmlschema-0/#ListDt</FONT></FONT>
+	for more information about the XML Schema list type.</P>
+</DIV>
+<DIV ID="sdfootnote15">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote15sym" HREF="#sdfootnote15anc">15</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#charsets">http://www.w3.org/TR/REC-xml/#charsets</A></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#NT-CharRef">http://www.w3.org/TR/REC-xml/#NT-CharRef</A></FONT></FONT>,
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2><A HREF="http://www.w3.org/TR/REC-xml/#wf-Legalchar">http://www.w3.org/TR/REC-xml/#wf-Legalchar</A></FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote16">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote16sym" HREF="#sdfootnote16anc">16</A>
+	This escaping scheme is based on the scheme described in ISO/IEC
+	9075-14:2003 for converting arbitrary strings into valid XML element
+	and attribute names.</P>
+</DIV>
+<DIV ID="sdfootnote17">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote17sym" HREF="#sdfootnote17anc">17</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.w3.org/TR/xml/#syntax</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote18">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote18sym" HREF="#sdfootnote18anc">18</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://www.w3.org/TR/xml/#charsets</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote19">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote19sym" HREF="#sdfootnote19anc">19</A>
+	See
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>http://java.sun.com/j2se/1.4.2/docs/api/org/xml/sax/<BR>ContentHandler.html</FONT></FONT>.</P>
+</DIV>
+<DIV ID="sdfootnote20">
+	<P><A CLASS="sdfootnotesym" NAME="sdfootnote20sym" HREF="#sdfootnote20anc">20</A>
+	One common case is a policy that affects both its bound node and the
+	subgraph below that node. However, any such <I>deepness</I>
+	attribute is internal to the policy and, like any other internal
+	characteristic of a policy, opaque to the JCR API except insofar as
+	it is part of the human-readable name and description. Note also
+	that, strictly speaking, a policy is not required to affect even its
+	bound node, though such an implementation would be uncommon.</P>
+</DIV>
+<DIV ID="sdfootnote21">
+	<P CLASS="sdfootnote-western"><A CLASS="sdfootnotesym" NAME="sdfootnote21sym" HREF="#sdfootnote21anc">21</A>
+	Recall that <I>outside a transaction</I> persistence of transient
+	state occurs immediately upon a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	while, within a transaction, the effect of any <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save</FONT></FONT>
+	calls is deferred until commit of the transaction.</P>
+</DIV>
+<DIV ID="sdfootnote22">
+	<P><A CLASS="sdfootnotesym" NAME="sdfootnote22sym" HREF="#sdfootnote22anc">22</A>
+	In some systems this feature is called “freeze” or “legal
+	hold” (when the hold is applied due to legal requirements).</P>
+</DIV>
+<DIV ID="sdfootnote23">
+	<P><A CLASS="sdfootnotesym" NAME="sdfootnote23sym" HREF="#sdfootnote23anc">23</A>
+	See <FONT FACE="Courier New, monospace"><FONT SIZE=2>http://java.sun.com/products/jta/index.html</FONT></FONT>.</P>
+	<P CLASS="sdfootnote-western"><BR><BR>
+	</P>
+</DIV>
+<DIV TYPE=FOOTER>
+	<P><SPAN ID="Frame22" DIR="LTR" >
+		<P><FONT COLOR="#5e7ca4"><SDFIELD TYPE=PAGE SUBTYPE=RANDOM FORMAT=PAGE>1</SDFIELD></FONT></P>
+	<BR><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

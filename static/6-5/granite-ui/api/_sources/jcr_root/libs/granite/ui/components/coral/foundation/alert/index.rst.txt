@@ -1,0 +1,38 @@
+
+Alert
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/alert
+
+   A component to show an alert to the user.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Alert] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The style of the alert.
+       */
+      - variant (String) = 'info' < 'error', 'warning', 'success', 'help', 'info'
+
+      /**
+       * The size of the alert:
+       *
+       * S
+       *    A small alert, usually employed for single line alerts without headers.
+       * L
+       *    A large alert, usually employed for multi-line alerts with headers.
+       */
+      - size (String) = 'S' < 'S', 'L'
+
+      /**
+       * The header text.
+       */
+      - jcr:title (String) i18n
+
+      /**
+       * The content HTML.
+       */
+      - text (String) i18n

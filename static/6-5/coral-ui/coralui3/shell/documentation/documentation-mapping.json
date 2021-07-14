@@ -1,0 +1,75 @@
+{
+  "documentation": {
+    "components": {
+      "coral-shell": {
+        "displayName": "Coral.Shell",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.js"
+        ],
+        "dependencies": []
+      },
+      "coral-shell-header": {
+        "displayName": "Coral.Shell.Header",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.Header.js",
+          "scripts/Coral.Shell.HomeAnchor.js"
+        ],
+        "dependencies": []
+      },
+      "coral-shell-workspaces": {
+        "displayName": "Coral.Shell.Workspaces",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.Workspaces.js",
+          "scripts/Coral.Shell.Workspace.js"
+        ],
+        "dependencies": []
+      },
+      "coral-shell-solutionswitcher": {
+        "displayName": "Coral.Shell.SolutionSwitcher",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.SolutionSwitcher.js",
+          "scripts/Coral.Shell.Solutions.js",
+          "scripts/Coral.Shell.Solution.js"
+        ],
+        "dependencies": [],
+        "specifications": [
+          {
+            "name": "Solution Switcher",
+            "url": "https://wiki.corp.adobe.com/display/CloudUI/Solution+Switcher"
+          }
+        ]
+      },
+      "coral-shell-menubar": {
+        "displayName": "Coral.Shell.MenuBar",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.Menu.js",
+          "scripts/Coral.Shell.MenuBar.js",
+          "scripts/Coral.Shell.MenuBar.Item.js"
+        ],
+        "related": [],
+        "dependencies": []
+      },
+      "coral-shell-user": {
+        "displayName": "Coral.Shell.User",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.User.js"
+        ],
+        "dependencies": []
+      },
+      "coral-shell-help": {
+        "displayName": "Coral.Shell.Help",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.Help.js"
+        ],
+        "dependencies": []
+      },
+      "coral-shell-orgswitcher": {
+        "displayName": "Coral.Shell.OrgSwitcher",
+        "jsDocSrc": [
+          "scripts/Coral.Shell.OrgSwitcher.js"
+        ],
+        "dependencies": []
+      }
+    }
+  }
+}

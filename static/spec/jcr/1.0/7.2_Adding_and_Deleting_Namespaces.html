@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.2 Adding and Deleting Namespaces (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_7.2." id="section_7.2."></a> 7.2 Adding and Deleting Namespaces
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									As discussed in <a href="6.3_Namespaces.html">6.3</a> <i>Namespaces</i>, above, each content repository has a single, persistent namespace registry represented by the <b>NamespaceRegistry</b> object accessed via <b>Workspace.getNamespaceRegistry()</b>. In level 1 only the <b>NamespaceRegistry</b> methods related to discovering information must function. In level 2 the <b>NamespaceRegistry</b> additionally allows for persistent changes to namespace mappings using the following methods:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>NamespaceRegistry</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>registerNamespace(String prefix, String uri)</b>
+									</p>
+									<p class="c5">
+										Sets a one-to-one mapping between <b>prefix</b> and <b>uri</b> in the global namespace registry of this repository.
+									</p>
+									<p class="c5">
+										Assigning a new prefix to a URI that already exists in the namespace registry erases the old prefix. In general this can be done, though an implementation is free to prevent particular remappings by throwing a <b>NamespaceException</b>.
+									</p>
+									<p class="c5">
+										On the other hand, taking a prefix that is already assigned to a URI and re-assigning it to a new URI in effect unregisters that URI. Therefore, the same restrictions apply to this operation as to <b>NamespaceRegistry.unregisterNamespace</b>:
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												Attempting to re-assign a built-in prefix (<b>jcr</b>, <b>nt</b>, <b>mix</b>, <b>xml</b> or the empty prefix) to a new URI will throw a <b>NamespaceException</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												Attempting to re-assign a prefix that is currently assigned to a URI that is present in content (either within an item name or within the value of a <b>NAME</b> or <b>PATH</b> property) will throw a <b>NamespaceException</b>. This includes prefixes in use within in-content node type definitions.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												Attempting to register a namespace with a prefix that begins with the characters “<b>xml</b>” (in any combination of case) will throw a <b>NamespaceException</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												An implementation may prevent the re-assignment of any other namespace prefixes for implementation-specific reasons by throwing a <b>NamespaceException</b>.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										In a level 1 implementation, this method always throws an <b>UnsupportedRepositoryOperationException</b>.
+									</p>
+									<p class="c5">
+										If the session associated with the <b>Workspace</b> object through which this registry was acquired does not have sufficient permissions to register the namespace an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>unregisterNamespace(String prefix)</b>
+									</p>
+									<p class="c5">
+										Removes a namespace mapping from the registry. The following restrictions apply:
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												Attempting to unregister a built-in namespace (<b>jcr</b>, <b>nt</b>, <b>mix</b>, <b>xml</b> or the empty namespace) will throw a <b>NamespaceException</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												Attempting to unregister a namespace that is currently present in content (either within an item name or within the value of a <b>NAME</b> or <b>PATH</b> property) will throw a <b>NamespaceException</b>. This includes prefixes in use within in-content node type definitions.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												An attempt to unregister a namespace that is not currently registered will throw a <b>NamespaceException</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												An implementation may prevent the unregistering of any other namespace for implementation-specific reasons by throwing a <b>NamespaceException</b>.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										In a level 1 implementation, this method always throws an <b>UnsupportedRepositoryOperationException</b>.
+									</p>
+									<p class="c5">
+										If the session associated with the <b>Workspace</b> object through which this registry was acquired does not have sufficient permissions to unregister the namespace an <b>AccessDeniedException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<br>
+									Once registered, a prefix can be used in the name of any node or property in the repository. The prefix serves as shorthand for the URI to which it is mapped. Because the space of URIs is universal managed, the combination of the per-repository namespace and the larger URI namespace can be used to provide universally uniqueness of node or property names. Of course, just as in the case of XML namespaces, ensuring this universal uniqueness requires applications to map their application-specific prefixes to URIs that are uniquely identified with that particular application.
+								</p>
+							
+							
+								<p class="c5">
+									The namespace registry always contains at least the following built-in mappings, which cannot be removed through the API:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>jcr -&gt; http://www.jcp.org/jcr/1.0</b><br>
+					Reserved for items defined within built-in node types. For example <b>jcr:content</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>nt -&gt; http://www.jcp.org/jcr/nt/1.0<br></b>Reserved for the names of built-in primary node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>mix -&gt; http://www.jcp.org/jcr/mix/1.0<br></b>Reserved for the names of built-in mixin node types.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>xml</b> <b>-&gt; http://www.w3.org/XML/1998/namespace</b><br>
+					Reserved for reasons of compatibility with XML.
+				</p>
+			</li>
+			<li>
+				<p>
+					“” (the empty prefix) -&gt; “”(the empty URI)<br>
+					This makes the <i>default namespace</i> the <i>empty URI</i>. In effect this means that a name without a prefix is identical in both its prefixed form and in its fully qualified form (i.e. when it is stored internally as <i>URI plus local name</i>). See <a href="6.3.3_Session_Namespace_Remapping.html">6.3.3</a> <i>Internal Storage of Names and Values</i>.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,14 @@
+
+Popover
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/popover
+
+   The popover.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Popover] > granite:commonAttrs, granite:renderCondition, granite:container

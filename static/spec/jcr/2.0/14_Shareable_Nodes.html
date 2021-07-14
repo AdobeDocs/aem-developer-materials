@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 14 Shareable Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>14 Shareable Nodes</H1>
+	<P>A repository may
+	support <I>shareable nodes</I>. This section describes the syntax
+	and behavior of the Java API for shareable nodes. For details on the
+	shareable nodes model see §3.9 <I>Shareable Nodes Model</I>.</P>
+	<P>Whether an
+	implementation supports shareable nodes can be determined by
+	querying the repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_SHAREABLE_NODES_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="14.1 Creation of Shared Nodes"></a>	<H2>14.1 Creation of Shared Nodes</H2>
+	<P>Cloning a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node into the same workspace is the standard way of creating a
+	shared node.</P>
+	<P>Given workspace <FONT FACE="Courier New, monospace"><FONT SIZE=2>W</FONT></FONT>,
+	and an existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>/A/B/C</FONT></FONT>,
+	the call</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>W.clone(“W”,
+	“/A/B/C”, “/X/Y/Z”, false)</FONT></FONT></P>
+	<P>will create a new node
+	at <FONT FACE="Courier New, monospace"><FONT SIZE=2>/X/Y/Z</FONT></FONT>
+	that shares with <FONT FACE="Courier New, monospace"><FONT SIZE=2>/A/B/C</FONT></FONT>.</P>
+	<P>Note that if the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	flag is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>,
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.clone</FONT></FONT>
+	does not create a shared node, but instead behaves identically to a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.move</FONT></FONT>.</P>
+<a name="14.1.1 Shared Node Creation on Restore  "></a>	<H3>14.1.1 Shared Node Creation on Restore  </H3>
+	<P>If
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>restoreByLabel</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>merge</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>update</FONT></FONT>
+	is called and this call would create a node with the same identifier
+	as that of an existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node in the same workspace without at the same time removing that
+	existing node (that is, <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	is set to <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>),
+	then the new node is created and is added to the shared set of the
+	existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node.</P>
+<a name="14.1.2 Shared Node Creation on Import"></a>	<H3>14.1.2 Shared Node Creation on Import</H3>
+	<P>During import the
+	behavior of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_THROW</FONT></FONT>
+	indicates that if an incoming referenceable node has the same
+	identifier as an existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node in the workspace, the incoming node is created and added to the
+	shared set of the existing <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	node (see §3.9.1 <I>mix:shareable</I>). Note that if the import in
+	question is a <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	import (see §11.6.2 <I>Session Event-Based Import</I> and §11.7.2
+	<I>Session Stream-Based Import</I>) new shared transient nodes will
+	be created. These nodes are not considered to be <I>new</I>, in the
+	sense that <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.isNew</FONT></FONT>
+	will return <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>.</P>
+<a name="14.2 Shared Set"></a>	<H2>14.2 Shared Set</H2>
+	<P>The <I>shared set</I>
+	of a node consists of all nodes (including itself) with which it
+	shares. This set is retrieved with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeIterator
+	Node.getSharedSet()</FONT></FONT>.</P>
+<a name="14.3 Removing Shared Nodes"></a>	<H2>14.3 Removing Shared Nodes</H2>
+	<P>The method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.removeShare()</FONT></FONT> 
+	</P>
+	<P>removes the node from
+	its shared set without affecting the other nodes in the set. The
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.removeSharedSet()</FONT></FONT></P>
+	<P>removes the node and
+	all the members of its shared set.</P>
+	<P>In the first case,
+	assuming more than one member in the shared set, the children of the
+	removed node are unaffected since they still have at least one other
+	node as parent. In the second case, however, the children of the
+	shared set are removed. 
+	</P>
+	<P>In cases where the
+	shared set consists of a single node, or when these methods are
+	called on a non-shareable node, their behavior is identical to
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.remove()</FONT></FONT>.
+		</P>
+	<P>When applied to a
+	shared node with at least one other member in its shared set, the
+	method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Item.remove</FONT></FONT> or</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.removeItem</FONT></FONT></P>
+	<P>may behave as
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeShare()</FONT></FONT>
+	or as <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeSharedSet()</FONT></FONT>.
+	Which behavior is adopted is an implementation issue. 
+	</P>
+	<P>The behavior of
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.remove()</FONT></FONT>
+	is permitted to vary across repositories because the details of the
+	underlying implementation will make one or the other of the
+	behaviors more natural for that repository. In particular if a
+	repository implements a shared set by one “primary” parent (that
+	controls the lifetime of the child) and zero or more “secondary”
+	parents (that reference that child), then <FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.remove</FONT></FONT>
+	is most naturally interpreted differently on the primary parent and
+	one of the secondary parents. To force that repository to do a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.removeShare</FONT></FONT>
+	on the primary parent would require that implementation to pick one
+	of the secondary parents as the new primary parent, and change all
+	of the other secondary parents to refer to that new primary parent.</P>
+	<P>For all three methods,
+	the removal is dispatched on <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.save()</FONT></FONT>.</P>
+<a name="14.4 Transient Layer"></a>	<H2>14.4 Transient Layer</H2>
+	<P>When a change is made
+	to a shared node in the transient layer, <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.isModified</FONT></FONT>
+	becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	and that change is visible in all nodes in the shared set of that
+	node. After a transient shared node is dispatched, <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.isModified</FONT></FONT>
+	becomes <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>
+	for all nodes in the shared set of that node.</P>
+<a name="14.5 Copy"></a>	<H2>14.5 Copy</H2>
+	<P>The new nodes created
+	by a <FONT FACE="Courier New, monospace"><FONT SIZE=2>copy</FONT></FONT>
+	are never in the shared set of any node that existed before the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>copy</FONT></FONT>,
+	but if two nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	in the source of a <FONT FACE="Courier New, monospace"><FONT SIZE=2>copy</FONT></FONT>
+	are in the same shared set <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>,
+	then the two resulting nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>A'</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>B'</FONT></FONT>
+	in the destination of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>copy</FONT></FONT>
+	must both be in the same shared set <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+	are disjoint.</P>
+<a name="14.6 Share Cycles"></a>	<H2>14.6 Share Cycles</H2>
+	<P>In an implementation
+	that forbids share cycles, any session-write method that can create
+	a shared node will cause a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ShareCycleException</FONT></FONT>
+	to be thrown either immediately or on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>,
+	if persisting the change would result in a share cycle. 
+	</P>
+	<P>Similarly, any
+	workspace-write method that can create a shared node will throw a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ShareCycleException</FONT></FONT>
+	if completion of the operation would result in a share cycle.</P>
+	<P>In an implementation
+	that does not prevent share cycles, checking for cycles is left to
+	the repository user.</P>
+<a name="14.7 Export"></a>	<H2>14.7 Export</H2>
+	<P>When more than one
+	shared node in a given shared set is exported to an XML document,
+	the first node in that shared set is exported in the normal fashion
+	(with all of its properties and children), but any subsequent shared
+	node in that shared set is exported as a special node of type
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:share</FONT></FONT>,
+	which contains only the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+	property of the shared node and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+	property indicating the type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:share</FONT></FONT>.
+	Note that <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:share</FONT></FONT>
+	only appears in a serialization document, and never appears as a
+	node type of a node in a repository.</P>
+<a name="14.8 Import"></a>	<H2>14.8 Import</H2>
+	<P>When an XML element
+	with node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:share</FONT></FONT>
+	is imported into a repository that does not support shared nodes,
+	the import must fail (<FONT FACE="Courier New, monospace"><FONT SIZE=2>getImportContentHandler</FONT></FONT>
+	will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>,
+	while <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	will throw an <FONT FACE="Courier New, monospace"><FONT SIZE=2>UnsupportedRepositoryOperationException)</FONT></FONT>.</P>
+<a name="14.9 Observation"></a>	<H2>14.9 Observation</H2>
+	<P>When a property of a
+	shared node is modified, or when a child item is added to or deleted
+	from a shared node, although that property or child node
+	modification is performed on every node in the shared set of that
+	node, only one event is fired for the shared set. Which node in the
+	shared set is identified in the event is implementation-defined.</P>
+<a name="14.10 Locking"></a>	<H2>14.10 Locking</H2>
+	<P>When a lock is added
+	or removed from a shared node, it is automatically added or removed
+	from every node in the shared set of that node.</P>
+	<P>If at least one
+	share-ancestor of a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	holds a deep locked then that lock applies to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	resulting in <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	being locked.</P>
+<a name="14.11 Node Type Constraints"></a>	<H2>14.11 Node Type Constraints</H2>
+	<P>All the nodes in a
+	shared set always have the same declared primary node type and the
+	same set of assigned mixin node types. Since different nodes in the
+	shared set may have different parents, those parents must be of an
+	appropriate node type to have a child of with these types.</P>
+	<P>If the members of a
+	shared set correspond to child node definitions (in their respective
+	parents) with conflicting <I>protected</I> settings, the effective
+	protected value of all the members of the shared set will be the
+	logical <FONT FACE="Courier New, monospace"><FONT SIZE=2>OR</FONT></FONT>
+	of the protected settings of the set of child node definitions.</P>
+<a name="14.12 Versioning"></a>	<H2>14.12 Versioning</H2>
+	<P>If a node is
+	versionable then all nodes within its shared set share the same
+	version history. Under full versioning this follows logically from
+	the fact that the nodes all share the same <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>
+	reference (see §3.13.2.2 <I>mix:versionable</I>), pointing to a
+	single common <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node (see §3.13.5.1 <I>nt:versionHistory</I>).</P>
+	<P>On check-in of a node
+	<I>N</I> within the shared set, its versionable state is determined
+	just as in the non-shared case, but because the node is shared, the
+	resulting version will also reflect the versionable state of any
+	node <I>N'</I> in the shared set of <I>N</I>.</P>
+	<P>On check-in of a
+	parent <I>M</I> of a shared node <I>N</I> the contribution of <I>N</I>
+	to the versionable state of <I>M</I> is determined according to the
+	OPV of <I>N</I>. Note that the OPV of two nodes <I>N</I> and <I>N</I>'
+	in the same shared set (with parent node <I>M</I> and <I>M'</I>,
+	respectively) may <I>differ</I> because the OPV of <I>N</I> is
+	determined by the node type of <I>M</I>, while that of <I>N'</I> is
+	determined by the node type of <I>M'</I>.</P>
+<a name="14.13 Restore"></a>	<H2>14.13 Restore</H2>
+	<P>The effect of shared
+	nodes on <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+	falls into three cases:</P>
+	<UL>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		that causes the creation of a new shared node (see §14.1.1 <I>Shared
+		Node Creation on Restore</I>).</P>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		that causes the removal of a shared node: In this case the
+		particular shared node is removed but its descendants continue to
+		exist below the remaining members of the shared set.</P>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		causes a change to the state of a shared node: Any change is
+		reflected in all nodes in its shared set.</P>
+		<LI><P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>restore</FONT></FONT>
+		that causes a change below a shared node: The subgraph is changed
+		as usual and the change is visible through many paths.</P>
+	</UL>
+<a name="14.14 IsSame"></a>	<H2>14.14 IsSame</H2>
+	<P>If node <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/b</FONT></FONT>
+	shares with node <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/c</FONT></FONT>
+	then these two nodes are considered “the same” according to the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Item.isSame()</FONT></FONT>
+	method. Additionally, if the shared nodes have a property<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	p</FONT></FONT>, then <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/b/p</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/c/p</FONT></FONT>
+	are also considered “the same”. If they have a child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>x</FONT></FONT>
+	then, similarly, <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/b/x</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>/a/c/x</FONT></FONT>
+	are also the “the same”.</P>
+<a name="14.15 RemoveMixin"></a>	<H2>14.15 RemoveMixin</H2>
+	<P>If an attempt is made
+	to remove the <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:shareable</FONT></FONT>
+	mixin node type from a node in a shared set the implementation may
+	either throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>
+	or allow the removal and change the subgraph in some
+	implementation-specific manner. One possibility is to replace the
+	node with a copy that has no children (if this does not violate the
+	node type restrictions of that node). Another possibility is to give
+	the node a copy of all of its descendants (unless the resulting copy
+	operation would be unfeasible, as would be the case if a share cycle
+	were involved).</P>
+<a name="14.16 Query"></a>	<H2>14.16 Query</H2>
+	<P>If a query matches two
+	or more nodes in a shared set, whether all of these nodes or just
+	one is returned in the query result is an implementation issue. 
+	</P>
+	<P>This variability is
+	allowed since different implementations might have different
+	“natural” behaviors, and it would be expensive for an
+	implementation to compute the answer that is “unnatural” for
+	that implementation.</P>
+	<P>If a query matches a
+	descendant node of a shared set, it appears in query results only
+	once.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

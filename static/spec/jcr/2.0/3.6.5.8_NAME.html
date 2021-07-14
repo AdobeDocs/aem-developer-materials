@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.6.5.8 NAME (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.6.5.8 NAME</H4>
+	<P>If <I>V</I><SUB><I>1</I></SUB>
+	and <I>V</I><SUB><I>2</I></SUB> are values of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+	and <I>V</I><SUB><I>1</I></SUB> = (<I>N</I><SUB><I>1</I></SUB>, <I>L</I><SUB><I>1</I></SUB>)
+	and <I>V</I><SUB><I>2</I></SUB> = (<I>N</I><SUB><I>2</I></SUB>, <I>L</I><SUB><I>2</I></SUB>)
+	where <I>N</I><SUB><I>1</I></SUB><I> </I>and <I>N</I><SUB><I>2</I></SUB>
+	are JCR namespaces and <I>L</I><SUB><I>1</I></SUB> and <I>L</I><SUB><I>2</I></SUB>
+	are JCR local names then</P>
+	<UL>
+		<LI><P><I>V</I><SUB><I>1</I></SUB>
+		<I>is equal to</I> <I>V</I><SUB><I>2</I></SUB> if and only if <I>N</I><SUB><I>1</I></SUB>
+		is equal to <I>N</I><SUB><I>2</I></SUB> and <I>L</I><SUB><I>1</I></SUB>
+		is equal to <I>L</I><SUB><I>2</I></SUB>, according to the semantics
+		of <FONT FACE="Courier New, monospace"><FONT SIZE=2>String.compareTo</FONT></FONT>
+		(see §3.2.7 <I>Equality of Names</I>).</P>
+	</UL>
+	<UL>
+		<LI><P>Ordering is
+		implementation-specific. The only requirement is that a <I>total
+		order</I> on values of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>NAME</FONT></FONT>
+		must be defined, meaning that if <I>V</I><SUB><I>1</I></SUB> and <I>V</I><SUB><I>2</I></SUB>
+		are not equal then either <I>V</I><SUB><I>1</I></SUB> is ordered
+		before <I>V</I><SUB><I>2</I></SUB> or <I>V</I><SUB><I>1</I></SUB>
+		is ordered after <I>V</I><SUB><I>2</I></SUB>.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

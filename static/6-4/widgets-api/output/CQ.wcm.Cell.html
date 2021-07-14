@@ -1,0 +1,153 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.wcm.Cell-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.wcm.Cell-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.wcm.Cell-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                        <a class="bookmark" href="?class=CQ.wcm.Cell"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <h1>Class&nbsp;CQ.wcm.Cell</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.wcm</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Design.js" target="_blank">Design.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Cell</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    Represents a component Cell	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.wcm.Cell-props"></a>
+        <h2>Public Properties</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Property</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-names"></a>
+            <b>names</b> : Array            <div class="mdesc">
+                                        the names of this cell                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+        <tr class="property-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-searchExpr"></a>
+            <b>searchExpr</b> : String            <div class="mdesc">
+                                        the search path expression                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+        <tr class="property-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-searchPaths"></a>
+            <b>searchPaths</b> : Array            <div class="mdesc">
+                                        the exploded search paths                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+            </table>
+                <a id="CQ.wcm.Cell-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-getNames"></a>
+            <b>getNames</b>() : Array            <div class="mdesc">
+                                    <div class="short">Returns the names of this cell.</div>
+            <div class="long">
+                Returns the names of this cell.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">the names</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-getSearchExpression"></a>
+            <b>getSearchExpression</b>() : String            <div class="mdesc">
+                                    <div class="short">Returns the search expression of this cell</div>
+            <div class="long">
+                Returns the search expression of this cell    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>String</code><div class="sub-desc">the search expression</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+        <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-getSearchPaths"></a>
+            <b>getSearchPaths</b>() : Array            <div class="mdesc">
+                                    <div class="short">Returns the search paths of this cell.</div>
+            <div class="long">
+                Returns the search paths of this cell.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li>None.</li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">search paths</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.wcm.Cell-multiply"></a>
+            <b>multiply</b>(&nbsp;<code>Array paths</code>, <code>Array names</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Internal function that multiplies the given paths array with the names.</div>
+            <div class="long">
+                Internal function that multiplies the given paths array with the names.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>paths</code> : Array<div class="sub-desc">array of paths</div></li><li><code>names</code> : Array<div class="sub-desc">array of names</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">the product</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Cell</td>
+    </tr>
+            </table>
+                <a id="CQ.wcm.Cell-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

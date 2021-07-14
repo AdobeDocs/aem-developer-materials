@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 18.2 Node Methods (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>18.2 Node Methods</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node</FONT></FONT>
+	interface provides the following methods related to lifecycles. If
+	the node does not have the <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lifecycle</FONT></FONT>
+	mixin, the methods will return
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>UnsupportedRepositoryOperationException</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Node.followLifecycleTransition(String transition)</FONT></FONT></P>
+	<P>causes the lifecycle
+	state of this node to undergo the specified transition.</P>
+	<P>This method may change
+	the value of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:currentLifecycleState</FONT></FONT>
+	property, in most cases it is expected that the implementation will
+	change the value to that of the passed <FONT FACE="Courier New, monospace"><FONT SIZE=2>transition</FONT></FONT>
+	parameter, though this is an implementation-specific issue. If the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:currentLifecycleState</FONT></FONT>
+	property is changed the change is persisted immediately, there is no
+	need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String[]
+	Node.getAllowedLifecycleTransitions()</FONT></FONT></P>
+	<P>returns the list of
+	valid state transitions for this node.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

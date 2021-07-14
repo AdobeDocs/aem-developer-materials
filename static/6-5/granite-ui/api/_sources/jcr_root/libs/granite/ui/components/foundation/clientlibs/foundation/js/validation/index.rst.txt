@@ -1,0 +1,351 @@
+**********
+Validation
+**********
+
+
+Validation in Granite UI is achieved by using jQuery Validator plugin.
+
+
+jQuery Validator
+================
+
+jQuery.validator is a jQuery plugin that provides form validation, which is designed to replicate `HTML Forms Constraint Validation API <http://www.w3.org/TR/html5/forms.html#constraints>`_.
+
+
+API
+===
+
+The plugin is exposed as ``jQuery.validator`` variable, exposing Validators interface (described as TypeScript):
+
+.. code-block:: ts
+
+   interface Validators {
+     /**
+      * A flag to indicate that the validation process should continue to the next validator.
+      */
+     CONTINUE: number;
+
+     /**
+      * A flag to indicate that the validation process should stop. This is default behavior.
+      */
+     STOP: number;
+
+     /**
+      * Registers the given validator(s).
+      *
+      * Each validator will be iterated to check the validity of submittable elements, where the iteration stopped when the first matching validator says invalid.
+      * The order of the registration is important, where the last one registered will be used first.
+      *
+      * @param validator One or more validator objects.
+      */
+     register(...validator: Validator[]): void;
+
+     /**
+      * Returns <code>true</code> if all submittable elements under the given root element have no validity problems; <code>false</code> otherwise.
+      * Fires <code>invalid</code> or <code>valid</code> event at submittable element when it is invalid or valid respectively.
+      *
+      * @param root The root element
+      *
+      * @return The validity
+      */
+     isValid(root: JQuery): boolean;
+   }
+
+   interface Validator {
+     /**
+      * Only the element satisfying the selector will be validated using this validator. It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: string;
+
+     /**
+      * Only the element satisfying the selector will be validated using this validator. It will be passed to <code>jQuery.fn.is</code>.
+      */
+     selector: (index: number, element: Element) => boolean;
+
+     /**
+      * The actual validation function. It must return a string of error message if the element fails.
+      */
+     validate: (element: JQuery) => string;
+
+     /**
+      * The function to show the error. The function can return {@link Validators.CONTINUE} or {@link Validators.STOP}.
+      */
+     show: (element: JQuery, message: string) => number;
+
+     /**
+      * The function to clear the error. The function can return {@link Validators.CONTINUE} or {@link Validators.STOP}.
+      */
+     clear: (element: JQuery) => number;
+   }
+
+It also exposes the following plugin methods to jQuery object (``jQuery.fn``):
+
+.. code-block:: ts
+
+   interface ValidatorMethods {
+     /**
+      * Returns <code>true</code> if the element will be validated when the form is submitted; <code>false</code> otherwise.
+      *
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-willvalidate}
+      */
+     willValidate: () => boolean;
+
+     /**
+      * Returns the error message that would be shown to the user if the element was to be checked for validity.
+      *
+      * @return The error message or an empty string
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-validationmessage}
+      */
+     validationMessage: () => string;
+
+     /**
+      * Returns <code>true</code> if the element's value has no validity problems; <code>false</code> otherwise.
+      * Fires <code>invalid</code> or <code>valid</code> event at the element when it is invalid or valid respectively.
+      *
+      * @return The validity
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-checkvalidity}
+      */
+     checkValidity: () => boolean;
+
+     /**
+      * Sets a custom error, so that the element would fail to validate.
+      * The given message is the message to be shown to the user when reporting the problem to the user.
+      * If the argument is the empty string, clears the custom error.
+      *
+      * @param message The error message or empty string
+      * @see {@link http://www.w3.org/TR/html5/forms.html#dom-cva-setcustomvalidity}
+      */
+     setCustomValidity: (message: string) => void;
+
+     /**
+      * Shows error UI if the element is invalid; hide the UI otherwise.
+      */
+     updateErrorUI: () => void;
+   }
+
+
+Mechanism
+=========
+
+Applicable Element
+------------------
+
+The plugin is only validating the element satisfying the following selectors:
+
+* input:not([readonly],[disabled],[type=hidden],[type=reset],[type=button])
+* select
+* textarea:not([readonly])
+* button[type=submit]
+* [role=checkbox]:not([aria-disabled=true])
+* [role=radio]:not([aria-disabled=true])
+* [role=combobox]:not([aria-disabled=true])
+* [role=listbox]:not([aria-disabled=true])
+* [role=radiogroup]:not([aria-disabled=true])
+* [role=tree]:not([aria-disabled=true])
+* [role=slider]:not([aria-disabled=true])
+* [role=spinbutton]:not([aria-disabled=true])
+* [role=textbox]:not([aria-disabled=true],[aria-readonly=true])
+
+The selectors are specifically designed to enforce form semantic and accessibility (using `WAI-ARIA <http://www.w3.org/TR/wai-aria/>`_).
+
+Form Submission
+---------------
+
+It will `capture <http://www.w3.org/TR/DOM-Level-3-Events/#capture-phase>`_ the form ``submit`` event to cancel and stop propagating the event when the form is invalid. If there is `novalidate <http://www.w3.org/TR/html5/forms.html#attr-fs-novalidate>`_ attribute, the validation process is skipped.
+
+During the event capturing of ``submit`` event, it will perform the following pseudo-code:
+
+.. code-block:: javascript
+
+   function validateForm(form, submitEvent) {
+     var controls = getApplicableElements(form);
+     var invalids = [];
+     var unhandleds = [];
+
+     controls.forEach(function(field) {
+       if (!validateField(field)) {
+         invalids.push(field);
+       }
+     });
+
+     if (invalids.length === 0) { // The form is valid
+       return;
+     }
+
+     invalids.forEach(function(field) {
+       var e = createEvent("invalid");
+       field.trigger(e);
+
+       if (!e.isDefaultPrevented()) {
+         unhandleds.push(field);
+       }
+     });
+
+     if (unhandleds.length === 0) {
+       return;
+     }
+
+     unhandleds.forEach(function(field) {
+       showErrorUI(field);
+     });
+
+     submitEvent.stopPropagation();
+     submitEvent.preventDefault();
+   }
+
+Validator
+---------
+
+The plugin itself is not performing the actual validation. Rather a validator can be registered using ``jQuery.validator.register``. It doesn’t provide any pre-registered validator.
+
+Example
+^^^^^^^
+
+We need a validator to check the max length of a textfield (e.g. ``<input type="type">``, ``<textarea>``), and we are using ``data-myapp-maxlength`` attribute to indicate this. Like so:
+
+.. code-block:: html
+
+   <input type="text" data-myapp-maxlength="10">
+
+Then we need to register the validator like so:
+
+.. code-block:: javascript
+
+   jQuery.validator.register({
+     selector: "[data-myapp-maxlength]",
+     validate: function(el) {
+       var maxlength = parseInt(el.attr("data-myapp-maxlength"), 10);
+
+       if (isNaN(maxlength)) {
+         return;
+       }
+
+       var length = el.val().length;
+
+       if (length > maxlength) {
+         return "The field needs to be maximum " + maxlength + " characters. It currently has a length of " + length + ".";
+       }
+     }
+   });
+
+Since we want to leverage the default error UI, we don’t register handlers for show() and clear().
+
+Error UI
+--------
+
+Like the validator, the actual logic of error UI is delegated to other code, which can be registered using ``jQuery.validator.register``. It doesn’t provide any pre-registered error UI.
+
+Example
+^^^^^^^
+
+We need to show a custom tooltip when the field is contained in vertical form. Like so:
+
+.. code-block:: html
+
+   <form class="myapp-form-vertical">
+     <input>
+   </form>
+
+Then we need to register the validator like so:
+
+.. code-block:: javascript
+
+   jQuery.validator.register({
+     selector: ".myapp-form-vertical input",
+     show: function(el, message) {
+       el.customTooltip(message);
+     },
+     clear: function(el) {
+       el.customTooltip("destroy");
+     }
+   });
+
+Since we only want to show the error UI, we don’t register a handler for ``validate()``. The validity is checked by ``validate()`` of other registered validators instead.
+
+
+Validation in CoralUI
+=====================
+
+``coralui2`` clientlib provides a set of default validators and error UI for the widgets it provides. Namely it:
+
+* listens and cancels the native invalid event—which is triggered by the browser supporting native validation—to show its own UI instead
+* validates input and textarea during input and change event
+* validates coral-Autocomplete during its change:value event
+* validates coral-Autocomplete during input and change event of its .js-coral-Autocomplete-textfield
+
+It registers the following validators:
+
+Default Error UI
+----------------
+
+The default catch all error UI.
+
+selector
+   ``*``
+
+coral-Form Error UI
+-------------------
+
+The error UI for ``coral-Form`` that uses ``.coral-Form-fielderror``.
+
+selector
+   ``.coral-Form-fieldwrapper .coral-Form-field, .coral-Form-fieldwrapper .coral-Form-field.coral-Autocomplete .js-coral-Autocomplete-textfield, .coral-Form-fieldwrapper .coral-Form-field.coral-InputGroup .coral-InputGroup-input, .coral-Form-fieldwrapper .coral-Form-field.coral-DecoratedTextfield .coral-DecoratedTextfield-input``
+
+Required for Input and Textarea
+-------------------------------
+
+Checks ``required`` and ``aria-required`` attributes of ``input`` and ``textarea`` elements.
+
+selector
+   ``input, textarea``
+
+Required for [role=listbox]
+---------------------------
+
+Checks ``aria-required`` attributes of ``[role=listbox]`` elements.
+
+selector
+   ``[role=listbox]``
+
+Required for coral-Autocomplete
+-------------------------------
+
+Checks ``aria-required`` attributes of ``coral-Autocomplete``.
+
+selector
+   ``.coral-Autocomplete``
+
+
+Validation in Granite UI’s Foundation
+=====================================
+
+``granite.ui.foundation`` clientlib provides a set of default validators and error UI for the vocabulary it provides. Namely it:
+
+* validates ``.foundation-collection[role=listbox]`` during ``foundation-selections-change`` event
+* performs ``.foundation-validation-bind``
+
+It registers the following validators:
+
+[data-foundation-validation-ui]
+-------------------------------
+
+Performs ``[data-foundation-validation-ui]``.
+
+selector
+   ``[data-foundation-validation-ui]``
+
+foundation.jcr.name
+-------------------
+
+Checks against valid JCR name. If the value is empty, this validator is voting abstain. This is a JavaScript counterpart of :javadoc:`com.day.cq.commons.jcr.JcrUtil#isValidName(String) <com/day/cq/commons/jcr/JcrUtil.html#isValidName(java.lang.String)>`.
+
+selector
+   ``[data-validation='foundation.jcr.name']``
+
+.foundation-layout-actionfield
+------------------------------
+
+Provides error UI for ``.foundation-layout-actionfield`` under ``coral-Form``.
+
+selector
+   ``.coral-Form-fieldwrapper .coral-Form-field.foundation-layout-actionfield .foundation-layout-actionfield-field``

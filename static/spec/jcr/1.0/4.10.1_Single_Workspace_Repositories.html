@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.10.1 Single Workspace Repositories (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.10.1." id="section_4.10.1."></a> 4.10.1 Single Workspace Repositories
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A repository with only a single workspace consists of a single tree of nodes and properties. The example at the beginning of this section (<a href="#_Level_1section_6.1.1.">4</a> <i>The Repository Model</i>) describes a single workspace repository.
+								</p>
+							
+							
+								<p class="c5">
+									Since a given workspace contains at most one node with a given UUID, in this case, there is at most one node with a given UUID <i>in the repository as a whole</i>.
+								</p>
+							
+							
+								<p class="c5">
+									The following diagram depicts a single workspace repository:
+								</p>
+							
+							
+								<p>
+									<img src="jsr170-4_10_1.gif"><br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									The small circles represent nodes. The arrows point from parent to child and are labeled with the name of the child. The name of the root node is actually the empty string though, for clarity, it is indicated here with the string “<i>[root]</i>”. The numbers within the nodes represent the UUIDs of the nodes. For example, the UUID of the root node <b>/</b> is <i>00</i> and the UUID of <b>/a/d</b> is <i>03</i>. The node <b>/a/c</b> is not referenceable and therefore does not have a UUID.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

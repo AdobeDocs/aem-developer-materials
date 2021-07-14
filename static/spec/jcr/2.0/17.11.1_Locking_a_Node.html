@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.11.1 Locking a Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.11.1 Locking a Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock
+	LockManager.lock(String absPath,<BR>			 boolean isDeep,<BR>			 
+	boolean isSessionScoped,<BR>			 long timeout,<BR>			 String
+	ownerInfo)</FONT></FONT></P>
+	<P>places a lock on the
+	node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	If successful, the node is said to <I>hold</I> the lock.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isDeep</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then the lock <I>applies</I> to the specified node and all its
+	descendant nodes; if <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	the lock applies only to the specified node. On a successful lock,
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	property of the locked node is set to this value.</P>
+	<P>If <FONT FACE="Courier New, monospace"><FONT SIZE=2>isSessionScoped</FONT></FONT>
+	is <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	then this lock will expire upon the expiration of the current
+	session (either through an automatic or explicit <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.logout</FONT></FONT>);
+	if <FONT FACE="Courier New, monospace"><FONT SIZE=2>false</FONT></FONT>,
+	this lock does not expire until it is explicitly unlocked, it times
+	out, or it is automatically unlocked due to an
+	implementation-specific limitation.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>timeout</FONT></FONT>
+	parameter specifies the number of seconds until the lock times out
+	(if it is not refreshed in the meantime, see §10.11.1 <I>Refresh</I>).
+	An implementation may use this information as a hint or ignore it
+	altogether. Clients can discover the actual timeout by inspecting
+	the returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>ownerInfo</FONT></FONT>
+	parameter can be used to pass a string holding owner information
+	relevant to the client. An implementation may either use or ignore
+	this parameter. If it uses the parameter it must set the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property of the locked node to this value and return this value on
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>.
+	If it ignores this parameter the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property (and the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>)
+	is set to either the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.getUserID</FONT></FONT>
+	of the owning session or an implementation-specific string
+	identifying the owner.</P>
+	<P>The method returns a
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock</FONT></FONT>
+	object representing the new lock.</P>
+	<P>If the lock is
+	open-scoped the returned lock will include a lock token. The lock
+	token is also automatically added to the set of lock tokens held by
+	the current <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.</P>
+	<P>The addition or change
+	of the properties <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	are persisted immediately; there is no need to call <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+	<P>It is possible to lock
+	a node even if it is checked-in (see §15.2.2 <I>Read-Only on
+	Check-In</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.5 Property Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.5." id="section_6.2.5."></a>6.2.5 Property Types
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The class <b>PropertyType</b> defines integer constants for the available property types as well as for their standardized type names (used in serialization) and two methods for converting back and forth between name and integer value:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>PropertyType</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>STRING</b>
+									</p>
+									<p class="c17">
+										The <b>STRING</b> property type is used to store strings. It has the same characteristics as the Java <b>String</b> class.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>BINARY</b>
+									</p>
+									<p class="c5">
+										<b>BINARY</b> properties are used to store binary data.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>LONG</b>
+									</p>
+									<p class="c5">
+										The <b>LONG</b> property type is used to store integers. It has the same characteristics as the Java primitive type <b>long</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>DOUBLE</b>
+									</p>
+									<p class="c5">
+										The <b>DOUBLE</b> property type is used to store floating point numbers. It has the same characteristics as the Java primitive type <b>double</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>BOOLEAN</b>
+									</p>
+									<p class="c5">
+										The <b>BOOLEAN</b> property type is used to store boolean values. It has the same characteristics as the Java primitive type <b>boolean</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>DATE</b>
+									</p>
+									<p class="c5">
+										The <b>DATE</b> property type is used to store time and date information. See <a href="6.2.5.1_Date.html">6.2.5.1</a> <i>Date</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>NAME</b>
+									</p>
+									<p class="c5">
+										A <b>NAME</b> is a pairing of a <i>namespace</i> and a <i>local name</i>. When read, the namespace is mapped to the current prefix. See <a href="6.2.5.2_Name.html">6.2.5.2</a> <i>Name</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>PATH</b>
+									</p>
+									<p class="c5">
+										A <b>PATH</b> property is an ordered list of <i>path elements</i>. A path element is a <b>NAME</b> with an optional index. When read, the <b>NAME</b>s within the path are mapped to their current prefix. A path may be absolute or relative. See <a href="6.2.5.3_Path.html">6.2.5.3</a> <i>Path</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>REFERENCE</b>
+									</p>
+									<p class="c5">
+										A <b>REFERENCE</b> property stores the UUID of a referenceable node (one having type <b>mix:referenceable</b>), which must exist within the same workspace or session as the <b>REFERENCE</b> property. A <b>REFERENCE</b> property enforces this referential integrity by preventing (in level 2 implementations) the removal of its target node. See <a href="6.2.5.4_Reference.html">6.2.5.4</a> <i>Reference</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>UNDEFINED</b>
+									</p>
+									<p class="c5">
+										This constant can be used within a property definition (see <a href="6.7.6_Property_Definitions.html">6.7.6</a> <i>Property Definitions</i>) to specify that the property in question may be of any type. However, it cannot be the actual type of any property instance. For example it will never be returned by <b>Property.getType</b> and (in level 2 implementations) it cannot be assigned as the type when creating a new property.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										String
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>TYPENAME_STRING == "String"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_BINARY == "Binary"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_LONG == "Long"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_DOUBLE == "Double"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_DATE == "Date"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_BOOLEAN == "Boolean"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_NAME == "Name"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_PATH == "Path"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_REFERENCE == "Reference"</b>
+									</p>
+									<p class="c5">
+										<b>TYPENAME_UNDEFINED == "Undefined"</b>
+									</p>
+									<p class="c5">
+										These constants define the standard string forms of the property types. These are used, for example, when serializing content to XML. See <a href="6.4_XML_Mappings.html">6.4</a> <i>XML Mappings</i>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										String
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>nameFromValue(int type)</b>
+									</p>
+									<p class="c5">
+										Returns the standard name of the given property type, specified by its integer value.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										int
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>valueFromName(String name)</b>
+									</p>
+									<p class="c5">
+										Returns the integer value of the given property type, specified by its standard name.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

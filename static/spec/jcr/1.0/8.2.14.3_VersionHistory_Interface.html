@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.14.3 VersionHistory Interface (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.14.3." id="section_8.2.14.3."></a>8.2.14.3 VersionHistory Interface
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A <b>VersionHistory</b> object provides an interface for an <b>nt:versionHistory</b> node. It provides convenient access to version history information.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c5">
+										javax.jcr.version.<br><b>VersionHistory</b> <b>extends Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getVersionableUUID()</b>
+									</p>
+									<p class="c5">
+										Returns the UUID of the versionable node for which this is the version history.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Version</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getRootVersion()</b>
+									</p>
+									<p class="c5">
+										Returns the root version of this version history.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>VersionIterator</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getAllVersions()</b>
+									</p>
+									<p class="c5">
+										Returns an iterator over all the versions within this version history. The order of the returned objects will not necessarily correspond to the order of versions in terms of the successor relation. To traverse the version graph one must traverse the <b>jcr:successors</b> <b>REFERENCE</b> properties starting with the root version (see above). A version history will always have at least one version, the root version. Therefore, this method will always return an iterator of at least size 1.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Version</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getVersion(String versionName)</b>
+									</p>
+									<p class="c5">
+										Retrieves a particular version from this version history by version name.
+									</p>
+									<p class="c5">
+										Throws a <b>VersionException</b> if the specified version is not in this version history.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>Version</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getVersionByLabel(String label)</b>
+									</p>
+									<p class="c5">
+										Retrieves a particular version from this version history by version label.
+									</p>
+									<p class="c5">
+										Throws a <b>VersionException</b> if the specified <b>label</b> is not in this version history.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>addVersionLabel(String versionName,<br>
+										String label,<br>
+										boolean moveLabel)</b>
+									</p>
+									<p class="c5">
+										Adds the specified label to the specified version. This corresponds to adding a value to the <b>jcr:versionLabels</b> multi-value property of the <b>nt:version</b> node that represents the specified version.
+									</p>
+									<p class="c5">
+										Note that this change is made immediately; there is no need to call <b>save</b>. In fact, since the version storage is read-only with respect to normal repository methods, <b>save</b> does not even function in this context.
+									</p>
+									<p class="c5">
+										Within a particular version history, a given label may appear a maximum of once. If the specified label is already assigned to a version in this history and <b>moveLabel</b> is <b>true</b> then the label is removed from its current location and added to the version with the specified <b>versionName</b>. If <b>moveLabel</b> is <b>false</b>, then an attempt to add a label that already exists in this version history will throw a <b>VersionException</b>.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is also thrown if the named version is not in this <b>VersionHistory</b> or if it is the root version (<b>jcr:rootVersion</b>).
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasVersionLabel(String label)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if any version in the history has the given <b>label</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>boolean</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>hasVersionLabel(Version version, String label)</b>
+									</p>
+									<p class="c5">
+										Returns <b>true</b> if the given <b>version</b> has the given <b>label</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getVersionLabels()</b>
+									</p>
+									<p class="c5">
+										Returns all version labels of the history or an empty array if there are none.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if an error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>String[]</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>getVersionLabels(Version version)</b>
+									</p>
+									<p class="c5">
+										Returns all version labels of the given <b>version</b> - empty array if none.
+									</p>
+									<p class="c5">
+										Throws a <b>VersionException</b> if the specified <b>version</b> is not in this version history.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>removeVersionLabel(String label)</b>
+									</p>
+									<p class="c5">
+										Removes the specified label from among the labels of this version history. This corresponds to removing a property from the <b>jcr:versionLabels</b> child node of the <b>nt:versionHistory</b> node that represents this version history.
+									</p>
+									<p class="c5">
+										Note that this change is made immediately; there is no need to call <b>save</b>. In fact, since the version storage is read-only with respect to normal repository methods, <b>save</b> does not even function in this context.
+									</p>
+									<p class="c5">
+										If a <b>label</b> is specified that does not exist in this version history, a <b>VersionException</b> is thrown.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>removeVersion(String versionName)</b>
+									</p>
+									<p class="c5">
+										Removes the named version from this version history and automatically repairs the version graph. If the version to be removed is <b>V</b>, <b>V</b>'s predecessor set is <b>P</b> and <b>V</b>'s successor set is <b>S</b>, then the version graph is repaired s follows:
+									</p>
+									<ul>
+										<li>
+											<p class="c5">
+												For each member of <b>P</b>, remove the reference to <b>V</b> from its successor list and add references to each member of <b>S</b>.
+											</p>
+										</li>
+										<li>
+											<p class="c5">
+												For each member of <b>S</b>, remove the reference to <b>V</b> from its predecessor list and add references to each member of <b>P</b>.
+											</p>
+										</li>
+									</ul>
+									<p class="c5">
+										Note that this change is made immediately; there is no need to call <b>save</b>. In fact, since the version storage is read-only with respect to normal repository methods, <b>save</b> does not even function in this context.
+									</p>
+									<p class="c5">
+										A <b>ReferentialIntegrityException</b> will be thrown if the specified version is currently the target of a <b>REFERENCE</b> property elsewhere in the repository (not necessarily in this workspace) and the current <b>Session</b> has read access to that <b>REFERENCE</b> property.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> will be thrown if the current <b>Session</b> does not have permission to remove the specified version or if the specified version is currently the target of a <b>REFERENCE</b> property elsewhere in the repository (not necessarily in this workspace) and the current <b>Session</b> <i>does not</i> have read access to that <b>REFERENCE</b> property.
+									</p>
+									<p class="c5">
+										Throws an <b>UnsupportedRepositoryOperationException</b> if this operation is not supported by the implementation.
+									</p>
+									<p class="c5">
+										Throws a <b>VersionException</b> if the named version is not in this <b>VersionHistory</b>.
+									</p>
+									<p class="c5">
+										Throws a <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.3.4 Event Production (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.3.4." id="section_8.3.4."></a>8.3.4 Event Production
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Events are dispatched upon each <i>persistent change</i> to the workspace. Changes that affect only the transient session level are not tracked by the observation mechanism. This means that events will be dispatched as follows:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					If a set of operations is <i>within a transaction</i> (see <a href="8.1_Transactions.html">8.1</a> <i>Transactions</i>) then the events reflecting the resulting changes will only be dispatched after the changes are persisted by a successful <i>commit</i>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If a set of operations is <i>not within a transaction</i> then:
+				</p>
+				<ul>
+					<li>
+						<p class="c5">
+							If an operation is <i>immediately persistent</i> (like <b>Workspace.copy</b>, for example), the events reflecting the resulting changes will be dispatched upon the successful completion of the operation.
+						</p>
+					</li>
+					<li>
+						<p class="c5">
+							If a set of operations is <i>not immediately persistent</i> (like most <b>Node</b> and <b>Session</b> methods, for example) then the events reflecting the resulting changes will be dispatched upon the successful <b>save</b> of those changes.
+						</p>
+					</li>
+				</ul>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

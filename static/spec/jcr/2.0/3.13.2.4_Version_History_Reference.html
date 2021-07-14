@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.2.4 Version History Reference (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.13.2.4 Version History Reference</H4>
+	<P>Apart from nodes
+	within the same shared set, which share the same version history,
+	each versionable node within a persistent workspace has its own
+	version history. 
+	</P>
+	<P>Under both simple and
+	full versioning the version history of a node is accessed through
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.getVersionHistory</FONT></FONT>,
+	which returns a <FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionHistory</FONT></FONT>
+	object (see §15.1.1 <I>VersionHistory Object</I>). Under full
+	versioning it is also represented by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+	which points to an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node (see §3.13.5.1 <I>nt:versionHistory</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

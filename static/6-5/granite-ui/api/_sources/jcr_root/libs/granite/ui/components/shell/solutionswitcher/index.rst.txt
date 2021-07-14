@@ -1,0 +1,14 @@
+
+SolutionSwitcher
+================
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/solutionswitcher
+
+   The popover for Solution Switcher.
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/toggleable` vocabulary.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellSolutionSwitcher] > granite:commonAttrs

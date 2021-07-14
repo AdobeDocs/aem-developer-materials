@@ -1,0 +1,11 @@
+Admin
+=====
+
+The components related to admin console.
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

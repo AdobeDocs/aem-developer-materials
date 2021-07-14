@@ -1,0 +1,7 @@
+
+Reset
+=====
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/form/reset
+
+   It is recommended to use :granite:servercomponent:`button </libs/granite/ui/components/foundation/button>` component with ``reset`` type.

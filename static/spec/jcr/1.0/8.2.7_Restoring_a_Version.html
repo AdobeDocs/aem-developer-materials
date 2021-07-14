@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.7 Restoring a Version (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.7." id="section_8.2.7."></a>8.2.7 Restoring a Version
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									To restore a node <b>N</b> to the state recorded by its version with version name “<b>x.y</b>”, the application calls <b>N.restore("x.y", removeExisting)</b><sup><b><a class="sdfootnoteanc" name="sdfootnote10anc" href="#sdfootnote10sym" id="sdfootnote10anc"><sup>10</sup></a></b></sup>. Assuming that the version node representing the version named “<b>x.y</b>” is node <b>V</b>, then the following will occur:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The child node and properties of <b>N</b> will be changed, removed or added to, depending on their corresponding copies in <b>V</b> and their own <b>OnParentVersion</b> attributes (see <a href="8.2.11_OnParentVersion_Attribute.html">8.2.11</a> <i>OnParentVersion Attribute</i>, for details). The second parameter of <b>Node.</b><b>restore</b> is the <b>removeExisting</b> flag which governs what happens if nodes that are being introduced into the subtree of <b>N</b> as a result of the <b>restore</b> have the same UUID as existing node is in the workspace outside the subtree of <b>N</b> (see <a href="8.2.14.1_Node_Versioning_Methods.html">8.2.14.1</a> <i>Node Versioning Methods</i>).
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					<b>N</b>’s <b>jcr:baseVersion</b> property will be changed to point to <b>V</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N</b>’s <b>jcr:isCheckedOut</b> property is set to <b>false</b>.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Unlike most other operations that alter the state of a node, <b>restore</b> works regardless of whether the node in question is <i>checked-out</i> or <i>checked-in</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

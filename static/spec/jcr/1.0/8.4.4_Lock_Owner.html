@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.4 Lock Owner (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.4." id="section_8.4.4."></a>8.4.4 Lock Owner
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The user who places a lock on a node is called the lock owner. The lock owner is identified by the user ID bound to the <b>Session</b> through which the node in question was accessed (that is, the string returned by <b>Session.getUserID</b>). The user ID is recorded in the property <b>jcr:lockOwner</b> of the lock holding node. The lock owner's ID is provided for informational purposes only, it is not used in testing whether a particular user has any permissions with respect to the lock (this is governed purely by whether the <b>Session</b> holds the applicable lock token, see below).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

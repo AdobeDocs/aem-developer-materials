@@ -1,0 +1,282 @@
+
+Masonry
+=======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/masonry
+
+   A container that layouts its items using masonry algorithm.
+
+   It implements :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/selections`
+   and :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode` vocabulary.
+
+   Note that if pagination is configured, this component needs to have a parent with a height and scrollable, such as:
+
+   * :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/container` with ``maximized=true``
+   * :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/form/advancedselect` with ``maximized=true``
+   * :granite:servercomponent:`/libs/granite/ui/components/coral/foundation/panel`'s body
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Masonry] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The algorithm to layout the items:
+       *
+       * fixed-spread
+       *    Layout with fixed width and evenly spread items
+       * fixed-centered
+       *    Layout with fixed width centered items
+       * variable
+       *    Layout with variable width items
+       * dashboard
+       *    Layout with variable width items which are expanded in their height to fill gaps
+       */
+      - layout (String) = 'fixed-spread' < 'fixed-spread', 'fixed-centered', 'variable', 'dashboard'
+
+      /**
+       * The width of the column.
+       */
+      - columnWidth (LongEL) = '242'
+
+      /**
+       * The spacing between the items and the masonry container in pixel.
+       */
+      - spacing (LongEL) = '15'
+
+      /**
+       * ``true`` to initially display it in selection mode; ``false`` otherwise.
+       * In the selection mode, clicking the item selects it, instead of triggering the default behaviour of the item.
+       */
+      - selectionMode (BooleanEL)
+
+      /**
+       * ``true`` to make the items orderable per drag and drop; ``false`` otherwise.
+       */
+      - orderable (BooleanEL)
+
+      /**
+       * The count of item to be selected (when the ``selectionMode`` is enabled):
+       *
+       * single
+       *    Only maximum single selection allowed
+       * multiple
+       *    Zero or more selection allowed
+       */
+      - selectionCount (StringEL) = 'multiple'
+
+      /**
+       * The URI Template that is returning the HTML response of the masonry.
+       * It is used when the client needs to load data dynamically, such as pagination.
+       *
+       * If it is not specified, the feature is disabled.
+       *
+       * It supports the following variables:
+       *
+       * offset
+       *    The item offset of the current request.
+       * limit
+       *    The item limit of the pagination.
+       * id
+       *    The id of the collection (:doc:`[data-foundation-collection-id] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`).
+       *
+       * e.g. ``/a/b/c{.offset,limit}.html{+id}``
+       */
+      - src (StringEL)
+
+      /**
+       * The path of the current collection.
+       * It will act as the value of :doc:`[data-foundation-collection-id] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`.
+       *
+       * e.g. ``${requestPathInfo.suffix}``
+       */
+      - path (StringEL)
+
+      /**
+       * The resource type for each item of the column.
+       */
+      - itemResourceType (String)
+
+      /**
+       * The item limit of the pagination.
+       */
+      - limit (Long) = '20'
+
+      /**
+       * Indicates the size of the items from datasource to be included.
+       * If this property is not specified, then all items from datasource will be included, and the next page will be fetched accordingly.
+       *
+       * This is meant to be a performance optimization to avoid fetching the next page unnecessarily.
+       * For example given the fact that the ``size`` is set to 20, and the datasource is configured to fetch ``size + 1``, which is 21,
+       * the implementation can check if the datasource actually has more item or not just by checking its size.
+       *
+       * .. warning:: When ``size`` is set, you have to make sure your datasource is configured to fetch more than the value of ``size``!
+       *
+       * =========  ==============  =========
+       * ``size``   Actual DS Size  Has More?
+       * =========  ==============  =========
+       * 20         < 20            ``false``
+       * 20         = 20            ``false``
+       * 20         > 20            ``true``
+       * (not set)  n/a             ``true``
+       * =========  ==============  =========
+       */
+      - size (IntegerEL)
+
+      /**
+       * The path to the resource to render :doc:`.foundation-collection-meta </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`.
+       * If not specified, the resource specified at ``path`` will be used instead.
+       *
+       * The resource will be included using resource type specified at ``metaResourceType``, where it can be processed accordingly.
+       */
+      - metaPath (StringEL)
+
+      /**
+       * The resource type to render :doc:`.foundation-collection-meta </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`.
+       *
+       * The resource specified at ``metaPath`` or ``path`` will be included using this resource type, where it can be processed accordingly.
+       *
+       * This property is mandatory to specified if ``.foundation-collection-meta`` needs to be generated.
+       */
+      - metaResourceType (String)
+
+      /**
+       * The value of :doc:`[data-foundation-mode-group] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode>`
+       * this component participates.
+       *
+       * The component supports the ``default`` or ``selection`` mode.
+       *
+       * When there is a selection, it will trigger the ``foundation-mode-change`` event with mode = ``selection``,
+       * while triggering the event with mode = ``default`` when there is no selection.
+       *
+       * When other component triggers the event,
+       * when mode = ``default``, it will clear the selection and change itself into a default mode,
+       * while for mode = ``selection``, it will change itself into a selection mode.
+       */
+      - modeGroup (String)
+
+      /**
+       * The URI Template handling the POST request to reorder the item.
+       * It supports the following variables:
+       *
+       * item
+       *    The id of the reordered item. (:doc:`[data-foundation-collection-item-id] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`)
+       * before
+       *    The id of the reference item. The item is ordered before this reference item. (:doc:`[data-foundation-collection-item-id] </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>`)
+       * beforeName
+       *    The name of the before item: `var beforeName = before.substring(before.lastIndexOf("/") + 1);`.
+       *
+       *    This is meant for convenience for Sling POST Servlet's ``:order`` parameter, which requires the node name (instead of path).
+       *
+       * The final URL (after URI Template expansion) is converted to ``application/x-www-form-urlencoded`` content type.
+       * For example if we have URI Template of ``/reorder{?item,before}`` which is expanded into ``/reorder?item=%2Fcontent%2Fde&before=%2Fcontent%2Fen``,
+       * the POST would be against ``/reorder`` with ``item=%2Fcontent%2Fde&before=%2Fcontent%2Fen`` as the request body.
+       */
+      - itemReorderAction (StringEL)
+
+      /**
+       * This property is the equivalence of ``itemReorderAction`` for absolute path.
+       *
+       * For example if your template is ``{+item}?order{&before}``, since it is not starting with "/",
+       * the server is unable to know if it is an absolute path.
+       * So use this property if you want to add the context path regardless.
+       */
+      - 'itemReorderAction.abs' (StringEL)
+
+      /**
+       * ``true`` to automatically render ``<coral-masonry-item>`` and thus the item resource is rendering the content (e.g. a ``<coral-card>``).
+       *
+       * ``false`` to make the item resource itself responsible to render ``<coral-masonry-item>``. This would allow arbitrary attribute to be added to the element.
+       */
+      - renderItemElement (Boolean) = 'true'
+
+      /**
+       * ``false`` to show the empty message (or render the empty item using ``emptyitem`` subresource) when there is no item; ``true`` to skip showing that message.
+       */
+      - skipEmptyItem (Boolean)
+
+      /**
+       * The component to render the item to represent an "empty item" when there is no item.
+       */
+      + emptyitem
+
+
+   **Navigating the Item**
+
+   For navigation when clicking the item, :doc:`.foundation-collection-navigator </jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/collection>` can be specified at the item element (or its descendant).
+   It supports navigating to arbitrary location (just like ``<a>``), or navigating to the collection item.
+   An example if the item is ``<coral-card>``:
+
+   .. code-block:: html
+
+      <coral-card class="foundation-collection-navigator"></coral-card>
+
+
+   **Card Markup**
+
+   ``<coral-card>`` is usually used as the item of masonry.
+
+   For the thumbnail of the card, it is recommended to use maximum 480w x 800h dimensions.
+
+   .. code-block:: html
+
+      <coral-card image="/content/geometrixx_mobile.thumb.800.480.png?ck=1447060146"></coral-card>
+
+   *Indicating foundation-collection-action Relationship*
+
+   To indicate the ``[data-foundation-collection-quickactions-rel]`` that is used to match the :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/action/index` (in the toolbar), you should prepare a ``<meta>`` holding the information:
+
+   .. code-block:: html
+
+	  <meta class="foundation-collection-quickactions" data-foundation-collection-quickactions-rel="<put value here>">
+
+   You can put it as a child of <coral-card>.
+
+   *Adding Quickactions to the Card*
+
+   To add quickactions, you need to add ``<coral-quickactions>`` after the ``<coral-card>`` and specify the ``target`` attribute of ``<coral-quickactions>`` to point to the card.
+
+   *Replacement for <a> in Quickactions*
+
+   Since the markup now is required to be ``<coral-quickactions-item>``, you cannot use ``<a>`` anymore.
+   To replace it, you can use :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/anchor/index`:
+
+   .. code-block:: html
+
+      <coral-quickactions-item icon="infoCircle" class="foundation-anchor" data-foundation-anchor-href="/libs/wcm/core/content/sites/properties.html/content/geometrixx-outdoors">Properties</coral-quickactions-item>
+
+   *Quickactions Item to Select the Card*
+
+   For Shell3, there is a need to have a button in the quickactions to select the item/card.
+   To do this, you can use :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/collection/item/activator` to annotate the button:
+
+   .. code-block:: html
+
+      <coral-quickactions>
+        <coral-quickactions-item class="foundation-collection-item-activator" icon="check">Select</coral-quickactions-item>
+      </coral-quickactions>
+
+   *Example*
+
+   .. code-block:: html
+
+      <coral-card>
+        <!-- ... -->
+        <meta class="foundation-collection-quickactions" data-foundation-collection-quickactions-rel="cq-siteadmin-admin-actions-create-activator cq-siteadmin-admin-actions-copy-activator">
+      </coral-card>
+      <coral-quickactions target="_prev" alignMy="left top" alignAt="left top">
+        <coral-quickactions-item icon="infoCircle" class="foundation-anchor" data-foundation-anchor-href="/libs/wcm/core/content/sites/properties.html/content/geometrixx-outdoors">Properties</coral-quickactions-item>
+        <coral-quickactions-item icon="copy" class="foundation-collection-action" data-foundation-collection-action='{"action": "cq.wcm.copy"}'>Copy</coral-quickactions-item>
+      </coral-quickactions>
+
+
+   **Example**
+
+   .. code-block:: none
+
+      + mymasonry
+        - sling:resourceType = "granite/ui/components/coral/foundation/masonry"
+        - src = "/a/b/c{.offset,limit}.html"
+        + datasource
+          - sling:resourceType = "my/datasource"

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 5.5 Effect of Access Denial on Read (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>5.5 Effect of Access Denial on Read</H2>
+	<P>If a repository
+	restricts the read access of a session, then the nodes and
+	properties to which that session does not have read access must
+	appear not to exist. For example, the iterator returned on
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N.getNodes</FONT></FONT>
+	will not include subnodes of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	to which the session in question does not have read access. In other
+	words, lack of read access to an item blocks access to both
+	information about the content of that item and information about the
+	existence of that item.</P>
+	<P>In repositories that
+	support <I>same-name siblings</I>, denial of access to a subset of
+	nodes within a same-name sibling series <I>may</I> result in gaps in
+	the index numbering of that series, thus revealing information about
+	the existence of the inaccessible nodes.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.11.6 Adding a Lock Token (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.11.6 Adding a Lock Token</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	LockManager.addLockToken(String lockToken)</FONT></FONT></P>
+	<P>adds the specified
+	lock token to the current session. Holding a lock token makes this
+	session the owner of the lock specified by that particular lock
+	token. If the implementation does not support simultaneous lock
+	ownership this method will transfer ownership of the lock
+	corresponding to the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>
+	to the current session, otherwise the current session will become an
+	additional owner of that lock. In either case, if the implementation
+	does not support client-specified lock owner information, this
+	method may cause a change in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	property (and the value returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Lock.getLockOwner</FONT></FONT>)
+	of the lock corresponding to the specified <FONT FACE="Courier New, monospace"><FONT SIZE=2>lockToken</FONT></FONT>
+	(see §17.5 <I>Lock Token</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

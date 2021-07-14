@@ -1,0 +1,405 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Masonry &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../" src="../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../search.html" />
+    <link rel="next" title="Meta" href="../meta/index.html" />
+    <link rel="prev" title="List" href="../list/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../meta/index.html" title="Meta"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../list/index.html" title="List"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" accesskey="U">Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="masonry">
+<h1>Masonry<a class="headerlink" href="#masonry" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/coral/foundation/masonry">
+<dt>
+<code class="descname">/libs/granite/ui/components/coral/foundation/masonry</code></dt>
+<dd><p>A container that layouts its items using masonry algorithm.</p>
+<p>It implements <a class="reference internal" href="../clientlibs/foundation/vocabulary/selections.html"><span class="doc">foundation-selections</span></a>
+and <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">foundation-mode</span></a> vocabulary.</p>
+<p>Note that if pagination is configured, this component needs to have a parent with a height and scrollable, such as:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../container/index.html#/libs/granite/ui/components/coral/foundation/container" title="/libs/granite/ui/components/coral/foundation/container"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/container</span></code></a> with <code class="docutils literal notranslate"><span class="pre">maximized=true</span></code></li>
+<li><a class="reference internal" href="../form/advancedselect/index.html#/libs/granite/ui/components/coral/foundation/form/advancedselect" title="/libs/granite/ui/components/coral/foundation/form/advancedselect"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/form/advancedselect</span></code></a> with <code class="docutils literal notranslate"><span class="pre">maximized=true</span></code></li>
+<li><a class="reference internal" href="../panel/index.html#/libs/granite/ui/components/coral/foundation/panel" title="/libs/granite/ui/components/coral/foundation/panel"><code class="xref granite granite-servercomponent docutils literal notranslate"><span class="pre">/libs/granite/ui/components/coral/foundation/panel</span></code></a>’s body</li>
+</ul>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:Masonry</span><ol class="gnd-values supertypes"><li class="gnd-values-item supertype">granite:commonAttrs</li><li class="gnd-values-item supertype">granite:renderCondition</li><li class="gnd-values-item supertype">granite:container</li></ol></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">layout</span><span class="propertytype gnd-name">string</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">fixed-spread</li></ol><ol class="gnd-values valueconstraints"><li class="gnd-values-item valueconstraint">fixed-spread</li><li class="gnd-values-item valueconstraint">fixed-centered</li><li class="gnd-values-item valueconstraint">variable</li><li class="gnd-values-item valueconstraint">dashboard</li></ol></dt>
+<dd><p>The algorithm to layout the items:</p>
+<dl class="docutils">
+<dt>fixed-spread</dt>
+<dd>Layout with fixed width and evenly spread items</dd>
+<dt>fixed-centered</dt>
+<dd>Layout with fixed width centered items</dd>
+<dt>variable</dt>
+<dd>Layout with variable width items</dd>
+<dt>dashboard</dt>
+<dd>Layout with variable width items which are expanded in their height to fill gaps</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">columnWidth</span><span class="propertytype gnd-name">longel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">242</li></ol></dt>
+<dd><p>The width of the column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">spacing</span><span class="propertytype gnd-name">longel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">15</li></ol></dt>
+<dd><p>The spacing between the items and the masonry container in pixel.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionMode</span><span class="propertytype gnd-name">booleanel</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to initially display it in selection mode; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.
+In the selection mode, clicking the item selects it, instead of triggering the default behaviour of the item.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">orderable</span><span class="propertytype gnd-name">booleanel</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to make the items orderable per drag and drop; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionCount</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">multiple</li></ol></dt>
+<dd><p>The count of item to be selected (when the <code class="docutils literal notranslate"><span class="pre">selectionMode</span></code> is enabled):</p>
+<dl class="docutils">
+<dt>single</dt>
+<dd>Only maximum single selection allowed</dd>
+<dt>multiple</dt>
+<dd>Zero or more selection allowed</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">src</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template that is returning the HTML response of the masonry.
+It is used when the client needs to load data dynamically, such as pagination.</p>
+<p>If it is not specified, the feature is disabled.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>offset</dt>
+<dd>The item offset of the current request.</dd>
+<dt>limit</dt>
+<dd>The item limit of the pagination.</dd>
+<dt>id</dt>
+<dd>The id of the collection (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>).</dd>
+</dl>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">/a/b/c{.offset,limit}.html{+id}</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">path</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path of the current collection.
+It will act as the value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-id]</span></a>.</p>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">${requestPathInfo.suffix}</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemResourceType</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The resource type for each item of the column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">limit</span><span class="propertytype gnd-name">long</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">20</li></ol></dt>
+<dd><p>The item limit of the pagination.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">size</span><span class="propertytype gnd-name">integerel</span></dt>
+<dd><p>Indicates the size of the items from datasource to be included.
+If this property is not specified, then all items from datasource will be included, and the next page will be fetched accordingly.</p>
+<p>This is meant to be a performance optimization to avoid fetching the next page unnecessarily.
+For example given the fact that the <code class="docutils literal notranslate"><span class="pre">size</span></code> is set to 20, and the datasource is configured to fetch <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">+</span> <span class="pre">1</span></code>, which is 21,
+the implementation can check if the datasource actually has more item or not just by checking its size.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When <code class="docutils literal notranslate"><span class="pre">size</span></code> is set, you have to make sure your datasource is configured to fetch more than the value of <code class="docutils literal notranslate"><span class="pre">size</span></code>!</p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="44%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">size</span></code></th>
+<th class="head">Actual DS Size</th>
+<th class="head">Has More?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>&lt; 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>= 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>&gt; 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+</tr>
+<tr class="row-odd"><td>(not set)</td>
+<td>n/a</td>
+<td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">metaPath</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path to the resource to render <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-meta</span></a>.
+If not specified, the resource specified at <code class="docutils literal notranslate"><span class="pre">path</span></code> will be used instead.</p>
+<p>The resource will be included using resource type specified at <code class="docutils literal notranslate"><span class="pre">metaResourceType</span></code>, where it can be processed accordingly.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">metaResourceType</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The resource type to render <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-meta</span></a>.</p>
+<p>The resource specified at <code class="docutils literal notranslate"><span class="pre">metaPath</span></code> or <code class="docutils literal notranslate"><span class="pre">path</span></code> will be included using this resource type, where it can be processed accordingly.</p>
+<p>This property is mandatory to specified if <code class="docutils literal notranslate"><span class="pre">.foundation-collection-meta</span></code> needs to be generated.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">modeGroup</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">[data-foundation-mode-group]</span></a>
+this component participates.</p>
+<p>The component supports the <code class="docutils literal notranslate"><span class="pre">default</span></code> or <code class="docutils literal notranslate"><span class="pre">selection</span></code> mode.</p>
+<p>When there is a selection, it will trigger the <code class="docutils literal notranslate"><span class="pre">foundation-mode-change</span></code> event with mode = <code class="docutils literal notranslate"><span class="pre">selection</span></code>,
+while triggering the event with mode = <code class="docutils literal notranslate"><span class="pre">default</span></code> when there is no selection.</p>
+<p>When other component triggers the event,
+when mode = <code class="docutils literal notranslate"><span class="pre">default</span></code>, it will clear the selection and change itself into a default mode,
+while for mode = <code class="docutils literal notranslate"><span class="pre">selection</span></code>, it will change itself into a selection mode.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemReorderAction</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template handling the POST request to reorder the item.
+It supports the following variables:</p>
+<dl class="docutils">
+<dt>item</dt>
+<dd>The id of the reordered item. (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-item-id]</span></a>)</dd>
+<dt>before</dt>
+<dd>The id of the reference item. The item is ordered before this reference item. (<a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">[data-foundation-collection-item-id]</span></a>)</dd>
+<dt>beforeName</dt>
+<dd><p class="first">The name of the before item: <cite>var beforeName = before.substring(before.lastIndexOf(“/”) + 1);</cite>.</p>
+<p class="last">This is meant for convenience for Sling POST Servlet’s <code class="docutils literal notranslate"><span class="pre">:order</span></code> parameter, which requires the node name (instead of path).</p>
+</dd>
+</dl>
+<p>The final URL (after URI Template expansion) is converted to <code class="docutils literal notranslate"><span class="pre">application/x-www-form-urlencoded</span></code> content type.
+For example if we have URI Template of <code class="docutils literal notranslate"><span class="pre">/reorder{?item,before}</span></code> which is expanded into <code class="docutils literal notranslate"><span class="pre">/reorder?item=%2Fcontent%2Fde&amp;before=%2Fcontent%2Fen</span></code>,
+the POST would be against <code class="docutils literal notranslate"><span class="pre">/reorder</span></code> with <code class="docutils literal notranslate"><span class="pre">item=%2Fcontent%2Fde&amp;before=%2Fcontent%2Fen</span></code> as the request body.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemReorderAction.abs</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>This property is the equivalence of <code class="docutils literal notranslate"><span class="pre">itemReorderAction</span></code> for absolute path.</p>
+<p>For example if your template is <code class="docutils literal notranslate"><span class="pre">{+item}?order{&amp;before}</span></code>, since it is not starting with “/”,
+the server is unable to know if it is an absolute path.
+So use this property if you want to add the context path regardless.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">renderItemElement</span><span class="propertytype gnd-name">boolean</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">true</li></ol></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to automatically render <code class="docutils literal notranslate"><span class="pre">&lt;coral-masonry-item&gt;</span></code> and thus the item resource is rendering the content (e.g. a <code class="docutils literal notranslate"><span class="pre">&lt;coral-card&gt;</span></code>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">false</span></code> to make the item resource itself responsible to render <code class="docutils literal notranslate"><span class="pre">&lt;coral-masonry-item&gt;</span></code>. This would allow arbitrary attribute to be added to the element.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">skipEmptyItem</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">false</span></code> to show the empty message (or render the empty item using <code class="docutils literal notranslate"><span class="pre">emptyitem</span></code> subresource) when there is no item; <code class="docutils literal notranslate"><span class="pre">true</span></code> to skip showing that message.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">emptyitem</span></dt>
+<dd><p>The component to render the item to represent an “empty item” when there is no item.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p><strong>Navigating the Item</strong></p>
+<p>For navigation when clicking the item, <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-navigator</span></a> can be specified at the item element (or its descendant).
+It supports navigating to arbitrary location (just like <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code>), or navigating to the collection item.
+An example if the item is <code class="docutils literal notranslate"><span class="pre">&lt;coral-card&gt;</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">coral-card</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-navigator&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">coral-card</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Card Markup</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;coral-card&gt;</span></code> is usually used as the item of masonry.</p>
+<p>For the thumbnail of the card, it is recommended to use maximum 480w x 800h dimensions.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">coral-card</span> <span class="na">image</span><span class="o">=</span><span class="s">&quot;/content/geometrixx_mobile.thumb.800.480.png?ck=1447060146&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">coral-card</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><em>Indicating foundation-collection-action Relationship</em></p>
+<p>To indicate the <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-quickactions-rel]</span></code> that is used to match the <a class="reference internal" href="../clientlibs/foundation/js/collection/action/index.html"><span class="doc">foundation-collection-action</span></a> (in the toolbar), you should prepare a <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> holding the information:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-quickactions&quot;</span> <span class="na">data-foundation-collection-quickactions-rel</span><span class="o">=</span><span class="s">&quot;&lt;put value here&gt;&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>You can put it as a child of &lt;coral-card&gt;.</p>
+<p><em>Adding Quickactions to the Card</em></p>
+<p>To add quickactions, you need to add <code class="docutils literal notranslate"><span class="pre">&lt;coral-quickactions&gt;</span></code> after the <code class="docutils literal notranslate"><span class="pre">&lt;coral-card&gt;</span></code> and specify the <code class="docutils literal notranslate"><span class="pre">target</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">&lt;coral-quickactions&gt;</span></code> to point to the card.</p>
+<p><em>Replacement for &lt;a&gt; in Quickactions</em></p>
+<p>Since the markup now is required to be <code class="docutils literal notranslate"><span class="pre">&lt;coral-quickactions-item&gt;</span></code>, you cannot use <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> anymore.
+To replace it, you can use <a class="reference internal" href="../clientlibs/foundation/js/anchor/index.html"><span class="doc">foundation-anchor</span></a>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">coral-quickactions-item</span> <span class="na">icon</span><span class="o">=</span><span class="s">&quot;infoCircle&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-anchor&quot;</span> <span class="na">data-foundation-anchor-href</span><span class="o">=</span><span class="s">&quot;/libs/wcm/core/content/sites/properties.html/content/geometrixx-outdoors&quot;</span><span class="p">&gt;</span>Properties<span class="p">&lt;/</span><span class="nt">coral-quickactions-item</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><em>Quickactions Item to Select the Card</em></p>
+<p>For Shell3, there is a need to have a button in the quickactions to select the item/card.
+To do this, you can use <a class="reference internal" href="../clientlibs/foundation/js/collection/item/activator.html"><span class="doc">foundation-collection-item-activator</span></a> to annotate the button:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">coral-quickactions</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">coral-quickactions-item</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-item-activator&quot;</span> <span class="na">icon</span><span class="o">=</span><span class="s">&quot;check&quot;</span><span class="p">&gt;</span>Select<span class="p">&lt;/</span><span class="nt">coral-quickactions-item</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">coral-quickactions</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><em>Example</em></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">coral-card</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-quickactions&quot;</span> <span class="na">data-foundation-collection-quickactions-rel</span><span class="o">=</span><span class="s">&quot;cq-siteadmin-admin-actions-create-activator cq-siteadmin-admin-actions-copy-activator&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">coral-card</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">coral-quickactions</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_prev&quot;</span> <span class="na">alignMy</span><span class="o">=</span><span class="s">&quot;left top&quot;</span> <span class="na">alignAt</span><span class="o">=</span><span class="s">&quot;left top&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">coral-quickactions-item</span> <span class="na">icon</span><span class="o">=</span><span class="s">&quot;infoCircle&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-anchor&quot;</span> <span class="na">data-foundation-anchor-href</span><span class="o">=</span><span class="s">&quot;/libs/wcm/core/content/sites/properties.html/content/geometrixx-outdoors&quot;</span><span class="p">&gt;</span>Properties<span class="p">&lt;/</span><span class="nt">coral-quickactions-item</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">coral-quickactions-item</span> <span class="na">icon</span><span class="o">=</span><span class="s">&quot;copy&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foundation-collection-action&quot;</span> <span class="na">data-foundation-collection-action</span><span class="o">=</span><span class="s">&#39;{&quot;action&quot;: &quot;cq.wcm.copy&quot;}&#39;</span><span class="p">&gt;</span>Copy<span class="p">&lt;/</span><span class="nt">coral-quickactions-item</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">coral-quickactions</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Example</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+ mymasonry
+  - sling:resourceType = &quot;granite/ui/components/coral/foundation/masonry&quot;
+  - src = &quot;/a/b/c{.offset,limit}.html&quot;
+  + datasource
+    - sling:resourceType = &quot;my/datasource&quot;
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../list/index.html"
+                        title="previous chapter">List</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../meta/index.html"
+                        title="next chapter">Meta</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/masonry/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../meta/index.html" title="Meta"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../list/index.html" title="List"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" >Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

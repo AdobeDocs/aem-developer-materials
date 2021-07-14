@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.8 Node Types (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.8." id="section_4.8."></a>4.8 Node Types
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Every node <i>must</i> have one and only one <i>primary node type</i>. The primary node type defines the names, types and other characteristics of the properties and child nodes that a node is allowed (or required) to have. Every node has a special property called <b>jcr:primaryType</b> that records the name of its primary node type.
+								</p>
+							
+							
+								<p class="c5">
+									In addition to its primary node type, a node <i>may</i> also have one or more <i>mixin types</i>. These are node type definitions that can mandate extra characteristics (i.e., more child nodes, properties and their respective names and types) for a particular node in addition to those enforced by its primary node type. When a node is assigned a mixin node type, it acquires a special multi-value property called <b>jcr:mixinTypes</b> that records its mixin node types.
+								</p>
+							
+							
+								<p class="c5">
+									Level 1 of the specification provides methods for discovering the node types of existing nodes, and for discovering and reading the definitions of node types available in the repository.
+								</p>
+							
+							
+								<p class="c5">
+									Level 2 of the specification provides methods for assigning primary and mixin node types to nodes.
+								</p>
+							
+							
+								<p class="c5">
+									The specification does not attempt to provide methods for defining, creating or managing primary or mixin node types.
+								</p>
+							
+							
+								<p class="c5">
+									This specification also provides a set of predefined primary and mixin node types; some required and some optional. See <a href="6.7_Node_Types.html">6.7</a> <i>Node Types</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.2 XPath and SQL (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.2." id="section_6.6.2."></a>6.6.2 XPath and SQL
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									XPath 2.0 forms the basis of the querying syntax in level 1. All compliant repository implementations must support this search syntax. However, implementations that use a relational database as an underlying datastore will typically be limited in the range of XPath queries that they can efficiently support. Such implementations will find support for the optional SQL syntax a more natural fit (see <a href="8.5_Searching_Repository_Content_with_SQL.html">8.5</a> <i>Searching Repository Content with SQL</i>).
+								</p>
+							
+							
+								<p class="c5">
+									Therefore, in order to ensure that database-backed implementations are not unnecessarily burdened by compliance requirements, only a subset of XPath is required. This subset is defined as the set of XPath statements that can be translated to and from SQL at parse-time of the query.
+								</p>
+							
+							
+								<p class="c5">
+									This arrangement allows database-backed repositories to implement search natively with SQL but still comply with the minimal XPath requirement by translating XPath queries to SQL.
+								</p>
+							
+							
+								<p class="c5">
+									On the other hand, implementations that are natively hierarchical and therefore capable of supporting XPath functionality beyond the minimum requirement are free to do so.
+								</p>
+							
+							
+								<p class="c5">
+									As mentioned, support for SQL is optional. But because the minimal set of XPath features is driven by the semantic range of SQL, a knowledge of the mapping between the two aids greatly in understanding that minimal feature set XPath. The following sections summarize that mapping.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

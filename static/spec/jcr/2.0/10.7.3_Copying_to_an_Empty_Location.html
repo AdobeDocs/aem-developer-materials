@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.7.3 Copying to an Empty Location (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>10.7.3 Copying to an Empty Location</H3>
+	<P>When a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is copied to a path location where no node currently exists, a new
+	node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	is created at that location. The subgraph rooted at and including <FONT FACE="Courier New, monospace"><FONT SIZE=2>N'</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>)
+	is created and is identical to the subgraph rooted at and including
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	(call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>)
+	with the following exceptions:</P>
+	<UL>
+		<LI><P>If the copy is
+		within the same workspace, every node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'
+		</FONT></FONT>is given a new and distinct identifier.
+		If the copy is to another workspace, every referenceable node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+		is given a new and distinct identifier while every
+		non-referenceable node in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT>
+		<I>may</I> be given a new and distinct identifier (see §3.8
+		<I>Referenceable Nodes</I>).</P>
+	</UL>
+	<UL>
+		<LI><P>The repository
+		<I>may</I> automatically drop any <I>mixin node type</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		present on any node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>.
+		Dropping a mixin node type in this context means that while <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		remains unchanged, its copy <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will lack the mixin <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		and any child nodes and properties defined by <FONT FACE="Courier New, monospace"><FONT SIZE=2>T</FONT></FONT>
+		that are present on <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>.
+		For example, a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		that is <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+		may be copied such that the resulting node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will be a copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		except that <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will not be <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+		and will not have any of the properties defined by <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>.
+		In order for a mixin node type to be dropped it must be listed by
+		name in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>.
+		The resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will reflect any change.</P>
+	</UL>
+	<UL>
+		<LI><P>If a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		is referenceable and its <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:referenceable</FONT></FONT>
+		mixin is <I>not</I> dropped on copy, then the resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+		property of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>
+		will reflect the new identifier assigned to <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>.</P>
+		<LI><P>Each <FONT FACE="Courier New, monospace"><FONT SIZE=2>REFERENCE</FONT></FONT>
+		or <FONT FACE="Courier New, monospace"><FONT SIZE=2>WEAKEREFERENCE</FONT></FONT>
+		property <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		is copied to its new location <FONT FACE="Courier New, monospace"><FONT SIZE=2>R'</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>S'</FONT></FONT><I>.</I>
+		If <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>
+		references a node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		<I>within</I> <FONT FACE="Courier New, monospace"><FONT SIZE=2>S</FONT></FONT>
+		then the value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>R'</FONT></FONT>
+		will be the identifier of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M'</FONT></FONT>,
+		the new copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>,
+		thus preserving the reference within the subgraph (see §3.8
+		<I>Referenceable Nodes</I>).</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

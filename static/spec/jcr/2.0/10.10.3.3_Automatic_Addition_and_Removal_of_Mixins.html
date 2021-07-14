@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 10.10.3.3 Automatic Addition and Removal of Mixins (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>10.10.3.3 Automatic Addition and Removal of Mixins</H4>
+	<P>A repository may
+	automatically assign a mixin type to a node upon creation. For
+	example if, as a matter of configuration, all <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:file</FONT></FONT>
+	nodes in a repository are to be versionable, then the repository may
+	automatically assign the mixin type <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>
+	to each such node as it is created.</P>
+	<P>Similarly, a
+	repository may automatically strip incoming imported nodes of any
+	mixin node types that the repository does not support (see §11.3
+	<I>Respecting Property Semantics</I>).</P>
+	<P>Note that this
+	behavior is distinct from that of adding a mixin type as a supertype
+	of some primary types in the node type inheritance hierarchy (see
+	§3.7.16.1.2 <I>Additions to the Hierarchy</I>). Though the two
+	features may both be employed in the same repository, they differ in
+	that one affects the actual hierarchy of the supported node types,
+	while the other works on a node-by-node basis.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

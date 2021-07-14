@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 7.3.3 Multi-Value Properties (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>7.3.3 Multi-Value Properties</H3>
+	<P>If a multi-value
+	property <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+	is encountered on export, the repository may either ignore the
+	multi-value property or serialize it as an attribute whose value is
+	an XML Schema list type<SUP><A CLASS="sdfootnoteanc" NAME="sdfootnote14anc" HREF="#sdfootnote14sym"><SUP>14</SUP></A></SUP>
+	(i.e., a whitespace-delimited list of strings). If the latter
+	approach is taken then:</P>
+	<UL>
+		<LI><P>Each value in the
+		property is converted to a string according to standard conversion,
+		see §3.6.4 <I>Property Type Conversion</I>. If the multi-value
+		property contains no values, then it is serialized as an empty
+		string.</P>
+		<LI><P>All literal
+		whitespace within each string is escaped, as well as any characters
+		that should not be included as literals in any case, see §7.5
+		<I>Escaping of Values</I>.</P>
+		<LI><P>The final
+		attribute value is constructed by concatenating the resulting
+		strings, with the addition of the space delimiter, into a single
+		string. The order of concatenation must be the same as the order in
+		which the values appear in the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Value</FONT></FONT>
+		array returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>Property.getValues</FONT></FONT>.</P>
+		<LI><P>Furthermore, if
+		multi-value property serialization is supported, then a mechanism
+		must be adopted whereby upon re-import the distinction between
+		multi- and single- value properties is not lost, see §7.5 <I>Escaping
+		of Values</I>.</P>
+		<LI><P>Note that this
+		escaping of space literals does not apply to the value of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext/jcr:xmlcharacters</FONT></FONT>
+		when it is converted to XML text. In that case only the standard
+		XML entity escaping is required, regardless of whether multi-value
+		property serialization is supported (see §7.3.1 <I>XML Text</I>
+		and §7.5 <I>Escaping of Values</I>).</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

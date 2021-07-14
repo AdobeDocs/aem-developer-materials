@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 12.5 Asynchronous Observation (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>12.5 Asynchronous Observation</H2>
+	<P>Asynchronous
+	observation enables an application to respond to changes made in a
+	workspace as they occur.</P>
+	<P>An application
+	connects with the asynchronous observation mechanism by registering
+	an event listener with the workspace. Listeners apply <I>per
+	workspace</I>, not repository-wide; they only receive events for the
+	workspace in which they are registered. An event listener is an
+	application-specific class implementing the <FONT FACE="Courier New, monospace"><FONT SIZE=2>EventListener</FONT></FONT>
+	interface that responds to the stream of events to which it has been
+	subscribed.</P>
+	<P>This observation
+	mechanism is <I>asynchronous</I> in that the operation that causes
+	an event to be dispatched does not wait for a response to the event
+	from the listener; execution continues normally on the thread that
+	performed the operation.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

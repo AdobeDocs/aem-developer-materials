@@ -1,0 +1,76 @@
+
+Accordion
+=========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/accordion
+
+   The accordion.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Accordion] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * Whether multiple items can be opened at the same time.
+       */
+      - multiple (Boolean)
+
+      /**
+       * The variant of the accordion.
+       *
+       * default
+       *    The default look and feel.
+       * quiet
+       *    Quiet variant with minimal borders.
+       * large
+       *    Large variant, typically used inside a navigation rail since it does not have borders on the sides.
+       */
+      - variant (String) = 'default' < 'default', 'quiet', 'large'
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+   Each item at least has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:AccordionItem]
+
+      /**
+       * The item title.
+       */
+      - jcr:title (String) mandatory i18n
+
+      /**
+       * The item specific config for the parent.
+       */
+      + parentConfig (granite:AccordionItemParentconfig)
+
+
+      [granite:AccordionItemParentconfig]
+
+      /**
+       * ``true`` to open the item initially; ``false`` otherwise.
+       */
+      - active (Boolean)
+
+      /**
+       * ``true`` to disable the item; ``false`` otherwise.
+       */
+      - disabled (Boolean)
+
+   Example::
+
+      + myaccordion
+        - sling:resourceType = "granite/ui/components/coral/foundation/accordion"
+        + items
+          + item1
+            - jcr:title = "Item 1"
+          + item2
+            - jcr:title = "Item 2"
+            + parentConfig
+              - active = true

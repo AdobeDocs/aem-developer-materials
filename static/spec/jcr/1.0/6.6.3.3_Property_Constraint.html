@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.3.3 Property Constraint (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.3.3." id="section_6.6.3.3."></a>6.6.3.3 Property Constraint
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A query may specify further constraints on the result nodes by way of property constraints.
+								</p>
+							
+							
+								<p class="c5">
+									<b>XPath</b>: In XPath a predicate that tests attributes on the last location step forms the property constraint expression. Predicates on any other location step are optional.
+								</p>
+							
+							
+								<p class="c5">
+									<b>SQL</b>: In SQL the <b>WHERE</b> clause forms the constraint expression.
+								</p>
+							
+							
+								<p class="c5">
+									Examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										SELECT *<br>
+										FROM my:type<br>
+										WHERE my:title='JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										//element(*, my:type)<br>
+										[@my:title = 'JSR 170']
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									In order to ensure mutual translatability between XPath and SQL we only require support for the XPath general comparison operators (<b>=</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>). In SQL the semantics of these operators must be the same as they are for XPath. The only difference is that in XPath the not-equal operator is <b>!=</b>, while in SQL it is <b>&lt;&gt;</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The term “general comparison” comes from XPath terminology. The significance of requiring support for XPath general comparison, and their equivalents in SQL, lies in the way that these operators behave with multi-value properties. See 6.6.4.10 Searching Multi-value Properties for details.
+								</p>
+							
+							
+								<p class="c5">
+									Additionally, support for <b>jcr:like()</b> (<b>LIKE</b> in SQL) and <b>jcr:contains</b> (<b>CONTAINS</b> in SQL) is required (though the range of this requirement is qualified below).
+								</p>
+							
+							
+								<p class="c5">
+									Since not all property types can be meaningfully compared using all operators the following describes the minimal set of comparison support required for each property type:
+								</p>
+							
+							
+								<p class="c5">
+									<b>STRING</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>), <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>jcr:like()</b>(<b>LIKE</b>)
+								</p>
+							
+							
+								<p class="c5">
+									<b>LONG</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>), <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>
+								</p>
+							
+							
+								<p class="c5">
+									<b>DOUBLE</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>), <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>
+								</p>
+							
+							
+								<p class="c5">
+									<b>DATE</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>), <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>
+								</p>
+							
+							
+								<p class="c5">
+									<b>NAME</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>)
+								</p>
+							
+							
+								<p class="c5">
+									<b>PATH</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>), (additionally, in SQL, <b>LIKE</b> is used against the <b>jcr:path</b> pseudo-property to define path constraints, see 6.6.3.4 Path Constraint)
+								</p>
+							
+							
+								<p class="c5">
+									<b>REFERENCE</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>)
+								</p>
+							
+							
+								<p class="c5">
+									<b>BOOLEAN</b>: <b>=</b>, <b>!=</b> (<b>&lt;&gt;</b>)
+								</p>
+							
+							
+								<p class="c5">
+									<b>BINARY</b>: <i>(none)</i>
+								</p>
+							
+							
+								<p class="c5">
+									The <b>jcr:like</b> function in XPath corresponds to the <b>LIKE</b> operator in SQL. See <a href="6.6.5.1_jcr_like_Function.html">6.6.5.1</a> <i>jcr:like Function</i> and <a href="8.5.4.4_LIKE.html">8.5.4.4</a> <i>LIKE</i>.
+								</p>
+							
+							
+								<p class="c5">
+									Support for the <b>jcr:contains()</b> (<b>CONTAINS()</b> in SQL) function is not required for any property types in particular. It is however required to work <i>at the node level</i>. In that case it applies to those properties of the node for which the implementation maintains an index. Which properties those are is an implementation issue. See 6.6.5.2 jcr:contains Function and 8.5.4.5 CONTAINS.
+								</p>
+							
+							
+								<p class="c5">
+									Support for comparing <b>jcr:score</b> in a SQL <b>WHERE</b> clause or <b>jcr:score(...)</b> in a XPath predicate is not required.
+								</p>
+							
+							
+								<p class="c5">
+									In XPath support is only required for comparisons of the form <b>&lt;property&gt;&lt;op&gt;&lt;literalvalue&gt;</b> and <b>&lt;literalvalue&gt;&lt;op&gt;&lt;property&gt;</b>. For example, support for <b>[@p = "hello"]</b> and <b>["hello" = @p]</b> (and so forth for each operator) is required. Support for <b>[@p = @q]</b> (and so forth for each operator) is not required.
+								</p>
+							
+							
+								<p class="c5">
+									Examples:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>SQL</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>XPath</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title = 'JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title = 'JSR 170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title &lt;&gt; 'JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title != 'JSR 170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title &lt; 'JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title &lt; 'JSR 170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title &lt;= 'JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title &lt;= 'JSR 170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title &gt; 'JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title &gt; 'JSR 170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title &gt;= 'JSR 170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title &gt;= 'JSR 170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title = 'JSR 170' AND my:author = 'David'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title = 'JSR 170' and @my:author = 'David'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title = 'JSR 170' OR<br>
+										my:title = 'JSR-170'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title = 'JSR 170' or<br>
+										@my:title = 'JSR-170'
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										NOT (my:title = 'JSR 170')
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										not(@my:title &gt;= 'JSR 170')
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title IS NOT NULL
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										@my:title
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title IS NULL
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										not(@my:title)
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										my:title LIKE 'JSR 170%'
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										jcr:like(@my:title,<br>
+										'JSR 170%')
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										CONTAINS(*, 'JSR 170')
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										jcr:contains(., 'JSR 170')
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.11.3 Unlocking a Node (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>17.11.3 Unlocking a Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>	void
+	LockManager.unlock(String absPath)</FONT></FONT></P>
+	<P>Removes the lock, and
+	the properties <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>,
+	from the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>absPath</FONT></FONT>.
+	These changes are persisted automatically; there is no need to call
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+	As well, the corresponding lock token is removed from the set of
+	lock tokens held by the current session.</P>
+	<P>If this node does not
+	currently hold a lock or holds a lock for which this <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	is not the owner, then a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException</FONT></FONT>
+	is thrown. 
+	</P>
+	<P>The system may give
+	permission to a non-owning session to unlock a lock. Typically such
+	“lock-superuser” capability is intended to facilitate
+	administrational clean-up of orphaned open-scoped locks.</P>
+	<P>It is possible to
+	unlock a node even if it is checked-in (see §15.2.2 <I>Read-Only on
+	Check-In</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.2.1 jcr:versionStorage (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.2.1." id="section_8.2.2.1."></a>8.2.2.1 jcr:versionStorage
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The full set of version histories in the version storage, though stored in a single location in the repository, must be reflected in each workspace as a subtree below the node <b>/jcr:system/jcr:versionStorage</b>. This subtree must be read-only<i>.</i> That is, applications cannot alter this subtree through standard write methods; though the implementation can, of course, alter it as a side-effect of the application calling version-related methods.
+								</p>
+							
+							
+								<p class="c5">
+									The read-only status of this subtree should be enforced by the implementation as a matter of access control. As a result, the protected status of parts of this subtree (enforced as a matter of node type constraints) is not relevant since, in effect, the entire subtree is protected.
+								</p>
+							
+							
+								<p class="c5">
+									Though the general repository-wide version history is reflected in each workspace, the access that a particular <b>Session</b> gets to that subtree is governed by that <b>Session</b>'s authorization (which is determined either by the <b>Session</b>'s <b>Credentials</b> or an external authorization mechanism), just as it is for any other part of the workspace.
+								</p>
+							
+							
+								<p class="c5">
+									All <b>nt:versionHistory</b> nodes are found under <b>/jcr:system/jcr:versionStorage</b>, though there may be a structure of intervening subnodes that sort the version histories by some implementation-specific criteria.
+								</p>
+							
+							
+								<p class="c5">
+									The node type of the node <b>jcr:versionStorage</b> is left up to the implementation.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

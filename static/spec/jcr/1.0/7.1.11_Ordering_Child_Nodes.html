@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.11 Ordering Child Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.11." id="section_7.1.11."></a>7.1.11 Ordering Child Nodes
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									If a node supports <i>orderable child nodes</i> then the following method can be used to arrange the order of its child nodes.
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>orderBefore(String srcChildRelPath,<br>
+										String destChildRelPath)</b>
+									</p>
+									<p class="c5">
+										If this node supports child node ordering, this method inserts the child node at <b>srcChildRelPath</b> before its sibling, the child node at <b>destChildRelPath</b>, in the child node list. To place the node <b>srcChildRelPath</b> at the end of the list, a <b>destChildRelPath</b> of <b>null</b> is used.
+									</p>
+									<p class="c5">
+										Note that (apart from the case where <b>dest</b><b>Child</b><b>RelPath</b> is <b>null</b>) both of these arguments must be relative paths of depth one, in other words they are the <i>names</i> of the child nodes, possibly suffixed with an index (see <a href="4.6.1_Names_vs._Paths.html">4.6.1</a> <i>Names vs. Paths</i>).
+									</p>
+									<p class="c5">
+										If <b>srcChildRelPath</b> and <b>destChildRelPath</b> are the same, then no change is made.
+									</p>
+									<p class="c5">
+										Changes to ordering of child nodes are persisted on <b>save</b> of the parent node.
+									</p>
+									<p class="c5">
+										If this node does not support child node ordering, then a <b>UnsupportedRepositoryOperationException</b> thrown.
+									</p>
+									<p class="c5">
+										If <b>srcChildRelPath</b> is not the relative path to a child node of this node then an <b>ItemNotFoundException</b> is thrown.
+									</p>
+									<p class="c5">
+										If <b>destChildRelPath</b> is neither the relative path to a child node of this node nor <b>null</b>, then an <b>ItemNotFoundException</b> is also thrown.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if this operation would violate a implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the re-ordering. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										If another error occurs a <b>RepositoryException</b> is thrown.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<br>
+									If a node type returns <b>true</b> on a call to <b>NodeType.hasOrderableChildNodes()</b>, then all nodes of that node type <i>must</i> support the method <b>Node.orderBefore</b>. If a node type returns <b>false</b> on a call to this method, then nodes of that node type <i>may</i> support <b>Node.orderBefore</b>. Only the primary node type of a node controls that node's status in this regard. This setting on a mixin node type will not have any effect on the node.
+								</p>
+							
+							
+								<p class="c5">
+									If a node has orderable child nodes then at any time the current order of its child nodes is reflected in the order of nodes in the iterator returned by <b>Node.getNodes</b>.
+								</p>
+							
+							
+								<p class="c5">
+									If a node does not have orderable child nodes then the order of nodes returned by <b>Node.getNodes</b> is not guaranteed and may change at any time.
+								</p>
+							
+							
+								<p class="c5">
+									Note that the order of properties returned by <b>Node.getProperties</b> is never client-controllable.
+								</p>
+							
+							
+								<p class="c5">
+									See <a href="4.4_Orderable_Child_Nodes.html">4.4</a> <i>Orderable Child Nodes</i>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

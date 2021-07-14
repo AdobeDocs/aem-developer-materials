@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.1 XPath over Document View (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.1." id="section_6.6.1."></a> 6.6.1 XPath over Document View
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When an XPath query is executed, the XPath expression specified is applied to the document view of the workspace being searched.
+								</p>
+							
+							
+								<p class="c5">
+									For example, consider a workspace with the following structure (based on the earlier example in Section <a href="6.4.1.1_Example.html">6.4.1.1</a>, with the addition of a top-most root node):
+								</p>
+							
+						
+					
+				
+			
+			
+				<br>
+				&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+			
+			
+				<br>
+				&lt;jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+			
+			
+				<br>
+				xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+			
+			
+				<br>
+				xmlns:mix="http://www.jcp.org/jcr/mix/1.0"<br>
+				xmlns:myapp="http://mycorp.com/myapp"
+			
+			
+				<br>
+				xmlns:mynt="http://mycorp.com/mynt"
+			
+			
+				<br>
+				jcr:primaryType="nt:unstructured"&gt;
+			
+			
+				<br>
+				&lt;myapp:document jcr:primaryType="mynt:document"&gt;
+			
+			
+				<br>
+				myapp:title="JSR 170"
+			
+			
+				<br>
+				myapp:lead="Content Repository"&gt;
+			
+			
+				<br>
+				&lt;myapp:body jcr:primaryType="mynt:body"&gt;
+			
+			
+				<br>
+				&lt;myapp:paragraph jcr:primaryType="mynt:paragraph"
+			
+			
+				<br>
+				myapp:title="Node Types"
+			
+			
+				<br>
+				myapp:text="An important feature..."/&gt;
+			
+			
+				<br>
+				&lt;/myapp:body&gt;
+			
+			
+				<br>
+				&lt;/myapp:document&gt;
+			
+			
+				<br>
+				&lt;/jcr:root&gt;
+			
+			
+				
+					
+						
+							
+								<p class="c5">
+									<br>
+									<i>Note that in the above, the XML has been formatted for readability. The actual XML stream might not have any extraneous whitespace between elements or attributes.</i>
+								</p>
+							
+							
+								<p class="c5">
+									In this case, to find the node called <b>myapp:paragraph</b>, the following XPath expression would be used:
+								</p>
+							
+							
+								<p class="c5">
+									<b>//element(*, mynt:paragraph)[@myapp:title="Node Types"]</b>
+								</p>
+							
+							
+								<p class="c5">
+									This query will return the node at the repository workspace path (as opposed to an XPath):
+								</p>
+							
+							
+								<p class="c5">
+									<b>/myapp:document/myapp:body/myapp:paragraph</b>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

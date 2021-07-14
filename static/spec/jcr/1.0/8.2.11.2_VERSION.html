@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.11.2 VERSION (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.11.2." id="section_8.2.11.2."></a>8.2.11.2 VERSION
+		</h4>
+		
+			
+				
+					
+						
+							
+								<h5>
+									Child Node
+								</h5>
+							
+							
+								<p class="c5">
+									On <b>checkin</b> of <b>N</b>, the node <b>V</b><b><sub>N</sub></b> will get a subnode of type <b>nt:versionedChild</b> with the same name as <b>C</b>. The single property of this node, <b>jcr:childVersionHistory</b> is a <b>REFERENCE</b> to <i>the version history of</i> <b><i>C</i></b> (not to <b>C</b> or any actual version of <b>C</b>). This also requires that <b>C</b> itself be versionable (otherwise it would not have a version history). If <b>C</b> is not versionable then the behavior of <b>COPY</b> applies on <b>checkin</b>, however the recursive copy terminates at each versionable node encountered further below in the subtree, at which points the standard <b>VERSION</b> behavior is again followed.
+								</p>
+							
+							
+								<p class="c12">
+									<i>NodeTypeName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:versionedChild</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>Supertypes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>nt:base</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>IsMixin</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>HasOrderableChildNodes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PrimaryItemName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:childVersionHistory</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>REFERENCE</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>["nt:versionHistory"]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>ABORT</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>false</b>
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									On <b>restore</b> of <b>V</b><b><sub>N</sub></b>, if the workspace currently has an already existing node corresponding to <b>C</b>’s version history and the <b>removeExisting</b> flag of the <b>restore</b> is set to <b>true</b>, then that instance of <b>C</b> becomes the child of the restored <b>N</b>.
+								</p>
+							
+							
+								<p class="c5">
+									If the workspace currently has an already existing node corresponding to <b>C</b>’s version history and the <b>removeExisting</b> flag of the <b>restore</b> is set to <b>false</b> then an <b>ItemExistsException</b> is thrown.
+								</p>
+							
+							
+								<p class="c5">
+									If the workspace does not have an instance of <b>C</b> then one is restored from <b>C</b>’s version history. The workspace in which the <b>restore</b> is being performed will determine which particular version of <b>C</b> will be restored. This determination depends on the configuration of the workspace and is outside the scope of this specification.
+								</p>
+							
+							
+								<h5>
+									Property
+								</h5>
+							
+							
+								<p class="c5">
+									In the case of properties, an <b>OnParentVersion</b> attribute of <b>VERSION</b> has the same effect as <b>COPY</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

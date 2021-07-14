@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 17.7 Effect of a Lock (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>17.7 Effect of a Lock</H2>
+	<P>If a lock applies to a
+	node (i.e., the node either holds the lock or is a descendant of a
+	node holding a deep lock), then to all sessions except the
+	lock-owning session, the same restrictions apply with respect to the
+	node as would apply if the node were protected (see §3.7.2.2
+	<I>Protected</I>). 
+	</P>
+	<P>Removing a node is
+	considered an alteration of <I>its parent</I>. This means that a
+	node within the scope of a lock may be removed by a session that is
+	not an owner of that lock, assuming no other restriction prevents
+	the removal. Similarly, a locked node and its subgraph may be moved
+	by a non-lock-owning session if no restriction prevents the
+	alteration of the source and destination parent nodes.</P>
+	<P>
+	Locked nodes can always be read and copied by any session with
+	sufficient access privileges.</P>
+	<P>When an action is
+	prevented due to a lock, a <FONT FACE="Courier New, monospace"><FONT SIZE=2>LockException
+	</FONT></FONT>is thrown either immediately or on the
+	subsequent <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+	Implementations may differ on which of these behaviors is used to
+	enforce locking.</P>
+	<P>There is at most one
+	lock on any node at one time.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

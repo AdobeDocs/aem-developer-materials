@@ -1,0 +1,52 @@
+
+Switcher
+========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/mode/switcher
+
+   Switcher is a container that leverages :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/vocabulary/mode` vocabulary
+   to show/hide the item according the active mode.
+   When ``foundation-mode-change`` event is triggered, the item having the same mode will be shown; otherwise the item is hidden.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ModeSwitcher] > granite:commonAttrs, granite:renderCondition, granite:container
+
+      /**
+       * The mode that is active initially; otherwise the first item is active.
+       *
+       * The item mode name is indicated by its resource name.
+       */
+      - active (StringEL)
+
+      /**
+       * The mode group that this component will be part of.
+       */
+      - group (String)
+
+      /**
+       * Put vertical margin to the root element.
+       */
+      - margin (Boolean)
+
+      /**
+       * Make the element maximized to fill the available space.
+       */
+      - maximized (Boolean)
+
+   Example::
+
+      + mymodeswitcher
+        - sling:resourceType = "granite/ui/components/coral/foundation/mode/switcher"
+        - group = "myapp-mytopic-mygroup"
+        + items
+          + default
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+          + selection
+            - sling:resourceType = "granite/ui/components/coral/foundation/container"
+
+   In above example, there are two modes configured: ``default`` and ``selection``.
+   Since there is no ``active`` specified at ``mymodecontainer`` resource, the first item (the default mode) is active.
+   When ``foundation-mode-change`` is triggered with [mode = selection, group = myapp-mytopic-mygroup], the selection item will be shown and default item will be hidden.

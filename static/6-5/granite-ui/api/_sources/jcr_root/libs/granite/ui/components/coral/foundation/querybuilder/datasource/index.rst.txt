@@ -1,0 +1,31 @@
+
+Datasource
+==========
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/querybuilder/datasource
+   :datasource:
+
+   A datasource wrapping QueryBuilder.
+
+   It uses ``HTTPServletRequest#getParameterMap()`` as the predicate group.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:QueryBuilderDatasource]
+
+      /**
+       * The resource type of individual item.
+       */
+      - itemResourceType (String) mandatory
+
+      /**
+       * The offset of the query.
+       */
+      - offset (LongEL) = '0'
+
+      /**
+       * The limit of the query.
+       */
+      - limit (LongEL) = '20'

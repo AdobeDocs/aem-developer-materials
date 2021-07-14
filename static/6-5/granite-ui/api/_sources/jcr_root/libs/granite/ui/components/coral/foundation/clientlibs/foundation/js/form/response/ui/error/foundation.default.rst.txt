@@ -1,0 +1,12 @@
+foundation.form.response.ui.error: foundation.default
+=====================================================
+
+``foundation.default`` is a error response handler of :doc:`../../../index`.
+
+It will show an alert about the error.
+
+
+Matching Condition
+------------------
+
+This handler is the default and would be the last priority to catch all error response.

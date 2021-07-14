@@ -1,0 +1,1 @@
+{"name":"CQ_Analytics.GeolocationUtils","doc":"A helper class providing a set of utility methods to manage a geolocation store.\nThis class is a ...","configs":[],"props":[],"methods":[{"name":"init","doc":"Initializes a persisted json store that contains the geolocation."}],"events":[]}

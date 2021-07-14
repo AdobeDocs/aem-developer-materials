@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.1.5 Cloning Versionable Nodes (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>15.1.5 Cloning Versionable Nodes</H3>
+	<P>Under both simple and
+	full versioning, when a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is cloned to another workspace:</P>
+	<UL>
+		<LI><P>A clone of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+		call it <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>,
+		is created, as usual.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		is initialized to have the same version history and base version as<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		N</FONT></FONT>.</P>
+	</UL>
+	<P>Under full versioning:</P>
+	<UL>
+		<LI><P>The
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:versionHistory</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:baseVersion</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:predecessors</FONT></FONT>
+		properties of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		are copied to <FONT FACE="Courier New, monospace"><FONT SIZE=2>N’</FONT></FONT>
+		unchanged<FONT FACE="Courier New, monospace"><FONT SIZE=2>.</FONT></FONT></P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

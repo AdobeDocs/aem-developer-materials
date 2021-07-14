@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 16.2.2 Abstract Privileges (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>16.2.2 Abstract Privileges</H3>
+	<P>A privilege may be an
+	<I>abstract privilege</I>. Abstract privileges cannot themselves be
+	granted or denied, but can be individually tested and can be
+	composed into aggregate privileges which are granted or denied.</P>
+	<P>Abstract privileges
+	facilitate application interoperability against repositories
+	supporting different privilege granularities. For example, consider
+	aggregate privilege <I>p</I> containing privileges <I>p1</I> and <I>p2</I>.
+	In repository A, <I>p1</I> and <I>p2</I> are not abstract and can
+	therefore be individually granted, whereas in repository B both <I>p1</I>
+	and <I>p2</I> are abstract and cannot be individually granted. For
+	both repositories, however, an application can test whether a user
+	has privilege <I>p1</I>, even though in repository B, <I>p1</I> can
+	only be acquired through non-abstract privilege <I>p</I>.</P>
+	<P>A privilege can be
+	both aggregate and abstract.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.5 Special Properties jcr:primaryType and jcr:mixinTypes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.5." id="section_6.7.5."></a> 6.7.5 Special Properties jcr:primaryType and jcr:mixinTypes
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A node's primary node type must be stored in content as a <b>NAME</b> property of that node called <b>jcr:primaryType</b>. Similarly, any mixin node types assigned to it must be recorded in the multi-value <b>NAME</b> property <b>jcr:mixinTypes</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that the mixin node types listed in the <b>jcr:mixinTypes</b> property are those that have been <i>explicitly assigned</i> (using <b>Node.addMixin</b>) to a node. It does not include mixin types that may be among the supertypes of a node's primary type.
+								</p>
+							
+							
+								<p class="c5">
+									These properties are used to persist node type information across serialization/deserialization cycles. See <a href="7.4.5_Serialization_and_Node_Types.html">7.4.5</a> <i>Serialization and Node Types</i>. Both of these properties are protected; they cannot be removed or changed by the application using the API. The <b>jcr:primaryType</b> and <b>jcr:mixinTypes</b> properties are specified in the predefined primary node type <b>nt:base</b>, which is the supertype of all other primary node types (be they defined by this specification or implementation or application specific).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

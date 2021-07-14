@@ -1,0 +1,60 @@
+*************************
+foundation-layout-control
+*************************
+
+
+Markup
+======
+
+
+.foundation-layout-control
+--------------------------
+
+Indicates the control to manipulate :doc:`layout <index>`.
+
+Selector Rule::
+
+   .foundation-layout-control
+
+
+[data-foundation-layout-control]
+--------------------------------
+
+Indicates the config when the control is activated. The value is JSON with the following structure:
+
+.. code-block:: ts
+
+   interface FoundationLayoutControlConfig {
+     /**
+      * The action to be performed. Valid values:
+      *
+      * - <code>switch</code> is calling <code>FoundationLayout.switchLayout</code>.
+      */
+     action: string;
+
+     /**
+      * The selector to the layout element (element having <code>[data-foundation-layout]</code>).
+      * If this property is missing, the closest layout element is used (<code>control.closest("[data-foundation-layout]")</code>).
+      */
+     target: string;
+
+     /**
+      * The config object to be used by the layout. This is same value as <code>[data-foundation-layout]</code>.
+      */
+     config: FoundationLayoutsConfig;
+   }
+
+Selector Rule::
+
+   .foundation-layout-control[data-foundation-layout-control]
+
+
+Relationship Graph
+==================
+
+.. graphviz::
+
+   digraph "foundation-layout" {
+     rankdir=BT;
+     "foundation-layout-control" -> "foundation-layout" [label="controls"];
+   }

@@ -1,0 +1,833 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 5.4 XML-backed Content Repository (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_5.4." id="section_5.4."></a> 5.4 XML-backed Content Repository
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Another possible implementation is as a layer on top of a file system where that file system contains structured content in the form of XML files.
+								</p>
+							
+							
+								<p class="c5">
+									Let’s say that the file system looks like this:
+								</p>
+							
+							
+								<p class="c12">
+									<b>/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>products.xml</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>people.xml</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>services.xml</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>products/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>rhombus.xml</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>...</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>people/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>...</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>services/</b>
+								</p>
+							
+							
+								<p class="c12">
+									<b>...</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									And <b>products.xml</b> looks like this:
+								</p>
+							
+							
+								<p class="c12">
+									&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;content&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;title&gt;Our Products&lt;/title&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;lead&gt;Geometrixx is proud to offer...&lt;/lead&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;text&gt;Geometrixx is the industry leader...&lt;/text&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;image&gt;/9j/4AAQSkZJRgABAQ...&lt;/image&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;/paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;text&gt;We have recently...&lt;/text&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;image&gt;/9j/4AAQSkZJRgABAQ...&lt;/image&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;/paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;/content&gt;
+								</p>
+							
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									And similarly, <b>rhombus.xml</b> looks like this:
+								</p>
+							
+							
+								<p class="c12">
+									&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;content&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;title&gt;Rhombus: The shape of things to come!&lt;/title&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;price&gt;123.00&lt;/price&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;lead&gt;Here at Geometrixx...&lt;/lead&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;text&gt;The rhombus is a very special shape...&lt;/text&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;image&gt;/9j/4AAQSkZJRgABAQ...&lt;/image&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;/paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;text&gt;Some say a square is...&lt;/text&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;image&gt;/9j/4AAQSkZJRgABAQ...&lt;/image&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;/paragraph&gt;
+								</p>
+							
+							
+								<p class="c12">
+									&lt;/content&gt;
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									One way of mapping this to a content repository would be:
+								</p>
+								
+									
+										
+											
+												
+													
+														
+															
+																
+																	
+																		<p class="c12">
+																			<b>Node</b>
+																		</p>
+																	
+																	
+																		<p class="c12">
+																			<b>Property = "Some value"</b>
+																		</p>
+																	
+																
+															
+														
+													
+												
+											
+										
+									
+								
+							
+						
+					
+				
+			
+		
+		<table border="1" cellpadding="7" cellspacing="0">
+			
+			
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>/</b>
+					</p>
+				</td>
+				<td>
+					<p class="c12">
+						<b><i>[root]</i></b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>products.xml</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>products</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>[creation date of the file]</i></b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>jcr:created = "2001-01-01T..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>&lt;?xml version=”1.0”...?&gt;</b>
+						
+						
+							<br>
+							<b>&lt;content&gt;</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ ├─<b>jcr:content</b>
+						
+						
+							<br>
+							│ │ │
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;title&gt;Our Products&lt;/title&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:title = "Our Products"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;lead&gt;Geometrixx is...&lt;/lead&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:lead = "Geometrixx is..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;paragraph&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:paragraph[1]</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;text&gt;Geometrixx is...&lt;/text&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ │ ├─<b>myapp:text = "Geometrixx is..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;image&gt;/9j/4AAQ...&lt;/image&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ │ └─<b>myapp:image = &lt;binary data&gt;</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;/paragraph&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ │
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;paragraph&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ └─<b>myapp:paragraph[2]</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;text&gt;We have...&lt;/text&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:text = "We have..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;image&gt;/9j/4AAQ...&lt;/image&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ └─<b>myapp:image = &lt;binary data&gt;</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>&lt;/paragraph&gt;</b>
+						
+						
+							<br>
+							<b>&lt;/content&gt;</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ │
+						
+						
+							<br>
+							│ │
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>products/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>rhombus.xml</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>rhombus</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<i><b>[creation date of the file]</b></i>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>jcr:created = "2002-06-01T..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>&lt;?xml version=“1.0“...?&gt;</b>
+						
+						
+							<br>
+							<b>&lt;content&gt;</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ │ └─<b>jcr:content</b>
+						
+						
+							<br>
+							│ │ │
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;title&gt;Rhombus:...&lt;/title&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:title = "Rhombus:..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;price&gt;123.00&lt;/price&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:price = "123.00"</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;lead&gt;Here at...&lt;/lead&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:lead = "Here at..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;paragraph&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:paragraph[1]</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;text&gt;The rhombus...&lt;/text&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ │ ├─<b>myapp:text = "The rhombus..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;image&gt;/9j/4A...&lt;/image&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ │ └─<b>myapp:image = <i>[binary data]</i></b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;/paragraph&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ │
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;paragraph&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ └─<b>myapp:paragraph[2]</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;text&gt;Some say...&lt;/text&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>myapp:text = "Some say..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>&lt;image&gt;/9j/4A...&lt;/image&gt;</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ └─<b>myapp:image = &lt;binary data&gt;</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>&lt;/paragraph&gt;</b>
+						
+						
+							<br>
+							<b>&lt;/content&gt;</b>
+						
+						
+							<br>
+							<b>...</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ │
+						
+						
+							<br>
+							│ │
+						
+						
+							<br>
+							│ <b>...</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>people.xml</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						├─<b>people</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>[creation date of the file]</i></b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>jcr:created = "2001-01-01T..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>&lt;?xml version=“1.0“...?&gt;</b>
+						
+						
+							<br>
+							<b>&lt;content&gt;</b>
+						
+						
+							<br>
+							<b>...</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ ├─<b>jcr:content</b>
+						
+						
+							<br>
+							│ │ │
+						
+						
+							<br>
+							│ │ <b>...</b>
+						
+					
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>people/</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b>fred.xml</b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ ├─<b>fred</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					<p class="c12">
+						<b><i>[creation date of the file]</i></b>
+					</p>
+				</td>
+				<td>
+					<p>
+						│ │ ├─<b>jcr:created = "2001-12-01T..."</b>
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td>
+					
+						
+							<br>
+							<b>&lt;?xml version=“1.0“...?&gt;</b>
+						
+						
+							<br>
+							<b>...</b>
+						
+					
+				</td>
+				<td>
+					
+						
+							<br>
+							│ │ ├─<b>jcr:content</b>
+						
+						
+							<br>
+							<b>...</b>
+						
+					
+				</td>
+			</tr>
+		</table>
+		
+			
+				
+					
+						
+							
+								<p>
+									<br>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									This example demonstrates the use of a <i>fine-grained content model</i> where the mapping to a node-property structure extends from the folder and file level into the internal structure of the XML document.
+								</p>
+							
+							
+								<p class="c5">
+									<i>Note that this example is just one possible mapping; it is not meant to imply that this is the only mapping between the repository and XML (see, for example, 6.4 XML Mappings).</i>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

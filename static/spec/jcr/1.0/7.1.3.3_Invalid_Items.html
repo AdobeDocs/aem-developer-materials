@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.3.3 Invalid Items (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.3.3." id="section_7.1.3.3."></a>7.1.3.3 Invalid Items
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Methods of an <b>Item</b> object (i.e., <b>Node</b> or <b>Property</b>) may throw an <b>InvalidItemStateException</b> in certain circumstances.
+								</p>
+							
+							
+								<p class="c5">
+									The first case is if <b>Item.remove</b> has been called on the item. In this case any subsequent calls to any read or write methods or invocations of <b>save</b> or <b>refresh</b> on that <b>Item</b> will throw an <b>InvalidItemStateException</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Before the removal is persisted (by a <b>save</b> on the <i>parent</i> of the removed node) it may be cancelled by a <b>refresh(false)</b> on the parent of the removed node. This has the effect of reverting the parent node to its current saved state in the workspace. At this point the invalid <b>Item</b> object may become valid again, or the repository may require a new <b>Item</b> object to be acquired. Which approach is taken is a matter of implementation.
+								</p>
+							
+							
+								<p class="c5">
+									An <b>InvalidItemStateException</b> may be thrown on a write method of an <b>Item</b> if the change being made would (upon <b>save</b>) conflict with a change made, and persisted, through another <b>Session</b>. If detection of the conflict is only possible at <b>save</b>-time, then <b>save</b> will throw an <b>InvalidItemStateException</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Whether a conflict is detected when the change is made to the <b>Item</b> or later, when an attempt is made to save that change, depends on the implementation. The key issue is when a particular <b>Session</b> sees changes made in the persistent storage by other sessions.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

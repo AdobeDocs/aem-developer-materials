@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.3 Shallow and Deep Locks (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.3." id="section_8.4.3."></a>8.4.3 Shallow and Deep Locks
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A lock can be specified as either <i>shallow</i> or <i>deep</i>. A shallow lock applies only to its holding node. A deep lock applies to its holding node and all its descendants.
+								</p>
+							
+							
+								<p class="c5">
+									Consequently, there is a distinction between a lock <i>being held by</i> a node and a lock <i>applying to</i> a node. A lock always applies to its holding node. However, if it is a deep lock, it also applies to all nodes in the holding node's subtree. When a lock applies to a node, that node is said to be <i>locked</i>.
+								</p>
+							
+							
+								<p class="c5">
+									Since a deep lock applies to all nodes in the lock-holding node's subtree, this may include both <b>mix:lockable</b> nodes and non-<b>mix:lockable</b> nodes. The deep lock applies to both categories of node equally and it <i>does not</i> add any <b>jcr:lockOwner</b> or <b>jcr:isDeep</b> properties to any of the deep-locked <b>mix:lockable</b> nodes. However, if any such nodes exist and they already have these properties, this means that they are already locked, and hence the attempt to deep lock above them will fail.
+								</p>
+							
+							
+								<p class="c5">
+									Additionally, assuming a deep lock exists above a <b>mix:lockable</b> node any attempt to lock this lower level <b>mix:lockable</b> node will also fail, because it is already locked from above.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

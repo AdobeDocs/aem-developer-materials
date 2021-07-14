@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.4.10 Locks and Transactions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.4.10." id="section_8.4.10."></a>8.4.10 Locks and Transactions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Locking and unlocking are treated just like any other operation in the context of a transaction. For example, consider the following series of operations:
+								</p>
+							
+							
+								<p class="c5">
+									<i>begin</i><br>
+									<b>lock<br></b> <i>do A<br></i> <b>save<br></b> <i>do B<br></i> <b>save<br>
+									unlock<br></b><i>commit</i>
+								</p>
+							
+							
+								<p class="c5">
+									In this example the <b>lock</b> and <b>unlock</b> have no effect. This series of operations is equivalent to:
+								</p>
+							
+							
+								<p class="c5">
+									<i>begin</i><br>
+									<i>do A<br></i> <b>save<br></b> <i>do B<br></i> <b>save<br></b><i>commit</i>
+								</p>
+							
+							
+								<p class="c5">
+									The reason for this is that changes to a workspace are only published (that is, made visible to other <b>Session</b>s) upon commit of the transaction, and this includes changes in the locked status of a node. As a result, if a lock is enabled and then disabled within the same transaction, its effect never makes it to the persistent workspace and therefore it does nothing.
+								</p>
+							
+							
+								<p class="c5">
+									In order to use locks properly (that is, to prevent the “lost update problem”), locking and unlocking must be done in separate transactions. For example:
+								</p>
+							
+							
+								<p class="c5">
+									<i>begin</i><br>
+									<b>lock<br></b><i>commit</i>
+								</p>
+							
+							
+								<p class="c5">
+									<i>begin</i><br>
+									<i>do A<br></i> <b>save<br></b> <i>do B<br></i> <b>save<br>
+									unlock<br></b><i>commit</i>
+								</p>
+							
+							
+								<p class="c5">
+									This series of operations would ensure that the actions <i>A</i> and <i>B</i> are protected by the lock.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

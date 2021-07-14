@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CycleButtons &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../" src="../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Form" href="../form/index.html" />
+    <link rel="prev" title="Container" href="../container/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../form/index.html" title="Form"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../container/index.html" title="Container"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../server.html" accesskey="U">Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cyclebuttons">
+<h1>CycleButtons<a class="headerlink" href="#cyclebuttons" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/foundation/cyclebuttons">
+<dt>
+<code class="descname">/libs/granite/ui/components/foundation/cyclebuttons</code></dt>
+<dd><p>A component that show the current active item. Only one item can be active at the same time.
+When clicked, the next item of the active is shown and the click is triggered at that next item instead.
+If the last item is clicked, then the first item is shown and triggered accordingly.</p>
+<p>To indicate the active item, the following priorities are used:</p>
+<ol class="arabic simple">
+<li><cite>active</cite> property</li>
+<li><code class="docutils literal notranslate"><span class="pre">parentConfig/active</span></code> boolean property at the item resource</li>
+<li>The first item</li>
+</ol>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:CycleButtons</span><ol class="gnd-values supertypes"><li class="gnd-values-item supertype">granite:commonAttrs</li><li class="gnd-values-item supertype">granite:renderCondition</li></ol></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">active</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The name of the active item.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">items</span></dt>
+<dd><p>The items of the component. Either specify this resource or <cite>datasource</cite> resource.</p>
+</dd></dl>
+
+<dl class="childnodedef">
+<dt>
+<span class="nodename gnd-name">datasource</span></dt>
+<dd><p>The items of the component. Either specify this resource or <cite>items</cite> resource.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">mybuttons</span>
+  <span class="o">-</span> <span class="n">jcr</span><span class="p">:</span><span class="n">primaryType</span> <span class="o">=</span> <span class="s2">&quot;nt:unstructured&quot;</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/cyclebuttons&quot;</span>
+    <span class="o">+</span> <span class="n">items</span>
+      <span class="o">+</span> <span class="n">button1</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/button&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button1&quot;</span>
+      <span class="o">+</span> <span class="n">button2</span>
+        <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/foundation/button&quot;</span>
+        <span class="o">-</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Button2&quot;</span>
+        <span class="o">+</span> <span class="n">parentConfig</span>
+          <span class="o">-</span> <span class="n">active</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../container/index.html"
+                        title="previous chapter">Container</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../form/index.html"
+                        title="next chapter">Form</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../_sources/jcr_root/libs/granite/ui/components/foundation/cyclebuttons/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../form/index.html" title="Form"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../container/index.html" title="Container"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../legacy/coral2/index.html" >Legacy CoralUI 2 Components</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../server.html" >Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

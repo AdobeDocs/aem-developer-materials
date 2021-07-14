@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.3 Structure of a Query (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.3." id="section_6.6.3."></a>6.6.3 Structure of a Query
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A query, whether XPath or SQL, specifies a subset of nodes within a workspace, called the <i>result set</i>. The result set constitutes all the nodes in the workspace that meet the constraints stated in the query. The constraints fall into three categories:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<i>Type constraint</i>: This limits the returned nodes to a particular primary node type (and possibly, additionally limits the nodes to those with particular mixin node types).
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					<i>Property constraint</i>: This limits the returned nodes to those with particular properties having particular values.
+				</p>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<p class="c5">
+					<i>Path constraint</i>: This limits the returned nodes to those within certain subtrees in the workspace.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A query result is returned in two parallel forms: an iterator over the result set of nodes and a table where each row corresponds to a node in the result set. The query statement also defines aspects of how these two return objects are structured through two presentation specifiers:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<i>Column specifier</i>: This specifies the set of properties that will form the columns of the returned table.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<i>Ordering specifier</i>: This defines the order of the nodes in the iterator and rows in the table.
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The following sections describe in more detail how each of these five elements are expressed, both in XPath and in SQL, and how these affect the content and presentation of the query result.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

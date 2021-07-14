@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 18.1 mix:lifecycle (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>18.1 mix:lifecycle</H2>
+	<P>
+	<FONT FACE="Courier New, monospace">[mix:lifecycle]</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">mixin</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:lifecyclePolicy (REFERENCE) protected INITIALIZE</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">-
+	jcr:currentLifecycleState (STRING) protected INITIALIZE</FONT></P>
+	<P><BR>Only nodes with
+	mixin node type <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lifecycle</FONT></FONT>
+	may participate in a lifecycle. The mixin adds two properties:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lifecyclePolicy</FONT></FONT>:
+		This property is a reference to another node that contains
+		lifecycle policy information. The definition of the referenced node
+		is not specified.</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:currentLifecycleState</FONT></FONT>:
+		This property is a string identifying the current lifecycle state
+		of this node. The format of this string is not specified.</P>
+	</UL>
+<script type="text/javascript" src="footer.js"></script></body></html>

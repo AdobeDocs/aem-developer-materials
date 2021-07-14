@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.5.2.1 Effect of Session Namespace Mappings (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.5.2.1 Effect of Session Namespace Mappings</H4>
+	<P>All methods that take
+	or return names or paths must use the current session (see §3.1.8.2
+	<I>Current Session and Workspace</I>) namespace mappings to
+	dynamically interpret or produce those names or paths according to
+	the current local namespace mapping of the current session. 
+	</P>
+	<P>Though the precise
+	mechanism of this behavior is an implementation detail, its behavior
+	must be equivalent to that of a system where names and paths are
+	stored internally in expanded form and converted dynamically to and
+	from qualified JCR names or paths as necessary.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

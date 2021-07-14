@@ -1,0 +1,21 @@
+
+Footer
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/shell/footer
+
+   The footer component to be used as the footer in the shell app.
+   It is mainly to display the copyright.
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:ShellFooter]
+
+   Example::
+
+      + mypage
+        - sling:resourceType = "granite/ui/components/shell/page"
+        + footer
+          - sling:resourceType = "granite/ui/components/shell/footer"

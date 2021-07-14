@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.31 FullTextSearchScore (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.31 FullTextSearchScore</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type FullTextSearchScore extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to a <FONT FACE="Courier New, monospace">DOUBLE</FONT>
+	value equal to the full-text search score of a node.</P>
+	<P>Full-text search score ranks a
+	selector's nodes by their relevance to the <FONT FACE="Courier New, monospace">fullTextSearchExpression</FONT>
+	specified in a <FONT FACE="Courier New, monospace">FullTextSearch</FONT>.
+	The values to which <FONT FACE="Courier New, monospace">FullTextSearchScore</FONT>
+	evaluates and the interpretation of those values are implementation
+	specific. <FONT FACE="Courier New, monospace">FullTextSearchScore</FONT>
+	may evaluate to a constant value in a repository that does not
+	support full-text search scoring or has no full-text indexed
+	properties.</P>
+	<P>The query is <I>invalid</I> if
+	<FONT FACE="Courier New, monospace">selector</FONT>
+	is not the name of a selector in the query.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">FullTextSearchScore ::= 'SCORE('
+	[selectorName] ')'</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">/* If
+	only one selector exists in this query,<BR> 
+	 explicit specification of the selectorName<BR> 
+	 is optional */</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>QueryObjectModelFactory.<BR>
+	 fullTextSearchScore(String selectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>FullTextSearchScore</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	FullTextSearchScore.getSelector()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

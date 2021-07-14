@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.13.10 FullVersioning Diagram (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>3.13.10 FullVersioning Diagram</H3>
+	<P>
+		<IMG SRC="jcr-spec_html_5c14fe0.png" NAME="graphics4" ALIGN=LEFT HSPACE=14 WIDTH=628 HEIGHT=753 BORDER=0><BR CLEAR=LEFT><BR><BR>
+	</P>
+	<P>The above diagram
+	depicts the main elements of the full versioning model. A workspace
+	contains a versionable node <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	with child nodes <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	and property <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>.
+	The on-parent-version settings of each child are shown. <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>
+	while <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>.
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is itself versionable and has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VH</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>N</SUB></FONT></FONT>
+	is the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionHistory</FONT></FONT>
+	node holding the version history of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	which, in the situation depicted, consists of the versions <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1.1</SUB></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>3</SUB></FONT></FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>
+	is the root version, <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>
+	is the successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>0</SUB></FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1.1</SUB></FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	are both successors of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>1</SUB></FONT></FONT>
+	(constituting a <I>branch</I>) and <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>3</SUB></FONT></FONT>
+	is the successor of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><IMG SRC="jcr-spec_html_1e68867c.png" NAME="graphics5" ALIGN=LEFT HSPACE=14 WIDTH=628 HEIGHT=495 BORDER=0><BR CLEAR=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	is the current base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	and is shown in detail. As defined by the OPV values of the children
+	of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	contains a partial copy of <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>'s
+	subtree in its frozen node. This partial copy consists of the
+	subtree rooted at <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	(since <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>COPY</FONT></FONT>)
+	but does not include the property <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	(since <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+	in <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>IGNORE</FONT></FONT>).
+	Since <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is itself versionable it has its own, separate, version history at
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>VH</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>C</SUB></FONT></FONT>
+	and since it has an OPV of <FONT FACE="Courier New, monospace"><FONT SIZE=2>VERSION</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+	is represented in the frozen subtree of <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>2</SUB></FONT></FONT>
+	by an <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:versionedChild</FONT></FONT>
+	node that points to <FONT FACE="Courier New, monospace"><FONT SIZE=2>VH</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SUB>C</SUB></FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

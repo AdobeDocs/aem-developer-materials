@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.1 Versionable Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.1." id="section_8.2.1."></a>8.2.1 Versionable Nodes
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									To be <i>versionable</i>, a node must have <b>mix:versionable</b> as one of its mixin node types. Recall from <a href="6.7.21.3_mix_versionable.html">6.7.21.3</a> <i>mix:versionable</i>, that this node type has the following definition:
+								</p>
+							
+							
+								<p class="c12">
+									<i>NodeTypeName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>mix:versionable</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>Supertypes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>mix:referenceable</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>IsMixin</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>HasOrderableChildNodes</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PrimaryItemName</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:versionHistory</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>REFERENCE</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>["nt:versionHistory"]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>COPY</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:baseVersion</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>REFERENCE</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>["nt:version"]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>IGNORE</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:isCheckedOut</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>BOOLEAN</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>[]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>[true]</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>IGNORE</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:predecessors</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>REFERENCE</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>[nt:version]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>COPY</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									<i>PropertyDefinition</i>
+								</p>
+							
+							
+								<p class="c12">
+									Name <b>jcr:mergeFailed</b>
+								</p>
+							
+							
+								<p class="c12">
+									RequiredType <b>REFERENCE</b>
+								</p>
+							
+							
+								<p class="c12">
+									ValueConstraints <b>[]</b>
+								</p>
+							
+							
+								<p class="c12">
+									DefaultValues <b>null</b>
+								</p>
+							
+							
+								<p class="c12">
+									AutoCreated <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									Mandatory <b>false</b>
+								</p>
+							
+							
+								<p class="c12">
+									OnParentVersion <b>ABORT</b>
+								</p>
+							
+							
+								<p class="c12">
+									Protected <b>true</b>
+								</p>
+							
+							
+								<p class="c12">
+									Multiple <b>true</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c5">
+									As the definition indicates, <b>mix:versionable</b> is a subtype of <b>mix:referenceable</b> which mandates the property <b>jcr:uuid</b>, exposing a universally unique identifier for the node (see <a href="6.7.21.2_mix_referenceable.html">6.7.21.2</a>, <i>mix:referenceable</i>). The result is that all versionable nodes are guaranteed to have a UUID.
+								</p>
+							
+							
+								<p class="c5">
+									In addition to this inherited property, a <b>mix:versionable</b> node has the properties <b>jcr:versionHistory</b>, <b>jcr:baseVersion</b>, <b>jcr:isCheckedOut</b>, <b>jcr:predecessors</b> and <b>jcr:mergeFailed</b>.
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:versionHistory</b> is a <b>REFERENCE</b> property which points to the <b>nt:versionHistory</b> node that holds as its children the <b>nt:version</b> nodes that make up this versionable node’s version history. Note that the UUID of the <b>nt:versionHistory</b> node is different from the UUID shared by the set of corresponding versionable nodes (at most one per workspace) that it serves.
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:baseVersion</b> is also a <b>REFERENCE</b> property. It points to the current base version of this node. The base version is one of the <b>nt:version</b> nodes within the version history pointed to by <b>jcr:versionHistory</b>, above. The base version (like all versions) is an <b>nt:version</b> node, and this property stores the UUID of <i>that</i> node. Again, the UUID of the version node is different from that shared by the set of corresponding versionable nodes in the workspaces, and from all other version nodes.
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:isCheckedOut</b> is a <b>BOOLEAN</b> property that records whether this versionable node is checked-out or checked-in. When a versionable node is in the checked-in state, it is <i>read-only</i>, and cannot be altered by the regular write methods of the API. Note that this status is distinct from the node type-enforced <i>protected</i> status. When a versionable node is checked-out it can (if it is not protected) be altered by the API write methods. The checked-out status provides an indicator to other sessions on the same workspace telling them when a particular versionable node is “being worked on”. The read-only status enforced when a versionable node is checked-in propagates to all its non-versionable descendants. When a versionable node is checked in, it and its non-versionable subtree become read-only; when it is checked-out, it and its non-versionable subtree lose their read-only status.
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:predecessors</b> is a multi-value <b>REFERENCE</b> property that points to one or more versions within the version graph of the version history pointed by <b>jcr:versionHistory</b>. These versions are those that are currently scheduled to become the predecessors of this versionable node when it is checked-in (and recorded in a version of its own).
+								</p>
+							
+							
+								<p class="c5">
+									<b>jcr:mergeFailed</b> is a multi-value <b>REFERENCE</b> property that is used in the context of the <b>merge</b> method. A <b>merge</b> compares the base version of <i>this</i> versionable node with the base version of its corresponding node in some other workspace. If the system can determine which base version is a successor of the other, then it either leaves this versionable node alone (if <i>this</i> node's base version is the successor of the other node's base version) or updates it to reflect the corresponding node (if the corresponding node's base version is a successor of <i>this</i> node's base version). In cases where the system cannot determine which node is the successor, the merge is said to “fail”. When that happens, a reference to the base version of the corresponding node in the other workspace is added to <i>this</i> node's <b>jcr:mergeFailed</b> property, thus keeping a record of which nodes could not be merged, and therefore allowing the application to deal with these nodes appropriately. See <a href="8.2.10_Merge.html">8.2.10</a> <i>Merge</i>, for more details.
+								</p>
+							
+							
+								<p class="c5">
+									All of these properties that store the versioning-related meta-data are protected (though of course the versionable node itself, and its other application-specific subitems may or may not be protected). This guarantees that the client cannot alter the meta-data values; they are maintained by the repository implementation itself.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

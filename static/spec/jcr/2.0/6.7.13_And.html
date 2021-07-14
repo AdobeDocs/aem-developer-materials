@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.13 And (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.13 And</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type And extends Constraint ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint1,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Constraint constraint2</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Performs a logical conjunction of two
+	other constraints.</P>
+	<P>To satisfy the <FONT FACE="Courier New, monospace">And</FONT>
+	constraint, a node-tuple must satisfy both <FONT FACE="Courier New, monospace">constraint1</FONT>
+	and <FONT FACE="Courier New, monospace">constraint2</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">And ::= constraint1 'AND'
+	constraint2</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">constraint1 ::= Constraint</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">constraint2 ::= Constraint</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>An <FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>And
+	QueryObjectModelFactory.<BR> and(Constraint constraint1,
+	Constraint constraint2)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>And</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	And.getConstraint1()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Constraint
+	And.getConstraint2()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

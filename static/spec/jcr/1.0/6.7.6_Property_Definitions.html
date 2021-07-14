@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.7.6 Property Definitions (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.7.6." id="section_6.7.6."></a>6.7.6 Property Definitions
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Each property definition contains the following information:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					The <i><b>name</b></i> of the property to which this definition applies.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The required <i><b>type</b></i> of the property (though it may be specified as <b>UNDEFINED</b>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <i><b>value constraints</b></i> on the property. That is, what range of possible values may be assigned to this property.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <i><b>default value</b></i> that the property will have if it is auto-created.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether this property will be <i><b>auto-created</b></i> when its parent node is created. Only properties with a default value can be auto-created.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether the property is <i><b>mandatory</b></i>. A mandatory property is one that must exist. If a node of a type that specifies a mandatory property is created then any attempt to <b>save</b> that node without adding the mandatory property will fail. Since single-value properties either have a value or do not exist (there being no concept of the null value) this implies that a mandatory single-value property must have a value. A mandatory multi-value property on the other hand may have zero or more values.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The <i><b>onParentVersion</b></i> status of the property. This specifies what happens to this property if a new version of its parent node is checked-in.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether the property is <i><b>protected</b></i>. A protected property is one which cannot be modified or removed (except by removing its parent) directly through this API but which may be modified or removed by the repository implementation itself.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Whether this property can have <i><b>multiple values</b></i>, meaning that it stores an array of values, not just one. Note that this “multiple values” flag is special in that a given node type may have two property definitions that are identical in every respect except for the their “multiple values” status. For example, a node type can specify two string properties both called <b>X</b>, one of which is multi-valued and the other that is not. An example of such a node type is <b>nt:unstructured</b> (see <a href="6.7.22.4_nt_unstructured.html">6.7.22.4</a> <i>nt:unstructured</i>).
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

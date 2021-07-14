@@ -1,0 +1,333 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ColumnView &#8212; Granite UI 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/gnd.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../../../" src="../../../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../search.html" />
+    <link rel="next" title="Container" href="../container/index.html" />
+    <link rel="prev" title="ActionLink" href="../collection/actionlink/index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../../../../../../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../container/index.html" title="Container"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../collection/actionlink/index.html" title="ActionLink"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" accesskey="U">Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="columnview">
+<h1>ColumnView<a class="headerlink" href="#columnview" title="Permalink to this headline">¶</a></h1>
+<dl class="servercomponent" id="/libs/granite/ui/components/coral/foundation/columnview">
+<dt>
+<code class="descname">/libs/granite/ui/components/coral/foundation/columnview</code></dt>
+<dd><p>A Miller columns component.</p>
+<p>It implements <a class="reference internal" href="../clientlibs/foundation/vocabulary/selections.html"><span class="doc">foundation-selections</span></a>
+and <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">foundation-mode</span></a> vocabulary.</p>
+<p>Note that this component’s size is maximized to its parent OOTB. Hence it doesn’t make sense if this component has a sibling component,
+as it will take the whole parent’s space.</p>
+<p>It has the following content structure:</p>
+<div class="gnd">
+<dl class="nodetypedef">
+<dt>
+<span class="nodetypename gnd-name">granite:ColumnView</span><ol class="gnd-values supertypes"><li class="gnd-values-item supertype">granite:commonAttrs</li><li class="gnd-values-item supertype">granite:renderCondition</li><li class="gnd-values-item supertype">granite:container</li></ol></dt>
+<dd><dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionMode</span><span class="propertytype gnd-name">booleanel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">true</li></ol></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to enable the selection of item; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">selectionCount</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">multiple</li></ol></dt>
+<dd><p>The count of item to be selected (when the <code class="docutils literal notranslate"><span class="pre">selectionMode</span></code> is enabled):</p>
+<dl class="docutils">
+<dt>single</dt>
+<dd>Only maximum single selection allowed</dd>
+<dt>multiple</dt>
+<dd>Zero or more selection allowed</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">src</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template that is returning the HTML response of the column view.
+It is used when the client needs to load data dynamically, such as for pagination.</p>
+<p>Note that only the items of the current column are rendered using the provided item datasource.
+The items of the ancestors columns are loaded lazily in different requests.</p>
+<p>If it is not specified, the feature is disabled.</p>
+<p>It supports the following variables:</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>offset</dt>
+<dd>The item offset of the current request.</dd>
+<dt>limit</dt>
+<dd>The item limit of the pagination.</dd>
+<dt>id</dt>
+<dd>The path of the target column.</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">path</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The path of the current column. It will act as the value of <code class="docutils literal notranslate"><span class="pre">[data-foundation-collection-id]</span></code>.</p>
+<p>e.g. <code class="docutils literal notranslate"><span class="pre">${requestPathInfo.suffix}</span></code></p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">loadAncestors</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to also load the ancestors of the current columns up to the <code class="docutils literal notranslate"><span class="pre">rootPath</span></code>; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">showRoot</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to also render a special column for the root resource when <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">==</span> <span class="pre">rootPath</span></code>; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.
+This special column is used to allow the user to select the root path.</p>
+<p>Say you set <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">=</span> <span class="pre">/</span></code>, this component by default will render a column containing the items of that path (e.g. <code class="docutils literal notranslate"><span class="pre">/apps</span></code>, <code class="docutils literal notranslate"><span class="pre">/etc</span></code>).
+When this property is <code class="docutils literal notranslate"><span class="pre">true</span></code>, when <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">==</span> <span class="pre">rootPath</span></code>, this component will also render a column containing a single item representing the root.
+In other words it will render two columns; first, the special root column; second, the normal column.</p>
+<p>It can be illustrated with the following visualization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">When</span> <span class="n">showRoot</span> <span class="o">=</span> <span class="n">false</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="p">,</span> <span class="n">rootPath</span> <span class="o">=</span> <span class="o">/</span><span class="p">:</span>
+
+<span class="o">+------+</span>
+<span class="o">|</span> <span class="n">apps</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">etc</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">home</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">libs</span> <span class="o">|</span>
+<span class="o">+------+</span>
+
+<span class="n">When</span> <span class="n">showRoot</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="p">,</span> <span class="n">rootPath</span> <span class="o">=</span> <span class="o">/</span><span class="p">:</span>
+
+<span class="o">+-----+------+</span>
+<span class="o">|</span>  <span class="o">/</span>  <span class="o">|</span> <span class="n">apps</span> <span class="o">|</span>
+<span class="o">|</span>     <span class="o">|</span> <span class="n">etc</span>  <span class="o">|</span>
+<span class="o">|</span>     <span class="o">|</span> <span class="n">home</span> <span class="o">|</span>
+<span class="o">|</span>     <span class="o">|</span> <span class="n">libs</span> <span class="o">|</span>
+<span class="o">+-----+------+</span>
+</pre></div>
+</div>
+<p>When rendering the root resource for the item in the special column, this component will also honor the <code class="docutils literal notranslate"><span class="pre">itemResourceType</span></code> property.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">rootPath</span><span class="propertytype gnd-name">stringel</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">/</li></ol></dt>
+<dd><p>The path of the root column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">itemResourceType</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The resource type for each item of the column.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">limit</span><span class="propertytype gnd-name">long</span><ol class="gnd-values defaultvalues"><li class="gnd-values-item defaultvalue">40</li></ol></dt>
+<dd><p>The item limit of the pagination.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">size</span><span class="propertytype gnd-name">integerel</span></dt>
+<dd><p>Indicates the size of the items from datasource to be included.
+If this property is not specified, then all items from datasource will be included, and the next page will be fetched accordingly.</p>
+<p>This is meant to be a performance optimization to avoid fetching the next page unnecessarily.
+For example given the fact that the <code class="docutils literal notranslate"><span class="pre">size</span></code> is set to 20, and the datasource is configured to fetch <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">+</span> <span class="pre">1</span></code>, which is 21,
+the implementation can check if the datasource actually has more item or not just by checking its size.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When <code class="docutils literal notranslate"><span class="pre">size</span></code> is set, you have to make sure your datasource is configured to fetch more than the value of <code class="docutils literal notranslate"><span class="pre">size</span></code>!</p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="44%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">size</span></code></th>
+<th class="head">Actual DS Size</th>
+<th class="head">Has More?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>&lt; 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>= 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>&gt; 20</td>
+<td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+</tr>
+<tr class="row-odd"><td>(not set)</td>
+<td>n/a</td>
+<td><code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">previewSrc</span><span class="propertytype gnd-name">stringel</span></dt>
+<dd><p>The URI Template that is returning the HTML response for the preview of an item.</p>
+<p>It supports the following variables:</p>
+<dl class="docutils">
+<dt>id</dt>
+<dd>The id/path of the item.</dd>
+</dl>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">previewMaximized</span><span class="propertytype gnd-name">boolean</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> to render the preview column maximized to the available space; <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<p>Note that if you enable this, it generally works well visually only when you have one and only one column (beside the preview column) in the column view.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">metaResourceType</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The resource type to render <a class="reference internal" href="../clientlibs/foundation/vocabulary/collection.html"><span class="doc">.foundation-collection-meta</span></a>.</p>
+<p>The resource specified at <code class="docutils literal notranslate"><span class="pre">path</span></code> will be included using this resource type, where it can be processed accordingly.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">modeGroup</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">[data-foundation-mode-group]</span></a>.</p>
+</dd></dl>
+
+<dl class="propertydef">
+<dt>
+<span class="propertyname gnd-name">modeGroup</span><span class="propertytype gnd-name">string</span></dt>
+<dd><p>The value of <a class="reference internal" href="../clientlibs/foundation/vocabulary/mode.html"><span class="doc">[data-foundation-mode-group]</span></a>
+this component participates.</p>
+<p>The component supports the <code class="docutils literal notranslate"><span class="pre">default</span></code> or <code class="docutils literal notranslate"><span class="pre">selection</span></code> mode.</p>
+<p>When there is a selection, it will trigger the <code class="docutils literal notranslate"><span class="pre">foundation-mode-change</span></code> event with mode = <code class="docutils literal notranslate"><span class="pre">selection</span></code>,
+while triggering the event with mode = <code class="docutils literal notranslate"><span class="pre">default</span></code> when there is no selection.</p>
+<p>When other component triggers the event with mode = <code class="docutils literal notranslate"><span class="pre">default</span></code>, it will react by clearing the selection.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">mycolumnview</span>
+  <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;granite/ui/components/coral/foundation/columnview&quot;</span>
+  <span class="o">-</span> <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;/a/b/c{.offset,limit}.html{+id}&quot;</span>
+  <span class="o">-</span> <span class="n">previewSrc</span> <span class="o">=</span> <span class="s2">&quot;/a/b/c.preview.html{+id}&quot;</span>
+  <span class="o">-</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{requestPathInfo.suffix}</span><span class="s2">&quot;</span>
+  <span class="o">-</span> <span class="n">loadAncestors</span> <span class="o">=</span> <span class="n">true</span>
+  <span class="o">-</span> <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;/content&quot;</span>
+  <span class="o">+</span> <span class="n">datasource</span>
+    <span class="o">-</span> <span class="n">sling</span><span class="p">:</span><span class="n">resourceType</span> <span class="o">=</span> <span class="s2">&quot;my/datasource&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../collection/actionlink/index.html"
+                        title="previous chapter">ActionLink</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../container/index.html"
+                        title="next chapter">Container</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../../../_sources/jcr_root/libs/granite/ui/components/coral/foundation/columnview/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../container/index.html" title="Container"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../collection/actionlink/index.html" title="ActionLink"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Granite UI 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Granite UI Foundation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../server.html" >Granite UI Foundation Server-side</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Adobe Systems Incorporated.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.1.1 Traversal Access (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.1.1." id="section_4.1.1."></a>4.1.1 Traversal Access
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Traversal access typically begins with
+								</p>
+							
+							
+								<p class="c5">
+									<b>Node Session.getRootNode()</b>.
+								</p>
+							
+							
+								<p class="c5">
+									From the returned root node, successive levels of child nodes can be accessed with
+								</p>
+							
+							
+								<p class="c5">
+									<b>Node Node.getNode(String relPath)</b>,
+								</p>
+							
+							
+								<p class="c5">
+									which takes a relative path (so it can skip down or up multiple levels as well). There is also a similar method for accessing properties,
+								</p>
+							
+							
+								<p class="c5">
+									<b>Property Node.getProperty(String relPath)</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The data stored in the property can be accessed either directly with methods like
+								</p>
+							
+							
+								<p class="c5">
+									<b>String Property.getString()</b>,
+								</p>
+							
+							
+								<p class="c5">
+									or in the form of a type-neutral wrapper, the <b>Value</b> object, using
+								</p>
+							
+							
+								<p class="c5">
+									<b>Value Property.getValue()</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The actual data can then be retrieved with, for example,
+								</p>
+							
+							
+								<p class="c5">
+									<b>String Value.getString()</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Here is an example code snippet:
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Get the root node</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node root = mySession.getRootNode();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Traverse to the node you want</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Node myNode = root.getNode("a/e");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Retrieve a property of myNode</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Property myProperty = myNode.getProperty("k");</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Get the value of the property</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>Value myValue = myProperty.getValue();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// Convert the value to the desired type</i>
+								</p>
+							
+							
+								<p class="c12">
+									<b>double myDouble = myValue.getDouble();</b>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// The variable myDouble will contain the</i>
+								</p>
+							
+							
+								<p class="c12">
+									<i>// value 6.022 x 10^23</i>
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

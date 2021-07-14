@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.7 Moving and Copying (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.7." id="section_7.1.7."></a>7.1.7 Moving and Copying
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Moving and copying of nodes is done through methods of the <b>Session</b> and <b>Workspace</b> interfaces.
+								</p>
+							
+							
+								<p class="c5">
+									<b>Session</b> provides a <b>move</b> method:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Session</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>move(String srcAbsPath, String destAbsPath)</b>
+									</p>
+									<p class="c5">
+										Moves the node at <b>srcAbsPath</b> (and its entire subtree) to the new location at <b>destAbsPath</b>.
+									</p>
+									<p class="c5">
+										In order to persist the change, <b>save</b> must be called on either the session or a common ancestor to both the source and destination locations.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown either immediately (by this method) or on <b>save</b> if performing this operation would violate a node type or implementation-specific constraint. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										As well, a <b>ConstraintViolationException</b> will be thrown on <b>save</b> if an attempt is made to save <i>only</i> either the source or destination node separately.
+									</p>
+									<p class="c5">
+										Note that this behavior differs from that of <b>Workspace.move</b> (see below), which operates directly in the persistent workspace and does not require a <b>save</b>.
+									</p>
+									<p class="c5">
+										The <b>destAbsPath</b> provided must not have an index on its final element. If it does then a <b>RepositoryException</b> is thrown immediately. Strictly speaking, the <b>destAbsPath</b> parameter is actually an <i>absolute path</i> to the parent node of the new location, appended with the new <i>name</i> desired for the moved node. It does not specify a position within the child node ordering. If ordering is supported by the node type of the parent node of the new location, then the newly moved node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										This method cannot be used to move just an individual property by itself. It moves an entire node and its subtree (including, of course, any properties contained therein).
+									</p>
+									<p class="c5">
+										If no node exists at <b>srcAbsPath</b> or no node exists one level above <b>destAbsPath</b> (in other words, there is no node that will serve as the parent of the moved item) then a <b>PathNotFoundException</b> is thrown either immediately or on <b>save</b>. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> is thrown either immediately or on save if a property already exists at <b>destAbsPath</b> or a node already exists there and same-name siblings are not allowed. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown either immediately or on save if the parent node of <b>destAbsPath</b> or the parent node of <b>srcAbsPath</b> is versionable and checked-in, or is non-versionable and its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown either immediately or on save if a lock prevents the move. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+						
+							
+								<p class="c5">
+									<b><br>
+									Workspace</b> provides a <b>move</b> method as well as the methods <b>copy</b> and <b>clone</b>:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<b><br>
+										Workspace</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>copy(String srcAbsPath,<br>
+										String destAbsPath)</b>
+									</p>
+									<p class="c5">
+										This method copies the node at <b>srcAbsPath</b> and its entire subtree to the new location at <b>destAbsPath</b>. This operation is performed entirely within the persistent workspace, it does not involve transient storage and therefore does not require a <b>save</b>.
+									</p>
+									<p class="c5">
+										Copies of referenceable nodes are automatically given new UUIDs.
+									</p>
+									<p class="c5">
+										The <b>destAbsPath</b> provided must not have an index on its final element. If it does, then a <b>RepositoryException</b> is thrown. Strictly speaking, the <b>destAbsPath</b> parameter is actually an <i>absolute path</i> to the parent node of the new location, appended with the new <i>name</i> desired for the copied node. It does not specify a position within the child node ordering. If ordering is supported by the node type of the parent node of the new location, then the newly moved node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										This method cannot be used to copy just an individual property by itself. It copies an entire node and its subtree (including, of course, any properties contained therein).
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown if the operation would violate a node-type or other implementation-specific constraint.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the parent node of <b>destAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the current session (i.e., the session that was used to acquire this <b>Workspace</b> object) does not have sufficient access permissions to complete the operation.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if the node at <b>srcAbsPath</b> or the parent of <b>destAbsPath</b> does not exist.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> is thrown if a property already exists at <b>destAbsPath</b> or a node already exists there and same-name siblings are not allowed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the copy.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>copy(String srcWorkspace,<br>
+										String srcAbsPath,<br>
+										String destAbsPath)</b>
+									</p>
+									<p class="c5">
+										This method copies the subtree at <b>srcAbsPath</b> in <b>srcWorkspace</b> to <b>destAbsPath</b> in <b>this</b> workspace. Unlike <b>clone</b>, this method <i>does</i> assign new UUIDs to the new copies of referenceable nodes. This operation is performed entirely within the persistent workspace, it does not involve transient storage and therefore does not require a <b>save</b>.
+									</p>
+									<p class="c5">
+										The <b>destAbsPath</b> provided must not have an index on its final element. If it does, then a <b>RepositoryException</b> is thrown. Strictly speaking, the <b>destAbsPath</b> parameter is actually an <i>absolute path</i> to the parent node of the new location, appended with the new <i>name</i> desired for the copied node. It does not specify a position within the child node ordering. If ordering is supported by the node type of the parent node of the new location, then the new copy of the node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										This method cannot be used to copy just an individual property by itself. It copies an entire node and its subtree (including, of course, any properties contained therein).
+									</p>
+									<p class="c5">
+										A <b>NoSuchWorkspaceException</b> is thrown if <b>srcWorkspace</b> does not exist.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown if the operation would violate a node-type or other implementation-specific constraint.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the parent node of <b>destAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the current session (i.e., the session that was used to acquire this <b>Workspace</b> object) does not have sufficient access permissions to complete the operation.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if the node at <b>srcAbsPath</b> in <b>srcWorkspace</b> or the parent of <b>destAbsPath</b> in this workspace does not exist.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> is thrown if a property already exists at <b>destAbsPath</b> or a node already exists there and same-name siblings are not allowed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the copy.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c5">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c12">
+										clone(String srcWorkspace,<br>
+										String srcAbsPath,<br>
+										String destAbsPath,<br>
+										boolean removeExisting)
+									</p>
+									<p class="c5">
+										Clones the subtree at the node <b>srcAbsPath</b> in <b>srcWorkspace</b> workspace to <b>destAbsPath</b> in <b>this</b> workspace. Unlike the signature of <b>copy</b> that copies between workspaces, this method <i>does not</i> assign new UUIDs to new referenceable nodes but preserves the UUIDs of their respective source nodes.
+									</p>
+									<p class="c5">
+										If <b>removeExisting</b> is <b>true</b> and an existing node in <b>this</b> workspace (the destination workspace) has the same UUID as a node being cloned from <b>srcWorkspace</b>, then the incoming node takes precedence, and the existing node (and its subtree) is removed. If <b>removeExisting</b> is <b>false</b> then a UUID collision causes this method to throw a <b>ItemExistsException</b> and no changes are made.
+									</p>
+									<p class="c5">
+										If successful, the changes are persisted immediately, there is no need to call <b>save</b>.
+									</p>
+									<p class="c5">
+										The <b>destAbsPath</b> provided must not have an index on its final element. If it does, then a <b>RepositoryException</b> is thrown. Strictly speaking, the <b>destAbsPath</b> parameter is actually an <i>absolute path</i> to the parent node of the new location, appended with the new <i>name</i> desired for the copied node. It does not specify a position within the child node ordering. If ordering is supported by the node type of the parent node of the new location, then the new clone of the node moved node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										This method cannot be used to clone just an individual property by itself. It clones an entire node and its subtree (including, of course, any properties contained therein).
+									</p>
+									<p class="c5">
+										A <b>NoSuchWorkspaceException</b> is thrown if <b>srcWorkspace</b> does not exist.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown if the operation would violate a node-type or other implementation-specific constraint
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the parent node of <b>destAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the current session (i.e. the session that was used to acquire this <b>Workspace</b> object) does not have sufficient access permissions to complete the operation.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if the node at <b>srcAbsPath</b> in <b>srcWorkspace</b> or the parent of <b>destAbsPath</b> in this workspace do not exist.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> is thrown if a property already exists at <b>destAbsPath</b> or a node already exists there and same-name siblings are not allowed or if <b>removeExisting</b> is false and a UUID conflict occurs.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the clone.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>void</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>move(String srcAbsPath, String destAbsPath)</b>
+									</p>
+									<p class="c5">
+										Moves the node at <b>srcPath</b> (and its entire subtree) to the new location at <b>destPath</b>. If successful, the change is persisted immediately, there is no need to call <b>save</b>. Note that this is in contrast to <b>Session.move</b> which operates within the transient space and hence requires a <b>save</b>.
+									</p>
+									<p class="c5">
+										The <b>destAbsPath</b> provided must not have an index on its final element. If it does then a <b>RepositoryException</b> is thrown. Strictly speaking, the <b>destAbsPath</b> parameter is actually an <i>absolute path</i> to the parent node of the new location, appended with the new <i>name</i> desired for the moved node. It does not specify a position within the child node ordering. If ordering is supported by the node type of the parent node of the new location, then the newly moved node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										This method cannot be used to move just an individual property by itself. It moves an entire node and its subtree (including, of course, any properties contained therein).
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> is thrown if the operation would violate a node-type or other implementation-specific constraint
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> is thrown if the parent node of <b>destAbsPath</b> or the parent node of <b>srcAbsPath</b> is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+									</p>
+									<p class="c5">
+										An <b>AccessDeniedException</b> is thrown if the current session does not have sufficient access permissions to complete the operation.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> is thrown if the item at <b>srcAbsPath</b> or the parent of <b>destAbsPath</b> does not exist.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> is thrown if a property already exists at <b>destAbsPath</b> or a node already exists there and same-name siblings are not allowed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> is thrown if a lock prevents the move.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

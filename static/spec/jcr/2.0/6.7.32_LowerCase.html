@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.32 LowerCase (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.32 LowerCase</H3>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type LowerCase extends
+	DynamicOperand ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">DynamicOperand operand</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>Evaluates to the lower-case string
+	value (or values, if multi-valued) of <FONT FACE="Courier New, monospace">operand</FONT>.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand</FONT>
+	does not evaluate to a string value, its value is first converted to
+	a string as described in §3.6.4 <I>Property Type Conversion</I>.
+	The lower-case string value is computed as though the <FONT FACE="Courier New, monospace">toLowerCase()</FONT>
+	method of <FONT FACE="Courier New, monospace">java.lang.String</FONT>
+	were called.</P>
+	<P>If <FONT FACE="Courier New, monospace">operand</FONT>
+	evaluates to <FONT FACE="Courier New, monospace">null</FONT>,
+	the <FONT FACE="Courier New, monospace">LowerCase</FONT>
+	operand also evaluates to <FONT FACE="Courier New, monospace">null</FONT>.</P>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">LowerCase ::= 'LOWER('
+	DynamicOperand ')'</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase
+	QueryObjectModelFactory.<BR> lowerCase(DynamicOperand operand)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>LowerCase</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>DynamicOperand
+	LowerCase.getOperand()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

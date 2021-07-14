@@ -1,0 +1,45 @@
+
+Fit
+===
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/layouts/fit
+   :layout:
+
+   The layout to render to fit the width and height of the parent.
+
+   It has the following content structure at the layout resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsFit]
+
+      /**
+       * The fit mechanic to use.
+       *
+       * default
+       *    If the property is not specified. 100% height and width are used.
+       * absolute
+       *    Absolute positioning is used.
+       */
+      - method (String) < 'absolute'
+
+   It has the following content structure at the main resource:
+
+   .. gnd:gnd::
+
+      [granite:LayoutsFitMain]
+
+      /**
+       * The component to be maximized.
+       */
+      + content
+
+   Example::
+
+      + mydialog
+        - sling:resourceType = "granite/ui/components/foundation/container"
+        + layout
+          - sling:resourceType = "granite/ui/components/foundation/layouts/fit"
+          - method = "absolute"
+        + content
+          - sling:resourceType = "granite/ui/components/foundation/container"

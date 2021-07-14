@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 19.4 Templates (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>19.4 Templates</H2>
+	<P>Node types are defined
+	programmatically by setting the attributes of template objects and
+	passing these to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>.</P>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	is a container holding the node type's attributes and its property
+	and child node definitions, which are themselves represented by
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	objects, respectively.</P>
+	<P>The user registers a
+	node type by first acquiring a <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	and the necessary <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	objects through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>
+	(see §19.2 <I>NodeTypeManager</I>). The attributes of these objects
+	are then set, with the appropriate <FONT FACE="Courier New, monospace"><FONT SIZE=2>PropertyDefinitionTemplate</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeDefinitionTemplate</FONT></FONT>
+	objects added to the <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	object. The resulting <FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeTemplate</FONT></FONT>
+	object is then passed to a registration method of the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>NodeTypeManager</FONT></FONT>.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

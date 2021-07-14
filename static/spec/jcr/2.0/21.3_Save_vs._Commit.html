@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 21.3 Save vs. Commit (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>21.3 Save vs. Commit</H2>
+	<P>Throughout this
+	specification we often mention the distinction between <I>transient</I>
+	and <I>persistent</I> levels. The persistent level refers to the
+	(one or more) workspaces that make up the actual content storage of
+	the repository. The transient level refers to in-memory storage
+	associated with a particular <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object.</P>
+	<P>In these discussions
+	we usually assume that operations occur outside the context of
+	transactions; it is assumed that <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	and other workspace-altering methods immediately effect changes to
+	the persistent layer, causing those changes to be made visible to
+	other sessions.</P>
+	<P><I>This is not the
+	case, however, once transactions are introduced</I>. Within a
+	transaction, changes made by <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	(or other, workspace-direct, methods) are transactionalized and are
+	only persisted and published (made visible to other sessions), upon
+	commit of the transaction. A rollback will, conversely, revert the
+	effects of any saves or workspace-direct methods called within the
+	transaction.</P>
+	<P>Note, however, that
+	changes made in the transient storage are <I>not</I> recorded by a
+	transaction. This means that a rollback will not revert changes made
+	to the transient storage of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	After a rollback the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	object state will still contain any pending changes that were
+	present before the rollback.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

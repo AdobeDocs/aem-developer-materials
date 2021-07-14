@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2 Versioning (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_8.2." id="section_8.2."></a>8.2 Versioning
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A compliant content repository may support versioning. This feature allows the state of a node to be recorded in such a way that it can later be restored. The versioning system is modelled after the Workspace Versioning and Configuration Management (WVCM) API defined by JSR 147.
+								</p>
+							
+							
+								<p class="c5">
+									Whether a particular implementation supports versioning can be determined by querying the repository descriptor table with <b>Repository.getDescriptor("</b><b>OPTION_VERSIONING_SUPPORTED")</b> (a return value of <b>true</b> indicates support for versioning, see 6.1.1.1 Repository Descriptors).
+								</p>
+							
+							
+								<p class="c5">
+									A versioning repository has, in addition to one or more workspaces, a special <i>version storage</i> area. The version storage consists of <i>version histories</i>. Versionable nodes in different workspaces share the same version history if and only if they have the same UUID (see <a href="4.10.2_Multiple_Workspaces_and_Corresponding_Nodes.html">4.10.2</a> <i>Multiple Workspaces and Corresponding Nodes</i>).
+								</p>
+							
+							
+								<p class="c5">
+									A version history is a collection of versions connected to one another by the <i>successor</i> relationship. A new version is added to the version history of a versionable node when one of its workspace instances is <i>checked-in</i>. Every new version is attached to the version history as the successor of one (or more) of the existing versions. The result is that a version history is a directed acyclic graph of versions, where the arcs in the graph represent the successor relation.
+								</p>
+							
+							
+								<p class="c5">
+									The version storage objects are themselves defined as nodes. Though there is only one version storage per repository, the version storage data is reflected in each workspace as a special, protected, sub-tree of nodes of types <b>nt:versionHistory</b> and <b>nt:version</b> (see <a href="8.2.2_Version_Storage.html">8.2.2</a> <i>Version Storage</i>).
+								</p>
+							
+							
+								<p class="c5">
+									When a versionable node is <i>checked-in</i> (using <b>Node.checkin</b>) a new version is created in the version history of that node. The versionable node is also set to be read-only. In order to alter it with a regular write method, it must be checked-out (using <b>Node.checkout</b>). A versionable node can also be restored to the state recorded in one of its versions using <b>Node.restore</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

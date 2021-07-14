@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 11 Import (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H1>11 Import</H1>
+	<P>A repository may
+	support the bulk <I>import</I> of content from XML. Two XML mappings
+	are defined: <I>document view</I> and <I>system view</I>. The former
+	is used primarily for the import of arbitrary XML into the
+	repository while the latter is a full serialization of repository
+	content (see §7 <I>Export</I>). A repository that supports import
+	must support both formats.</P>
+	<P>Whether an
+	implementation supports import can be determined by querying the
+	repository descriptor table with</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>Repository.OPTION_XML_IMPORT_SUPPORTED</FONT></FONT>.</P>
+	<P>A return value of <FONT FACE="Courier New, monospace"><FONT SIZE=2>true</FONT></FONT>
+	indicates support (see §24.2 <I>Repository Descriptors</I>).</P>
+<a name="11.1 Importing Document View"></a>	<H2>11.1 Importing Document View</H2>
+	<P>The <I>document view</I>
+	XML mapping (see §7.3 <I>Document View</I>) allows the import of
+	arbitrary XML into the repository. On import, the repository first
+	checks if the incoming XML appears to be a system view document. If
+	it does not, then it is assumed to be in document view form, and the
+	following occurs:</P>
+	<OL>
+		<LI><P>For each XML
+		namespace declaration with prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>
+		and URI <FONT FACE="Courier New, monospace"><FONT SIZE=2>U</FONT></FONT>:</P>
+		<OL>
+			<LI><P>If the namespace
+			registry already contains a mapping of some prefix <FONT FACE="Courier New, monospace"><FONT SIZE=2>P'</FONT></FONT>
+			to <FONT FACE="Courier New, monospace"><FONT SIZE=2>U</FONT></FONT>
+			(where <FONT FACE="Courier New, monospace"><FONT SIZE=2>P'</FONT></FONT>
+			may or may not be equal to <FONT FACE="Courier New, monospace"><FONT SIZE=2>P</FONT></FONT>)
+			then the namespace registry is left unchanged.</P>
+			<LI><P>If the namespace
+			registry does not contain a mapping to <FONT FACE="Courier New, monospace"><FONT SIZE=2>U</FONT></FONT>
+			then such a mapping is added to the registry. The prefix assigned
+			may be <I>P</I>, if <I>P</I> is not already used in the registry,
+			otherwise the repository must generate and assign a new,
+			previously unused, prefix.</P>
+		</OL>
+		<LI><P>Each XML element
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a JCR node of the same name, <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>.</P>
+		<LI><P>The node type of
+		the JCR node <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		is determined by the implementation in accordance with its policy
+		on respecting property semantics (see §11.3 <I>Respecting Property
+		Semantics</I> and §11.4 <I>Determining Node Types</I>).</P>
+		<LI><P>Each child XML
+		element <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a JCR child node <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		of node <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>.</P>
+		<LI><P>Each XML
+		attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		within an XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a property <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		of JCR node <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>.
+		The value of each XML attribute <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>
+		becomes the value of the corresponding property <FONT FACE="Courier New, monospace"><FONT SIZE=2>A</FONT></FONT>.</P>
+		<LI><P>The type of each
+		imported property is determined by the implementation in accordance
+		with its policy on respecting property semantics (see §11.3
+		<I>Respecting Property Semantics</I> and §11.4 <I>Determining Node
+		Types</I>).</P>
+		<LI><P>Escape sequences
+		representing non-XML-valid characters in element names and
+		whitespace in attribute values may be encountered (for example, if
+		the incoming XML stream is the product of an earlier document view
+		export). In such cases, whether the escape sequences are decoded is
+		left up to the implementation. Note that the predefined entity
+		references <FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;amp;</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;lt;</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;gt;</FONT></FONT>,
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;apos;</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;quot;</FONT></FONT>,
+		as well as all other entity and character references, must be
+		decoded in any case, in accordance with the XML specification.</P>
+		<LI><P>An implementation
+		that respects node type information may be able to determine
+		whether a particular attribute is intended to be a single or
+		multi-value property, and treat any spaces embedded in the value
+		accordingly (either as delimiters or as literal spaces).
+		Implementations are also free to rely on information external to
+		this specification (such as any schema associated by the incoming
+		XML) to help determine the intended interpretation of whitespace
+		within a particular incoming attribute value.</P>
+		<LI><P>Text within an
+		XML element <FONT FACE="Courier New, monospace"><FONT SIZE=2>E</FONT></FONT>
+		becomes a <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING</FONT></FONT>
+		property called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmlcharacters</FONT></FONT>
+		of a JCR node called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:xmltext</FONT></FONT>,
+		which itself becomes a JCR child node of the node<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+		E</FONT></FONT>. The value of
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>E/jcr:xmltext/jcr:xmlcharacters</FONT></FONT>
+		will be the character data passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler.characters</FONT></FONT>.</P>
+		<LI><P>If import is done
+		through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+		returned by <FONT FACE="Courier New, monospace"><FONT SIZE=2>getImportContentHandler</FONT></FONT>,
+		data passed to <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler.ignorableWhitespace</FONT></FONT>
+		is ignored.</P>
+		<LI><P>If import is done
+		through <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>,
+		pure whitespace between elements (that is, a string containing no
+		non-whitespace characters) is ignored. However, whitespace leading,
+		trailing and between non-whitespace characters is included in the
+		text that is stored in <FONT FACE="Courier New, monospace"><FONT SIZE=2>E/jcr:xmltext/jcr:xmlcharacters</FONT></FONT>.</P>
+	</OL>
+<a name="11.1.1 Roundtripping"></a>	<H3>11.1.1 Roundtripping</H3>
+	<P>Not all information
+	within the infoset of an XML document is maintained on import to
+	document view. Information lost will include processing
+	instructions, the distinction between text and CDATA and namespace
+	scoping at the sub-document level. As a result, perfect
+	roundtripping of a full XML infoset is not possible through document
+	view.</P>
+	<P>On document view
+	import, the repository will automatically add repository metadata in
+	the form of JCR properties (at least <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>,
+	for example), if these are not already present in the incoming XML.
+	When re-exported using document view, the resulting XML will contain
+	these properties in the form of XML attributes. As a result, the
+	application must take care of stripping out unwanted repository
+	metadata.</P>
+<a name="11.2 Import System View"></a>	<H2>11.2 Import System View</H2>
+	<P>Given a system view
+	XML document the subgraph constructed upon import is determined by
+	reversing the mapping discussed in §7.2 <I>System View</I>. Though
+	the mapping is largely straightforward some special considerations
+	are discussed in §11.3 <I>Respecting Property Semantics</I> and
+	§11.9 <I>Importing jcr:root</I>.</P>
+<a name="11.3 Respecting Property Semantics"></a>	<H2>11.3 Respecting Property Semantics</H2>
+	<P>During either system
+	or document view import, XML elements (in system view) or XML
+	attributes (in document view) may be encountered that correspond to
+	JCR properties with repository-level semantics such as the
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr</FONT></FONT>-prefixed
+	properties of such node types as <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:base</FONT></FONT>,
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:referenceable</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:versionable</FONT></FONT>,
+	among others.</P>
+	<P>When an element or
+	attribute representing such a property is encountered, an
+	implementation may either <I>skip</I> it or <I>respect</I> it.</P>
+	<UL>
+		<LI><P>A repository that
+		respects a particular element or attribute must import it and alter
+		the internal state of the repository in accordance with the
+		semantics of the property given the configuration of that
+		repository instance. For example, a repository that respects
+		<FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>
+		will attempt to create a node of the indicated primary node type.
+		If that node type is not supported, the repository will throw an
+		exception.</P>
+		<LI><P>A repository that
+		skips an element or attribute must not import it all. <I>It must
+		not import it but then ignore the semantics of the resulting
+		property</I>.</P>
+	</UL>
+	<P>The
+	implementation-specific policy regarding what to skip and what to
+	respect must be internally consistent. For example, it makes no
+	sense to skip <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:mixinTypes</FONT></FONT>
+	(thus missing the presence of <FONT FACE="Courier New, monospace"><FONT SIZE=2>mix:lockable</FONT></FONT>,
+	for example) and yet respect <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockOwner</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:lockIsDeep</FONT></FONT>.</P>
+	<P>If an implementation
+	chooses to skip <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:primaryType</FONT></FONT>,
+	the node type of the imported node is determined by the
+	implementation (see §11.5 <I>Determining Node Types</I>).</P>
+<a name="11.4 Determining Node Types"></a>	<H2>11.4 Determining Node Types</H2>
+	<P>In cases of XML import where primary
+	node type information is unavailable, either because it is skipped
+	or because it is not available (as is the case on document view
+	import of arbitrary XML), the implementation must determine an
+	appropriate node type to assign to each newly created node. How this
+	is done is implementation-dependent.</P>
+<a name="11.5 Determining Property Types"></a>	<H2>11.5 Determining Property Types</H2>
+	<P>On import of arbitrary
+	XML using document view, the implementation must determine a
+	suitable property type for each incoming property. Determination of
+	the property type must be done as follows:</P>
+	<UL>
+		<LI><P>If the property type is
+		determinable from the node type assigned to its node (regardless of
+		how this node type is itself determined; see §11.5 <I>Determining
+		Node Types</I>) then that property type is used.</P>
+		<LI><P>If the property type is not
+		determinable from the node type assigned to its node then the
+		determination of the property is left up to the implementation. For
+		example, an implementation may use <FONT FACE="Courier New, monospace"><FONT SIZE=2>STRING
+		</FONT></FONT>properties exclusively, or attempt to
+		“guess” the type according to an analysis of the content.</P>
+	</UL>
+<a name="11.6 Event-Based Import Methods"></a>	<H2>11.6 Event-Based Import Methods</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	interfaces provide the following event-based import methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>org.xml.sax.ContentHandler<BR>
+	 Workspace.getImportContentHandler(String parentAbsPath,<BR> 
+	 int uuidBehavior)</FONT></FONT></P>
+	<P>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>org.xml.sax.ContentHandler<BR>
+	 Session.getImportContentHandler(String parentAbsPath,<BR> 
+	 int uuidBehavior)</FONT></FONT></P>
+	<P>These methods return
+	an <FONT FACE="Courier New, monospace"><FONT SIZE=2>org.xml.sax.ContentHandler</FONT></FONT>
+	without altering either the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>.
+	The actual changes to the repository are made through the methods of
+	the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT><SUP><FONT FACE="Courier New, monospace"><A CLASS="sdfootnoteanc" NAME="sdfootnote19anc" HREF="#sdfootnote19sym"><SUP>19</SUP></A></FONT></SUP>.
+	Invalid XML data will cause the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	to throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>.</P>
+	<P>If the incoming XML is
+	a <I>system view</I> XML document then it is interpreted as such,
+	otherwise it is imported as <I>document view</I>.</P>
+	<P>The incoming XML is
+	imported into a subgraph of items immediately below the node at
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>parentAbsPath</FONT></FONT>.</P>
+<a name="11.6.1 Workspace Event-Based Import"></a>	<H3>11.6.1 Workspace Event-Based Import</H3>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	acquired through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	method dispatches changes immediately. Node type constraints are
+	enforced by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	by throwing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	during deserialization. However, which node type constraints are
+	enforced depends upon whether node type information in the imported
+	data is respected, and this is an implementation-specific issue (see
+	§11.3 <I>Respecting Property Semantics</I>).</P>
+<a name="11.6.2 Session Event-Based Import"></a>	<H3>11.6.2 Session Event-Based Import</H3>
+	<P>A <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	acquired through the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	will build the graph of new items in the transient session store.
+	The changes are then dispatched on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.</P>
+	<P>Different node type
+	constraints may be enforced at different times. Those that would be
+	immediately enforced on a core write method (see §10.2 <I>Core
+	Write Methods</I>) of that particular implementation will cause the
+	returned <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler
+	</FONT></FONT>to throw an immediate <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>.
+	All other node type constraints are enforced as they would be if
+	made through the core write methods. However, which node type
+	constraints are enforced also depends upon whether node type
+	information in the imported data is respected, which is an
+	implementation-specific issue (see §11.3 <I>Respecting Property
+	Semantics</I>).</P>
+<a name="11.7 Stream-Based Import Methods"></a>	<H2>11.7 Stream-Based Import Methods</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	interfaces provide the following stream-based import methods:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Workspace.importXML(String parentAbsPath,<BR> 
+	 InputStream in,<BR> int uuidBehavior)</FONT></FONT></P>
+	<P>and</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>void
+	Session.importXML(String parentAbsPath,<BR> 
+	InputStream in,<BR> int uuidBehavior)</FONT></FONT></P>
+	<P>These methods import
+	the XML document in the input stream and add the resulting item
+	subgraph as a child of the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentAbsPath</FONT></FONT>.
+	If the incoming XML is a <I>system view</I> XML document then it is
+	interpreted as such, otherwise it is imported as <I>document view</I>.</P>
+<a name="11.7.1 Workspace Stream-Based Import"></a>	<H3>11.7.1 Workspace Stream-Based Import</H3>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.importXML</FONT></FONT>
+	changes are dispatched immediately. Node type constraints are
+	enforced by throwing a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>.
+	However, which node type constraints are enforced depends upon
+	whether node type information in the imported data is respected,
+	which is an implementation-specific issue (see §11.3 <I>Respecting
+	Property Semantics</I>).</P>
+<a name="11.7.2 Session Stream-Based Import"></a>	<H3>11.7.2 Session Stream-Based Import</H3>
+	<P>On <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session.importXML</FONT></FONT>
+	changes remain pending until dispatched on <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>.
+	Node type constraints that would be immediately enforced on a core
+	write method (see §10.2 <I>Core Write Methods</I>) of that
+	particular implementation will cause an immediate
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>
+	during import. All other node type constraints are enforced as they
+	would be if made through the core write methods. However, which node
+	type constraints are enforced depends upon whether node type
+	information in the imported data is respected, and this is an
+	implementation-specific issue (see §11.3 <I>Respecting Property
+	Semantics</I>).</P>
+<a name="11.8 Identifier Handling"></a>	<H2>11.8 Identifier Handling</H2>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuidBehavior</FONT></FONT>
+	flag governs how the identifiers of imported nodes are handled.
+	There are four options, defined as constants in the interface
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.ImportUUIDBehavior</FONT></FONT>:</P>
+<a name="11.8.1 Create New Identifiers"></a>	<H3>11.8.1 Create New Identifiers</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_CREATE_NEW</FONT></FONT>:
+	Incoming nodes are assigned newly created identifiers upon addition
+	to the workspace. As a result, identifier collisions never occur.</P>
+<a name="11.8.2 Remove Existing Node"></a>	<H3>11.8.2 Remove Existing Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REMOVE_EXISTING</FONT></FONT>:
+	If an incoming non-shareable node has the same identifier as a node
+	already existing in the workspace then the already existing node
+	(and its subgraph) is removed from wherever it may be in the
+	workspace before the incoming node is added. Note that this can
+	result in nodes “disappearing” from locations in the workspace
+	that are remote from the location to which the incoming subgraph is
+	being written. In the case of shareable node, however, the behavior
+	differs (see §14.1.2 <I>Shared Node Creation on Import</I>).</P>
+<a name="11.8.3 Replace Existing Node"></a>	<H3>11.8.3 Replace Existing Node</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REPLACE_EXISTING</FONT></FONT>:
+	If an incoming non-shareable node has the same identifier as a node
+	already existing in the workspace, then the already existing node is
+	replaced by the incoming node in the same position as the existing
+	node. Note that this may result in the incoming subgraph being
+	disaggregated and “spread around” to different locations in the
+	workspace. In the most extreme case this behavior may result in no
+	node at all being added as child of <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentAbsPath</FONT></FONT>.
+	This will occur if the topmost element of the incoming XML has the
+	same identifier as an existing node elsewhere in the workspace. In
+	the case of shareable node, however, the behavior differs (see
+	§14.1.2 <I>Shared Node Creation on Import</I>).</P>
+<a name="11.8.4 Throw on Identifier Collision"></a>	<H3>11.8.4 Throw on Identifier Collision</H3>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_THROW</FONT></FONT>:
+	If an incoming non-shareable node has the same identifier as a node
+	already existing in the workspace, then either a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	is thrown by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	(in the case of event-based import) or an <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>
+	is thrown by the <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	method (in the case of stream-based import). In the case of
+	shareable nodes, the behavior differs (see §14.1.2 <I>Shared Node
+	Creation on Import</I>).</P>
+<a name="11.8.5 Usage of Term UUID"></a>	<H3>11.8.5 Usage of Term UUID</H3>
+	<P>The term “UUID”
+	occurs in the names of certain properties, classes and methods in
+	JCR 1.0. This usage is maintained in JCR 2.0 to preserve
+	compatibility with JCR 1.0. However, in the context of JCR 2.0 these
+	names should be understood to apply to identifiers <I>in general</I>
+	and not just identifiers that use of the UUID syntax, or that
+	possess global uniqueness.</P>
+<a name="11.9 Importing <I>jcr:root</I>"></a>	<H2>11.9 Importing <I>jcr:root</I></H2>
+	<P>If the root node of a
+	workspace is exported it will be rendered in XML (in either view)
+	under the name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>.
+	In addition, if the root node is referenceable this will be recorded
+	in the serialization of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:uuid</FONT></FONT>
+	property.</P>
+	<P>If this XML document
+	is imported back into the workspace a number of different results
+	may occur, depending on the methods and settings used to perform the
+	import. The following summarizes the possible results of using
+	various <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuidBehavior</FONT></FONT>
+	values (in either using either <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.getImportContentHandler</FONT></FONT>
+	or <FONT FACE="Courier New, monospace"><FONT SIZE=2>Workspace.importXML</FONT></FONT>)
+	when a node with the same identifier as the existing root node is
+	encountered on import (the constants below are defined in the
+	interface <FONT FACE="Courier New, monospace"><FONT SIZE=2>javax.jcr.ImportUUIDBehavior</FONT></FONT>).</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_CREATE_NEW</FONT></FONT>:
+	The XML element representing <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>
+	is rendered as a normal node at the position specified (with the
+	name <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:root</FONT></FONT>).
+	It gets a new identifier, so there is no effect on the existing root
+	node of the workspace.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REMOVE_EXISTING</FONT></FONT>:
+	If deserialization is done through a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	(acquired by <FONT FACE="Courier New, monospace"><FONT SIZE=2>getImportContentHandler</FONT></FONT>)
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	will be thrown. Similarly, if deserialization is done through
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ConstraintViolationException</FONT></FONT>
+	will be thrown. Note that this is simply a special case of the
+	general rule that under this <FONT FACE="Courier New, monospace"><FONT SIZE=2>uuidBehavior</FONT></FONT>
+	setting, an exception will be thrown on any attempt to import a node
+	with the same identifier as the node at <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentAbsPath</FONT></FONT>
+	<I>or any of its ancestors </I>(which, of course, includes the root
+	node).</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_REPLACE_EXISTING</FONT></FONT>:
+	This setting is equivalent to importing into the <FONT FACE="Courier New, monospace"><FONT SIZE=2>Session</FONT></FONT>
+	and then calling <FONT FACE="Courier New, monospace"><FONT SIZE=2>save
+	</FONT></FONT> since <FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	always operates according to identifier. In both cases the result is
+	that the root node of the workspace will be replaced along with its
+	subgraph (i.e., the whole workspace), just as if the root node had
+	been altered through the normal <FONT FACE="Courier New, monospace"><FONT SIZE=2>getNode</FONT></FONT>-<I>make
+	</I><I>change</I>-<FONT FACE="Courier New, monospace"><FONT SIZE=2>save</FONT></FONT>
+	cycle.</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>IMPORT_UUID_COLLISION_THROW</FONT></FONT>:
+	Under this setting a <FONT FACE="Courier New, monospace"><FONT SIZE=2>ContentHandler</FONT></FONT>
+	will throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>SAXException</FONT></FONT>
+	and the <FONT FACE="Courier New, monospace"><FONT SIZE=2>importXML</FONT></FONT>
+	method will throw <FONT FACE="Courier New, monospace"><FONT SIZE=2>ItemExistsException</FONT></FONT>.</P>
+	<P>Note that an
+	implementation is always free to prevent the replacement of a root
+	node (or indeed any node) either through access control restrictions
+	or other implementation-specific restrictions.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

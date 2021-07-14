@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 24.2.2 General (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>24.2.2 General</H3>
+	<TABLE WIDTH=641 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=1 CELLSPACING=0>
+		<COL WIDTH=256>
+		<COL WIDTH=379>
+		<THEAD>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=16>
+					<P><FONT SIZE=1 ><B>Key</B></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT SIZE=1 ><B>Descriptor</B></FONT></P>
+				</TD>
+			</TR>
+		</THEAD>
+		<TBODY>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >WRITE_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if repository content can be </FONT><FONT SIZE=1 ><I>updated</I></FONT><FONT SIZE=1 >
+					through the JCR API , as opposed to having read-only access (see
+					§10 </FONT><FONT SIZE=1 ><I>Writing</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=95>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >IDENTIFIER_STABILITY</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >STRING</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns one of the following </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >javax.jcr.Repository</FONT></FONT></FONT><FONT SIZE=1 >
+					constants indicating the </FONT><FONT SIZE=1 ><I>stability
+					of non-referenceable identifiers</I></FONT><FONT SIZE=1 >:</FONT></P>
+					<UL>
+						<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >IDENTIFIER_STABILITY_METHOD_DURATION</FONT></FONT></FONT><FONT SIZE=1 >:
+						Identifiers may change between method calls</FONT></P>
+						<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >IDENTIFIER_STABILITY_SAVE_DURATION</FONT></FONT></FONT><FONT SIZE=1 >:
+						Identifiers are guaranteed stable within a single save/refresh
+						cycle.</FONT></P>
+						<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >IDENTIFIER_STABILITY_SESSION_DURATION</FONT></FONT></FONT><FONT SIZE=1 >:
+						Identifiers are guaranteed stable within a single session.</FONT></P>
+						<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >IDENTIFIER_STABILITY_INDEFINITE_DURATION</FONT></FONT></FONT><FONT SIZE=1 >:
+						Identifiers are guaranteed to be stable forever. Note that
+						</FONT><FONT SIZE=1 ><I>referenceable</I></FONT><FONT SIZE=1 >
+						identifiers always have this level of stability.</FONT></P>
+					</UL>
+					<P><FONT SIZE=1 >See
+					3.7 </FONT><FONT SIZE=1 ><I>Identifiers</I></FONT><FONT SIZE=1 >
+					and §3.8 </FONT><FONT SIZE=1 ><I>Referenceable
+					Nodes</I></FONT><FONT SIZE=1 >.</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_XML_IMPORT_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>XML
+					import</I></FONT><FONT SIZE=1 > is
+					supported (see §11 </FONT><FONT SIZE=1 ><I>Import</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_UNFILED_CONTENT_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>unfiled
+					content</I></FONT><FONT SIZE=1 > is
+					supported (see §3.12 </FONT><FONT SIZE=1 ><I>Unfiled
+					Content</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >SIMPLE_VERSIONING_<BR>SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>simple
+					versioning</I></FONT><FONT SIZE=1 > is
+					supported (see §3.13 </FONT><FONT SIZE=1 ><I>Versioning
+					Model</I></FONT><FONT SIZE=1 > and §15
+					</FONT><FONT SIZE=1 ><I>Versioning</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >ACTIVITIES_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>activities</I></FONT><FONT SIZE=1 >
+					are supported (see §15.12 </FONT><FONT SIZE=1 ><I>Activities</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_</FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BASELINES_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>configurations
+					and baselines </I></FONT><FONT SIZE=1 >are
+					 supported (see §3.13 </FONT><FONT SIZE=1 ><I>Versioning
+					Model</I></FONT><FONT SIZE=1 > and §15.13
+					</FONT><FONT SIZE=1 ><I>Configurations and
+					Baselines</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_ACCESS_CONTROL_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>access
+					control</I></FONT><FONT SIZE=1 > is
+					supported (see §16 </FONT><FONT SIZE=1 ><I>Access
+					Control Management</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_LOCKING_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>locking</I></FONT><FONT SIZE=1 >
+					is supported (see §17 </FONT><FONT SIZE=1 ><I>Locking</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_OBSERVATION_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>asynchronous
+					observation</I></FONT><FONT SIZE=1 > is
+					supported (see §12 </FONT><FONT SIZE=1 ><I>Observation</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_JOURNALED_OBSERVATION_<BR>SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>journaled
+					observation</I></FONT><FONT SIZE=1 > is
+					supported (see §12 </FONT><FONT SIZE=1 ><I>Observation</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_RETENTION_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>retention
+					and hold</I></FONT><FONT SIZE=1 > are
+					supported (see §20 </FONT><FONT SIZE=1 ><I>Retention
+					and Hold</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_LIFECYCLE_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>lifecycle
+					management</I></FONT><FONT SIZE=1 > is
+					supported (see §18 </FONT><FONT SIZE=1 ><I>Lifecycle
+					Management</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_TRANSACTIONS_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>transactions
+					</I></FONT><FONT SIZE=1 >are supported
+					(see §21 </FONT><FONT SIZE=1 ><I>Transactions</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=17>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_WORKSPACE_MANAGEMENT_<BR>SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>workspace
+					management</I></FONT><FONT SIZE=1 > is
+					supported (see §13 </FONT><FONT SIZE=1 ><I>Workspace
+					Management</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=256 HEIGHT=16>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED</FONT></FONT></FONT></P>
+				</TD>
+				<TD WIDTH=379>
+					<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >BOOLEAN</FONT></FONT></FONT><FONT SIZE=1 >:
+					Returns </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=1 >true</FONT></FONT></FONT><FONT SIZE=1 >
+					if and only if </FONT><FONT SIZE=1 ><I>node
+					and property with same name</I></FONT><FONT SIZE=1 >
+					is supported (see §5.1.8 </FONT><FONT SIZE=1 ><I>Node
+					and Property with Same Name</I></FONT><FONT SIZE=1 >).</FONT></P>
+				</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+<script type="text/javascript" src="footer.js"></script></body></html>

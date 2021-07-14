@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.2.5.3 Path (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.2.5.3." id="section_6.2.5.3."></a>6.2.5.3 Path
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A <b>PATH</b> property is an ordered list of <i>path elements</i>. A path element is a <b>NAME</b> plus an with optional index. When read, the fully qualified <b>NAME</b>s within the path are mapped to their current prefix and the result is returned as a string. A path may be absolute or relative. For example, given the namespace mapping
+								</p>
+							
+							
+								<p class="c5">
+									<b>myapp -&gt; http://mycorp.com/myapp</b>
+								</p>
+							
+							
+								<p class="c5">
+									a <b>PATH</b> property value with fully qualified form
+								</p>
+								
+									
+										<p class="c5">
+											<b>/</b><i>{</i><i>http://mycorp.com/myapp</i><i>}</i><b>document[1]/<br></b> <i>{</i><i>http://mycorp.com/myapp</i><i>}</i><b>paragraph[3]</b>
+										</p>
+									
+								
+							
+							
+								<p class="c5">
+									would be returned as the string
+								</p>
+							
+							
+								<p class="c5">
+									<b>/myapp:document/myapp:paragraph[3]</b>
+								</p>
+							
+							
+								<p class="c5">
+									If the namespace were later remapped to
+								</p>
+							
+							
+								<p class="c5">
+									<b>yourapp -&gt; http://mycorp.com/myapp</b>
+								</p>
+							
+							
+								<p class="c5">
+									then the value returned would be the string
+								</p>
+							
+							
+								<p class="c5">
+									<b>/yourapp:document/yourapp:paragraph[3]</b>
+								</p>
+							
+							
+								<p class="c5">
+									Note however, that how the <b>PATH</b> value is stored internally is up to the implementation, as long as dynamic remapping is supported.
+								</p>
+							
+							
+								<p class="c5">
+									A common use for <b>PATH</b> properties is likely to be the storage of paths to other items in the workspace. However the repository does not enforce referential integrity (unlike in the case of <b>REFERENCE</b> properties, see <a href="6.2.5.4_Reference.html">6.2.5.4</a> <i>Reference</i>); a <b>PATH</b> property may specify a location where no item exists.
+								</p>
+							
+							
+								<p class="c5">
+									Upon <b>save</b>, a <b>PATH</b> property is validated according to two criteria:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					All prefixes specified must be currently mapped to registered namespaces (see <a href="6.3_Namespaces.html">6.3</a> <i>Namespaces</i>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The syntax of the string specified must conform to the following EBNF:
+				</p>
+			</li>
+		</ul>
+		
+			
+				
+					
+						
+							
+								<p class="c12">
+									path ::= properpath ['/']
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									properpath ::= abspath | relpath
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									abspath ::= '/' relpath
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									relpath ::= pathelement | relpath '/' pathelement
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									pathelement ::= name | name '[' number ']' | '..' | '.'
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									number ::= /* An integer &gt; 0 */
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									name ::= simplename | prefixedname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									simplename ::= onecharsimplename |
+								</p>
+							
+							
+								<p class="c12">
+									twocharsimplename |
+								</p>
+							
+							
+								<p class="c12">
+									threeormorecharname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									prefixedname ::= prefix ':' localname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									localname ::= onecharlocalname |
+								</p>
+							
+							
+								<p class="c12">
+									twocharlocalname |
+								</p>
+							
+							
+								<p class="c12">
+									threeormorecharname
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									onecharsimplename ::= (* Any Unicode character except:<br>
+									'.', '/', ':', '[', ']', '*',<br>
+									''', '"', '|' or any whitespace
+								</p>
+							
+							
+								<p class="c12">
+									character *)
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									twocharsimplename ::= '.' onecharsimplename |
+								</p>
+							
+							
+								<p class="c12">
+									onecharsimplename '.' |
+								</p>
+							
+							
+								<p class="c12">
+									onecharsimplename onecharsimplename
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									onecharlocalname ::= nonspace
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									twocharlocalname ::= nonspace nonspace
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									threeormorecharname ::= nonspace string nonspace
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									prefix ::= (* Any valid XML Name *)
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									string ::= char | string char
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									char ::= nonspace | ' '
+								</p>
+							
+							
+								<p>
+									<br>
+								</p>
+							
+							
+								<p class="c12">
+									nonspace ::= (* Any Unicode character except:<br>
+									'/', ':', '[', ']', '*',<br>
+									''', '"', '|' or any whitespace
+								</p>
+							
+							
+								<p class="c12">
+									character *)
+								</p>
+							
+							
+								<p class="c5">
+									<br>
+									Note that the method <b>Property.getNode()</b> which resolves a <b>REFERENCE</b> property and returns the referenced node <i>does not work</i> with <b>PATH</b> properties (see <a href="6.2.5.4_Reference.html">6.2.5.4</a> <i>Reference</i>). <b>PATH</b> properties may point to properties (not just referenceable nodes) or to nothing at all. In order to use a <b>PATH</b> to retrieve an item, the <b>PATH</b>'s value must be retrieved and then used in a regular <b>getItem</b>, <b>getNode</b> or <b>getProperty</b> call.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

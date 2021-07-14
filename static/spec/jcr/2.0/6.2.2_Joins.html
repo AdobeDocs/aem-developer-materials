@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.2.2 Joins (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.2.2 Joins</H3>
+	<P>If the query has more
+	than one selector, it also has one or more <I>joins</I> that
+	transform the sets of nodes selected by each selector into a single
+	set of <I>node-tuples</I>.</P>
+	<P>The membership of the
+	set of node-tuples depends on the <I>join type</I> and <I>join
+	condition</I> of each join. The join type can be <I>inner</I>,
+	<I>left-outer</I>, or <I>right-outer</I>. The join condition can
+	test the equality of properties' values or the hierarchical
+	relationship between nodes.</P>
+	<P>If the query has <I>n</I>
+	selectors, it has <I>n - 1</I> joins resulting in a set of <I>n</I>-tuples.
+	For example, if the query has two selectors, it will have one join
+	and produce a set of 2-tuples. If it has three selectors, it will
+	have two joins and produce a set of 3-tuples. If it has only one
+	selector, it will not have any joins and will produce a set of
+	1-tuples, that is, the nodes selected by its only selector.</P>
+	<P>Support for <I>joins</I>
+	is optional. In a repository that <I>does not</I> support <I>joins</I>,
+	the node-tuples produced are necessarily singletons. In other words,
+	each node in the set produced by the (one and only) selector is
+	converted directly into a node-tuple of size one. All further
+	processing within the query evaluation operates on these tuples just
+	as it would on tuples of size greater than one.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

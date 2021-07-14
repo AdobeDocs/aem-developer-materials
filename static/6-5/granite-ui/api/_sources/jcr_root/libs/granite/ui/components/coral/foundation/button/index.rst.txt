@@ -1,0 +1,123 @@
+
+Button
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/coral/foundation/button
+
+   Button is a component to represent a HTML button (<button>).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Button] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The type attribute.
+       */
+      - type (String) = 'button' < 'button', 'submit', 'reset'
+
+      /**
+       * ``true`` to disable the button; ``false`` otherwise.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The autocomplete attribute.
+       */
+      - autocomplete (String) = 'off' < 'on', 'off'
+
+      /**
+       * The form attribute.
+       */
+      - formId (String)
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+
+      /**
+       * I18n comment for the body text of the element.
+       */
+      - text_commentI18n (String)
+
+      /**
+       * Visually hide the text.
+       * It is RECOMMENDED that every button has a text for a11y purpose. Use this property to hide it visually, while still making it available for a11y.
+       */
+      - hideText (Boolean)
+
+      /**
+       * ``true`` to make this button in active state; ``false`` otherwise.
+       */
+      - active (Boolean)
+
+      /**
+       * The icon name. e.g. "search".
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * The size of the button.
+       */
+      - size (String) = 'M' < 'M', 'L'
+
+      /**
+       * ``true`` to render the button as a block element; ``false`` otherwise.
+       */
+      - block (Boolean)
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) < 'primary', 'warning', 'quiet', 'minimal', 'actionBar'
+
+      /**
+       * Command used as a shortcut for the action. It accepts single keys, sequenques and key modifiers.
+       * Command will override actionConfigName.
+       *
+       * When ``ctrl`` or ``cmd`` is used, it will be normalized based on the client's OS.
+       *
+       * **Grammar (ABNF)**
+       *
+       * .. productionlist::
+       *    command: key / sequence / modifier-cmd
+       *    key: valid-keyboard-key
+       *    sequence: key 1*("-" key)
+       *    modifier-cmd: modifier *("+" modifier) "+" key
+       *    modifier: "ctrl" / "alt" / "meta" / "shift" / "cmd"
+       *
+       * e.g. ``d``, ``m``, ``c``, ``l-c``, ``c-r``, ``ctrl+c``, ``alt+1``, ``meta+t``, ``shift+a``, ``cmd+i``
+       */
+      - command (String)
+
+     /**
+       * The actionConfigName directs to the central configuration for a keyboard shortcut. An actionConfigName will set
+       * following attributes of this action to the global standard definitions: command, icon and text.
+       * Example value: granite/ui/shell/actions/edit
+       * The example will set for this action the attributes command, text and icon to the edit use case to the
+       * global default values under /conf/settings/granite/ui/shell/actions/edit.
+       * The global defaults could be changed under /conf/settings/granite/ui/shell/actions to other default values.
+       */
+      - actionConfigName (String)
+
+      /**
+       * The name of the feature that the interaction takes place.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingFeature (String)
+
+      /**
+       * The element this component represent for the purpose of tracking.
+       * By default the value of ``text`` or ``granite:title`` is used.
+       *
+       * See :doc:`/jcr_root/libs/granite/ui/components/coral/foundation/clientlibs/foundation/js/tracking/index`.
+       */
+      - trackingElement (String)

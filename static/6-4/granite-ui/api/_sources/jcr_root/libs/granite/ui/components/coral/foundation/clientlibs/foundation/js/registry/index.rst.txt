@@ -1,0 +1,56 @@
+*******************
+foundation-registry
+*******************
+
+The general purpose registry to register anything required by components. It has a similar concept as OSGi declarative service.
+Its main purpose is a way to associate a name with a function, such that the name can be specified in the markup to represent a certain behavior.
+The component then will pick the behavior associated with that name from the registry. Consult individual component documentation on what extension it provides.
+
+The recommended way to do registration is by using the AdaptTo interface, instead of using ``Granite.UI.Foundation.Registry`` directly.
+
+
+AdaptTo Interface
+=================
+
+type
+   ``foundation-registry``
+
+condition
+   ``window`` object
+
+returned type
+   ``FoundationRegistry``
+
+Example:
+
+.. code-block:: js
+
+   $(window).adaptTo("foundation-registry").register("foundation.admin.properties.activator.action", {
+     name: "foundation.pushstate",
+     handler: function() {}
+   });
+
+
+Granite.UI.Foundation.Registry
+==============================
+
+A singleton object is exposed at ``Granite.UI.Foundation.Registry``, having the following interface:
+
+.. code-block:: ts
+
+   interface FoundationRegistry {
+     /**
+      * Registers a config with the given name.
+      *
+      * <p>The name acts as a key. The name MUST be namespaced. e.g. <code>foundation.adapters</code>.
+      * <code>foundation</code>, <code>base</code>, <code>granite</code>, <code>cq</code> namespaces are reserved. Application level code MUST use its own namespace.</p>
+      * <p>The config can be an arbitary object. The component provides the details.</p>
+      */
+     register(name: string, config: any): void;
+
+     /**
+      * Returns an array of configs registered for the given name.
+      * If no config is registered for that name, empty array is returned.
+      */
+     get(name: string): any[];
+   }

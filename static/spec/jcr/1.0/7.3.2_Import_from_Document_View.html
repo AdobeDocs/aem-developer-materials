@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.3.2 Import from Document View (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.3.2." id="section_7.3.2."></a> 7.3.2 Import from Document View
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									One of the applications for which the document view mapping is designed is to allow the import of arbitrary XML into a content repository (another application is to provide a context in which XPath queries are more readable than they would be in system view, see <a href="6.6.1_XPath_over_Document_View.html">6.6.1</a> <i>XPath over Document View</i>). On import, the repository first checks if the incoming XML appears to be a system view document. If it does not then it is assumed to be in document view form, and the following occurs:
+								</p>
+							
+						
+					
+				
+			
+		
+		<ol>
+			<li>
+				<p class="c5">
+					Namespace declarations in the incoming XML document that do not already exist in the repository namespace registry are added to the repository namespace registry.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each XML element <b>E</b> becomes a content repository node of the same name, <b>E</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The node type of the content repository node <b>E</b> is determined by the implementation in accordance with its policy on respecting property semantics (see <a href="7.3.3_Respecting_Property_Semantics.html">7.3.3</a> <i>Respecting Property Semantics</i> and <a href="7.3.4_Determining_Node_Types.html">7.3.4</a> <i>Determining Node Types</i>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each child XML element <b>C</b> of XML element <b>E</b> becomes a content repository child node <b>C</b> of node <b>E</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each XML attribute <b>A</b> within an XML element <b>E</b> becomes a property <b>A</b> of content repository node <b>E</b>. The value of each XML attribute <b>A</b> becomes the value of the corresponding property <b>A</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					The type of each imported property is determined by the implementation in accordance with its policy on respecting property semantics (see <a href="7.3.3_Respecting_Property_Semantics.html">7.3.3</a> <i>Respecting Property Semantics</i> and <a href="7.3.4_Determining_Node_Types.html">7.3.4</a> <i>Determining Node Types</i>).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Escape sequences representing non-XML-valid characters in element names and whitespace in attribute values may be encountered if the incoming XML stream is the product of an earlier document view export (see <a href="6.4.2_Document_View_XML_Mapping.html">6.4.2</a> <i>Document View XML Mapping</i>). In these cases, whether the escape sequences are decoded is left up to the implementation. Note that the predefined entity references <b>&amp;amp;</b>, <b>&amp;lt;</b>, <b>&amp;gt;</b>, <b>&amp;apos;</b> and <b>&amp;quot;</b>, as well as all other entity and character references, must be decoded in any case, in accordance with the XML specification).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					An implementation that respects node type information may be able to determine whether a particular attribute is intended to be a single or multi value property, and treat any spaces embedded in the value according (either as delimiters or as literal spaces). Implementations are also free to rely on other out-of-band information (such as any schema associated by the incoming XML) to help determine the intended interpretation of whitespace with a particular incoming attribute value.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Text within an XML element <b>E</b> becomes a <b>STRING</b> property called <b>jcr:xmlcharacters</b> of a node called <b>jcr:xmltext</b>, which itself becomes a child node of the node <b>E</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					If import is done through the <b>ContentHandler</b> returned by <b>getImportContentHandler</b>, the value of <b>E/jcr:xmltext/jcr:xmlcharacters</b> will be the character data passed to <b>ContentHandler.characters</b>. Data passed to <b>ContentHandler.ignorableWhitespace</b> is ignored. If import is done through <b>importXML</b>, pure whitespace between elements (that is, containing no non-whitespace characters) is ignored. However, whitespace leading, trailing and between non-whitespace characters is included in the text that is stored in <b>E/jcr:xmltext/jcr:xmlcharacters</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					An XML element can have a child element and an attribute with the same name while a content repository node cannot have a child node and property with the same name. For example, <b>&lt;a b="x"&gt;&lt;b/&gt;&lt;/a&gt;</b> would imply a content repository node with one property called <b>b</b> and one child node also called <b>b</b>, which is not allowed. Therefore if such a fragment of XML is encountered on import it is an implementation issue as to how to deal with it.
+				</p>
+			</li>
+		</ol>
+<script type="text/javascript" src="footer.js"></script></body></html>

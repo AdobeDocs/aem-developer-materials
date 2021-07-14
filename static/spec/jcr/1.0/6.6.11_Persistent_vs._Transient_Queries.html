@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 6.6.11 Persistent vs. Transient Queries (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_6.6.11." id="section_6.6.11."></a> 6.6.11 Persistent vs. Transient Queries
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									When a new <b>Query</b> object is first created with <b>QueryManager.createQuery</b> it is a <i>transient query</i>. If the repository is level 2 compliant and supports the node type <b>nt:query</b>, then a transient query can be stored in content by calling <b>Query.storeAsNode(String absPath)</b>. This creates an <b>nt:query</b> node at the specified path (a <b>save</b> on the parent of the new node is required to persist the stored query). Retrieving a stored query is done by passing the <b>nt:query</b> node to <b>QueryManager.getQuery(Node node)</b>.
+								</p>
+							
+							
+								<p class="c5">
+									Note that the actual query statement stored within a persistent query (that is, the value of the property <b>jcr:statement</b>, for example, “<b>//*[@jcr:primaryType='nt:file']</b>” or “<b>SELECT * FROM nt:base WHERE jcr:primaryType='nt:file'</b>”) is <i>namespace-fragile</i> in that it is stored as a literal string with the namespaces in prefix form. As a result, if the stored query is run in a context where a prefix it references has been remapped, the query will not produce the same result as it would have before the remapping. It is left up to the application to ensure that appropriate mappings are in place (either using temporary <b>Session</b> remapping or persistent <b>NamespaceRegistry</b> changes) when a stored query is executed.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

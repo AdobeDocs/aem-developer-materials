@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.6.1 Names vs. Paths (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_4.6.1." id="section_4.6.1."></a>4.6.1 Names vs. Paths
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A “name” in this specification is a path element <i>without any square-bracket index</i>. For example, <b>myapp:paragraph</b> is a <i>name</i> and a valid <i>relative path</i> (of depth 1) whereas, <b>myapp:paragraph[3]</b> is not a name, it is only a relative path.
+								</p>
+							
+							
+								<p class="c5">
+									Names and paths are not simply strings with certain syntax. They have special semantics in that they respect the namespace mappings of the current <b>Session</b> (see <a href="6.3_Namespaces.html">6.3</a> <i>Namespaces</i>). The special property types <b>NAME</b> and <b>PATH</b> are provided to enable the storage of these values in the repository in a namespace-sensitive way (see <a href="6.2.5_Property_Types.html">6.2.5</a> <i>Property Types</i> as well as <a href="4.7_Properties.html">4.7</a> <i>Properties</i>, immediately below).
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

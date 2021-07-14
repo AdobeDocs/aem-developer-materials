@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.7.11.2 nt:file (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>3.7.11.2 nt:file</H4>
+	<P>
+	<FONT FACE="Courier New, monospace">[nt:file] &gt; nt:hierarchyNode
+	primaryitem jcr:content</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">+ jcr:content (nt:base)
+	mandatory</FONT></P>
+	<P>Nodes of this node
+	type may be used to represent files. This node type inherits the
+	item definitions of <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:hierarchyNode</FONT></FONT>
+	and requires a single child node called <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:content</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:content</FONT></FONT>
+	node is used to hold the actual content of the file. This child node
+	is mandatory, but not auto-created. Its node type will be
+	application-dependent and therefore it must be added by the user. A
+	common approach is to make the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:content</FONT></FONT>
+	a node of type <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:resource</FONT></FONT>.
+	The <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:content</FONT></FONT>
+	child node is also designated as the primary child item of its
+	parent.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

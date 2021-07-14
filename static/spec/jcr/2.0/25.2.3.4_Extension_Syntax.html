@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 25.2.3.4 Extension Syntax (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>25.2.3.4 Extension Syntax</H4>
+	<P>Vendor-specific
+	extensions are supported through the extension syntax:</P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>VendorExtension
+	::= &quot;{&quot; Vendorname VendorBody &quot;}&quot;</B></FONT></FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>VendorName
+	::= /* A unique vendor-specific identifier<BR> 
+	containing no whitespace */</B></FONT></FONT></FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>VendorBody
+	::= /* Any string not including &quot;}&quot; */</B></FONT></FONT></FONT></P>
+	<P>Like a comment, an
+	extension can appear between any two tokens of the CND grammar.
+	Extensions are not defined within the main CND grammar, but are
+	intended to be handled during preprocessing, prior to the actual
+	parsing of the CND. The first whitespace-delimited token of the
+	extension should be a unique vendor-specific identifier. The
+	semantics of the extension body are implementation-specific.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

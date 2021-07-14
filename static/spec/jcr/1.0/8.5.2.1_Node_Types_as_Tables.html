@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.5.2.1 Node Types as Tables (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.5.2.1." id="section_8.5.2.1."></a>8.5.2.1 Node Types as Tables
+		</h4>
+		<ul>
+			<li>
+				<p class="c5">
+					Each node type (primary or mixin) corresponds to a table.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each column in the table corresponds to a property defined in or inherited by that node type (including properties inherited from either primary or mixin node types). Modeling residual properties as columns is optional (see below).
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Each row corresponds to a node in the workspace.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Note that because of the hierarchical structure of node type definitions, nodes will appear in more than just one table. For example, querying the <b>nt:base</b> table will show all nodes in the workspace, but that table will be limited to the columns corresponding to the properties defined by <b>nt:base</b>: <b>jcr:primaryType</b> and <b>jcr:mixinTypes</b>.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					Child node relationships are not recorded in the database view.
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

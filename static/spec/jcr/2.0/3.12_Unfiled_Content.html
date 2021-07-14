@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 3.12 Unfiled Content (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H2>3.12 Unfiled Content</H2>
+	<P>Implementers that
+	build a JCR repository on top of an existing repository that
+	supports content objects which exist outside of a hierarchical
+	structure may expose these objects as nodes below
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:unfiled</FONT></FONT>
+	(see §3.11 <I>System Node</I>).</P>
+	<P>The hierarchical
+	structure below <FONT FACE="Courier New, monospace"><FONT SIZE=2>/jcr:system/jcr:unfiled</FONT></FONT>
+	is implementation-dependent.</P>
+	<P>JCR implementers may
+	disallow discovery (listing) of the nodes beneath this folder. In
+	such a case a call to <FONT FACE="Courier New, monospace"><FONT SIZE=2>Node.getNodes</FONT></FONT>()
+	on the <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:unfiled</FONT></FONT>
+	node would throw a <FONT FACE="Courier New, monospace"><FONT SIZE=2>RepositoryException</FONT></FONT>.</P>
+	<P>JCR implementers may
+	expose the nodes below <FONT FACE="Courier New, monospace"><FONT SIZE=2>jcr:unfiled</FONT></FONT>
+	to search through the query mechanism (see §6 <I>Query</I>).</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

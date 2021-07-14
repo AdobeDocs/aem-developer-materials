@@ -1,0 +1,63 @@
+
+Button
+======
+
+.. granite:servercomponent:: /libs/granite/ui/components/foundation/button
+
+   Button is a component to represent a standard HTML button (<button>).
+
+   It has the following content structure:
+
+   .. gnd:gnd::
+
+      [granite:Button] > granite:commonAttrs, granite:renderCondition
+
+      /**
+       * The type attribute.
+       */
+      - type (String) = 'button' < 'button', 'submit', 'reset'
+
+      /**
+       * ``true`` to disable the button; ``false`` otherwise.
+       */
+      - disabled (Boolean)
+
+      /**
+       * The autocomplete attribute.
+       */
+      - autocomplete (String) = 'off' < 'on', 'off'
+
+      /**
+       * The form attribute.
+       */
+      - formId (String)
+
+      /**
+       * The body text of the element.
+       */
+      - text (String) i18n
+
+      /**
+       * ``true`` to make this button in active state; ``false`` otherwise.
+       */
+      - active (Boolean)
+
+      /**
+       * The icon class.
+       */
+      - icon (String)
+
+      /**
+       * The size of the icon.
+       */
+      - iconSize (String) = 'S' < 'XS', 'S', 'M', 'L'
+
+      /**
+       * Visually hide the text.
+       */
+      - hideText (Boolean)
+
+      /**
+       * The variant of the button.
+       */
+      - variant (String) multiple < 'primary', 'warning', 'quiet', 'square', 'large', 'block'

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.9 Referenceable Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.9." id="section_7.1.9."></a>7.1.9 Referenceable Nodes
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									A node that is referenceable has an independent identity from its position in the workspace hierarchy (by virtue of its UUID): it maintains its identity regardless of where it is moved in the hierarchy.
+								</p>
+							
+							
+								<p class="c5">
+									Non-referenceable nodes, on the other hand, are intrinsically tied to their position in the hierarchy relative to their nearest referenceable ancestor. If a non-referenceable node is moved from its position it becomes, in effect, a different node.
+								</p>
+							
+							
+								<p class="c14">
+									Consequently, a referenceable node and its non-referenceable sub-nodes form a natural unit within the WS hierarchy. It is this unit that is respected during a <b>save</b>, <b>update</b> and <b>merge</b>.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

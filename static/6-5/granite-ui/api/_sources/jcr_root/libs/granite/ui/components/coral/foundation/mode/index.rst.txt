@@ -1,0 +1,11 @@
+Mode
+====
+
+The components related to ``foundation-mode``.
+
+Components:
+
+.. toctree::
+   :glob:
+
+   */index

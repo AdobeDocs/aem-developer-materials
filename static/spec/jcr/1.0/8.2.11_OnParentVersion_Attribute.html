@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 8.2.11 OnParentVersion Attribute (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_8.2.11." id="section_8.2.11."></a> 8.2.11 OnParentVersion Attribute
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Every item (node or property) in the repository has a status indicator that governs what happens to that item when its parent node is versioned. This status is defined by the <b>onParentVersion</b> attribute in the <b>PropertyDefinition</b> or <b>NodeDefinition</b> that applies to the item in question.
+								</p>
+							
+							
+								<p class="c5">
+									For example, let <b>N</b> be a versionable node, meaning it has mixin node type <b>mix:versionable</b>. Also let <b>N</b> have a primary node type that allows it to have one property called <b>P</b> and one child node called <b>C</b>.
+								</p>
+							
+							
+								<p class="c5">
+									What happens to <b>P</b> and <b>C</b> when a new version of <b>N</b> is checked in depends on their respective <b>OnParentVersion</b> attribute as defined in the <b>PropertyDefinition</b> for <b>P</b> and the <b>NodeDefinition</b> for <b>C</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The possible values for the <b>OnParentVersion</b> attribute are: <b>COPY</b>, <b>VERSION</b>, <b>INITIALIZE</b>, <b>COMPUTE</b>, <b>IGNORE</b> and <b>ABORT</b>.
+								</p>
+							
+							
+								<p class="c5">
+									The sections below describe, for each possible value of the <b>OnParentVersion</b> attribute, what happens to <b>C</b> and <b>P</b> when,
+								</p>
+							
+						
+					
+				
+			
+		
+		<ul>
+			<li>
+				<p class="c5">
+					<b>N.checkin()</b> is performed, creating the new version <b>V</b><b><sub>N</sub></b> and adding to the version history.
+				</p>
+			</li>
+			<li>
+				<p class="c5">
+					<b>N.restore(V</b><b><sub>N</sub></b><b>, b)</b> is performed, restoring the version <b>V</b><b><sub>N</sub></b> (the boolean parameter <b>b</b> governs what happens on UUID collision).
+				</p>
+			</li>
+		</ul>
+<script type="text/javascript" src="footer.js"></script></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 4.4 Orderable Child Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h3>
+			<a name="section_4.4." id="section_4.4."></a>4.4 Orderable Child Nodes
+		</h3>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Some nodes may support client-controlled ordering of their child nodes. Whether a particular node preserves the order of its child nodes is governed by its node type. See <a href="6.7_Node_Types.html">6.7</a> <i>Node Types</i>.
+								</p>
+							
+							
+								<p class="c5">
+									If a node supports orderable child nodes, the order of its child nodes, as reflected in the iterator acquired through <b>Node.getNodes()</b> can be controlled by the client using the method <b>Node.orderBefore</b>. The order of child nodes is persisted upon <b>save</b> of the parent node.
+								</p>
+							
+							
+								<p class="c5">
+									When a child node is added to a node that supports orderable child nodes it is added to the end of the list. It can then be re-ordered using the above method.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

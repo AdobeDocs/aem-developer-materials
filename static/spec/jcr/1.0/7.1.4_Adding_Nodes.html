@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.4 Adding Nodes (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.4." id="section_7.1.4."></a>7.1.4 Adding Nodes
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									The methods for adding nodes are:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>Node</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>addNode(String&nbsp;relPath)</b>
+									</p>
+									<p class="c5">
+										Creates a new node at <b>relPath</b>. The new node will only be persisted on <b>save</b> if it meets the constraint criteria of the parent node's node type.
+									</p>
+									<p class="c5">
+										In order to save a newly added node, <b>save</b> must be called either on the <b>Session</b>, or on the new node's parent or higher-order ancestor (grandparent, etc.). An attempt to call <b>save</b> <i>only</i> on the newly added node will throw a <b>RepositoryException</b>.
+									</p>
+									<p class="c5">
+										In the context of this method the <b>relPath</b> provided must not have an index on its final element. If it does then a <b>RepositoryException</b> is thrown.
+									</p>
+									<p class="c5">
+										Strictly speaking, the parameter is actually a relative path to the parent node of the node to be added, appended with the name desired for the new node (if the node is being added directly below <b>this</b> node then only the name need be specified). It does not specify a position within the child node ordering (if such ordering is supported). If ordering is supported by the node type of the parent node then the new node is appended to the end of the child node list.
+									</p>
+									<p class="c5">
+										Since this signature does not allow explicit node type assignment, the new node's primary node type will be determined (either immediately or on <b>save</b> depending on the implementation) by the child node definitions in the node types of its parent. See <a href="7.4.2_Assigning_a_Primary_Node_Type.html">7.4.2</a> <i>Assigning a Primary Node Type</i>.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> will be thrown either immediately (by this method), or on <b>save</b>, if an item at the specified path already exists and same-name siblings are not allowed. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the specified path implies intermediary nodes that do not exist. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if adding the node would violate a node type or implementation-specific constraint or if an attempt is made to add a node as the child of a property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the addition of the node. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Node</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>addNode(String relPath,<br>
+										String primaryNodeTypeName)</b>
+									</p>
+									<p class="c5">
+										Creates a new node at <b>relPath</b> of the specified primary node type.
+									</p>
+									<p class="c5">
+										The same as <b>addNode(String relPath)</b> except that the primary node type of the new node is explicitly specified.
+									</p>
+									<p class="c5">
+										An <b>ItemExistsException</b> will be thrown either immediately (by this method), or on <b>save</b>, if an item at the specified path already exists and same-name siblings are not allowed. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>PathNotFoundException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the specified path implies intermediary nodes that do not exist. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>NoSuchNodeTypeException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the specified node type is not recognized. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>ConstraintViolationException</b> will be thrown either immediately (by this method), or on <b>save</b>, if adding the node would violate a node type or implementation-specific constraint or if an attempt is made to add a node as the child of a property. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>VersionException</b> will be thrown either immediately (by this method), or on <b>save</b>, if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>LockException</b> will be thrown either immediately (by this method), or on <b>save</b>, if a lock prevents the addition of the node. Implementations may differ on when this validation is performed.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

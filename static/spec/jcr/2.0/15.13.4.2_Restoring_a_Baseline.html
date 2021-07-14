@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 15.13.4.2 Restoring a Baseline (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H4>15.13.4.2 Restoring a Baseline</H4>
+	<P>Using the method</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore(Version
+	version, boolean removeExisting)</FONT></FONT></P>
+	<P>where <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+	is a baseline <FONT FACE="Courier New, monospace"><FONT SIZE=2>Version</FONT></FONT>
+	object,<FONT FACE="Courier New, monospace"><FONT SIZE=2>
+	C</FONT></FONT> is the <FONT FACE="Courier New, monospace"><FONT SIZE=2>nt:configuration</FONT></FONT>
+	node whose version history contains <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+	is the configuration root node pointed to by <FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:root</FONT></FONT>:</P>
+	<UL>
+		<LI><P>The state of <FONT FACE="Courier New, monospace"><FONT SIZE=2>C</FONT></FONT>
+		is restored to the state recorded in <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+		and <FONT FACE="Courier New, monospace"><FONT SIZE=2>C/jcr:baseVersion</FONT></FONT>
+		is set to point to <FONT FACE="Courier New, monospace"><FONT SIZE=2>version</FONT></FONT>
+		(as in the restore of any normal version).</P>
+		<LI><P>Each versionable
+		node <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in the subgraph below and including <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>
+		is restored to the state recorded in <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		where <FONT FACE="Courier New, monospace"><FONT SIZE=2>V</FONT></FONT>
+		is the version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		in <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>’s
+		version history that was recorded in <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+		(i.e., the base version of <FONT FACE="Courier New, monospace"><FONT SIZE=2>M</FONT></FONT>
+		at the time <FONT FACE="Courier New, monospace"><FONT SIZE=2>B</FONT></FONT>
+		was created).</P>
+	</UL>
+	<P>The <FONT FACE="Courier New, monospace"><FONT SIZE=2>removeExisting</FONT></FONT>
+	parameter behaves just as in a normal restore expect that that it
+	applies to all nodes restored below <FONT FACE="Courier New, monospace"><FONT SIZE=2>N</FONT></FONT>.
+	The same behavior applies for the multi-version signature of
+	restore,</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>VersionManager.restore(Version[]
+	versions,<BR> boolean removeExisting)</FONT></FONT></P>
+	<P>except that multiple
+	baselines may be restored simultaneously.</P>
+<script type="text/javascript" src="footer.js"></script></body></html>

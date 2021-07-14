@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.5.3 Creating Value Objects (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.5.3." id="section_7.1.5.3."></a>7.1.5.3 Creating Value Objects
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									In order to use methods that accept a <b>Value</b> object the application needs a way to produce such objects. This is done by using the methods of the <b>ValueFactory</b> object, which is acquired through <b>Session.getValueFactory()</b> (see 7.1 Writing Repository Content). <b>ValueFactory</b> provides the following methods:
+								</p>
+							
+						
+					
+					
+						<table border="1" cellpadding="7" cellspacing="0">
+							
+							
+							<tr>
+								<td colspan="2" valign="top">
+									<p class="c12">
+										javax.jcr.<br>
+										<b>ValueFactory</b>
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(String value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.STRING</b> with the specified value.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(String value, int type)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of the <b>PropertyType</b> specified by <b>type</b> with the specified <b>value</b>.
+									</p>
+									<p class="c5">
+										A <b>ValueFormatException</b> is thrown if the specified <b>value</b> cannot be converted to the specified <b>type</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(long value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.LONG</b> with the specified <b>value</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(double value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.DOUBLE</b> with the specified <b>value</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(boolean value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.BOOLEAN</b> with the specified <b>value</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(Calendar value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.DATE</b> with the specified <b>value</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(InputStream value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.BINARY</b> with a value consisting of the content of the specified <b>InputStream</b>.
+									</p>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<p class="c12">
+										<b>Value</b>
+									</p>
+								</td>
+								<td>
+									<p class="c5">
+										<b>createValue(Node value)</b>
+									</p>
+									<p class="c5">
+										Returns a <b>Value</b> object of <b>PropertyType.REFERENCE</b> that holds the UUID of the specified <b>Node</b>. This <b>Value</b> object can then be used to set a property that will be a reference to that <b>Node</b>.
+									</p>
+									<p class="c5">
+										A <b>RepositoryException</b> is thrown if the specified <b>Node</b> is not referenceable, the current <b>Session</b> is no longer active, or another error occurs.
+									</p>
+								</td>
+							</tr>
+						</table>
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>

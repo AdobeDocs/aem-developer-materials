@@ -1,0 +1,506 @@
+		<script>
+			var href = window.location.href;
+			if (href.indexOf("?internal=1") < 0) {
+				var cls = href.substring(href.lastIndexOf("/")+1, href.indexOf(".html")); 
+				window.location.href = "../index.html?class="+cls;
+			}
+		</script>
+        <div class="body-wrap">
+        <div class="top-tools">
+            <a class="inner-link" href="#CQ.Ext.Layer-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>
+            <a class="inner-link" href="#CQ.Ext.Layer-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>
+            <a class="inner-link" href="#CQ.Ext.Layer-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>
+                            <a class="inner-link" href="#CQ.Ext.Layer-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>
+                        <a class="bookmark" href="?class=CQ.Ext.Layer"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>
+        </div>
+                <div class="inheritance res-block">
+<pre class="res-block-inner"><a ext:cls="CQ.Ext.Element" ext:member="" href="output/CQ.Ext.Element.html">Element</a>
+  <img src="resources/docs/elbow-end.gif"/>Layer</pre></div>
+                <h1>Class&nbsp;CQ.Ext.Layer</h1>
+        <table cellspacing="0">
+            <tr><td class="label">Package:</td><td class="hd-info">CQ.Ext</td></tr>
+            <!--tr><td class="label">Defined In:</td><td class="hd-info"><a href="../src/Layer.js" target="_blank">Layer.js</a></td></tr-->
+            <tr><td class="label">Class:</td><td class="hd-info">Layer</td></tr>
+                                    <tr><td class="label">Extends:</td><td class="hd-info"><a ext:cls="CQ.Ext.Element" ext:member="" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a></td></tr>
+                        <tr><td class="label">Clientlib:</td><td class="hd-info">cq.widgets                        </td></tr>
+                    </table>
+        <div class="description">
+	                    An extended <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">CQ.Ext.Element</a> object that supports a shadow and shim, constrain to viewport and
+automatic maintaining of shadow/shim positions.	                </div>
+        
+        <div class="hr"></div>
+                <a id="CQ.Ext.Layer-configs"></a>
+        <h2>Config Options</h2>
+        <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Config Options</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-cls"></a>
+            <b>cls</b> : String            <div class="mdesc">
+                                        CSS class to add to the element                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-constrain"></a>
+            <b>constrain</b> : Boolean            <div class="mdesc">
+                                        False to disable constrain to viewport (defaults to true)                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-dh"></a>
+            <b>dh</b> : Object            <div class="mdesc">
+                                        DomHelper object config to create element with (defaults to {tag: 'div', cls: 'x-layer'}).                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-shadow"></a>
+            <b>shadow</b> : String/Boolean            <div class="mdesc">
+                                    <div class="short">True to automatically create an CQ.Ext.Shadow, or a string indicating the shadow's display CQ.Ext.Shadow.mode. False ...</div>
+            <div class="long">
+                True to automatically create an <a ext:cls="CQ.Ext.Shadow" href="output/CQ.Ext.Shadow.html">CQ.Ext.Shadow</a>, or a string indicating the shadow's display <a ext:cls="CQ.Ext.Shadow" ext:member="mode" href="output/CQ.Ext.Shadow.html#mode">CQ.Ext.Shadow.mode</a>. False to disable the shadow. (defaults to false)            </div>
+                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-shadowOffset"></a>
+            <b>shadowOffset</b> : Number            <div class="mdesc">
+                                        Number of pixels to offset the shadow (defaults to 4)                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-shim"></a>
+            <b>shim</b> : Boolean            <div class="mdesc">
+                                        False to disable the iframe shim in browsers which need one (defaults to true)                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-useDisplay"></a>
+            <b>useDisplay</b> : Boolean            <div class="mdesc">
+                                    <div class="short">Defaults to use css offsets to hide the Layer. Specify true to use css style 'display:none;' to hide the Layer.</div>
+            <div class="long">
+                Defaults to use css offsets to hide the Layer. Specify <tt>true</tt> to use css style <tt>'display:none;'</tt> to hide the Layer.            </div>
+                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="config-row alt">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-zindex"></a>
+            <b>zindex</b> : Number            <div class="mdesc">
+                                        Starting z-index (defaults to 11000)                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.Layer-props"></a>
+        <h2>Public Properties</h2>
+        <div class="no-members">This class has no public properties.</div>        <a id="CQ.Ext.Layer-methods"></a>
+        <h2>Public Methods</h2>
+                <table cellspacing="0" class="member-table">
+            <tr>
+                <th class="sig-header" colspan="2">Method</th>
+                <th class="msource-header">Defined By</th>
+            </tr>
+                <tr class="method-row expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-Layer"></a>
+            <b>Layer</b>(&nbsp;<code>Object config</code>, <span class="optional" title="Optional">[<code>String/HTMLElement existingEl</code>]</span>&nbsp;)            <div class="mdesc">
+                                    <div class="short"></div>
+            <div class="long">
+                    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>config</code> : Object<div class="sub-desc">An object with config options.</div></li><li><code>existingEl</code> : String/HTMLElement<div class="sub-desc">(optional) Uses an existing DOM element. If the element is not found it creates it.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code></code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-child"></a>
+            <b>child</b>(&nbsp;<code>String selector</code>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : HTMLElement/CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Selects a single child at any depth below this element based on the passed CSS selector (the selector should not cont...</div>
+            <div class="long">
+                Selects a single child at any depth below this element based on the passed CSS selector (the selector should not contain an id).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">The CSS selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return the DOM node instead of CQ.Ext.Element (defaults to false)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement/CQ.Ext.Element</code><div class="sub-desc">The child CQ.Ext.Element (or DOM node if returnDom = true)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="child" href="output/CQ.Ext.Element.html#child">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-down"></a>
+            <b>down</b>(&nbsp;<code>String selector</code>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : HTMLElement/CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Selects a single *direct* child based on the passed CSS selector (the selector should not contain an id).</div>
+            <div class="long">
+                Selects a single *direct* child based on the passed CSS selector (the selector should not contain an id).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">The CSS selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return the DOM node instead of CQ.Ext.Element (defaults to false)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement/CQ.Ext.Element</code><div class="sub-desc">The child CQ.Ext.Element (or DOM node if returnDom = true)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="down" href="output/CQ.Ext.Element.html#down">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-findParent"></a>
+            <b>findParent</b>(&nbsp;<code>String selector</code>, <span class="optional" title="Optional">[<code>Number/Mixed maxDepth</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnEl</code>]</span>&nbsp;) : HTMLElement            <div class="mdesc">
+                                    <div class="short">Looks at this node and then at parent nodes for a match of the passed simple selector (e.g. div.some-class or span:fi...</div>
+            <div class="long">
+                Looks at this node and then at parent nodes for a match of the passed simple selector (e.g. div.some-class or span:first-child)    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">The simple selector to test</div></li><li><code>maxDepth</code> : Number/Mixed<div class="sub-desc">(optional) The max depth to search as a number or element (defaults to 50 || document.body)</div></li><li><code>returnEl</code> : Boolean<div class="sub-desc">(optional) True to return a CQ.Ext.Element object instead of DOM node</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement</code><div class="sub-desc">The matching DOM node (or null if no match was found)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="findParent" href="output/CQ.Ext.Element.html#findParent">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-findParentNode"></a>
+            <b>findParentNode</b>(&nbsp;<code>String selector</code>, <span class="optional" title="Optional">[<code>Number/Mixed maxDepth</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnEl</code>]</span>&nbsp;) : HTMLElement            <div class="mdesc">
+                                    <div class="short">Looks at parent nodes for a match of the passed simple selector (e.g. div.some-class or span:first-child)</div>
+            <div class="long">
+                Looks at parent nodes for a match of the passed simple selector (e.g. div.some-class or span:first-child)    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">The simple selector to test</div></li><li><code>maxDepth</code> : Number/Mixed<div class="sub-desc">(optional) The max depth to
+	 search as a number or element (defaults to 10 || document.body)</div></li><li><code>returnEl</code> : Boolean<div class="sub-desc">(optional) True to return a CQ.Ext.Element object instead of DOM node</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>HTMLElement</code><div class="sub-desc">The matching DOM node (or null if no match was found)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="findParentNode" href="output/CQ.Ext.Element.html#findParentNode">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-first"></a>
+            <b>first</b>(&nbsp;<span class="optional" title="Optional">[<code>String selector</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : CQ.Ext.Element/HTMLElement            <div class="mdesc">
+                                    <div class="short">Gets the first child, skipping text nodes</div>
+            <div class="long">
+                Gets the first child, skipping text nodes    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">(optional) Find the next sibling that matches the passed simple selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return a raw dom node instead of an CQ.Ext.Element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element/HTMLElement</code><div class="sub-desc">The first child or null</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="first" href="output/CQ.Ext.Element.html#first">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-fly"></a>
+            <b>fly</b>(&nbsp;<code>String/HTMLElement el</code>, <span class="optional" title="Optional">[<code>String named</code>]</span>&nbsp;) : Element            <div class="mdesc">
+                                    <div class="short">Gets the globally shared flyweight Element, with the passed node as the active element. Do not store a reference to t...</div>
+            <div class="long">
+                <p>Gets the globally shared flyweight Element, with the passed node as the active element. Do not store a reference to this element -
+the dom node can be overwritten by other code. Shorthand of <a ext:cls="CQ.Ext.Element" ext:member="fly" href="output/CQ.Ext.Element.html#fly">CQ.Ext.Element.fly</a></p>
+<p>Use this to make one-time references to DOM elements which are not going to be accessed again either by
+application code, or by Ext's classes. If accessing an element which will be processed regularly, then <a ext:cls="CQ.Ext" ext:member="get" href="output/CQ.Ext.html#get">CQ.Ext.get</a>
+will be more appropriate to take advantage of the caching provided by the CQ.Ext.Element class.</p>    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>el</code> : String/HTMLElement<div class="sub-desc">The dom node or id</div></li><li><code>named</code> : String<div class="sub-desc">(optional) Allows for creation of named reusable flyweights to prevent conflicts
+(e.g. internally Ext uses "_global")</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Element</code><div class="sub-desc">The shared Element object (or null if no matching element was found)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="fly" href="output/CQ.Ext.Element.html#fly">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-getTextWidth"></a>
+            <b>getTextWidth</b>(&nbsp;<code>String text</code>, <span class="optional" title="Optional">[<code>Number min</code>]</span>, <span class="optional" title="Optional">[<code>Number max</code>]</span>&nbsp;) : Number            <div class="mdesc">
+                                    <div class="short">Returns the width in pixels of the passed text, or the width of the text in this Element.</div>
+            <div class="long">
+                Returns the width in pixels of the passed text, or the width of the text in this Element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>text</code> : String<div class="sub-desc">The text to measure. Defaults to the innerHTML of the element.</div></li><li><code>min</code> : Number<div class="sub-desc">(Optional) The minumum value to return.</div></li><li><code>max</code> : Number<div class="sub-desc">(Optional) The maximum value to return.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Number</code><div class="sub-desc">The text width in pixels.</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="getTextWidth" href="output/CQ.Ext.Element.html#getTextWidth">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-last"></a>
+            <b>last</b>(&nbsp;<span class="optional" title="Optional">[<code>String selector</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : CQ.Ext.Element/HTMLElement            <div class="mdesc">
+                                    <div class="short">Gets the last child, skipping text nodes</div>
+            <div class="long">
+                Gets the last child, skipping text nodes    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">(optional) Find the previous sibling that matches the passed simple selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return a raw dom node instead of an CQ.Ext.Element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element/HTMLElement</code><div class="sub-desc">The last child or null</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="last" href="output/CQ.Ext.Element.html#last">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-next"></a>
+            <b>next</b>(&nbsp;<span class="optional" title="Optional">[<code>String selector</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : CQ.Ext.Element/HTMLElement            <div class="mdesc">
+                                    <div class="short">Gets the next sibling, skipping text nodes</div>
+            <div class="long">
+                Gets the next sibling, skipping text nodes    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">(optional) Find the next sibling that matches the passed simple selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return a raw dom node instead of an CQ.Ext.Element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element/HTMLElement</code><div class="sub-desc">The next sibling or null</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="next" href="output/CQ.Ext.Element.html#next">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-on"></a>
+            <b>on</b>(&nbsp;<code>String eventName</code>, <code>Function fn</code>, <span class="optional" title="Optional">[<code>Object scope</code>]</span>, <span class="optional" title="Optional">[<code>Object options</code>]</span>&nbsp;) : void            <div class="mdesc">
+                                    <div class="short">Appends an event handler (shorthand for <a ext:cls="CQ.Ext.Element" ext:member="addListener" href="output/CQ.Ext.Element.html#addListener">addListener</a>).</div>
+            <div class="long">
+                Appends an event handler (shorthand for <a ext:cls="CQ.Ext.Element" ext:member="addListener" href="output/CQ.Ext.Element.html#addListener">addListener</a>).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>eventName</code> : String<div class="sub-desc">The name of event to handle.</div></li><li><code>fn</code> : Function<div class="sub-desc">The handler function the event invokes.</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code>this</code> reference) in which the handler function is executed.</div></li><li><code>options</code> : Object<div class="sub-desc">(optional) An object containing standard <a ext:cls="CQ.Ext.Element" ext:member="addListener" href="output/CQ.Ext.Element.html#addListener">addListener</a> options</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>void</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="on" href="output/CQ.Ext.Element.html#on">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-parent"></a>
+            <b>parent</b>(&nbsp;<span class="optional" title="Optional">[<code>String selector</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : CQ.Ext.Element/HTMLElement            <div class="mdesc">
+                                    <div class="short">Gets the parent node for this element, optionally chaining up trying to match a selector</div>
+            <div class="long">
+                Gets the parent node for this element, optionally chaining up trying to match a selector    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">(optional) Find a parent node that matches the passed simple selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return a raw dom node instead of an CQ.Ext.Element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element/HTMLElement</code><div class="sub-desc">The parent node or null</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="parent" href="output/CQ.Ext.Element.html#parent">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-prev"></a>
+            <b>prev</b>(&nbsp;<span class="optional" title="Optional">[<code>String selector</code>]</span>, <span class="optional" title="Optional">[<code>Boolean returnDom</code>]</span>&nbsp;) : CQ.Ext.Element/HTMLElement            <div class="mdesc">
+                                    <div class="short">Gets the previous sibling, skipping text nodes</div>
+            <div class="long">
+                Gets the previous sibling, skipping text nodes    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">(optional) Find the previous sibling that matches the passed simple selector</div></li><li><code>returnDom</code> : Boolean<div class="sub-desc">(optional) True to return a raw dom node instead of an CQ.Ext.Element</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element/HTMLElement</code><div class="sub-desc">The previous sibling or null</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="prev" href="output/CQ.Ext.Element.html#prev">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-query"></a>
+            <b>query</b>(&nbsp;<code>String selector</code>&nbsp;) : Array            <div class="mdesc">
+                                    <div class="short">Selects child nodes based on the passed CSS selector (the selector should not contain an id).</div>
+            <div class="long">
+                Selects child nodes based on the passed CSS selector (the selector should not contain an id).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">The CSS selector</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>Array</code><div class="sub-desc">An array of the matched nodes</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="query" href="output/CQ.Ext.Element.html#query">Element</a></td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-select"></a>
+            <b>select</b>(&nbsp;<code>String/Array selector</code>, <span class="optional" title="Optional">[<code>HTMLElement/String root</code>]</span>&nbsp;) : CompositeElementLite/CompositeElement            <div class="mdesc">
+                                    <div class="short">Selects elements based on the passed CSS selector to enable Element methods
+to be applied to many related elements in...</div>
+            <div class="long">
+                Selects elements based on the passed CSS selector to enable <a ext:cls="CQ.Ext.Element" href="output/CQ.Ext.Element.html">Element</a> methods
+to be applied to many related elements in one statement through the returned <a ext:cls="CQ.Ext.CompositeElement" href="output/CQ.Ext.CompositeElement.html">CompositeElement</a> or
+<a ext:cls="CQ.Ext.CompositeElementLite" href="output/CQ.Ext.CompositeElementLite.html">CompositeElementLite</a> object.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String/Array<div class="sub-desc">The CSS selector or an array of elements</div></li><li><code>root</code> : HTMLElement/String<div class="sub-desc">(optional) The root element of the query or id of the root</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CompositeElementLite/CompositeElement</code></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="select" href="output/CQ.Ext.Element.html#select">Element</a></td>
+    </tr>
+        <tr class="method-row alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-setZIndex"></a>
+            <b>setZIndex</b>(&nbsp;<code>Number zindex</code>&nbsp;) : this            <div class="mdesc">
+                                    <div class="short">Sets the z-index of this layer and adjusts any shadow and shim z-indexes. The layer z-index is automatically
+incremen...</div>
+            <div class="long">
+                Sets the z-index of this layer and adjusts any shadow and shim z-indexes. The layer z-index is automatically
+incremented by two more than the value passed in so that it always shows above any shadow or shim (the shadow
+element, if any, will be assigned z-index + 1, and the shim element, if any, will be assigned the unmodified z-index).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>zindex</code> : Number<div class="sub-desc">The new z-index to set</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>this</code><div class="sub-desc">The Layer</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource">Layer</td>
+    </tr>
+        <tr class="method-row inherited expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-un"></a>
+            <b>un</b>(&nbsp;<code>String eventName</code>, <code>Function fn</code>, <code>Object scope</code>&nbsp;) : CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Removes an event handler from this element (see <a ext:cls="CQ.Ext.Element" ext:member="removeListener" href="output/CQ.Ext.Element.html#removeListener">removeListener</a> for additional notes).</div>
+            <div class="long">
+                Removes an event handler from this element (see <a ext:cls="CQ.Ext.Element" ext:member="removeListener" href="output/CQ.Ext.Element.html#removeListener">removeListener</a> for additional notes).    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event from which to remove the handler.</div></li><li><code>fn</code> : Function<div class="sub-desc">The handler function to remove. <b>This must be a reference to the function passed into the <a ext:cls="CQ.Ext.Element" ext:member="addListener" href="output/CQ.Ext.Element.html#addListener">addListener</a> call.</b></div></li><li><code>scope</code> : Object<div class="sub-desc">If a scope (<b><code>this</code></b> reference) was specified when the listener was added,
+then this must refer to the same object.</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element</code><div class="sub-desc">this</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="un" href="output/CQ.Ext.Element.html#un">Element</a></td>
+    </tr>
+        <tr class="method-row inherited alt expandable">
+        <td class="micon"><a class="exi" href="#expand">&nbsp;</a></td>
+        <td class="sig">
+        <a id="CQ.Ext.Layer-up"></a>
+            <b>up</b>(&nbsp;<code>String selector</code>, <span class="optional" title="Optional">[<code>Number/Mixed maxDepth</code>]</span>&nbsp;) : CQ.Ext.Element            <div class="mdesc">
+                                    <div class="short">Walks up the dom looking for a parent node that matches the passed simple selector (e.g. div.some-class or span:first...</div>
+            <div class="long">
+                Walks up the dom looking for a parent node that matches the passed simple selector (e.g. div.some-class or span:first-child).
+This is a shortcut for findParentNode() that always returns an CQ.Ext.Element.    <div class="mdetail-params">
+        <strong>Parameters:</strong>
+        <ul><li><code>selector</code> : String<div class="sub-desc">The simple selector to test</div></li><li><code>maxDepth</code> : Number/Mixed<div class="sub-desc">(optional) The max depth to
+	 search as a number or element (defaults to 10 || document.body)</div></li>        </ul>
+        <strong>Returns:</strong>
+        <ul>
+            <li><code>CQ.Ext.Element</code><div class="sub-desc">The matching DOM node (or null if no match was found)</div></li>
+        </ul>
+    </div>
+                </div>
+                                    </div>
+        </td>
+        <td class="msource"><a ext:cls="CQ.Ext.Element" ext:member="up" href="output/CQ.Ext.Element.html#up">Element</a></td>
+    </tr>
+            </table>
+                <a id="CQ.Ext.Layer-events"></a>
+        <h2>Public Events</h2>
+        <div class="no-members">This class has no public events.</div>
+        </div>

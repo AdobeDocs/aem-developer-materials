@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 2.0: 6.7.10 ChildNodeJoinCondition (Content Repository for Java Technology API v2.0)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>	<H3>6.7.10 ChildNodeJoinCondition</H3>
+	<P>Support for <I>joins</I>
+	is optional.</P>
+	<P><B>AQM</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">type ChildNodeJoinCondition
+	extends JoinCondition ::=</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name childSelectorName,</FONT></P>
+	<P>
+	<FONT FACE="Courier New, monospace">Name parentSelectorName</FONT></P>
+	<P><BR>
+	</P>
+	<P>Tests whether the <FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+	node is a child of the <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>
+	node. A node-tuple satisfies the constraint only if:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorNode.getParent().isSame(parentSelectorNode)</FONT></FONT></P>
+	<P>would return <FONT FACE="Courier New, monospace">true</FONT>,
+	where <FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorNode</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+	and <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorNode</FONT></FONT>
+	is the node for the selector <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>.</P>
+	<P>The query is <I>invalid</I> if:</P>
+	<UL>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>
+		is not the name of a selector in the query, or</P>
+		<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>childSelectorName</FONT></FONT>
+		is the same as <FONT FACE="Courier New, monospace"><FONT SIZE=2>parentSelectorName</FONT></FONT>.</P>
+	</UL>
+	<P><B>JCR-SQL2</B></P>
+	<P>
+	<FONT FACE="Courier New, monospace">ChildNodeJoinCondition ::=</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">'ISCHILDNODE('
+	childSelectorName ','</FONT></P>
+	<P>
+	 <FONT FACE="Courier New, monospace">parentSelectorName
+	')'</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">childSelectorName ::=
+	selectorName</FONT></P>
+	<P>
+	<BR>
+	</P>
+	<P>
+	<FONT FACE="Courier New, monospace">parentSelectorName ::=
+	selectorName</FONT></P>
+	<P><BR><B>JCR-JQOM</B></P>
+	<P>A
+	<FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition</FONT></FONT>
+	is created with:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition
+	QueryObjectModelFactory.<BR> childNodeJoinCondition(String
+	childSelectorName,<BR> String
+	parentSelectorName)</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ChildNodeJoinCondition</FONT></FONT>
+	extends <FONT FACE="Courier New, monospace"><FONT SIZE=2>JoinCondition</FONT></FONT>
+	and declares:</P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNodeJoinCondition.getChildSelectorName()</FONT></FONT></P>
+	<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>String
+	ChildNodeJoinCondition.getParentSelectorName()</FONT></FONT></P>
+<script type="text/javascript" src="footer.js"></script></body></html>

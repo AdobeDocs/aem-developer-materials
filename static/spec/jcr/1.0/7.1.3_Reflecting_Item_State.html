@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>JCR 1.0: 7.1.3 Reflecting Item State (Content Repository for Java Technology API)</title><meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="main.css"></link></head><body><script type="text/javascript" src="header.js"></script><script type="text/javascript" src="nav.js"></script>		<h4>
+			<a name="section_7.1.3." id="section_7.1.3."></a>7.1.3 Reflecting Item State
+		</h4>
+		
+			
+				
+					
+						
+							
+								<p class="c5">
+									Every <b>Item</b> object (instance of a <b>Node</b> or <b>Property</b>) is associated with the <b>Session</b> object through which it was acquired. When changes are made to an <b>Item</b> object, those changes are recorded in its associated <b>Session</b> and immediately reflected in the <b>Item</b> object itself. In other words, after a change is made, a subsequent re-retrieval of the same item entity <i>through the same</i> <b>Session</b>, will return an <b>Item</b> object reflecting the recent change. In this context “retrieval through the same <b>Session</b>” includes not just acquisition of nodes and properties through the getter methods (like <b>getNode</b>, <b>getProperty</b> etc.) but also items returned through other means, such as within the result set of a query.
+								</p>
+							
+						
+					
+				
+			
+		
+<script type="text/javascript" src="footer.js"></script></body></html>
