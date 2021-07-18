@@ -25,7 +25,7 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 * [Coral UI guide](/static/6-4/coral-ui/coralui3/index.html)
 * [Widgets API (Classic UI) documentation](/static/6-4/widgets-api/index.html)
 * [UI test framework JavaScript API reference](/static/6-4/test-api/index.html)
-* [Editor core JavaScript API reference](/static/6-4/jsdoc/ui-touch/editor-coreindex.html) 
+* [Editor core JavaScript API reference](/static/6-4/jsdoc/ui-touch/editor-core/index.html) 
 * [API Differences](/static/6-4/diff-previous/changes.html)
 
 ## Specifications
