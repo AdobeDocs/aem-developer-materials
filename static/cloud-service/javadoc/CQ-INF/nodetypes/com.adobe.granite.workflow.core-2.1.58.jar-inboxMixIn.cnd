@@ -1,0 +1,36 @@
+/*************************************************************************
+ *
+ * ADOBE CONFIDENTIAL
+ * __________________
+ *
+ *  Copyright 2012 Adobe Systems Incorporated
+ *  All Rights Reserved.
+ *
+ * NOTICE:  All information contained herein is, and remains
+ * the property of Adobe Systems Incorporated and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to Adobe Systems Incorporated and its
+ * suppliers and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Adobe Systems Incorporated.
+ **************************************************************************/
+
+<granite = 'http://www.adobe.com/jcr/granite/1.0'>
+
+[granite:InboxItem]
+  mixin
+  - assignee (String)
+  - startTime (Date)
+  - endTime (Date)
+  - dueTime (Date)
+  - progressBeginTime (Date)
+  - priority (long)
+  - rank (long)
+  - status (String)
+  - subType (String)
+  - locked (Boolean)
+  - returned (Boolean)
+  - allowInboxSharing (Boolean)
+  - allowExplicitSharing (Boolean)
+  - sharedWith (String) multiple

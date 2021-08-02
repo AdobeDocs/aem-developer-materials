@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ADOBE CONFIDENTIAL
+  ___________________
+
+   Copyright 2020 Adobe
+   All Rights Reserved.
+
+  NOTICE: All information contained herein is, and remains
+  the property of Adobe and its suppliers, if any. The intellectual
+  and technical concepts contained herein are proprietary to Adobe
+  and its suppliers and are protected by all applicable intellectual
+  property laws, including trade secret and copyright laws.
+  Dissemination of this information or reproduction of this material
+  is strictly forbidden unless prior written permission is obtained
+  from Adobe.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+
+    <description>A supporting tab library for Adobe Granite's XSS protection</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>cqxss</short-name>
+    <uri>http://www.day.com/taglibs/cq/xss/1.0</uri>
+
+    <tag>
+        <description>
+            Prevents the enclosed text from containing injected code according to the
+            policy that must have been defined before using the policy tag.
+        </description>
+        <name>out</name>
+        <tag-class>
+            com.day.cq.xss.taglib.ProtectBody
+        </tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <description>
+                Path to the repository node that contains the policy to be used. If none
+                is specified, the default policy is used
+            </description>
+            <name>policy</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The context the encoding has to be executed for. Currently valid values:
+                htmlToHtmlContent - for applying a policy to an HTML source string to clean
+                it up (default).
+            </description>
+            <name>context</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Prevents the enclosed text from containing injected code according to the
+            policy that must have been defined before using the policy tag and sets the
+            result as the request attribute specified by the name attribute.
+        </description>
+        <name>in</name>
+        <tag-class>
+            com.day.cq.xss.taglib.ProtectStringAsAttribute
+        </tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <description>
+                Name of the attribute to save the result to.
+            </description>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                Path to the repository node that contains the policy to be used. If none
+                is specified, the default policy is used.
+            </description>
+            <name>policy</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The context the encoding has to be executed for. Currently valid values:
+                htmlToHtmlContent - for applying a policy to an HTML source string to clean
+                it up (default).
+            </description>
+            <name>context</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Invalidates a cached policy. Note that it is deprecated to use this tag.
+        </description>
+        <name>invalidate</name>
+        <tag-class>
+            com.day.cq.xss.taglib.InvalidatePolicy
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                Path to the repository node that contains the policy to be invalidated.
+                If none is specified, the default policy is used.
+            </description>
+            <name>policy</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

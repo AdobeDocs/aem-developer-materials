@@ -1,0 +1,15 @@
+// ------------------------------------------------------------------
+// NOTICE file corresponding to the section 4d of The Apache License,
+// Version 2.0, in this case for Apache Abdera
+// ------------------------------------------------------------------
+
+Apache Abdera
+Copyright 2006-2012 Apache Software Foundation
+
+This product includes/uses software(s) developed by 'The Apache Software Foundation' (http://www.apache.org)
+  - Activation 1.1 (http://geronimo.apache.org/maven/specs/geronimo-activation_1.1_spec/1.1)
+
+This product includes/uses software(s) developed by 'The Apache Software Foundation' (http://www.apache.org/)
+  - Commons Codec (http://commons.apache.org/codec/)
+
+

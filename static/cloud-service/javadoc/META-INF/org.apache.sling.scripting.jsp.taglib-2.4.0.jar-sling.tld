@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional 
+    information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the "License"); you may not use this file except 
+    in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to 
+    in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See 
+    the License for the specific language governing permissions and limitations under the License. -->
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd" version="2.1"
+>
+
+    <description>A supporting tab library for Apache Sling</description>
+    <tlib-version>1.4</tlib-version>
+    <short-name>sling</short-name>
+    <uri>http://sling.apache.org/taglibs/sling</uri>
+
+    <function>
+        <name>adaptTo</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.lang.Object adaptTo(org.apache.sling.api.adapter.Adaptable, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>encode</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.lang.String encode(java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findResources</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.util.Iterator findResources(org.apache.sling.api.resource.ResourceResolver, java.lang.String, java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>getAbsoluteParent</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getAbsoluteParent(org.apache.sling.api.resource.Resource,java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>getCAConfigResource</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getCAConfigResource(org.apache.sling.api.resource.Resource,java.lang.String,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getCAConfigResources</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.util.Iterator getCAConfigResources(org.apache.sling.api.resource.Resource,java.lang.String,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getParents</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.util.Iterator getParents(org.apache.sling.api.resource.Resource,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getRelativeResource</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getRelativeResource(org.apache.sling.api.resource.Resource,java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>getResource</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getResource(org.apache.sling.api.resource.ResourceResolver,java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>getValue</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.lang.Object getValue(org.apache.sling.api.resource.ValueMap,java.lang.String,java.lang.Object)</function-signature>
+    </function>
+
+    <function>
+        <name>hasChildren</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.lang.Boolean hasChildren(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>listChildren</name>
+        <function-class>org.apache.sling.scripting.jsp.taglib.SlingFunctions</function-class>
+        <function-signature>java.util.Iterator listChildren(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <tag>
+        <description>
+            Execute a script.
+        </description>
+        <name>call</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.CallTag
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                Whether to flush the output before including the target
+            </description>
+            <name>flush</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                The script to include.
+            </description>
+            <name>script</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                Controls if the component hierarchy should be ignored
+                for script resolution. If true, only the search paths are respected.
+            </description>
+            <name>ignoreComponentHierarchy</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Includes a resource rendering into the current page
+        </description>
+        <name>include</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.IncludeTagHandler
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.StringVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                Whether to flush the output before including the target
+            </description>
+            <name>flush</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                The resource object to include in the current request
+                processing. Either resource or path must be specified. If
+                both are specified, the
+                resource takes precedences.
+            </description>
+            <name>resource</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>org.apache.sling.api.resource.Resource</type>
+        </attribute>
+        <attribute>
+            <description>
+                The path to the resource object to include in the
+                current request processing. If this path is relative it is
+                appended to the path of the
+                current resource whose
+                script is including the given resource. Either resource
+                or path must be specified. If both are specified, the
+                resource takes
+                precedences.
+            </description>
+            <name>path</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource type of a resource to include. If the
+                resource to be included is specified with the path attribute,
+                which cannot be resolved
+                to a resource, the tag may
+                create a synthetic resource object out of the path and
+                this resource type. If the resource type is set the path
+                must be
+                the exact path to a resource object. That is,
+                adding parameters, selectors and extensions to the
+                path is not supported if the resource type is
+                set.
+            </description>
+            <name>resourceType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, replace selectors by the value
+                provided by this option.
+            </description>
+            <name>replaceSelectors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, add the value provided by this option
+                to the selectors.
+            </description>
+            <name>addSelectors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, replace the suffix by the value
+                provided by this option.
+            </description>
+            <name>replaceSuffix</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                If var is specified, what scope to store the variable in
+            </description>
+            <name>scope</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Variable name to store the resulting markup into
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>String</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Forwards a request to a resource rendering the current
+            page
+        </description>
+        <name>forward</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.ForwardTagHandler
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The resource object to forward the request to. Either
+                resource or path must be specified. If both are
+                specified, the resource takes
+                precedences.
+            </description>
+            <name>resource</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>org.apache.sling.api.resource.Resource</type>
+        </attribute>
+        <attribute>
+            <description>
+                The path to the resource object to forward the request
+                to. If this path is relative it is appended to the path
+                of the current resource
+                whose script is forwarding the
+                given resource. Either resource or path must be specified.
+                If both are specified, the resource takes precedences.
+            </description>
+            <name>path</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource type of a resource to forward. If the
+                resource to be forwarded is specified with the path attribute,
+                which cannot be
+                resolved to a resource, the tag may
+                create a synthetic resource object out of the path and
+                this resource type. If the resource type is set the
+                path
+                must be the exact path to a resource object. That is,
+                adding parameters, selectors and extensions to the
+                path is not supported if the resource
+                type is set.
+            </description>
+            <name>resourceType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, replace selectors by the value
+                provided by this option.
+            </description>
+            <name>replaceSelectors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, add the value provided by this option
+                to the selectors.
+            </description>
+            <name>addSelectors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, replace the suffix by the value
+                provided by this option.
+            </description>
+            <name>replaceSuffix</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Defines regularly used scripting variables
+        </description>
+        <name>defineObjects</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.DefineObjectsTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.DefineObjectsTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>requestName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>responseName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>resourceName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>nodeName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>logName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>resourceResolverName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>slingName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Evaluates a script invocation and includes the result
+            in the current page.
+        </description>
+        <name>eval</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.EvalTagHandler
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                Whether to flush the output before including the target
+            </description>
+            <name>flush</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                The path to the script object to include in the current
+                request processing. By default, the current resource
+                is used for script
+                resolving. This behaviour can
+                be changed by specifying either resource, resourceType
+                or ignoreResourceTypeHierarchy.
+            </description>
+            <name>script</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource object to include in the current request
+                processing. This attribute is optional. If it is
+                specified, resourceType should not
+                be used. If both
+                are used, resource takes precedence.
+            </description>
+            <name>resource</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>org.apache.sling.api.resource.Resource</type>
+        </attribute>
+        <attribute>
+            <description>
+                The resource type of a resource to include. This
+                attribute is optional. If it is specified, resource
+                should not be used. If bot are used,
+                resource
+                takes precedence.
+            </description>
+            <name>resourceType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                Prevents using the resource type hierarchy for searching
+                a script.
+            </description>
+            <name>ignoreResourceTypeHierarchy</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Adapts adaptables to objects of other types.
+        </description>
+        <name>adaptTo</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.AdaptToTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.AdaptToTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The adaptable object to adapt.
+            </description>
+            <name>adaptable</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>org.apache.sling.api.adapter.Adaptable</type>
+        </attribute>
+        <attribute>
+            <description>
+                The class name to which to adapt the adaptable.
+            </description>
+            <name>adaptTo</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The name of the variable to which to save the adapted
+                object.
+            </description>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Writes properly XSS encoded text to the response using the
+            OWASP ESAPI for supporting a number of encoding modes.
+        </description>
+        <name>encode</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.EncodeTag
+        </tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>
+                The value to encode.
+            </description>
+            <name>value</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The default value to be used if the value is either
+                null or an empty string.
+            </description>
+            <name>default</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The mode to use for encoding. Must be one of the
+                valid modes found in XSSSupport.ENCODING_MODE.
+            </description>
+            <name>mode</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Tag for searching for resources using the given query
+            formulated in the given language.
+        </description>
+        <name>findResources</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.FindResourcesTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceIteratorVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The query string to find the resources.
+            </description>
+            <name>query</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The query language to use.
+            </description>
+            <name>language</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The name of the variable to which to save the resources.
+            </description>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Retrieves Context-Aware Configuration resource for a specified resource, bucket and name.
+        </description>
+        <name>getCAConfigResource</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.GetCAConfigResourceTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The name of the variable to which to save the CA config resource.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource for which to retrieve CA Config
+            </description>
+            <name>resource</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The bucket name to retrieve for the config
+            </description>
+            <name>bucket</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The config name to retrieve
+            </description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Retrieves Context-Aware Configuration resources for a specified resource, bucket and name.
+        </description>
+        <name>getCAConfigResources</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.GetCAConfigResourcesTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceIteratorVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The name of the variable to which to save the CA config resources
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource for which to retrieve CA Configs
+            </description>
+            <name>resource</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The bucket name to retrieve for the configs
+            </description>
+            <name>bucket</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The config name to retrieve
+            </description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Retrieves the parent of the resource or the absolute parent
+            at the level if specified.
+        </description>
+        <name>getParent</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.GetParentTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The name of the variable to which to save the parent resource.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource for which to retrieve the parent resource.
+            </description>
+            <name>resource</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The level of the parent resource to retrieve
+            </description>
+            <name>level</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+
+    <tag>
+        <description>
+            Retrieves all of the parent resources of a specified
+            resource, returning them
+            in hierarchy order.
+        </description>
+        <name>getParents</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.GetParentsTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceIteratorVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The name of the variable to which to save the parent
+                resources.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource for which to retrieve the parent resources.
+            </description>
+            <name>resource</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The depth at which to start, for example given a path
+                of: /content/page1/page2/page3 and a start depth of 3, the parents
+                page2/page3
+                would be returned
+            </description>
+            <name>startDepth</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+
+    <tag>
+        <description>
+            Retrieves the value from the ValueMap, allowing for a
+            default value or coercing the return value.
+        </description>
+        <name>getProperty</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.GetPropertyTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.GetPropertyTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The name of the variable to which to save the value.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The ValueMap from which to retrieve the value.
+            </description>
+            <name>properties</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The key to retrieve the value from from the ValueMap.
+            </description>
+            <name>key</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The default value to return if no value exists for the
+                key. If specified, this takes precedence over returnClass.
+            </description>
+            <name>defaultValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The class into which to coerce the returned value.
+            </description>
+            <name>returnClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Retrieves resources based on either an absolute path or a
+            relative path and a base resource.
+        </description>
+        <name>getResource</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.GetResourceTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The base resource under which to retrieve the child
+                resource, will only
+                be considered if a relative path is specified.
+            </description>
+            <name>base</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The path of the resource to retrieve, if relative, the
+                base resource must be specified.
+            </description>
+            <name>path</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The name of the variable to which to save the resource.
+            </description>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            Lists the children of a Sling Resource.
+        </description>
+        <name>listChildren</name>
+        <tag-class>
+            org.apache.sling.scripting.jsp.taglib.ListChildrenTag
+        </tag-class>
+        <tei-class>
+            org.apache.sling.scripting.jsp.taglib.tei.ResourceIteratorVariableTEI
+        </tei-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The resource for which to retrieve the children.
+            </description>
+            <name>resource</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>org.apache.sling.api.resource.Resource</type>
+        </attribute>
+        <attribute>
+            <description>
+                The name of the variable to which to save the child
+                resources.
+            </description>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>
+

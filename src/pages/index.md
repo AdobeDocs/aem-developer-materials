@@ -8,6 +8,10 @@ title: Adobe Experience Manager Reference Materials - Overview
 
 Adobe Experience Manager (AEM) provides several APIs for developing applications and extending AEM. The following list provides the documentation for APIs supported by AEM.
 
+## AEM as a Cloud Service
+
+* [AEM as a Cloud Service API](/cloud-service/javadoc/index.html)
+
 ## AEM 6.5
 
 * [Adobe AEM 6.5.0 API](/6-5/javadoc/index.html)
