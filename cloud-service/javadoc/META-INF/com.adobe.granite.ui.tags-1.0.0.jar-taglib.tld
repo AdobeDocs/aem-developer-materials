@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+/*************************************************************************
+ *
+ * ADOBE CONFIDENTIAL
+ * __________________
+ *
+ *  Copyright 2012 Adobe Systems Incorporated
+ *  All Rights Reserved.
+ *
+ * NOTICE:  All information contained herein is, and remains
+ * the property of Adobe Systems Incorporated and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to Adobe Systems Incorporated and its
+ * suppliers and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Adobe Systems Incorporated.
+ **************************************************************************/
+-->
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>A tab library for Granite UI</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>ui</short-name>
+    <uri>http://www.adobe.com/taglibs/granite/ui/1.0</uri>
+
+    <!-- =================================================================== -->
+    <tag>
+        <description>
+            Includes a granite html client library. This can be a js, css or theme library.
+            Depending on which attribute is set (in order: categories, theme, js or css),
+            only that one will be handled. For multiple inclusions of different types
+            please use this tag multiple times. This tag is a convenience wrapper
+            around the com.adobe.granite.ui.clientlibs.HtmlLibraryManager service interface.
+        </description>
+        <name>includeClientLib</name>
+        <tag-class>
+            com.adobe.granite.ui.tags.IncludeClientLibraryTag
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                A list of comma-separated client lib categories. This will include
+                all Javascript and CSS libraries for the given categories. The theme
+                name is extracted from the request.
+            </description>
+            <name>categories</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                A list of comma-separated client lib categories. This will include
+                all theme related libraries (both CSS and JS) for the given categories.
+                The theme name is extracted from the request.
+            </description>
+            <name>theme</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                A list of comma-separated client lib categories. This will include
+                all Javascript libraries for the given categories.
+            </description>
+            <name>js</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                A list of comma-separated client lib categories. This will include
+                all CSS libraries for the given categories.
+            </description>
+            <name>css</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                A flag that indicates of only themed or non themed libraries should
+                be included. If omitted, both sets are included.
+                Only applies to pure JS or CSS includes (not for categories or
+                theme includes).
+            </description>
+            <name>themed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+    </tag>
+    
+</taglib>
