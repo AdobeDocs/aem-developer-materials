@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Adaptive Forms Class: Panel</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Adaptive Forms</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="af.html">af</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Field.html">Field</a></li><li><a href="GuideButton.html">GuideButton</a></li><li><a href="GuideCompositeField.html">GuideCompositeField</a></li><li><a href="GuideContainerNode.html">GuideContainerNode</a></li><li><a href="GuideDropDownList.html">GuideDropDownList</a></li><li><a href="GuideFileUpload.html">GuideFileUpload</a></li><li><a href="InstanceManager.html">InstanceManager</a></li><li><a href="GuideDatePicker.html">GuideDatePicker</a></li><li><a href="GuideCaptcha.html">GuideCaptcha</a></li><li><a href="GuideItemsContainer.html">GuideItemsContainer</a></li><li><a href="GuideNode.html">GuideNode</a></li><li><a href="GuideNumericBox.html">GuideNumericBox</a></li><li><a href="Panel.html">Panel</a></li><li><a href="Table.html">Table</a></li><li><a href="GuideTermsAndConditions.html">GuideTermsAndConditions</a></li><li><a href="GuideTextBox.html">GuideTextBox</a></li><li><a href="Scriptable.html">Scriptable</a></li><li><a href="GuideNavigationContext.html">GuideNavigationContext</a></li><li><a href="GuideTelephone.html">GuideTelephone</a></li><li><a href="GuideResultObject.html">GuideResultObject</a></li><li><a href="GuideBridge.html">GuideBridge</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="mixins.list.html" class="dropdown-toggle" data-toggle="dropdown">Mixins<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AddMinMaxValidation.html">AddMinMaxValidation</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="GuideBridge.html#.event:bridgeInitializeStart">GuideBridge.event:bridgeInitializeStart</a></li><li><a href="GuideBridge.html#.event:bridgeInitializeComplete">GuideBridge.event:bridgeInitializeComplete</a></li><li><a href="GuideBridge.html#.event:elementVisibleChanged">GuideBridge.event:elementVisibleChanged</a></li><li><a href="GuideBridge.html#.event:elementEnableChanged">GuideBridge.event:elementEnableChanged</a></li><li><a href="GuideBridge.html#.event:elementValueChanged">GuideBridge.event:elementValueChanged</a></li><li><a href="GuideBridge.html#.event:elementNavigationChanged">GuideBridge.event:elementNavigationChanged</a></li><li><a href="GuideBridge.html#.event:elementFocusChanged">GuideBridge.event:elementFocusChanged</a></li><li><a href="GuideBridge.html#.event:elementHelpShown">GuideBridge.event:elementHelpShown</a></li><li><a href="GuideBridge.html#.event:elementValidationStatusChanged">GuideBridge.event:elementValidationStatusChanged</a></li><li><a href="GuideBridge.html#.event:elementButtonClicked">GuideBridge.event:elementButtonClicked</a></li><li><a href="GuideBridge.html#.event:validationComplete">GuideBridge.event:validationComplete</a></li><li><a href="GuideBridge.html#.event:submitStart">GuideBridge.event:submitStart</a></li><li><a href="GuideBridge.html#.event:guideAutoSaveStart">GuideBridge.event:guideAutoSaveStart</a></li><li><a href="GuideBridge.html#.event:saveStarted">GuideBridge.event:saveStarted</a></li><li><a href="GuideBridge.html#.event:saveCompleted">GuideBridge.event:saveCompleted</a></li><li><a href="GuideBridge.html#.event:elementLazyLoaded">GuideBridge.event:elementLazyLoaded</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#playJson">playJson</a></li><li><a href="global.html#guideTableSorter">guideTableSorter</a></li><li><a href="global.html#getFormDataString">getFormDataString</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: Panel</h1>
+<section>
+
+<header>
+    
+        <h2>
+        Panel
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="Panel"><span class="type-signature"></span>new Panel()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>JavaScript class to represent the adaptive forms Panel Component.
+Instantiation of the class is not permitted and doing so will throw a runtime exception</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="GuideItemsContainer.html">GuideItemsContainer</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="items">
+    <h4 id="items"><span class="type-signature">&lt;readonly> </span>items<span class="type-signature"> :Array.&lt;<a href="GuideNode.html">GuideNode</a>></span></h4>
+
+    
+    <p class="summary">returns a list of children inside the component.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Each item in the array can either be a <a href="Field.html">Field</a> or a <a href="Panel.html">Panel</a></p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="GuideNode.html">GuideNode</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideItemsContainer.html#items">GuideItemsContainer#items</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="shortDescription">
+    <h4 id="shortDescription"><span class="type-signature">&lt;readonly, nullable> </span>shortDescription<span class="type-signature"> :String</span></h4>
+
+    
+    <p class="summary">The short description defined in the Scriptable object.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>In AF, one can define short Description for the Fields. This API returns the short Description set on the Field.
+It is non null only for Field objects</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#shortDescription">Scriptable#shortDescription</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="longDescription">
+    <h4 id="longDescription"><span class="type-signature">&lt;readonly, nullable> </span>longDescription<span class="type-signature"> :String</span></h4>
+
+    
+    <p class="summary">Specifies the long description present in the Scriptable object</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>In AF, one can define long Description for the Objects. This API returns the long Description set on the
+Objects.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#longDescription">Scriptable#longDescription</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="visible">
+    <h4 id="visible"><span class="type-signature"></span>visible<span class="type-signature"> :boolean</span></h4>
+
+    
+    <p class="summary">Visiblity of the Node. True if it's visible otherwise false.</p>
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#visible">Scriptable#visible</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="GuideNode.html#visible">GuideNode#visible</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="name">
+    <h4 id="name"><span class="type-signature">&lt;readonly, non-null> </span>name<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">Name of the node</p>
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideNode.html#name">GuideNode#name</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="somExpression">
+    <h4 id="somExpression"><span class="type-signature">&lt;readonly, non-null> </span>somExpression<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">SOM Expression of the Node.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>In Adaptive Forms SOM is a model to access fields and Panels. The SOM Expression provides easy access to
+the Fields and Objects through a straightforward syntax</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideNode.html#somExpression">GuideNode#somExpression</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">Considering the heirarchy,
+-- guide
+  -- panel1
+  ---- field2
+  ---- panel2
+  ------ field3
+the som Expression of field3 will be guide[0].panel1[0].panel2[0].field3[0]. The 0 here represents
+the same name sibling index of that particular item in its parent. If panel2 has an additional child field3 as
+  ---- panel2
+  ------- field3
+  ------- field3
+The second field3 would have the somExpression guide[0].panel1[0].panel2[0].field3[1]</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="nonLocalizedTitle">
+    <h4 id="nonLocalizedTitle"><span class="type-signature">&lt;readonly, nullable> </span>nonLocalizedTitle<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">Non Localized Title of the element.</p>
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideNode.html#nonLocalizedTitle">GuideNode#nonLocalizedTitle</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="index">
+    <h4 id="index"><span class="type-signature">&lt;readonly, non-null> </span>index<span class="type-signature"> :number</span></h4>
+
+    
+    <p class="summary">Index of the Node among its siblings having the same name as itself</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Every node in the Adaptive Form field has an index depending on the number of same named siblings that the
+node has before it. If the element has no same named sibling its index will always be 0.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideNode.html#index">GuideNode#index</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="dorExclusion">
+    <h4 id="dorExclusion"><span class="type-signature"></span>dorExclusion<span class="type-signature"> :boolean</span></h4>
+
+    
+    <p class="summary">Whether the object is excluded from DOR or not</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The property specifies the exclusion of the field from document of record. If the value is true, then the
+field is excluded otherwise included in DoR. If excludeFromDoRIfHidden property is set at guide container,
+the value of dorExclusion is derived from visibility of field dynamically.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.1-FP1</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#dorExclusion">Scriptable#dorExclusion</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="bindRef">
+    <h4 id="bindRef"><span class="type-signature">&lt;readonly> </span>bindRef<span class="type-signature"> :String</span></h4>
+
+    
+    <p class="summary">Binding specified for the object</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>In AF, components can be bound to XML Schema or XFA elements. This API returns that
+binding. In case of XFA elements, it returns the SOM Expression of that element
+otherwise the XPATH of the element.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.2</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#bindRef">Scriptable#bindRef</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="isXsd">
+    <h4 id="isXsd"><span class="type-signature">&lt;readonly> </span>isXsd<span class="type-signature"> :boolean</span></h4>
+
+    
+    <p class="summary">Whether the element is bound to XSD element or not</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>In AF, components can be bound to Schema(XML/JSON) or XFA elements. This API returns
+true if the component is bound to XML Schema false otherwise</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.2</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#isXsd">Scriptable#isXsd</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="minOccur">
+    <h4 id="minOccur"><span class="type-signature">&lt;readonly> </span>minOccur<span class="type-signature"> :Number</span></h4>
+
+    
+    <p class="summary">Specifies the minimum number of times the Panel will be repeated.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>This property can be set through the Panel Dialog. If the value is set greater than 1, the panel will be
+repeated at least that many times.</p>
+<p>Negative values are ignored</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="repeatable">
+    <h4 id="repeatable"><span class="type-signature">&lt;readonly> </span>repeatable<span class="type-signature"> :Boolean</span></h4>
+
+    
+    <p class="summary">Specifies if the panel is repeatable or not</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>*
+A Panel is considered repeatable if the value of <a href="Panel.html#minOccur">minOccur</a> property is
+strictly less than <a href="Panel.html#maxOccur">maxOccur</a></p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="panel">
+    <h4 id="panel"><span class="type-signature">&lt;readonly> </span>panel<span class="type-signature"> :<a href="Panel.html">Panel</a></span></h4>
+
+    
+    <p class="summary">returns itself</p>
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Panel.html">Panel</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="GuideItemsContainer.html#panel">GuideItemsContainer#panel</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="instanceManager">
+    <h4 id="instanceManager"><span class="type-signature">&lt;readonly> </span>instanceManager<span class="type-signature"> :<a href="InstanceManager.html">InstanceManager</a></span></h4>
+
+    
+    <p class="summary">returns the <a href="InstanceManager.html">InstanceManager</a> object managing this Panel object.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Each Panel object is managed by an InstanceManager which provides API, to retrieve the instances of the
+Panel, create and remove instances</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="InstanceManager.html">InstanceManager</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="instanceIndex">
+    <h4 id="instanceIndex"><span class="type-signature">&lt;readonly> </span>instanceIndex<span class="type-signature"></span></h4>
+
+    
+    <p class="summary">returns the index of the repeatable instances of this panel before it.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Each repeatable panel object has a property instanceIndex which indicates the number of repeatable instances
+before it. The first instance has instanceIndex 0 as there are no instances before it.</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="title">
+    <h4 id="title"><span class="type-signature">&lt;readonly> </span>title<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">returns the title associated with the panel</p>
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="GuideItemsContainer.html#title">GuideItemsContainer#title</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="summary">
+    <h4 id="summary"><span class="type-signature"></span>summary<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">returns the summary of the Panel.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>In accordion layouts, one can show the summary of the Panel. The property is controlled by the value of the
+<a href="https://helpx.adobe.com/aem-forms/6-1/adaptive-form-expressions.html">summary expression</a></p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="enabled">
+    <h4 id="enabled"><span class="type-signature"></span>enabled<span class="type-signature"> :boolean</span></h4>
+
+    
+    <p class="summary">Specifies whether the component is enabled or read-only.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>If the value of the property is true, the component is enabled otherwise disabled (read-only).</p>
+<p>If a Panel is set to be disabled, then all of its descendants become disabled. But if a Panel is set to be
+enabled than all its descendant that are not disabled (i.e. their enabled property is not explicitly set to
+false) become enabled.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.2</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="GuideItemsContainer.html#enabled">GuideItemsContainer#enabled</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="navigationContext">
+    <h4 id="navigationContext"><span class="type-signature">&lt;readonly> </span>navigationContext<span class="type-signature"> :<a href="GuideNavigationContext.html">GuideNavigationContext</a></span></h4>
+
+    
+    <p class="summary">Navigation Context of the Panel.</p>
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="GuideNavigationContext.html">GuideNavigationContext</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.2</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="isNavigable">
+    <h4 id="isNavigable"><span class="type-signature"></span>isNavigable<span class="type-signature"> :boolean</span></h4>
+
+    
+    <p class="summary">Specifies whether the layout configured for the panel is navigable or not</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>This property check for the &quot;non navigable&quot; property of the layout associated with the
+panel component.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.3</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="maxOccur">
+    <h4 id="maxOccur"><span class="type-signature">&lt;readonly> </span>maxOccur<span class="type-signature"> :Number</span></h4>
+
+    
+    <p class="summary">Specifies the maximum number of times the Panel can be repeated.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The property can be set through the Panel Dialog. If the value is set greater than 1, the panel can be
+repeated at most that many times.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="stateOverrides">
+    <h4 id="stateOverrides"><span class="type-signature"></span>stateOverrides<span class="type-signature"> :map</span></h4>
+
+    
+    <p class="summary">overridden state of object</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The property specifies overridden state in field</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">map</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.5</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Scriptable.html#stateOverrides">Scriptable#stateOverrides</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="resetData"><span class="type-signature"></span>resetData()</h4>
+    
+    
+    <p class="summary">reset the data of all the Fields present inside this container</p>
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideItemsContainer.html#resetData">GuideItemsContainer#resetData</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="visit"><span class="type-signature"></span>visit(callback, context)</h4>
+    
+    
+    <p class="summary">Executes a callback on the element and its children.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The callback is called for the element and all its children.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="GuideNode.html#~VisitorCallback">GuideNode~VisitorCallback</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>this parameter to be used</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="GuideNode.html#visit">GuideNode#visit</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="validate"><span class="type-signature"></span>validate(errorList)</h4>
+    
+    
+    <p class="summary">Runs the validations of all its descendants and return its results.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The API iterates over all the children of Panel and calls their validate API.
+If a child is marked as lazy loaded Panel, then that child is loaded and its validations are run as well.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorList</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="Field.html#~ValidationError">Field~ValidationError</a>></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The array will be filled with the ValidationError
+object if the validations on the field fail.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="GuideItemsContainer.html#validate">GuideItemsContainer#validate</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="Field.html#validate">Field#validate</a></li>
+			
+			<li><a href="GuideItemsContainer.html#validate">GuideItemsContainer#validate</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if all the validations of all its descendant passes, false otherwise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+	Copyright &copy; 1982-2020 Adobe Systems Inc. All rights reserved.
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

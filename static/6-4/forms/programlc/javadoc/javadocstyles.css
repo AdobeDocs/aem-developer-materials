@@ -1,0 +1,207 @@
+/* Adobe Learning Resources Javadoc style sheet */
+/* Version 1.0 */
+/* January 19, 2010 */
+/* CSS to define colors, fonts and other style attributes here to override the defaults */
+
+/* Page background color */
+body { background-color: #FFFFFF;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt;}
+
+/* Headings */
+h1 { font-size: 145%;}
+
+/* special tags (e.g. Note:, Example:, etc) */
+
+/* enforce consistent code font size */
+CODE {font-size: 10pt;}
+
+/* Table colors */
+.TableHeadingColor     { background: #CCCCFF } /* Dark mauve */
+.TableSubHeadingColor  { background: #EEEEFF } /* Light mauve */
+.TableRowColor         { background: #FFFFFF } /* White */
+
+/* Adobe Learning Resources Table Style */
+TABLE.ICommTable {border: 1px;}
+TH {text-align: left;  padding-left: 4px;}
+TD {vertical-align: top;  padding-left: 4px;}
+
+/* Font used in left-hand frame lists */
+.FrameTitleFont   { font-size: 100%; font-family: Verdana, Helvetica, Arial, sans-serif }
+.FrameHeadingFont { font-size:  90%; font-family: Verdana, Helvetica, Arial, sans-serif }
+.FrameItemFont    { font-size:  90%; font-family: Verdana, Helvetica, Arial, sans-serif }
+
+/* Navigation bar fonts and colors */
+.NavBarCell1    { background-color:#EEEEFF;} /* Light mauve */
+.NavBarCell1Rev { background-color:#00008B;} /* Dark Blue */
+.NavBarFont1    { font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif; color:#000000;}
+.NavBarFont1Rev { font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF;}
+
+.NavBarCell2    { font-family: Verdana, Arial, Helvetica, sans-serif; background-color:#FFFFFF; font-size: 10pt;}
+.NavBarCell3    { font-family: Verdana, Arial, Helvetica, sans-serif; background-color:#FFFFFF; font-size: 10pt;}
+
+/*
+ * Start ionComments styles
+ */
+
+#ionCom{
+  margin-bottom:30px;
+  margin-left:20px;
+  padding-right:10px;
+  width:98% !important;
+  font-family:Verdana,Arial,Helvetica,sans-serif !important;
+}
+
+#ionComHere #ionCom h3{
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+  font-size:100%;
+  color:#000;
+  padding-bottom:5px;
+}
+
+#ionComList {
+  margin: 0 !important;
+}
+
+#ionComList li{
+  list-style-type:none !important;
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+  font-size:98% !important;
+  padding: 4px 0 4px 0 !important;
+}
+
+#ionComList li.ionComMessage{  /* message in yellow background */
+  background: #FFFFCC;
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color:#000;
+  list-style-position:inside;
+  list-style-type:none;
+  margin: 0 !important;
+  padding: 4px 0 4px 4px !important;
+}
+
+#ionComButAdd{
+  margin-left:0 !important;
+}
+
+#ionComAddForm .defaultTextArea{
+  font-size: 160% !important;
+  font-family:Verdana,Arial,Helvetica,sans-serif !important;
+}
+
+#ionComTextArea{
+  font-size: 160% !important;
+  font-family:Verdana,Arial,Helvetica,sans-serif !important;
+	width:98% !important;
+}
+
+#ionCom fieldset .button{
+  font-size:150%;
+}
+
+.ionComMessage{
+  font-size:150%;
+}
+
+#ionComPreview h4,
+#ionComPreview #ionComPreviewTextArea{
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+  font-size: 150% !important;;
+}
+
+#ionCom a {
+ color: #047 !important;
+}
+#ionCom a:visited {
+ color: #047 !important;
+}
+#ionCom a:hover {
+  color:#c00 !important;
+  text-decoration:none !important;
+}
+ 
+ 
+ 
+/* Start ionBadge styles  */
+#ionCount{
+        font-family:Verdana,Arial,Helvetica,sans-serif;
+        border-bottom: solid 1px #ccc;
+        margin: 20px 15px 0 0 !important;
+        padding-top:10px;
+        padding-bottom:6px !important;
+}
+#ionCount *{
+        display:inline; 
+        font-size:11px !important;
+        font-family:Verdana,Arial,Helvetica,sans-serif;
+        font-weight: bold;
+}
+#ionCount ul.ionAnchor{
+	margin-left:0 !important;
+}
+#ionCount a{
+	color:#047;
+}
+#ionCount a:hover{
+	color:#a00;
+}
+
+#ionRatingAnchor *,
+#ionComHeader * {
+        display:inline;
+}
+#ionCount #ionRatingAnchor {
+        margin-left: 15px;
+}
+#ionRatingAnchor .ionLabel{
+	/* color:#047 !important; */
+}
+#ionRatingAnchor .ionSummary{
+	font-weight: normal !important;
+}
+#ionRatingAnchor span.ionPositive,
+#ionRatingAnchor span.ionNegative{
+        padding:0 0 0 8px !important;
+        font-weight: normal !important;
+}
+
+#ionComHere *{
+  	font-size:11px !important;
+}
+
+#ionComHeader{
+	padding-bottom:10px !important;
+}
+#ionComHeader *{
+  	font-size:11px !important;
+}
+#ionComHeading{
+	margin-right:10px !important;
+}
+#ionMessageContainer .ionComMessage{  /* message in yellow background */
+  background: #FFFFCC;
+  border-bottom:1px solid #B2B2B2;
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color:#000;
+  list-style-position:inside;
+  list-style-type:none;
+  margin: 0 !important;
+  padding: 4px 0 4px 4px !important;
+}
+
+#ionThumbRating{
+	text-align:right;
+}
+
+#ionComRating *{
+  	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:11x !important;
+	letter-spacing: 0 !important;
+}
+
+#ionThumbRatingGroup label{
+	display:inline;
+	margin-right:5px;
+}
