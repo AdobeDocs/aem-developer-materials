@@ -2,7 +2,7 @@
 title: Adobe Experience Manager Reference Materials - Overview 
 ---
 
-<Hero slots="heading"/> 
+<Hero slots="heading,text"/> 
 
 # Adobe Experience Manager Reference Materials
 
