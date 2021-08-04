@@ -15,11 +15,11 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 ## AEM 6.5
 
 * [AEM 6.5.0 API](/6-5/javadoc/index.html)
-* [Granite UI (Touch-enabled) API documentation](/6-5/granite-ui/api/index.html)
-* [Coral UI guide](/6-5/coral-ui/coralui3/index.html)
-* [Widgets API (Classic UI) documentation](/6-5/widgets-api/index.html)
-* [UI test framework JavaScript API reference](/6-5/test-api/index.html)
-* [Editor core JavaScript API reference](/6-5/jsdoc/ui-touch/editor-core/index.html) 
+* [Granite UI (Touch-enabled) API Documentation](/6-5/granite-ui/api/index.html)
+* [Coral UI Guide](/6-5/coral-ui/coralui3/index.html)
+* [Widgets API (Classic UI) Documentation](/6-5/widgets-api/index.html)
+* [UI Test Framework JavaScript API Reference](/6-5/test-api/index.html)
+* [Editor Core JavaScript API Reference](/6-5/jsdoc/ui-touch/editor-core/index.html) 
 * [AEM Assets API - Content Fragments](/6-5/assets-api-content-fragments/index.html)
 
 ## AEM 6.5 Forms
@@ -31,11 +31,11 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 ## AEM 6.4
 
 * [AEM 6.4.0 API](/6-4/javadoc/index.html)
-* [Granite UI (Touch-enabled) API documentation](/6-4/granite-ui/api/index.html)
-* [Coral UI guide](/6-4/coral-ui/coralui3/index.html)
-* [Widgets API (Classic UI) documentation](/6-4/widgets-api/index.html)
-* [UI test framework JavaScript API reference](/6-4/test-api/index.html)
-* [Editor core JavaScript API reference](/6-4/jsdoc/ui-touch/editor-core/index.html) 
+* [Granite UI (Touch-enabled) API Documentation](/6-4/granite-ui/api/index.html)
+* [Coral UI Guide](/6-4/coral-ui/coralui3/index.html)
+* [Widgets API (Classic UI) Documentation](/6-4/widgets-api/index.html)
+* [UI Test Framework JavaScript API Reference](/6-4/test-api/index.html)
+* [Editor Core JavaScript API Reference](/6-4/jsdoc/ui-touch/editor-core/index.html) 
 * [API Differences](/6-4/diff-previous/changes.html)
 
 ## AEM 6.4 Forms
