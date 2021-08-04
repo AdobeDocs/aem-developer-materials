@@ -25,8 +25,8 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 ## AEM 6.5 Forms
 
 * [Adobe AEM 6.5.0 Forms API](/6-5/forms/javadocs/index.html)
-* [dobe AEM 6.5.0 Forms Javascript API) API documentation](/6-5/forms/javascript-api/index.html)
-* [AEM Forms on JEE Java API Reference](/6-5/forms/programlc/javadoc/index.html)
+* [Adobe AEM 6.5.0 Forms Javascript API Documentation](/6-5/forms/javascript-api/index.html)
+* [Adobe AEM Forms on JEE Java API Reference](/6-5/forms/programlc/javadoc/index.html)
 
 ## AEM 6.4
 
@@ -41,8 +41,8 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 ## AEM 6.4 Forms
 
 * [Adobe AEM 6.4.0 Forms API](/6-4/forms/javadocs/index.html)
-* [dobe AEM 6.4.0 Forms Javascript API) API documentation](/6-4/forms/javascript-api/index.html)
-* [AEM Forms on JEE Java API Reference](/6-4/forms/programlc/javadoc/index.html)
+* [Adobe AEM 6.4.0 Forms Javascript API Documentation](/6-4/forms/javascript-api/index.html)
+* [Adobe AEM Forms on JEE Java API Reference](/6-4/forms/programlc/javadoc/index.html)
 
 ## Specifications
 
