@@ -14,7 +14,7 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 
 ## AEM 6.5
 
-* [Adobe AEM 6.5.0 API](/6-5/javadoc/index.html)
+* [AEM 6.5.0 API](/6-5/javadoc/index.html)
 * [Granite UI (Touch-enabled) API documentation](/6-5/granite-ui/api/index.html)
 * [Coral UI guide](/6-5/coral-ui/coralui3/index.html)
 * [Widgets API (Classic UI) documentation](/6-5/widgets-api/index.html)
@@ -24,13 +24,13 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 
 ## AEM 6.5 Forms
 
-* [Adobe AEM 6.5.0 Forms API](/6-5/forms/javadocs/index.html)
-* [Adobe AEM 6.5.0 Forms Javascript API Documentation](/6-5/forms/javascript-api/index.html)
-* [Adobe AEM Forms on JEE Java API Reference](/6-5/forms/programlc/javadoc/index.html)
+* [AEM 6.5.0 Forms API](/6-5/forms/javadocs/index.html)
+* [AEM 6.5.0 Forms Javascript API Documentation](/6-5/forms/javascript-api/index.html)
+* [AEM Forms on JEE Java API Reference](/6-5/forms/programlc/javadoc/index.html)
 
 ## AEM 6.4
 
-* [Adobe AEM 6.4.0 API](/6-4/javadoc/index.html)
+* [AEM 6.4.0 API](/6-4/javadoc/index.html)
 * [Granite UI (Touch-enabled) API documentation](/6-4/granite-ui/api/index.html)
 * [Coral UI guide](/6-4/coral-ui/coralui3/index.html)
 * [Widgets API (Classic UI) documentation](/6-4/widgets-api/index.html)
@@ -40,9 +40,9 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 
 ## AEM 6.4 Forms
 
-* [Adobe AEM 6.4.0 Forms API](/6-4/forms/javadocs/index.html)
-* [Adobe AEM 6.4.0 Forms Javascript API Documentation](/6-4/forms/javascript-api/index.html)
-* [Adobe AEM Forms on JEE Java API Reference](/6-4/forms/programlc/javadoc/index.html)
+* [AEM 6.4.0 Forms API](/6-4/forms/javadocs/index.html)
+* [AEM 6.4.0 Forms Javascript API Documentation](/6-4/forms/javascript-api/index.html)
+* [AEM Forms on JEE Java API Reference](/6-4/forms/programlc/javadoc/index.html)
 
 ## Specifications
 
