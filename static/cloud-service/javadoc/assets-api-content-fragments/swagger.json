@@ -1,0 +1,656 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Adobe Experience Manager Assets API",
+    "version" : "1.1.12",
+    "title" : "Content Fragments",
+    "license" : {
+      "name" : "Copyright 2020 Adobe. All rights reserved."
+    }
+  },
+  "host" : "localhost:4502",
+  "basePath" : "/api/assets",
+  "tags" : [ {
+    "name" : "{cfParentPath}"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{cfParentPath}/{cfName}" : {
+      "get" : {
+        "tags" : [ "{cfParentPath}" ],
+        "summary" : "Returns a content fragment by its path.",
+        "description" : "",
+        "operationId" : "getContentFragment",
+        "parameters" : [ {
+          "name" : "cfParentPath",
+          "in" : "path",
+          "description" : "The path of the parent of the content fragment to be returned.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cfName",
+          "in" : "path",
+          "description" : "The name of the content fragment to be returned.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFragmentResponse"
+            }
+          },
+          "404" : {
+            "description" : "not found"
+          },
+          "500" : {
+            "description" : "internal error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "{cfParentPath}" ],
+        "summary" : "Creates a new content fragment at the given parent path. Note that creating variations is also supported.",
+        "description" : "",
+        "operationId" : "createContentFragment",
+        "parameters" : [ {
+          "name" : "cfParentPath",
+          "in" : "path",
+          "description" : "The path where the content fragment will be created.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cfName",
+          "in" : "path",
+          "description" : "The name of the content fragment to be created. If the name is already taken, the system will choose a unique name by adding an appropriate suffix.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Defines the initial content of the content fragment to be created.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewContentFragmentRequestBody"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "actually 201 is used to report the successful creation of the content fragment",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFragmentUpdateResponse"
+            }
+          },
+          "201" : {
+            "description" : "created"
+          },
+          "404" : {
+            "description" : "not found"
+          },
+          "500" : {
+            "description" : "internal error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "{cfParentPath}" ],
+        "summary" : "Updates the content fragment at the given path. Note that updating variations is also supported. Update request can contain only content to be updated (elements and/or variations).",
+        "description" : "",
+        "operationId" : "updateContentFragment",
+        "parameters" : [ {
+          "name" : "cfParentPath",
+          "in" : "path",
+          "description" : "The path of the parent of the content fragment to be updated.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cfName",
+          "in" : "path",
+          "description" : "The name of the content fragment to be updated.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Defines the updates to be executed on the content fragment.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateContentFragmentRequestBody"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFragmentUpdateResponse"
+            }
+          },
+          "404" : {
+            "description" : "not found"
+          },
+          "500" : {
+            "description" : "internal error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "{cfParentPath}" ],
+        "summary" : "Deletes the content fragment at the given path.",
+        "description" : "",
+        "operationId" : "deleteContentFragment",
+        "parameters" : [ {
+          "name" : "cfParentPath",
+          "in" : "path",
+          "description" : "The path of the parent of the content fragment to be deleted.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cfName",
+          "in" : "path",
+          "description" : "The name of the content fragment to be deleted.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFragmentUpdateResponse"
+            }
+          },
+          "404" : {
+            "description" : "not found"
+          },
+          "500" : {
+            "description" : "internal error"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Action" : {
+      "type" : "object",
+      "description" : "Defines a SIREN action.\n\nPlease refer to [the official SIREN documentation](https://github.com/kevinswiber/siren) for additional information."
+    },
+    "ContentFragment" : {
+      "type" : "object",
+      "required" : [ "contentFragment", "cq:model", "created", "createdBy", "description", "elements", "elementsOrder", "metadata", "modified", "modifiedBy", "name", "title" ],
+      "properties" : {
+        "contentFragment" : {
+          "type" : "boolean",
+          "description" : "Marker to determine that the entity is a content fragment. Will be true for content fragments."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the content fragment."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "The title of the content fragement."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the content fragment."
+        },
+        "cq:model" : {
+          "description" : "The model information.",
+          "$ref" : "#/definitions/ModelInfo"
+        },
+        "createdBy" : {
+          "type" : "string",
+          "description" : "The original author."
+        },
+        "created" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The creation date returned as number of milliseconds since January 1, 1970, 00:00:00 GMT (Unix Epoch)."
+        },
+        "modifiedBy" : {
+          "type" : "string",
+          "description" : "The last modified author."
+        },
+        "modified" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The last modified date returned as number of milliseconds since January 1, 1970, 00:00:00 GMT (Unix Epoch)."
+        },
+        "metadata" : {
+          "type" : "object",
+          "description" : "The metadata as a set of key/value pairs, as defined by the metadata schema.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "elements" : {
+          "description" : "The elements.",
+          "$ref" : "#/definitions/ElementsObj"
+        },
+        "elementsOrder" : {
+          "type" : "array",
+          "description" : "The order of the elements.",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Represents the data of a content fragment.\n\nA content fragment is represented as an atomic entity. This means: Elements (or fields) are exposed as part of the payload (as well as variations are), and not as separate entities (like links or references).\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://www.adobe.com/go/aem6_5_docs_content_fragment_en).\n\nTechnically, a content fragment contains a set of elements, each element can have 0 to n variations. This is reflected in the structure of the output. See the `Element` and `Variation` models."
+    },
+    "ContentFragmentResponse" : {
+      "type" : "object",
+      "required" : [ "actions", "class", "entities", "links" ],
+      "properties" : {
+        "class" : {
+          "type" : "array",
+          "example" : "asset/asset",
+          "description" : "The class of the requested entity.",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "entities" : {
+          "type" : "array",
+          "example" : "... - according to SIREN standard",
+          "description" : "The entities (children) of the requested entity.",
+          "items" : {
+            "$ref" : "#/definitions/Entity"
+          }
+        },
+        "actions" : {
+          "type" : "array",
+          "example" : "... - according to SIREN standard",
+          "description" : "The applicable actions of the requested entity.",
+          "items" : {
+            "$ref" : "#/definitions/Action"
+          }
+        },
+        "links" : {
+          "type" : "array",
+          "example" : "... - according to SIREN standard",
+          "description" : "The applicable actions of the requested entity.",
+          "items" : {
+            "$ref" : "#/definitions/Link"
+          }
+        },
+        "properties" : {
+          "$ref" : "#/definitions/ContentFragment"
+        }
+      },
+      "description" : "SIREN response for a content fragment."
+    },
+    "ContentFragmentUpdateResponse" : {
+      "type" : "object",
+      "required" : [ "class" ],
+      "properties" : {
+        "class" : {
+          "type" : "array",
+          "example" : "core/response",
+          "description" : "The class of the requested entity; will be core/response.",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "properties" : {
+          "$ref" : "#/definitions/UpdateResults"
+        }
+      }
+    },
+    "ContentFragmentUpdateSet" : {
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "string",
+          "description" : "New title of the content fragement."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "New description of the content fragment."
+        },
+        "metadata" : {
+          "type" : "object",
+          "description" : "New metadata as a set of key/value pairs, as defined by the metadata schema. Only metadata keys that are explicitly specified will be updated.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "elements" : {
+          "description" : "The elements that should be updated.",
+          "$ref" : "#/definitions/UpdateSetElementsObj"
+        }
+      },
+      "description" : "Represents the data of a content fragment that should be updated (an update set).\n\nA content fragment is represented as an atomic entity. Therefore all its parts (like elements) can be updating using an update set of this type.\n\nGeneral rule for update sets: The client only specify the parts of a content fragment that it actually wants to update. For example, if you intend to update a single element, you provide the required update information for that element only. All other elements will stay untouched by the update request.\n\nNote that it is the duty of the caller to enforce constraints on the values that it intends to set (like mandatory values or value ranges), as the system doesn't enforce them at the backend level.\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://www.adobe.com/go/aem6_5_docs_content_fragment_en)."
+    },
+    "Element" : {
+      "type" : "object",
+      "required" : [ ":type", "dataType", "multiValue", "name", "title", "translatable", "value", "variations", "variationsOrder" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The (technical) name of the element."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "The title of the element."
+        },
+        "dataType" : {
+          "type" : "string",
+          "example" : "string",
+          "description" : "The data type of the element."
+        },
+        "value" : {
+          "type" : "object",
+          "example" : "<p>The HTML content of the element.</p>",
+          "description" : "The value of the element, depending on the data type.\n\nRemarks for specific data types:\n\n- `calendar` values will be represented as milliseconds since Unix epoch.\n- `string` values may have a specific MIME type (for example, multiline texts)"
+        },
+        ":type" : {
+          "type" : "string",
+          "example" : "text/html",
+          "description" : "The MIME type of the element if applicable and available (for example, if data type is 'string'). Duplicates the data type otherwise."
+        },
+        "multiValue" : {
+          "type" : "boolean",
+          "description" : "Whether the property has more than one value or not."
+        },
+        "translatable" : {
+          "type" : "boolean",
+          "description" : "Whether the property is translatable."
+        },
+        "variationsOrder" : {
+          "type" : "array",
+          "description" : "The order of the variations. The values equal the names of the variations.",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "variations" : {
+          "description" : "The variations.",
+          "$ref" : "#/definitions/VariationsObj"
+        }
+      },
+      "description" : "Represents a single element of a content fragment.\n\nEach element has a specific data type. The value of the element adheres to that data type.\n\nThe following data types are supported:\n\n- `string` (value will be a JSON string)\n- `boolean` (value will be a JSON boolean)\n- `long` (value will be a JSON number)\n- `double` (value will be a JSON number)\n- `calendar` (value will be a Unix time stamp, as a JSON number)\n\nNote that the output both provides a data type and a type. For most data types, both are identical. For so-called multiline text fields the data type will be `string` and the type will contain the MIME type of the text.\n\nSupported MIME types are:\n\n- HTML (`text/html`)\n- Markdown (`text/x-markdown`)\n- Plain text (`text/plain`)\n\nPlease see the remarks on the `dataType` property for additional information.\n\nElements can optionally contain variations. All elements share the same set of variations. Note that the respective properties (`variations` and `variationsOrder`) will always be present - even if there are no variations defined."
+    },
+    "ElementsObj" : {
+      "type" : "object",
+      "properties" : {
+        "{element1Name}" : {
+          "description" : "Definition of the first element",
+          "$ref" : "#/definitions/Element"
+        },
+        "{element2Name}" : {
+          "description" : "Definition of the second element",
+          "$ref" : "#/definitions/Element"
+        },
+        "{elementNName}" : {
+          "description" : "Definition of the n-th element",
+          "$ref" : "#/definitions/Element"
+        }
+      },
+      "description" : "A JSON object that defines the elements of the content fragment. The keys equal the names of the elements."
+    },
+    "Entity" : {
+      "type" : "object",
+      "description" : "Defines a SIREN entity.\n\nNote that this definition is not part of this documentation. Please refer to [the official SIREN documentation](https://github.com/kevinswiber/siren)."
+    },
+    "Link" : {
+      "type" : "object",
+      "required" : [ "href", "rel" ],
+      "properties" : {
+        "rel" : {
+          "type" : "array",
+          "description" : "The link's relationship.",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "href" : {
+          "type" : "string",
+          "description" : "The link."
+        }
+      },
+      "description" : "Defines a SIREN link.\n\nPlease refer to [the official SIREN documentation](https://github.com/kevinswiber/siren) for additional information."
+    },
+    "ModelInfo" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string",
+          "description" : "The path of the model"
+        }
+      },
+      "description" : "A JSON object that defines the model information of a content fragment. "
+    },
+    "NewContentFragmentData" : {
+      "type" : "object",
+      "required" : [ "cq:model", "elements", "title" ],
+      "properties" : {
+        "cq:model" : {
+          "type" : "string",
+          "example" : "/conf/path/to/model",
+          "description" : "The path to the model that should be used for the content fragment to create."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "The title of the content fragement."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Initial description of the content fragment."
+        },
+        "metadata" : {
+          "type" : "object",
+          "description" : "Initial metadata as a set of key/value pairs, as defined by the metadata.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "elements" : {
+          "description" : "The initial values of the elements.",
+          "$ref" : "#/definitions/UpdateSetElementsObj"
+        }
+      },
+      "description" : "Represents the initial content of a new content fragment.\n\nThe caller is responsible for providing all necessary data. Note that the system does not enforce constraints on the intended initial values (like mandatory values or value ranges), so the client has to take care of this.\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://www.adobe.com/go/aem6_5_docs_content_fragment_en)."
+    },
+    "NewContentFragmentRequestBody" : {
+      "type" : "object",
+      "properties" : {
+        "properties" : {
+          "$ref" : "#/definitions/NewContentFragmentData"
+        }
+      }
+    },
+    "UpdateContentFragmentRequestBody" : {
+      "type" : "object",
+      "properties" : {
+        "properties" : {
+          "$ref" : "#/definitions/ContentFragmentUpdateSet"
+        }
+      }
+    },
+    "UpdateResults" : {
+      "type" : "object",
+      "required" : [ "changes", "location", "parentLocation", "path", "referer", "status.code", "status.message", "title" ],
+      "properties" : {
+        "path" : {
+          "type" : "string",
+          "example" : "/api/assets/path/to/fragment",
+          "description" : "The path of the updated content fragment."
+        },
+        "location" : {
+          "type" : "string",
+          "example" : "/api/assets/path/to/fragment.json",
+          "description" : "The path of the updated content fragment; incl. extension."
+        },
+        "parentLocation" : {
+          "type" : "string",
+          "example" : "/api/assets/path/to.json",
+          "description" : "Path of the parent location; incl. extension."
+        },
+        "status.code" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "HTTP status code"
+        },
+        "status.message" : {
+          "type" : "string",
+          "example" : "OK",
+          "description" : "HTTP status message"
+        },
+        "referer" : {
+          "type" : "string",
+          "example" : "/api/assets/path/to.json",
+          "description" : "The referer."
+        },
+        "isCreate" : {
+          "type" : "boolean",
+          "example" : true,
+          "description" : "Whether a new content fragment was created."
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "Content modified /api/assets/we-retail/en/experiences/test",
+          "description" : "A clear text description of the update operation."
+        },
+        "changes" : {
+          "type" : "array",
+          "description" : "An array that describes the actions that were executed during the request.",
+          "items" : {
+            "type" : "object"
+          }
+        }
+      },
+      "description" : "SIREN response for update (POST, PUT, DELETE) requests."
+    },
+    "UpdateSetElement" : {
+      "type" : "object",
+      "required" : [ "value" ],
+      "properties" : {
+        "value" : {
+          "type" : "object",
+          "example" : "<p>The HTML content of the element.</p>",
+          "description" : "The new (or initial) value of the element, depending on the data type.\n\nRemarks for specific data types:\n\n- Values for fields of data type `calendar` can be provided either   as a `string` in ISO-8601 format or a `long` number that defines   the Unix epoch of the date. In the latter case, the timezone   of the server will be used for the converted value. If you opt   for ISO-8601, be aware that you'll have to specify date and time   (including seconds and milliseconds), and a timezone (either Z or   a signed offset like -01:00), otherwise the date will not get   updated.\n- multiline `string` values have a specific MIME type that should   be provided through the `:type` property (otherwise `text/plain`   is assumed)"
+        },
+        ":type" : {
+          "type" : "string",
+          "example" : "text/html",
+          "description" : "The MIME type of the element if applicable (for multiline `string`s)"
+        },
+        "variations" : {
+          "description" : "The variations that should be updated.",
+          "$ref" : "#/definitions/UpdateSetVariationsObj"
+        }
+      },
+      "description" : "Defines the update (or initial value) of a single element of a content fragment.\n\nThe data type of the element is predefined by the model and can't be changed through an API call. If required, data types can be determined by a GET request on the content fragment.\n\nThe system tries to convert the value if it is not provided in the correct form, e.g. a String value of \"2\" will be converted to an integer value of `2` for a numeric field.\n\nFor an overview of available data types see the documentation of the GET request.\n\nNote that multiline strings - in addition to their data type, which is always \"string\" - carry a (mutable) MIME type. You should specify them explicitly, as the system will not try to determine them from the `string` value you provide.\n\nSupported MIME types are:\n\n- HTML (`text/html`)\n- Markdown (`text/x-markdown`)\n- Plain text (`text/plain`)"
+    },
+    "UpdateSetElementsObj" : {
+      "type" : "object",
+      "properties" : {
+        "{element1Name}" : {
+          "description" : "Definition of the first element",
+          "$ref" : "#/definitions/UpdateSetElement"
+        },
+        "{element2Name}" : {
+          "description" : "Definition of the second element",
+          "$ref" : "#/definitions/UpdateSetElement"
+        },
+        "{elementNName}" : {
+          "description" : "Definition of the n-th element",
+          "$ref" : "#/definitions/UpdateSetElement"
+        }
+      },
+      "description" : "A JSON object that defines the elements of a content fragment that should be updated. The keys equal the names of the elements."
+    },
+    "UpdateSetVariation" : {
+      "type" : "object",
+      "required" : [ "value" ],
+      "properties" : {
+        "value" : {
+          "type" : "object",
+          "example" : "<p>The HTML content of the element.</p>",
+          "description" : "The new (or initial) value of the element, depending on the data type.\n\nRemarks for specific data types:\n\n- Values for fields of data type `calendar` can be provided either   as a `string` in ISO-8601 format or a `long` number that defines   the Unix epoch of the date. In the latter case, the timezone   of the server will be used for the converted value. If you opt   for ISO-8601, be aware that you'll have to specify date and time   (including seconds and milliseconds), and a timezone (either Z or   a signed offset like -01:00), otherwise the date will not get   updated.\n- multiline `string` values have a specific MIME type that should   be provided through the `:type` property (otherwise `text/plain`   is assumed)"
+        },
+        ":type" : {
+          "type" : "string",
+          "example" : "text/html",
+          "description" : "The MIME type of the element if applicable (for multiline `string`s)"
+        }
+      },
+      "description" : "Defines the update (or initial value) of a single element variation of a content fragment.\n\nThe data type of the elevariation is predefined by the model and can't be changed through an API call. If required, data types can be determined by a GET request on the content fragment.\n\nThe system tries to convert the value if it is not provided in the correct form, e.g. a String value of \"2\" will be converted to an integer value of `2` for a numeric field.\n\nFor an overview of available data types see the documentation of the GET request.\n\nNote that multiline strings - in addition to their data type, which is always \"string\" - carry a (mutable) MIME type. You should specify them explicitly, as the system will not try to determine them from the `string` value you provide.\n\nSupported MIME types are:\n\n- HTML (`text/html`)\n- Markdown (`text/x-markdown`)\n- Plain text (`text/plain`)"
+    },
+    "UpdateSetVariationsObj" : {
+      "type" : "object",
+      "properties" : {
+        "{variation1Name}" : {
+          "description" : "Definition of the first variation",
+          "$ref" : "#/definitions/UpdateSetVariation"
+        },
+        "{variation2Name}" : {
+          "description" : "Definition of the second variation",
+          "$ref" : "#/definitions/UpdateSetVariation"
+        },
+        "{elementNName}" : {
+          "description" : "Definition of the n-th variation",
+          "$ref" : "#/definitions/UpdateSetVariation"
+        }
+      },
+      "description" : "A JSON object that defines the variations of a content fragment element that should be updated. The keys equal the names of the elements."
+    },
+    "Variation" : {
+      "type" : "object",
+      "required" : [ ":type", "dataType", "multiValue", "name", "title", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The (technical) name of the variation."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "The title of the variation."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the variation."
+        },
+        "dataType" : {
+          "type" : "string",
+          "example" : "string",
+          "description" : "The data type of the variation."
+        },
+        "value" : {
+          "type" : "object",
+          "example" : "<p>Example content (HTML) of a variation.</p>",
+          "description" : "The value of the variation, depending on the data type.\n\nRemarks for specific data types:\n\n- `calendar` values will be represented as milliseconds since Unix epoch.\n- `string` values may have a specific MIME type (for example, multiline texts)"
+        },
+        ":type" : {
+          "type" : "string",
+          "example" : "text/html",
+          "description" : "The MIME type of the variation if applicable and available (for example, if data type is 'string'). Duplicates the data type otherwise."
+        },
+        "multiValue" : {
+          "type" : "boolean",
+          "description" : "Whether the property has more than one value or not."
+        }
+      },
+      "description" : "A variation of a content element.\n\nNote that all elements share an identical set of variations. I.e. there will be a variation with the same name on the other elements as well.\n\nFor an explanation of data types: See the `Element` model."
+    },
+    "VariationsObj" : {
+      "type" : "object",
+      "properties" : {
+        "{variation1Name}" : {
+          "description" : "Definition of the first variation",
+          "$ref" : "#/definitions/Variation"
+        },
+        "{variation2Name}" : {
+          "description" : "Definition of the second variation",
+          "$ref" : "#/definitions/Variation"
+        },
+        "{variationNName}" : {
+          "description" : "Definition of the n-th variation",
+          "$ref" : "#/definitions/Variation"
+        }
+      },
+      "description" : "A JSON object that defines the variations of a content element. The keys equal the names of the variations."
+    }
+  }
+}
