@@ -2,10 +2,10 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "Adobe Experience Manager Assets API",
-    "version" : "1.0.12",
+    "version" : "1.1.16",
     "title" : "Content Fragments",
     "license" : {
-      "name" : "Copyright 2021 Adobe. All rights reserved."
+      "name" : "Copyright 2020 Adobe. All rights reserved."
     }
   },
   "host" : "localhost:4502",
@@ -235,7 +235,7 @@
           }
         }
       },
-      "description" : "Represents the data of a content fragment.\n\nA content fragment is represented as an atomic entity. This means: Elements (or fields) are exposed as part of the payload (as well as variations are), and not as separate entities (like links or references).\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://helpx.adobe.com/experience-manager/6-4/assets/using/content-fragments.html).\n\nTechnically, a content fragment contains a set of elements, each element can have 0 to n variations. This is reflected in the structure of the output. See the `Element` and `Variation` models."
+      "description" : "Represents the data of a content fragment.\n\nA content fragment is represented as an atomic entity. This means: Elements (or fields) are exposed as part of the payload (as well as variations are), and not as separate entities (like links or references).\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://www.adobe.com/go/aem6_5_docs_content_fragment_en).\n\nTechnically, a content fragment contains a set of elements, each element can have 0 to n variations. This is reflected in the structure of the output. See the `Element` and `Variation` models."
     },
     "ContentFragmentResponse" : {
       "type" : "object",
@@ -319,11 +319,11 @@
           "$ref" : "#/definitions/UpdateSetElementsObj"
         }
       },
-      "description" : "Represents the data of a content fragment that should be updated (an update set).\n\nA content fragment is represented as an atomic entity. Therefore all its parts (like elements) can be updating using an update set of this type.\n\nGeneral rule for update sets: The client only specify the parts of a content fragment that it actually wants to update. For example, if you intend to update a single element, you provide the required update information for that element only. All other elements will stay untouched by the update request.\n\nNote that it is the duty of the caller to enforce constraints on the values that it intends to set (like mandatory values or value ranges), as the system doesn't enforce them at the backend level.\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://helpx.adobe.com/experience-manager/6-4/assets/using/content-fragments.html)."
+      "description" : "Represents the data of a content fragment that should be updated (an update set).\n\nA content fragment is represented as an atomic entity. Therefore all its parts (like elements) can be updating using an update set of this type.\n\nGeneral rule for update sets: The client only specify the parts of a content fragment that it actually wants to update. For example, if you intend to update a single element, you provide the required update information for that element only. All other elements will stay untouched by the update request.\n\nNote that it is the duty of the caller to enforce constraints on the values that it intends to set (like mandatory values or value ranges), as the system doesn't enforce them at the backend level.\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://www.adobe.com/go/aem6_5_docs_content_fragment_en)."
     },
     "Element" : {
       "type" : "object",
-      "required" : [ ":type", "dataType", "multiValue", "name", "title", "value", "variations", "variationsOrder" ],
+      "required" : [ ":type", "dataType", "multiValue", "name", "title", "translatable", "value", "variations", "variationsOrder" ],
       "properties" : {
         "name" : {
           "type" : "string",
@@ -351,6 +351,10 @@
         "multiValue" : {
           "type" : "boolean",
           "description" : "Whether the property has more than one value or not."
+        },
+        "translatable" : {
+          "type" : "boolean",
+          "description" : "Whether the property is translatable."
         },
         "variationsOrder" : {
           "type" : "array",
@@ -445,7 +449,7 @@
           "$ref" : "#/definitions/UpdateSetElementsObj"
         }
       },
-      "description" : "Represents the initial content of a new content fragment.\n\nThe caller is responsible for providing all necessary data. Note that the system does not enforce constraints on the intended initial values (like mandatory values or value ranges), so the client has to take care of this.\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://helpx.adobe.com/experience-manager/6-4/assets/using/content-fragments.html)."
+      "description" : "Represents the initial content of a new content fragment.\n\nThe caller is responsible for providing all necessary data. Note that the system does not enforce constraints on the intended initial values (like mandatory values or value ranges), so the client has to take care of this.\n\nFor a general overview of what content fragments are and how they are handled, please [consult the public documentation](https://www.adobe.com/go/aem6_5_docs_content_fragment_en)."
     },
     "NewContentFragmentRequestBody" : {
       "type" : "object",
