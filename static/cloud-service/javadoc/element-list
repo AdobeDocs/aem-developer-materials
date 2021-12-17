@@ -65,6 +65,7 @@ ch.randelshofer.media.jpeg
 com.adobe.aem.wcm.seo
 com.adobe.aem.wcm.seo.localization
 com.adobe.aem.wcm.seo.sitemap
+com.adobe.aem.wcm.seo.sitemap.externalizer
 com.adobe.aemfd.expeditor.service
 com.adobe.agl.charset
 com.adobe.agl.impl
@@ -921,8 +922,6 @@ org.apache.felix.inventory
 org.apache.felix.jaas
 org.apache.felix.jaas.boot
 org.apache.felix.metatype
-org.apache.felix.scr.component
-org.apache.felix.scr.info
 org.apache.felix.webconsole
 org.apache.felix.webconsole.bundleinfo
 org.apache.felix.webconsole.i18n
@@ -1155,8 +1154,6 @@ org.apache.jackrabbit.vault.packaging
 org.apache.jackrabbit.vault.packaging.events
 org.apache.jackrabbit.vault.packaging.registry
 org.apache.jackrabbit.vault.util
-org.apache.jackrabbit.vault.util.xml
-org.apache.jackrabbit.vault.util.xml.serialize
 org.apache.jackrabbit.webdav
 org.apache.jackrabbit.webdav.bind
 org.apache.jackrabbit.webdav.client.methods
@@ -1543,12 +1540,6 @@ org.apache.sling.commons.scheduler
 org.apache.sling.commons.threads
 org.apache.sling.commons.threads.jmx
 org.apache.sling.discovery
-org.apache.sling.discovery.commons
-org.apache.sling.discovery.commons.providers
-org.apache.sling.discovery.commons.providers.base
-org.apache.sling.discovery.commons.providers.spi
-org.apache.sling.discovery.commons.providers.spi.base
-org.apache.sling.discovery.commons.providers.util
 org.apache.sling.distribution
 org.apache.sling.distribution.agent
 org.apache.sling.distribution.agent.spi
