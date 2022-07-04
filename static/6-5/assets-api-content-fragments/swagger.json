@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "Adobe Experience Manager Assets API",
-    "version" : "1.0.12",
+    "version" : "1.0.14",
     "title" : "Content Fragments",
     "license" : {
       "name" : "Copyright 2021 Adobe. All rights reserved."
