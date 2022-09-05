@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.5.1
+Build-Jdk-Spec: 11
+Implementation-Version: 2022.08.04.00-220800
+Specification-Version: 2022.08.04.00-220800
+Implementation-Title: Adobe Experience Manager Forms SDK
+Specification-Title: Adobe Experience Manager Forms SDK
+Implementation-Vendor: Adobe
+Specification-Vendor: Adobe
+

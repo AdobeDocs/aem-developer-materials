@@ -14,6 +14,7 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 * [AEM Assets API - Content Fragments](/cloud-service/javadoc/assets-api-content-fragments/index.html)
 * [AEM Forms Cloud Service Communications API Reference](https://developer.adobe.com/experience-manager-forms-cloud-service-developer-reference/)
 * [AEM Forms Cloud Service JavaScript API Reference](/cloud-service/jsdoc/aem-forms-cloud-service-jsdoc/index.html)
+* [AEM Forms Cloud Service Java API Reference](/cloud-service/javadoc/aem-forms-cloud-service-javadoc/index.html)
 
 ## AEM 6.5
 
@@ -22,7 +23,7 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 * [Coral UI Guide](/6-5/coral-ui/coralui3/index.html)
 * [Widgets API (Classic UI) Documentation](/6-5/widgets-api/index.html)
 * [UI Test Framework JavaScript API Reference](/6-5/test-api/index.html)
-* [Editor Core JavaScript API Reference](/6-5/jsdoc/ui-touch/editor-core/index.html) 
+* [Editor Core JavaScript API Reference](/6-5/jsdoc/ui-touch/editor-core/index.html)
 * [AEM Assets API - Content Fragments](/6-5/assets-api-content-fragments/index.html)
 
 ## AEM 6.5 Forms
