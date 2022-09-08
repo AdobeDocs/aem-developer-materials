@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "Adobe Experience Manager Assets API",
-    "version" : "1.1.18",
+    "version" : "1.1.22",
     "title" : "Content Fragments",
     "license" : {
       "name" : "Copyright 2020 Adobe. All rights reserved."
@@ -18,8 +18,8 @@
     "/{cfParentPath}/{cfName}" : {
       "get" : {
         "tags" : [ "{cfParentPath}" ],
-        "summary" : "Returns a content fragment by its path.",
-        "description" : "",
+        "summary" : "Returns a content fragment by its path. ",
+        "description" : "For example:\n\n - http://\\<host\\>/api/assets/wknd/en/adventures/cycling-tuscany.json\n\nThe response is serialized JSON with the content structured as in the content fragment. References are delivered as reference URLs.\n\nTwo types of read operations are possible:\n - Reading a specific content fragment by path, this returns the JSON representation of the content fragment.\n\n - Reading a folder of content fragments by path: this returns the JSON representations of all content fragments within the folder.",
         "operationId" : "getContentFragment",
         "parameters" : [ {
           "name" : "cfParentPath",
@@ -52,7 +52,7 @@
       "post" : {
         "tags" : [ "{cfParentPath}" ],
         "summary" : "Creates a new content fragment at the given parent path. Note that creating variations is also supported.",
-        "description" : "",
+        "description" : "The body has to contain a JSON representation of the content fragment to be created, including any initial content that should be set on the content fragment elements.\n\n It is mandatory to set the cq:model property and it must point to a valid content fragment model. Failing to do so will result in an error. \n\nIt is also necessary to add a header Content-Type which is set to application/json.",
         "operationId" : "createContentFragment",
         "parameters" : [ {
           "name" : "cfParentPath",
@@ -96,7 +96,7 @@
       "put" : {
         "tags" : [ "{cfParentPath}" ],
         "summary" : "Updates the content fragment at the given path. Note that updating variations is also supported. Update request can contain only content to be updated (elements and/or variations).",
-        "description" : "",
+        "description" : "The body has to contain a JSON representation of what is to be updated for the given content fragment.\n\nThis can simply be the title or description of a content fragment, or a single element, or all element values and/or metadata.",
         "operationId" : "updateContentFragment",
         "parameters" : [ {
           "name" : "cfParentPath",
