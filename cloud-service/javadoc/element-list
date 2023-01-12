@@ -1,10 +1,8 @@
 ch.qos.logback.classic
 ch.qos.logback.classic.boolex
-ch.qos.logback.classic.db
 ch.qos.logback.classic.db.names
 ch.qos.logback.classic.encoder
 ch.qos.logback.classic.filter
-ch.qos.logback.classic.gaffer
 ch.qos.logback.classic.helpers
 ch.qos.logback.classic.html
 ch.qos.logback.classic.jmx
@@ -26,8 +24,6 @@ ch.qos.logback.classic.turbo
 ch.qos.logback.classic.util
 ch.qos.logback.core
 ch.qos.logback.core.boolex
-ch.qos.logback.core.db
-ch.qos.logback.core.db.dialect
 ch.qos.logback.core.encoder
 ch.qos.logback.core.filter
 ch.qos.logback.core.helpers
@@ -83,10 +79,6 @@ com.adobe.cq.dam.cfm.converter
 com.adobe.cq.dam.cfm.extensions
 com.adobe.cq.dam.download.api
 com.adobe.cq.dam.download.spi
-com.adobe.cq.dam.index.bootstrap
-com.adobe.cq.dam.index.builder
-com.adobe.cq.dam.index.builder.api
-com.adobe.cq.dam.index.helper
 com.adobe.cq.dam.mac.sync.api
 com.adobe.cq.dam.mac.sync.helper
 com.adobe.cq.dashboards
@@ -138,6 +130,7 @@ com.adobe.cq.wcm.core.components.models
 com.adobe.cq.wcm.core.components.models.contentfragment
 com.adobe.cq.wcm.core.components.models.datalayer
 com.adobe.cq.wcm.core.components.models.datalayer.builder
+com.adobe.cq.wcm.core.components.models.datalayer.jackson
 com.adobe.cq.wcm.core.components.models.embeddable
 com.adobe.cq.wcm.core.components.models.form
 com.adobe.cq.wcm.core.components.services.embed
@@ -147,6 +140,7 @@ com.adobe.cq.wcm.core.components.util
 com.adobe.cq.wcm.core.extensions.amp.models
 com.adobe.cq.wcm.launches.utils
 com.adobe.cq.wcm.mobile.qrcode.servlet
+com.adobe.cq.wcm.spi
 com.adobe.cq.wcm.style
 com.adobe.cq.xf
 com.adobe.cq.xf.social
@@ -385,6 +379,7 @@ com.day.cq.dam.api.s7dam.config
 com.day.cq.dam.api.s7dam.constants
 com.day.cq.dam.api.s7dam.set
 com.day.cq.dam.api.s7dam.utils
+com.day.cq.dam.api.smartcrop
 com.day.cq.dam.api.thumbnail
 com.day.cq.dam.api.timeline.types
 com.day.cq.dam.api.ui.editor.metadata
@@ -596,12 +591,17 @@ com.fasterxml.jackson.databind.ser.impl
 com.fasterxml.jackson.databind.ser.std
 com.fasterxml.jackson.databind.type
 com.fasterxml.jackson.databind.util
+com.fasterxml.jackson.datatype.jsr310
+com.fasterxml.jackson.datatype.jsr310.deser
+com.fasterxml.jackson.datatype.jsr310.deser.key
+com.fasterxml.jackson.datatype.jsr310.ser
+com.fasterxml.jackson.datatype.jsr310.ser.key
+com.fasterxml.jackson.datatype.jsr310.util
 com.github.jknack.handlebars
 com.github.jknack.handlebars.cache
 com.github.jknack.handlebars.context
 com.github.jknack.handlebars.helper
 com.github.jknack.handlebars.io
-com.github.jknack.handlebars.js
 com.google.common.annotations
 com.google.common.base
 com.google.common.cache
@@ -913,6 +913,13 @@ org.apache.commons.math.stat.ranking
 org.apache.commons.math.stat.regression
 org.apache.commons.math.transform
 org.apache.commons.math.util
+org.apache.commons.text
+org.apache.commons.text.diff
+org.apache.commons.text.io
+org.apache.commons.text.lookup
+org.apache.commons.text.matcher
+org.apache.commons.text.similarity
+org.apache.commons.text.translate
 org.apache.felix.hc.api
 org.apache.felix.hc.api.condition
 org.apache.felix.hc.api.execution
@@ -925,7 +932,6 @@ org.apache.felix.metatype
 org.apache.felix.webconsole
 org.apache.felix.webconsole.bundleinfo
 org.apache.felix.webconsole.i18n
-org.apache.fop.apps
 org.apache.geronimo.transaction
 org.apache.geronimo.transaction.log
 org.apache.geronimo.transaction.manager
@@ -1414,6 +1420,8 @@ org.apache.poi.hwpf.model.types
 org.apache.poi.hwpf.sprm
 org.apache.poi.hwpf.usermodel
 org.apache.poi.ooxml
+org.apache.poi.ooxml.extractor
+org.apache.poi.ooxml.util
 org.apache.poi.openxml4j.exceptions
 org.apache.poi.openxml4j.opc
 org.apache.poi.openxml4j.opc.internal
@@ -1495,6 +1503,7 @@ org.apache.sling.api
 org.apache.sling.api.adapter
 org.apache.sling.api.auth
 org.apache.sling.api.request
+org.apache.sling.api.request.builder
 org.apache.sling.api.request.header
 org.apache.sling.api.resource
 org.apache.sling.api.resource.external
@@ -1506,6 +1515,7 @@ org.apache.sling.api.resource.runtime.dto
 org.apache.sling.api.scripting
 org.apache.sling.api.security
 org.apache.sling.api.servlets
+org.apache.sling.api.uri
 org.apache.sling.api.wrappers
 org.apache.sling.auth.core
 org.apache.sling.auth.core.spi
@@ -1530,8 +1540,6 @@ org.apache.sling.commons.json.jcr
 org.apache.sling.commons.json.sling
 org.apache.sling.commons.json.util
 org.apache.sling.commons.json.xml
-org.apache.sling.commons.log.logback
-org.apache.sling.commons.log.logback.webconsole
 org.apache.sling.commons.metrics
 org.apache.sling.commons.mime
 org.apache.sling.commons.osgi
@@ -1595,6 +1603,7 @@ org.apache.sling.scripting.api
 org.apache.sling.scripting.api.resource
 org.apache.sling.scripting.core
 org.apache.sling.scripting.core.servlet
+org.apache.sling.scripting.jsp.jasper.runtime
 org.apache.sling.scripting.jsp.taglib
 org.apache.sling.scripting.jsp.taglib.tei
 org.apache.sling.scripting.jsp.util
@@ -1637,6 +1646,7 @@ org.apache.taglibs.standard.tag.rt.fmt
 org.apache.taglibs.standard.tag.rt.sql
 org.apache.taglibs.standard.tei
 org.apache.taglibs.standard.tlv
+org.apache.taglibs.standard.util
 org.apache.tika
 org.apache.tika.concurrent
 org.apache.tika.config
@@ -1940,6 +1950,8 @@ org.osgi.service.http.context
 org.osgi.service.http.runtime
 org.osgi.service.http.runtime.dto
 org.osgi.service.http.whiteboard
+org.osgi.service.http.whiteboard.annotations
+org.osgi.service.http.whiteboard.propertytypes
 org.osgi.service.log
 org.osgi.service.log.admin
 org.osgi.service.metatype
