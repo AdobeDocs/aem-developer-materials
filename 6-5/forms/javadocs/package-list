@@ -12,6 +12,7 @@ com.adobe.aemds.formset.exception
 com.adobe.aemds.formset.service
 com.adobe.aemds.guide.addon.common
 com.adobe.aemds.guide.addon.dor
+com.adobe.aemds.guide.addon.dor.fdfl
 com.adobe.aemds.guide.common
 com.adobe.aemds.guide.model
 com.adobe.aemds.guide.service
