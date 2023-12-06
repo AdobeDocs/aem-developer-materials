@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Created-By: Maven Archiver 3.5.1
 Build-Jdk-Spec: 11
-Implementation-Version: 2022.11.9850.20221116T162329Z-220900
-Specification-Version: 2022.11.9850.20221116T162329Z-220900
+Implementation-Version: 2023.11.14227.20231108T162349Z-231100
+Specification-Version: 2023.11.14227.20231108T162349Z-231100
 Implementation-Title: aem-sdk-builder-aem-all-javadoc
 Specification-Title: aem-sdk-builder-aem-all-javadoc
 Implementation-Vendor: Adobe
