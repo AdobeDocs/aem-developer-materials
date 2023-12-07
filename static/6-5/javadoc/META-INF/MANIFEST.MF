@@ -3,6 +3,6 @@ Implementation-Title: cq-quickstart-quickstart-jar-global-javadoc
 Built-By: root
 Bundle-Vendor: Adobe
 Created-By: Apache Maven 3.5.2
-Build-Jdk: 1.8.0_131
+Build-Jdk: 1.8.0_272
 Specification-Version: 6.5.1-SNAPSHOT
 
