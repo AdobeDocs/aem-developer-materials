@@ -1,0 +1,53 @@
+// ------------------------------------------------------------------
+// NOTICE file corresponding to the section 4d of The Apache License,
+// Version 2.0, in this case for Apache Abdera
+// ------------------------------------------------------------------
+
+Apache Abdera
+Copyright 2006-2012 Apache Software Foundation
+
+This product includes/uses software(s) developed by 'an unknown organization'
+  - ezmorph (http://ezmorph.sourceforge.net)
+
+This product includes/uses software(s) developed by 'Apache Software Foundation' (http://jakarta.apache.org/)
+  - HttpClient (http://jakarta.apache.org/httpcomponents/httpclient-3.x/)
+
+This product includes/uses software(s) developed by 'Apache Software Foundation' (http://www.apache.org)
+  - Streaming API for XML (STAX API 1.0) (http://geronimo.apache.org/specs/geronimo-stax-api_1.0_spec)
+
+This product includes/uses software(s) developed by 'Apache Software Foundation' (http://www.apache.org/)
+  - Abdera Client (http://abdera.apache.org/abdera-client)
+  - Abdera Core (http://abdera.apache.org/abdera-core)
+  - I18N Libraries (http://abdera.apache.org)
+  - Abdera Parser (http://abdera.apache.org/abdera-parser)
+
+This product includes/uses software(s) developed by 'Codehaus' (http://www.codehaus.org/)
+  - Stax2 API (http://woodstox.codehaus.org/StAX2)
+  - Woodstox (http://woodstox.codehaus.org)
+  - Woodstox (http://woodstox.codehaus.org)
+
+This product includes/uses software(s) developed by 'Json-lib' (http://json-lib.sourceforge.net)
+  - json-lib (http://json-lib.sourceforge.net)
+
+This product includes/uses software(s) developed by 'The Apache Software Foundation' (http://jakarta.apache.org)
+  - Collections (http://jakarta.apache.org/commons/collections/)
+  - Logging (http://jakarta.apache.org/commons/logging/)
+
+This product includes/uses software(s) developed by 'The Apache Software Foundation' (http://www.apache.org)
+  - Apache Commons Beanutils
+  - Activation 1.1 (http://geronimo.apache.org/maven/specs/geronimo-activation_1.1_spec/1.1)
+  - JavaMail 1.4 (http://geronimo.apache.org/maven/specs/geronimo-javamail_1.4_spec/1.7.1)
+  - XML APIs (http://xml.apache.org/commons/components/external/xml-apis)
+
+This product includes/uses software(s) developed by 'The Apache Software Foundation' (http://www.apache.org/)
+  - Commons Codec (http://commons.apache.org/codec/)
+  - Commons Lang (http://commons.apache.org/lang/)
+  - Apache JAMES Mime4j (Core) (http://james.apache.org/mime4j/apache-mime4j-core)
+  - Axiom API (http://ws.apache.org/axiom/)
+  - Axiom Impl (http://ws.apache.org/axiom/axiom-impl)
+  - Xerces2 Java Parser (http://xerces.apache.org/xerces2-j)
+
+This product includes/uses software(s) developed by 'The Werken Company' (http://jaxen.codehaus.org)
+  - Jaxen (http://jaxen.codehaus.org/jaxen)
+
+
