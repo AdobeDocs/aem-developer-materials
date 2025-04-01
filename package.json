@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "experience-manager-apis",
+  "name": "aem-developer-materials",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdobeDocs/experience-manager-apis"
+    "url": "https://github.com/AdobeDocs/aem-developer-materials"
   },
   "author": {
     "name": "Stephan Ringel",
