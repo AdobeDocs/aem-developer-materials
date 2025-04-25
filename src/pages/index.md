@@ -18,7 +18,8 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 
 ## AEM 6.5
 
-* [AEM 6.5.0 API](/6-5/javadoc/index.html)
+* [AEM 6.5 LTS API](/6-5-lts/javadoc/index.html)
+* [AEM 6.5 API](/6-5/javadoc/index.html)
 * [Granite UI (Touch-enabled) API Documentation](/6-5/granite-ui/api/index.html)
 * [Coral UI Guide](/6-5/coral-ui/coralui3/index.html)
 * [Widgets API (Classic UI) Documentation](/6-5/widgets-api/index.html)
