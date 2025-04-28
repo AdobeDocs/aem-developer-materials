@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.5.1
+Build-Jdk-Spec: 11
+Implementation-Version: 6.6.0
+Specification-Version: 6.6.0
+Implementation-Title: cq-quickstart-aem-global-javadoc
+Specification-Title: cq-quickstart-aem-global-javadoc
+Implementation-Vendor: Adobe
+Specification-Vendor: Adobe
+
