@@ -2,7 +2,6 @@
 
 ### Pako License
 
-<pre>
 Copyright (C) 2014-2017 by Vitaly Puzrin and Andrei Tuputcyn
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,7 +39,3 @@ appreciated but is not required.
 2. Altered source versions must be plainly marked as such, and must not be
  misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
-
-</pre>
-
-
