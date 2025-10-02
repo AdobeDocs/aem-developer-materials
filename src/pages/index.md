@@ -2,7 +2,7 @@
 title: Adobe Experience Manager Reference Materials - Overview 
 ---
 
-<Hero slots="heading,text"/> 
+<Hero slots="heading,text"/>
 
 # Adobe Experience Manager Reference Materials
 
@@ -40,7 +40,7 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 * [Coral UI Guide](/6-4/coral-ui/coralui3/index.html)
 * [Widgets API (Classic UI) Documentation](/6-4/widgets-api/index.html)
 * [UI Test Framework JavaScript API Reference](/6-4/test-api/index.html)
-* [Editor Core JavaScript API Reference](/6-4/jsdoc/ui-touch/editor-core/index.html) 
+* [Editor Core JavaScript API Reference](/6-4/jsdoc/ui-touch/editor-core/index.html)
 * [API Differences](/6-4/diff-previous/changes.html)
 
 ## AEM 6.4 Forms
