@@ -53,7 +53,5 @@ Adobe Experience Manager (AEM) provides several APIs for developing applications
 
 * [JCR 2.0](/spec/jcr/2.0/index.html)
 * [JCR 1.0](/spec/jcr/1.0/index.html)
-* [Content Repository for Java Technology API Version 2.0](/spec/jsr170/javadocs/jcr-2.0/index.html)
-* [Content Repository for Java Technology API 1.0](/spec/jsr170/javadocs/jcr-1.0/index.html)
 * [Content Repository for Java Technology API Version 2.0](/spec/javax.jcr/javadocs/jcr-2.0/index.html)
 * [Content Repository for Java Technology API 1.0](/spec/javax.jcr/javadocs/jcr-1.0/index.html)
