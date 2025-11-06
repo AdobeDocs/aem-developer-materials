@@ -1,6 +1,7 @@
 ## Pako v1.0
 
 ### Pako License
+
 <pre>
 Copyright (C) 2014-2017 by Vitaly Puzrin and Andrei Tuputcyn
 
@@ -41,5 +42,3 @@ appreciated but is not required.
 3. This notice may not be removed or altered from any source distribution.
 
 </pre>
-
-
