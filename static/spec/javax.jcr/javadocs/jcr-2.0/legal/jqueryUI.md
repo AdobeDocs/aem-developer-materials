@@ -2,7 +2,7 @@
 
 ### jQuery UI License
 
-```
+<pre>
 Copyright jQuery Foundation and other contributors, https://jquery.org/
 
 This software consists of voluntary contributions made by many
@@ -46,5 +46,5 @@ All files located in the node_modules and external directories are
 externally maintained libraries used by this software which have their
 own licenses; we recommend you read them, as their terms may differ from
 the terms above.
-
-```
+  
+</pre>
