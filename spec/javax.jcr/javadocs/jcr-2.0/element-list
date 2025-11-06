@@ -1,0 +1,10 @@
+javax.jcr
+javax.jcr.lock
+javax.jcr.nodetype
+javax.jcr.observation
+javax.jcr.query
+javax.jcr.query.qom
+javax.jcr.retention
+javax.jcr.security
+javax.jcr.util
+javax.jcr.version
